@@ -1,6 +1,6 @@
 Description: Checks Internal Repositories for an update. The internal repo is an SMB mount that is pre-mounted. Requires override of LIST_NAME.
 Identifier: com.github.eth-its-recipes.download.internal-sources
-MinimumVersion: 1.0.0
+MinimumVersion: "2.3"
 
 Input:
   LIST_LANGUAGE: ML

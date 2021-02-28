@@ -7,7 +7,7 @@ Comment: |
 
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.template-script-uninstall
-MinimumVersion: 2.0.0
+MinimumVersion: "2.3"
 
 Input:
   JSS_INVENTORY_NAME: "%NAME%.app"

@@ -1,6 +1,6 @@
 Description: Checks /Volumes/AutoPkg_Local_Sources for update.
 Identifier: com.github.eth-its-recipes.download.CiscoAnyConnect
-MinimumVersion: 1.0.0
+MinimumVersion: "2.3"
 
 Input:
   EXCEPTION: ""
