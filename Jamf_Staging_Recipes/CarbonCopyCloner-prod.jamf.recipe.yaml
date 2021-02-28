@@ -1,0 +1,23 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CarbonCopyCloner-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: Carbon Copy Cloner
+  AUTOINSTALL_GROUP_NAME: '%NAME% %LANGUAGE% auto-install'
+  AUTOINSTALL_POLICY_NAME: Auto-install %NAME% %LANGUAGE%
+  AUTOUPDATE_GROUP_NAME: '%NAME% %LANGUAGE% auto-update'
+  AUTOUPDATE_POLICY_NAME: Auto-update %NAME% %LANGUAGE%
+  INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% installed'
+  LANGUAGE: EN
+  PROD_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% current version installed'
+  SELFSERVICE_DISPLAY_NAME: '%NAME% %LANGUAGE%'
+  SELFSERVICE_POLICY_NAME: '%NAME% %LANGUAGE%'
+  TEST_USERS_GROUP_NAME: '%NAME% %LANGUAGE% test users'
+  TRIGGER_POLICY_NAME: Install %NAME% %LANGUAGE%
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CarbonCopyCloner
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% test version installed'
+  UPDATE_POLICY_NAME: Update %NAME% %LANGUAGE%
+  UPDATE_SELFSERVICE_DISPLAY_NAME: Update %NAME% %LANGUAGE%
+  USERS_GROUP_NAME: '%NAME% %LANGUAGE% users'

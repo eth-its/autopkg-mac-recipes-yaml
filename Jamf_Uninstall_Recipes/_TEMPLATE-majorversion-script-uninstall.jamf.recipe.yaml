@@ -1,0 +1,104 @@
+Comment: |
+  This recipe is a template recipe for uninstall policies which remove an app. It can be overridden directly if the NAME, SELF_SERVICE_DESCRIPTION, SELF_SERVICE_ICON and SCRIPT_PATH keys are overridden. 
+  If using a template script, supply the SCRIPT_NAME key to give the script a unique name in Jamf. 
+  For Application-uninstall.sh, provide the PKG_ID key in the override. This allows the app to be closed and the package receipt to be removed. You will also need to provide JSS_INVENTORY_NAME if this does not match NAME.
+  If the policy name does not match the NAME key, e.g. due to language or license being added to the policy name, SELF_SERVICE_DISPLAY_NAME and smart group name values may also need to be overridden.
+  Do not add things like language or license to the NAME key.
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+MinimumVersion: 2.0.0
+
+Input:
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% users'
+  UNINSTALL_TRIGGER_NAME: '%NAME% %MAJOR_VERSION%-uninstall'
+  UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: Uninstall
+  UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: Uninstall %NAME% %MAJOR_VERSION%
+  UNINSTALL_SELFSERVICE_DESCRIPTION: Uninstalls %NAME% %MAJOR_VERSION%
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  UNINSTALL_POLICY_NAME: Uninstall %NAME% %MAJOR_VERSION%
+  UNINSTALL_POLICY_CATEGORY: Uninstallers
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameter4.xml
+  TRIGGER_UNINSTALL_POLICY_NAME: Trigger-uninstall %NAME% %MAJOR_VERSION%
+  TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% test users'
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TESTING_GROUP_NAME: Testing
+  SELFSERVICE_ICON: '%NAME%.png'
+  SELFSERVICE_FORCE_DESCRIPTION: 'false'
+  SCRIPT_PRIORITY: After
+  SCRIPT_PATH: Application-uninstall.sh
+  SCRIPT_NAME: '%NAME%-uninstall.sh'
+  REINSTALL_BUTTON_TEXT: Uninstall
+  PKG_ID_5: None
+  PKG_ID_4: None
+  PKG_ID_3: None
+  PKG_ID_2: None
+  PKG_ID: None
+  PARAMETER4_VALUE: '%MAJOR_VERSION%'
+  PARAMETER4_TITLE: Major Version
+  JSS_INVENTORY_NAME: '%NAME%.app'
+  INSTALL_BUTTON_TEXT: Uninstall
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_NAME: '%NAME% %MAJOR_VERSION% installed'
+  AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
+  AUTOINSTALL_GROUP_NAME: '%NAME% %MAJOR_VERSION% auto-install'
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+
+Process:
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%UNINSTALL_POLICY_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%TRIGGER_UNINSTALL_POLICY_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+  Arguments:
+    replace_script: true
+    script_category: '%UNINSTALL_POLICY_CATEGORY%'
+    script_name: '%SCRIPT_NAME%'
+    script_parameter4: '%PARAMETER4_TITLE%'
+    script_path: '%SCRIPT_PATH%'
+    script_priority: '%SCRIPT_PRIORITY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TESTING_GROUP_NAME%'
+    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
+    replace_group: false
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%USERS_GROUP_NAME%'
+    computergroup_template: '%USERS_GROUP_TEMPLATE%'
+    replace_group: false
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%AUTOINSTALL_GROUP_NAME%'
+    computergroup_template: '%AUTOINSTALL_GROUP_TEMPLATE%'
+    replace_group: false
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%INSTALLED_GROUP_NAME%'
+    computergroup_template: '%INSTALLED_GROUP_TEMPLATE%'
+    replace_group: true
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  Arguments:
+    icon: '%SELFSERVICE_ICON%'
+    policy_name: '%UNINSTALL_POLICY_NAME%'
+    policy_template: '%UNINSTALL_POLICY_TEMPLATE%'
+    replace_policy: true
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  Arguments:
+    policy_name: '%TRIGGER_UNINSTALL_POLICY_NAME%'
+    policy_template: '%TRIGGER_UNINSTALL_POLICY_TEMPLATE%'
+    replace_policy: true

@@ -1,0 +1,99 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.KeePassXC
+ParentRecipe: com.github.crystalllized.pkg.KeePassXC
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: KeePassXC
+  INSTALL_BUTTON_TEXT: Install %version%
+  PARAMETER4_LABEL: Trigger name
+  PARAMETER4_VALUE: '%NAME%-uninstall'
+  PKG_CATEGORY: Security
+  POLICY_CATEGORY: Untested
+  POLICY_NAME: '%NAME% (Testing)'
+  POLICY_RUN_COMMAND: chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
+  REINSTALL_BUTTON_TEXT: Install %version%
+  SCRIPT_CATEGORY: Administration
+  SCRIPT_NAME: jamf-policy-trigger.sh
+  SCRIPT_PATH: jamf-policy-trigger.sh
+  SCRIPT_PRIORITY: Before
+  SELFSERVICE_DESCRIPTION: |
+    **KeePass Cross-Platform Community Edition**
+    
+    KeePassXC can store your passwords safely and auto-type them into your everyday websites and applications.
+    
+    KeePassXC is a community fork of KeePassX, the cross-platform port of KeePass for Windows. Every feature works cross-platform and was thoroughly tested on multiple systems to provide users with the same look and feel on every supported operating system. This includes the beloved Auto-Type feature.
+    
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
+  SELFSERVICE_ICON: '%NAME%.png'
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: '%NAME% test users'
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: '%NAME% test version installed'
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  UPDATE_PREDICATE: pkg_uploaded != True
+
+Process:
+- Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%PKG_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+  Arguments:
+    pkg_category: '%PKG_CATEGORY%'
+
+- Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: '%UPDATE_PREDICATE%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%SCRIPT_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+  Arguments:
+    replace_script: true
+    script_category: '%SCRIPT_CATEGORY%'
+    script_name: '%SCRIPT_NAME%'
+    script_parameter4: '%PARAMETER4_LABEL%'
+    script_path: '%SCRIPT_PATH%'
+    script_priority: '%SCRIPT_PRIORITY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%POLICY_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TESTING_GROUP_NAME%'
+    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TEST_USERS_GROUP_NAME%'
+    computergroup_template: '%TEST_USERS_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TEST_VERSION_INSTALLED_GROUP_NAME%'
+    computergroup_template: '%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%'
+    replace_group: 'True'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  Arguments:
+    icon: '%SELFSERVICE_ICON%'
+    policy_name: '%POLICY_NAME%'
+    policy_template: '%POLICY_TEMPLATE%'
+    replace_policy: 'True'
+
+- Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

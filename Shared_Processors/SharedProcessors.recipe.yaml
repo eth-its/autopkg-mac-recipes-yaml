@@ -1,0 +1,7 @@
+Description: Recipe stub for any Processors in this directory.
+Identifier: com.github.eth-its-recipes.processors
+MinimumVersion: 2.0.0
+
+Input: {}
+
+Process: []

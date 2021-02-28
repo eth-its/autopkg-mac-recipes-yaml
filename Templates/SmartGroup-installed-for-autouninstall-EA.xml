@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+    <name>%INSTALLED_FOR_AUTOUNINSTALL_GROUP_NAME%</name>
+    <is_smart>true</is_smart>
+    <criteria>
+        <criterion>
+            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>%EXTENSION_ATTRIBUTE_SEARCH_TYPE%</search_type>
+            <value>%EXTENSION_ATTRIBUTE_SEARCH_VALUE%</value>
+        </criterion>
+    </criteria>
+</computer_group>

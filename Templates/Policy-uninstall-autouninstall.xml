@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policy>
+    <general>
+        <name>%AUTOUNINSTALL_POLICY_NAME%</name>
+        <enabled>true</enabled>
+        <trigger>EVENT</trigger>
+        <trigger_checkin>true</trigger_checkin>
+        <trigger_enrollment_complete>false</trigger_enrollment_complete>
+        <trigger_login>false</trigger_login>
+        <trigger_logout>false</trigger_logout>
+        <trigger_network_state_changed>false</trigger_network_state_changed>
+        <trigger_startup>false</trigger_startup>
+        <trigger_other/>
+        <frequency>%AUTOUNINSTALL_POLICY_FREQUENCY%</frequency>
+        <category>
+            <name>%AUTOUNINSTALL_POLICY_CATEGORY%</name>
+        </category>
+    </general>
+    <scope>
+        <all_computers>false</all_computers>
+        <computer_groups>
+            <computer_group>
+                <name>%AUTOUNINSTALL_GROUP_NAME%</name>
+            </computer_group>
+        </computer_groups>
+        <exclusions>
+            <computers/>
+            <computer_groups>
+                <computer_group>
+                    <name>%AUTOINSTALL_GROUP_NAME%</name>
+                </computer_group>
+            </computer_groups>
+        </exclusions>
+    </scope>
+    <package_configuration>
+        <packages>
+            <size>0</size>
+        </packages>
+    </package_configuration>
+    <scripts>
+        <size>0</size>
+    </scripts>
+    <self_service>
+        <use_for_self_service>false</use_for_self_service>
+    </self_service>
+    <maintenance>
+        <recon>true</recon>
+    </maintenance>
+    <files_processes>
+        <run_command>jamf policy -event "%UNINSTALL_TRIGGER_NAME%"</run_command>
+    </files_processes>
+</policy>

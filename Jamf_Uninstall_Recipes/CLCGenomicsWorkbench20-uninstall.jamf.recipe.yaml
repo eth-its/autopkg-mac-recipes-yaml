@@ -1,0 +1,21 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench20-uninstall
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: CLC Genomics Workbench
+  AUTOINSTALL_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LANGUAGE% auto-install'
+  INSTALLED_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LANGUAGE% installed'
+  JSS_INVENTORY_NAME: '%NAME% %MAJOR_VERSION%.app'
+  LANGUAGE: EN
+  MAJOR_VERSION: '20'
+  PKG_ID: ch.ethz.id.pkg.CLCGenomicsWorkbench%MAJOR_VERSION%
+  SELFSERVICE_ICON: '%NAME% %MAJOR_VERSION%.png'
+  TEST_USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LANGUAGE% test users'
+  TRIGGER_UNINSTALL_POLICY_NAME: Trigger-uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%
+  UNINSTALL_POLICY_NAME: Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%
+  UNINSTALL_SELFSERVICE_DESCRIPTION: Uninstalls %NAME% %MAJOR_VERSION% %LANGUAGE%
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%
+  UNINSTALL_TRIGGER_NAME: '%NAME% %MAJOR_VERSION%-uninstall'
+  USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LANGUAGE% users'

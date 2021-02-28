@@ -1,0 +1,9 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.LibreOffice-uninstall
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: LibreOffice
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: org.libreoffice.langpack-de

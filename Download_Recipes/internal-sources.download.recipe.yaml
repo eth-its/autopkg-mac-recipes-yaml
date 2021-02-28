@@ -1,0 +1,43 @@
+Description: Checks Internal Repositories for an update. The internal repo is an SMB mount that is pre-mounted. Requires override of LIST_NAME.
+Identifier: com.github.eth-its-recipes.download.internal-sources
+MinimumVersion: 1.0.0
+
+Input:
+  VERSION_COLUMN_NUMBER: '2'
+  TITLE_COLUMN_NUMBER: '1'
+  STOP_PREDICATE: file_exists == True
+  SOFTWARE_REPO: /Volumes/mac
+  PATH_COLUMN_NUMBER: '6'
+  MAJOR_VERSION: ''
+  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_NAME: Something
+  LIST_LANGUAGE: ML
+  LIST_DELIMITER: ;
+  LICENSE_KEY_COLUMN_NUMBER: '8'
+  LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LICENSE_FILE_COLUMN_NUMBER: '9'
+  LANGUAGE_COLUMN_NUMBER: '4'
+
+Process:
+- Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
+  Comment: Get list of versions of a product. Outputs path to latest version.
+  Arguments:
+    LIST_LANGUAGE: '%LIST_LANGUAGE%'
+    LIST_NAME: '%LIST_NAME%'
+    MAJOR_VERSION: '%MAJOR_VERSION%'
+    RECIPE_CACHE_DIR: '%RECIPE_CACHE_DIR%'
+    lang_col: '%LANGUAGE_COLUMN_NUMBER%'
+    license_col: '%LICENSE_KEY_COLUMN_NUMBER%'
+    license_file_col: '%LICENSE_FILE_COLUMN_NUMBER%'
+    license_file_source: '%LICENSE_FILE_SOURCE%'
+    list_delimiter: '%LIST_DELIMITER%'
+    list_source: '%LIST_SOURCE%'
+    mounted_repo: '%SOFTWARE_REPO%'
+    path_col: '%PATH_COLUMN_NUMBER%'
+    title_col: '%TITLE_COLUMN_NUMBER%'
+    version_col: '%VERSION_COLUMN_NUMBER%'
+
+- Processor: URLDownloader
+  Arguments:
+    CHECK_FILESIZE_ONLY: true
+    url: file://%file_path%

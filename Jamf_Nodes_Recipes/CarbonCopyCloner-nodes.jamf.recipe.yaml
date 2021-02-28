@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CarbonCopyCloner-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: Carbon Copy Cloner
+  LANGUAGE: EN
+  POLICY_NAME: Carbon Copy Cloner EN (Testing)
+  SELFSERVICE_DISPLAY_NAME: Carbon Copy Cloner EN (Testing)
+  TEST_USERS_GROUP_NAME: '%NAME% %LANGUAGE% test users'
+  TEST_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% test version installed'
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CarbonCopyCloner

@@ -1,0 +1,76 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.macos-catalina-download
+MinimumVersion: 1.0.0
+
+Input:
+  NAME: Download macOS Catalina Installer
+  INELIGIBLE_GROUP_NAME: '%NAME% ineligible'
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
+  INSTALL_BUTTON_TEXT: Download
+  MAX_OS_VERSION: 10.15.8
+  MIN_OS_VERSION: 10.12.4
+  MODEL_IDENTIFIER_REGEX: ^(iMac1[3-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[5-9]|MacBookAir1[0-9]|MacBookPro9|MacBookPro1[0-6]|MacMini[6-9]|MacPro[5-9])
+  PKG_CATEGORY: Updates
+  POLICY_CATEGORY: Untested
+  POLICY_NAME: '%NAME% (Testing)'
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=10.15 --update --move
+  POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
+  REINSTALL_BUTTON_TEXT: Download
+  SELFSERVICE_DESCRIPTION: |
+    Downloads 'Install macOS Catalina.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
+  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
+  SELFSERVICE_ICON: Install macOS Catalina.png
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: '%NAME% test users'
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
+  UPDATE_PREDICATE: pkg_uploaded == False
+
+Process:
+- Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+  Arguments:
+    recipeoverride_identifier: '%UNTESTED_RECIPE_IDENTIFIER%'
+
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: '%UPDATE_PREDICATE%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%PKG_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+  Arguments:
+    pkg_category: '%PKG_CATEGORY%'
+    replace_pkg: 'False'
+    replace_pkg_metadata: 'True'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%POLICY_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TESTING_GROUP_NAME%'
+    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TEST_USERS_GROUP_NAME%'
+    computergroup_template: '%TEST_USERS_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%INELIGIBLE_GROUP_NAME%'
+    computergroup_template: '%INELIGIBLE_GROUP_TEMPLATE%'
+    replace_group: 'True'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  Arguments:
+    icon: '%SELFSERVICE_ICON%'
+    policy_name: '%POLICY_NAME%'
+    policy_template: '%POLICY_TEMPLATE%'
+    replace_policy: 'True'

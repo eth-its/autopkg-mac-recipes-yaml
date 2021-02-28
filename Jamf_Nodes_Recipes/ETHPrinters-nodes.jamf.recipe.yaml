@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinters-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: ETH Printers
+  POLICY_NAME: '%NAME% (Testing)'
+  SCRIPT_NAME: ETHPrinters-preinstall.sh
+  SCRIPT_PATH: ETHPrinters-preinstall.sh
+  SCRIPT_PRIORITY: Before
+  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHPrinters

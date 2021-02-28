@@ -1,0 +1,9 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Fantastical-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: Fantastical
+  POLICY_RUN_COMMAND: chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.%NAME%

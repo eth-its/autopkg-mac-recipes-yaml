@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+  <name>%INELIGIBLE_GROUP_NAME%</name>
+  <is_smart>true</is_smart>
+  <criteria>
+    <criterion>
+      <name>Operating System Version</name>
+      <priority>0</priority>
+      <and_or>and</and_or>
+      <search_type>less than</search_type>
+      <value>10.13.4</value>
+    </criterion>
+    <criterion>
+      <name>Boot Volume Type</name>
+      <priority>1</priority>
+      <and_or>or</and_or>
+      <search_type>is not</search_type>
+      <value>APFS</value>
+    </criterion>
+  </criteria>
+</computer_group>

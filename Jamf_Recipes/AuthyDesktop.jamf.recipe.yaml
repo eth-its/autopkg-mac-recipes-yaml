@@ -1,0 +1,76 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AuthyDesktop
+ParentRecipe: com.github.nzmacgeek.pkg.authy
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: Authy Desktop
+  INSTALL_BUTTON_TEXT: Install %version%
+  PKG_CATEGORY: Security
+  POLICY_CATEGORY: Untested
+  POLICY_NAME: '%NAME% (Testing)'
+  POLICY_RUN_COMMAND: chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  REINSTALL_BUTTON_TEXT: Install %version%
+  SELFSERVICE_DESCRIPTION: |
+    \u200EAuthy is a free mobile / desktop app for two-factor authentication (2FA), as well as a security partner and SMS delivery service of many websites that want to make two-factor authentication work better for their users.
+    
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
+  SELFSERVICE_ICON: '%NAME%.png'
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: '%NAME% test users'
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: '%NAME% test version installed'
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  UPDATE_PREDICATE: pkg_uploaded != True
+
+Process:
+- Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%PKG_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+  Arguments:
+    pkg_category: '%PKG_CATEGORY%'
+
+- Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: '%UPDATE_PREDICATE%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  Arguments:
+    category_name: '%POLICY_CATEGORY%'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TESTING_GROUP_NAME%'
+    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TEST_USERS_GROUP_NAME%'
+    computergroup_template: '%TEST_USERS_GROUP_TEMPLATE%'
+    replace_group: 'False'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  Arguments:
+    computergroup_name: '%TEST_VERSION_INSTALLED_GROUP_NAME%'
+    computergroup_template: '%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%'
+    replace_group: 'True'
+
+- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  Arguments:
+    icon: '%SELFSERVICE_ICON%'
+    policy_name: '%POLICY_NAME%'
+    policy_template: '%POLICY_TEMPLATE%'
+    replace_policy: 'True'
+
+- Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
