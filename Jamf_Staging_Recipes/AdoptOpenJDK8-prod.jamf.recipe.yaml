@@ -1,11 +1,11 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.AdoptOpenJDK8-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: AdoptOpenJDK 8
-  EXTENSION_ATTRIBUTE_NAME: AdoptOpenJDK8Version
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
-  SELFSERVICE_ICON: AdoptOpenJDK.png
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdoptOpenJDK8
+  EXTENSION_ATTRIBUTE_NAME: AdoptOpenJDK8Version
+  SELFSERVICE_ICON: AdoptOpenJDK.png
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml

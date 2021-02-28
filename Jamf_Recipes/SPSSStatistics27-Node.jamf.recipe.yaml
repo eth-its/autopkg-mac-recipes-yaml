@@ -3,153 +3,153 @@ Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Node
 MinimumVersion: 2.0.0
 
 Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
   NAME: SPSS Statistics
-  EXTENSION_ATTRIBUTE_NAME: SPSSStatistics %MAJOR_VERSION% License
-  EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh
-  EXTENSION_ATTRIBUTE_VALUE: '%LICENSE%'
-  INSTALLED_GROUP_NAME: SPSS Statistics %MAJOR_VERSION% %LICENSE% installed
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
-  INSTALL_BUTTON_TEXT: Install %version%
+  POLICY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   LICENSE: Node
-  LICENSE_INSTALLED_GROUP_NAME: SPSS Statistics %MAJOR_VERSION% %LICENSE% License activated
-  LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
-  LICENSE_SET_INSTALL_BUTTON_TEXT: Activate
-  LICENSE_SET_MESSAGE_FINISH: SPSS Statistics %MAJOR_VERSION% %LICENSE% License activated
-  LICENSE_SET_POLICY_NAME: Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License
-  LICENSE_SET_POLICY_TEMPLATE: Policy-prod-selfservice-install-license.xml
-  LICENSE_SET_REINSTALL_BUTTON_TEXT: Activate
-  LICENSE_SET_SELFSERVICE_DESCRIPTION: Activates the SPSS Statistics %MAJOR_VERSION% %LICENSE% License
-  LICENSE_SET_SELFSERVICE_DISPLAY_NAME: Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License
-  MAJOR_VERSION: '27'
-  MESSAGE_FINISH: SPSS Statistics %MAJOR_VERSION% %LICENSE% License is now activated
+  MAJOR_VERSION: "27"
   PKG_CATEGORY: Science & Math
   POLICY_CATEGORY: Untested
-  POLICY_NAME: SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)
-  POLICY_RUN_COMMAND: jamf policy -event '%TRIGGER_NAME%'
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  REINSTALL_BUTTON_TEXT: Install %version%
-  SCRIPT_NAME: SPSSStatistics-node-license-activation.sh
-  SCRIPT_PATH: SPSSStatistics-node-license-activation.sh
-  SCRIPT_PRIORITY: After
   SELFSERVICE_DESCRIPTION: |
     An integrated interface for running descriptive statistics, regression, advanced statistics and more. SPSS Statistics can create publication ready charts, tables, and decision trees in one tool. Specialized extensions allow the SPSS Statistics syntax to be enhanced with R and Python through specialized extensions.
     Version: %version%
     Category: %PKG_CATEGORY%
-  SELFSERVICE_DISPLAY_NAME: SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)
-  SELFSERVICE_ICON: '%NAME%.png'
+  SCRIPT_PATH: SPSSStatistics-node-license-activation.sh
+  SCRIPT_NAME: SPSSStatistics-node-license-activation.sh
+  SCRIPT_PRIORITY: After
+  EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
+  EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh
+  EXTENSION_ATTRIBUTE_VALUE: "%LICENSE%"
+  TRIGGER_NAME: "Activate-SPSS-%MAJOR_VERSION%-%LICENSE%-License"
+  TRIGGER_POLICY_NAME: "Trigger Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License"
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %POLICY_NAME% complete'"
+  LICENSE_SET_POLICY_NAME: "Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License"
+  LICENSE_SET_POLICY_TEMPLATE: Policy-prod-selfservice-install-license.xml
+  LICENSE_SET_SELFSERVICE_DISPLAY_NAME: "Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License"
+  LICENSE_SET_SELFSERVICE_DESCRIPTION: "Activates the SPSS Statistics %MAJOR_VERSION% %LICENSE% License"
+  LICENSE_SET_INSTALL_BUTTON_TEXT: Activate
+  LICENSE_SET_REINSTALL_BUTTON_TEXT: Activate
+  LICENSE_SET_MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License activated"
+  LICENSE_INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License activated"
+  LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
+  MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License is now activated"
+  SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LICENSE% test users'
+  INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  TEST_VERSION_INSTALLED_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LICENSE% test version installed'
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TRIGGER_NAME: Activate-SPSS-%MAJOR_VERSION%-%LICENSE%-License
-  TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_NAME: Trigger Activate SPSS Statistics %MAJOR_VERSION% %LICENSE% License
-  TRIGGER_POLICY_RUN_COMMAND: echo 'Installation of %POLICY_NAME% complete'
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
-  UPDATE_PREDICATE: pkg_uploaded == False
-  USERS_GROUP_NAME: '%NAME% %MAJOR_VERSION% %LICENSE% users'
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
+  UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
-- Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
-  Arguments:
-    recipeoverride_identifier: '%UNTESTED_RECIPE_IDENTIFIER%'
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
 
-- Processor: StopProcessingIf
-  Arguments:
-    predicate: '%UPDATE_PREDICATE%'
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
 
-- Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-  Arguments:
-    category_name: '%PKG_CATEGORY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
-  Arguments:
-    pkg_category: '%PKG_CATEGORY%'
-    replace_pkg: 'False'
-    replace_pkg_metadata: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-  Arguments:
-    category_name: '%POLICY_CATEGORY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-  Arguments:
-    category_name: '%TRIGGER_POLICY_CATEGORY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-  Arguments:
-    replace_script: true
-    script_category: '%POLICY_CATEGORY%'
-    script_name: '%SCRIPT_NAME%'
-    script_path: '%SCRIPT_PATH%'
-    script_priority: '%SCRIPT_PRIORITY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
-  Arguments:
-    ea_name: '%EXTENSION_ATTRIBUTE_NAME%'
-    ea_script_path: '%EXTENSION_ATTRIBUTE_SCRIPT%'
-    replace_ea: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%TESTING_GROUP_NAME%'
-    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
-    replace_group: 'False'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%TEST_USERS_GROUP_NAME%'
-    computergroup_template: '%TEST_USERS_GROUP_TEMPLATE%'
-    replace_group: 'False'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%TEST_VERSION_INSTALLED_GROUP_NAME%'
-    computergroup_template: '%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%'
-    replace_group: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%USERS_GROUP_NAME%'
-    computergroup_template: '%USERS_GROUP_TEMPLATE%'
-    replace_group: 'False'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%INSTALLED_GROUP_NAME%'
-    computergroup_template: '%INSTALLED_GROUP_TEMPLATE%'
-    replace_group: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%LICENSE_INSTALLED_GROUP_NAME%'
-    computergroup_template: '%LICENSE_INSTALLED_GROUP_TEMPLATE%'
-    replace_group: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%LICENSE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%LICENSE_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-  Comment: Trigger policy for activating the license
-  Arguments:
-    policy_name: '%TRIGGER_POLICY_NAME%'
-    policy_template: '%TRIGGER_POLICY_TEMPLATE%'
-    replace_policy: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger policy for activating the license
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-  Comment: Self Service policy for activating the license
-  Arguments:
-    policy_name: '%LICENSE_SET_POLICY_NAME%'
-    policy_template: '%LICENSE_SET_POLICY_TEMPLATE%'
-    replace_policy: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service policy for activating the license
+    Arguments:
+      policy_template: "%LICENSE_SET_POLICY_TEMPLATE%"
+      policy_name: "%LICENSE_SET_POLICY_NAME%"
+      replace_policy: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-  Comment: Untested Self Service policy
-  Arguments:
-    icon: '%SELFSERVICE_ICON%'
-    policy_name: '%POLICY_NAME%'
-    policy_template: '%POLICY_TEMPLATE%'
-    replace_policy: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Untested Self Service policy
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

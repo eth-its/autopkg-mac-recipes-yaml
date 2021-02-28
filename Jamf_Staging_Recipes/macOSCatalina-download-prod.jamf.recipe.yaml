@@ -1,16 +1,16 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.macos-catalina-download-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 
 Input:
   NAME: Download macOS Catalina Installer
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
-  INSTALL_BUTTON_TEXT: Download
-  MAX_OS_VERSION: 10.15.8
-  MIN_OS_VERSION: 10.12.4
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "10.15.8"
   MODEL_IDENTIFIER_REGEX: ^(iMac1[3-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[5-9]|MacBookAir1[0-9]|MacBookPro9|MacBookPro1[0-6]|MacMini[6-9]|MacPro[5-9])
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --move
+  INSTALL_BUTTON_TEXT: Download
   REINSTALL_BUTTON_TEXT: Download
   SELFSERVICE_ICON: Install macOS Catalina.png
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --move
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install

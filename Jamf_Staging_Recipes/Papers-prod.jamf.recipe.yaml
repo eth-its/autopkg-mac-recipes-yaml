@@ -1,26 +1,26 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Papers-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: Papers
-  AUTOINSTALL_GROUP_NAME: '%NAME% %LANGUAGE% auto-install'
-  AUTOINSTALL_POLICY_NAME: Auto-install %NAME% %LANGUAGE%
-  AUTOUPDATE_GROUP_NAME: '%NAME% %LANGUAGE% auto-update'
-  AUTOUPDATE_POLICY_NAME: Auto-update %NAME% %LANGUAGE%
-  INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% installed'
-  PARAMETER4_VALUE: '%NAME%-uninstall'
-  PROD_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% current version installed'
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Papers
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PRIORITY: Before
-  SELFSERVICE_DISPLAY_NAME: '%NAME% %LANGUAGE%'
-  SELFSERVICE_POLICY_NAME: '%NAME% %LANGUAGE%'
-  TEST_USERS_GROUP_NAME: '%NAME% %LANGUAGE% test users'
-  TRIGGER_POLICY_NAME: Install %NAME% %LANGUAGE%
+  PARAMETER4_VALUE: "%NAME%-uninstall"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Papers
-  UNTESTED_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% test version installed'
-  UPDATE_POLICY_NAME: Update %NAME% %LANGUAGE%
-  UPDATE_SELFSERVICE_DISPLAY_NAME: Update %NAME% %LANGUAGE%
-  USERS_GROUP_NAME: '%NAME% %LANGUAGE% users'
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% current version installed"
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %LANGUAGE%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %LANGUAGE%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %LANGUAGE%"
+  UPDATE_POLICY_NAME: "Update %NAME% %LANGUAGE%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %LANGUAGE%"

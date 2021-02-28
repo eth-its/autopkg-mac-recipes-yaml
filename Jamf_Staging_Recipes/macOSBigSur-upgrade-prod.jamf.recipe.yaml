@@ -1,16 +1,16 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.macos-bigsur-upgrade-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 
 Input:
   NAME: Upgrade to macOS Big Sur
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
-  INSTALL_BUTTON_TEXT: Upgrade macOS
-  MAX_OS_VERSION: 10.15.8
-  MIN_OS_VERSION: 10.12.4
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "10.15.8"
   MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-6]|Macmini[7-9]|MacPro[6-9])
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --reinstall
+  INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   SELFSERVICE_ICON: Install macOS Big Sur.png
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --reinstall
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install

@@ -1,0 +1,28 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench-prod
+MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: CLC Genomics Workbench
+  JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
+  MAJOR_VERSION: "20"
+  CLC_LICENSE_SERVER: ++ REPLACE-ME ++
+  CLC_LICENSE_PORT: "++ REPLACE-ME ++"
+  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CLCGenomicsWorkbench
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% current version installed"
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UPDATE_POLICY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'

@@ -5,13 +5,13 @@ MinimumVersion: 2.0.0
 
 Input:
   NAME: KeePassXC
-  PARAMETER4_LABEL: Trigger name
-  PARAMETER4_VALUE: '%NAME%-uninstall'
-  POLICY_NAME: '%NAME% (Testing)'
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.KeePassXC
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
-  SCRIPT_CATEGORY: Administration
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh
+  SCRIPT_CATEGORY: Administration
   SCRIPT_PRIORITY: Before
-  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.KeePassXC
+  PARAMETER4_LABEL: Trigger name
+  PARAMETER4_VALUE: "%NAME%-uninstall"

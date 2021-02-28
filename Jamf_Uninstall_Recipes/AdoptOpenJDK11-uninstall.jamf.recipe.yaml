@@ -1,17 +1,17 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.AdoptOpenJDK11-uninstall
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: AdoptOpenJDK 11
+  SCRIPT_PATH: AdoptOpenJDK-uninstall.sh
+  SCRIPT_NAME: AdoptOpenJDK-uninstall.sh
+  PARAMETER4_LABEL: JDK major version
+  PARAMETER4_VALUE: "11"
+  PKG_ID: com.AdoptOpenJDK-11.jdk
   EXTENSION_ATTRIBUTE_NAME: AdoptOpenJDK11Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$
+  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^None$"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
-  PARAMETER4_LABEL: JDK major version
-  PARAMETER4_VALUE: '11'
-  PKG_ID: com.AdoptOpenJDK-11.jdk
-  SCRIPT_NAME: AdoptOpenJDK-uninstall.sh
-  SCRIPT_PATH: AdoptOpenJDK-uninstall.sh
   SELFSERVICE_ICON: AdoptOpenJDK.png

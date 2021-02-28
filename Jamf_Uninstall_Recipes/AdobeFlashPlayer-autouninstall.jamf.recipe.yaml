@@ -1,13 +1,13 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.AdobeFlashPlayer-autouninstall
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-autouninstall
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-autouninstall
 
 Input:
   NAME: Adobe Flash Player
+  SCRIPT_PATH: AdobeFlashPlayer-uninstall.sh
+  SCRIPT_NAME: AdobeFlashPlayer-uninstall.sh
+  INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall-EA.xml
   EXTENSION_ATTRIBUTE_NAME: AdobeFlashVersion
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^$
-  INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall-EA.xml
-  SCRIPT_NAME: AdobeFlashPlayer-uninstall.sh
-  SCRIPT_PATH: AdobeFlashPlayer-uninstall.sh
+  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^$"

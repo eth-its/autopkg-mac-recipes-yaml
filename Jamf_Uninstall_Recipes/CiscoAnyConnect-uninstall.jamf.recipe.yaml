@@ -1,12 +1,12 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.CiscoAnyConnect-uninstall
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Cisco AnyConnect Secure Mobility Client
-  SCRIPT_NAME: CiscoAnyConnect-uninstall.sh
   SCRIPT_PATH: CiscoAnyConnect-uninstall.sh
+  SCRIPT_NAME: CiscoAnyConnect-uninstall.sh
   SELFSERVICE_DESCRIPTION: Uninstalls Cisco AnyConnect. Please note that with macOS Big Sur and above, an administrator account password must be provided via a prompt in order to remove the System Extension that comes with Cisco AnyConnect.
-  SELFSERVICE_FORCE_DESCRIPTION: 'true'
+  SELFSERVICE_FORCE_DESCRIPTION: "true"
   SELFSERVICE_ICON: Cisco AnyConnect.png

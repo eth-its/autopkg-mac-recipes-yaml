@@ -4,73 +4,73 @@ MinimumVersion: 1.0.0
 
 Input:
   NAME: Upgrade to macOS Big Sur
-  INELIGIBLE_GROUP_NAME: '%NAME% ineligible'
-  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
-  INSTALL_BUTTON_TEXT: Upgrade macOS
-  MAX_OS_VERSION: 10.15.8
-  MIN_OS_VERSION: 10.12.4
-  MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-6]|Macmini[7-9]|MacPro[6-9])
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Updates
-  POLICY_CATEGORY: Untested
-  POLICY_NAME: '%NAME% (Testing)'
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --reinstall
-  POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  REINSTALL_BUTTON_TEXT: Upgrade macOS
-  SELFSERVICE_DESCRIPTION: |
-    WARNING! This will download the latest version of macOS Big Sur and install it on the system volume. All work should be saved and backed up before starting.
-  SELFSERVICE_DISPLAY_NAME: '%NAME% (Testing)'
-  SELFSERVICE_ICON: Install macOS Big Sur.png
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: '%NAME% test users'
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
-  UPDATE_PREDICATE: pkg_uploaded == False
+  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "10.15.8"
+  MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-6]|Macmini[7-9]|MacPro[6-9])
+  POLICY_CATEGORY: Untested
+  POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --reinstall
+  SELFSERVICE_DESCRIPTION: |
+    WARNING! This will download the latest version of macOS Big Sur and install it on the system volume. All work should be saved and backed up before starting.
+  SELFSERVICE_ICON: Install macOS Big Sur.png
+  INSTALL_BUTTON_TEXT: Upgrade macOS
+  REINSTALL_BUTTON_TEXT: Upgrade macOS
+  UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
-- Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
-  Arguments:
-    recipeoverride_identifier: '%UNTESTED_RECIPE_IDENTIFIER%'
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
 
-- Processor: StopProcessingIf
-  Arguments:
-    predicate: '%UPDATE_PREDICATE%'
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-  Arguments:
-    category_name: '%PKG_CATEGORY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
-  Arguments:
-    pkg_category: '%PKG_CATEGORY%'
-    replace_pkg: 'False'
-    replace_pkg_metadata: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-  Arguments:
-    category_name: '%POLICY_CATEGORY%'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%TESTING_GROUP_NAME%'
-    computergroup_template: '%TESTING_GROUP_TEMPLATE%'
-    replace_group: 'False'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%TEST_USERS_GROUP_NAME%'
-    computergroup_template: '%TEST_USERS_GROUP_TEMPLATE%'
-    replace_group: 'False'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  Arguments:
-    computergroup_name: '%INELIGIBLE_GROUP_NAME%'
-    computergroup_template: '%INELIGIBLE_GROUP_TEMPLATE%'
-    replace_group: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
+      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
+      replace_group: "True"
 
-- Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-  Arguments:
-    icon: '%SELFSERVICE_ICON%'
-    policy_name: '%POLICY_NAME%'
-    policy_template: '%POLICY_TEMPLATE%'
-    replace_policy: 'True'
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

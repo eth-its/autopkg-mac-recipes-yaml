@@ -1,35 +1,42 @@
-Description: Downloads the latest version of Firefox and makes a pkg of it then uploads it to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Firefox
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. The CLC_LICENSE_SERVER and CLC_LICENSE_PORT keys should be overridden.
+Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench
 MinimumVersion: 2.0.0
-ParentRecipe: com.github.autopkg.pkg.Firefox_EN
+ParentRecipe: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench
 
 Input:
-  NAME: Firefox
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  LOCALE: "en-GB"
-  ORG_NAME: "ETH"
-  PKG_ID: ch.ethz.id.Firefox.pkg
-  RELEASE: latest
+  NAME: CLC Genomics Workbench
+  LANGUAGE: EN
+  LIST_NAME: CLC Genomics Workbench
+  JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
+  LIST_LANGUAGE: EN
+  MAJOR_VERSION: "20"
+  CLC_LICENSE_SERVER: ++ REPLACE-ME ++
+  CLC_LICENSE_PORT: "++ REPLACE-ME ++"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    Firefox is a free and open-source web browser developed by Mozilla. 
+    **CLC Genomics Workbench 20** - a software package supporting your daily bioinformatics work.
+
+    **Note**
+    On macOS 10.14+, during installation you may be asked to allow "Installer.app" to control "System Events.app". This is required for installation to proceed. It does not require administrator rights.
+    After installation is complete, as a security measure you can disallow access by going to **System Preferences - Security and Privacy - Privacy - Automation** and un-checking "System Events.app" in the "Installer.app" item.
+
     Version: %version%
     Category: %PKG_CATEGORY%
-  PKG_CATEGORY: Browsers & Players
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: Firefox.png
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  REPLACE_PKG: "False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -40,7 +47,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
-      replace_pkg: "%REPLACE_PKG%"
       pkg_category: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson

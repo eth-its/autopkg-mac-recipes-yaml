@@ -1,13 +1,13 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.ETHPrinters-uninstall
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: ETH Printers
-  PKG_ID: ch.ethz.ethprinters.pkg
-  PKG_ID_2: com.houdah.ETH-Printers
-  SCRIPT_NAME: ETH Printers-uninstall.sh
   SCRIPT_PATH: ETHPrinters-uninstall.sh
+  SCRIPT_NAME: ETH Printers-uninstall.sh
   SELFSERVICE_DESCRIPTION: Uninstalls the ETH Printers app. This will not uninstall the printer drivers.
-  SELFSERVICE_FORCE_DESCRIPTION: 'true'
+  SELFSERVICE_FORCE_DESCRIPTION: "true"
+  PKG_ID: "ch.ethz.ethprinters.pkg"
+  PKG_ID_2: "com.houdah.ETH-Printers"

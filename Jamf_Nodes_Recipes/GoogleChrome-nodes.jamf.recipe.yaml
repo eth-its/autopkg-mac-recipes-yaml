@@ -5,5 +5,5 @@ MinimumVersion: 2.0.0
 
 Input:
   NAME: Google Chrome
-  SELFSERVICE_ICON: Google Chrome 2020.png
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleChrome
+  SELFSERVICE_ICON: Google Chrome 2020.png

@@ -1,20 +1,20 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.Papers-uninstall
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Papers
-  AUTOINSTALL_GROUP_NAME: '%NAME% EN auto-install'
-  INSTALLED_GROUP_NAME: '%NAME% EN installed'
   LANGUAGE: EN
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.ReadCube.Papers
   PARAMETER6_LABEL: Additional Package Receipt
   PARAMETER6_VALUE: com.mekentosj.papers3
-  SELFSERVICE_DISPLAY_NAME: Uninstall %NAME% EN
-  TEST_USERS_GROUP_NAME: '%NAME% EN test users'
-  TRIGGER_UNINSTALL_POLICY_NAME: Trigger-uninstall %NAME% EN
-  UNINSTALL_POLICY_NAME: Uninstall %NAME% EN
-  UNINSTALL_SELFSERVICE_DISPLAY_NAME: Uninstall %NAME% EN
-  USERS_GROUP_NAME: '%NAME% EN users'
+  AUTOINSTALL_GROUP_NAME: "%NAME% EN auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% EN installed"
+  TEST_USERS_GROUP_NAME: "%NAME% EN test users"
+  USERS_GROUP_NAME: "%NAME% EN users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% EN"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% EN"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% EN"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% EN"

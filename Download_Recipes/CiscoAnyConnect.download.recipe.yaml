@@ -3,25 +3,25 @@ Identifier: com.github.eth-its-recipes.download.CiscoAnyConnect
 MinimumVersion: 1.0.0
 
 Input:
-  VENDOR: Cisco
+  EXCEPTION: ""
   LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
   LIST_NAME: AnyConnect_VPN_Client
-  EXCEPTION: ''
+  VENDOR: Cisco
 
 Process:
-- Processor: com.github.eth-its-recipes.processors/SubDirectoryList
-  Arguments:
-    EXCEPTION: '%EXCEPTION%'
-    root_path: '%LOCAL_REPO%/%VENDOR%/%LIST_NAME%'
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
+    Arguments:
+      EXCEPTION: "%EXCEPTION%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
 
-- Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
-  Arguments:
-    RECIPE_CACHE_DIR: '%RECIPE_CACHE_DIR%'
-    found_files: '%found_filenames%'
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Arguments:
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
 
-- Processor: URLDownloader
-  Comment: Downloads the file from the source repo to the AutoPkg cache
-  Arguments:
-    url: file://%root_path%/%version%/%latest_file%.dmg
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
+    Arguments:
+      url: file://%root_path%/%version%/%latest_file%.dmg
 
-- Processor: EndOfCheckPhase
+  - Processor: EndOfCheckPhase

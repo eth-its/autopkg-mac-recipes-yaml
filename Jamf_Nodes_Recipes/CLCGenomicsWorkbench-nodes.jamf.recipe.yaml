@@ -1,0 +1,18 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: 2.0.0
+
+Input:
+  NAME: CLC Genomics Workbench
+  JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
+  MAJOR_VERSION: "20"
+  CLC_LICENSE_SERVER: ++ REPLACE-ME ++
+  CLC_LICENSE_PORT: "++ REPLACE-ME ++"
+  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CLCGenomicsWorkbench
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'

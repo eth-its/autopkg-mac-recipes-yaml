@@ -1,9 +1,9 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.GoogleChrome-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: Google Chrome
-  SELFSERVICE_ICON: Google Chrome 2020.png
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleChrome
+  SELFSERVICE_ICON: Google Chrome 2020.png

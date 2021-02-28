@@ -5,5 +5,5 @@ MinimumVersion: 2.0.0
 
 Input:
   NAME: Bitwarden
-  POLICY_RUN_COMMAND: chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Bitwarden
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Bitwarden"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'

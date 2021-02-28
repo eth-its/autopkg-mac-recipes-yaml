@@ -6,8 +6,8 @@ MinimumVersion: 2.0.0
 Input:
   NAME: Carbon Copy Cloner
   LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CarbonCopyCloner
   POLICY_NAME: Carbon Copy Cloner EN (Testing)
   SELFSERVICE_DISPLAY_NAME: Carbon Copy Cloner EN (Testing)
-  TEST_USERS_GROUP_NAME: '%NAME% %LANGUAGE% test users'
-  TEST_VERSION_INSTALLED_GROUP_NAME: '%NAME% %LANGUAGE% test version installed'
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CarbonCopyCloner
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"

@@ -1,13 +1,13 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.erase-install-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 MinimumVersion: 2.0.0
+ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
 
 Input:
   NAME: Erase and Reinstall macOS
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-erase-install-ineligible.xml
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos
   INSTALL_BUTTON_TEXT: ERASE!
   REINSTALL_BUTTON_TEXT: ERASE!
   SELFSERVICE_ICON: Erase and Reinstall macOS.png
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install

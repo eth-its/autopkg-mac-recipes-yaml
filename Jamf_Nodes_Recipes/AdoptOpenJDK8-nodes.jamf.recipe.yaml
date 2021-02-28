@@ -5,16 +5,16 @@ MinimumVersion: 2.0.0
 
 Input:
   NAME: AdoptOpenJDK 8
-  EXTENSION_ATTRIBUTE_NAME: AdoptOpenJDK8Version
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdoptOpenJDK8
+  EXTENSION_ATTRIBUTE_NAME: "AdoptOpenJDK8Version"
   EXTENSION_ATTRIBUTE_SCRIPT: AdoptOpenJDK-EA.sh
-  EXTENSION_ATTRIBUTE_VALUE: '8'
-  PARAMETER4_LABEL: JDK major version
-  PARAMETER4_VALUE: '8'
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
-  SCRIPT_CATEGORY: Uninstallers
-  SCRIPT_NAME: AdoptOpenJDK-uninstall.sh
-  SCRIPT_PATH: AdoptOpenJDK-uninstall.sh
-  SCRIPT_PRIORITY: Before
+  EXTENSION_ATTRIBUTE_VALUE: "8"
   SELFSERVICE_ICON: AdoptOpenJDK.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdoptOpenJDK8
+  SCRIPT_PATH: AdoptOpenJDK-uninstall.sh
+  SCRIPT_NAME: AdoptOpenJDK-uninstall.sh
+  SCRIPT_PRIORITY: Before
+  SCRIPT_CATEGORY: Uninstallers
+  PARAMETER4_LABEL: JDK major version
+  PARAMETER4_VALUE: "8"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
