@@ -12,7 +12,7 @@ Input:
   PKG_ID: ch.ethz.id.pkg.SophosAntiVirus
   EXTENSION_ATTRIBUTE_SCRIPT: SophosAntiVirus-EA.sh
   EXTENSION_ATTRIBUTE_NAME: SophosGroupPath
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^$"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-app-EA.xml
   SELFSERVICE_ICON: Sophos Anti-Virus.png
