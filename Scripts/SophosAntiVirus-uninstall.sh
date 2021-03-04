@@ -34,11 +34,18 @@ fi
 #
 # The reason for the directory-specific check is that running the 
 # InstallationDeployer application from Contents/MacOS on Sophos 9.1.x 
-# and later will cause the Sophos uninstaller application tolaunch in the 
+# and later will cause the Sophos uninstaller application to launch in the 
 # dock and interfere with a normal installation via installer package.
 #
 # For more information, see the link below:
 # http://www.sophos.com/en-us/support/knowledgebase/14179.aspx
+
+# additional information for tamper protected installations
+if [[ "$4" && "$4" != "None" ]]; then
+    tamper_parameter="--tamper_password $4" 
+else
+    tamper_parameter=""
+fi
 
 AppSupport="/Library/Application Support/Sophos"
 for edition in he opm-sa opm saas; do
@@ -47,7 +54,7 @@ for edition in he opm-sa opm saas; do
         if [ -f "${tool}" ]; then
             chmod +x "${tool}"
             echo "Running Sophos Uninstaller: ${tool}"
-            "${tool}" --remove
+            "${tool}" --remove ${tamper_parameter}
         fi
     done
 done
