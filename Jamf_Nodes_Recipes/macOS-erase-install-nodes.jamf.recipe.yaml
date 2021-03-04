@@ -62,7 +62,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%INELIGIBLE_GROUP_NAME%"
-      computergroup_template: "%INELIGIBLE_GROUP_GROUP_TEMPLATE%"
+      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
