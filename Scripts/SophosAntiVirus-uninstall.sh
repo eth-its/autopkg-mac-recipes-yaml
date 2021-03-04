@@ -54,6 +54,7 @@ for edition in he opm-sa opm saas; do
         if [ -f "${tool}" ]; then
             chmod +x "${tool}"
             echo "Running Sophos Uninstaller: ${tool}"
+            # shellcheck disable=SC2086
             "${tool}" --remove ${tamper_parameter}
         fi
     done
