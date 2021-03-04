@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-EA-uninstall
 
 Input:
   NAME: Sophos Anti-Virus EC
+  JSS_INVENTORY_NAME: "Sophos Anti-Virus.app"
   SCRIPT_PATH: SophosAntiVirus-uninstall.sh
   SCRIPT_NAME: SophosAntiVirus-uninstall.sh
   PARAMETER4_LABEL: Tamper password
@@ -14,5 +15,5 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: SophosGroupPath
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^$"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-app-EA.xml
   SELFSERVICE_ICON: Sophos Anti-Virus.png
