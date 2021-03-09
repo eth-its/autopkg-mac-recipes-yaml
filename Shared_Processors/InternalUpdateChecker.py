@@ -198,7 +198,7 @@ class InternalUpdateChecker(Processor):
                     product_matches_list.append(new_item)
                 except NameError:
                     product_matches_list = [new_item]
-                return product_matches_list
+        return product_matches_list
 
     def get_latest_version(self, product_matches_list, major_version=""):
         """Find the latest version in the list."""
