@@ -1,0 +1,9 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.FileMakerPro-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: FileMaker Pro
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileMakerPro
+  SELFSERVICE_ICON: FileMaker Pro.png
