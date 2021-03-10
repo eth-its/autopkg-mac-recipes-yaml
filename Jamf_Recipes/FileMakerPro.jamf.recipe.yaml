@@ -1,15 +1,22 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Bitwarden
+Identifier: com.github.eth-its-recipes.jamf.FileMakerPro
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grumpydrew.pkg.Bitwarden
+ParentRecipe: com.github.eth-its-recipes.pkg.FilemakerPro
 
 Input:
-  NAME: Bitwarden
+  NAME: FileMaker Pro
+  LIST_NAME: Filemaker Pro
+  LICENSED_ORG: "ETH Zuerich"
+  MAJOR_VERSION: "19"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Security
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    Bitwarden is a password manager application.
+    FileMaker Pro %MAJOR_VERSION% is the tool you use to create a custom app. You also use FileMaker Pro %MAJOR_VERSION% to access your app on a Windows or Mac computer. 
+
+    Start by importing data from a spreadsheet or using a built-in Starter app to manage contacts, inventory, meetings, and more. Or even quickly build a new app from the beginning. 
+
+    FileMaker Pro %MAJOR_VERSION% includes a set of advanced tools to help you design and develop custom apps faster and easier. Plus, you'll get robust analysis capabilities, powerful diagnostic tools, and much more.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -24,7 +31,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

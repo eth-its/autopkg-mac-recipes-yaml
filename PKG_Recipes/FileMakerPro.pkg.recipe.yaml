@@ -1,0 +1,145 @@
+Description: Downloads latest FileMaker Pro disk image and extracts the package from within. The MAJOR_VERSION should be overridden in the jss recipe to obtain a particular version. Otherwise, the latest available version will be downloaded. The LICENSE_FILE_SOURCE is also required for licensing.
+Identifier: com.github.eth-its-recipes.pkg.FilemakerPro
+ParentRecipe: com.github.grahampugh.recipes.download.FileMakerPro
+
+Input:
+  NAME: FileMaker Pro
+  LIST_NAME: Filemaker Pro
+  LICENSED_ORG: "ETH Zuerich"
+  MAJOR_VERSION: "19"
+  LIST_LANGUAGE: ML
+  LANGUAGE_COLUMN_NUMBER: "4"
+  LICENSE_FILE_COLUMN_NUMBER: "9"
+  LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LICENSE_KEY_COLUMN_NUMBER: "8"
+  LIST_DELIMITER: ;
+  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  PATH_COLUMN_NUMBER: "6"
+  SOFTWARE_REPO: /Volumes/mac
+  TITLE_COLUMN_NUMBER: "1"
+  VERSION_COLUMN_NUMBER: "2"
+
+Process:
+  - Arguments:
+      LIST_LANGUAGE: "%LIST_LANGUAGE%"
+      LIST_NAME: "%LIST_NAME%"
+      MAJOR_VERSION: "%MAJOR_VERSION%"
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      lang_col: "%LANGUAGE_COLUMN_NUMBER%"
+      license_col: "%LICENSE_KEY_COLUMN_NUMBER%"
+      license_file_col: "%LICENSE_FILE_COLUMN_NUMBER%"
+      license_file_source: "%LICENSE_FILE_SOURCE%"
+      list_delimiter: "%LIST_DELIMITER%"
+      list_source: "%LIST_SOURCE%"
+      mounted_repo: "%SOFTWARE_REPO%"
+      path_col: "%PATH_COLUMN_NUMBER%"
+      title_col: "%TITLE_COLUMN_NUMBER%"
+      version_col: "%VERSION_COLUMN_NUMBER%"
+    Comment: Get list of versions of a product. Outputs path to latest version.
+    Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+        Users: "0755"
+        Users/Shared: "0777"
+        Users/Shared/FileMaker: "0777"
+        Users/Shared/FileMaker/FileMaker Pro: "0777"
+        Users/Shared/FileMaker/FileMaker Pro/License_Temp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/FileMaker Pro.app"
+      source_path: "%pathname%/FileMaker Pro.app"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%destination_path%/Contents/Info.plist"
+
+  - Arguments:
+      file_content: |
+        AI_USERNAME=ETH Administrator
+        AI_ORGANIZATION=%LICENSED_ORG%
+        AI_LICENSEKEY=
+        AI_NONEWDATABASES=0
+        AI_REGISTRATION=0
+        AI_SKIPDIALOG=1
+        AI_DISABLEUPDATENOTIFY=1
+        AI_DISABLEVERSIONNOTIFY=1
+        AI_DISABLEPLUGINS=0
+        AI_DISABLEXDBC=0
+        AI_DISABLEIWP=0
+        AI_LICENSE_ACCEPTED=1
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/Assisted Install.txt"
+    Processor: FileCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Users/Shared/FileMaker/FileMaker Pro/License_Temp/LicenseCert.fmcert"
+      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+
+        # FileMaker Pro postinstall
+        # based on Claris's AppleRemoteDesktopDeployment.sh script
+
+        DIR="$0"
+        appBundleName="FileMaker Pro.app"
+        appBundleVersion=$(/usr/libexec/plistbuddy -c "Print CFBundleVersion" "/Applications/${appBundleName}/Contents/Info.plist")
+
+        fileExtension=${appBundleName##*.}
+        appNameWithoutTheFileExtension=$(basename -s ".${fileExtension}" "${appBundleName}")
+        bundleIdentifier="com.filemaker.client.pro12"
+
+        current_user=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
+        USERHOME="/Users/$current_user"
+
+        chown -R root:admin "/Applications/${appBundleName}"
+        chmod -R 775 "/Applications/${appBundleName}"
+        chmod 777 "/Applications/${appBundleName}/Contents/MacOS"
+        chmod 777 "/Applications/${appBundleName}/Contents"
+
+        # set perms on license cert
+        shared_folder="/Users/Shared/FileMaker/FileMaker Pro/%MAJOR_VERSION%.0"
+        mv "/Users/Shared/FileMaker/FileMaker Pro/License_Temp" "$shared_folder"
+        chmod 777 "$shared_folder/LicenseCert.fmcert"
+
+        cd "/Applications/${appBundleName}/Contents/Resources/Installer"
+        ./ApplicationPostFlight "/Applications/Assisted Install.txt" "$shared_folder"
+
+        defaults write "$USERHOME/Library/Preferences/${bundleIdentifier}.plist" "License Agreement Status:_v%MAJOR_VERSION%.0" -int 1
+        chmod 777 "$USERHOME/Library/Preferences/${bundleIdentifier}.plist"
+
+        rm -f "/Applications/Assisted Install.txt"
+        chmod 777 "$shared_folder/pInfo"
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.FileMakerPro%MAJOR_VERSION%Installer
+        pkgname: "FileMakerPro-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
