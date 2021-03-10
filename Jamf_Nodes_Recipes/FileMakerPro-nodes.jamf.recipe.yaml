@@ -7,3 +7,4 @@ Input:
   NAME: FileMaker Pro
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileMakerPro
   SELFSERVICE_ICON: FileMaker Pro.png
+  MAJOR_VERSION: "19"
