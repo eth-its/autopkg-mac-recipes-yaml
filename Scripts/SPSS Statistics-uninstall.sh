@@ -67,7 +67,7 @@ for (( i = 1; i < 2; i++ )); do
     /usr/sbin/pkgutil --pkgs="${!pkg_id}" && /usr/sbin/pkgutil --forget "${!pkg_id}"
 done
 
-# remove license indicator files
+# remove license indicator files
 if rm "/Library/Management/SPSSStatistics/$major_version/node_license_activated" 2> /dev/null ; then 
     # clear out the Node license 
     echo "Node license removed" 
