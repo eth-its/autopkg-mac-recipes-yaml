@@ -13,3 +13,8 @@ All these recipes are `.jamf` recipes (or their parents) which use `JamfUploader
     autopkg repo-add grahampugh-recipes
 
 Some `.jamf` recipes which more closely follow the standards used in `.jss` recipes can be found in the `grahampugh-recipes` repo.
+
+## Recipes that require replacement values in the RecipeOverrides:
+
+- `CLCGenomicsWorkbench.pkg.recipe.yaml` - `CLC_LICENSE_SERVER`
+- `SPSSStatistics27-Floating.jamf.recipe.yaml` - `FLOATING_LICENSE_URL`

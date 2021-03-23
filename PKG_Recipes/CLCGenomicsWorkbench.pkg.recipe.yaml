@@ -1,0 +1,84 @@
+Description: Downloads latest CLC Genomics Workbench installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  NAME: CLC Genomics Workbench
+  LIST_NAME: CLC Genomics Workbench
+  LIST_LANGUAGE: EN
+  MAJOR_VERSION: '20'
+  CLC_LICENSE_SERVER: REPLACE-ME
+  CLC_LICENSE_PORT: '6200'
+
+Process:
+- Processor: PkgRootCreator
+  Arguments:
+    pkgdirs: {}
+    pkgroot: '%RECIPE_CACHE_DIR%/Scripts'
+
+- Processor: PkgRootCreator
+  Arguments:
+    pkgdirs: {}
+    pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+
+- Processor: Copier
+  Arguments:
+    source_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/Scripts/CLCGenomicsWorkbench_%MAJOR_VERSION%.dmg'
+
+- Arguments:
+    file_content: |
+        #License Settings
+        #Tue Aug 14 18:41:06 CEST 2018
+        serverip=%CLC_LICENSE_SERVER%
+        serverport=%CLC_LICENSE_PORT%
+        disableborrow=false
+        autodiscover=false
+        useserver=true
+        username=
+        usecustomusername=false
+    file_mode: '0644'
+    file_path: '%RECIPE_CACHE_DIR%/Scripts/license.properties'
+  Processor: FileCreator
+
+- Processor: FileCreator
+  Arguments:
+    file_path: '%RECIPE_CACHE_DIR%/Scripts/postinstall'
+    file_mode: '0755'
+    file_content: |
+        #!/bin/bash
+
+        DIR=$(dirname "$0")
+
+        # attach main image
+        echo "Mounting CLC Genomics Workbench image"
+        APPPATH="/Volumes/CLCGenomicsWorkb"
+        mkdir -p $APPPATH
+        hdiutil attach $DIR/CLCGenomicsWorkbench_%MAJOR_VERSION%.dmg -nobrowse -mountpoint $APPPATH
+
+        $APPPATH/CLC\ Genomics\ Workbench\ Installer.app/Contents/MacOS/JavaApplicationStub -q
+
+        hdiutil eject $APPPATH
+
+        DEPLOYMENTDIR="/Applications/CLC Genomics Workbench %MAJOR_VERSION%/settings"
+        /bin/mkdir -p "${DEPLOYMENTDIR}"
+        /usr/sbin/chown -R root:wheel "${DEPLOYMENTDIR}"
+        /bin/cp $DIR/license.properties "${DEPLOYMENTDIR}/license.properties"
+
+- Processor: PkgCreator
+  Arguments:
+    pkg_request:
+      chown: []
+      id: ch.ethz.id.pkg.CLCGenomicsWorkbench%version%
+      pkgname: 'CLCGenomicsWorkbench-%version%'
+      pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+      pkgtype: flat
+      scripts: Scripts
+      version: '%version%'
+
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/Scripts'
+    - '%RECIPE_CACHE_DIR%/pkgroot'
