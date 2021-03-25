@@ -14,3 +14,5 @@ Input:
   INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   SELFSERVICE_ICON: Install macOS Catalina.png
+  SELFSERVICE_DESCRIPTION: |
+    WARNING! This will download the latest version of macOS Catalina and install it on the system volume. All work should be saved and backed up before starting.

@@ -14,3 +14,5 @@ Input:
   INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   SELFSERVICE_ICON: Install macOS Big Sur.png
+  SELFSERVICE_DESCRIPTION: |
+    WARNING! This will download the latest version of macOS Big Sur and install it on the system volume. All work should be saved and backed up before starting.
