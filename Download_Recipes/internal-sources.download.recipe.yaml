@@ -4,36 +4,35 @@ MinimumVersion: "2.3"
 
 Input:
   LIST_LANGUAGE: ML
-  LANGUAGE_COLUMN_NUMBER: "4"
-  LICENSE_FILE_COLUMN_NUMBER: "9"
-  LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
-  LICENSE_KEY_COLUMN_NUMBER: "8"
+  LIST_LANGUAGE_COLUMN_NUMBER: "4"
+  LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
+  LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
   LIST_DELIMITER: ;
   LIST_NAME: Something
   LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
-  MAJOR_VERSION: ""
-  PATH_COLUMN_NUMBER: "6"
+  LIST_MAJOR_VERSION: ""
+  LIST_PATH_COLUMN_NUMBER: "6"
+  LIST_TITLE_COLUMN_NUMBER: "1"
+  LIST_VERSION_COLUMN_NUMBER: "2"
   SOFTWARE_REPO: /Volumes/mac
-  TITLE_COLUMN_NUMBER: "1"
-  VERSION_COLUMN_NUMBER: "2"
-  STOP_PREDICATE: "file_exists == True"
 
 Process:
   - Arguments:
-      LIST_LANGUAGE: "%LIST_LANGUAGE%"
-      LIST_NAME: "%LIST_NAME%"
-      MAJOR_VERSION: "%MAJOR_VERSION%"
+      list_language: "%LIST_LANGUAGE%"
+      list_name: "%LIST_NAME%"
+      list_major_version: "%LIST_MAJOR_VERSION%"
       RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
-      lang_col: "%LANGUAGE_COLUMN_NUMBER%"
-      license_col: "%LICENSE_KEY_COLUMN_NUMBER%"
-      license_file_col: "%LICENSE_FILE_COLUMN_NUMBER%"
-      license_file_source: "%LICENSE_FILE_SOURCE%"
+      lang_col: "%LIST_LANGUAGE_COLUMN_NUMBER%"
+      license_col: "%LIST_LICENSE_KEY_COLUMN_NUMBER%"
+      license_file_col: "%LIST_LICENSE_FILE_COLUMN_NUMBER%"
+      license_file_source: "%LIST_LICENSE_FILE_SOURCE%"
       list_delimiter: "%LIST_DELIMITER%"
       list_source: "%LIST_SOURCE%"
       mounted_repo: "%SOFTWARE_REPO%"
-      path_col: "%PATH_COLUMN_NUMBER%"
-      title_col: "%TITLE_COLUMN_NUMBER%"
-      version_col: "%VERSION_COLUMN_NUMBER%"
+      path_col: "%LIST_PATH_COLUMN_NUMBER%"
+      title_col: "%LIST_TITLE_COLUMN_NUMBER%"
+      version_col: "%LIST_VERSION_COLUMN_NUMBER%"
     Comment: Get list of versions of a product. Outputs path to latest version.
     Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
 

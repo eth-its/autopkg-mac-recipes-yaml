@@ -9,6 +9,7 @@ Input:
   LIST_LANGUAGE: ML
   LIST_NAME: IBM SPSS
   MAJOR_VERSION: "27"
+  LIST_MAJOR_VERSION: "27"
 
 Process:
   - Processor: FlatPkgUnpacker

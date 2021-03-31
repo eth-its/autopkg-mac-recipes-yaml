@@ -32,18 +32,14 @@ class InternalUpdateChecker(Processor):
     """Provides file path to the highest version number."""
 
     input_variables = {
-        "LIST_NAME": {
+        "list_name": {
             "required": True,
             "description": ("Name of the product as displayed in the ITShop " "List."),
         },
-        "LIST_LANGUAGE": {
+        "List_language": {
             "required": True,
             "description": "Language of the product as displayed in the ITShop.",
         },
-        # "LICENSE": {
-        #     "required": False,
-        #     "description": "Name of the pkg or DMG containing PKG.",
-        # },
         "list_source": {
             "required": True,
             "description": (
@@ -104,11 +100,11 @@ class InternalUpdateChecker(Processor):
             "required": True,
             "description": ("AutoPkg recipe cache directory."),
         },
-        "MAJOR_VERSION": {
+        "list_major_version": {
             "required": False,
             "description": ("Restrict to a major version if specified."),
         },
-        "LIST_FILTER": {
+        "list_filter": {
             "required": False,
             "description": ("Filter DMGs by an additional string if specified."),
             "default": "",
