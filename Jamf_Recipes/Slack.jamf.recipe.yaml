@@ -1,17 +1,17 @@
-Comments: VMware Remote Console must be installed on the AutoPkg host via VPP managed app distribution or similar process.
+Comments: Slack must be installed on the AutoPkg host via VPP managed app distribution or similar process.
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.VMwareRemoteConsole
+Identifier: com.github.eth-its-recipes.jamf.Slack
 MinimumVersion: "2.3"
 ParentRecipe: com.github.nmcspadden.pkg.appstore
 
 Input:
-  NAME: VMware Remote Console
+  NAME: Slack
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    VMware Remote Console provides access to virtual machines from remote clients and performs console and device operations, such as configuring operating system settings and monitoring the console for VMware vSphere. VMware Remote Console can also be used to change VM settings, such as RAM, CPU cores and disks.
+    Slack brings all of your team's communication and collaboration together in a single place so you can get work done more effectively, whether you're part of a large company or a small business. Check off your to-do list and move your projects forward by connecting the right people, conversations, tools, and information you need, all in Slack. Slack is available on any device, so you can access your team and your work anytime you're at your desk or on the go.
 
     Version: %version%
     Category: %PKG_CATEGORY%
