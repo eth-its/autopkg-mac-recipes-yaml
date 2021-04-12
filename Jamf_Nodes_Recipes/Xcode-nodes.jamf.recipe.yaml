@@ -1,0 +1,9 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Xcode-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
+
+Input:
+  NAME: Xcode
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Xcode
+  OS_EXCLUDE_MAX: 10.15.1

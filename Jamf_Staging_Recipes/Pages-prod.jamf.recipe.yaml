@@ -1,0 +1,8 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Numbers-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
+
+Input:
+  NAME: Numbers
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Numbers
