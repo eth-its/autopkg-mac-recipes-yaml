@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: Papers
+  LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Papers
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PRIORITY: Before
