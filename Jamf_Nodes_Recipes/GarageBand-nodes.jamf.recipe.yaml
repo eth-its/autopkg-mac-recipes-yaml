@@ -6,4 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 Input:
   NAME: GarageBand
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GarageBand
-  OS_EXCLUDE_MAX: 10.13.6
+  OS_EXCLUDE_MAX: 10.15.8
