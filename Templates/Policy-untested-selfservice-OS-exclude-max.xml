@@ -30,7 +30,7 @@
                     <name>%TEST_VERSION_INSTALLED_GROUP_NAME%</name>
                 </computer_group>
                 <computer_group>
-                    <name>%OS_EXCLUDE_MAX_GROUP_TEMPLATE%</name>
+                    <name>%OS_EXCLUDE_MAX_GROUP_NAME%</name>
                 </computer_group>
             </computer_groups>
         </exclusions>
