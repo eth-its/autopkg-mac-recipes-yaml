@@ -15,6 +15,10 @@ Input:
     Category: %PKG_CATEGORY%
   EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftAutoUpdate-EA.sh
+  SCRIPT_PATH: MicrosoftAutoUpdate-postinstall.sh
+  SCRIPT_NAME: MicrosoftAutoUpdate-postinstall.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   TESTING_GROUP_NAME: Testing
@@ -24,7 +28,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -49,6 +53,14 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:

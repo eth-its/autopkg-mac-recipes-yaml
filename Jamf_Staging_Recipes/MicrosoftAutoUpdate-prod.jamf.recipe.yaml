@@ -8,3 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  TRIGGERONLY_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SCRIPT_NAME: MicrosoftAutoUpdate-postinstall.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Productivity

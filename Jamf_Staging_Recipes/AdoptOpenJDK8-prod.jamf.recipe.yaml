@@ -9,3 +9,7 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: AdoptOpenJDK8Version
   SELFSERVICE_ICON: AdoptOpenJDK.png
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  TRIGGERONLY_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  SCRIPT_NAME: AdoptOpenJDK-uninstall.sh
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_VALUE: "8"

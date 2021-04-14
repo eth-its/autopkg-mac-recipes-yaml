@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftAutoUpdate-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -8,4 +8,9 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: "Microsoft AutoUpdate Version"
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftAutoUpdate-EA.sh
+  SCRIPT_PATH: MicrosoftAutoUpdate-postinstall.sh
+  SCRIPT_NAME: MicrosoftAutoUpdate-postinstall.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
