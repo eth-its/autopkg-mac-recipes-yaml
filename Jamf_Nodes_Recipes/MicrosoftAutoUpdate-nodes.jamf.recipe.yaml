@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Microsoft AutoUpdate
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdoptOpenJDK11
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: "Microsoft AutoUpdate Version"
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftAutoUpdate-EA.sh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
