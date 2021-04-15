@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <computer_group>
-  <name>%USERS_GROUP_NAME%</name>
+  <name>%USERS_ALL_MICROSOFT_APPS_NAME%</name>
   <is_smart>true</is_smart>
   <criteria>
     <criterion>
