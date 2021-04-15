@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Microsoft AutoUpdate
+  SELFSERVICE_POLICY_NAME: "%NAME%"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
