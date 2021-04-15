@@ -66,7 +66,7 @@ Process:
     Arguments:
       computergroup_name: "%USERS_GROUP_NAME%"
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -84,7 +84,7 @@ Process:
     Arguments:
       computergroup_name: "%AUTOUPDATE_GROUP_NAME%"
       computergroup_template: "%AUTOUPDATE_GROUP_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Trigger-only policy
