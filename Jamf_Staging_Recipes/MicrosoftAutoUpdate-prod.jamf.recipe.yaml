@@ -6,6 +6,8 @@ Input:
   NAME: Microsoft AutoUpdate
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^$
   TRIGGERONLY_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SCRIPT_NAME: MicrosoftAutoUpdate-postinstall.sh
   SCRIPT_PRIORITY: After
@@ -18,7 +20,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
