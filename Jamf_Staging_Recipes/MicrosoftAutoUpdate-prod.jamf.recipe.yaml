@@ -60,7 +60,7 @@ Process:
     Arguments:
       computergroup_name: "%USERS_ALL_MICROSOFT_APPS_NAME%"
       computergroup_template: "%USERS_ALL_MICROSOFT_APPS_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
