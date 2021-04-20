@@ -1,0 +1,30 @@
+Description: Downloads the current script of homebrew.sh and the extension attribute.
+Identifier: com.github.eth-its-recipes.download.homebrew
+MinimumVersion: "2.3"
+
+Input:
+  NAME: homebrew-install
+
+Process:
+  - Processor: URLTextSearcher
+    Comment: Get the Extension attribute
+    Arguments:
+      re_pattern: (?P<ea_url>\/Honestpuck\/homebrew\.sh\/blob\/master\/brewEA\.sh)
+      url: https://github.com/Honestpuck/homebrew.sh
+
+  - Processor: URLDownloader
+    Arguments:
+      url: https://github.com/%ea_url%
+      filename: Homebrew-EA.sh
+
+  - Processor: URLTextSearcher
+    Comment: Get the installer script
+    Arguments:
+      re_pattern: (?P<url>\/Honestpuck\/homebrew\.sh\/blob\/master\/(?P<script_name>homebrew-(?P<version>.*?)\.sh))
+      url: https://github.com/Honestpuck/homebrew.sh
+
+  - Processor: URLDownloader
+    Arguments:
+      url: https://github.com/%url%
+
+  - Processor: EndOfCheckPhase

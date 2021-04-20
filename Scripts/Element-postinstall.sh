@@ -4,7 +4,7 @@
 # config.json contents based on advice at:
 # https://github.com/vector-im/riot-web/blob/master/docs/config.md#desktop-app-configuration
 
-# Remove the old Riot apps
+# Remove the old Riot apps
 app_path="/Applications/Riot.app"
 [[ -d "$app_path" ]] && /bin/rm -rf "$app_path"
 app_path="/Applications/Element (Riot).app"
@@ -34,14 +34,12 @@ chown -R "$loggedInUser:staff" "$configfileloc"
 su -l "$loggedInUser" -c "echo '{
     \"default_server_config\": {
         \"m.homeserver\": {
-            \"base_url\": \"https://staffchat.ethz.ch\"
+            \"base_url\": \"%DEFAULT_SERVER_URL%\"
         }
     },
     \"brand\": \"Element\"
 }
 ' > \"$configfileloc/config.json\""
-
-# su -l $loggedInUser -c "/usr/bin/curl https://riot.ethz.ch/staffchat/config.json -o \"$configfileloc/config.json\""
 
 if [[ -f "$configfileloc/config.json" ]]; then
     echo "Config file was created at $configfileloc/config.json:"

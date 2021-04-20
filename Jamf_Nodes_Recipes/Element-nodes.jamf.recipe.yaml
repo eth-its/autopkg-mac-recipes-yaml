@@ -7,3 +7,4 @@ Input:
   NAME: Element
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Element"
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  DEFAULT_SERVER_URL: https://staffchat.ethz.ch

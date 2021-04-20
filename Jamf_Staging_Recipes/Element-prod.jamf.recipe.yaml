@@ -10,3 +10,4 @@ Input:
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  DEFAULT_SERVER_URL: https://staffchat.ethz.ch
