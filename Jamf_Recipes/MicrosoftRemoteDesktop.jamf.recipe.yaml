@@ -1,11 +1,11 @@
 Comment: VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf.
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.MicrosotRemoteDesktop
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop
 MinimumVersion: "2.3"
 ParentRecipe: com.github.rtrouton.pkg.microsoftremotedesktop
 
 Input:
-  NAME: Microsot Remote Desktop
+  NAME: Microsoft Remote Desktop
   VERSIONTYPE: CFBundleVersion
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -15,8 +15,8 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SCRIPT_NAME: MicrosotRemoteDesktop-preinstall.sh
-  SCRIPT_PATH: MicrosotRemoteDesktop-preinstall.sh
+  SCRIPT_NAME: MicrosoftRemoteDesktop-preinstall.sh
+  SCRIPT_PATH: MicrosoftRemoteDesktop-preinstall.sh
   SCRIPT_PRIORITY: Before
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
