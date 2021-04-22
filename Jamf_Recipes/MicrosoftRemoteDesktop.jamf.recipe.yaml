@@ -1,10 +1,12 @@
+Comment: VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf.
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosotRemoteDesktop
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.MicrosotRemoteDesktop
+ParentRecipe: com.github.rtrouton.pkg.microsoftremotedesktop
 
 Input:
   NAME: Microsot Remote Desktop
+  VERSIONTYPE: CFBundleVersion
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
