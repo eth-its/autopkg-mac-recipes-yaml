@@ -36,7 +36,7 @@ class InternalUpdateChecker(Processor):
             "required": True,
             "description": ("Name of the product as displayed in the ITShop " "List."),
         },
-        "List_language": {
+        "list_language": {
             "required": True,
             "description": "Language of the product as displayed in the ITShop.",
         },
@@ -107,6 +107,11 @@ class InternalUpdateChecker(Processor):
         "list_filter": {
             "required": False,
             "description": ("Filter DMGs by an additional string if specified."),
+            "default": "",
+        },
+        "alt_downloads_dir": {
+            "required": False,
+            "description": ("Path to file containing list of IT Shop available items."),
             "default": "",
         },
     }
@@ -212,7 +217,7 @@ class InternalUpdateChecker(Processor):
                     product_version_in_list = "1"
                 self.output(
                     "Checking version: {}".format(product_version_in_list)
-                )  #  GP test
+                )  # GP test
                 # remove any letters from start of string (thanks EndNote...)
                 if APLooseVersion(product_version_in_list) > APLooseVersion(
                     latest_version
@@ -232,7 +237,7 @@ class InternalUpdateChecker(Processor):
                 else:
                     self.output(
                         "Checking version: {}".format(product_version_in_list)
-                    )  #  GP test
+                    )  # GP test
 
             try:
                 latest_product_details = [
@@ -258,26 +263,37 @@ class InternalUpdateChecker(Processor):
                 ),
                 verbose_level=2,
             )
+            try:
+                newest_file = max(
+                    glob.iglob(
+                        os.path.join(
+                            product_repo,
+                            file_path,
+                            "*{}*.[DdPp][MmKk][Gg]".format(additional_filter),
+                        )
+                    ),
+                    key=os.path.getctime,
+                )
+            except ValueError:
+                raise ProcessorError(
+                    "No dmg or pkg found in {}/{}".format(product_repo, file_path)
+                )
         else:
             self.output(
                 "Looking for installers in {}/{}".format(product_repo, file_path),
                 verbose_level=2,
             )
-        try:
-            newest_file = max(
-                glob.iglob(
-                    os.path.join(
-                        product_repo,
-                        file_path,
-                        "*{}*.[DdPp][MmKk][Gg]".format(additional_filter),
-                    )
-                ),
-                key=os.path.getctime,
-            )
-        except ValueError:
-            raise ProcessorError(
-                "No dmg or pkg found in {}/{}".format(product_repo, file_path)
-            )
+            try:
+                newest_file = max(
+                    glob.iglob(
+                        os.path.join(product_repo, file_path, "*.[DdPp][MmKk][Gg]",)
+                    ),
+                    key=os.path.getctime,
+                )
+            except ValueError:
+                raise ProcessorError(
+                    "No dmg or pkg found in {}/{}".format(product_repo, file_path)
+                )
         return newest_file
 
     def main(self):
@@ -299,7 +315,13 @@ class InternalUpdateChecker(Processor):
         recipe_cache_dir = self.env.get("RECIPE_CACHE_DIR")
         major_version = self.env.get("MAJOR_VERSION")
         additional_filter = self.env.get("LIST_FILTER")
-        downloads_dir = os.path.join(recipe_cache_dir, "downloads")
+
+        # set default downloads_dir if not specified
+        alt_download_dir = self.env.get("alt_download_dir")
+        if alt_download_dir:
+            downloads_dir = alt_download_dir
+        else:
+            downloads_dir = os.path.join(recipe_cache_dir, "downloads")
 
         # create a list from the csv
         product_list = self.get_list(product_list_file, file_delimiter)

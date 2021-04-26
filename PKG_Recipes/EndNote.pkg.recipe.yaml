@@ -1,0 +1,137 @@
+Description: Downloads latest Endnote installer and the license file from a local repository, and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.EndNote
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.rtrouton.download.EndNote20
+
+Input:
+  NAME: EndNote
+  LIST_NAME: EndNote
+  LIST_LANGUAGE: EN
+  LIST_LANGUAGE_COLUMN_NUMBER: "4"
+  LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
+  LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
+  LIST_DELIMITER: ;
+  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_MAJOR_VERSION: ""
+  LIST_PATH_COLUMN_NUMBER: "6"
+  LIST_TITLE_COLUMN_NUMBER: "1"
+  LIST_VERSION_COLUMN_NUMBER: "2"
+  SOFTWARE_REPO: /Volumes/mac
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/EndNote.zip"
+      purge_destination: true
+      source_path: "%pathname%/Install EndNote %MAJOR_VERSION%.app/Contents/Resources/EndNote.zip"
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/EndNote.zip"
+      destination_path: "%RECIPE_CACHE_DIR%/unarchive"
+      purge_destination: true
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/unarchive/EndNote"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/EndNote %MAJOR_VERSION%"
+
+  - Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
+    Comment: Getting the older installer from local source to get the license file
+    Arguments:
+      list_language: "%LIST_LANGUAGE%"
+      list_name: "%LIST_NAME%"
+      list_major_version: "%LIST_MAJOR_VERSION%"
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      alt_downloads_dir: "%RECIPE_CACHE_DIR%/license"
+      lang_col: "%LIST_LANGUAGE_COLUMN_NUMBER%"
+      license_col: "%LIST_LICENSE_KEY_COLUMN_NUMBER%"
+      license_file_col: "%LIST_LICENSE_FILE_COLUMN_NUMBER%"
+      license_file_source: "%LIST_LICENSE_FILE_SOURCE%"
+      list_delimiter: "%LIST_DELIMITER%"
+      list_source: "%LIST_SOURCE%"
+      mounted_repo: "%SOFTWARE_REPO%"
+      path_col: "%LIST_PATH_COLUMN_NUMBER%"
+      title_col: "%LIST_TITLE_COLUMN_NUMBER%"
+      version_col: "%LIST_VERSION_COLUMN_NUMBER%"
+
+  - Processor: URLDownloader
+    Comment: Getting the older installer from local source to get the license file
+    Arguments:
+      CHECK_FILESIZE_ONLY: true
+      url: file://%file_path%
+      download_dir: "%RECIPE_CACHE_DIR%/license"
+
+  - Processor: Copier
+    Comment: This copies the license file into the correct location of the package
+    Arguments:
+      source_path: "%pathname%/Install EndNote %MAJOR_VERSION%.app/Contents/Resources/.license.dat"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/license.dat"
+
+  - Processor: FileCreator
+    Comment: This extracts the contents of the .license file in the source installer and adds the company name lines.
+    Arguments:
+      file_content: |
+        #!/bin/bash
+
+        DIR=$(dirname "$0")
+        endnote_version="EndNote %MAJOR_VERSION%"
+        exit_code=0
+
+        # create license file
+        source_license_file="$DIR/license.dat"
+        dest_license_file="/Applications/$endnote_version/.license.dat"
+        company_name="%COMPANY_NAME%"
+        company_number="%COMPANY_NUMBER%"
+        license_string=$(cat "$source_license_file")
+
+        echo "Writing to $dest_license_file"
+
+        echo $company_name > "$dest_license_file"
+        echo $company_name >> "$dest_license_file"
+        echo $company_number >> "$dest_license_file"
+        echo $license_string >> "$dest_license_file"
+
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unarchive/EndNote/EndNote %MAJOR_VERSION%.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: com.endnote.EndNote%MAJOR_VERSION%.pkg
+        pkgname: EndNote%MAJOR_VERSION%-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/EndNote.zip"
+        - "%RECIPE_CACHE_DIR%/unarchive"
+        - "%RECIPE_CACHE_DIR%/license"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/Scripts"
