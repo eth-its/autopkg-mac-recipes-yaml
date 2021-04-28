@@ -1,9 +1,9 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Fantastical-prod
+Identifier: com.github.eth-its-recipes.jamf.Zotero-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
-  NAME: Fantastical
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Fantastical
+  NAME: Zotero
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Zotero
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
