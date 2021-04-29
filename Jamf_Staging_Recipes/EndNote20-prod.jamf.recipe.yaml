@@ -29,3 +29,4 @@ Input:
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: EndNote 20.png
