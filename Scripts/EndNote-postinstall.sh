@@ -1,6 +1,5 @@
 #!/bin/bash
 
-DIR=$(dirname "$0")
 endnote_version="EndNote %MAJOR_VERSION%"
 exit_code=0
 
