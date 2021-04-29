@@ -1,0 +1,31 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.EndNote20-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: EndNote
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.EndNote20"
+  TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  LANGUAGE: EN
+  MAJOR_VERSION: "20"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% current version installed"
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UPDATE_POLICY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
+  TRIGGER_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%-install"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% %MAJOR_VERSION% %LANGUAGE% will be updated to version %version%."
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

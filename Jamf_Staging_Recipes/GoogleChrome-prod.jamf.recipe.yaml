@@ -7,3 +7,6 @@ Input:
   NAME: Google Chrome
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleChrome
   SELFSERVICE_ICON: Google Chrome 2020.png
+  SCRIPT_NAME: GoogleChrome-postinstall.py
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

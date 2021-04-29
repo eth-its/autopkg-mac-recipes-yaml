@@ -34,7 +34,7 @@ Input:
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"
   REPLACE_PKG: "False"
 

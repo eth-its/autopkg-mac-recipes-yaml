@@ -16,3 +16,4 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
   SELFSERVICE_ICON: EndNote 20.png
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
