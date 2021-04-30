@@ -4,7 +4,7 @@ Comment: |
   Do not add things like language or license to the NAME key.
 
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.template-runcommand-uninstall
+Identifier: com.github.eth-its-recipes.jamf.template-runcommand-EA-uninstall
 MinimumVersion: "2.3"
 
 Input:
@@ -14,7 +14,7 @@ Input:
   AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -41,6 +41,12 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%UNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
