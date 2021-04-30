@@ -1,0 +1,9 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.NiceUpdater2-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-runcommand-uninstall
+
+Input:
+  NAME: macOS Managed Updates
+  SELFSERVICE_ICON: Software Update.png
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: /bin/bash /Library/Scripts/nice_updater_uninstall.sh
