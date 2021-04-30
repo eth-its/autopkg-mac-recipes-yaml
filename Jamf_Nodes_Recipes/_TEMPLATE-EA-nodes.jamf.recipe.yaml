@@ -25,6 +25,7 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker

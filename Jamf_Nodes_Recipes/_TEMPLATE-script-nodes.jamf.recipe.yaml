@@ -28,6 +28,7 @@ Input:
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
