@@ -8,7 +8,5 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NiceUpdater2
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "%version%"
   SELFSERVICE_ICON: Software Update.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
