@@ -6,7 +6,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.NiceUpdater2
 Input:
   NAME: macOS Managed Updates
   PKG_CATEGORY: Administration
-  POLICY_NAME: "%NAME%"
+  POLICY_NAME: "%NAME% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
