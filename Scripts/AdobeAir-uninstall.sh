@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Adobe AIR uninstaller
+# Adobe AIR uninstaller
 
 installer="/Applications/Utilities/Adobe AIR Uninstaller.app"
 framework="/Library/Frameworks/Adobe AIR.framework"
