@@ -10,8 +10,6 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "%version%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs a tool maintained by ETH IT Services which encourages you to keep your computer up to date through reminder notifications.
@@ -21,7 +19,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
