@@ -11,6 +11,7 @@ Identifier: com.github.eth-its-recipes.jamf.template-macos-prod
 MinimumVersion: "2.3"
 
 Input:
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   UNTESTED_POLICY_NAME: "%NAME% (Testing)"
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   USERS_GROUP_NAME: "%NAME% users"
