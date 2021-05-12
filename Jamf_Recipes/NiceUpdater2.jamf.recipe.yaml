@@ -7,9 +7,28 @@ Input:
   NAME: macOS Managed Updates
   PKG_CATEGORY: Administration
   POLICY_NAME: "%NAME% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameters.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PATH: "%NAME%-postinstall.sh"
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Start hr 0-23
+  PARAMETER5_LABEL: Start min 0-59
+  PARAMETER6_LABEL: Alert timeout sec
+  PARAMETER7_LABEL: Max deferrals
+  PARAMETER8_LABEL: Days wait after no updates
+  PARAMETER9_LABEL: Days wait after update
+  PARAMETER10_LABEL: Custom icon path
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_VALUE: "13"
+  PARAMETER5_VALUE: "00"
+  PARAMETER6_VALUE: "3540"
+  PARAMETER7_VALUE: "10"
+  PARAMETER8_VALUE: "3"
+  PARAMETER9_VALUE: "3"
+  PARAMETER10_VALUE: /Library/Scripts/nice_updater_custom_icon.png
+  PARAMETER11_VALUE: ""
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs a tool maintained by ETH IT Services which encourages you to keep your computer up to date through reminder notifications.
@@ -47,6 +66,22 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
