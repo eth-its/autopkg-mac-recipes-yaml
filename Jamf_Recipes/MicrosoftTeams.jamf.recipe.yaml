@@ -9,7 +9,7 @@ Input:
   PKG_CATEGORY: Connect & Remote
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  SELF_SERVICE_DESCRIPTION: |
+  SELFSERVICE_DESCRIPTION: |
     Microsoft Teams is the chat-centered workspace in Office 365. Keep all your content, tools, people, and conversations together in one place.
 
     Version: %version%
