@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.autopkg.pkg.Skype
 
 Input:
-  NAME: Element
+  NAME: Skype
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
