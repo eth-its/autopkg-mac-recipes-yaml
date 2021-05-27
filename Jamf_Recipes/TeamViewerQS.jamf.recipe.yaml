@@ -1,15 +1,16 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.FileZilla
+Identifier: com.github.eth-its-recipes.jamf.TeamViewerQS
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.FileZilla
+ParentRecipe: io.github.hjuutilainen.pkg.TeamViewerQS
 
 Input:
-  NAME: FileZilla
+  NAME: TeamViewerQS
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    FileZilla Client is a free, open source FTP client. It supports FTP, SFTP, and FTPS (FTP over SSL/TLS).
+    **TeamViewer QuickSupport**
+    Optimized for instant remote desktop support, this small customer module does not require installation or administrator rights - simply download, double click, and give the provided ID and password to your supporter.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -23,7 +24,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: TeamViewer.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
