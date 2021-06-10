@@ -34,6 +34,13 @@ class JamfUploadSharepointStageCheck(Processor):
 
     description = "Reports to AutoPkg whether a product is ready to stage"
     input_variables = {
+        "JSS_URL": {
+            "required": True,
+            "description": (
+                "The JSS URL."
+                "This can be set in the com.github.autopkg preferences"
+            ),
+        },
         "SP_URL": {
             "required": True,
             "description": (
@@ -163,7 +170,7 @@ class JamfUploadSharepointStageCheck(Processor):
         )
         return sp_test_coordination_passed
 
-    def check_jamf_test_review(self, site, product_name):
+    def check_jamf_test_review(self, site, product_name, jss_url):
         """Check against the 'Jamf Test Review' list"""
         sp_test_listname = "Jamf Test Review"
         sp_list = site.lists[sp_test_listname]
@@ -185,8 +192,14 @@ class JamfUploadSharepointStageCheck(Processor):
                         sp_release_completed
                     )
                 )
-                if sp_ready_for_production and not sp_release_completed:
-                    sp_test_review_passed = True
+                if "tst" in jss_url:
+                    if sp_ready_for_production and not sp_release_completed:
+                        sp_test_review_passed = True
+                elif "prd" in jss_url:
+                    if sp_ready_for_production:
+                        sp_test_review_passed = True
+                else:
+                    raise ProcessorError("Invalid JSS_URL supplied.")
         if not sp_product_in_list:
             self.output(f"Jamf Test Review: No entry named '{product_name}'")
         self.output(f"Jamf Test Review passed: {sp_test_review_passed}")
@@ -196,6 +209,7 @@ class JamfUploadSharepointStageCheck(Processor):
         """Do the main thing"""
         selfservice_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
         version = self.env.get("version")
+        jss_url = self.env.get("JSS_URL")
         sp_url = self.env.get("SP_URL")
         sp_user = self.env.get("SP_USER")
         sp_pass = self.env.get("SP_PASS")
@@ -215,14 +229,25 @@ class JamfUploadSharepointStageCheck(Processor):
         site = self.connect_sharepoint(sp_url, sp_user, sp_pass)
 
         # check each list has the requirements met for staging
-        if (
-            self.check_jamf_content_test(site, sharepoint_policy_name)
-            and self.check_jamf_content_list(site, selfservice_policy_name, version)
-            and self.check_jamf_test_coordination(site, sharepoint_policy_name)
-            and self.check_jamf_test_review(site, sharepoint_policy_name)
-        ):
-            ready_to_stage = True
-
+        if "tst" in jss_url:
+            # tst
+            if (
+                self.check_jamf_content_test(site, sharepoint_policy_name)
+                and self.check_jamf_content_list(site, selfservice_policy_name, version)
+                and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
+            ):
+                ready_to_stage = True
+        elif "prd" in jss_url:
+            # prd
+            if (
+                self.check_jamf_content_test(site, sharepoint_policy_name)
+                and self.check_jamf_content_list(site, selfservice_policy_name, version)
+                and self.check_jamf_test_coordination(site, sharepoint_policy_name)
+                and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
+            ):
+                ready_to_stage = True
+        else:
+            raise ProcessorError("Invalid JSS_URL supplied.")
         self.output("Ready To Stage: {}".format(ready_to_stage))
         self.env["ready_to_stage"] = ready_to_stage
 
