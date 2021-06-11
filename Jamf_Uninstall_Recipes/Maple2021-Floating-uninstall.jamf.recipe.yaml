@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 Input:
   NAME: Maple
   MAJOR_VERSION: "2021"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   LICENSE: Floating
   LANGUAGE: EN
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%"
