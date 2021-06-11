@@ -1,0 +1,23 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Maple2021-Floating-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: Maple
+  MAJOR_VERSION: "2021"
+  LICENSE: Floating
+  LANGUAGE: EN
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%"
+  SCRIPT_PATH: Maple-uninstall.sh
+  SCRIPT_NAME: Maple-uninstall.sh
+  PARAMETER4_LABEL: Major version
+  PARAMETER4_VALUE: "2021"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% test users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%"
+  UNINSTALL_TRIGGER_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE%-uninstall"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% auto-install"
