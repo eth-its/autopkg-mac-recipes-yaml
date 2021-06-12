@@ -17,7 +17,7 @@ Input:
   SELFSERVICE_ICON: System Preferences.png
   INSTALL_BUTTON_TEXT: Enable
   REINSTALL_BUTTON_TEXT: Enable
-  FORCE_DESCRIPTION: false
+  FORCE_DESCRIPTION: "false"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

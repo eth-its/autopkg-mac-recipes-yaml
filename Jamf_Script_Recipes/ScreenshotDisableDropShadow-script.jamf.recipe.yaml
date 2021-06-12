@@ -17,7 +17,7 @@ Input:
   SELFSERVICE_ICON: Screenshot.png
   INSTALL_BUTTON_TEXT: Disable
   REINSTALL_BUTTON_TEXT: Disable
-  FORCE_DESCRIPTION: false
+  FORCE_DESCRIPTION: "false"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
