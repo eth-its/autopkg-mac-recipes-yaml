@@ -12,14 +12,11 @@ Input:
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: EnableLocationServices.sh
   SCRIPT_PRIORITY: After
-  SELF_SERVICE_DISPLAY_NAME: Enable Location Services
-  SELF_SERVICE_DESCRIPTION: Enables Location Services so that the Time Zone adjusts correctly for location.
-  SELF_SERVICE_ICON: System Preferences.png
+  SELFSERVICE_DISPLAY_NAME: Enable Location Services
+  SELFSERVICE_DESCRIPTION: Enables Location Services so that the Time Zone adjusts correctly for location.
+  SELFSERVICE_ICON: System Preferences.png
   INSTALL_BUTTON_TEXT: Enable
   REINSTALL_BUTTON_TEXT: Enable
-  replace_policy: "True"
-  replace_script: "True"
-  replace_group: "False"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -31,14 +28,17 @@ Process:
       script_category: "%POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%GROUP_TEMPLATE%"
       computergroup_name: "%GROUP_NAME%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_NAME%"
-      icon: "%SELF_SERVICE_ICON%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
