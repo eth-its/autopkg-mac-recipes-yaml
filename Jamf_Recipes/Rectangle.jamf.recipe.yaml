@@ -7,7 +7,7 @@ Input:
   NAME: Rectangle
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
+  PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     Rectangle is an Open Source application that allows you to easily rearrange your open application windows with shortcut key combinations.
     Version: %version%

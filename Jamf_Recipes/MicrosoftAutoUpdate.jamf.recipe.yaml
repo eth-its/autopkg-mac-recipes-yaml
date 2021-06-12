@@ -7,7 +7,7 @@ Input:
   NAME: Microsoft AutoUpdate
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
+  PKG_CATEGORY: Updates
   SELFSERVICE_DESCRIPTION: |
     Microsoft AutoUpdate is used to update the Office applications, plus Microsoft Teams, Microsoft Remote Desktop and Skype for Business. Microsoft AutoUpdate should keep itself up-to-date, but in case there are problems, you can update to the latest version here.
 

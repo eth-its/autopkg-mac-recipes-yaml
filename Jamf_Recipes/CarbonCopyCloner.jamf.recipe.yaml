@@ -8,7 +8,7 @@ Input:
   LANGUAGE: EN
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     A powerful disk cloning and backup utility.
     Version: %version%

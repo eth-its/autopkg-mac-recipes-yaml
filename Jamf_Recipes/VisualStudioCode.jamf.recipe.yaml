@@ -11,7 +11,7 @@ Input:
     A modern, sophisticated Integrated Development Engine (IDE) with many features for creating mobile, desktop, and web applications, which is also a versatile text editor.
     Version: %version%
     Category: %PKG_CATEGORY%
-  PKG_CATEGORY: Productivity
+  PKG_CATEGORY: Development & Computing
   POLICY_CATEGORY: Untested
   SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing

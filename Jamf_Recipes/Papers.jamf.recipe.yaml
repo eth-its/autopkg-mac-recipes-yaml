@@ -8,7 +8,7 @@ Input:
   LANGUAGE: EN
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  PKG_CATEGORY: Security
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     Your personal library of scientific resources.
 

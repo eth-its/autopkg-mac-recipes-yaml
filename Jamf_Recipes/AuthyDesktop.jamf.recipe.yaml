@@ -7,7 +7,7 @@ Input:
   NAME: Authy Desktop
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Security
+  PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     ‎Authy is a free mobile / desktop app for two-factor authentication (2FA), as well as a security partner and SMS delivery service of many websites that want to make two-factor authentication work better for their users.
 

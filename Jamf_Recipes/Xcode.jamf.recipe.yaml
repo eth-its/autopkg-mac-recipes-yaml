@@ -9,7 +9,7 @@ Input:
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Development
+  PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     Xcode is an integrated development environment for macOS containing a suite of software development tools developed by Apple for developing software for macOS, iOS, iPadOS, watchOS, and tvOS.
 

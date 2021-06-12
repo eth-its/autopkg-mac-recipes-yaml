@@ -15,7 +15,7 @@ Input:
     Firefox is a free and open-source web browser developed by Mozilla. 
     Version: %version%
     Category: %PKG_CATEGORY%
-  PKG_CATEGORY: Browsers & Players
+  PKG_CATEGORY: Connect & Remote
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
