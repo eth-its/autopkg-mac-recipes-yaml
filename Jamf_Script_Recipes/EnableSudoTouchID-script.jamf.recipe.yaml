@@ -17,6 +17,7 @@ Input:
   SELFSERVICE_ICON: Terminal.png
   INSTALL_BUTTON_TEXT: Enable Touch ID
   REINSTALL_BUTTON_TEXT: Enable Touch ID
+  FORCE_DESCRIPTION: false
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
