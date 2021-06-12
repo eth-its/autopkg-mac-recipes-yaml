@@ -8,7 +8,7 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   TESTING_GROUP_NAME: Untested
-  POLICY_CATEGORY: "Self-Help"
+  POLICY_CATEGORY: Development & Computing
   POLICY_TEMPLATE: Policy-untested-selfservice-script-only.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: "%filename%"

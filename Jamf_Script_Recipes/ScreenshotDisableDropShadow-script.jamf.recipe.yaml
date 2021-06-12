@@ -1,22 +1,22 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.EnableSudoTouchID-script
+Identifier: com.github.grahampugh.recipes.jamf.ScreenshotDisableDropShadow-script
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Enable Touch ID for sudo
+  NAME: Screenshots - Disable Drop-Shadow
   GROUP_NAME: "%NAME%-self-service"
   GROUP_TEMPLATE: SmartGroup-script-self-service.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-self-service.xml
   POLICY_NAME: "%NAME%"
-  SCRIPT_NAME: "Enable-TouchID-sudo.sh"
+  SCRIPT_NAME: ScreenshotDisableDropShadow.sh
   SCRIPT_PRIORITY: After
-  SELF_SERVICE_DISPLAY_NAME: Enable Touch ID for sudo
-  SELF_SERVICE_DESCRIPTION: Enables sudo to be activated via Touch ID. Touch ID must be set up prior to running this item, and may need to be re-run after upgrading macOS.
-  SELF_SERVICE_ICON: Terminal.png
-  INSTALL_BUTTON_TEXT: Enable Touch ID
-  REINSTALL_BUTTON_TEXT: Enable Touch ID
+  SELF_SERVICE_DISPLAY_NAME: Screenshots - Disable Drop-Shadow
+  SELF_SERVICE_DESCRIPTION: Disables the drop shadow when making screenshots of application windows.
+  SELF_SERVICE_ICON: Screenshot.png
+  INSTALL_BUTTON_TEXT: Disable
+  REINSTALL_BUTTON_TEXT: Disable
   replace_policy: "True"
   replace_script: "True"
   replace_group: "False"
