@@ -11,6 +11,8 @@ To add this repo to your AutoPkg setup, run the following command:
 All these recipes are `.jamf` recipes (or their parents) which use `JamfUploader` processors. To use these, run the following command:
 
     autopkg repo-add grahampugh-recipes
+    - or -
+    autopkg repo-add grahampugh/recipes-yaml
 
 Some `.jamf` recipes which more closely follow the standards used in `.jss` recipes can be found in the `grahampugh-recipes` repo.
 
