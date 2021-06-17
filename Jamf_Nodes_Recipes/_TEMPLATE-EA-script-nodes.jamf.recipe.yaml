@@ -16,6 +16,21 @@ Input:
   SCRIPT_PRIORITY: After
   SCRIPT_CATEGORY: Productivity
   PARAMETER4_LABEL: Parameter 4
+  PARAMETER5_LABEL: Parameter 5
+  PARAMETER6_LABEL: Parameter 6
+  PARAMETER7_LABEL: Parameter 7
+  PARAMETER8_LABEL: Parameter 8
+  PARAMETER9_LABEL: Parameter 9
+  PARAMETER10_LABEL: Parameter 10
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_VALUE: ""
+  PARAMETER5_VALUE: ""
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -66,6 +81,13 @@ Process:
       script_path: "%SCRIPT_PATH%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
