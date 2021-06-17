@@ -59,7 +59,7 @@ else
     echo "$app_name deleted successfully"
 fi
 
-# Remove other components
+# Remove other components
 echo "Removing /Library/Frameworks/R.framework"
 rm -Rf /Library/Frameworks/R.framework
 echo "Removing symlinks in /usr/local/bin"
