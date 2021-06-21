@@ -1,10 +1,92 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Support-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 
 Input:
   NAME: Support
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support
-  SELFSERVICE_ICON: "ETH.png"
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.%NAME%"
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PKG_CATEGORY: Tools & Accessories
   OS_EXCLUDE_MAX: 10.15.8
+  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
+  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-SupportApp.xml
+  SELFSERVICE_ICON: "ETH.png"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Comment: This processor uploads the package with the custom icon in it
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+    pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Comment: This processor uploads the main package which is determined using the "main_pkg_path" variable that was set in the customisation pkg recipe.
+    Arguments:
+      pkg_path: "%main_pkg_path%"
+      pkg_category: "%PKG_CATEGORY%"
+      custom_pkg_name: "%pkg_name%"
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
+      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
