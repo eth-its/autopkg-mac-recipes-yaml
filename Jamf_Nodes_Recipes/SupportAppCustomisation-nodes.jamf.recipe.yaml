@@ -38,5 +38,5 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      TRIGGER_POLICY_NAME: "%POLICY_NAME%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
       replace_policy: "True"
