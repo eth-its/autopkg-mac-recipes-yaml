@@ -24,6 +24,7 @@ Input:
   SELFSERVICE_ICON: "ETH.png"
   POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'"
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
