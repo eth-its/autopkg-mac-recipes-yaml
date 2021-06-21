@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Support
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.%NAME%"
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Support"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
