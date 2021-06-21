@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Support App Customisation
   CUSTOM_ICON_URL: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/ETH.png
+  VERSION: "1.0"
 
 Process:
   - Processor: PkgRootCreator
@@ -28,7 +29,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.SupportAppCustomisation.pkg
-        pkgname: ETHZ-SupportAppCustomisation
+        pkgname: "ETHZ-SupportAppCustomisation-%VERSION%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
-        version: "%version%"
+        version: "%VERSION%"
