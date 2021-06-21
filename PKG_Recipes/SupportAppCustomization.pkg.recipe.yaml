@@ -1,10 +1,9 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.pkg.SupportAppCustomisation
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.SupportApp
 
 Input:
-  NAME: Support
+  NAME: Support App Customisation
   CUSTOM_ICON_URL: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/ETH.png
 
 Process:
@@ -17,7 +16,6 @@ Process:
         Library/Management/ETH: "0775"
         Library/Management/ETH/SupportApp: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-      main_pkg_path: "%pkg_path%"
 
   - Processor: URLDownloader
     Arguments:

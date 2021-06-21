@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Support
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.SupportAppCustomisation
+ParentRecipe: com.github.grahampugh.recipes.pkg.SupportApp
 
 Input:
   NAME: Support
@@ -27,7 +27,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-SupportApp.xml
   SELFSERVICE_ICON: "ETH.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
@@ -38,16 +38,9 @@ Process:
       category_name: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
-    Comment: This processor uploads the package with the custom icon in it
-    Arguments:
-      pkg_category: "%PKG_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Comment: This processor uploads the main package which is determined using the "main_pkg_path" variable that was set in the customisation pkg recipe.
     Arguments:
-      pkg_path: "%main_pkg_path%"
       pkg_category: "%PKG_CATEGORY%"
-      custom_pkg_name: "%pkg_name%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
