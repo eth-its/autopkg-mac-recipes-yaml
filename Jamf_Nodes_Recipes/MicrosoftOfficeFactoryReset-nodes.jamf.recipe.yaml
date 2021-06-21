@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeFactoryReset-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft Office Factory Reset
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeFactoryReset
+  INSTALL_BUTTON_TEXT: "Reset Office"
+  REINSTALL_BUTTON_TEXT: "Reset Office"
+  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_MESSAGE_START: "Resetting Microsoft Office to factory settings"
+  POLICY_MESSAGE_FINISH: "Microsoft Office has now been reset to factory settings"

@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOutlookDataRemoval-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft Outlook Data Removal
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOutlookDataRemoval
+  INSTALL_BUTTON_TEXT: "Delete all email!"
+  REINSTALL_BUTTON_TEXT: "Delete all email!"
+  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_MESSAGE_START: "Removing all data from Microsoft Outlook"
+  POLICY_MESSAGE_FINISH: "Removed all data from Microsoft Outlook"
+  SELFSERVICE_ICON: "Microsoft Outlook Reset.png"
