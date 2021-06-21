@@ -1,0 +1,36 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.pkg.SupportAppCustomisation
+MinimumVersion: "2.3"
+ParentRecipe: com.github.grahampugh.recipes.pkg.SupportApp
+
+Input:
+  NAME: Support
+  CUSTOM_ICON_URL: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/ETH.png
+
+Process:
+  - Processor: PkgRootCreator
+    Comment: Set the main pkg_path variable to main_pkg_path so that we can use it later
+    Arguments:
+      pkgdirs:
+        Library: "0775"
+        Library/Management: "0775"
+        Library/Management/ETH: "0775"
+        Library/Management/ETH/SupportApp: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+      main_pkg_path: "%pkg_path%"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%CUSTOM_ICON_URL%"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+
+  - Processor: PkgCreator
+    force_pkg_build: True
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.SupportAppCustomisation.pkg
+        pkgname: ETHZ-SupportAppCustomisation-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
