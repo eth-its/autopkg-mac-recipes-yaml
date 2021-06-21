@@ -29,7 +29,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.SupportAppCustomisation.pkg
-        pkgname: "ETHZ-SupportAppCustomisation-%VERSION%"
+        pkgname: "ETHZ-SupportAppCustomisation-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         version: "%version%"
