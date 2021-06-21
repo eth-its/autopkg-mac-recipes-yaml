@@ -1,0 +1,68 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeLicenseReset
+MinimumVersion: "2.3"
+ParentRecipe: com.github.grahampugh.recipes.pkg.MicrosoftLicenseReset
+
+Input:
+  NAME: Microsoft Office License Reset
+  PKG_CATEGORY: Tools & Accessories
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Microsoft Office License Reset clears any cached credentials. After running the tool, you must sign in to Office 365. 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Reset License"
+  REINSTALL_BUTTON_TEXT: "Reset License"
+  POLICY_TEMPLATE: Policy-untested-selfservice-noexclusions.xml
+  SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"
+  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_MESSAGE_START: "Resetting Microsoft Office License"
+  POLICY_MESSAGE_FINISH: "Microsoft Office License has now been reset"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
