@@ -25,7 +25,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-SupportApp.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-max.xml
   SELFSERVICE_ICON: "ETH.png"
   POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
