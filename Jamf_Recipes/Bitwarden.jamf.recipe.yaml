@@ -1,10 +1,11 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Bitwarden
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grumpydrew.pkg.Bitwarden
+ParentRecipe: com.github.nmcspadden.pkg.appstore
 
 Input:
   NAME: Bitwarden
+  PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
