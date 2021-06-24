@@ -22,8 +22,8 @@ Input:
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
   SELFSERVICE_ICON: Google Chrome 2020.png
-  SCRIPT_NAME: GoogleChrome-postinstall.py
-  SCRIPT_PATH: GoogleChrome-postinstall.py
+  SCRIPT_NAME: GoogleChrome-postinstall.sh
+  SCRIPT_PATH: GoogleChrome-postinstall.sh
   SCRIPT_PRIORITY: After
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
