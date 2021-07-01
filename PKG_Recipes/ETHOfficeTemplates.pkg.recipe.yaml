@@ -8,12 +8,12 @@ Input: {}
 Process:
   - Arguments:
       pkgdirs:
-        Library: 0755
-        Library/Application Support: 0755
-        Library/Application Support/Microsoft: 0755
-        Library/Application Support/Microsoft/Office365: 0755
-        Library/Application Support/Microsoft/Office365/User Content.localized: 0755
-        Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized: 0755
+        Library: "0755"
+        Library/Application Support: "0755"
+        Library/Application Support/Microsoft: "0755"
+        Library/Application Support/Microsoft/Office365: "0755"
+        Library/Application Support/Microsoft/Office365/User Content.localized: "0755"
+        Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized: "0755"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
