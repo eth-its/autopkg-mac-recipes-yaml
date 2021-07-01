@@ -1,5 +1,5 @@
 Description: Downloads the latest version of ETH Office Templates.
-Identifier: com.github.eth-its-recipes.download.ETHTemplatesMSOffice
+Identifier: com.github.eth-its-recipes.download.ETHOfficeTemplates
 MinimumVersion: 1.0.0
 
 Input:
