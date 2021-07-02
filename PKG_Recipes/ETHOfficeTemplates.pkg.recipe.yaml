@@ -7,27 +7,53 @@ Input: {}
 
 Process:
   - Arguments:
-      pkgdirs:
-        Library: "0755"
-        Library/Application Support: "0755"
-        Library/Application Support/Microsoft: "0755"
-        Library/Application Support/Microsoft/Office365: "0755"
-        Library/Application Support/Microsoft/Office365/User Content.localized: "0755"
-        Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized: "0755"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
-  - Processor: Unarchiver
-    Arguments:
-      archive_path: "%RECIPE_CACHE_DIR%/downloads/eth-wordtemplates-korrespondenz.zip"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized"
-      purge_destination: true
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
 
-  - Processor: Unarchiver
+  - Processor: Copier
     Arguments:
-      archive_path: "%RECIPE_CACHE_DIR%/downloads/eth-pp-template-praesentation.zip"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized"
-      purge_destination: true
+      source_path: "%RECIPE_CACHE_DIR%/downloads/eth-wordtemplates-korrespondenz.zip"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/eth-wordtemplates-korrespondenz.zip"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/downloads/eth-pp-template-praesentation.zip"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/eth-pp-template-praesentation.zip"
+
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+        ## ETH_Templates_MSOffice installation
+        ## Supports Office 2016, 2019 and 365
+
+        DIR=$(dirname "$0")
+
+        ## Remove existing versions to ensure only the new ones are presented
+        [[ -d "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized" ]] && rm -rf "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/*" ||:
+
+        ## Install Templates for Office 2016/2019/365
+        mkdir -p "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized"
+
+        unzip $DIR/eth-wordtemplates-korrespondenz.zip -d "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized"
+        echo "Word Templates for Office 365 installed"
+
+        unzip $DIR/eth-pp-template-praesentation.zip -d "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized"
+        echo "PowerPoint Templates for Office 365 installed"
+
+        ## change permissions
+        /bin/chmod -R 644 "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*.potx "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*.pdf "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*/*.dotx
+
+        ## delete the __MACOSX artifact from the zip files
+        [[ -d "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/__MACOSX" ]] && rm -rf "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/__MACOSX" ||:
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
 
   - Arguments:
       force_pkg_build: true
@@ -37,10 +63,12 @@ Process:
         pkgname: "ETHTemplatesMSOffice-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
+        scripts: Scripts
         version: "%version%"
     Processor: PkgCreator
 
   - Processor: PathDeleter
     Arguments:
       path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
         - "%RECIPE_CACHE_DIR%/pkgroot"
