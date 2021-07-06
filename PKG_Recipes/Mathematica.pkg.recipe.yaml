@@ -10,6 +10,6 @@ Input:
 
 Process:
   - Arguments:
-      overwrite: false
+      overwrite: true
       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
     Processor: AppPkgCreator
