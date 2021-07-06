@@ -1,0 +1,9 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Mathematica-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: Mathematica
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mathematica
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
