@@ -21,11 +21,7 @@ if [[ -d "$ms_office_16_bundle" ]]; then
         echo "ERROR: EndNote CWYW Word 16.bundle failed to copy"
         exit_code=1
     fi
-else
-    echo "$ms_office_16_bundle not found. Nothing to copy."
-fi
-
-if [[ -d "$ms_office_2016_bundle" ]]; then
+elif [[ -d "$ms_office_2016_bundle" ]]; then
     mkdir -p "$ms_office_bundle_destination"
     cp -r "$ms_office_2016_bundle" "$ms_office_bundle_destination/EndNote CWYW Word 2016.bundle"
     if [[ -d "$ms_office_bundle_destination/EndNote CWYW Word 2016.bundle" ]]; then
@@ -35,7 +31,7 @@ if [[ -d "$ms_office_2016_bundle" ]]; then
         exit_code=1
     fi
 else
-    echo "$ms_office_2016_bundle not found. Nothing to copy."
+    echo "$ms_office_16_bundle and $ms_office_2016_bundle not found. Nothing to copy."
 fi
 
 if [[ -d "$pages_bundle" ]]; then
