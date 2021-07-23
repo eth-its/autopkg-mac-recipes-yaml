@@ -8,11 +8,10 @@ Possible results:
 "ineligible" - Intel Mac - Rosetta cannot be installed
 DOC
 
-# is this an ARM Mac?
-arch=$(/usr/bin/arch)
-if [ "$arch" == "arm64" ]; then
-    # is rosetta 2 installed?
-    if [[ -f "/Library/Apple/System/Library/LaunchDaemons/com.apple.oahd.plist" ]]; then
+# is this an ARM Mac?
+if [[ "$(/usr/bin/arch)" == "arm64" ]]; then
+    # is Rosetta 2 installed?
+    if /usr/bin/pgrep oahd >/dev/null 2>&1 ; then
         result="installed"
     else
         result="missing"
