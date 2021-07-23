@@ -54,6 +54,41 @@ else
 	echo "no $app_name uninstaller found"
 fi
 
+# Now remove the app
+echo "Removing application: ${app_name}"
+
+# Add standard path if none provided
+if [[ ! $app_name == *"/"* ]]; then
+	app_to_trash="/Applications/$app_name.app"
+else
+	app_to_trash="$app_name.app"
+fi
+
+echo "Application will be deleted: $app_to_trash"
+# Remove the application
+/bin/rm -Rf "${app_to_trash}"
+
+echo "Checking if $app_name is actually deleted..."
+if [[ -d "${app_to_trash}" ]]; then
+    echo "$app_name failed to delete"
+else
+    echo "$app_name deleted successfully"
+fi
+
+# also check to see if an additional app was ever created due to BundleID mismatch
+if [[ -d "/Applications/${app_name}/${app_name}.app" ]]; then
+    echo "Folder will be deleted: /Applications/${app_name}/"
+    /bin/rm -Rf "/Applications/${app_name}" ||:
+else
+    echo "Folder not found: /Applications/${app_name}/"
+fi
+if [[ -d "/Applications/${app_name}.localized/${app_name}.app" ]]; then
+    echo "Folder will be deleted: /Applications/${app_name}.localized/"
+    /bin/rm -Rf "/Applications/${app_name}.localized" ||:
+else
+    echo "Folder not found: /Applications/${app_name}.localized/"
+fi
+
 # Forget packages
 echo "Forgetting packages"
 pkgutilcmd="/usr/sbin/pkgutil"
