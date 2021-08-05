@@ -1,0 +1,20 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.EclipseTemurin-8-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Eclipse Temurin 8
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin-8
+  EXTENSION_ATTRIBUTE_NAME: "EclipseTemurin8Version"
+  EXTENSION_ATTRIBUTE_SCRIPT: EclipseTemurin-EA.sh
+  EXTENSION_ATTRIBUTE_VALUE: "8"
+  SELFSERVICE_ICON: Eclipse Temurin.png
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  SCRIPT_PATH: EclipseTemurin-uninstall.sh
+  SCRIPT_NAME: EclipseTemurin-uninstall.sh
+  SCRIPT_PRIORITY: Before
+  SCRIPT_CATEGORY: Uninstallers
+  PARAMETER4_LABEL: JDK major version
+  PARAMETER4_VALUE: "8"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
