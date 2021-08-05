@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Eclipse Temurin 8
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin-8
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin8
   EXTENSION_ATTRIBUTE_NAME: "EclipseTemurin8Version"
   EXTENSION_ATTRIBUTE_SCRIPT: EclipseTemurin-EA.sh
   EXTENSION_ATTRIBUTE_VALUE: "8"

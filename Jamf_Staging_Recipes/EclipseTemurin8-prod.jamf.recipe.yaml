@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: Eclipse Temurin 8
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin-8
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin8
   EXTENSION_ATTRIBUTE_NAME: EclipseTemurin8Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$|^$
