@@ -67,7 +67,7 @@ fi
 # =======================================================================================
 # Check if we are already using a local account. Abort if so.
 
-user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocation | cut -d / -f 2)
+user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocation | head -n 1 | cut -d / -f 2)
 
 if [[ $user_type == "Local" ]]; then
 	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
