@@ -28,7 +28,7 @@ current_user=$(/bin/ls -la /dev/console | /usr/bin/cut -d " " -f 4)
 echo "Current user is $current_user" >> "$LOGFILE"
 
 # Current Logged-in User's long name
-user_realname=$(dscl . -read /Users/gpu4tst | awk '/^RealName:/,/^RecordName:/' | grep -v "RecordName" | tail -n 1 | sed 's/RealName://' | sed 's/^ //')
+user_realname=$(dscl . -read "/Users/$current_user" | awk '/^RealName:/,/^RecordName:/' | grep -v "RecordName" | tail -n 1 | sed 's/RealName://' | sed 's/^ //')
 echo "Real Name is $user_realname" >> "$LOGFILE"
 
 # Current Logged-in User's UID
@@ -70,7 +70,7 @@ fi
 user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocation | cut -d / -f 2)
 
 if [[ $user_type == "Local" ]]; then
-	"$JAMFHELPER" -windowType utility -heading 'Management Notice' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
 	echo "User had a local account so we are exiting."  >> "$LOGFILEERROR"
 	exit 2 # exit with an error so postinstall doesn't run
 else
@@ -87,29 +87,23 @@ while [[ "$login_password" != "$confirm_password" || -z $login_password ]]; do
 
 	# ask for password
 	login_password=$(/usr/bin/osascript <<EOT
-		tell application "System Events"
-			activate
-			set myReply to text returned of (display dialog "Please enter your login password." ¬
-			default answer "" ¬
-				with title "Management Notice" ¬
-				buttons {"Continue."} ¬
-				default button 1 ¬
-				with hidden answer)
-		end tell
+		set myReply to text returned of (display dialog "Please enter your login password." ¬
+		default answer "" ¬
+			with title "Account Migration" ¬
+			buttons {"Continue"} ¬
+			default button 1 ¬
+			with hidden answer)
 EOT
 	)
 
 	# Confirm password.
 	confirm_password=$(/usr/bin/osascript <<EOT
-		tell application "System Events"
-			activate
-			set myReply to text returned of (display dialog "Please confirm your password" ¬
-			default answer "" ¬
-				with title "Management Notice" ¬
-				buttons {"Continue."} ¬
-				default button 1 ¬
-				with hidden answer)
-		end tell
+		set myReply to text returned of (display dialog "Please confirm your password" ¬
+		default answer "" ¬
+			with title "Account Migration" ¬
+			buttons {"Continue"} ¬
+			default button 1 ¬
+			with hidden answer)
 EOT
 	)
 
@@ -119,23 +113,17 @@ EOT
 		if [[ $password_attempts -le 4 ]]; then
 			echo "Password mismatch... alerting user to try again"  >> "$LOGFILEERROR"
 			/usr/bin/osascript <<EOT
-				tell application "System Events"
-					activate
-					display dialog "Passwords do not match. Please try again." ¬
-						with title "Management Notice" ¬
-						buttons {"Continue."} ¬
-						default button 1
-				end tell
+				display dialog "Passwords do not match. Please try again." ¬
+					with title "Management Notice" ¬
+					buttons {"Continue."} ¬
+					default button 1
 EOT
 		else
 			/usr/bin/osascript <<EOT
-				tell application "System Events"
-					activate
-					display dialog "You have entered mis-matching passwords five times. Please contact the Service Desk or closest TechCenter for assistance." ¬
-						with title "Management Notice" ¬
-						buttons {"Continue."} ¬
-						default button 1
-				end tell
+				display dialog "You have entered mis-matching passwords five times. Please contact the Service Desk or closest TechCenter for assistance." ¬
+					with title "Management Notice" ¬
+					buttons {"Continue."} ¬
+					default button 1
 EOT
 			echo "Entered mis-matching passwords too many times. Aborting." >> "$LOGFILEERROR"
 			exit 2  # exit with an error status
