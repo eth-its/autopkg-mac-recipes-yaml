@@ -1,0 +1,60 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.MigrateADToLocalAccount-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Migrate To Local Account
+  GROUP_NAME: "%NAME% users"
+  GROUP_TEMPLATE: SmartGroup-script-selfservice-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: Active Directory Binding Status
+  EXTENSION_ATTRIBUTE_SCRIPT: ActiveDirectoryBindingStatus-EA.sh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: Bound
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: MigrateADToLocalAccount.sh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: Migrate To Local Account
+  SELFSERVICE_DESCRIPTION: |
+    Use this tool to migrate a network or mobile account (an Active Directory account) to a local account. 
+
+    CAUTION: Please back up all work before proceeding with migration.
+
+    If FileVault is enabled, please ensure that the user has FileVault access after migration.
+  SELFSERVICE_ICON: Directory Utility.png
+  INSTALL_BUTTON_TEXT: Migrate Account
+  REINSTALL_BUTTON_TEXT: Migrate Account
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

@@ -7,7 +7,7 @@
 			<name>%EXTENSION_ATTRIBUTE_NAME%</name>
 			<priority>0</priority>
 			<and_or>and</and_or>
-			<search_type>is not</search_type>
+			<search_type>%EXTENSION_ATTRIBUTE_SEARCH_TYPE%</search_type>
 			<value>%EXTENSION_ATTRIBUTE_VALUE%</value>
 			<opening_paren>false</opening_paren>
 			<closing_paren>false</closing_paren>
