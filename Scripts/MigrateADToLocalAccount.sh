@@ -17,9 +17,8 @@ JAMFHELPER="/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/
 
 # create the log file if it does not exist
 SERIALNUMBER=$(system_profiler SPHardwareDataType | awk '/Serial Number/ { print $4 }')
-TimeStamp=$(date "+%Y-%m-%d_%H-%M")
-LOGFILE="$LOGDIR/$SERIALNUMBER""_""$TimeStamp"".log"
-LOGFILEERROR="$LOGDIR/$SERIALNUMBER""_""$TimeStamp""_ERROR.log"
+LOGFILE="$LOGDIR/$SERIALNUMBER.log"
+LOGFILEERROR="$LOGDIR/$SERIALNUMBER""_ERROR.log"
 
 # =======================================================================================
 # User Variables
