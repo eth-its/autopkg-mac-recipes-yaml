@@ -61,7 +61,7 @@ if [[ "${system_build:0:2}" -ge 15 ]]; then
 else
 	/Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -windowType utility -heading 'Management Notice' -description "Error - OS X 10.11 or greater is required.  Cannot Continue.  Hit OK to Continue." -button1 "OK"
 	echo "Running an older version of OS X. Aborting..."  >> "$LOGFILEERROR"
-	exit 2 # exit with an error
+	exit 0 # exit with an error
 fi
 
 # =======================================================================================
@@ -72,7 +72,7 @@ user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocati
 if [[ $user_type == "Local" ]]; then
 	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
 	echo "User had a local account so we are exiting."  >> "$LOGFILEERROR"
-	exit 2 # exit with an error so postinstall doesn't run
+	exit 0 # exit 0 as this isn't a failure
 else
 	echo "User does not have a local account, continuing." >> "$LOGFILE"
 fi
