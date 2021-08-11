@@ -196,6 +196,8 @@ if [[ ! $ad_accounts ]]; then
 	# unbind - we need to provide an AD user so use the one we just converted
 	if dsconfigad -remove -force -u "$current_user" -p "$login_password" ; then
 		echo "Unbinding successful" >> "$LOGFILE"
+		sleep 2
+		jamf recon &
 	else
 		echo "ERROR: Unbinding failed" >> "$LOGFILE"
 	fi
