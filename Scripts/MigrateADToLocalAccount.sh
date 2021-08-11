@@ -85,6 +85,8 @@ fi
 # =======================================================================================
 # Prompt user to enter their login password, repeat until matches
 
+echo "Informing user of the process." >> "$LOGFILE"
+
 "$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
 
 if [[ $? -ne 0 ]]; then
