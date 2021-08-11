@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/usr/local/autopkg/python"
+    "python.pythonPath": "/usr/local/autopkg/python",
+    "python.formatting.provider": "black"
 }

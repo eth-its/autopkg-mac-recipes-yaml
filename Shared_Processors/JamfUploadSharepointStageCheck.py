@@ -202,7 +202,7 @@ class JamfUploadSharepointStageCheck(Processor):
                     if sp_ready_for_production and not sp_release_completed:
                         sp_test_review_passed = True
                 elif "prd" in jss_url:
-                    if sp_ready_for_production and not sp_release_completed_prd:
+                    if sp_ready_for_production and sp_release_completed_prd == "No":
                         sp_test_review_passed = True
                 else:
                     raise ProcessorError("Invalid JSS_URL supplied.")

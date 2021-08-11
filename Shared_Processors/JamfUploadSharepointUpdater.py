@@ -363,21 +363,21 @@ class JamfUploadSharepointUpdater(Processor):
                         site,
                         "Jamf Test Review",
                         "Release_x0020_Completed_x0020_PR",
-                        None,
+                        "No",
                         "Title",
                         sharepoint_policy_name,
                     )
                 else:
                     # check if there is an entry with the same final policy name that is not
-                    # release completed
+                    # release completed in TST or PRD
                     app_in_test_review = self.check_list(
                         site,
                         "Jamf Test Review",
                         "Final_x0020_Content_x0020_Name",
                         selfservice_policy_name,
                     )
-                    # if so, delete the record
-                    if app_in_test_review:
+                    # if not release completed in TST, delete the record
+                    if (app_in_test_review and app_in_test_review.Release_x0020_Completed is not True):
                         self.output(
                             "Jamf Test Review: Deleting existing unreleased entry for '%s'"
                             % selfservice_policy_name
@@ -385,6 +385,20 @@ class JamfUploadSharepointUpdater(Processor):
                         self.delete_record(
                             site,
                             "Jamf Test Review",
+                            "Final_x0020_Content_x0020_Name",
+                            selfservice_policy_name,
+                        )
+                    # if not release comüpleted in PRD, delete the record
+                    elif (app_in_test_review and app_in_test_review.Release_x0020_Completed_x0020_PR is not "Yes"):
+                        self.output(
+                            "Jamf Test Review: Setting existing unreleased (PRD) entry for '%s' to 'Skipped"
+                            % selfservice_policy_name
+                        )
+                        self.update_record(
+                            site,
+                            "Jamf Test Review",
+                            "Release_x0020_Completed_x0020_PR",
+                            "Skipped",
                             "Final_x0020_Content_x0020_Name",
                             selfservice_policy_name,
                         )
@@ -552,7 +566,7 @@ class JamfUploadSharepointUpdater(Processor):
                     "Title",
                     sharepoint_policy_name,
                 )
-            # set Jamf Test Coordination to "Release Completed" only from TST
+            # set Jamf Test Review to "Release Completed" only from TST
             if "tst" in jss_url:
                 self.update_record(
                     site,
@@ -570,13 +584,13 @@ class JamfUploadSharepointUpdater(Processor):
                     "Title",
                     sharepoint_policy_name,
                 )
-            # set Jamf Test Coordination to "Release Completed PRD" only from PRD
+            # set Jamf Test Review to "Release Completed PRD" only from PRD
             elif "prd" in jss_url:
                 self.update_record(
                     site,
                     "Jamf Test Review",
                     "Release_x0020_Completed_x0020_PR",
-                    True,
+                    "Yes",
                     "Title",
                     sharepoint_policy_name,
                 )
