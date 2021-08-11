@@ -18,7 +18,8 @@ JAMFHELPER="/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/
 # create the log file if it does not exist
 SERIALNUMBER=$(system_profiler SPHardwareDataType | awk '/Serial Number/ { print $4 }')
 LOGFILE="$LOGDIR/$SERIALNUMBER.log"
-LOGFILEERROR="$LOGDIR/$SERIALNUMBER""_ERROR.log"
+
+echo "Script started at $(date)" >> "$LOGFILE"
 
 # =======================================================================================
 # User Variables
@@ -30,7 +31,7 @@ echo "Current user is $current_user" >> "$LOGFILE"
 # Current Logged-in User's long name
 user_realname=$(dscl . -read "/Users/$current_user" | awk '/^RealName:/,/^RecordName:/' | grep -v "RecordName" | tail -n 1 | sed 's/RealName://' | sed 's/^ //')
 if [[ ! "$user_realname" ]]; then
-	echo "Real Name not found. " >> "$LOGFILE"
+	echo "ERROR: Real Name not found. This is most likely not a mobile account" >> "$LOGFILE"
 	exit 1 # exit with an error
 else
 	echo "Real Name is $user_realname" >> "$LOGFILE"
@@ -39,7 +40,7 @@ fi
 # Current Logged-in User's UID
 local_uid=$(dscl /Local/Default -list /Users UniqueID | grep "$current_user" | awk '{print $2}')
 if [[ "$local_uid" -le -1 || ! "$local_uid" ]]; then
-	echo "Negative or absent UniqueID - cannot continue" >> "$LOGFILE"
+	echo "ERROR: Negative or absent UniqueID - cannot continue" >> "$LOGFILE"
 	exit 1 # exit with an error
 fi
 echo "UID is $local_uid" >> "$LOGFILE"
@@ -65,7 +66,7 @@ if [[ "${system_build:0:2}" -ge 15 ]]; then
 	echo "Mac is running El Capitan or above. OK to proceed."  >> "$LOGFILE"
 else
 	/Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -windowType utility -heading 'Management Notice' -description "Error - OS X 10.11 or greater is required.  Cannot Continue.  Hit OK to Continue." -button1 "OK"
-	echo "Running an older version of OS X. Aborting..."  >> "$LOGFILEERROR"
+	echo "ERROR: Running an older version of OS X. Aborting..."  >> "$LOGFILE"
 	exit 0 # exit with an error
 fi
 
@@ -76,7 +77,7 @@ user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocati
 
 if [[ $user_type == "Local" ]]; then
 	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
-	echo "User had a local account so we are exiting." >> "$LOGFILEERROR"
+	echo "ERROR: User had a local account so we are exiting." >> "$LOGFILE"
 	exit 0 # exit 0 as this isn't a failure
 else
 	echo "User does not have a local account, continuing." >> "$LOGFILE"
@@ -90,8 +91,8 @@ echo "Informing user of the process." >> "$LOGFILE"
 "$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
 
 if [[ $? -ne 0 ]]; then
-	echo "User cancelled the script. Exiting." >> "$LOGFILEERROR"
-	exit 1
+	echo "User cancelled the script. Exiting." >> "$LOGFILE"
+	exit 0
 fi
 
 password_attempts=0
@@ -124,22 +125,22 @@ EOT
 	password_attempts=$((password_attempts+1))
 
 	if [[ "$login_password" != "$confirm_password" ]]; then
-		if [[ $password_attempts -le 4 ]]; then
-			echo "Password mismatch... alerting user to try again"  >> "$LOGFILEERROR"
+		if [[ $password_attempts -le 2 ]]; then
+			echo "ERROR: Password mismatch... alerting user to try again (attempt "$(( password_attempts + 1))  >> "$LOGFILE"
 			/usr/bin/osascript <<EOT
 				display dialog "Passwords do not match. Please try again." ¬
-					with title "Management Notice" ¬
-					buttons {"Continue."} ¬
+					with title "Account Migration" ¬
+					buttons {"Continue"} ¬
 					default button 1
 EOT
 		else
 			/usr/bin/osascript <<EOT
-				display dialog "You have entered mis-matching passwords five times. Please contact the Service Desk or closest TechCenter for assistance." ¬
-					with title "Management Notice" ¬
-					buttons {"Continue."} ¬
+				display dialog "You have entered mis-matching passwords too many times. Please contact the Service Desk or closest TechCenter for assistance." ¬
+					with title "Account Migration" ¬
+					buttons {"OK"} ¬
 					default button 1
 EOT
-			echo "Entered mis-matching passwords too many times. Aborting." >> "$LOGFILEERROR"
+			echo "ERROR: Entered mis-matching passwords too many times. Aborting." >> "$LOGFILE"
 			exit 2  # exit with an error status
 		fi
 	fi
