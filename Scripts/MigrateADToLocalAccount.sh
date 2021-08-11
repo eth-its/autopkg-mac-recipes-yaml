@@ -29,12 +29,17 @@ echo "Current user is $current_user" >> "$LOGFILE"
 
 # Current Logged-in User's long name
 user_realname=$(dscl . -read "/Users/$current_user" | awk '/^RealName:/,/^RecordName:/' | grep -v "RecordName" | tail -n 1 | sed 's/RealName://' | sed 's/^ //')
-echo "Real Name is $user_realname" >> "$LOGFILE"
+if [[ ! "$user_realname" ]]; then
+	echo "Real Name not found. " >> "$LOGFILE"
+	exit 1 # exit with an error
+else
+	echo "Real Name is $user_realname" >> "$LOGFILE"
+fi
 
 # Current Logged-in User's UID
 local_uid=$(dscl /Local/Default -list /Users UniqueID | grep "$current_user" | awk '{print $2}')
-if [[ "$local_uid" -le -1 ]]; then
-	echo "Negative UniqueID - cannot continue" >> "$LOGFILE"
+if [[ "$local_uid" -le -1 || ! "$local_uid" ]]; then
+	echo "Negative or absent UniqueID - cannot continue" >> "$LOGFILE"
 	exit 1 # exit with an error
 fi
 echo "UID is $local_uid" >> "$LOGFILE"
@@ -44,8 +49,8 @@ local_gid=$(dscl /Local/Default -list /Users gid | grep "$current_user" | awk '{
 echo "GID is $local_gid" >> "$LOGFILE"
 
 # If GID is negative, set it to be the same as the UID
-if [[ "$local_gid" -le -1 ]]; then
-	echo "Negative GID - must be set to the same as the UID" >> "$LOGFILE"
+if [[ "$local_gid" -le -1  || ! "$local_gid" ]]; then
+	echo "Negative or absent GID - must be set to the same as the UID" >> "$LOGFILE"
 	local_gid="$local_uid"
 	echo "GID is now $local_gid"  >> "$LOGFILE"
 else
@@ -71,7 +76,7 @@ user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocati
 
 if [[ $user_type == "Local" ]]; then
 	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
-	echo "User had a local account so we are exiting."  >> "$LOGFILEERROR"
+	echo "User had a local account so we are exiting." >> "$LOGFILEERROR"
 	exit 0 # exit 0 as this isn't a failure
 else
 	echo "User does not have a local account, continuing." >> "$LOGFILE"
@@ -80,10 +85,17 @@ fi
 # =======================================================================================
 # Prompt user to enter their login password, repeat until matches
 
+"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
+
+if [[ $? -ne 0 ]]; then
+	echo "User cancelled the script. Exiting." >> "$LOGFILEERROR"
+	exit 1
+fi
+
 password_attempts=0
 
 # Check to make sure passwords match; if they don't, display an error and prompt again.
-while [[ "$login_password" != "$confirm_password" || -z $login_password ]]; do
+while [[ "$login_password" != "$confirm_password" || -z "$login_password" ]]; do
 
 	# ask for password
 	login_password=$(/usr/bin/osascript <<EOT
@@ -134,7 +146,7 @@ done
 # =======================================================================================
 # Block screen with a full screen window during permissions changes
 
-"$JAMFHELPER" -windowType fs -heading 'Management Notice' -description 'Converting to localuser: Please wait until you are logged out. Then log back in. Please contact the Service Desk if you have any issues.' -icon /System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns &
+"$JAMFHELPER" -windowType fs -heading 'Management Notice' -description "Converting $current_user to a local user. Please wait until you are logged out. Then log back in. Please contact the Service Desk if you have any issues." -icon "/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns" &
 echo "Screen locked while performing migration" >> "$LOGFILE"
 
 # =======================================================================================
