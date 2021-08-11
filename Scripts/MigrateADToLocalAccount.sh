@@ -31,6 +31,7 @@ echo "Current user is $current_user" >> "$LOGFILE"
 # Current Logged-in User's long name
 user_realname=$(dscl . -read "/Users/$current_user" | awk '/^RealName:/,/^RecordName:/' | grep -v "RecordName" | tail -n 1 | sed 's/RealName://' | sed 's/^ //')
 if [[ ! "$user_realname" ]]; then
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "Error - this account cannot be converted to a local account.  Please contact your IT administrator for assistance." -button1 "OK"
 	echo "ERROR: Real Name not found. This is most likely not a mobile account" >> "$LOGFILE"
 	exit 1 # exit with an error
 else
@@ -40,6 +41,7 @@ fi
 # Current Logged-in User's UID
 local_uid=$(dscl /Local/Default -list /Users UniqueID | grep "$current_user" | awk '{print $2}')
 if [[ "$local_uid" -le -1 || ! "$local_uid" ]]; then
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "Error - this account cannot be converted to a local account.  Please contact your IT administrator for assistance." -button1 "OK"
 	echo "ERROR: Negative or absent UniqueID - cannot continue" >> "$LOGFILE"
 	exit 1 # exit with an error
 fi
@@ -65,7 +67,7 @@ system_build=$( /usr/bin/sw_vers -buildVersion )
 if [[ "${system_build:0:2}" -ge 15 ]]; then
 	echo "Mac is running El Capitan or above. OK to proceed."  >> "$LOGFILE"
 else
-	/Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -windowType utility -heading 'Management Notice' -description "Error - OS X 10.11 or greater is required.  Cannot Continue.  Hit OK to Continue." -button1 "OK"
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "Error - OS X 10.11 or greater is required.  Cannot Continue.  Please contact your IT administrator for assistance." -button1 "OK"
 	echo "ERROR: Running an older version of OS X. Aborting..."  >> "$LOGFILE"
 	exit 0 # exit with an error
 fi
@@ -76,7 +78,7 @@ fi
 user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocation | head -n 1 | cut -d / -f 2)
 
 if [[ $user_type == "Local" ]]; then
-	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Hit OK to Quit." -button1 "OK"
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Click OK to Quit." -button1 "OK"
 	echo "ERROR: User had a local account so we are exiting." >> "$LOGFILE"
 	exit 0 # exit 0 as this isn't a failure
 else
@@ -88,7 +90,7 @@ fi
 
 echo "Informing user of the process." >> "$LOGFILE"
 
-"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
+"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password.  Click OK to continue." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
 
 if [[ $? -ne 0 ]]; then
 	echo "User cancelled the script. Exiting." >> "$LOGFILE"
@@ -135,7 +137,7 @@ EOT
 EOT
 		else
 			/usr/bin/osascript <<EOT
-				display dialog "You have entered mis-matching passwords too many times. Please contact the Service Desk or closest TechCenter for assistance." ¬
+				display dialog "You have entered mis-matching passwords too many times. Please contact your IT administrator for assistance." ¬
 					with title "Account Migration" ¬
 					buttons {"OK"} ¬
 					default button 1
@@ -149,7 +151,7 @@ done
 # =======================================================================================
 # Block screen with a full screen window during permissions changes
 
-"$JAMFHELPER" -windowType fs -heading 'Management Notice' -description "Converting $current_user to a local user. Please wait until you are logged out. Then log back in. Please contact the Service Desk if you have any issues." -icon "/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns" &
+"$JAMFHELPER" -windowType fs -heading 'Account Migration' -description "Please wait a few moments while we convert your account. You will be logged out. Then log back in. Please contact your IT administrator if you have any issues." -icon "/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns" &
 echo "Screen locked while performing migration" >> "$LOGFILE"
 
 # =======================================================================================
