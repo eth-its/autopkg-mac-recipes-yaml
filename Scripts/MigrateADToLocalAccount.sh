@@ -79,7 +79,7 @@ user_type=$(dscl /Search -read "/Users/$current_user" | grep AppleMetaNodeLocati
 
 if [[ $user_type == "Local" ]]; then
 	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "This account is already a local account. Click OK to Quit." -button1 "OK"
-	echo "ERROR: User had a local account so we are exiting." >> "$LOGFILE"
+	echo "User had a local account so we are exiting." >> "$LOGFILE"
 	exit 0 # exit 0 as this isn't a failure
 else
 	echo "User does not have a local account, continuing." >> "$LOGFILE"
@@ -179,12 +179,34 @@ chown -Rf "$current_user:$local_gid" "/Users/$current_user"
 # dscl . -append /Users/$current_user NFSHomeDirectory /Users/$current_user/
 echo "Permissions fixed" >> "$LOGFILE"
 
-## =======================================================================================
-# kill jamfhelper and logout/exit
+
+# =======================================================================================
+# kill jamfhelper
 
 sleep 3
 killall -9 jamfHelper
-echo "All done ...exiting"  >> "$LOGFILE"
+
+# =======================================================================================
+# Unbind machine if no AD accounts remaining
+
+# look for accounts with an ID > 10000 (other than the one we just converted)
+ad_accounts=$(dscl /Local/Default -list /Users UniqueID | grep -v "$local_uid" | awk '$2 > 10000')
+if [[ ! $ad_accounts ]]; then
+	echo "No other AD accounts on the device, so we can unbind" >> "$LOGFILE"
+	# unbind - we need to provide an AD user so use the one we just converted
+	if dsconfigad -remove -force -u "$current_user" -p "$login_password" ; then
+		echo "Unbinding successful" >> "$LOGFILE"
+	else
+		echo "ERROR: Unbinding failed" >> "$LOGFILE"
+	fi
+else
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "There are still network accounts on this device, so this Mac cannot be removed from the Active Directory. Please contact your IT administrator for assistance. Press OK to logout, and then please log back in." -button1 "OK"
+fi
+
+# =======================================================================================
+# logout/exit
+
+echo "All done ...exiting" >> "$LOGFILE"
 
 # force the logout (jamf needs PPPC permissions to do this)
 osascript -e 'tell application "loginwindow" to  «event aevtrlgo»'
