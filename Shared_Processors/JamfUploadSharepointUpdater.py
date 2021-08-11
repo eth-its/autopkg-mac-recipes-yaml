@@ -359,6 +359,14 @@ class JamfUploadSharepointUpdater(Processor):
                         "Title",
                         sharepoint_policy_name,
                     )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Release_x0020_Completed_x0020_PR",
+                        None,
+                        "Title",
+                        sharepoint_policy_name,
+                    )
                 else:
                     # check if there is an entry with the same final policy name that is not
                     # release completed
@@ -558,6 +566,16 @@ class JamfUploadSharepointUpdater(Processor):
                     site,
                     "Jamf Test Review",
                     "Ready_x0020_for_x0020_Production",
+                    True,
+                    "Title",
+                    sharepoint_policy_name,
+                )
+            # set Jamf Test Coordination to "Release Completed PRD" only from PRD
+            elif "prd" in jss_url:
+                self.update_record(
+                    site,
+                    "Jamf Test Review",
+                    "Release_x0020_Completed_x0020_PR",
                     True,
                     "Title",
                     sharepoint_policy_name,

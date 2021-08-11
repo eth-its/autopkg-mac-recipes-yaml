@@ -180,6 +180,7 @@ class JamfUploadSharepointStageCheck(Processor):
             sp_policy_name = row.Title
             sp_ready_for_production = row.Ready_x0020_for_x0020_Production
             sp_release_completed = row.Release_x0020_Completed
+            sp_release_completed_prd = row.Release_x0020_Completed_x0020_PR
             if sp_policy_name == product_name:
                 sp_product_in_list = True
                 self.output(
@@ -188,15 +189,20 @@ class JamfUploadSharepointStageCheck(Processor):
                     )
                 )
                 self.output(
-                    "Jamf Test Review 'Release Completed': {}".format(
+                    "Jamf Test Review 'Release Completed TST': {}".format(
                         sp_release_completed
+                    )
+                )
+                self.output(
+                    "Jamf Test Review 'Release Completed PRD': {}".format(
+                        sp_release_completed_prd
                     )
                 )
                 if "tst" in jss_url:
                     if sp_ready_for_production and not sp_release_completed:
                         sp_test_review_passed = True
                 elif "prd" in jss_url:
-                    if sp_ready_for_production:
+                    if sp_ready_for_production and not sp_release_completed_prd:
                         sp_test_review_passed = True
                 else:
                     raise ProcessorError("Invalid JSS_URL supplied.")
