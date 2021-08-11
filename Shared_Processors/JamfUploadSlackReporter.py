@@ -53,6 +53,7 @@ class JamfUploadSlackReporter(Processor):
         },
         "NAME": {"required": False, "description": ("Generic product name.")},
         "version": {"required": True, "description": ("Product version.")},
+        "recipe_type": {"required": False, "description": ("Recipe type (prod).")},
         "pkg_name": {"required": True, "description": ("Package in policy.")},
         "webhook_url": {"required": False, "description": ("Slack webhook.")},
         "username": {
@@ -77,6 +78,7 @@ class JamfUploadSlackReporter(Processor):
     def main(self):
         """Do the main thing"""
         jss_url = self.env.get("JSS_URL")
+        recipe_type = self.env.get("recipe_type")
         policy_category = self.env.get("POLICY_CATEGORY")
         category = self.env.get("PKG_CATEGORY")
         policy_name = self.env.get("policy_name")
@@ -95,8 +97,46 @@ class JamfUploadSlackReporter(Processor):
             "BPMUE6UVA/ZVi08WTPBfcdEu3FwnKwVCza"
         )
 
+        # section for prod policies
+        if recipe_type == "prod":
+            untested_policy_name = f"{selfservice_policy_name} (Testing)"
+
+            self.output(f"JSS address: {jss_url}")
+            self.output(f"Title: {selfservice_policy_name}")
+            self.output(f"Untested policy: {untested_policy_name}")
+            self.output(f"Version: {version}")
+            self.output(f"Production Category: {category}")
+
+            if pkg_name:
+                slack_text = (
+                    f"*Item moved to Production:*\nURL: {jss_url}\n"
+                    + f"Title: *{selfservice_policy_name}*\n"
+                    + f"Version: *{version}*\n"
+                    + f"Category: *{category}*\n"
+                    + f"Uploaded Package Name: *{pkg_name}*"
+                )
+            else:
+                slack_text = (
+                    f"*Item moved to Production:*\nURL: {jss_url}\n"
+                    + f"Title: *{selfservice_policy_name}*\n"
+                    + f"Version: *{version}*\n"
+                    + f"Category: *{category}*"
+                )
+
+            slack_data = {
+                "text": slack_text,
+                "username": username,
+                "icon_url": slack_icon_url,
+            }
+
+            response = requests.post(webhook_url, json=slack_data)
+            if response.status_code != 200:
+                raise ValueError(
+                    "Request to slack returned an error %s, the response is:\n%s"
+                    % (response.status_code, response.text)
+                )
         # section for untested recipes
-        if policy_category == "Untested":
+        else:
             selfservice_policy_name = name
             if major_version:
                 selfservice_policy_name = selfservice_policy_name + " " + major_version
@@ -134,45 +174,6 @@ class JamfUploadSlackReporter(Processor):
                     + f"Category: *{category}*\n"
                     + f"Policy Name: *{policy_name}*\n"
                     + "No new package uploaded"
-                )
-
-            slack_data = {
-                "text": slack_text,
-                "username": username,
-                "icon_url": slack_icon_url,
-            }
-
-            response = requests.post(webhook_url, json=slack_data)
-            if response.status_code != 200:
-                raise ValueError(
-                    "Request to slack returned an error %s, the response is:\n%s"
-                    % (response.status_code, response.text)
-                )
-
-        # section for prod policies
-        else:
-            untested_policy_name = f"{selfservice_policy_name} (Testing)"
-
-            self.output(f"JSS address: {jss_url}")
-            self.output(f"Title: {selfservice_policy_name}")
-            self.output(f"Untested policy: {untested_policy_name}")
-            self.output(f"Version: {version}")
-            self.output(f"Production Category: {category}")
-
-            if pkg_name:
-                slack_text = (
-                    f"*Item moved to Production:*\nURL: {jss_url}\n"
-                    + f"Title: *{selfservice_policy_name}*\n"
-                    + f"Version: *{version}*\n"
-                    + f"Category: *{category}*\n"
-                    + f"Uploaded Package Name: *{pkg_name}*"
-                )
-            else:
-                slack_text = (
-                    f"*Item moved to Production:*\nURL: {jss_url}\n"
-                    + f"Title: *{selfservice_policy_name}*\n"
-                    + f"Version: *{version}*\n"
-                    + f"Category: *{category}*"
                 )
 
             slack_data = {
