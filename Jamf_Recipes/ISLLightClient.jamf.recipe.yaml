@@ -1,19 +1,25 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.CarbonCopyCloner
+Identifier: com.github.eth-its-recipes.jamf.ISLLightClient
 MinimumVersion: "2.3"
-ParentRecipe: com.github.keeleysam.recipes.pkg.CarbonCopyCloner
+ParentRecipe: com.github.eth-its-recipes.pkg.ISLLightClient
 
 Input:
-  NAME: Carbon Copy Cloner
+  NAME: ISL Light Client
   LANGUAGE: EN
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    A powerful disk cloning and backup utility.
-    
+    Receive remote desktop support from the help desk operator.
+
     Version: %version%
     Category: %PKG_CATEGORY%
+  SCRIPT_NAME: jamf-policy-trigger.sh
+  SCRIPT_PATH: jamf-policy-trigger.sh
+  SCRIPT_CATEGORY: Administration
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: Trigger name
+  PARAMETER4_VALUE: "%NAME%-uninstall"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -23,7 +29,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -44,6 +50,19 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:

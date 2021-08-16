@@ -1,0 +1,52 @@
+Description: Downloads the latest version of ISL Light Client and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.ISLLightClient
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.ISLLightClient
+
+Input:
+  BUNDLE_ID: com.islonline.isllight.client
+  NAME: ISL Light Client
+
+Process:
+- Arguments:
+    input_plist_path: '%pathname%/ISL Light Client.app/Contents/Info.plist'
+    plist_version_key: CFBundleShortVersionString
+  Processor: Versioner
+
+- Processor: PkgRootCreator
+  Arguments:
+    pkgdirs:
+      Applications: '0775'
+      'Applications/ISL Light Client': '0775'
+    pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+
+- Processor: Copier
+  Arguments:
+    destination_path: '%pkgroot%/Applications/ISL Light Client/ISL Light Client.app'
+    source_path: '%pathname%/ISL Light Client.app'
+
+- Processor: Copier
+  Arguments:
+    destination_path: '%pkgroot%/Applications/ISL Light Client/.configuration'
+    source_path: '%pathname%/.configuration'
+
+- Processor: Copier
+  Arguments:
+    destination_path: '%pkgroot%/Applications/ISL Light Client/.VolumeIcon.icns'
+    source_path: '%pathname%/.VolumeIcon.icns'
+
+- Arguments:
+    force_pkg_build: True
+    pkg_request:
+      chown: []
+      id: com.islonline.isllight.client.pkg
+      pkgname: 'ISL_Light_Client-%version%'
+      pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+      pkgtype: flat
+      version: '%version%'
+  Processor: PkgCreator
+
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/pkgroot'
