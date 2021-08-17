@@ -4,6 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.AdoptOpenJDK11
 
 Input:
+  DEPRECATION_WARNING: AdoptOpenJDK has been renamed Eclipse Temurin. Please use the EclipseTemurin recipes in this repo instead.
   NAME: AdoptOpenJDK 11
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -37,6 +38,10 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "%DEPRECATION_WARNING%"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
