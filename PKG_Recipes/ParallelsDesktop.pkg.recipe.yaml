@@ -30,6 +30,8 @@ Process:
     Processor: Versioner
 
   - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
+    Arguments:
+      split_on: ","
 
   - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg"
