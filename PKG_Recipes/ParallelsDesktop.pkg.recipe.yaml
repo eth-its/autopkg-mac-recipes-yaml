@@ -1,0 +1,58 @@
+Description: Downloads the latest version of Parallels Desktop and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.ParallelsDesktop
+MinimumVersion: 0.6.1
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  LIST_LANGUAGE: ML
+  LIST_NAME: Parallels Desktop for Mac
+  NAME: Parallels Desktop
+
+Process:
+  - Arguments:
+      dmg_path: "%pathname%"
+    Processor: AppDmgVersioner
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg"
+      predicate: download_changed == False
+    Comment: Checks if the file already exists in the cache
+    Processor: StopProcessingIf
+
+  - Arguments:
+      filename: pd-autodeploy.zip
+      url: http://download.parallels.com/desktop/tools/pd-autodeploy.zip
+    Processor: URLDownloader
+
+  - Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/downloads/%filename%"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
+      purge_destination: true
+    Processor: Unarchiver
+
+  - Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/%NAME%/Parallels Desktop Business Edition mass deployment package*"
+    Processor: FileFinder
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg"
+      overwrite: true
+      source_path: "%found_filename%/Parallels Desktop Autodeploy.pkg"
+    Processor: Copier
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/Parallels Desktop DMG/%NAME%.dmg"
+      overwrite: true
+      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%"
+    Processor: Copier
+
+  - Arguments:
+      CONFIG_FILE_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/License Key and Configuration/deploy.cfg"
+      INFO_PLIST_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/Contents/Info.plist"
+      version: "%version%"
+    Processor: com.github.eth-its-recipes.processors/ParallelsDesktopPackager
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/%NAME%"
+    Processor: PathDeleter

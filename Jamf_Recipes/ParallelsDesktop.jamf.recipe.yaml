@@ -1,17 +1,18 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Fantastical
+Identifier: com.github.eth-its-recipes.jamf.ParallelsDesktop
 MinimumVersion: "2.3"
-ParentRecipe: com.github.ahousseini-recipes.pkg.Fantastical
+ParentRecipe: com.github.eth-its-recipes.pkg.ParallelsDesktop
 
 Input:
-  NAME: Fantastical
+  NAME: Parallels Desktop
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
-    Fantastical is a calendar app with intuitive natural language parsing and a full calendar window with day, week, month, and year views. 
+    Parallels Desktop is a hardware virtualization tool for running operating systems like Windows and Linux in a virtual environment on your Mac.
 
-    Note that a subscription through Flexibits is required to unlock many of the useful features.
+    Parallels Desktop must be licensed through the IT Shop.
+
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -25,7 +26,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %LANGUAGE% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
