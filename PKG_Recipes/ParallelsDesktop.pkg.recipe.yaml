@@ -34,24 +34,30 @@ Process:
       split_on: ","
 
   - Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg"
       overwrite: true
       source_path: "%found_filename%/Parallels Desktop Autodeploy.pkg"
     Processor: Copier
 
   - Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/Parallels Desktop DMG/%NAME%.dmg"
+      destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg/Parallels Desktop DMG/Parallels Desktop.dmg"
       overwrite: true
       source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%"
     Processor: Copier
 
   - Arguments:
-      CONFIG_FILE_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/License Key and Configuration/deploy.cfg"
-      INFO_PLIST_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop_%version%.pkg/Contents/Info.plist"
+      CONFIG_FILE_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg/License Key and Configuration/deploy.cfg"
+      INFO_PLIST_PATH: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg/Contents/Info.plist"
       version: "%version%"
     Processor: com.github.eth-its-recipes.processors/ParallelsDesktopPackager
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/ParellelsDesktop-%version%.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg"
 
   - Arguments:
       path_list:
         - "%RECIPE_CACHE_DIR%/unzip"
+        - "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg"
     Processor: PathDeleter
