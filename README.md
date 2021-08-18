@@ -8,7 +8,7 @@ To add this repo to your AutoPkg setup, run the following command:
 
     autopkg repo-add eth-its/autopkg-mac-recipes-yaml
 
-All these recipes are `.jamf` recipes (or their parents) which use `JamfUploader` processors. To use these, run the following command:
+All these recipes are `.jamf` recipes (or their parents) which use `JamfUploader` processors. To use these processors, run the following command:
 
     autopkg repo-add grahampugh-recipes
     - or -
