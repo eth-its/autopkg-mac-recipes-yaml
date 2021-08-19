@@ -313,7 +313,7 @@ class InternalUpdateChecker(Processor):
         product_repo = self.env.get("mounted_repo")
         self.output("product_repo: {}".format(product_repo))
         recipe_cache_dir = self.env.get("RECIPE_CACHE_DIR")
-        major_version = self.env.get("MAJOR_VERSION")
+        list_major_version = self.env.get("list_major_version")
         additional_filter = self.env.get("LIST_FILTER")
 
         # set default downloads_dir if not specified
@@ -340,10 +340,12 @@ class InternalUpdateChecker(Processor):
         )
 
         # get the latest version from the matched list
-        if major_version:
-            self.output("Search restricted to major version: {}".format(major_version))
+        if list_major_version:
+            self.output(
+                "Search restricted to major version: {}".format(list_major_version)
+            )
             latest_product_details = self.get_latest_version(
-                product_matches_list, str(major_version)
+                product_matches_list, str(list_major_version)
             )
         else:
             latest_product_details = self.get_latest_version(product_matches_list)
