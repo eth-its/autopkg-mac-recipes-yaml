@@ -7,7 +7,6 @@ Input:
   LIST_LANGUAGE: ML
   LIST_NAME: Parallels Desktop for Mac
   NAME: Parallels Desktop
-  LIST_MAJOR_VERSION: "16"
 
 Process:
   - Arguments:
@@ -26,19 +25,14 @@ Process:
     Processor: FileFinder
 
   - Arguments:
-      input_plist_path: "%found_filename%/Parallels Desktop Autodeploy.pkg/Contents/Info.plist"
-      plist_version_key: CFBundleGetInfoString
-    Processor: Versioner
-
-  - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
-    Arguments:
-      split_on: ","
-
-  - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg"
       overwrite: true
       source_path: "%found_filename%/Parallels Desktop Autodeploy.pkg"
     Processor: Copier
+
+  - Arguments:
+      dmg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%"
+    Processor: AppDmgVersioner
 
   - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Parallels_Desktop.pkg/Parallels Desktop DMG/Parallels Desktop.dmg"
