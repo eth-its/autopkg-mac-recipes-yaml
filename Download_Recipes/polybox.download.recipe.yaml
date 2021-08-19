@@ -1,0 +1,29 @@
+Description: Download recipe for the polybox desktop client.
+Identifier: com.github.eth-its-recipes.download.polybox
+MinimumVersion: 0.2.0
+
+Input:
+  NAME: polybox
+  SEARCH_PATTERN: (?P<pkg_name>polybox-.*?\.pkg)
+  SEARCH_URL: https://polybox.ethz.ch/repo/.devel/?C=N;O=D
+
+Process:
+  - Arguments:
+      re_pattern: "%SEARCH_PATTERN%"
+      result_output_var_name: download_url
+      url: "%SEARCH_URL%"
+    Processor: URLTextSearcher
+
+  - Arguments:
+      url: "https://polybox.ethz.ch/repo/.devel/%pkg_name%"
+    Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
+
+  - Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: ownCloud GmbH (4AP2STM4H5)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: "%pathname%"
+    Processor: CodeSignatureVerifier
