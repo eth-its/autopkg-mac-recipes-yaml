@@ -1,0 +1,92 @@
+Description: |
+  Downloads Thunderbird disk image and builds a package.
+  Some useful values for RELEASE are: 'latest', 'beta-latest'.
+  LOCALE controls the language localization to be downloded.
+  Examples include 'en-US', 'de', 'sv-SE', and 'zh-TW'
+  See the following URLs for more info:
+  http://ftp.mozilla.org/pub/thunderbird/releases/latest/README.txt
+  http://ftp.mozilla.org/pub/thunderbird/releases/latest-beta/README.txt
+Identifier: com.github.eth-its-recipes.pkg.Thunderbird
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.thunderbird
+
+Input:
+  NAME: Thunderbird
+  AUTOCONF_NAME: thunderbird-ethz
+
+Process:
+  - Arguments:
+      dmg_path: "%pathname%"
+    Processor: AppDmgVersioner
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/Thunderbird.app"
+      source_path: "%pathname%/Thunderbird.app"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+
+        # postinstall script to place autoconfig file into Thunderbird preferences
+        echo "Copying %AUTOCONF_NAME%.js into place"
+        /bin/cp %AUTOCONF_NAME%.js /Applications/Thunderbird.app/Contents/Resources/defaults/pref/%AUTOCONF_NAME%.js
+        echo "Copying %AUTOCONF_NAME%.cfg into place"
+        /bin/cp %AUTOCONF_NAME%.cfg /Applications/Thunderbird.app/Contents/Resources/%AUTOCONF_NAME%.cfg
+        echo "Finished installing autoconfig"
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: |
+        // Do not alter this first line
+
+        // Disable updater
+        lockPref("app.update.enabled", false);
+        // make absolutely sure it is really off
+        lockPref("app.update.auto", false);
+        lockPref("app.update.mode", 0);
+        lockPref("app.update.service.enabled", false);
+
+        // Disable health reporter
+        lockPref("datareporting.healthreport.service.enabled", false);
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/%AUTOCONF_NAME%.cfg"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: |
+        // Do not alter this first line
+
+        // The general.config.filename pref registers our 'startup hook script'.
+        pref('general.config.filename', '%AUTOCONF_NAME%.cfg');
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/%AUTOCONF_NAME%.js"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: org.mozilla.thunderbird.pkg
+        options: purge_ds_store
+        pkgtype: flat
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        scripts: Scripts
+      pkgname: "%NAME%-%LOCALE%-%version%"
+    Processor: PkgCreator

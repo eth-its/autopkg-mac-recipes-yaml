@@ -1,0 +1,34 @@
+Description: |
+  Downloads Thunderbird disk image.
+  Some useful values for RELEASE are: 'latest', 'beta-latest'.
+  LOCALE controls the language localization to be downloded.
+  Examples include 'en-US', 'de', 'sv-SE', and 'zh-TW'
+  See the following URLs for more info:
+  http://ftp.mozilla.org/pub/thunderbird/releases/latest/README.txt
+  http://ftp.mozilla.org/pub/thunderbird/releases/latest-beta/README.txt
+Identifier: com.github.eth-its-recipes.download.thunderbird
+MinimumVersion: "2.3"
+
+Input:
+  DISABLE_CODE_SIGNATURE_VERIFICATION: false
+  LOCALE: en_US
+  NAME: Thunderbird
+  RELEASE: latest
+
+Process:
+  - Arguments:
+      locale: "%LOCALE%"
+      product_name: thunderbird
+      release: "%RELEASE%"
+    Processor: com.github.eth-its-recipes.processors/MozillaUrlAndVersionProvider
+
+  - Arguments:
+      filename: "%NAME%.dmg"
+    Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
+
+  - Arguments:
+      input_path: "%pathname%/Thunderbird.app"
+      requirement: anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "43AQ936H96"
+    Processor: CodeSignatureVerifier
