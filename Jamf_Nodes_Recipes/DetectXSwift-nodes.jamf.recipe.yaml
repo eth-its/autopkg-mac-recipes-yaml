@@ -122,6 +122,12 @@ Process:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: True
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%REPORT_GROUP_TEMPLATE%"
+      computergroup_name: "%REPORT_GROUP_NAME%"
+      replace_group: True
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%RECURRING_POLICY_TEMPLATE%"
