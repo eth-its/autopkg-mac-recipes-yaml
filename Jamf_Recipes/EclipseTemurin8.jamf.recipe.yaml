@@ -9,7 +9,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
-    ‎The Eclipse Temurin Java Developement Toolkit, version 8.
+    The Eclipse Temurin Java Developement Toolkit, version 8.
 
     Version: %version%
     Category: %PKG_CATEGORY%

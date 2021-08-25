@@ -1,0 +1,134 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. An additional policy is created which runs DetectX search on a recurring basis. Two Extension Attributes check for any issues and infections, and a Reporting Smart Group establishes any computers that have any issues.
+Identifier: com.github.eth-its-recipes.jamf.DetectXSwift
+MinimumVersion: "2.3"
+ParentRecipe: com.github.autopkg.wardsparadox.pkg.DetectXSwift
+
+Input:
+  NAME: DetectX Swift
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PKG_CATEGORY: Tools & Accessories
+  SELFSERVICE_DESCRIPTION: |
+    DetectX a lightweight, on-demand dedicated search and troubleshooting tool, probably the fastest of its kind, that can identify malware, adware, keyloggers, potentially unwanted apps and potentially destabilising apps on a mac. It can also help you to identify unknown and novel threats through its Profiler and History functions.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  REPORT_GROUP_NAME: "DetectX Issues Found"
+  REPORT_GROUP_TEMPLATE: SmartGroup-report-DetectX.xml
+  POLICY_CATEGORY: Untested
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "%NAME%.png"
+  RECURRING_POLICY_CATEGORY: "%PKG_CATEGORY%"
+  RECURRING_POLICY_NAME: Run DetextX Search
+  RECURRING_POLICY_TEMPLATE: Policy-recurring.xml
+  RECURRING_POLICY_FREQUENCY: Once every day
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  RECURRING_GROUP_NAME: "%INSTALLED_GROUP_NAME%"
+  SCRIPT_NAME: DetectXSearch-run.sh
+  SCRIPT_PRIORITY: After
+  EXTENSION_ATTRIBUTE_NAME: "DetectX Issues"
+  EXTENSION_ATTRIBUTE_SCRIPT: DetectXSearch-issues-EA.sh
+  EXTENSION_ATTRIBUTE2_NAME: "DetectX Infections"
+  EXTENSION_ATTRIBUTE2_SCRIPT: DetectXSearch-infections-EA.sh
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%RECURRING_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE2_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE2_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%RECURRING_POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      replace_group: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%RECURRING_POLICY_TEMPLATE%"
+      policy_name: "%RECURRING_POLICY_NAME%"
+      replace_policy: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: True
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
