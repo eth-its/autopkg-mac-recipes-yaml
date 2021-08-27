@@ -1,0 +1,13 @@
+Description: Placeholder pkg recipe - just moves the pkg to create the pkg_path variable.
+Identifier: com.github.eth-its-recipes.pkg.Dropbox
+ParentRecipe: com.github.autopkg.download.dropbox
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Dropbox
+
+Process:
+  - Arguments:
+      overwrite: true
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+    Processor: AppPkgCreator
