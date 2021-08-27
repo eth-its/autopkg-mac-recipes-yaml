@@ -8,6 +8,5 @@ Input:
 
 Process:
   - Arguments:
-      overwrite: true
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      force_pkg_build: true
     Processor: AppPkgCreator
