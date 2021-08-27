@@ -83,7 +83,7 @@ Process:
 
   - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Users/Shared/FileMaker/FileMaker Pro/License_Temp/LicenseCert.fmcert"
-      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+      source_path: "%LIST_LICENSE_FILE_SOURCE%/%license_file_path%"
     Processor: Copier
 
   - Arguments:
