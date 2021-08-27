@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Webex
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Webex
+  SELFSERVICE_ICON: Webex 41.png

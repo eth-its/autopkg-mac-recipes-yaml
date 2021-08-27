@@ -7,3 +7,4 @@ Input:
   NAME: Firefox
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: org.mozilla.firefox.pkg
+  SELFSERVICE_ICON: Firefox 91.png

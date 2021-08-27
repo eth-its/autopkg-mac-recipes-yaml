@@ -7,3 +7,4 @@ Input:
   NAME: Webex
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Webex
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: Webex 41.png
