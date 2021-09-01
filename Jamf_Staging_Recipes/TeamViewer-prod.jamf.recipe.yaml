@@ -8,3 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.TeamViewer
   SCRIPT_NAME: "%NAME%-preinstall.sh"
   SCRIPT_PRIORITY: Before
+  SELFSERVICE_ICON: TeamViewer 15.png

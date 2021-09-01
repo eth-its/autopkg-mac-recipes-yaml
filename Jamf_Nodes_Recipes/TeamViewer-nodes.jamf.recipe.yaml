@@ -9,3 +9,4 @@ Input:
   SCRIPT_NAME: "%NAME%-preinstall.sh"
   SCRIPT_PATH: "%NAME%-preinstall.sh"
   SCRIPT_PRIORITY: Before
+  SELFSERVICE_ICON: TeamViewer 15.png

@@ -7,3 +7,4 @@ Input:
   NAME: TeamViewer
   SCRIPT_NAME: TeamViewer-uninstall.sh
   SCRIPT_PATH: TeamViewer-uninstall.sh
+  SELFSERVICE_ICON: TeamViewer 15.png
