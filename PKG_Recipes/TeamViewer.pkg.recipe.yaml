@@ -1,0 +1,81 @@
+Description: Uses io.github.hjuutilainen.download.TeamViewer recipe to download latest TeamViewer
+Identifier: com.github.eth-its-recipes.pkg.TeamViewer
+ParentRecipe: io.github.hjuutilainen.download.TeamViewer
+MinimumVersion: 0.2.5
+
+Input:
+  NAME: TeamViewer
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Comment: TeamViewerApp.pkg needs to be unpacked from within 'Install TeamViewer.pkg' to get the version
+    Arguments:
+      flat_pkg_path: "%pathname%/Install TeamViewer.app/Contents/Resources/Install TeamViewer.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/TeamViewerApp.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/payload/TeamViewer.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Profiles: "0755"
+        Profiles/vpn: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/InstallTeamViewer.pkg"
+      source_pkg: "%flat_pkg_path%"
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install TeamViewer silently
+
+        DIR=$(dirname "$0")
+
+        touch /tmp/silentInstaller
+        touch /tmp/tvonlystartservice
+
+        /usr/sbin/installer -pkg "$DIR/InstallTeamViewer.pkg" -target /
+
+        if (test $? = 0) then
+            echo "TeamViewer installed."
+        else
+            echo "ERROR: TeamViewer installation failed."
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: com.teamviewer.teamviewer.pkg
+        pkgname: TeamViewer-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/payload"
