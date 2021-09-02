@@ -28,7 +28,6 @@ Input:
   SCRIPT_PATH: SPSSStatistics-floating-license-activation.sh
   SCRIPT_NAME: SPSSStatistics28-floating-license-activation.sh
   SCRIPT_PRIORITY: After
-  FLOATING_LICENSE_URL: "REPLACE-ME"
   EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
   EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh
   EXTENSION_ATTRIBUTE_VALUE: "%LICENSE%"
