@@ -16,6 +16,12 @@ Input:
     Enhance the SPSS Syntax with R and Python through specialized extensions.
 
     Use a simple drag and drop interface to access a wide range of capabilities and work across multiple data sources.
+  PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PATH: SPSSStatistics-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_PRIORITY: After
   SCRIPT_PATH: SPSSStatistics-node-license-activation.sh
   SCRIPT_NAME: SPSSStatistics28-node-license-activation.sh
   SCRIPT_PRIORITY: After
@@ -52,7 +58,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   UPDATE_PREDICATE: "pkg_uploaded == False"
 

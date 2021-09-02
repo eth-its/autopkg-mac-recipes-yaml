@@ -1,4 +1,5 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Comment: Requires adding the FLOATING_LICENSE_URL key to the override.
 Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Floating-nodes
 MinimumVersion: "2.3"
 
@@ -16,10 +17,15 @@ Input:
     Enhance the SPSS Syntax with R and Python through specialized extensions.
 
     Use a simple drag and drop interface to access a wide range of capabilities and work across multiple data sources.
+  PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PATH: SPSSStatistics-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_PRIORITY: After
   SCRIPT_PATH: SPSSStatistics-floating-license-activation.sh
   SCRIPT_NAME: SPSSStatistics28-floating-license-activation.sh
   SCRIPT_PRIORITY: After
-  FLOATING_LICENSE_URL: "REPLACE-ME"
   EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
   EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh
   EXTENSION_ATTRIBUTE_VALUE: "%LICENSE%"
