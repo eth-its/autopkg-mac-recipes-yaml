@@ -59,7 +59,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
