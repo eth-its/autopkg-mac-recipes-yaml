@@ -18,8 +18,14 @@ Input:
     An integrated interface for running descriptive statistics, regression, advanced statistics and more. SPSS Statistics can create publication ready charts, tables, and decision trees in one tool. Specialized extensions allow the SPSS Statistics syntax to be enhanced with R and Python through specialized extensions.
     Version: %version%
     Category: %PKG_CATEGORY%
+  PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PATH: SPSSStatistics-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_PRIORITY: After
   SCRIPT_PATH: SPSSStatistics-floating-license-activation.sh
-  SCRIPT_NAME: SPSSStatistics-floating-license-activation.sh
+  SCRIPT_NAME: SPSSStatistics28-floating-license-activation.sh
   SCRIPT_PRIORITY: After
   FLOATING_LICENSE_URL: "REPLACE-ME"
   EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
@@ -53,7 +59,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
@@ -85,9 +91,25 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%POLICY_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
+      script_name: "%SCRIPT1_NAME%"
+      script_path: "%SCRIPT1_PATH%"
+      script_priority: "%SCRIPT1_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%SCRIPT2_NAME%"
+      script_path: "%SCRIPT2_PATH%"
+      script_priority: "%SCRIPT2_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%SCRIPT3_NAME%"
+      script_path: "%SCRIPT3_PATH%"
+      script_priority: "%SCRIPT3_PRIORITY%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader

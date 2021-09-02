@@ -17,7 +17,7 @@ Input:
 
     Use a simple drag and drop interface to access a wide range of capabilities and work across multiple data sources.
   SCRIPT_PATH: SPSSStatistics-node-license-activation.sh
-  SCRIPT_NAME: SPSSStatistics-node-license-activation.sh
+  SCRIPT_NAME: SPSSStatistics28-node-license-activation.sh
   SCRIPT_PRIORITY: After
   EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
   EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh

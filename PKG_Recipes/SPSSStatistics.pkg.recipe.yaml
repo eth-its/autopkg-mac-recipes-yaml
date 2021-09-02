@@ -34,9 +34,8 @@ Process:
     Arguments:
       pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics-%version%.pkg"
       source_pkg: "%pathname%"
-
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/Unpacked"
-        - "%RECIPE_CACHE_DIR%/Payload"
+  # - Processor: PathDeleter
+  #   Arguments:
+  #     path_list:
+  #       - "%RECIPE_CACHE_DIR%/Unpacked"
+  #       - "%RECIPE_CACHE_DIR%/Payload"

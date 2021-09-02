@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Activating SPSS Statistics %MAJOR_VERSION% Flaoting License"
+echo "Activating SPSS Statistics %MAJOR_VERSION% Floating License"
 
 # activate the license
 echo "Running licenseactivator"
