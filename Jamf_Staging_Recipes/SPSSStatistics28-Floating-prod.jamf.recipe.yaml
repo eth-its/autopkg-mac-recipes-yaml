@@ -1,13 +1,13 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Floating-prod
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Floating-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: SPSS Statistics
-  MAJOR_VERSION: "27"
+  MAJOR_VERSION: "28"
   LICENSE: Floating
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics28-Floating
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
