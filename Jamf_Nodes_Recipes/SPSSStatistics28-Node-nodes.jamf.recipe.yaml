@@ -99,6 +99,22 @@ Process:
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: True
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      replace_script: True
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
