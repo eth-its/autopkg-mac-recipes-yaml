@@ -4,6 +4,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatistics27
 MinimumVersion: "2.3"
 
 Input:
+  DEPRECATION_WARNING: SPSS 28 has now been released so SPSS 27 will no longer get any updates.
   LIST_NAME: IBM SPSS Node
   LIST_LANGUAGE: ML
   NAME: SPSS Statistics
@@ -57,6 +58,10 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "%DEPRECATION_WARNING%"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

@@ -1,20 +1,22 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Node
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Node-nodes
 MinimumVersion: "2.3"
 
 Input:
+  DEPRECATION_WARNING: SPSS 28 has now been released so SPSS 27 will no longer get any updates.
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
   NAME: SPSS Statistics
-  POLICY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   LICENSE: Node
   MAJOR_VERSION: "27"
   PKG_CATEGORY: Science & Math
   POLICY_CATEGORY: Untested
   SELFSERVICE_DESCRIPTION: |
-    An integrated interface for running descriptive statistics, regression, advanced statistics and more. SPSS Statistics can create publication ready charts, tables, and decision trees in one tool. Specialized extensions allow the SPSS Statistics syntax to be enhanced with R and Python through specialized extensions.
-    Version: %version%
-    Category: %PKG_CATEGORY%
+    *IBM SPSS Statistics:*
+    Work inside a single, integrated interface to run descriptive statistics, regression, advanced statistics and many more. Create publication ready charts, tables, and decision trees in one tool.
+
+    Enhance the SPSS Syntax with R and Python through specialized extensions.
+
+    Use a simple drag and drop interface to access a wide range of capabilities and work across multiple data sources.
   SCRIPT_PATH: SPSSStatistics-node-license-activation.sh
   SCRIPT_NAME: SPSSStatistics-node-license-activation.sh
   SCRIPT_PRIORITY: After
@@ -37,6 +39,8 @@ Input:
   LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
   MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License is now activated"
   SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% installed"
@@ -54,6 +58,10 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "%DEPRECATION_WARNING%"
+
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"

@@ -1,0 +1,27 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Floating-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
+
+Input:
+  DEPRECATION_WARNING: SPSS 28 has now been released so SPSS 27 will no longer get any updates.
+  NAME: SPSS Statistics
+  MAJOR_VERSION: "27"
+  LICENSE: Floating
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION% %LICENSE%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION% %LICENSE%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LICENSE%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LICENSE%"
+  TRIGGER_NAME: "SPSSStatistics %MAJOR_VERSION% %LICENSE%-install"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event '%LICENSE_SET_POLICY_TRIGGER_NAME%'"
+  LICENSE_SET_POLICY_TRIGGER_NAME: "Activate-SPSS-%MAJOR_VERSION%-%LICENSE%-License"
+
+Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "%DEPRECATION_WARNING%"
