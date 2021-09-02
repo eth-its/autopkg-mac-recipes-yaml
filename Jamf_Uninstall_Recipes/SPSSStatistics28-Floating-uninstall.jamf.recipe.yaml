@@ -1,0 +1,22 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Floating-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: SPSS Statistics
+  MAJOR_VERSION: "28"
+  LICENSE: Floating
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LICENSE%"
+  SCRIPT_PATH: SPSS Statistics-uninstall.sh
+  SCRIPT_NAME: SPSS Statistics-uninstall.sh
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION% %LICENSE%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %MAJOR_VERSION% %LICENSE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LICENSE%"
+  UNINSTALL_TRIGGER_NAME: "%NAME% %MAJOR_VERSION% %LICENSE%-uninstall"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
+  ADDITIONAL_EXCLUSION_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% Node License activated"
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-extra-exclusion.xml
