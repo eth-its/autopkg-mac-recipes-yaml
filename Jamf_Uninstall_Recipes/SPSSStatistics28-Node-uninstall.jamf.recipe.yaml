@@ -20,3 +20,4 @@ Input:
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
   ADDITIONAL_EXCLUSION_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% Floating License activated"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-extra-exclusion.xml
+  SELFSERVICE_ICON: SPSS Statistics 28.png

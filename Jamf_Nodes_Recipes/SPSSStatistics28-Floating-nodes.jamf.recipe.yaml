@@ -44,7 +44,7 @@ Input:
   LICENSE_INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License activated"
   LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
   MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% %LICENSE% License is now activated"
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: SPSS Statistics 28.png
   POLICY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   TESTING_GROUP_NAME: Testing
