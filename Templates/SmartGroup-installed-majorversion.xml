@@ -9,6 +9,8 @@
             <and_or>and</and_or>
             <search_type>is</search_type>
             <value>%JSS_INVENTORY_NAME%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
         </criterion>
         <criterion>
             <name>Application Version</name>
@@ -16,7 +18,7 @@
             <and_or>and</and_or>
             <search_type>matches regex</search_type>
             <value>^%MAJOR_VERSION%</value>
-            <opening_paren>true</opening_paren>
+            <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>
         </criterion>
         <criterion>
@@ -25,6 +27,8 @@
             <and_or>and</and_or>
             <search_type>member of</search_type>
             <value>%USERS_GROUP_NAME%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
         </criterion>
     </criteria>
 </computer_group>
