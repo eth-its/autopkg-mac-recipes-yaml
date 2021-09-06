@@ -8,6 +8,7 @@ Input:
   MAJOR_VERSION: "28"
   LICENSE: Floating
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics28-Floating
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
