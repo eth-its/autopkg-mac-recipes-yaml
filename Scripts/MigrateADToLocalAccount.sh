@@ -157,14 +157,28 @@ echo "Screen locked while performing migration" >> "$LOGFILE"
 # =======================================================================================
 # Delete the currently logged in user
 
-sysadminctl -deleteUser "$current_user" -keepHome
-echo "Mobile account deleted" >> "$LOGFILE"
+if sysadminctl -deleteUser "$current_user" -keepHome; then
+	echo "Mobile account '$current_user' deleted" >> "$LOGFILE"
+else
+	killall -9 jamfHelper
+	sleep 1
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The account was unable to be converted (mobile account could not be removed). Please contact your IT administrator for assistance. Click OK to Quit." -button1 "OK"
+	echo "ERROR: could not delete mobile account '$current_user'" >> "$LOGFILE"
+	exit 3
+fi
 
 # =======================================================================================
 # Create the new local user
 
-sysadminctl -addUser "$current_user" -UID "$local_uid" -fullName "$user_realname" -password "$login_password" -home /Users/"$current_user" -admin
-echo "Local account created" >> "$LOGFILE"
+if sysadminctl -addUser "$current_user" -UID "$local_uid" -fullName "$user_realname" -password "$login_password" -home /Users/"$current_user" -admin; then
+	echo "Local account created" >> "$LOGFILE"
+else
+	killall -9 jamfHelper
+	sleep 1
+	"$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The account was unable to be converted (local account could not be created). Please contact your IT administrator for assistance. Click OK to Quit." -button1 "OK"
+	echo "ERROR: could not create local account '$current_user'" >> "$LOGFILE"
+	exit 4
+fi
 
 # Fix GID for user
 dscl . create /Users/"$current_user" PrimaryGroupID "$local_gid"
