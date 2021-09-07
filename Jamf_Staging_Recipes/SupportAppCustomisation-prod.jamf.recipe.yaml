@@ -12,16 +12,18 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
 
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
   - Processor: StopProcessingIf
     Arguments:
-      predicate: "%UPDATE_PREDICATE%"
+      predicate: "%PROD_PREDICATE%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
