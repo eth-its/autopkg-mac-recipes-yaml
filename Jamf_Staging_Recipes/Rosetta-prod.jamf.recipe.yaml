@@ -1,0 +1,35 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Comment: this policy does not need to be staged; this recipe is only for reporting purposes
+Identifier: com.github.eth-its-recipes.jamf.rosetta-prod
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Rosetta 2
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.rosetta
+  PKG_CATEGORY: Administration
+  POLICY_CATEGORY: Administration
+  POLICY_NAME: "0001 - Install Rosetta 2"
+  POLICY_TEMPLATE: Policy-all-computers-once-per-computer.xml
+  GROUP_NAME: All Managed Clients
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% installed or ineligible"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
+  AUTOINSTALL_POLICY_CATEGORY: Auto-installers
+  AUTOINSTALL_POLICY_FREQUENCY: Once every day
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "False"
