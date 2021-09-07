@@ -38,8 +38,7 @@ class JamfUploadSharepointUpdater(Processor):
         "JSS_URL": {
             "required": True,
             "description": (
-                "The JSS URL."
-                "This can be set in the com.github.autopkg preferences"
+                "The JSS URL." "This can be set in the com.github.autopkg preferences"
             ),
         },
         "SP_URL": {
@@ -222,16 +221,22 @@ class JamfUploadSharepointUpdater(Processor):
             if "prd" in jss_url:
                 selfservice_policy_name = name
                 if major_version:
-                    selfservice_policy_name = selfservice_policy_name + " " + major_version
+                    selfservice_policy_name = (
+                        selfservice_policy_name + " " + major_version
+                    )
                 if policy_language:
                     selfservice_policy_name = (
                         selfservice_policy_name + " " + policy_language
                     )
                 if policy_license:
-                    selfservice_policy_name = selfservice_policy_name + " " + policy_license
+                    selfservice_policy_name = (
+                        selfservice_policy_name + " " + policy_license
+                    )
 
                 policy_name = f"{selfservice_policy_name} (Testing)"
-                sharepoint_policy_name = f"{selfservice_policy_name} (Testing) v{version}"
+                sharepoint_policy_name = (
+                    f"{selfservice_policy_name} (Testing) v{version}"
+                )
 
                 self.output(
                     "UNTESTED recipe type: "
@@ -377,7 +382,10 @@ class JamfUploadSharepointUpdater(Processor):
                         selfservice_policy_name,
                     )
                     # if not release completed in TST, delete the record
-                    if (app_in_test_review and app_in_test_review.Release_x0020_Completed is not True):
+                    if (
+                        app_in_test_review
+                        and app_in_test_review.Release_x0020_Completed is not True
+                    ):
                         self.output(
                             "Jamf Test Review: Deleting existing unreleased entry for '%s'"
                             % selfservice_policy_name
@@ -389,10 +397,13 @@ class JamfUploadSharepointUpdater(Processor):
                             selfservice_policy_name,
                         )
                     # if not release comüpleted in PRD, delete the record
-                    elif (app_in_test_review and app_in_test_review.Release_x0020_Completed_x0020_PR is not "Yes"):
+                    elif (
+                        app_in_test_review
+                        and app_in_test_review.Release_x0020_Completed_x0020_PR != "Yes"
+                    ):
                         self.output(
-                            "Jamf Test Review: Setting existing unreleased (PRD) entry for '%s' to 'Skipped"
-                            % selfservice_policy_name
+                            "Jamf Test Review: Setting existing unreleased (PRD) entry "
+                            "for '%s' to 'Skipped" % selfservice_policy_name
                         )
                         self.update_record(
                             site,
@@ -405,7 +416,8 @@ class JamfUploadSharepointUpdater(Processor):
 
                     # now create a new entry
                     self.output(
-                        "Jamf Test Review: Adding record for '%s'" % sharepoint_policy_name
+                        "Jamf Test Review: Adding record for '%s'"
+                        % sharepoint_policy_name
                     )
                     self.add_record(
                         site, "Jamf Test Review", "Title", sharepoint_policy_name
