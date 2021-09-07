@@ -18,6 +18,7 @@ Input:
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PROD_PREDICATE: "ready_to_stage == False"
+  SELFSERVICE_POLICY_NAME: "0001 - Install Rosetta 2"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
