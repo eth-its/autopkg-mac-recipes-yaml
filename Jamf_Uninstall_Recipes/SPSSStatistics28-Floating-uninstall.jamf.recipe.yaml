@@ -10,6 +10,8 @@ Input:
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LICENSE%"
   SCRIPT_PATH: SPSS Statistics-uninstall.sh
   SCRIPT_NAME: SPSS Statistics-uninstall.sh
+  PARAMETER4_TITLE: Major version
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% installed"
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
