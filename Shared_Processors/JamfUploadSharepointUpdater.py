@@ -396,7 +396,7 @@ class JamfUploadSharepointUpdater(Processor):
                             "Final_x0020_Content_x0020_Name",
                             selfservice_policy_name,
                         )
-                    # if not release comüpleted in PRD, delete the record
+                    # if not release comüpleted in PRD, set the record to skipped
                     elif (
                         app_in_test_review
                         and app_in_test_review.Release_x0020_Completed_x0020_PR != "Yes"
