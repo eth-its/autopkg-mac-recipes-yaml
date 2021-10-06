@@ -522,7 +522,7 @@ class JamfUploadSharepointUpdater(Processor):
             # set Jamf Test Review to "Release Completed" only from TST
             if "tst" in jss_url:
                 self.update_record(
-                    site, "Jamf Test Review", "Release Completed", "Yes", criteria,
+                    site, "Jamf Test Review", "Release Completed TST", "Yes", criteria,
                 )
                 self.update_record(
                     site,
