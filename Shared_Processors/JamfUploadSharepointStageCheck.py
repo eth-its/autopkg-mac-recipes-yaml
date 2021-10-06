@@ -16,7 +16,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from autopkglib import Processor  # type: ignore
+from shareplum import Site
+from requests_ntlm2 import HttpNtlmAuth
+from autopkglib import Processor, ProcessorError  # type: ignore
 
 __all__ = ["JamfUploadSharepointStageCheck"]
 
@@ -68,22 +70,173 @@ class JamfUploadSharepointStageCheck(Processor):
 
     __doc__ = description
 
+    def connect_sharepoint(self, url, user, password):
+        """make a connection to SharePoint"""
+        auth = HttpNtlmAuth(f"d\\{user}", password)
+        site = Site(url, auth=auth)
+        if not site:
+            self.output(site, verbose_level=3)
+            raise ProcessorError("Could not connect to SharePoint")
+        return site
+
+    def build_query(self, criteria):
+        """construct the query. format should be
+        {'Where': ['And', ('Eq', 'Title', 'Good Title'),
+                          ('Eq', 'My Other Column', 'Nice Value')]}
+        """
+        query = {"Where": []}
+        fields = ["ID"]
+        # if more than one value we want all to match, so use "and"
+        if len(criteria) > 1:
+            query["Where"] = ["And"]
+        for key in criteria:
+            query["Where"].append(("Eq", key, criteria[key]))
+            fields.append(key)
+        return fields, query
+
+    def check_jamf_content_list(self, site, product_name, version):
+        """Check the version against the untested version in the 'Jamf Content List' list"""
+        listname = "Jamf Content List"
+        sp_list = site.List(listname)
+
+        criteria = {}
+        criteria["Self Service Content"] = product_name
+        criteria["Untested Version"] = version
+
+        fields, query = self.build_query(criteria)
+
+        content_list_passed = False
+
+        if sp_list.GetListItems(fields=fields, query=query):
+            content_list_passed = True
+            self.output("Jamf Content List passed:", content_list_passed)
+        else:
+            self.output(
+                "Jamf Content List: No entry named",
+                product_name,
+                "with version",
+                version,
+            )
+        return content_list_passed
+
+    def check_jamf_content_test(self, site, product_name):
+        """Check against the 'Jamf Content Test' list"""
+        sp_test_listname = "Jamf Content Test"
+        sp_list = site.List(sp_test_listname)
+
+        criteria = {}
+        criteria["Self Service Content Name"] = product_name
+        criteria["Ready for Production"] = "Yes"
+
+        fields, query = self.build_query(criteria)
+
+        content_test_passed = False
+        if sp_list.GetListItems(fields=fields, query=query):
+            content_test_passed = True
+            self.output("Jamf Content Test passed:", content_test_passed)
+        else:
+            self.output(
+                f"Jamf Content Test: No entry named '{product_name}' with "
+                "Ready for Production 'Yes'"
+            )
+        return content_test_passed
+
+    def check_jamf_test_coordination(self, site, product_name):
+        """Check against the 'Jamf Test Coordination' list"""
+        sp_test_listname = "Jamf Test Coordination"
+        sp_list = site.List(sp_test_listname)
+
+        criteria = {}
+        criteria["Self Service Content Name"] = product_name
+        criteria["Status"] = "Release Completed"
+
+        fields, query = self.build_query(criteria)
+
+        test_coordination_passed = False
+        if sp_list.GetListItems(fields=fields, query=query):
+            test_coordination_passed = True
+            self.output("Jamf Test Coordination passed: ", test_coordination_passed)
+        else:
+            self.output(
+                f"Jamf Test Coordination: No entry named '{product_name}'",
+                "with Status 'Release Completed'",
+            )
+        return test_coordination_passed
+
+    def check_jamf_test_review(self, site, product_name, jss_url):
+        """Check against the 'Jamf Test Review' list"""
+        sp_test_listname = "Jamf Test Review"
+        sp_list = site.List(sp_test_listname)
+
+        criteria = {}
+        criteria["Self Service Content Name"] = product_name
+        if "tst" in jss_url:
+            criteria["Release Completed TST"] = "No"
+        elif "prd" in jss_url:
+            criteria["Release Completed PRD"] = "No"
+        else:
+            raise ProcessorError("Invalid JSS_URL supplied.")
+
+        fields, query = self.build_query(criteria)
+
+        test_review_passed = False
+        if sp_list.GetListItems(fields=fields, query=query):
+            test_review_passed = True
+            self.output(f"Jamf Test Review passed: {test_review_passed}")
+        else:
+            if "tst" in jss_url:
+                self.output(
+                    f"Jamf Test Review: No entry named '{product_name}' with",
+                    "'Release Completed TST' = No",
+                )
+            elif "prd" in jss_url:
+                self.output(
+                    f"Jamf Test Review: No entry named '{product_name}' with",
+                    "'Release Completed PRD' = No",
+                )
+        return test_review_passed
+
     def main(self):
         """Do the main thing"""
         selfservice_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
         version = self.env.get("version")
-
-        self.output(
-            "NOTICE: This is a temporary processor which sets ready_to_stage ALWAYS to True"
-        )
+        jss_url = self.env.get("JSS_URL")
+        sp_url = self.env.get("SP_URL")
+        sp_user = self.env.get("SP_USER")
+        sp_pass = self.env.get("SP_PASS")
 
         sharepoint_policy_name = f"{selfservice_policy_name} (Testing) v{version}"
+
+        ready_to_stage = False
 
         self.output(f"Untested Policy: {selfservice_policy_name} (Testing)")
         self.output(f"Untested SharePoint Item: {sharepoint_policy_name}")
 
-        ready_to_stage = True
+        # verify we have the variables we need
+        if not sp_url or not sp_user or not sp_pass:
+            raise ProcessorError("Insufficient SharePoint credentials supplied.")
 
+        # connect to the sharepoint site
+        site = self.connect_sharepoint(sp_url, sp_user, sp_pass)
+
+        # check each list has the requirements met for staging
+        if "tst" in jss_url:
+            # tst
+            if self.check_jamf_content_list(
+                site, selfservice_policy_name, version
+            ) and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url):
+                ready_to_stage = True
+        elif "prd" in jss_url:
+            # prd
+            if (
+                self.check_jamf_content_test(site, sharepoint_policy_name)
+                and self.check_jamf_content_list(site, selfservice_policy_name, version)
+                and self.check_jamf_test_coordination(site, sharepoint_policy_name)
+                and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
+            ):
+                ready_to_stage = True
+        else:
+            raise ProcessorError("Invalid JSS_URL supplied.")
         self.output("Ready To Stage: {}".format(ready_to_stage))
         self.env["ready_to_stage"] = ready_to_stage
 
