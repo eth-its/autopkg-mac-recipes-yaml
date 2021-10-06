@@ -277,6 +277,12 @@ class JamfUploadSharepointUpdater(Processor):
                             "entry for",
                             final_policy_name,
                         )
+                        self.output(
+                            "Jamf Test Coordination: Setting 'Status'",
+                            "Obsolete",
+                            "for",
+                            self_service_policy_name,
+                        )
                         self.update_record(
                             site,
                             "Jamf Test Coordination",
@@ -298,6 +304,12 @@ class JamfUploadSharepointUpdater(Processor):
                     )
                     criteria = {}
                     criteria["Self Service Content Name"] = self_service_policy_name
+                    self.output(
+                        "Jamf Test Coordination: Setting 'Final Content Name'",
+                        final_policy_name,
+                        "for",
+                        self_service_policy_name,
+                    )
                     self.update_record(
                         site,
                         "Jamf Test Coordination",
@@ -323,6 +335,12 @@ class JamfUploadSharepointUpdater(Processor):
                     )
                     self.update_record(
                         site, "Jamf Test Review", "Release Completed", "No", criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Release Completed PRD'",
+                        "No",
+                        "for",
+                        self_service_policy_name,
                     )
                     self.update_record(
                         site,
@@ -385,6 +403,12 @@ class JamfUploadSharepointUpdater(Processor):
                     )
                     criteria = {}
                     criteria["Self Service Content Name"] = self_service_policy_name
+                    self.output(
+                        "Jamf Test Review: Setting 'Final Content Name'",
+                        final_policy_name,
+                        "for",
+                        self_service_policy_name,
+                    )
                     self.update_record(
                         site,
                         "Jamf Test Review",
@@ -418,6 +442,12 @@ class JamfUploadSharepointUpdater(Processor):
                         final_policy_name,
                     )
                 # now update the other keys in the entry
+                self.output(
+                    "Jamf Content List: Setting 'Untested Version'",
+                    version,
+                    "for",
+                    final_policy_name,
+                )
                 self.update_record(
                     site, "Jamf Content List", "Untested Version", version, criteria,
                 )
@@ -470,6 +500,12 @@ class JamfUploadSharepointUpdater(Processor):
                     "Self Service Content Name",
                     self_service_policy_name,
                 )
+                self.output(
+                    "Jamf Test Coordination: Setting 'Final Content Name'",
+                    final_policy_name,
+                    "for",
+                    self_service_policy_name,
+                )
                 self.update_record(
                     site,
                     "Jamf Test Coordination",
@@ -479,12 +515,22 @@ class JamfUploadSharepointUpdater(Processor):
                 )
             # set Jamf Test Coordination to "Release Completed" only from PRD
             if "prd" in jss_url:
+                self.output(
+                    "Jamf Test Coordination: Setting 'Release Completed'",
+                    "for",
+                    self_service_policy_name,
+                )
                 self.update_record(
                     site,
                     "Jamf Test Coordination",
                     "Release Completed",
                     "Yes",
                     criteria,
+                )
+                self.output(
+                    "Jamf Test Coordination: Setting 'Status' 'Done'",
+                    "for",
+                    self_service_policy_name,
                 )
                 self.update_record(
                     site, "Jamf Test Coordination", "Status", "Done", criteria,
@@ -510,7 +556,16 @@ class JamfUploadSharepointUpdater(Processor):
                     "Jamf Test Review: Adding record for", self_service_policy_name
                 )
                 self.add_record(
-                    site, "Jamf Test Review", "Title", self_service_policy_name
+                    site,
+                    "Jamf Test Review",
+                    "Self Service Content Name",
+                    self_service_policy_name,
+                )
+                self.output(
+                    "Jamf Test Review: Setting 'Final Content Name'",
+                    final_policy_name,
+                    "for",
+                    self_service_policy_name,
                 )
                 self.update_record(
                     site,
@@ -521,8 +576,16 @@ class JamfUploadSharepointUpdater(Processor):
                 )
             # set Jamf Test Review to "Release Completed" only from TST
             if "tst" in jss_url:
+                self.output(
+                    "Jamf Test Review: Setting 'Release Completed TST' for",
+                    self_service_policy_name,
+                )
                 self.update_record(
                     site, "Jamf Test Review", "Release Completed TST", "Yes", criteria,
+                )
+                self.output(
+                    "Jamf Test Review: Setting 'Ready for Production' for",
+                    self_service_policy_name,
                 )
                 self.update_record(
                     site,
@@ -534,6 +597,10 @@ class JamfUploadSharepointUpdater(Processor):
                 )
             # set Jamf Test Review to "Release Completed PRD" only from PRD
             elif "prd" in jss_url:
+                self.output(
+                    "Jamf Test Review: Setting 'Release Completed PRD' for",
+                    self_service_policy_name,
+                )
                 self.update_record(
                     site, "Jamf Test Review", "Release Completed PRD", "Yes", criteria,
                 )
@@ -566,13 +633,26 @@ class JamfUploadSharepointUpdater(Processor):
                         final_policy_name,
                     )
                 # now update the other keys in the entry
+                self.output(
+                    "Jamf Content List: Clearing 'Untested Version' for",
+                    final_policy_name,
+                )
                 self.update_record(
                     site, "Jamf Content List", "Untested Version", "", criteria,
+                )
+                self.output(
+                    "Jamf Content List: Setting 'Prod. Version'",
+                    version,
+                    "for",
+                    final_policy_name,
                 )
                 self.update_record(
                     site, "Jamf Content List", "Prod. Version", version, criteria
                 )
                 # Test Report requires special work as it is a dictionary of title and url
+                self.output(
+                    "Jamf Content List: Setting 'Test Report' for", final_policy_name,
+                )
                 self.update_record(
                     site,
                     "Jamf Content List",
