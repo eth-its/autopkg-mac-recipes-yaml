@@ -109,7 +109,7 @@ class JamfUploadSharepointStageCheck(Processor):
 
         if sp_list.GetListItems(fields=fields, query=query):
             content_list_passed = True
-            self.output("Jamf Content List passed:", content_list_passed)
+            self.output(f"Jamf Content List passed: {content_list_passed}")
         else:
             self.output(
                 "Jamf Content List: No entry named",
@@ -133,7 +133,7 @@ class JamfUploadSharepointStageCheck(Processor):
         content_test_passed = False
         if sp_list.GetListItems(fields=fields, query=query):
             content_test_passed = True
-            self.output("Jamf Content Test passed:", content_test_passed)
+            self.output(f"Jamf Content Test passed: {content_test_passed}")
         else:
             self.output(
                 f"Jamf Content Test: No entry named '{product_name}' with "
@@ -155,7 +155,7 @@ class JamfUploadSharepointStageCheck(Processor):
         test_coordination_passed = False
         if sp_list.GetListItems(fields=fields, query=query):
             test_coordination_passed = True
-            self.output("Jamf Test Coordination passed: ", test_coordination_passed)
+            self.output(f"Jamf Test Coordination passed: {test_coordination_passed}")
         else:
             self.output(
                 f"Jamf Test Coordination: No entry named '{product_name}'",
