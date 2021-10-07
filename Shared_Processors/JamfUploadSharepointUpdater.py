@@ -330,8 +330,16 @@ class JamfUploadSharepointUpdater(Processor):
                         "Jamf Test Review: Updating existing entry for "
                         + self_service_policy_name
                     )
+                    self.output(
+                        "Jamf Test Review: Setting 'Release Completed TST' 'No' for "
+                        + self_service_policy_name
+                    )
                     self.update_record(
-                        site, "Jamf Test Review", "Release Completed", "No", criteria,
+                        site,
+                        "Jamf Test Review",
+                        "Release Completed TST",
+                        "No",
+                        criteria,
                     )
                     self.output(
                         "Jamf Test Review: Setting 'Release Completed PRD' 'No' for "
@@ -349,7 +357,7 @@ class JamfUploadSharepointUpdater(Processor):
                     # release completed in TST or PRD
                     criteria = {}
                     criteria["Final Content Name"] = final_policy_name
-                    criteria["Release Completed"] = "No"
+                    criteria["Release Completed TST"] = "No"
 
                     app_in_test_review_not_released = self.check_list(
                         site, "Jamf Test Review", criteria,
