@@ -117,6 +117,7 @@ class JamfUploadSharepointUpdater(Processor):
         """
         sp_list = site.List(listname)
         fields, query = self.build_query(criteria)
+        self.output(query, verbose_level=3)
 
         if sp_list.GetListItems(fields=fields, query=query):
             return True
