@@ -581,12 +581,7 @@ class JamfUploadSharepointUpdater(Processor):
                     + self_service_policy_name
                 )
                 self.update_record(
-                    site,
-                    "Jamf Test Review",
-                    "Ready for Production",
-                    "Yes",
-                    "Title",
-                    criteria,
+                    site, "Jamf Test Review", "Ready for Production", "Yes", criteria,
                 )
             # set Jamf Test Review to "Release Completed PRD" only from PRD
             elif "prd" in jss_url:
