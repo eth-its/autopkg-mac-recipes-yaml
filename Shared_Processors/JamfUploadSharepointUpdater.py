@@ -73,7 +73,7 @@ class JamfUploadSharepointUpdater(Processor):
         "LICENSE": {"required": False, "description": "Package license type."},
         "MAJOR_VERSION": {"required": False, "description": "Policy major version."},
         "NAME": {"required": True, "description": "Product name."},
-        "final_policy_name": {
+        "SELFSERVICE_POLICY_NAME": {
             "required": False,
             "description": ("Product production policy name."),
         },
@@ -181,7 +181,7 @@ class JamfUploadSharepointUpdater(Processor):
         category = self.env.get("PKG_CATEGORY")
         version = self.env.get("version")
         name = self.env.get("NAME")
-        final_policy_name = self.env.get("final_policy_name")
+        final_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
         policy_language = self.env.get("LANGUAGE")
         policy_license = self.env.get("LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
