@@ -158,8 +158,8 @@ class JamfUploadSharepointStageCheck(Processor):
             self.output(f"Jamf Test Coordination passed: {test_coordination_passed}")
         else:
             self.output(
-                f"Jamf Test Coordination: No entry named '{product_name}'",
-                "with Status 'Release Completed'",
+                f"Jamf Test Coordination: No entry named '{product_name}' "
+                "with Status 'Release Completed'"
             )
         return test_coordination_passed
 
@@ -186,13 +186,13 @@ class JamfUploadSharepointStageCheck(Processor):
         else:
             if "tst" in jss_url:
                 self.output(
-                    f"Jamf Test Review: No entry named '{product_name}' with",
-                    "'Release Completed TST' = No",
+                    f"Jamf Test Review: No entry named '{product_name}' with"
+                    + "'Release Completed TST' = No"
                 )
             elif "prd" in jss_url:
                 self.output(
-                    f"Jamf Test Review: No entry named '{product_name}' with",
-                    "'Release Completed PRD' = No",
+                    f"Jamf Test Review: No entry named '{product_name}' with"
+                    + "'Release Completed PRD' = No"
                 )
         return test_review_passed
 
