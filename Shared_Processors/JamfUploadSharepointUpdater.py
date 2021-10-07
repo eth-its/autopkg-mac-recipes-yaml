@@ -190,8 +190,6 @@ class JamfUploadSharepointUpdater(Processor):
         sp_user = self.env.get("SP_USER")
         sp_pass = self.env.get("SP_PASS")
 
-        self.output("Processing Policy Name" + final_policy_name)
-
         # section for untested recipes (PRD server only)
         if not final_policy_name:
             if "prd" in jss_url:
