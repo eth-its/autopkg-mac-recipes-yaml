@@ -447,7 +447,7 @@ class JamfUploadSharepointUpdater(Processor):
                 # if not, create the entry
                 if not app_in_content_list:
                     self.output(
-                        "Jamf Content List: Adding new entry for" + final_policy_name
+                        "Jamf Content List: Adding new entry for " + final_policy_name
                     )
                     self.add_record(
                         site,
@@ -457,7 +457,7 @@ class JamfUploadSharepointUpdater(Processor):
                     )
                 else:
                     self.output(
-                        "Jamf Content List: Updating existing entry for"
+                        "Jamf Content List: Updating existing entry for "
                         + final_policy_name
                     )
                 # now update the other keys in the entry

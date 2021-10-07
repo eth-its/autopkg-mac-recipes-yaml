@@ -112,10 +112,10 @@ class JamfUploadSharepointStageCheck(Processor):
             self.output(f"Jamf Content List passed: {content_list_passed}")
         else:
             self.output(
-                "Jamf Content List: No entry named",
-                product_name,
-                "with version",
-                version,
+                "Jamf Content List: No entry named"
+                + product_name
+                + "with version"
+                + version
             )
         return content_list_passed
 
