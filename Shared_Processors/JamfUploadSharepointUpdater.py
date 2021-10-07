@@ -222,27 +222,25 @@ class JamfUploadSharepointUpdater(Processor):
                 site = self.connect_sharepoint(sp_url, sp_user, sp_pass)
 
                 # Now write to Jamf Test Coordination list
-                # First, check if there is an existing entry for this policy (including version)
+                # First, check if there is an existing entry for this policy (including version) # which has not been released
                 criteria = {}
                 criteria["Self Service Content Name"] = self_service_policy_name
+                criteria["Release Completed"] = "No"
                 exact_policy_in_test_coordination = self.check_list(
                     site, "Jamf Test Coordination", criteria
                 )
 
-                # if so, existing tests are no longer valid, so set the entry to 'Needs review'
+                # if so, existing tests are no longer valid, so ensure to set the entry
+                # to 'Needs review' if some tests were already done
                 if exact_policy_in_test_coordination:
-                    self.output(
-                        "Jamf Test Coordination: Ensuring existing '"
-                        + self_service_policy_name
-                        + "' entry is not set as Release Completed"
+                    criteria = {}
+                    criteria["Self Service Content Name"] = self_service_policy_name
+                    criteria["Release Completed"] = "No"
+                    criteria["Status"] = ""
+                    exact_policy_in_test_coordination = self.check_list(
+                        site, "Jamf Test Coordination", criteria
                     )
-                    self.update_record(
-                        site,
-                        "Jamf Test Coordination",
-                        "Release Completed",
-                        "No",
-                        criteria,
-                    )
+
                     if exact_policy_in_test_coordination["Status"] not in {
                         "Not assigned",
                         "Not started",
@@ -262,31 +260,37 @@ class JamfUploadSharepointUpdater(Processor):
                 else:
                     # check if there is an entry with the same final policy name that is
                     # not release completed
-                    criteria = {}
-                    criteria["Final Content Name"] = final_policy_name
-                    criteria["Release Completed"] = "No"
+                    check_criteria = [
+                        "In progress",
+                        "Done",
+                        "Deferred",
+                        "Waiting for other test manager",
+                    ]
+                    for check in check_criteria:
+                        criteria = {}
+                        criteria["Final Content Name"] = final_policy_name
+                        criteria["Release Completed"] = "No"
+                        criteria["Status"] = check
 
-                    app_in_test_coordination_not_released = self.check_list(
-                        site, "Jamf Test Coordination", criteria,
-                    )
-
-                    # if not released completed, update the entry and set it to obsolete.
-                    if app_in_test_coordination_not_released:
-                        self.output(
-                            "Jamf Test Coordination: Updating existing unreleased "
-                            "entry for " + final_policy_name
+                        app_in_test_coordination_not_released_but_tested = self.check_list(
+                            site, "Jamf Test Coordination", criteria,
                         )
-                        self.output(
-                            "Jamf Test Coordination: Setting 'Status'='Obsolete' for "
-                            + self_service_policy_name
-                        )
-                        self.update_record(
-                            site,
-                            "Jamf Test Coordination",
-                            "Status",
-                            "Obsolete",
-                            criteria,
-                        )
+                        if app_in_test_coordination_not_released_but_tested:
+                            self.output(
+                                "Jamf Test Coordination: Updating existing unreleased "
+                                "entry for " + final_policy_name
+                            )
+                            self.output(
+                                "Jamf Test Coordination: Setting 'Status'='Obsolete' for "
+                                + self_service_policy_name
+                            )
+                            self.update_record(
+                                site,
+                                "Jamf Test Coordination",
+                                "Status",
+                                "Obsolete",
+                                criteria,
+                            )
 
                     # now create a new entry
                     self.output(
