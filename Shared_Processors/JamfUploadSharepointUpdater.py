@@ -257,7 +257,6 @@ class JamfUploadSharepointUpdater(Processor):
                     for check in check_criteria:
                         criteria = {}
                         criteria["Self Service Content Name"] = self_service_policy_name
-                        criteria["Release Completed"] = "No"
                         criteria["Status"] = check
                         app_in_test_coordination_not_released_but_tested = self.check_list(
                             site, "Jamf Test Coordination", criteria
