@@ -87,11 +87,14 @@ class JamfUploadSharepointStageCheck(Processor):
         query = {"Where": []}
         fields = ["ID"]
         # if more than one value we want all to match, so use "and"
-        if len(criteria) > 1:
-            query["Where"] = ["And"]
+        first = True
         for key in criteria:
             query["Where"].append(("Eq", key, criteria[key]))
             fields.append(key)
+            if not first:
+                query["Where"].append("And")
+            if first:
+                first = False
         return fields, query
 
     def check_jamf_content_list(self, site, product_name, version):
