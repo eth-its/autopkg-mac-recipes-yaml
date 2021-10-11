@@ -179,6 +179,7 @@ class JamfUploadSharepointStageCheck(Processor):
             raise ProcessorError("Invalid JSS_URL supplied.")
 
         fields, query = self.build_query(criteria)
+        self.output(query, verbose_level=3)
 
         test_review_passed = False
         if sp_list.GetListItems(fields=fields, query=query):
