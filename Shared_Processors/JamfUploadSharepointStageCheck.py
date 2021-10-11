@@ -111,8 +111,8 @@ class JamfUploadSharepointStageCheck(Processor):
         sp_list = site.List(listname)
 
         criteria = {}
-        criteria["Self Service Content"] = product_name
-        criteria["Untested Version"] = version
+        criteria["Self Service Content"] = ["Eq", product_name]
+        criteria["Untested Version"] = ["Eq", version]
         fields, query = self.build_query(criteria)
 
         content_list_passed = False
@@ -135,8 +135,8 @@ class JamfUploadSharepointStageCheck(Processor):
         sp_list = site.List(sp_test_listname)
 
         criteria = {}
-        criteria["Self Service Content Name"] = product_name
-        criteria["Ready for Production"] = "Yes"
+        criteria["Self Service Content Name"] = ["Eq", product_name]
+        criteria["Ready for Production"] = ["Eq", "Yes"]
         fields, query = self.build_query(criteria)
 
         content_test_passed = False
@@ -156,9 +156,9 @@ class JamfUploadSharepointStageCheck(Processor):
         sp_list = site.List(sp_test_listname)
 
         criteria = {}
-        criteria["Self Service Content Name"] = product_name
-        criteria["Status"] = "Done"
-        criteria["Release Completed"] = "No"
+        criteria["Self Service Content Name"] = ["Eq", product_name]
+        criteria["Status"] = ["Eq", "Done"]
+        criteria["Release Completed"] = ["Eq", "No"]
         fields, query = self.build_query(criteria)
 
         test_coordination_passed = False
@@ -178,11 +178,11 @@ class JamfUploadSharepointStageCheck(Processor):
         sp_list = site.List(sp_test_listname)
 
         criteria = {}
-        criteria["Self Service Content Name"] = product_name
+        criteria["Self Service Content Name"] = ["Eq", product_name]
         if "tst" in jss_url:
-            criteria["Release Completed TST"] = "No"
+            criteria["Release Completed TST"] = ["Eq", "No"]
         elif "prd" in jss_url:
-            criteria["Release Completed PRD"] = "No"
+            criteria["Release Completed PRD"] = ["Eq", "No"]
         else:
             raise ProcessorError("Invalid JSS_URL supplied.")
         fields, query = self.build_query(criteria)
