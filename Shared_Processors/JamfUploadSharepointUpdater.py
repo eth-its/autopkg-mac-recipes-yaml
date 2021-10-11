@@ -243,8 +243,7 @@ class JamfUploadSharepointUpdater(Processor):
                     site, "Jamf Test Coordination", criteria
                 )
 
-                # if so, existing tests are no longer valid, so ensure to set the entry
-                # to 'Needs review' if some tests were already done
+                # if so, set back to release completed = No
                 if exact_policy_in_test_coordination_and_released:
                     self.output(
                         "Jamf Test Coordination: Setting 'Release Completed'='No' for "
@@ -257,7 +256,9 @@ class JamfUploadSharepointUpdater(Processor):
                         "No",
                         criteria,
                     )
-                # Now we act on the exact entry
+                # Now check if there is an existing entry for this policy (including version)
+                # if so, existing tests are no longer valid, so ensure to set the entry
+                # to 'Needs review' if some tests were already done
                 criteria = {}
                 criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
 
@@ -366,14 +367,14 @@ class JamfUploadSharepointUpdater(Processor):
                 )
 
                 # if so, existing tests are no longer valid, so set the entry to
-                # Release Completed=False'
+                # Release Completed='False' and Ready for Production="No"
                 if exact_policy_in_test_review:
                     self.output(
                         "Jamf Test Review: Updating existing entry for "
                         + self_service_policy_name
                     )
                     self.output(
-                        "Jamf Test Review: Setting 'Release Completed TST' 'No' for "
+                        "Jamf Test Review: Setting 'Release Completed TST'='No' for "
                         + self_service_policy_name
                     )
                     self.update_record(
@@ -384,13 +385,24 @@ class JamfUploadSharepointUpdater(Processor):
                         criteria,
                     )
                     self.output(
-                        "Jamf Test Review: Setting 'Release Completed PRD' 'No' for "
+                        "Jamf Test Review: Setting 'Release Completed PRD'='No' for "
                         + self_service_policy_name
                     )
                     self.update_record(
                         site,
                         "Jamf Test Review",
                         "Release Completed PRD",
+                        "No",
+                        criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Ready for Production'='No' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Ready for Production",
                         "No",
                         criteria,
                     )
