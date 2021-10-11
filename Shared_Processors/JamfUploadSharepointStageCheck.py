@@ -83,18 +83,26 @@ class JamfUploadSharepointStageCheck(Processor):
         """construct the query. format should be
         {'Where': ['And', ('Eq', 'Title', 'Good Title'),
                           ('Eq', 'My Other Column', 'Nice Value')]}
+        See https://shareplum.readthedocs.io/en/latest/queries.html
         """
         query = {"Where": []}
         fields = ["ID"]
-        # if more than one value we want all to match, so use "and"
+        # If more than one value we want all to match, so use "and".
+        # With shareplum, the last criteria should not have an "and".
+        # To achieve this we build the query and then reverse it
+        # (this only works because/when all criteria are "and").
+        # See https://github.com/jasonrollins/shareplum/issues/17#issuecomment-342823183
         first = True
         for key in criteria:
-            query["Where"].append(("Eq", key, criteria[key]))
+            operand, value = criteria[key]
+            query["Where"].append((operand, key, value))
             fields.append(key)
             if not first:
                 query["Where"].append("And")
             if first:
                 first = False
+        query["Where"].reverse()
+        self.output(query, verbose_level=3)
         return fields, query
 
     def check_jamf_content_list(self, site, product_name, version):
@@ -105,7 +113,6 @@ class JamfUploadSharepointStageCheck(Processor):
         criteria = {}
         criteria["Self Service Content"] = product_name
         criteria["Untested Version"] = version
-
         fields, query = self.build_query(criteria)
 
         content_list_passed = False
@@ -130,7 +137,6 @@ class JamfUploadSharepointStageCheck(Processor):
         criteria = {}
         criteria["Self Service Content Name"] = product_name
         criteria["Ready for Production"] = "Yes"
-
         fields, query = self.build_query(criteria)
 
         content_test_passed = False
@@ -153,7 +159,6 @@ class JamfUploadSharepointStageCheck(Processor):
         criteria["Self Service Content Name"] = product_name
         criteria["Status"] = "Done"
         criteria["Release Completed"] = "No"
-
         fields, query = self.build_query(criteria)
 
         test_coordination_passed = False
@@ -180,9 +185,7 @@ class JamfUploadSharepointStageCheck(Processor):
             criteria["Release Completed PRD"] = "No"
         else:
             raise ProcessorError("Invalid JSS_URL supplied.")
-
         fields, query = self.build_query(criteria)
-        self.output(query, verbose_level=3)
 
         test_review_passed = False
         if sp_list.GetListItems(fields=fields, query=query):

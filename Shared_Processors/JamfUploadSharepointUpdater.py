@@ -96,15 +96,26 @@ class JamfUploadSharepointUpdater(Processor):
         """construct the query. format should be
         {'Where': ['And', ('Eq', 'Title', 'Good Title'),
                           ('Eq', 'My Other Column', 'Nice Value')]}
+        See https://shareplum.readthedocs.io/en/latest/queries.html
         """
         query = {"Where": []}
         fields = ["ID"]
-        # if more than one value we want all to match, so use "and"
-        if len(criteria) > 1:
-            query["Where"] = ["And"]
+        # If more than one value we want all to match, so use "and".
+        # With shareplum, the last criteria should not have an "and".
+        # To achieve this we build the query and then reverse it
+        # (this only works because/when all criteria are "and").
+        # See https://github.com/jasonrollins/shareplum/issues/17#issuecomment-342823183
+        first = True
         for key in criteria:
-            query["Where"].append(("Eq", key, criteria[key]))
+            operand, value = criteria[key]
+            query["Where"].append((operand, key, value))
             fields.append(key)
+            if not first:
+                query["Where"].append("And")
+            if first:
+                first = False
+        query["Where"].reverse()
+        self.output(query, verbose_level=3)
         return fields, query
 
     def check_list(self, site, listname, criteria):
@@ -117,7 +128,6 @@ class JamfUploadSharepointUpdater(Processor):
         """
         sp_list = site.List(listname)
         fields, query = self.build_query(criteria)
-        self.output(query, verbose_level=3)
 
         if sp_list.GetListItems(fields=fields, query=query):
             return True
@@ -224,65 +234,65 @@ class JamfUploadSharepointUpdater(Processor):
 
                 # Now write to Jamf Test Coordination list
                 # First, check if there is an existing entry for this policy (including version)
-                # which has not been released
+                # which has been released
                 criteria = {}
-                criteria["Self Service Content Name"] = self_service_policy_name
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+                criteria["Release Completed"] = ["Eq", "Yes"]
                 exact_policy_in_test_coordination = self.check_list(
                     site, "Jamf Test Coordination", criteria
                 )
 
                 # if so, existing tests are no longer valid, so ensure to set the entry
-                # to Release Completed = No and
                 # to 'Needs review' if some tests were already done
                 if exact_policy_in_test_coordination:
-                    if exact_policy_in_test_coordination:
+                    self.output(
+                        "Jamf Test Coordination: Setting 'Release Completed'='No' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Coordination",
+                        "Release Completed",
+                        "No",
+                        criteria,
+                    )
+                # now reset Status if any work had already been done on the existing entry
+                check_criteria = [
+                    "In progress",
+                    "Done",
+                    "Deferred",
+                    "Waiting for other test manager",
+                ]
+                for check in check_criteria:
+                    criteria = {}
+                    criteria["Self Service Content Name"] = [
+                        "Eq",
+                        self_service_policy_name,
+                    ]
+                    criteria["Release Completed"] = ["Eq", "No"]
+                    criteria["Status"] = ["Eq", check]
+                    app_in_test_coordination_tested_but_not_released = self.check_list(
+                        site, "Jamf Test Coordination", criteria
+                    )
+                    if app_in_test_coordination_tested_but_not_released:
                         self.output(
-                            "Jamf Test Coordination: Setting 'Release Completed'='No' for "
+                            "Jamf Test Coordination: Setting 'Status'='Needs review' for "
                             + self_service_policy_name
                         )
                         self.update_record(
                             site,
                             "Jamf Test Coordination",
-                            "Release Completed",
-                            "No",
+                            "Status",
+                            "Needs review",
                             criteria,
                         )
-                    # need to loop through different Statuses for one that needs to be changed
-                    check_criteria = [
-                        "In progress",
-                        "Done",
-                        "Deferred",
-                        "Waiting for other test manager",
-                    ]
-                    for check in check_criteria:
-                        criteria = {}
-                        criteria["Self Service Content Name"] = self_service_policy_name
-                        criteria["Status"] = check
-                        app_in_test_coordination_not_released_but_tested = self.check_list(
-                            site, "Jamf Test Coordination", criteria
-                        )
-
-                        app_in_test_coordination_not_released_but_tested = self.check_list(
-                            site, "Jamf Test Coordination", criteria,
-                        )
-                        if app_in_test_coordination_not_released_but_tested:
-                            self.output(
-                                "Jamf Test Coordination: Setting 'Status'='Needs review' for "
-                                + self_service_policy_name
-                            )
-                            self.update_record(
-                                site,
-                                "Jamf Test Coordination",
-                                "Status",
-                                "Needs review",
-                                criteria,
-                            )
                 else:
                     # check if there is an entry with the same final policy name that is
                     # not release completed
                     criteria = {}
-                    criteria["Final Content Name"] = final_policy_name
-                    criteria["Release Completed"] = "No"
+                    criteria["Final Content Name"] = ["Eq", final_policy_name]
+                    criteria["Release Completed"] = ["Eq", "No"]
+                    criteria["Status"] = ["Neq", "Obsolete"]
 
                     app_in_test_coordination_not_released = self.check_list(
                         site, "Jamf Test Coordination", criteria,
@@ -315,8 +325,13 @@ class JamfUploadSharepointUpdater(Processor):
                         "Self Service Content Name",
                         self_service_policy_name,
                     )
+
                     criteria = {}
-                    criteria["Self Service Content Name"] = self_service_policy_name
+                    criteria["Self Service Content Name"] = [
+                        "Eq",
+                        self_service_policy_name,
+                    ]
+
                     self.output(
                         "Jamf Test Coordination: Setting 'Final Content Name' "
                         + final_policy_name
@@ -334,7 +349,8 @@ class JamfUploadSharepointUpdater(Processor):
                 # Now write to Jamf Test Review list
                 # First, check if there is an existing entry for this policy (including version)
                 criteria = {}
-                criteria["Self Service Content Name"] = self_service_policy_name
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+
                 exact_policy_in_test_review = self.check_list(
                     site, "Jamf Test Review", criteria
                 )
@@ -372,8 +388,8 @@ class JamfUploadSharepointUpdater(Processor):
                     # check if there is an entry with the same final policy name that is not
                     # release completed in TST or PRD
                     criteria = {}
-                    criteria["Final Content Name"] = final_policy_name
-                    criteria["Release Completed TST"] = "No"
+                    criteria["Final Content Name"] = ["Eq", final_policy_name]
+                    criteria["Release Completed TST"] = ["Eq", "No"]
 
                     app_in_test_review_not_released = self.check_list(
                         site, "Jamf Test Review", criteria,
@@ -391,8 +407,8 @@ class JamfUploadSharepointUpdater(Processor):
                     # if not release completed in PRD, set the record to skipped
                     else:
                         criteria = {}
-                        criteria["Final Content Name"] = final_policy_name
-                        criteria["Release Completed PRD"] = "No"
+                        criteria["Final Content Name"] = ["Eq", final_policy_name]
+                        criteria["Release Completed PRD"] = ["Eq", "No"]
 
                         app_in_test_review_not_released_to_prd = self.check_list(
                             site, "Jamf Test Review", criteria,
@@ -421,7 +437,10 @@ class JamfUploadSharepointUpdater(Processor):
                         self_service_policy_name,
                     )
                     criteria = {}
-                    criteria["Self Service Content Name"] = self_service_policy_name
+                    criteria["Self Service Content Name"] = [
+                        "Eq",
+                        self_service_policy_name,
+                    ]
                     self.output(
                         "Jamf Test Review: Setting 'Final Content Name' "
                         + final_policy_name
@@ -439,7 +458,8 @@ class JamfUploadSharepointUpdater(Processor):
                 # Now write to the Jamf Content List
                 # First, check if there is an existing entry for this policy
                 criteria = {}
-                criteria["Self Service Content"] = final_policy_name
+                criteria["Self Service Content"] = ["Eq", final_policy_name]
+
                 app_in_content_list = self.check_list(
                     site, "Jamf Content List", criteria
                 )
@@ -497,7 +517,8 @@ class JamfUploadSharepointUpdater(Processor):
 
             # First, check if there is an existing entry for this policy (including version)
             criteria = {}
-            criteria["Self Service Content Name"] = self_service_policy_name
+            criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+
             exact_policy_in_test_coordination = self.check_list(
                 site, "Jamf Test Coordination", criteria
             )
@@ -557,7 +578,7 @@ class JamfUploadSharepointUpdater(Processor):
             # Here we need to set Release Completed to True
             # First, check if there is an existing entry for this policy (including version)
             criteria = {}
-            criteria["Self Service Content Name"] = self_service_policy_name
+            criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
             exact_policy_in_test_review = self.check_list(
                 site, "Jamf Test Review", criteria
             )
@@ -623,7 +644,7 @@ class JamfUploadSharepointUpdater(Processor):
             # First, check if there is an existing entry for this policy
             if "prd" in jss_url:
                 criteria = {}
-                criteria["Self Service Content"] = final_policy_name
+                criteria["Self Service Content"] = ["Eq", final_policy_name]
                 app_in_content_list = self.check_list(
                     site, "Jamf Content List", criteria
                 )
