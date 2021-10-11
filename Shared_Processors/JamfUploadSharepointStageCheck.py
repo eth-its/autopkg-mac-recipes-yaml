@@ -148,7 +148,8 @@ class JamfUploadSharepointStageCheck(Processor):
 
         criteria = {}
         criteria["Self Service Content Name"] = product_name
-        criteria["Status"] = "Release Completed"
+        criteria["Status"] = "Done"
+        criteria["Release Completed"] = "No"
 
         fields, query = self.build_query(criteria)
 
@@ -159,7 +160,7 @@ class JamfUploadSharepointStageCheck(Processor):
         else:
             self.output(
                 f"Jamf Test Coordination: No entry named '{product_name}' "
-                "with Status 'Release Completed'"
+                "with Status 'Release Completed'='No'"
             )
         return test_coordination_passed
 
