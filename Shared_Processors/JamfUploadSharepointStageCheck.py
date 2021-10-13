@@ -179,6 +179,7 @@ class JamfUploadSharepointStageCheck(Processor):
 
         criteria = {}
         criteria["Self Service Content Name"] = ["Eq", product_name]
+        criteria["Ready for Production"] = ["Eq", "Yes"]
         if "tst" in jss_url:
             criteria["Release Completed TST"] = ["Eq", "No"]
         elif "prd" in jss_url:
