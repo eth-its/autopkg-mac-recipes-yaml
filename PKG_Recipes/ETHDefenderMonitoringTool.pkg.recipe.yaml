@@ -1,0 +1,17 @@
+Description: Downloads the latest version of ETH Printers and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.ETHDefenderMonitoringTool
+ParentRecipe: com.github.eth-its-recipes.download.ETHDefenderMonitoringTool
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ETH Defender Monitoring Tool
+  EXCEPTION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: Defender_Monitoring_Tool
+  VENDOR: ETH
+
+Process:
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/ETH_Defender_Monitoring_Tool-%version%.pkg"
+      source_pkg: "%pathname%"
