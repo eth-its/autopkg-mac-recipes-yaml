@@ -11,6 +11,10 @@ fi
 
 version=$(/usr/libexec/PlistBuddy -c "Print :pkg-version" "$install_dir/pkginfo.plist")
 
+if [[ ! $version ]]; then
+    version="None"
+fi
+
 echo "<result>$version</result>"
 
 exit 0
