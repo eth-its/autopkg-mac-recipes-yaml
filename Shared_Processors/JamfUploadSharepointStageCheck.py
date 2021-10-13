@@ -195,13 +195,13 @@ class JamfUploadSharepointStageCheck(Processor):
         else:
             if "tst" in jss_url:
                 self.output(
-                    f"Jamf Test Review: No entry named '{product_name}' with"
-                    + "'Release Completed TST' = No"
+                    f"Jamf Test Review: No entry named '{product_name}' with "
+                    + "Release Completed TST=No and Ready for Production=Yes"
                 )
             elif "prd" in jss_url:
                 self.output(
-                    f"Jamf Test Review: No entry named '{product_name}' with"
-                    + "'Release Completed PRD' = No"
+                    f"Jamf Test Review: No entry named '{product_name}' with "
+                    + "Release Completed PRD=No and Ready for Production=Yes"
                 )
         return test_review_passed
 
