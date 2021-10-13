@@ -8,9 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NiceUpdater2
   POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
-  EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
   SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: Start hr 0-23
   PARAMETER5_LABEL: Start min 0-59
