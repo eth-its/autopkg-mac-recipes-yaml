@@ -6,3 +6,9 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: ETH Defender Monitoring Tool
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHDefenderMonitoringTool
+  SELFSERVICE_ICON: Microsoft Defender ATP.png
+  EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
+  SCRIPT_NAME: ETHDefenderMonitoringTool-postinstall.sh
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
