@@ -1,9 +1,9 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.macos-bigsur-upgrade
+Identifier: com.github.eth-its-recipes.jamf.macos-monterey-download
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Upgrade to macOS Big Sur
+  NAME: Download macOS Monterey Installer
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -13,18 +13,18 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
-  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
-  MAX_OS_VERSION: "10.15.8"
-  MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-6]|Macmini[7-9]|MacPro[6-9])
+  MAX_OS_VERSION: "12.99"
+  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-6]|Macmini[7-9]|MacPro[6-9])
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --reinstall
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --move
   SELFSERVICE_DESCRIPTION: |
-    WARNING! This will download the latest version of macOS Big Sur and install it on the system volume. All work should be saved and backed up before starting.
-  SELFSERVICE_ICON: Install macOS Big Sur.png
-  INSTALL_BUTTON_TEXT: Upgrade macOS
-  REINSTALL_BUTTON_TEXT: Upgrade macOS
+    Downloads 'Install macOS Monterey.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
+  SELFSERVICE_ICON: Install macOS Monterey.png
+  INSTALL_BUTTON_TEXT: Download
+  REINSTALL_BUTTON_TEXT: Download
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
