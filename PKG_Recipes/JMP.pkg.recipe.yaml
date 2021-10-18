@@ -21,9 +21,31 @@ Process:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
 
-  - Processor: AppDmgVersioner
+  - Processor: PkgRootCreator
     Arguments:
-      dmg_path: "%pathname%"
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%JMP/JMP/%MAJOR_VERSION%*/Macintosh/JMP-Install.dmg"
+      destination_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
+      overwrite: True
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg/JMP %MAJOR_VERSION%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/JMP %MAJOR_VERSION%.pkg"
+      overwrite: True
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%RECIPE_CACHE_DIR%/Scripts/JMP %MAJOR_VERSION%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/Applications/JMP %MAJOR_VERSION%.app/Contents/Info.plist"
 
   - Processor: Copier
     Arguments:
@@ -31,64 +53,55 @@ Process:
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/JMP_%MAJOR_VERSION%.dmg"
       overwrite: True
 
-  - Arguments:
+  - Processor: FileCreator
+    Arguments:
       file_content: |
         #!/bin/bash
         DIR=$(dirname "$0")
-        MAJOR="%MAJOR_VERSION%"
-        MINOR=$(echo "%version%" | cut -d"." -f2)
-
-        # attach main image
-        echo "Mounting JMP image"
-        hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse
-
-        # attach installer image, located inside main image
-        echo "Mounting JMP installer image"
-        hdiutil attach /Volumes/JMP_${MAJOR}_${MINOR}/JMP/JMP/${MAJOR}_${MINOR}/Macintosh/JMP-Install.dmg -nobrowse
 
         # install JMP with ETH License
-        installer -target / -pkg "/Volumes/JMP-${MAJOR}-Installer/JMP ${MAJOR}.pkg"
-
-        # eject mounted JMP volumes
-        for path in /Volumes/JMP*; do
-            [ -d "${path}" ] || continue # if not a directory, skip
-            dirname="$(basename "${path}")"
-            hdiutil eject ${path}
-        done
+        installer -target / -pkg "$DIR/JMP %MAJOR_VERSION%.pkg"
 
         # relocate license
-        if [[ -f "$HOME/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
-            /bin/mv "$HOME/Library/Application Support/JMP/${MAJOR}/JMP.per" \
-            "/Library/Application Support/JMP/${MAJOR}/JMP.per"
-        elif [[ -f "/var/root/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
-            /bin/mkdir -p "/Library/Application Support/JMP/${MAJOR}"
-            /bin/mv "/var/root/Library/Application Support/JMP/${MAJOR}/JMP.per" \
-            "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+        if [[ -f "$HOME/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per" ]]; then
+            /bin/mv "$HOME/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per" \
+            "/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per"
+        elif [[ -f "/var/root/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per" ]]; then
+            /bin/mkdir -p "/Library/Application Support/JMP/%MAJOR_VERSION%"
+            /bin/mv "/var/root/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per" \
+            "/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per"
             # change permissions
-            /bin/chmod 644 "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+            /bin/chmod 644 "/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per"
         else
             echo "ERROR: JMP.per not found"
             exit 1
         fi
-        if [[ -f "/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
+        if [[ -f "/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per" ]]; then
             # define license location
-            /usr/bin/defaults write "/Library/Preferences/com.sas.jmp.plist" Setinit_${MAJOR}_Path "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+            /usr/bin/defaults write "/Library/Preferences/com.sas.jmp.plist" Setinit_%MAJOR_VERSION%_Path "/Library/Application Support/JMP/%MAJOR_VERSION%/JMP.per"
         else
             echo "ERROR: JMP.per not found in Library folder"
             exit 1
         fi
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
-    Processor: FileCreator
 
-  - Arguments:
+  - Processor: PkgCreator
+    Arguments:
       force_pkg_build: True
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.JMP
-        pkgname: "%NAME%-%MAJOR_VERSION%-%version%"
+        pkgname: "JMP-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: Scripts
         version: "%version%"
-    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
