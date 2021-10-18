@@ -26,6 +26,11 @@ Process:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/unpack"
 
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/app_unpack"
+
   - Processor: Copier
     Arguments:
       source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/JMP-Install.dmg"
@@ -43,9 +48,14 @@ Process:
       flat_pkg_path: "%RECIPE_CACHE_DIR%/Scripts/JMP %MAJOR_VERSION%.pkg"
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
 
+  - Processor: PkgExtractor
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg"
+      extract_root: "%RECIPE_CACHE_DIR%/app_unpack"
+
   - Processor: Versioner
     Arguments:
-      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/Applications/JMP %MAJOR_VERSION%.app/Contents/Info.plist"
+      input_plist_path: "%RECIPE_CACHE_DIR%/app_unpack/Applications/JMP %MAJOR_VERSION%.app/Contents/Info.plist"
 
   - Processor: Copier
     Arguments:
