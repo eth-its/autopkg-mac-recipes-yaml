@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.JMP-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: JMP
+  MAJOR_VERSION: "15"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.JMP
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
