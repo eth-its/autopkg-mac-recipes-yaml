@@ -50,7 +50,7 @@ Process:
 
   - Processor: PkgPayloadUnpacker
     Arguments:
-      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg/Payload"
       destination_path: "%RECIPE_CACHE_DIR%/app_unpack"
       purge_destination: True
 
