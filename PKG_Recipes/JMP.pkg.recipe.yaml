@@ -11,15 +11,19 @@ Input:
   MAJOR_VERSION: "14"
 
 Process:
-  - Arguments:
+  - Processor: PkgRootCreator
+    Arguments:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
-    Processor: PkgRootCreator
 
-  - Arguments:
+  - Processor: PkgRootCreator
+    Arguments:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PkgRootCreator
+
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
 
   - Processor: Copier
     Arguments:
