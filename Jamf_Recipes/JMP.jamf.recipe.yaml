@@ -5,10 +5,11 @@ ParentRecipe: com.github.eth-its-recipes.pkg.JMP
 
 Input:
   NAME: JMP
+  MAJOR_VERSION: "15"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   PKG_CATEGORY: Science & Math
   LIST_LANGUAGE: ML
   LIST_NAME: JMP
-  MAJOR_VERSION: "15"
   SELFSERVICE_DESCRIPTION: |
     JMP statistical discovery software from SAS is the tool of choice for scientists, engineers and other data explorers in almost every industry and government sector. JMP combines powerful statistics with dynamic graphics, in memory and on the desktop. Interactive and visual, JMP reveals insights that raw tables of numbers or static graphs tend to hide.
 

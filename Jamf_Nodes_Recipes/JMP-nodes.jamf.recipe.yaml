@@ -6,6 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: JMP
   MAJOR_VERSION: "15"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.JMP
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
