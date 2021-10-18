@@ -48,10 +48,11 @@ Process:
       flat_pkg_path: "%RECIPE_CACHE_DIR%/Scripts/JMP %MAJOR_VERSION%.pkg"
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
 
-  - Processor: PkgExtractor
+  - Processor: PkgPayloadUnpacker
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg"
-      extract_root: "%RECIPE_CACHE_DIR%/app_unpack"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/app_unpack"
+      purge_destination: True
 
   - Processor: Versioner
     Arguments:
