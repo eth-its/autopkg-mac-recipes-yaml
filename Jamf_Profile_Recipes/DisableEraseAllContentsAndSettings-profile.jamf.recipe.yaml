@@ -26,7 +26,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%TEST_PROFILE_GROUP_TEMPLATE%"
+      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       replace_group: "False"
 
