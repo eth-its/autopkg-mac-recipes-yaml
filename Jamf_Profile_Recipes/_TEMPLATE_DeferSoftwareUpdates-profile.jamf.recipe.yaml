@@ -1,15 +1,11 @@
-Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: Template profile - NAME, DEFERRAL_DAYS_MAJOR_UPDATES, DEFERRAL_DAYS_MINOR_UPDATES and DEFERRAL_DAYS_APP_UPDATES should be set in an override
 Identifier: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-Template-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Defer Software Updates
   IDENTIFIER: com.apple.SoftwareUpdate
-  # DEFERRAL_DAYS_MAJOR_UPDATES: 90
-  # DEFERRAL_DAYS_MINOR_UPDATES: 3
-  # DEFERRAL_DAYS_APP_UPDATES: 3
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-single-group.xml
   PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor)"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
