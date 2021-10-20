@@ -1,32 +1,34 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Thunderbird
+Identifier: com.github.eth-its-recipes.jamf.JMP
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.Thunderbird
+ParentRecipe: com.github.eth-its-recipes.pkg.JMP
 
 Input:
-  NAME: Thunderbird
-  LOCALE: en-GB
-  RELEASE: latest
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  NAME: JMP
+  MAJOR_VERSION: "15"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  PKG_CATEGORY: Science & Math
+  LIST_LANGUAGE: ML
+  LIST_NAME: JMP
   SELFSERVICE_DESCRIPTION: |
-    Mozilla Thunderbird is a free and open-source cross-platform email client, news client, RSS and chat client developed by the Mozilla Foundation.
+    JMP statistical discovery software from SAS is the tool of choice for scientists, engineers and other data explorers in almost every industry and government sector. JMP combines powerful statistics with dynamic graphics, in memory and on the desktop. Interactive and visual, JMP reveals insights that raw tables of numbers or static graphs tend to hide.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

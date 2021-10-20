@@ -1,0 +1,14 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.ETHDefenderMonitoringTool-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: ETH Defender Monitoring Tool
+  SCRIPT_NAME: ETHDefenderMonitoringTool-uninstall.sh
+  SCRIPT_PATH: ETHDefenderMonitoringTool-uninstall.sh
+  EXTENSION_ATTRIBUTE_NAME: ETH Defender Monitoring Tool Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^None$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  SELFSERVICE_ICON: Microsoft Defender ATP.png

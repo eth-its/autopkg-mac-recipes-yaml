@@ -1,0 +1,9 @@
+Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-90-60-profile
+ParentRecipe: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-Template-profile
+MinimumVersion: "2.3"
+
+Input:
+  DEFERRAL_DAYS_MAJOR_UPDATES: "90"
+  DEFERRAL_DAYS_MINOR_UPDATES: "60"
+  DEFERRAL_DAYS_APP_UPDATES: "3"

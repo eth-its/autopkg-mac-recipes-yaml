@@ -1,0 +1,18 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.macos-monterey-download-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-macos-prod
+
+Input:
+  NAME: Download macOS Monterey Installer
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "12.99"
+  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-6]|Macmini[7-9]|MacPro[6-9])
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --move
+  INSTALL_BUTTON_TEXT: Download
+  REINSTALL_BUTTON_TEXT: Download
+  SELFSERVICE_ICON: Install macOS Monterey.png
+  SELFSERVICE_DESCRIPTION: |
+    Downloads 'Install macOS Monterey.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.

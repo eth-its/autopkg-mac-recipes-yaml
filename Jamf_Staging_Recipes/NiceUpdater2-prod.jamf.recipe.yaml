@@ -1,0 +1,30 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.NiceUpdater2-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: macOS Managed Updates
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.NiceUpdater2
+  POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
+  EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Start hr 0-23
+  PARAMETER5_LABEL: Start min 0-59
+  PARAMETER6_LABEL: Alert timeout sec
+  PARAMETER7_LABEL: Max deferrals
+  PARAMETER8_LABEL: Days wait after no updates
+  PARAMETER9_LABEL: Days wait after update
+  PARAMETER10_LABEL: Custom icon path
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_VALUE: "13"
+  PARAMETER5_VALUE: "00"
+  PARAMETER6_VALUE: "3540"
+  PARAMETER7_VALUE: "10"
+  PARAMETER8_VALUE: "3"
+  PARAMETER9_VALUE: "3"
+  PARAMETER10_VALUE: /Library/Scripts/nice_updater_custom_icon.png
+  PARAMETER11_VALUE: ""
+  SELFSERVICE_ICON: Software Update.png
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml

@@ -1,17 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Thunderbird
+Identifier: com.github.eth-its-recipes.jamf.MersiveSolstice
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.Thunderbird
+ParentRecipe: com.github.ahousseini-recipes.pkg.Mersive Solstice
 
 Input:
-  NAME: Thunderbird
-  LOCALE: en-GB
-  RELEASE: latest
+  NAME: Mersive Solstice
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Mozilla Thunderbird is a free and open-source cross-platform email client, news client, RSS and chat client developed by the Mozilla Foundation.
+    Mersive Solstice is a conference room application for connecting devices wirelessly to projectors and for video conferencing and collaboration.
 
     Version: %version%
     Category: %PKG_CATEGORY%

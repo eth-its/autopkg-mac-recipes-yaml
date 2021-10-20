@@ -1,17 +1,17 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.ETHOfficeTemplates-prod
+Identifier: com.github.eth-its-recipes.jamf.ETHDefenderMonitoringTool-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
-  NAME: ETH Templates MSOffice
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHOfficeTemplates
-  PREINSTALL_SCRIPT_NAME: ETHOfficeTemplates-preinstall.sh
-  POSTINSTALL_SCRIPT_NAME: ETHOfficeTemplates-postinstall.sh
+  NAME: ETH Defender Monitoring Tool
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHDefenderMonitoringTool
+  SELFSERVICE_ICON: Microsoft Defender ATP.png
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$|^$
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
+  SCRIPT_NAME: ETHDefenderMonitoringTool-postinstall.sh
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
-  SELFSERVICE_ICON: Microsoft Word Template.png

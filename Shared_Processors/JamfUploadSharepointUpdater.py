@@ -16,17 +16,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-
-from __future__ import absolute_import
-
-import ssl
-
 import urllib
-from sharepoint import SharePointSite
-from ntlm3 import HTTPNtlmAuthHandler
-from autopkglib import Processor  # type: ignore
 
-ssl._create_default_https_context = ssl._create_unverified_context
+from shareplum import Site
+from requests_ntlm2 import HttpNtlmAuth
+from autopkglib import Processor, ProcessorError  # type: ignore
+
 __all__ = ["JamfUploadSharepointUpdater"]
 
 
@@ -88,117 +83,107 @@ class JamfUploadSharepointUpdater(Processor):
 
     __doc__ = description
 
-    @staticmethod
-    def connect_sharepoint(url, user, password):
+    def connect_sharepoint(self, url, user, password):
         """make a connection to SharePoint"""
-        pass_man = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-        pass_man.add_password(None, url, user, password)
-        auth_ntlm = HTTPNtlmAuthHandler.HTTPNtlmAuthHandler(pass_man)
-        opener = urllib.request.build_opener(auth_ntlm)
-        urllib.request.install_opener(opener)
-        site = SharePointSite(url, opener)
+        auth = HttpNtlmAuth(f"d\\{user}", password)
+        site = Site(url, auth=auth)
+        if not site:
+            self.output(site, verbose_level=3)
+            raise ProcessorError("Could not connect to SharePoint")
         return site
 
-    def check_list(self, site, sp_listname, sp_list_criterion, sp_list_criterion_value):
+    def build_query(self, criteria):
+        """construct the query. format should be
+        {'Where': ['And', ('Eq', 'Title', 'Good Title'),
+                          ('Eq', 'My Other Column', 'Nice Value')]}
+        See https://shareplum.readthedocs.io/en/latest/queries.html
+        """
+        query = {"Where": []}
+        fields = ["ID"]
+        # If more than one value we want all to match, so use "and".
+        # With shareplum, the last criteria should not have an "and".
+        # To achieve this we build the query and then reverse it
+        # (this only works because/when all criteria are "and").
+        # See https://github.com/jasonrollins/shareplum/issues/17#issuecomment-342823183
+        first = True
+        for key in criteria:
+            operand, value = criteria[key]
+            query["Where"].append((operand, key, value))
+            fields.append(key)
+            if not first:
+                query["Where"].append("And")
+            if first:
+                first = False
+        query["Where"].reverse()
+        self.output(query, verbose_level=3)
+        return fields, query
+
+    def check_list(self, site, listname, criteria):
         """Check an item is in a SharePoint list
 
-        site:                       SharePoint site where the list is situated
-        sp_listname:                name of of the list
-        sp_list_criterion:          key to search against (normally Title)
-        sp_list_criterion_value:    value of key to match
+        site            SharePoint site where the list is situated
+        listname        name of of the list
+        search_key      key to search against
+        criteria        an dictionary of criteria (key/value) to search against
         """
-        sp_list = site.lists[sp_listname]
-        # sp_product_in_list = False
-        for row in sp_list.rows:
-            sp_policy_name = getattr(row, sp_list_criterion)
-            if sp_policy_name == sp_list_criterion_value:
-                return row
+        sp_list = site.List(listname)
+        fields, query = self.build_query(criteria)
 
-    def update_record(
-        self,
-        site,
-        sp_listname,
-        sp_list_key,
-        sp_list_value,
-        sp_list_criterion,
-        sp_list_criterion_value,
-    ):
+        if sp_list.GetListItems(fields=fields, query=query):
+            return True
+
+    def update_record(self, site, listname, list_key, list_value, criteria):
         """Update a value in a SharePoint list:
 
-        site:                       SharePoint site where the list is situated
-        sp_listname:                name of of the list
-        sp_list_key:                key to update
-        sp_list_value:              value to set in the key
-        sp_list_criterion:          key to search against (normally Title)
-        sp_list_criterion_value:    value of key to match
+        site            SharePoint site where the list is situated
+        listname        name of of the list
+        list_key        key to update
+        list_value      value to set in the key
+        criteria        an dictionary of criteria (key/value) to search against
         """
-        sp_list = site.lists[sp_listname]
-        for row in sp_list.rows:
-            # update sp_list_key with value sp_list_value
-            # where sp_list_criterion = sp_list_criterion_value
-            if sp_list_criterion_value == getattr(row, sp_list_criterion):
-                existing_value = getattr(row, sp_list_key)
-                setattr(row, sp_list_key, sp_list_value)
-                self.output(
-                    "'%s' - '%s' updated from '%s' to '%s'"
-                    % (
-                        sp_list_criterion_value,
-                        sp_list_key,
-                        existing_value,
-                        sp_list_value,
-                    )
-                )
-                sp_list.save()
+        sp_list = site.List(listname)
+        fields, query = self.build_query(criteria)
 
-    def add_record(self, site, sp_listname, sp_list_key, sp_list_value):
+        for row in sp_list.GetListItems(fields=fields, query=query):
+            update_data = []
+            data = {"ID": row["ID"]}
+            data[list_key] = list_value
+            update_data.append(data)
+            sp_list.UpdateListItems(data=update_data, kind="Update")
+
+    def add_record(self, site, listname, list_key, list_value):
         """Update a value in a SharePoint list:
 
-        site:                       SharePoint site where the list is situated
-        sp_listname:                name of of the list
-        sp_list_key:                key to update
-        sp_list_value:              value to set in the key
+        site            SharePoint site where the list is situated
+        listname        name of of the list
+        list_key        key to update
+        list_value      value to set in the key
         """
-        sp_list = site.lists[sp_listname]
-        # add record to list
-        sp_new_record = {}
-        sp_new_record[sp_list_key] = sp_list_value
-        sp_list.append(sp_new_record)
-        sp_list.save()
-        self.output("'%s' added with value '%s'" % (sp_list_key, sp_list_value))
+        sp_list = site.List(listname)
+        new_record = {list_key: list_value}
+        sp_list.UpdateListItems([new_record], "New")
+        self.output(f"'{list_key}' added with value '{list_value}'")
 
-    def delete_record(
-        self, site, sp_listname, sp_list_criterion, sp_list_criterion_value
-    ):
+    def delete_record(self, site, listname, criteria):
         """Delete an item from a SharePoint list
 
-        site:                       SharePoint site where the list is situated
-        sp_listname:                name of of the list
-        sp_list_criterion:          key to search against (normally Title)
-        sp_list_criterion_value:    value of key to match
+        site            SharePoint site where the list is situated
+        listname        name of of the list
+        criteria        an dictionary of criteria (key/value) to search against
         """
-        sp_list = site.lists[sp_listname]
-        for row in sp_list.rows:
-            # update sp_list_key with value sp_list_value
-            # where sp_list_criterion = sp_list_criterion_value
-            if sp_list_criterion_value == getattr(row, sp_list_criterion):
-                existing_value = getattr(row, sp_list_criterion)
-                row.delete()
-                sp_list.save()
-                self.output(
-                    "Item '%s' with value '%s' deleted"
-                    % (sp_list_criterion, existing_value)
-                )
+        sp_list = site.List(listname)
+        fields, query = self.build_query(criteria)
+        delete_data = []
+        for row in sp_list.GetListItems(fields=fields, query=query):
+            delete_data.append(row["ID"])
+            sp_list.UpdateListItems(data=delete_data, kind="Delete")
 
     def test_report_url(self, sp_url, policy_name):
         """Creates the Test Report URL needed in Jamf Content List"""
         params = {"Title": policy_name}
         url_encoded = urllib.parse.urlencode(params)
         list_name_url = "Jamf_Item_Test"
-        test_report_url = "%s/Lists/%s/DispForm.aspx?%s" % (
-            sp_url,
-            list_name_url,
-            url_encoded,
-        )
+        test_report_url = f"{sp_url}/Lists/{list_name_url}/DispForm.aspx?{url_encoded}"
         return test_report_url
 
     def main(self):
@@ -207,7 +192,7 @@ class JamfUploadSharepointUpdater(Processor):
         category = self.env.get("PKG_CATEGORY")
         version = self.env.get("version")
         name = self.env.get("NAME")
-        selfservice_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
+        final_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
         policy_language = self.env.get("LANGUAGE")
         policy_license = self.env.get("LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
@@ -217,37 +202,30 @@ class JamfUploadSharepointUpdater(Processor):
         sp_pass = self.env.get("SP_PASS")
 
         # section for untested recipes (PRD server only)
-        if not selfservice_policy_name:
+        if not final_policy_name:
             if "prd" in jss_url:
-                selfservice_policy_name = name
+                final_policy_name = name
                 if major_version:
-                    selfservice_policy_name = (
-                        selfservice_policy_name + " " + major_version
-                    )
+                    final_policy_name = final_policy_name + " " + major_version
                 if policy_language:
-                    selfservice_policy_name = (
-                        selfservice_policy_name + " " + policy_language
-                    )
+                    final_policy_name = final_policy_name + " " + policy_language
                 if policy_license:
-                    selfservice_policy_name = (
-                        selfservice_policy_name + " " + policy_license
-                    )
+                    final_policy_name = final_policy_name + " " + policy_license
 
-                policy_name = f"{selfservice_policy_name} (Testing)"
-                sharepoint_policy_name = (
-                    f"{selfservice_policy_name} (Testing) v{version}"
-                )
+                policy_name = f"{final_policy_name} (Testing)"
+                self_service_policy_name = f"{final_policy_name} (Testing) v{version}"
 
                 self.output(
                     "UNTESTED recipe type: "
-                    f"Sending updates to SharePoint based on Policy Name {selfservice_policy_name}"
+                    "Sending updates to SharePoint based on Policy Name "
+                    + final_policy_name
                 )
 
                 self.output("Name: %s" % name)
-                self.output("Title: %s" % selfservice_policy_name)
+                self.output("Title: %s" % final_policy_name)
                 self.output("Policy: %s" % policy_name)
                 self.output("Version: %s" % version)
-                self.output("SharePoint item: %s" % sharepoint_policy_name)
+                self.output("SharePoint item: %s" % self_service_policy_name)
                 self.output("Production Category: %s" % category)
                 self.output("Current Category: %s" % policy_category)
 
@@ -256,246 +234,301 @@ class JamfUploadSharepointUpdater(Processor):
 
                 # Now write to Jamf Test Coordination list
                 # First, check if there is an existing entry for this policy (including version)
-                exact_policy_in_test_coordination = self.check_list(
-                    site, "Jamf Test Coordination", "Title", sharepoint_policy_name
+                # which has been released
+                criteria = {}
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+                criteria["Release Completed"] = ["Eq", "Yes"]
+
+                exact_policy_in_test_coordination_and_released = self.check_list(
+                    site, "Jamf Test Coordination", criteria
                 )
 
-                # if so, existing tests are no longer valid, so set the entry to 'Needs review'
-                if exact_policy_in_test_coordination:
+                # if so, set back to release completed = No
+                if exact_policy_in_test_coordination_and_released:
                     self.output(
-                        "Jamf Test Coordination: Ensuring existing '%s' entry is not"
-                        "set as Release Completed" % sharepoint_policy_name
+                        "Jamf Test Coordination: Setting 'Release Completed'='No' for "
+                        + self_service_policy_name
                     )
                     self.update_record(
                         site,
                         "Jamf Test Coordination",
-                        "Release_x0020_Completed",
-                        None,
-                        "Title",
-                        sharepoint_policy_name,
+                        "Release Completed",
+                        "No",
+                        criteria,
                     )
-                    if exact_policy_in_test_coordination.Status not in {
-                        "Not assigned",
-                        "Not started",
-                    }:
-                        self.output(
-                            "Jamf Test Coordination: Updating existing '%s' as Needs review"
-                            % sharepoint_policy_name
+                # Now check if there is an existing entry for this policy (including version)
+                # if so, existing tests are no longer valid, so ensure to set the entry
+                # to 'Needs review' if some tests were already done
+                criteria = {}
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+
+                exact_policy_in_test_coordination = self.check_list(
+                    site, "Jamf Test Coordination", criteria
+                )
+
+                if exact_policy_in_test_coordination:
+                    # reset Status if any work had already been done on the existing entry
+                    check_criteria = [
+                        "In progress",
+                        "Done",
+                        "Deferred",
+                        "Waiting for other test manager",
+                    ]
+                    for check in check_criteria:
+                        criteria = {}
+                        criteria["Self Service Content Name"] = [
+                            "Eq",
+                            self_service_policy_name,
+                        ]
+                        criteria["Release Completed"] = ["Eq", "No"]
+                        criteria["Status"] = ["Eq", check]
+                        app_in_test_coordination_tested_but_not_released = self.check_list(
+                            site, "Jamf Test Coordination", criteria
                         )
-                        self.update_record(
-                            site,
-                            "Jamf Test Coordination",
-                            "Status",
-                            "Needs review",
-                            "Title",
-                            sharepoint_policy_name,
-                        )
+                        if app_in_test_coordination_tested_but_not_released:
+                            self.output(
+                                "Jamf Test Coordination: Setting 'Status'='Needs review' for "
+                                + self_service_policy_name
+                            )
+                            self.update_record(
+                                site,
+                                "Jamf Test Coordination",
+                                "Status",
+                                "Needs review",
+                                criteria,
+                            )
                 else:
                     # check if there is an entry with the same final policy name that is
                     # not release completed
-                    app_in_test_coordination = self.check_list(
-                        site,
-                        "Jamf Test Coordination",
-                        "Final_x0020_Item_x0020_Name",
-                        selfservice_policy_name,
-                    )
+                    criteria = {}
+                    criteria["Final Content Name"] = ["Eq", final_policy_name]
+                    criteria["Release Completed"] = ["Eq", "No"]
+                    criteria["Status"] = ["Neq", "Obsolete"]
 
-                    # if not released completed, update the entry and set it to obsolete.
-                    if (
-                        app_in_test_coordination
-                        and app_in_test_coordination.Release_x0020_Completed is not True
-                    ):
+                    app_in_test_coordination_not_released = self.check_list(
+                        site, "Jamf Test Coordination", criteria,
+                    )
+                    if app_in_test_coordination_not_released:
                         self.output(
                             "Jamf Test Coordination: Updating existing unreleased "
-                            "entry for '%s'" % selfservice_policy_name
+                            "entry for " + final_policy_name
                         )
-                        self.update_record(
-                            site,
-                            "Jamf Test Coordination",
-                            "Release_x0020_Completed",
-                            None,
-                            "Final_x0020_Item_x0020_Name",
-                            selfservice_policy_name,
+                        self.output(
+                            "Jamf Test Coordination: Setting 'Status'='Obsolete' for "
+                            + final_policy_name
                         )
                         self.update_record(
                             site,
                             "Jamf Test Coordination",
                             "Status",
                             "Obsolete",
-                            "Final_x0020_Item_x0020_Name",
-                            selfservice_policy_name,
+                            criteria,
                         )
 
                     # now create a new entry
                     self.output(
-                        "Jamf Test Coordination: Adding record for '%s'"
-                        % sharepoint_policy_name
+                        "Jamf Test Coordination: Adding record for "
+                        + self_service_policy_name
                     )
                     self.add_record(
-                        site, "Jamf Test Coordination", "Title", sharepoint_policy_name
+                        site,
+                        "Jamf Test Coordination",
+                        "Self Service Content Name",
+                        self_service_policy_name,
+                    )
+
+                    criteria = {}
+                    criteria["Self Service Content Name"] = [
+                        "Eq",
+                        self_service_policy_name,
+                    ]
+
+                    self.output(
+                        "Jamf Test Coordination: Setting 'Final Content Name' "
+                        + final_policy_name
+                        + " for "
+                        + self_service_policy_name
                     )
                     self.update_record(
                         site,
                         "Jamf Test Coordination",
-                        "Final_x0020_Item_x0020_Name",
-                        selfservice_policy_name,
-                        "Title",
-                        sharepoint_policy_name,
+                        "Final Content Name",
+                        final_policy_name,
+                        criteria,
                     )
 
                 # Now write to Jamf Test Review list
                 # First, check if there is an existing entry for this policy (including version)
+                criteria = {}
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+
                 exact_policy_in_test_review = self.check_list(
-                    site, "Jamf Test Review", "Title", sharepoint_policy_name
+                    site, "Jamf Test Review", criteria
                 )
 
                 # if so, existing tests are no longer valid, so set the entry to
-                # Release Completed=False'
+                # Release Completed='False' and Ready for Production="No"
                 if exact_policy_in_test_review:
                     self.output(
-                        "Jamf Test Review: Updating existing entry for '%s'"
-                        % sharepoint_policy_name
+                        "Jamf Test Review: Updating existing entry for "
+                        + self_service_policy_name
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Release Completed TST'='No' for "
+                        + self_service_policy_name
                     )
                     self.update_record(
                         site,
                         "Jamf Test Review",
-                        "Release_x0020_Completed",
-                        None,
-                        "Title",
-                        sharepoint_policy_name,
-                    )
-                    self.update_record(
-                        site,
-                        "Jamf Test Review",
-                        "Release_x0020_Completed_x0020_PR",
+                        "Release Completed TST",
                         "No",
-                        "Title",
-                        sharepoint_policy_name,
+                        criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Release Completed PRD'='No' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Release Completed PRD",
+                        "No",
+                        criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Ready for Production'='No' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Ready for Production",
+                        "No",
+                        criteria,
                     )
                 else:
                     # check if there is an entry with the same final policy name that is not
                     # release completed in TST or PRD
-                    app_in_test_review = self.check_list(
-                        site,
-                        "Jamf Test Review",
-                        "Final_x0020_Content_x0020_Name",
-                        selfservice_policy_name,
+                    criteria = {}
+                    criteria["Final Content Name"] = ["Eq", final_policy_name]
+                    criteria["Release Completed TST"] = ["Eq", "No"]
+
+                    app_in_test_review_not_released = self.check_list(
+                        site, "Jamf Test Review", criteria,
                     )
+
                     # if not release completed in TST, delete the record
-                    if (
-                        app_in_test_review
-                        and app_in_test_review.Release_x0020_Completed is not True
-                    ):
+                    if app_in_test_review_not_released:
                         self.output(
-                            "Jamf Test Review: Deleting existing unreleased entry for '%s'"
-                            % selfservice_policy_name
+                            "Jamf Test Review: Deleting existing unreleased entry for "
+                            + final_policy_name
                         )
                         self.delete_record(
-                            site,
-                            "Jamf Test Review",
-                            "Final_x0020_Content_x0020_Name",
-                            selfservice_policy_name,
+                            site, "Jamf Test Review", criteria,
                         )
-                    # if not release comüpleted in PRD, set the record to skipped
-                    elif (
-                        app_in_test_review
-                        and app_in_test_review.Release_x0020_Completed_x0020_PR != "Yes"
-                    ):
-                        self.output(
-                            "Jamf Test Review: Setting existing unreleased (PRD) entry "
-                            "for '%s' to 'Skipped" % selfservice_policy_name
+                    # if not release completed in PRD, set the record to skipped
+                    else:
+                        criteria = {}
+                        criteria["Final Content Name"] = ["Eq", final_policy_name]
+                        criteria["Release Completed PRD"] = ["Eq", "No"]
+
+                        app_in_test_review_not_released_to_prd = self.check_list(
+                            site, "Jamf Test Review", criteria,
                         )
-                        self.update_record(
-                            site,
-                            "Jamf Test Review",
-                            "Release_x0020_Completed_x0020_PR",
-                            "Skipped",
-                            "Final_x0020_Content_x0020_Name",
-                            selfservice_policy_name,
-                        )
+                        if app_in_test_review_not_released_to_prd:
+                            self.output(
+                                "Jamf Test Review: Setting existing unreleased (PRD) entry "
+                                f"for '{final_policy_name}' to 'Skipped'"
+                            )
+                            self.update_record(
+                                site,
+                                "Jamf Test Review",
+                                "Release Completed PRD",
+                                "Skipped",
+                                criteria,
+                            )
 
                     # now create a new entry
                     self.output(
-                        "Jamf Test Review: Adding record for '%s'"
-                        % sharepoint_policy_name
+                        "Jamf Test Review: Adding record for" + self_service_policy_name
                     )
                     self.add_record(
-                        site, "Jamf Test Review", "Title", sharepoint_policy_name
+                        site,
+                        "Jamf Test Review",
+                        "Self Service Content Name",
+                        self_service_policy_name,
+                    )
+                    criteria = {}
+                    criteria["Self Service Content Name"] = [
+                        "Eq",
+                        self_service_policy_name,
+                    ]
+                    self.output(
+                        "Jamf Test Review: Setting 'Final Content Name' "
+                        + final_policy_name
+                        + " for "
+                        + self_service_policy_name
                     )
                     self.update_record(
                         site,
                         "Jamf Test Review",
-                        "Final_x0020_Content_x0020_Name",
-                        selfservice_policy_name,
-                        "Title",
-                        sharepoint_policy_name,
-                    )
-                    self.update_record(
-                        site,
-                        "Jamf Test Review",
-                        "Release_x0020_Completed",
-                        None,
-                        "Title",
-                        sharepoint_policy_name,
+                        "Final Content Name",
+                        final_policy_name,
+                        criteria,
                     )
 
                 # Now write to the Jamf Content List
                 # First, check if there is an existing entry for this policy
+                criteria = {}
+                criteria["Self Service Content"] = ["Eq", final_policy_name]
+
                 app_in_content_list = self.check_list(
-                    site, "Jamf Content List", "Title", selfservice_policy_name
+                    site, "Jamf Content List", criteria
                 )
 
                 # if not, create the entry
                 if not app_in_content_list:
                     self.output(
-                        "Jamf Content List: Adding new entry for '%s'"
-                        % selfservice_policy_name
+                        "Jamf Content List: Adding new entry for " + final_policy_name
                     )
                     self.add_record(
-                        site, "Jamf Content List", "Title", selfservice_policy_name
+                        site,
+                        "Jamf Content List",
+                        "Self Service Content",
+                        final_policy_name,
                     )
                 else:
                     self.output(
-                        "Jamf Content List: Updating existing entry for '%s'"
-                        % selfservice_policy_name
+                        "Jamf Content List: Updating existing entry for "
+                        + final_policy_name
                     )
-
                 # now update the other keys in the entry
-                self.update_record(
-                    site,
-                    "Jamf Content List",
-                    "Untested_x0020_Version",
-                    version,
-                    "Title",
-                    selfservice_policy_name,
+                self.output(
+                    "Jamf Content List: Setting 'Untested Version' "
+                    + version
+                    + " for "
+                    + final_policy_name
                 )
                 self.update_record(
-                    site,
-                    "Jamf Content List",
-                    "Category",
-                    category,
-                    "Title",
-                    selfservice_policy_name,
+                    site, "Jamf Content List", "Untested Version", version, criteria,
                 )
                 self.update_record(
-                    site,
-                    "Jamf Content List",
-                    "Name_x0020_of_x0020_the_x0020_Po",
-                    "Application",
-                    "Title",
-                    selfservice_policy_name,
+                    site, "Jamf Content List", "Category", category, criteria,
+                )
+                self.update_record(
+                    site, "Jamf Content List", "Content Type", "Application", criteria,
                 )
 
         # section for prod recipes
         else:
-            sharepoint_policy_name = f"{selfservice_policy_name} (Testing) v{version}"
+            self_service_policy_name = f"{final_policy_name} (Testing) v{version}"
 
-            self.output("Name: %s" % name)
-            self.output("Policy: %s" % selfservice_policy_name)
-            self.output("Version: %s" % version)
-            self.output("SharePoint item: %s" % sharepoint_policy_name)
-            self.output("Production Category: %s" % category)
-            self.output("Current Category: %s" % policy_category)
+            self.output("Name: " + name)
+            self.output("Policy: " + final_policy_name)
+            self.output("Version: " + version)
+            self.output("SharePoint item: " + self_service_policy_name)
+            self.output("Production Category: " + category)
+            self.output("Current Category: " + policy_category)
 
             self.output("PROD recipe type: Sending staging instructions to SharePoint")
             # connect to the sharepoint site
@@ -505,106 +538,127 @@ class JamfUploadSharepointUpdater(Processor):
             # Here we need to set Release Completed to True
 
             # First, check if there is an existing entry for this policy (including version)
+            criteria = {}
+            criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+
             exact_policy_in_test_coordination = self.check_list(
-                site, "Jamf Test Coordination", "Title", sharepoint_policy_name
+                site, "Jamf Test Coordination", criteria
             )
 
             # if not, we should create one
             if exact_policy_in_test_coordination:
                 self.output(
-                    "Jamf Test Coordination: Updating existing entry for '%s'"
-                    % sharepoint_policy_name
+                    "Jamf Test Coordination: Updating existing entry for "
+                    + self_service_policy_name
                 )
             else:
                 self.output(
-                    "Jamf Test Coordination: Adding record for '%s'"
-                    % sharepoint_policy_name
+                    "Jamf Test Coordination: Adding record for "
+                    + self_service_policy_name
                 )
                 self.add_record(
-                    site, "Jamf Test Coordination", "Title", sharepoint_policy_name
+                    site,
+                    "Jamf Test Coordination",
+                    "Self Service Content Name",
+                    self_service_policy_name,
+                )
+                self.output(
+                    "Jamf Test Coordination: Setting 'Final Content Name' "
+                    + final_policy_name
+                    + " for "
+                    + self_service_policy_name
                 )
                 self.update_record(
                     site,
                     "Jamf Test Coordination",
-                    "Final_x0020_Item_x0020_Name",
-                    selfservice_policy_name,
-                    "Title",
-                    sharepoint_policy_name,
+                    "Final Content Name",
+                    final_policy_name,
+                    criteria,
                 )
-            # set Jamf Test Coordination to "Release Completed" only from PRD
+            # set Jamf Test Coordination to "Release Completed"="Yes" only from PRD
             if "prd" in jss_url:
-                self.update_record(
-                    site,
-                    "Jamf Test Coordination",
-                    "Release_x0020_Completed",
-                    True,
-                    "Title",
-                    sharepoint_policy_name,
+                self.output(
+                    "Jamf Test Coordination: Setting 'Release Completed'='Yes' for "
+                    + self_service_policy_name
                 )
                 self.update_record(
                     site,
                     "Jamf Test Coordination",
-                    "Status",
-                    "Done",
-                    "Title",
-                    sharepoint_policy_name,
+                    "Release Completed",
+                    "Yes",
+                    criteria,
+                )
+                self.output(
+                    "Jamf Test Coordination: Setting 'Status'='Done' for "
+                    + self_service_policy_name
+                )
+                self.update_record(
+                    site, "Jamf Test Coordination", "Status", "Done", criteria,
                 )
 
             # Now write to Jamf Test Review list
             # Here we need to set Release Completed to True
             # First, check if there is an existing entry for this policy (including version)
+            criteria = {}
+            criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
             exact_policy_in_test_review = self.check_list(
-                site, "Jamf Test Review", "Title", sharepoint_policy_name
+                site, "Jamf Test Review", criteria
             )
 
             # if not, we should create one
             if exact_policy_in_test_review:
                 self.output(
-                    "Jamf Test Review: Updating existing entry for '%s'"
-                    % sharepoint_policy_name
+                    "Jamf Test Review: Updating existing entry for "
+                    + self_service_policy_name
                 )
             else:
                 self.output(
-                    "Jamf Test Review: Adding record for '%s'" % sharepoint_policy_name
+                    "Jamf Test Review: Adding record for " + self_service_policy_name
                 )
                 self.add_record(
-                    site, "Jamf Test Review", "Title", sharepoint_policy_name
+                    site,
+                    "Jamf Test Review",
+                    "Self Service Content Name",
+                    self_service_policy_name,
+                )
+                self.output(
+                    "Jamf Test Review: Setting 'Final Content Name' "
+                    + final_policy_name
+                    + " for "
+                    + self_service_policy_name
                 )
                 self.update_record(
                     site,
                     "Jamf Test Review",
-                    "Final_x0020_Content_x0020_Name",
-                    selfservice_policy_name,
-                    "Title",
-                    sharepoint_policy_name,
+                    "Final Content Name",
+                    final_policy_name,
+                    criteria,
                 )
             # set Jamf Test Review to "Release Completed" only from TST
             if "tst" in jss_url:
-                self.update_record(
-                    site,
-                    "Jamf Test Review",
-                    "Release_x0020_Completed",
-                    True,
-                    "Title",
-                    sharepoint_policy_name,
+                self.output(
+                    "Jamf Test Review: Setting 'Release Completed TST'='Yes' for "
+                    + self_service_policy_name
                 )
                 self.update_record(
-                    site,
-                    "Jamf Test Review",
-                    "Ready_x0020_for_x0020_Production",
-                    True,
-                    "Title",
-                    sharepoint_policy_name,
+                    site, "Jamf Test Review", "Release Completed TST", "Yes", criteria,
                 )
-            # set Jamf Test Review to "Release Completed PRD" only from PRD
+                # Set ready for production to Yes in case we are forcing the staging
+                self.output(
+                    "Jamf Test Review: Setting 'Ready for Production'='Yes' for "
+                    + self_service_policy_name
+                )
+                self.update_record(
+                    site, "Jamf Test Review", "Ready for Production", "Yes", criteria,
+                )
+            # set Jamf Test Review to "Release Completed PRD"="Yes" only from PRD
             elif "prd" in jss_url:
+                self.output(
+                    "Jamf Test Review: Setting 'Release Completed PRD'='Yes' for "
+                    + self_service_policy_name
+                )
                 self.update_record(
-                    site,
-                    "Jamf Test Review",
-                    "Release_x0020_Completed_x0020_PR",
-                    "Yes",
-                    "Title",
-                    sharepoint_policy_name,
+                    site, "Jamf Test Review", "Release Completed PRD", "Yes", criteria,
                 )
 
             # Now write to the Jamf Content List (PRD only)
@@ -612,53 +666,56 @@ class JamfUploadSharepointUpdater(Processor):
             # add the test report URL
             # First, check if there is an existing entry for this policy
             if "prd" in jss_url:
+                criteria = {}
+                criteria["Self Service Content"] = ["Eq", final_policy_name]
                 app_in_content_list = self.check_list(
-                    site, "Jamf Content List", "Title", selfservice_policy_name
+                    site, "Jamf Content List", criteria
                 )
 
                 # if not, create the entry
                 if not app_in_content_list:
                     self.output(
-                        "Jamf Content List: Adding new entry for '%s'"
-                        % selfservice_policy_name
+                        "Jamf Content List: Adding new entry for " + final_policy_name
                     )
                     self.add_record(
-                        site, "Jamf Content List", "Title", selfservice_policy_name
+                        site,
+                        "Jamf Content List",
+                        "Self Service Content",
+                        final_policy_name,
                     )
                 else:
                     self.output(
-                        "Jamf Content List: Updating existing entry for '%s'"
-                        % selfservice_policy_name
+                        "Jamf Content List: Updating existing entry for "
+                        + final_policy_name
                     )
-
                 # now update the other keys in the entry
-                self.update_record(
-                    site,
-                    "Jamf Content List",
-                    "Untested_x0020_Version",
-                    "",
-                    "Title",
-                    selfservice_policy_name,
+                self.output(
+                    "Jamf Content List: Clearing 'Untested Version' for "
+                    + final_policy_name
                 )
                 self.update_record(
-                    site,
-                    "Jamf Content List",
-                    "Prod_x002e__x0020_Version",
-                    version,
-                    "Title",
-                    selfservice_policy_name,
+                    site, "Jamf Content List", "Untested Version", "", criteria,
+                )
+                self.output(
+                    "Jamf Content List: Setting 'Prod. Version'='"
+                    + version
+                    + "' for "
+                    + final_policy_name
+                )
+                self.update_record(
+                    site, "Jamf Content List", "Prod. Version", version, criteria
                 )
                 # Test Report requires special work as it is a dictionary of title and url
+                self.output(
+                    "Jamf Content List: Setting 'Test Report' for " + final_policy_name
+                )
                 self.update_record(
                     site,
                     "Jamf Content List",
-                    "Test_x0020_Report",
-                    {
-                        "text": "Test Report",
-                        "href": self.test_report_url(sp_url, sharepoint_policy_name),
-                    },
-                    "Title",
-                    selfservice_policy_name,
+                    "Test Report",
+                    self.test_report_url(sp_url, self_service_policy_name)
+                    + ", Test Report",
+                    criteria,
                 )
 
 
