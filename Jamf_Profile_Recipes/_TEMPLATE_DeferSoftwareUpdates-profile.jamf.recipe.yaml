@@ -1,14 +1,15 @@
-Description: Template profile - NAME, DEFERRAL_DAYS_MAJOR_UPDATES, DEFERRAL_DAYS_MINOR_UPDATES and DEFERRAL_DAYS_APP_UPDATES should be set in an override
+Description: Template profile - DEFERRAL_DAYS_MAJOR_UPDATES, DEFERRAL_DAYS_MINOR_UPDATES and DEFERRAL_DAYS_APP_UPDATES should be set in an override
 Identifier: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-Template-profile
 MinimumVersion: "2.3"
 
 Input:
+  NAME: Defer Software Updates
   IDENTIFIER: com.apple.SoftwareUpdate
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-single-group.xml
   PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor)"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_PAYLOAD: "%IDENTIFIER%-%DEFERRAL_DAYS_MAJOR_UPDATES%-%DEFERRAL_DAYS_MINOR_UPDATES%.plist"
   PROFILE_DESCRIPTION: "Defers the availability of major software updates by %DEFERRAL_DAYS_MAJOR_UPDATES% and minor updates by %DEFERRAL_DAYS_MINOR_UPDATES%."
   USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor) users"
   TEST_USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor) test users"
