@@ -1,8 +1,10 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-90-3-profile
+ParentRecipe: com.github.grahampugh.recipes.jamf.DeferSoftwareUpdates-Template-profile
 MinimumVersion: "2.3"
 
 Input:
+  NAME: Defer Software Updates
   DEFERRAL_DAYS_MAJOR_UPDATES: 90
   DEFERRAL_DAYS_MINOR_UPDATES: 3
   DEFERRAL_DAYS_APP_UPDATES: 3
@@ -11,7 +13,7 @@ Input:
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-single-group.xml
   PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor)"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_PAYLOAD: "%IDENTIFIER%-%DEFERRAL_DAYS_MAJOR_UPDATES%-%DEFERRAL_DAYS_MINOR_UPDATES%.plist"
   PROFILE_DESCRIPTION: "Defers the availability of major software updates by %DEFERRAL_DAYS_MAJOR_UPDATES% and minor updates by %DEFERRAL_DAYS_MINOR_UPDATES%."
   USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor) users"
   TEST_USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor) test users"
