@@ -1,0 +1,8 @@
+AllowPreReleaseInstallation: False
+ManagedDeferredInstallDelay: 3
+forceDelayedSoftwareUpdates: True
+forceDelayedMajorSoftwareUpdates: True
+enforcedSoftwareUpdateMajorOSDeferredInstallDelay: 90
+enforcedSoftwareUpdateMinorOSDeferredInstallDelay: 3
+enforcedSoftwareUpdateNonOSDeferredInstallDelay: 3
+forceDelayedAppSoftwareUpdates: True
