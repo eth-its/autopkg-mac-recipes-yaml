@@ -55,7 +55,7 @@ killall "ReceiverHelper"
 killall "AuthManager_Mac"
 killall "ServiceRecords"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
-launchctl unload -wF "/Library/LauchDaemons/com.citrix.ctxusbd.plist"
+launchctl unload -wF "/Library/LaunchDaemons/com.citrix.ctxusbd.plist"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.AuthManager_Mac.plist"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
 
@@ -101,7 +101,7 @@ fi
 /bin/rm -f "/Library/LaunchAgents/com.citrix.AuthManager_Mac.plist" ||:
 /bin/rm -f "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist" ||:
 /bin/rm -f "/Library/LaunchAgents/com.citrix.ServiceRecords.plist" ||:
-/bin/rm -f "/Library/LauchDaemons/com.citrix.ctxusbd.plist" ||:
+/bin/rm -f "/Library/LaunchDaemons/com.citrix.ctxusbd.plist" ||:
 /bin/rm -rf "/usr/local/libexec/AuthManager_Mac.app" ||:
 /bin/rm -rf "/usr/local/libexec/ReceiverHelper.app" ||:
 /bin/rm -rf "/usr/local/libexec/ServiceRecords.app" ||:
