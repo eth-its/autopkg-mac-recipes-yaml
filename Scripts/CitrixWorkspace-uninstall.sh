@@ -54,10 +54,10 @@ killall "Citrix Workspace Helper"
 killall "ReceiverHelper"
 killall "AuthManager_Mac"
 killall "ServiceRecords"
-launchctl unload -wF -S Aqua "/Library/LauchAgents/com.citrix.ReceiverHelper.plist"
+launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
 launchctl unload -wF "/Library/LauchDaemons/com.citrix.ctxusbd.plist"
-launchctl unload -wF -S Aqua "/Library/LauchAgents/com.citrix.AuthManager_Mac.plist"
-launchctl unload -wF -S Aqua "/Library/LauchAgents/com.citrix.ReceiverHelper.plist"
+launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.AuthManager_Mac.plist"
+launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
 
 # FollowMeData needs to be uninstalled if present
 FMD_UNINSTALLER="/Applications/Citrix/FollowMeData/Uninstall ShareFile Plug-in.app/Contents/Resources/PriviledgedTool"
@@ -98,9 +98,9 @@ fi
 /bin/rm -rf "/Applications/Citrix Workspace.app" ||:
 /bin/rm -rf "/Library/Application Support/Citrix Browser" ||:
 /bin/rm -rf "/Library/Application Support/Citrix Receiver" ||:
-/bin/rm -f "/Library/LauchAgents/com.citrix.AuthManager_Mac.plist" ||:
-/bin/rm -f "/Library/LauchAgents/com.citrix.ReceiverHelper.plist" ||:
-/bin/rm -f "/Library/LauchAgents/com.citrix.ServiceRecords.plist" ||:
+/bin/rm -f "/Library/LaunchAgents/com.citrix.AuthManager_Mac.plist" ||:
+/bin/rm -f "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist" ||:
+/bin/rm -f "/Library/LaunchAgents/com.citrix.ServiceRecords.plist" ||:
 /bin/rm -f "/Library/LauchDaemons/com.citrix.ctxusbd.plist" ||:
 /bin/rm -rf "/usr/local/libexec/AuthManager_Mac.app" ||:
 /bin/rm -rf "/usr/local/libexec/ReceiverHelper.app" ||:
