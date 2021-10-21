@@ -8,3 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.AdobeAcrobatReaderDC"
   SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh
   SCRIPT_PATH: AdobeAcrobatReaderDC-postinstall.sh
+  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png

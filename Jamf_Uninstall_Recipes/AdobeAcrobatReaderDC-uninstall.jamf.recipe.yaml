@@ -7,3 +7,4 @@ Input:
   NAME: Adobe Acrobat Reader DC
   SCRIPT_NAME: AdobeAcrobatReaderDC-uninstall.sh
   SCRIPT_PATH: AdobeAcrobatReaderDC-uninstall.sh
+  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png

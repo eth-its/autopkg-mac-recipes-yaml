@@ -9,3 +9,4 @@ Input:
   SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
