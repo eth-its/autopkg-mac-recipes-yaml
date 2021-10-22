@@ -11,7 +11,7 @@
       <value>10.13.4</value>
     </criterion>
     <criterion>
-      <name>Boot Volume Type</name>
+      <name>%EXTENSION_ATTRIBUTE_NAME%</name>
       <priority>1</priority>
       <and_or>or</and_or>
       <search_type>is not</search_type>
