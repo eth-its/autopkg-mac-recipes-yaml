@@ -5,6 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: TeXShop
-  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
-  PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: edu.uoregon.TeXShop
+  SCRIPT_NAME: Support-uninstall.sh
+  SCRIPT_PATH: Support-uninstall.sh

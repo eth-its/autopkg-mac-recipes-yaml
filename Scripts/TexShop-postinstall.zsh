@@ -45,7 +45,7 @@ fi
 # Compare versions. Delete existing if version is older or equal to TeX installation
 if [[ $standalone_version == 0 ]]; then
     echo "No standalone version. Nothing to do."
-if is-at-least "$standalone_version" "$tex_version"; then
+elif is-at-least "$standalone_version" "$tex_version"; then
     echo "TeX version ($tex_version) is newer or equal. Deleting standalone version ($standalone_version)."
     if /bin/rm -rf "$standalone_location"; then
         echo "Deleted $standalone_location"
