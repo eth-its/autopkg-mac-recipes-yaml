@@ -5,5 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: TeXShop
-  SCRIPT_NAME: Support-uninstall.sh
-  SCRIPT_PATH: Support-uninstall.sh
+  SCRIPT_NAME: TeXShop-uninstall.sh
+  SCRIPT_PATH: TeXShop-uninstall.sh
