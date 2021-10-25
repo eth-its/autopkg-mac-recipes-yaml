@@ -10,7 +10,7 @@ Input:
   MIN_OS_VERSION: "10.12.4"
   MAX_OS_VERSION: "11.99"
   MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-6]|Macmini[7-9]|MacPro[6-9])
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --reinstall
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --reinstall --cleanup-after-use --depnotify
   INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   SELFSERVICE_ICON: Install macOS Monterey.png

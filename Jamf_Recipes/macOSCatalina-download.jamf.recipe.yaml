@@ -19,7 +19,7 @@ Input:
   MODEL_IDENTIFIER_REGEX: ^(iMac1[3-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[5-9]|MacBookAir1[0-9]|MacBookPro9|MacBookPro1[0-6]|MacMini[6-9]|MacPro[5-9])
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=10.15 --update --move
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os 10.15 --update --move
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Catalina.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Catalina.png

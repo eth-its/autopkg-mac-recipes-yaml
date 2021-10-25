@@ -10,7 +10,7 @@ Input:
   MIN_OS_VERSION: "10.12.4"
   MAX_OS_VERSION: "10.14.7"
   MODEL_IDENTIFIER_REGEX: ^(iMac1[3-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[5-9]|MacBookAir1[0-9]|MacBookPro9|MacBookPro1[0-6]|MacMini[6-9]|MacPro[5-9])
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=10.15 --update --reinstall
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=10.15 --update --reinstall --cleanup-after-use --depnotify
   INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   SELFSERVICE_ICON: Install macOS Catalina.png

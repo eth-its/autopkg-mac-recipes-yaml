@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
   EXTENSION_ATTRIBUTE_NAME: Boot Volume Type
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-erase-install-ineligible.xml
-  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos
+  TRIGGER_POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos --depnotify
   INSTALL_BUTTON_TEXT: ERASE!
   REINSTALL_BUTTON_TEXT: ERASE!
   SELFSERVICE_ICON: Erase and Reinstall macOS.png

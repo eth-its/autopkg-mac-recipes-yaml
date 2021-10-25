@@ -19,7 +19,7 @@ Input:
   MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-6]|Macmini[7-9]|MacPro[6-9])
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --reinstall
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os 12 --update --reinstall --cleanup-after-use --depnotify
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will download the latest version of macOS Monterey and install it on the system volume. All work should be saved and backed up before starting.
   SELFSERVICE_ICON: Install macOS Monterey.png

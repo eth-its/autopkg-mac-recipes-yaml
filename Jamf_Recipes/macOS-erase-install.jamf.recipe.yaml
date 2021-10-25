@@ -5,6 +5,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.erase-install
 
 Input:
   NAME: Erase and Reinstall macOS
+  INSTALLER: erase-install-depnotify
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
@@ -18,7 +19,7 @@ Input:
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-erase-install-ineligible.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos --depnotify
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will completely erase the device and reinstall macOS to the latest version.
   SELFSERVICE_ICON: Erase and Reinstall macOS.png

@@ -19,7 +19,7 @@ Input:
   MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-6]|Macmini[7-9]|MacPro[6-9])
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=11 --update --move
+  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os 11 --update --move
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Monterey.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Monterey.png
