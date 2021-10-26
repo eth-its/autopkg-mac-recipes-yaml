@@ -1,5 +1,5 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.macos-bigsur-upgrade-nodes
+Identifier: com.github.eth-its-recipes.jamf.macos-monterey-upgrade-nodes
 MinimumVersion: "2.3"
 
 Input:
