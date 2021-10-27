@@ -5,7 +5,7 @@ ParentRecipe: com.github.rtrouton.download.Prism
 
 Input:
   NAME: Prism
-  LIST_LANGUAGE: ML
+  LIST_LANGUAGE: EN
   LIST_LANGUAGE_COLUMN_NUMBER: "4"
   LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
   LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
