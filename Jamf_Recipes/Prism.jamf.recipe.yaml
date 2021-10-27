@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Prism
 
 Input:
   NAME: Prism
+  LANGUAGE: EN
   MAJOR_VERSION: "9"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -19,18 +20,18 @@ Input:
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
   SELFSERVICE_ICON: "Prism 9.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %LANGUAGE% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
