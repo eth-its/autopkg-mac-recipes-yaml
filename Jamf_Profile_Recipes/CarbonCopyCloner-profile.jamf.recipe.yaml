@@ -6,6 +6,8 @@ MinimumVersion: "2.3"
 Input:
   NAME: Carbon Copy Cloner
   LANGUAGE: EN
+  IDENTIFIER: com.bombich.ccc
+  ORGANIZATION: ETH Zürich
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   JSS_INVENTORY_NAME: "%NAME%.app"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
@@ -13,7 +15,7 @@ Input:
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   PROFILE_TEMPLATE: Profile-single-group.xml
   PROFILE_NAME: Carbon Copy Cloner
-  PROFILE_MOBILECONFIG: DetectX-settings.mobileconfig
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   REPLACE_PROFILE: "False"
 
 Process:
