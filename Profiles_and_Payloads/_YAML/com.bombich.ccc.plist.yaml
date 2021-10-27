@@ -1,0 +1,7 @@
+RegistrationCode: "%REGISTRATION_CODE%"
+RegistrationEmail: "%REGISTRATION_EMAIL%"
+RegistrationName: "%REGISTRATION_NAME%"
+RegistrationProductName: "%REGISTRATION_PRODUCT_NAME%"
+SUCheckAtStartup: False
+SUScheduledCheckInterval: 0
+userAgreedToLicenseAgreement: True

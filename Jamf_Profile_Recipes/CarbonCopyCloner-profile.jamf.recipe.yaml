@@ -1,20 +1,20 @@
+Comment: REGISTRATION_CODE, REGISTRATION_EMAIL, REGISTRATION_NAME, REGISTRATION_PRODUCT_NAME keys all need to be added to the recipe override.
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.DetectX-profile
+Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: DetectX Swift
-  INSTALLED_GROUP_NAME: "%NAME% installed"
+  NAME: Carbon Copy Cloner
+  LANGUAGE: EN
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_CATEGORY: Development & Computing
+  PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   PROFILE_TEMPLATE: Profile-single-group.xml
-  PROFILE_NAME: DetectX settings
+  PROFILE_NAME: Carbon Copy Cloner
   PROFILE_MOBILECONFIG: DetectX-settings.mobileconfig
-  PROFILE2_NAME: Privacy Preferences - DetectX
-  PROFILE2_MOBILECONFIG: DetectX-PPPC.mobileconfig
   REPLACE_PROFILE: "False"
-  REPLACE_PROFILE2: "False"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -25,7 +25,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
-      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
@@ -36,12 +36,3 @@ Process:
       mobileconfig: "%PROFILE_MOBILECONFIG%"
       profile_computergroup: "%INSTALLED_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Arguments:
-      profile_name: "%PROFILE2_NAME%"
-      profile_category: "%PROFILE_CATEGORY%"
-      profile_template: "%PROFILE_TEMPLATE%"
-      mobileconfig: "%PROFILE2_MOBILECONFIG%"
-      profile_computergroup: "%INSTALLED_GROUP_NAME%"
-      replace_profile: "%REPLACE_PROFILE2%"
