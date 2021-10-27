@@ -1,0 +1,58 @@
+Description: Downloads the latest version of Prism and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Prism
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.rtrouton.download.Prism
+
+Input:
+  NAME: Prism
+  LIST_LANGUAGE: ML
+  LIST_LANGUAGE_COLUMN_NUMBER: "4"
+  LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
+  LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
+  LIST_DELIMITER: ;
+  LIST_NAME: Prism
+  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_MAJOR_VERSION: ""
+  LIST_PATH_COLUMN_NUMBER: "6"
+  LIST_TITLE_COLUMN_NUMBER: "1"
+  LIST_VERSION_COLUMN_NUMBER: "2"
+  SOFTWARE_REPO: /Volumes/mac
+
+Process:
+  - Arguments:
+      list_language: "%LIST_LANGUAGE%"
+      list_name: "%LIST_NAME%"
+      list_major_version: "%LIST_MAJOR_VERSION%"
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      lang_col: "%LIST_LANGUAGE_COLUMN_NUMBER%"
+      license_col: "%LIST_LICENSE_KEY_COLUMN_NUMBER%"
+      license_file_col: "%LIST_LICENSE_FILE_COLUMN_NUMBER%"
+      license_file_source: "%LIST_LICENSE_FILE_SOURCE%"
+      list_delimiter: "%LIST_DELIMITER%"
+      list_source: "%LIST_SOURCE%"
+      mounted_repo: "%SOFTWARE_REPO%"
+      path_col: "%LIST_PATH_COLUMN_NUMBER%"
+      title_col: "%LIST_TITLE_COLUMN_NUMBER%"
+      version_col: "%LIST_VERSION_COLUMN_NUMBER%"
+    Comment: Get list of versions of a product. Outputs path to latest version. In this recipe, we only actually want the license key.
+    Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%/Prism*.app"
+      destination_path: "%RECIPE_CACHE_DIR%/Prism.app"
+
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: AppPkgCreator
+    Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/Prism.app"
+      pathname: "%RECIPE_CACHE_DIR%/%latest_file%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Prism.app"

@@ -1,0 +1,19 @@
+Description: Creates a Once per computer policy to update the Prism license by running the postinstall script.
+Identifier: ch.ethz.id.jamf.script.PrismLicenseUpdate
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Prism License Update
+  EXPIRY_YEAR: "2022"
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Prism-license-Policy-prod-once-per-computer.xml
+  POLICY_NAME: "Issue new Prism license - expiry %EXPIRY_YEAR%"
+  INSTALLED_GROUP_NAME: Prism EN installed
+  SCRIPT_NAME: Prism-postinstall.sh
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"

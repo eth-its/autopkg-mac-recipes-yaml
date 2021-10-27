@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Prism-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Prism
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Prism"
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PATH: "%NAME%-postinstall.sh"
+  SELFSERVICE_ICON: "Prism 9.png"
