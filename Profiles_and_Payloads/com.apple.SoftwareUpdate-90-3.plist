@@ -5,7 +5,7 @@
 	<key>AllowPreReleaseInstallation</key>
 	<false/>
 	<key>ManagedDeferredInstallDelay</key>
-	<integer>3</integer>
+	<integer>30</integer>
 	<key>enforcedSoftwareUpdateMajorOSDeferredInstallDelay</key>
 	<integer>90</integer>
 	<key>enforcedSoftwareUpdateMinorOSDeferredInstallDelay</key>
