@@ -183,6 +183,7 @@ class JamfUploadSharepointStageCheck(Processor):
         if "tst" in jss_url:
             criteria["Release Completed TST"] = ["Eq", "No"]
         elif "prd" in jss_url:
+            criteria["Release Completed TST"] = ["Eq", "Yes"]
             criteria["Release Completed PRD"] = ["Eq", "No"]
         else:
             raise ProcessorError("Invalid JSS_URL supplied.")
