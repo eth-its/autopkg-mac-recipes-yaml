@@ -55,9 +55,12 @@ class JamfUploadProdRecipeListAppender(Processor):
         """Do the main thing"""
         recipe_path = self.env.get("RECIPE_PATH")
         prod_recipe_list_path = self.env.get("prod_recipe_list_path")
-        policy_name = self.env.get("policy_name")
 
-        if policy_name:
+        if (
+            ".jamf.recipe.yaml" in recipe_path
+            and "-prod" not in recipe_path
+            and "-nodes" not in recipe_path
+        ):
             # extract recipe name from path
             recipe_file = os.path.basename(recipe_path)
             recipe_name = recipe_file.replace("-prod.jamf.recipe.yaml", "-prod.jamf")
@@ -87,7 +90,9 @@ class JamfUploadProdRecipeListAppender(Processor):
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
         else:
-            self.output("Nothing to do.")
+            self.output(
+                f"{recipe_path} is not an untested .jamf recipe, so nothing to do."
+            )
 
 
 if __name__ == "__main__":
