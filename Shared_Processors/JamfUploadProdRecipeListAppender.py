@@ -76,6 +76,8 @@ class JamfUploadProdRecipeListAppender(Processor):
                             f"{recipe_name} already in {recipe_file}; nothing to do."
                         )
                         return
+            except FileNotFoundError:
+                pass
 
                 with open(prod_recipe_list_path, "a+") as file:
                     # Move read cursor to the start of file.

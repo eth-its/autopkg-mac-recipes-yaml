@@ -65,23 +65,25 @@ class JamfUploadNodesRecipeListAppender(Processor):
             try:
                 with open(nodes_recipe_list_path, "r") as file:
                     lines = file.readlines()
-
                 for line in lines:
                     if line.strip("\n") == recipe_name:
                         self.output(
                             f"{recipe_name} already in {recipe_file}; nothing to do."
                         )
                         return
+            except FileNotFoundError:
+                pass
 
-                with open(nodes_recipe_list_path, "a+") as file_object:
+            try:
+                with open(nodes_recipe_list_path, "a+") as file:
                     # Move read cursor to the start of file.
-                    file_object.seek(0)
+                    file.seek(0)
                     # If file is not empty then append '\n'
-                    data = file_object.read(100)
+                    data = file.read(100)
                     if len(data) > 0:
-                        file_object.write("\n")
+                        file.write("\n")
                     # Append text at the end of file
-                    file_object.write(recipe_name)
+                    file.write(recipe_name)
                 self.output(f"Added {recipe_name} to {nodes_recipe_list_path}")
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
