@@ -38,10 +38,6 @@ class JamfUploadProdRecipeListRemover(Processor):
             "required": True,
             "description": ("Path of recipe that is being run."),
         },
-        "SELFSERVICE_POLICY_NAME": {
-            "required": False,
-            "description": ("Staged product name."),
-        },
         "prod_recipe_list_path": {
             "required": False,
             "description": ("Path of recipe list to edit."),
@@ -57,9 +53,8 @@ class JamfUploadProdRecipeListRemover(Processor):
         recipe_path = self.env.get("RECIPE_PATH")
         recipe_type = self.env.get("recipe_type")
         prod_recipe_list_path = self.env.get("prod_recipe_list_path")
-        selfservice_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
 
-        if recipe_type == "prod" and selfservice_policy_name:
+        if recipe_type == "prod":
             # extract recipe name from path
             recipe_file = os.path.basename(recipe_path)
             recipe_name = recipe_file.replace("-prod.jamf.recipe.yaml", "-prod.jamf")
@@ -75,11 +70,14 @@ class JamfUploadProdRecipeListRemover(Processor):
                         # readlines() includes a newline character
                         if line.strip("\n") != recipe_name:
                             file.write(line)
-                self.output(f"Removed {recipe_name} from {recipe_file}")
+                        else:
+                            self.output(f"Removed {recipe_name} from {recipe_file}")
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
+        elif recipe_path:
+            self.output(f"{recipe_path} is not a -prod.jamf recipe, so nothing to do.")
         else:
-            self.output("Nothing to do.")
+            self.output("No recipe path supplied, so nothing to do.")
 
 
 if __name__ == "__main__":
