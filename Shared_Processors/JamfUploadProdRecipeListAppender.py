@@ -83,7 +83,7 @@ class JamfUploadProdRecipeListAppender(Processor):
                         file.write("\n")
                     # Append text at the end of file
                     file.write(recipe_name)
-                self.output(f"Added {recipe_name} to {recipe_file}")
+                self.output(f"Added {recipe_name} to {prod_recipe_list_path}")
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
         else:

@@ -71,7 +71,9 @@ class JamfUploadProdRecipeListRemover(Processor):
                         if line.strip("\n") != recipe_name:
                             file.write(line)
                         else:
-                            self.output(f"Removed {recipe_name} from {recipe_file}")
+                            self.output(
+                                f"Removed {recipe_name} from {prod_recipe_list_path}"
+                            )
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
         elif recipe_path:
