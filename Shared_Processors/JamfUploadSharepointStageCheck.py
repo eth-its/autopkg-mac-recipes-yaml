@@ -232,9 +232,7 @@ class JamfUploadSharepointStageCheck(Processor):
         # check each list has the requirements met for staging
         if "tst" in jss_url:
             # tst
-            if self.check_jamf_content_list(
-                site, selfservice_policy_name, version
-            ) and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url):
+            if self.check_jamf_test_review(site, sharepoint_policy_name, jss_url):
                 ready_to_stage = True
         elif "prd" in jss_url:
             # prd
