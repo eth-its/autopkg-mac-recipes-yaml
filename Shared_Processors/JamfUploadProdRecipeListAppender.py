@@ -79,6 +79,7 @@ class JamfUploadProdRecipeListAppender(Processor):
             except FileNotFoundError:
                 pass
 
+            try:
                 with open(prod_recipe_list_path, "a+") as file:
                     # Move read cursor to the start of file.
                     file.seek(0)
