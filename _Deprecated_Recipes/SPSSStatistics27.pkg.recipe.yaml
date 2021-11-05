@@ -5,7 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.download.internal-sources
 MinimumVersion: "2.3"
 
 Input:
-  DEPRECATION_WARNING: Use com.github.eth-its-recipes.pkg.SPSSStatistics and override MAJOR_VERSION and LIST_MAJOR_VERSION with the current major release.
   NAME: SPSSStatistics
   LIST_LANGUAGE: ML
   LIST_NAME: IBM SPSS
@@ -13,10 +12,6 @@ Input:
   LIST_MAJOR_VERSION: "27"
 
 Process:
-  - Processor: DeprecationWarning
-    Arguments:
-      warning_message: "%DEPRECATION_WARNING%"
-
   - Processor: FlatPkgUnpacker
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Unpacked"
