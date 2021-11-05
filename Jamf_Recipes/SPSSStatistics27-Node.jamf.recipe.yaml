@@ -4,7 +4,6 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatistics27
 
 Input:
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
   NAME: SPSS Statistics
   POLICY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "SPSS Statistics %MAJOR_VERSION% %LICENSE% (Testing)"
@@ -55,14 +54,6 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
-  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
-    Arguments:
-      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
-
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -71,9 +62,13 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
-      replace_pkg: "False"
-      replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
