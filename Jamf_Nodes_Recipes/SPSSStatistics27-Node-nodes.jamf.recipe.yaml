@@ -3,7 +3,6 @@ Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics27-Node-nodes
 MinimumVersion: "2.3"
 
 Input:
-  DEPRECATION_WARNING: SPSS 28 has now been released so SPSS 27 will no longer get any updates.
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics27-Floating
   NAME: SPSS Statistics
   LICENSE: Node
@@ -58,10 +57,6 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
-  - Processor: DeprecationWarning
-    Arguments:
-      warning_message: "%DEPRECATION_WARNING%"
-
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
