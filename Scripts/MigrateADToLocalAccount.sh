@@ -92,7 +92,7 @@ echo "Informing user of the process." >> "$LOGFILE"
 
 "$JAMFHELPER" -windowType utility -heading 'Account Migration' -description "The network account for $current_user will be converted to a local account. You will be asked for your account password.  Click OK to continue." -button1 "Continue" -button2 "Cancel" -defaultButton 1 -cancelButton 2
 
-if [[ $? -ne 0 ]]; then
+if [[ "$?" -ne 0 ]]; then
 	echo "User cancelled the script. Exiting." >> "$LOGFILE"
 	exit 0
 fi
@@ -103,25 +103,25 @@ password_attempts=0
 while [[ "$login_password" != "$confirm_password" || -z "$login_password" ]]; do
 
 	# ask for password
-	login_password=$(/usr/bin/osascript <<EOT
+	login_password=$(/usr/bin/osascript <<END
 		set myReply to text returned of (display dialog "Please enter your login password." ¬
 		default answer "" ¬
 			with title "Account Migration" ¬
 			buttons {"Continue"} ¬
 			default button 1 ¬
 			with hidden answer)
-EOT
+END
 	)
 
 	# Confirm password.
-	confirm_password=$(/usr/bin/osascript <<EOT
+	confirm_password=$(/usr/bin/osascript <<END
 		set myReply to text returned of (display dialog "Please confirm your password" ¬
 		default answer "" ¬
 			with title "Account Migration" ¬
 			buttons {"Continue"} ¬
 			default button 1 ¬
 			with hidden answer)
-EOT
+END
 	)
 
 	password_attempts=$((password_attempts+1))
@@ -129,19 +129,19 @@ EOT
 	if [[ "$login_password" != "$confirm_password" ]]; then
 		if [[ $password_attempts -le 2 ]]; then
 			echo "ERROR: Password mismatch... alerting user to try again (attempt "$(( password_attempts + 1))  >> "$LOGFILE"
-			/usr/bin/osascript <<EOT
+			/usr/bin/osascript <<END
 				display dialog "Passwords do not match. Please try again." ¬
 					with title "Account Migration" ¬
 					buttons {"Continue"} ¬
 					default button 1
-EOT
+END
 		else
-			/usr/bin/osascript <<EOT
+			/usr/bin/osascript <<END
 				display dialog "You have entered mis-matching passwords too many times. Please contact your IT administrator for assistance." ¬
 					with title "Account Migration" ¬
 					buttons {"OK"} ¬
 					default button 1
-EOT
+END
 			echo "ERROR: Entered mis-matching passwords too many times. Aborting." >> "$LOGFILE"
 			exit 2  # exit with an error status
 		fi
