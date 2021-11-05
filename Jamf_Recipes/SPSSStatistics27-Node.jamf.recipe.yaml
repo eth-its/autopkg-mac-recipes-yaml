@@ -149,3 +149,5 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
