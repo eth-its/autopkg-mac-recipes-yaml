@@ -63,7 +63,7 @@ class JamfUploadProdRecipeListAppender(Processor):
         ):
             # extract recipe name from path
             recipe_file = os.path.basename(recipe_path)
-            recipe_name = recipe_file.replace("-prod.jamf.recipe.yaml", "-prod.jamf")
+            recipe_name = recipe_file.replace(".jamf.recipe.yaml", "-prod.jamf")
 
             # now write to the nodes recipe list
             try:
