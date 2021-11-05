@@ -4,10 +4,13 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Disable Python 2 Deprecation Prompt
+  IDENTIFIER: com.apple.python
+  ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-single-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_MOBILECONFIG: DisablePythonAlert.mobileconfig
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_DESCRIPTION: Disables a warning that an application is too old when it calls a python 2 script.
   USERS_GROUP_NAME: Disable Python 2 Deprecation Prompt users
   TEST_USERS_GROUP_NAME: Disable Python 2 Deprecation Prompt test users
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
@@ -38,6 +41,9 @@ Process:
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
-      mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%INSTALLED_GROUP_NAME%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"

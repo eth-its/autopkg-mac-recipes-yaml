@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>PayloadContent</key>
+		<array>
+			<dict>
+				<key>PayloadEnabled</key>
+				<true/>
+				<key>PayloadIdentifier</key>
+				<string>alacarte.CE18A5FF-AD61-4ADD-B8B2-DC258A5188BE</string>
+				<key>PayloadType</key>
+				<string>com.apple.python</string>
+				<key>PayloadUUID</key>
+				<string>CE18A5FF-AD61-4ADD-B8B2-DC258A5188BE</string>
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+				<key>DisablePythonAlert</key>
+				<true/>
+			</dict>
+		</array>
+		<key>PayloadDescription</key>
+		<string>Disables a warning that an application is too old when it calls a python 2 script.</string>
+		<key>PayloadDisplayName</key>
+		<string>Disable Python Prompt</string>
+		<key>PayloadIdentifier</key>
+		<string>com.apple.python</string>
+		<key>PayloadOrganization</key>
+		<string>ETH Zürich</string>
+		<key>PayloadRemovalDisallowed</key>
+		<true/>
+		<key>PayloadScope</key>
+		<string>System</string>
+		<key>PayloadType</key>
+		<string>Configuration</string>
+		<key>PayloadUUID</key>
+		<string>00B5A79E-4C08-421B-94BD-D1BED69624BC</string>
+		<key>PayloadVersion</key>
+		<integer>1</integer>
+	</dict>
+</plist>
