@@ -24,7 +24,7 @@
 		<key>PayloadDisplayName</key>
 		<string>Disable Python 2 Deprecation Prompt</string>
 		<key>PayloadIdentifier</key>
-		<string>com.apple.python</string>
+		<string>com.apple.python.00B5A79E-4C08-421B-94BD-D1BED69624BC</string>
 		<key>PayloadOrganization</key>
 		<string>ETH Zurich</string>
 		<key>PayloadRemovalDisallowed</key>
