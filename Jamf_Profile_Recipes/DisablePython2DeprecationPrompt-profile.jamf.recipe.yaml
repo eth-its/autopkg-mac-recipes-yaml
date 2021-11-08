@@ -39,5 +39,5 @@ Process:
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%INSTALLED_GROUP_NAME%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
