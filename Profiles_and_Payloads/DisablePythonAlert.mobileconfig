@@ -8,11 +8,11 @@
 				<key>PayloadEnabled</key>
 				<true/>
 				<key>PayloadIdentifier</key>
-				<string>00B5A79E-4C08-421B-94BD-D1BED69624BC</string>
+				<string>alacarte.73001E2A-914F-45A7-B8B4-8E3FF927C0D3</string>
 				<key>PayloadType</key>
 				<string>com.apple.python</string>
 				<key>PayloadUUID</key>
-				<string>00B5A79E-4C08-421B-94BD-D1BED69624BC</string>
+				<string>73001E2A-914F-45A7-B8B4-8E3FF927C0D3</string>
 				<key>PayloadVersion</key>
 				<integer>1</integer>
 				<key>DisablePythonAlert</key>
@@ -26,7 +26,7 @@
 		<key>PayloadIdentifier</key>
 		<string>com.apple.python</string>
 		<key>PayloadOrganization</key>
-		<string>ETH Zürich</string>
+		<string>ETH Zurich</string>
 		<key>PayloadRemovalDisallowed</key>
 		<true/>
 		<key>PayloadScope</key>
