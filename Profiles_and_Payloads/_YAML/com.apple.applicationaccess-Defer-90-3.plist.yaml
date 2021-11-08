@@ -1,0 +1,6 @@
+enforcedSoftwareUpdateMajorOSDeferredInstallDelay: 90
+enforcedSoftwareUpdateMinorOSDeferredInstallDelay: 3
+enforcedSoftwareUpdateNonOSDeferredInstallDelay: 3
+forceDelayedAppSoftwareUpdates: true
+forceDelayedMajorSoftwareUpdates: true
+forceDelayedSoftwareUpdates: true
