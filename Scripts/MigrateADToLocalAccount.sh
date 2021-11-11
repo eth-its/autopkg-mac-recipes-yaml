@@ -356,7 +356,7 @@ if [[ "${check4AD}" == "Active Directory" ]]; then
     if ! answer=$(
         /usr/bin/osascript -e "
             set nameentry to button returned of ¬
-            (display dialog \"Do you want to unbind this Mac from Active Directory?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon 2)"
+            (display dialog \"Do you want to unbind this Mac from Active Directory?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon POSIX file \"$dialog_icon\")"
         ); then
         /bin/echo "An error occurred."
         exit 1
@@ -372,7 +372,7 @@ if [[ "${check4AD}" == "Active Directory" ]]; then
     fi
     if [[ $uid ]]; then
         launchctl asuser "$uid" /usr/bin/osascript -e "
-            display dialog \"$finish_message.\" & return & return & \"The account conversion process is now complete.\" ¬
+            display dialog \"$finish_message.\" & return & return & \"The account conversion process is finished.\" & return & return & \"Please log out to complete the process.\" ¬
             buttons {\"OK\"} ¬
             default button 1 ¬
             with title \"$dialog_title\" ¬
