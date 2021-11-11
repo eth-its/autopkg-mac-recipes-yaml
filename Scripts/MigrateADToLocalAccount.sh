@@ -220,7 +220,7 @@ until [[ "$netname" == "false" ]]; do
     # stop here if there are no AD users to process
     if [[ ${#adUsers[@]} -eq 0 ]]; then
         echo "No AD users found"
-        exit 0
+        break
     fi
 
     # Dialog that explains to the user what is going to happen
@@ -257,9 +257,8 @@ until [[ "$netname" == "false" ]]; do
         exit 1
     fi
 
-    echo $netname  # temp
     if [ "$netname" = "false" ]; then
-        exit 0
+        break
     fi
             
     # Remove the account attributes that identify it as an Active Directory mobile account
@@ -305,7 +304,6 @@ until [[ "$netname" == "false" ]]; do
                 with title \"$dialog_title\" ¬
                 with icon POSIX file \"$dialog_icon\""
         fi
-
         exit 1
     else
         /bin/echo "Conversion process was successful."
@@ -320,7 +318,6 @@ until [[ "$netname" == "false" ]]; do
     fi
     
     # Add user to the staff group on the Mac
-    
     /bin/echo "Adding $netname to the staff group on this Mac."
     /usr/sbin/dseditgroup -o edit -a "$netname" -t user staff
     
@@ -359,7 +356,7 @@ if [[ "${check4AD}" == "Active Directory" ]]; then
     if ! answer=$(
         /usr/bin/osascript -e "
             set nameentry to button returned of ¬
-            (display dialog \"This machine is bound to Active Directory.\" & return & \"Do you want to unbind this Mac from AD?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon 2)"
+            (display dialog \"Do you want to unbind this Mac from Active Directory?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon 2)"
         ); then
         /bin/echo "An error occurred."
         exit 1
@@ -367,9 +364,19 @@ if [[ "${check4AD}" == "Active Directory" ]]; then
 
     if [[ "$answer" == "Yes" ]]; then
         RemoveAD
-        /bin/echo "AD binding has been removed."
+        /bin/echo "Active Directory binding has been removed."
+        finish_message="Active Directory binding has been removed"
     elif [[ "$answer" == "No" ]]; then
         /bin/echo "Active Directory binding is still active."
+        finish_message="Active Directory binding is still active."
+    fi
+    if [[ $uid ]]; then
+        launchctl asuser "$uid" /usr/bin/osascript -e "
+            display dialog \"$finish_message.\" & return & \"The account conversion process is now complete.\" ¬
+            buttons {\"OK\"} ¬
+            default button 1 ¬
+            with title \"$dialog_title\" ¬
+            with icon POSIX file \"$dialog_icon\""
     fi
 fi
 
