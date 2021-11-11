@@ -125,7 +125,7 @@ echo "Current user is $current_user"
 
 # icon for dialog windows
 dialog_icon="/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GroupIcon.icns"
-dialog_title="Account Migration"
+dialog_title="Migrate Mobile to Local Accounts"
 
 
 # =======================================================================================
@@ -192,27 +192,6 @@ PasswordMigration() {
 RunAsRoot "${0}"
 
 # =======================================================================================
-# Check for AD binding and offer to unbind if found. 
-
-if [[ "${check4AD}" == "Active Directory" ]]; then
-    if ! answer=$(
-        /usr/bin/osascript -e "
-            set nameentry to button returned of ¬
-            (display dialog \"This machine is bound to Active Directory.\" & return & \"Do you want to unbind this Mac from AD?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon 2)"
-        ); then
-        /bin/echo "An error occurred."
-        exit 1
-    fi
-
-    if [[ "$answer" == "Yes" ]]; then
-        RemoveAD
-        /bin/echo "AD binding has been removed."
-    elif [[ "$answer" == "No" ]]; then
-        /bin/echo "Active Directory binding is still active."
-    fi
-fi
-
-# =======================================================================================
 # Select a user and unbind 
 
 until [[ "$netname" == "false" ]]; do
@@ -244,12 +223,22 @@ until [[ "$netname" == "false" ]]; do
         exit 0
     fi
 
+    # Dialog that explains to the user what is going to happen
+    if [[ $uid ]]; then
+        launchctl asuser "$uid" /usr/bin/osascript -e "
+            display dialog \"You will be presented with a list of current Active Directory accounts on this computer.\" & return & \"Please select each user in turn that you wish to convert to a local account.\" & return & \"After each account is converted, you will be asked if you want the account to be an administerator or standard account.\" & return & \"Finally, you will be asked if you wish to unbind the computer from Active Directory.\" ¬
+            buttons {\"Proceed\"} ¬
+            default button 1 ¬
+            with title \"$dialog_title\" ¬
+            with icon POSIX file \"$dialog_icon\""
+    fi
+
     # display a dialog that shows the list of AD users
     if [[ $uid ]]; then
         if ! netname="$(launchctl asuser "$uid" /usr/bin/osascript -e "
             choose from list the paragraphs of \"$(/usr/bin/printf '%s\n' "${adUsers[@]}")\" ¬
             with title \"$dialog_title\" ¬
-            with prompt \"Select a user to convert:\" ¬
+            with prompt \"Please select a user to convert to a local account:\" ¬
             default items {\"$current_user\"} ¬
             multiple selections allowed false ¬
             empty selection allowed false ¬
@@ -362,3 +351,25 @@ until [[ "$netname" == "false" ]]; do
             with icon POSIX file \"$dialog_icon\""
     fi
 done
+
+# =======================================================================================
+# Check for AD binding and offer to unbind if found. 
+
+if [[ "${check4AD}" == "Active Directory" ]]; then
+    if ! answer=$(
+        /usr/bin/osascript -e "
+            set nameentry to button returned of ¬
+            (display dialog \"This machine is bound to Active Directory.\" & return & \"Do you want to unbind this Mac from AD?\" buttons {\"Yes\", \"No\"} default button \"Yes\" with icon 2)"
+        ); then
+        /bin/echo "An error occurred."
+        exit 1
+    fi
+
+    if [[ "$answer" == "Yes" ]]; then
+        RemoveAD
+        /bin/echo "AD binding has been removed."
+    elif [[ "$answer" == "No" ]]; then
+        /bin/echo "Active Directory binding is still active."
+    fi
+fi
+
