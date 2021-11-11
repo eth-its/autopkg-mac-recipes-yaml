@@ -226,7 +226,7 @@ until [[ "$netname" == "false" ]]; do
     # Dialog that explains to the user what is going to happen
     if [[ $uid ]]; then
         launchctl asuser "$uid" /usr/bin/osascript -e "
-            display dialog \"You will be presented with a list of current Active Directory accounts on this computer.\" & return & \"Please select each user in turn that you wish to convert to a local account.\" & return & \"After each account is converted, you will be asked if you want the account to be an administerator or standard account.\" & return & \"Finally, you will be asked if you wish to unbind the computer from Active Directory.\" ¬
+            display dialog \"You will be presented with a list of current Active Directory accounts on this computer.\" & return & return & \"Please select each user in turn that you wish to convert to a local account.\" & return & return & \"After each account is converted, you will be asked if you want the account to be an administerator or standard account.\" & return & return & \"Finally, you will be asked if you wish to unbind the computer from Active Directory.\" ¬
             buttons {\"Proceed\"} ¬
             default button 1 ¬
             with title \"$dialog_title\" ¬
@@ -298,7 +298,7 @@ until [[ "$netname" == "false" ]]; do
 
         if [[ $uid ]]; then
             launchctl asuser "$uid" /usr/bin/osascript -e "
-                display dialog \"Something went wrong with the conversion process.\" & return & \"The $netname account is still an AD mobile account.\" ¬
+                display dialog \"Something went wrong with the conversion process.\" & return & return & \"The $netname account is still an AD mobile account.\" ¬
                 buttons {\"OK\"} ¬
                 default button 1 ¬
                 with title \"$dialog_title\" ¬
@@ -372,7 +372,7 @@ if [[ "${check4AD}" == "Active Directory" ]]; then
     fi
     if [[ $uid ]]; then
         launchctl asuser "$uid" /usr/bin/osascript -e "
-            display dialog \"$finish_message.\" & return & \"The account conversion process is now complete.\" ¬
+            display dialog \"$finish_message.\" & return & return & \"The account conversion process is now complete.\" ¬
             buttons {\"OK\"} ¬
             default button 1 ¬
             with title \"$dialog_title\" ¬
