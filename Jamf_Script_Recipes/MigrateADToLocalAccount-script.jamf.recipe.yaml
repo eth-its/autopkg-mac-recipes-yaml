@@ -1,4 +1,4 @@
-Comment: Requires FQDN key in the RecipeOverride for the Extension Attribute.
+Comment: Requires FQDN and KNOWN_USER keys in the RecipeOverride for the Extension Attribute.
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.grahampugh.recipes.jamf.MigrateADToLocalAccount-script
 MinimumVersion: "2.3"
