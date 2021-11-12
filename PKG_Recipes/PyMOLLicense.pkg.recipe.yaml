@@ -11,7 +11,31 @@ Input:
   VENDOR: ETH
 
 Process:
-  - Processor: PkgCopier
+  - Processor: PkgRootCreator
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/PyMOL_License-%version%.pkg"
-      source_pkg: "%pathname%"
+      pkgdirs:
+        Library: "0755"
+        Library/Application Support: "0755"
+        Library/Application Support/Schrodinger: "0755"
+        Library/Application Support/Schrodinger/licenses: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Library/Application Support/Schrodinger/licenses/license.lic"
+      source_path: "%pathname%"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.PyMOLLicense
+        pkgname: PyMOL_License-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
