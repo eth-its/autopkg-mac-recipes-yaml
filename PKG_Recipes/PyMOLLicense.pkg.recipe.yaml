@@ -22,7 +22,7 @@ Process:
 
   - Processor: Copier
     Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Library/Application Support/Schrodinger/licenses/license.lic"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Application Support/Schrodinger/licenses/license.lic"
       source_path: "%pathname%"
 
   - Processor: PkgCreator
