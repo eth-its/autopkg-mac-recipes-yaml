@@ -1,0 +1,41 @@
+Description: Downloads the latest PyMOL license file and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.PyMOLLicense
+ParentRecipe: com.github.eth-its-recipes.download.PyMOLLicense
+MinimumVersion: "2.3"
+
+Input:
+  NAME: PyMOL License
+  EXCEPTION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: PyMOL_License
+  VENDOR: ETH
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Library: "0755"
+        Library/Application Support: "0755"
+        Library/Application Support/Schrodinger: "0755"
+        Library/Application Support/Schrodinger/licenses: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Application Support/Schrodinger/licenses/license.lic"
+      source_path: "%pathname%"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.PyMOLLicense
+        pkgname: PyMOL_License-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
