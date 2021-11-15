@@ -1,0 +1,11 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.FusionInventoryAgent-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: FusionInventory Agent
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.FusionInventoryAgent
+  EXTENSION_ATTRIBUTE_NAME: FusionInventory Agent Version
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
