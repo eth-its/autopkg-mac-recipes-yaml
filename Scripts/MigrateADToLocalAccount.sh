@@ -196,7 +196,10 @@ RunAsRoot "${0}"
 
 until [[ "$netname" == "false" ]]; do
     # get list of users with ID > 1000
-    listUsers=( "$(/usr/bin/dscl . list /Users UniqueID | awk '$2 > 1000 {print $1}')" )
+    # requires shellcheck disable because the result is a single list item if it's quoted
+    # but usernames cannot contain spaces so it's fine
+    # shellcheck disable=SC2207
+    listUsers=( $(/usr/bin/dscl . list /Users UniqueID | awk '$2 > 1000 {print $1}') )
     adUsers=()
     # loop through these users and check if they are actually AD accounts
     for username in "${listUsers[@]}"; do 
