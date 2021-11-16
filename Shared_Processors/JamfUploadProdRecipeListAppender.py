@@ -71,7 +71,7 @@ class JamfUploadProdRecipeListAppender(Processor):
                     lines = file.readlines()
 
                 for line in lines:
-                    if line.strip("\n") == recipe_name:
+                    if line.strip(os.linesep) == recipe_name:
                         self.output(
                             f"{recipe_name} already in {recipe_file}; nothing to do."
                         )
@@ -81,14 +81,12 @@ class JamfUploadProdRecipeListAppender(Processor):
 
             try:
                 with open(prod_recipe_list_path, "a+") as file:
-                    # Move read cursor to the start of file.
-                    file.seek(0)
-                    # If file is not empty then append '\n'
-                    data = file.read(100)
-                    if len(data) > 0:
-                        file.write("\n")
-                    # Append text at the end of file
-                    file.write(recipe_name)
+                    file_lines = file.readlines()
+                    # ensure last line has a line break, otherwise add one
+                    if file_lines[-1] != os.linesep:
+                        file.write(os.linesep)
+                    # Append text at the end of file, including a line break
+                    file.write(recipe_name + os.linesep)
                 self.output(f"Added {recipe_name} to {prod_recipe_list_path}")
             except Exception:
                 raise ProcessorError("Could not write to recipe list")
