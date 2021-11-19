@@ -83,8 +83,9 @@ class JamfUploadProdRecipeListAppender(Processor):
                 with open(prod_recipe_list_path, "a+") as file:
                     file_lines = file.readlines()
                     # ensure last line has a line break, otherwise add one
-                    if file_lines[-1] != os.linesep:
-                        file.write(os.linesep)
+                    if file_lines:
+                        if file_lines[-1] != os.linesep:
+                            file.write(os.linesep)
                     # Append text at the end of file, including a line break
                     file.write(recipe_name + os.linesep)
                 self.output(f"Added {recipe_name} to {prod_recipe_list_path}")
