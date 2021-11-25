@@ -8,7 +8,7 @@
 #
 #######################################################################
 
-function silent_app_quit() {
+silent_app_quit() {
     # silently kill the application.
     # add .app to end of string if not supplied
     app_name="${app_name/\.app/}"            # remove any .app
