@@ -12,7 +12,7 @@ Input:
   SELFSERVICE_ICON: Eclipse Temurin.png
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
-  TRIGGERONLY_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
   SCRIPT_NAME: EclipseTemurin-uninstall.sh
   SCRIPT_PRIORITY: Before
   PARAMETER4_VALUE: "8"
