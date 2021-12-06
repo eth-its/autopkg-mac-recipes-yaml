@@ -5,5 +5,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: FileMaker Pro
-  MAJOR_VERSION: "19"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileMakerPro

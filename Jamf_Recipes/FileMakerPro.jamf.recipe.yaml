@@ -7,16 +7,15 @@ Input:
   NAME: FileMaker Pro
   LIST_NAME: Filemaker Pro
   LICENSED_ORG: "ETH Zuerich"
-  MAJOR_VERSION: "19"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    FileMaker Pro %MAJOR_VERSION% is the tool you use to create a custom app. You also use FileMaker Pro %MAJOR_VERSION% to access your app on a Windows or Mac computer. 
+    FileMaker Pro is the tool you use to create a custom app. You also use FileMaker Pro to access your app on a Windows or Mac computer. 
 
     Start by importing data from a spreadsheet or using a built-in Starter app to manage contacts, inventory, meetings, and more. Or even quickly build a new app from the beginning. 
 
-    FileMaker Pro %MAJOR_VERSION% includes a set of advanced tools to help you design and develop custom apps faster and easier. Plus, you'll get robust analysis capabilities, powerful diagnostic tools, and much more.
+    FileMaker Pro includes a set of advanced tools to help you design and develop custom apps faster and easier. Plus, you'll get robust analysis capabilities, powerful diagnostic tools, and much more.
 
     Version: %version%
     Category: %PKG_CATEGORY%
