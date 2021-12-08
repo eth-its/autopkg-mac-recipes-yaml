@@ -26,7 +26,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: "%NAME%%MAJOR_VERSION%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
