@@ -1,0 +1,13 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: GLPI-Agent
+  SCRIPT_NAME: GLPIAgent-uninstall.sh
+  SCRIPT_PATH: GLPIAgent-uninstall.sh
+  EXTENSION_ATTRIBUTE_NAME: FusionInventory Agent Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_SEARCH_VALUE: "^None$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml

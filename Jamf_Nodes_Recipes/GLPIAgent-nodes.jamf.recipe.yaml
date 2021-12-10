@@ -1,0 +1,12 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: GLPI-Agent
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent
+  EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
+  EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
+  SELFSERVICE_ICON: "%NAME%.png"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
