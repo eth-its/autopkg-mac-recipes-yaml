@@ -10,3 +10,4 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_ICON: "%NAME%.png"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
