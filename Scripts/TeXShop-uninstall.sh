@@ -77,6 +77,19 @@ else
     echo "Folder not found: /Applications/${app_name}.localized/"
 fi
 
+# Remove the TeX folder if it's empty
+if [[ -d "/Applications/TeX" ]]; then
+    # the directory exists
+    if [[ "$(ls -A "/Applications/TeX")" ]]; then
+        echo "/Applications/TeX not empty - leaving alone"
+    else
+        echo "/Applications/TeX is empty - deleting"
+        rm -Rf "/Applications/TeX"
+    fi
+else
+    echo "/Applications/TeX not present"
+fi
+
 # Forget packages (works for all versions)
 echo "Forgetting packages"
 /usr/sbin/pkgutil --forget edu.uoregon.TeXShop ||:
