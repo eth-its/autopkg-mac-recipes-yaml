@@ -109,4 +109,4 @@ fi
 
 # Enable and start the printers on the system (after adding the printer initially it is paused).
 echo "Starting $printername on the system..."
-/usr/sbin/cupsenable "$(lpstat -p | grep -w "printer" | awk '{print$2}')"
+/usr/sbin/cupsenable "$(lpstat -p | grep -w "$printername" | awk '{print$2}')"
