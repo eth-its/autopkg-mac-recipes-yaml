@@ -9,7 +9,7 @@ Input:
   PRINTER_NAME: card-ethz
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  TESTING_GROUP_NAME: Testing
+  TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
   POLICY_CATEGORY: Connect & Remote
