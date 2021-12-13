@@ -13,7 +13,7 @@ Input:
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
   POLICY_CATEGORY: Connect & Remote
-  POLICY_TEMPLATE: Policy-prod-selfservice.xml
+  POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: ETHPrinterTemplate.sh
   SCRIPT_PRIORITY: After
