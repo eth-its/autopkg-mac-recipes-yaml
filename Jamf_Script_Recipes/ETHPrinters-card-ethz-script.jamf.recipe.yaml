@@ -12,9 +12,13 @@ Input:
   TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
-  POLICY_CATEGORY: Connect & Remote
-  POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
-  POLICY_NAME: "%NAME%"
+  SELFSERVICE_POLICY_CATEGORY: Connect & Remote
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_CATEGORY: Triggered installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters.xml
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  MESSAGE_FINISH: "%NAME% installation complete"
   SCRIPT_NAME: ETHPrinterTemplate.sh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: Server
@@ -42,7 +46,11 @@ Input:
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%POLICY_CATEGORY%"
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -82,7 +90,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
