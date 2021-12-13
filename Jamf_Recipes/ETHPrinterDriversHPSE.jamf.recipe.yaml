@@ -1,5 +1,5 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-S
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-SE
 ParentRecipe: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-Template
 MinimumVersion: "2.3"
 
