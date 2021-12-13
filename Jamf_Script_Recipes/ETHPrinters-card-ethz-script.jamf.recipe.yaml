@@ -19,6 +19,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: card-ethz-install
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   MESSAGE_FINISH: "%NAME% installation complete"
   SCRIPT_NAME: ETHPrinterTemplate.sh
   SCRIPT_PRIORITY: After
