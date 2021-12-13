@@ -79,7 +79,9 @@ fi
 
 # Remove the TeX folder if it's empty
 if [[ -d "/Applications/TeX" ]]; then
-    # the directory exists
+    # remove .DS_Store
+    rm -Rf "/Applications/TeX/.DS_Store"
+    # now check if the directory is empty
     if [[ "$(ls -A "/Applications/TeX")" ]]; then
         echo "/Applications/TeX not empty - leaving alone"
     else
