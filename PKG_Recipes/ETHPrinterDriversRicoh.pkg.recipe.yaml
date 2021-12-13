@@ -1,0 +1,19 @@
+Description: Downloads the current release version of polybox and extracts the installer package.
+Identifier: com.github.eth-its-recipes.pkg.ETHPrinterDrivers-Ricoh
+ParentRecipe: com.github.eth-its-recipes.download.ETHPrinterDrivers-Ricoh
+MinimumVersion: "2.3"
+
+Comment: Override DRIVER_TYPE
+
+Input:
+  DRIVER_TYPE: Vol3
+
+Process:
+  - Arguments:
+      source_pkg: "%pathname%/*.pkg"
+    Processor: com.github.grahampugh.recipes.commonprocessors/PkgInfoReader
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Ricoh-Drivers-%DRIVER_TYPE%-%version%.pkg"
+      source_pkg: "%pathname%/*.pkg"
+    Processor: PkgCopier

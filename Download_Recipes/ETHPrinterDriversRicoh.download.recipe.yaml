@@ -1,0 +1,26 @@
+Description: Mounts the ETH Printers SMB share and downloads the Ricoh Drivers image.
+Identifier: com.github.eth-its-recipes.download.ETHPrinterDrivers-Ricoh
+MinimumVersion: 1.0.0
+
+Comment: The SMB share credentials must be overridden.
+
+Input:
+  DRIVER_TYPE: Vol4
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
+    Arguments:
+      smb_path: "//%ETH_PRINTERS_SMB_USERNAME%:%ETH_PRINTERS_SMB_PASSWORD%@%ETH_PRINTERS_SMB_URL%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%mount_point%/Ricoh_PS_Printers_%DRIVER_TYPE%_*.dmg"
+
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
+    Arguments:
+      url: "file://%found_filename%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBUnmounter
+
+  - Processor: EndOfCheckPhase

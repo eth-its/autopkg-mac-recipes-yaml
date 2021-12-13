@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-S-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ETH Printer Drivers HP S
+  DRIVER_TYPE: S
+  PKG_ID: com.hp.pkg.swls.printer-essentials-S.version
+  EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP S Version
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHPrinterDriversHPS
+  EXTENSION_ATTRIBUTE_SCRIPT: ETHPrinterDrivers-EA.sh
+  SELFSERVICE_ICON: "ETH Printers.png"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml

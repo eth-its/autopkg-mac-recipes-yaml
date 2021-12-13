@@ -1,0 +1,88 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.ETHPRinters-card-ethz-script
+MinimumVersion: "2.3"
+
+Comment: PARAMETER4_VALUE should be overridden with the print server's FQDN
+
+Input:
+  NAME: ETH Follow-Me Printer (card-ethz)
+  PRINTER_NAME: card-ethz
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TESTING_GROUP_NAME: Testing
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
+  POLICY_CATEGORY: Connect & Remote
+  POLICY_TEMPLATE: Policy-prod-selfservice.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: ETHPrinterTemplate.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Server
+  PARAMETER5_LABEL: Printer Name
+  PARAMETER6_LABEL: GUI Display Name
+  PARAMETER7_LABEL: Location (optional)
+  PARAMETER8_LABEL: Driver File (eg RICOH MP C5503)
+  PARAMETER9_LABEL: Driver options (-o x=xx -o y=yy -o z=zz)
+  PARAMETER10_LABEL: Default Printer (1 = yes)
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER5_VALUE: "%PRINTER_NAME%"
+  PARAMETER6_VALUE: "%PRINTER_NAME%"
+  PARAMETER7_VALUE: "%PRINTER_NAME%"
+  PARAMETER8_VALUE: RICOH MP C5503
+  PARAMETER9_VALUE: " "
+  PARAMETER10_VALUE: "1"
+  PARAMETER11_VALUE: " "
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: Install the card-ethz print queue along with any required drivers.
+  SELFSERVICE_ICON: ETH Printers.png
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Install
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

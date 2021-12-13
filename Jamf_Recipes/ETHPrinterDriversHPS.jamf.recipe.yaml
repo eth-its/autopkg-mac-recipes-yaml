@@ -1,0 +1,13 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-S
+ParentRecipe: com.github.grahampugh.recipes.jamf.ETHPrinterDrivers-HP-Template
+MinimumVersion: "2.3"
+
+Comment: |
+  The SMB share credentials (ETH_PRINTERS_SMB_URL, ETH_PRINTERS_SMB_USERNAME, ETH_PRINTERS_SMB_PASSWORD) must be overridden.
+
+Input:
+  NAME: ETH Printer Drivers HP S
+  DRIVER_TYPE: S
+  PKG_ID: com.hp.pkg.swls.printer-essentials-S.version
+  EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP S Version

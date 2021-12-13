@@ -7,7 +7,7 @@ Input:
   NAME: Install Homebrew
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  TESTING_GROUP_NAME: Untested
+  TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Development & Computing
   POLICY_TEMPLATE: Policy-untested-selfservice-script-only.xml
   POLICY_NAME: "%NAME%"
@@ -16,8 +16,8 @@ Input:
   SELFSERVICE_DISPLAY_NAME: Install Homebrew
   SELFSERVICE_DESCRIPTION: Install homebrew for the logged in user without requiring them to be an Administrator.
   SELFSERVICE_ICON: Homebrew.png
-  INSTALL_BUTTON_TEXT: Enable Touch ID
-  REINSTALL_BUTTON_TEXT: Enable Touch ID
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Reinstall
   FORCE_DESCRIPTION: "false"
 
 Process:

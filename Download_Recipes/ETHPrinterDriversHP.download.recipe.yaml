@@ -1,0 +1,26 @@
+Description: Downloads the current HP printer drivers.
+Identifier: com.github.eth-its-recipes.download.ETHPrinterDrivers-HP
+MinimumVersion: 1.0.0
+
+Comment: The SMB share credentials must be overridden.
+
+Input:
+  DRIVER_TYPE: S
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
+    Arguments:
+      smb_path: "//%ETH_PRINTERS_SMB_USERNAME%:%ETH_PRINTERS_SMB_PASSWORD%@%ETH_PRINTERS_SMB_URL%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%mount_point%/hp-printer-essentials-%DRIVER_TYPE%-*.pkg"
+
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
+    Arguments:
+      url: "file://%found_filename%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBUnmounter
+
+  - Processor: EndOfCheckPhase
