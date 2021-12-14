@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 Input:
   NAME: Apple Configurator 2
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AppleConfigurator2
+  SELFSERVICE_ICON: "%NAME% 2.15.png"
