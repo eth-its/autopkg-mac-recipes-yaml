@@ -9,8 +9,8 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
-    ‎BBEdit is the leading professional HTML and text editor for the Macintosh. Specifically crafted in response to the needs of Web authors and software developers, this award-winning product provides an abundance of high-performance features for editing, searching, and manipulation of text. 
-    
+    BBEdit is the leading professional HTML and text editor for the Macintosh. Specifically crafted in response to the needs of Web authors and software developers, this award-winning product provides an abundance of high-performance features for editing, searching, and manipulation of text. 
+
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"

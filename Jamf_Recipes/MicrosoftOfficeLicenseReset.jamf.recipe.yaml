@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Microsoft Office License Reset clears any cached credentials. After running the tool, you must sign in to Office 365. 
+    Closes all Microsoft Office apps and removes the Office license files. Sign-in credentials such as the username, password and cached tokens will be removed from the keychain.
 
     Version: %version%
     Category: %PKG_CATEGORY%

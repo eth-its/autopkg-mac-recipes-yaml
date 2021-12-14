@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Microsoft Outlook Reset removes all user-preferences, group and per-app containers. It removes temporary caches, keychain entries and mailbox content. Essentially, it just leaves behind the Microsoft Outlook app bundle in /Applications and supporting tools such as Microsoft Auto-Update and computer-level agents. 
+    Closes Microsoft Outlook, checks for damage and performs repairs as necessary. Resets caches, credentials, templates, add-ins and configuration data.
 
     Version: %version%
     Category: %PKG_CATEGORY%

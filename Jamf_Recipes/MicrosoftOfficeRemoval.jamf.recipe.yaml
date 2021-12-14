@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Microsoft Office Removal removes all user-preferences, group and per-app containers. It removes temporary caches, keychain entries and mailbox content. Itn also removes apps, launch agents/daemons, and Microsoft Auto-Update. It is designed for scenarios where you want to completely remove every trace of Office from a Mac, such as a lab computer where you're performing version and UI behavior testing. 
+    Removes all Microsoft Office apps, components, add-ins, templates and configuration data. 
 
     Version: %version%
     Category: %PKG_CATEGORY%

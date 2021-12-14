@@ -9,9 +9,9 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Microsoft Outlook Data Removal deletes all synchronized and local messages/folders from your Mac. If you're using an email service such as Office 365 or Exchange, your mailbox content will resynchronize from the server the next time you start Outlook. 
+    Closes Microsoft Outlook and removes all mailbox data!! 
 
-    WARNING! If you have messages stored in 'On my computer' folders, those will be permanently lost. Only run this tool if the "Microsot Outlook Reset" tool still does not allow you to relaunch Outlook.
+    Warning!! This will remove all local mailbox data.
 
     Version: %version%
     Category: %PKG_CATEGORY%

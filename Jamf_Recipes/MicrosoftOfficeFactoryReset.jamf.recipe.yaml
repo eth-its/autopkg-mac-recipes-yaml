@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Microsoft Office Factory Reset removes all user-preferences, group and per-app containers. It removes temporary caches, keychain entries and mailbox content. Essentially, it just leaves behind the app bundles in /Applications and supporting tools such as Microsoft Auto-Update and computer-level agents. 
+    Closes all Microsoft Office applications, checks for damage and performs repairs as necessary. Resets caches, credentials and configuration data.
 
     Version: %version%
     Category: %PKG_CATEGORY%
