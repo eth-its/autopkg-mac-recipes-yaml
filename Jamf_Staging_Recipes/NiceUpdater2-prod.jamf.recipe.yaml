@@ -28,3 +28,4 @@ Input:
   PARAMETER11_VALUE: ""
   SELFSERVICE_ICON: Software Update.png
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
