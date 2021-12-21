@@ -25,7 +25,7 @@ Input:
   FLOATING_LICENSE_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% Floating installed"
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-SPSSStatisticsFixPack.xml
-  SELFSERVICE_ICON: "SPSS Statistics 27.png"
+  SELFSERVICE_ICON: "SPSS Statistics 28.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
