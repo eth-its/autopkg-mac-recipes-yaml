@@ -10,12 +10,15 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% Fix Pack (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Updates any existing installation of SPSS Statistics 27 (with Node or Floating license).
+    Updates any existing installation of SPSS Statistics 28 (with Node or Floating license).
 
     Version: %version%
     Category: %PKG_CATEGORY%
   INSTALLED_AND_TEST_USER_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed and test user"
   INSTALLED_AND_TEST_USER_GROUP_TEMPLATE: SmartGroup-installed-SPSSStatisticsFixPack.xml
+  TEST_VERSION_NODE_LICENSE_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% Node test version installed"
+  TEST_VERSION_FLOATING_LICENSE_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% Floating test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TEST_USERS_FLOATING_LICENSE_GROUP_NAME: "%NAME% %MAJOR_VERSION% Floating test users"
   TEST_USERS_NODE_LICENSE_GROUP_NAME: "%NAME% %MAJOR_VERSION% Node test users"
   POLICY_CATEGORY: Untested
@@ -60,7 +63,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%INSTALLED_AND_TEST_USER_GROUP_NAME%"
-      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      computergroup_template: "%INSTALLED_AND_TEST_USER_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
