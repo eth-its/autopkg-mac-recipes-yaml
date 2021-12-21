@@ -21,6 +21,8 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TEST_USERS_FLOATING_LICENSE_GROUP_NAME: "%NAME% %MAJOR_VERSION% Floating test users"
   TEST_USERS_NODE_LICENSE_GROUP_NAME: "%NAME% %MAJOR_VERSION% Node test users"
+  NODE_LICENSE_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% Node installed"
+  FLOATING_LICENSE_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% Floating installed"
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-SPSSStatisticsFixPack.xml
   SELFSERVICE_ICON: "SPSS Statistics 27.png"
