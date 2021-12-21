@@ -68,13 +68,15 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%TEST_VERSION_NODE_LICENSE_INSTALLED_GROUP_NAME%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_NODE_LICENSE_INSTALLED_GROUP_NAME%"
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%TEST_VERSION_FLOATING_LICENSE_INSTALLED_GROUP_NAME%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_FLOATING_LICENSE_INSTALLED_GROUP_NAME%"
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
