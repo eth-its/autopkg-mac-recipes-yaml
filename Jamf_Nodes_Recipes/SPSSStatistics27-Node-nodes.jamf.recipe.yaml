@@ -54,7 +54,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
-  UPDATE_PREDICATE: "pkg_uploaded == False"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
