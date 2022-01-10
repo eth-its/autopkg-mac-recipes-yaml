@@ -10,8 +10,8 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
   EXTENSION_ATTRIBUTE_SCRIPT: ETHOfficeTemplates-EA.sh
-  PREINSTALL_SCRIPT_PATH: ETHOfficeTemplates-preinstall.sh
-  PREINSTALL_SCRIPT_NAME: ETHOfficeTemplates-preinstall.sh
+  PREINSTALL_SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
+  PREINSTALL_SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
   PREINSTALL_SCRIPT_PRIORITY: Before
   POSTINSTALL_SCRIPT_PATH: ETHOfficeTemplates-postinstall.sh
   POSTINSTALL_SCRIPT_NAME: ETHOfficeTemplates-postinstall.sh
