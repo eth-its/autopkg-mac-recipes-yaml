@@ -42,6 +42,7 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
+        <feature_on_main_page>true</feature_on_main_page>
         <install_button_text>%UPDATE_BUTTON_TEXT%</install_button_text>
         <reinstall_button_text>%UPDATE_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%UPDATE_SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
