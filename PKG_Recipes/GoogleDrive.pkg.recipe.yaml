@@ -1,0 +1,32 @@
+Description: Downloads the latest version of Google Drive for desktop and builds a pkg. Note Google Drive File Stream was rebranded to Google Drive for desktop, and this recipe updated to reflect the name change.
+Identifier: com.github.eth-its-recipes.pkg.GoogleDrive
+ParentRecipe: com.github.nstrauss.download.GoogleDrive
+MinimumVersion: "2.3"
+
+Comment: This is based on com.github.nstrauss.pkg.GoogleDrive but setting 'version' as CFBundleShortVersionString instead of CFBundleVersion
+
+Input:
+  NAME: GoogleDrive
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%/GoogleDrive.pkg"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/GoogleDrive_x86_64.pkg/Payload"
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/payload/Google Drive.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        LSMinimumSystemVersion: min_os_version
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/GoogleDrive-%version%.pkg"
+      source_pkg: "%pathname%/GoogleDrive.pkg"
