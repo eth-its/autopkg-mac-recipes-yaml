@@ -11,6 +11,24 @@
 #
 #######################################################################
 
+quit_google_drive() {
+    # gracefully quit Google Drive as the current user. This is necessary to unmount the "network drive"
+    current_user=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
+    echo "Closing Google Drive as current user"
+    su -l "$current_user" -c "/Applications/Google\ Drive.app/Contents/MacOS/Google\ Drive --quit"
+
+    while [[ $n -lt 10 ]]; do
+        if pgrep -f "/Google Drive" ; then
+            (( n=n+1 ))
+            sleep 1
+            echo "Graceful close attempt # $n"
+        else
+            echo "$app_name closed."
+            break
+        fi
+    done
+}
+
 silent_app_quit() {
     # silently kill the application.
     # add .app to end of string if not supplied
@@ -42,15 +60,24 @@ silent_app_quit() {
     fi
 }
 
-for app in "Google Drive" "Google Docs" "Google Sheets" "Google Slides"; do
-    silent_app_quit "$app"
+# firstly close Google Drive gracefully, as the current user.
+quit_google_drive
+
+# now ensure any of the other apps are closed
+for app_name in "Google Drive" "Google Docs" "Google Sheets" "Google Slides"; do
+    silent_app_quit "$app_name"
 done
 
 # kill the helpers (thanks @trice https://macadmins.slack.com/archives/C056155B4/p1637687411267500?thread_ts=1637685365.266300&cid=C056155B4)
 killall -KILL FinderSyncAPIExtension
 sleep 1
+killall -KILL FinderSyncExtension
+sleep 1
 killall -KILL Google\ Drive
 sleep 5
+
+# unload the kext
+kextunload -b com.google.dfsfuse.filesystems.dfsfuse -q || true
 
 # Now remove the apps
 for app_name in "Google Drive" "Google Docs" "Google Sheets" "Google Slides"; do
