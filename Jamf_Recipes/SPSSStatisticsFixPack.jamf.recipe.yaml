@@ -4,10 +4,10 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack
 
 Input:
-  NAME: SPSS Statistics
-  POLICY_NAME: "%NAME% Security Update (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% Security Update (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  NAME: SPSS Statistics Security Update
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     This security update patches a serious security vulnerability that is present in all versions of SPSS Statistics (with Node or Floating license). Please run this as soon as possible.
   INSTALLED_GROUP_NAME: "%NAME% any version installed"
@@ -17,9 +17,9 @@ Input:
   SELFSERVICE_ICON: "SPSS Statistics 28.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
+  INSTALL_BUTTON_TEXT: "Install"
+  REINSTALL_BUTTON_TEXT: "Install"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   REPLACE_PKG: "False"
 
