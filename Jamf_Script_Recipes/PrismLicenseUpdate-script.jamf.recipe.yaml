@@ -6,7 +6,7 @@ Input:
   NAME: Prism License Update
   EXPIRY_YEAR: "2022"
   POLICY_CATEGORY: Administration
-  POLICY_TEMPLATE: Policy-prod-once-per-computer.xml
+  POLICY_TEMPLATE: Policy-prod-once-per-computer-script.xml
   POLICY_NAME: "Issue new Prism license - expiry %EXPIRY_YEAR%"
   INSTALLED_GROUP_NAME: Prism EN installed
   SCRIPT_NAME: Prism-postinstall.sh

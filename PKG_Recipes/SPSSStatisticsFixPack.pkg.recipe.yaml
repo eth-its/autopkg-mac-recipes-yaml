@@ -7,10 +7,9 @@ Comment: Requires MAJOR_VERSION to be supplied in the override/child recipe
 
 Input:
   NAME: SPSS Statistics Fix Pack
-  MAJOR_VERSION: "28"
 
 Process:
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics%MAJOR_VERSION%-FixPack-%version%.pkg"
+      pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics-FixPack-%version%.pkg"
       source_pkg: "%pathname%"
     Processor: PkgCopier

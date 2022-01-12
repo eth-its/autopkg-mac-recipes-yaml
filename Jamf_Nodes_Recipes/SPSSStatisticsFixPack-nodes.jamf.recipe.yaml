@@ -1,0 +1,67 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatisticsFixPack-nodes
+MinimumVersion: "2.3"
+
+Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatisticsFixPack
+  NAME: SPSS Statistics
+  POLICY_NAME: "%NAME% Security Update (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% Security Update (Testing)"
+  PKG_CATEGORY: Connect & Remote
+  SELFSERVICE_DESCRIPTION: |
+    This security update patches a serious security vulnerability that is present in all versions of SPSS Statistics (with Node or Floating license). Please run this as soon as possible.
+  INSTALLED_GROUP_NAME: "%NAME% any version installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-SPSSStatisticsFixPack.xml
+  POLICY_CATEGORY: Untested
+  POLICY_TEMPLATE: Policy-untested-selfservice-SPSSStatisticsFixPack.xml
+  SELFSERVICE_ICON: "SPSS Statistics 28.png"
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

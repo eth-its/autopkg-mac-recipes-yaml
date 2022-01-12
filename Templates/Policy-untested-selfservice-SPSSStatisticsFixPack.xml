@@ -11,7 +11,7 @@
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
         <trigger_other/>
-        <frequency>Ongoing</frequency>
+        <frequency>Once per computer</frequency>
         <category>
             <name>%POLICY_CATEGORY%</name>
         </category>
@@ -20,22 +20,15 @@
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%NODE_LICENSE_INSTALLED_GROUP_NAME%</name>
+                <name>%INSTALLED_GROUP_NAME%</name>
             </computer_group>
             <computer_group>
-                <name>%FLOATING_LICENSE_INSTALLED_GROUP_NAME%</name>
+                <name>%INSTALLED_GROUP_NAME%</name>
             </computer_group>
         </computer_groups>
         <exclusions>
             <computers/>
-            <computer_groups>
-                <computer_group>
-                    <name>%TEST_VERSION_NODE_LICENSE_INSTALLED_GROUP_NAME%</name>
-                </computer_group>
-                <computer_group>
-                    <name>%TEST_VERSION_FLOATING_LICENSE_INSTALLED_GROUP_NAME%</name>
-                </computer_group>
-            </computer_groups>
+            <computer_groups/>
         </exclusions>
     </scope>
     <package_configuration>
@@ -52,6 +45,7 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
+        <feature_on_main_page>true</feature_on_main_page>
         <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
         <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
