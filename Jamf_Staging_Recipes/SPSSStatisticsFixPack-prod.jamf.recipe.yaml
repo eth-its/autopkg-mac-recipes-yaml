@@ -9,6 +9,7 @@ Input:
   POLICY_CATEGORY: Science & Math
   POLICY_TEMPLATE: Policy-prod-once-per-computer.xml
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  INSTALLED_GROUP_NAME: "SPSS Statistics any version installed"
   PROD_PREDICATE: "ready_to_stage == False"
   SELFSERVICE_POLICY_NAME: SPSS Statistics Security Update
 
@@ -36,18 +37,6 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%INSTALLED_GROUP_NAME%"
-      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
