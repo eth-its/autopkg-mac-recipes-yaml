@@ -73,7 +73,7 @@ else
     echo "$app_name deleted successfully"
 fi
 
-# also check to see if an additional app was ever created due to BundleID mismatch
+# also check to see if an additional app was ever created due to BundleID mismatch
 if [[ -d "/Applications/${app_name}/${app_name}.app" ]]; then
     echo "Folder will be deleted: /Applications/${app_name}/"
     /bin/rm -Rf "/Applications/${app_name}" ||:
