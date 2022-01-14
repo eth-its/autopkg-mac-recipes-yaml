@@ -5,8 +5,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Migrate To Local Account
-  GROUP_NAME: "%NAME% users"
-  GROUP_TEMPLATE: SmartGroup-script-selfservice-EA.xml
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Active Directory Binding Status
   EXTENSION_ATTRIBUTE_SCRIPT: ActiveDirectoryBindingStatus-EA.sh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
@@ -49,8 +49,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader

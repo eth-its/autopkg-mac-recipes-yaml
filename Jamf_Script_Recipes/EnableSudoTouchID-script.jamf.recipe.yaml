@@ -4,8 +4,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Enable Touch ID for sudo
-  GROUP_NAME: "%NAME% users"
-  GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
@@ -33,8 +33,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
