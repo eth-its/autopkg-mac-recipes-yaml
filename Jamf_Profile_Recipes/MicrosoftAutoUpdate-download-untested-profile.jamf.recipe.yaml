@@ -10,6 +10,7 @@ Input:
   PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Production" channel.
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-download-untested.xml
   REPLACE_PROFILE: "True"
 
 Process:
