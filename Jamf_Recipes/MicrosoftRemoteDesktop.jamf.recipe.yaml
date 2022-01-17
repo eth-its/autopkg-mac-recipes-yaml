@@ -1,4 +1,4 @@
-Comment: VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf.
+Comment: VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf. FEED_URL must be added to the override.
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop
 MinimumVersion: "2.3"
@@ -29,7 +29,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: /Applications/Microsoft\ Remote\ Desktop.app/Contents/MacOS/Microsoft\ Remote\ Desktop --script feed write "%FEED_URL%" --accept-certificates
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
