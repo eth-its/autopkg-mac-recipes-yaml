@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MindManager-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: MindManager
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MindManager
+  SELFSERVICE_ICON: "%NAME%.png"
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PATH: "%NAME%-postinstall.sh"
