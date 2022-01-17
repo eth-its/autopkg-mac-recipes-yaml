@@ -1,6 +1,5 @@
-Comment: REGISTRATION_CODE, REGISTRATION_EMAIL, REGISTRATION_NAME, REGISTRATION_PRODUCT_NAME keys all need to be added to the recipe override.
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
+Identifier: com.github.grahampugh.recipes.jamf.MicrosoftAutoUpdate-download-untested-profile
 MinimumVersion: "2.3"
 
 Input:
