@@ -6,3 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Microsoft Edge
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.microsoft.edgemac

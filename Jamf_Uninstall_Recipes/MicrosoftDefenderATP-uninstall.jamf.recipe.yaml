@@ -6,3 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Microsoft Defender ATP
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  SCRIPT_PATH: MicrosoftDefenderATP-uninstall.sh
+  SCRIPT_NAME: MicrosoftDefenderATP-uninstall.sh
