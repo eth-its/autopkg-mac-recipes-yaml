@@ -10,3 +10,5 @@ Input:
   SCRIPT_NAME: MicrosoftRemoteDesktop-preinstall.sh
   SCRIPT_PATH: MicrosoftRemoteDesktop-preinstall.sh
   SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_RUN_COMMAND: sudo -u "$(stat -f%Su /dev/console)" -i /Applications/Microsoft\ Remote\ Desktop.app/Contents/MacOS/Microsoft\ Remote\ Desktop --script feed write "%FEED_URL%" --accept-certificates
+  SELFSERVICE_ICON: "%NAME% 10.png"

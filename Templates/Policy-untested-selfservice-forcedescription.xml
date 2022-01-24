@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%UPDATE_POLICY_NAME%</name>
+        <name>%POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>false</trigger_checkin>
@@ -13,28 +13,32 @@
         <trigger_other/>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%UPDATE_POLICY_CATEGORY%</name>
+            <name>%POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%INSTALLED_GROUP_NAME%</name>
+                <name>%TEST_USERS_GROUP_NAME%</name>
             </computer_group>
         </computer_groups>
         <exclusions>
             <computers/>
             <computer_groups>
                 <computer_group>
-                    <name>%PROD_VERSION_INSTALLED_GROUP_NAME%</name>
+                    <name>%TEST_VERSION_INSTALLED_GROUP_NAME%</name>
                 </computer_group>
             </computer_groups>
         </exclusions>
     </scope>
     <package_configuration>
         <packages>
-            <size>0</size>
+            <size>1</size>
+            <package>
+                <name>%pkg_name%</name>
+                <action>Install</action>
+            </package>
         </packages>
     </package_configuration>
     <scripts>
@@ -42,23 +46,20 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
-        <feature_on_main_page>true</feature_on_main_page>
-        <install_button_text>%UPDATE_BUTTON_TEXT%</install_button_text>
-        <reinstall_button_text>%UPDATE_BUTTON_TEXT%</reinstall_button_text>
-        <self_service_display_name>%UPDATE_SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
-        <self_service_description>%UPDATE_SELFSERVICE_DESCRIPTION%</self_service_description>
-        <self_service_categories>
-            <category>
-                <name>%SELFSERVICE_POLICY_CATEGORY%</name>
-                <display_in>true</display_in>
-                <feature_in>false</feature_in>
-            </category>
-        </self_service_categories>
+        <force_users_to_view_description>true</force_users_to_view_description>
+        <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
+        <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
+        <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
+        <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
     </self_service>
+    <user_interaction>
+        <message_start>%NAME% is being installed.</message_start>
+        <message_finish>%NAME% has now been installed.</message_finish>
+    </user_interaction>
     <maintenance>
-        <recon>false</recon>
+        <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>jamf policy -event "%TRIGGER_NAME%"</run_command>
+        <run_command>%POLICY_RUN_COMMAND%</run_command>
     </files_processes>
 </policy>

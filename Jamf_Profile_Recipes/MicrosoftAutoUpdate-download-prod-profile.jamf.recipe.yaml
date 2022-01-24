@@ -1,0 +1,27 @@
+Comment: INTERNAL_COLLATERAL_URL key must be added to the recipe override.
+Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.MicrosoftAutoUpdate-download-prod-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Check Microsoft AutoUpdate - 2019/O365 - production
+  IDENTIFIER: com.microsoft.autoupdate2
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: Administration
+  PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH.
+  PROFILE_NAME: "%NAME%"
+  PROFILE_PAYLOAD: MicrosoftAutoUpdate-download-prod.plist
+  PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-download-prod.xml
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      replace_profile: "%REPLACE_PROFILE%"

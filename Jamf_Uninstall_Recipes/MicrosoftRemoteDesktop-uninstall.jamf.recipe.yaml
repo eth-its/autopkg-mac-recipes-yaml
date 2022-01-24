@@ -1,10 +1,11 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.MicrosoftEdge-uninstall
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: Microsoft Edge
+  NAME: Microsoft Remote Desktop
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.microsoft.edgemac
+  PARAMETER5_VALUE: com.microsoft.rdc.macos
+  SELFSERVICE_ICON: "%NAME% 10.png"
