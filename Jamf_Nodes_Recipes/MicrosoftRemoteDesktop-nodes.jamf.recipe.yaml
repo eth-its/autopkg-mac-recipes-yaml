@@ -12,3 +12,4 @@ Input:
   SCRIPT_PRIORITY: Before
   POLICY_RUN_COMMAND: sudo -u "$(stat -f%Su /dev/console)" -i /Applications/Microsoft\ Remote\ Desktop.app/Contents/MacOS/Microsoft\ Remote\ Desktop --script feed write "%FEED_URL%" --accept-certificates
   SELFSERVICE_ICON: "%NAME% 10.png"
+  OS_EXCLUDE_MAX: 10.13.6
