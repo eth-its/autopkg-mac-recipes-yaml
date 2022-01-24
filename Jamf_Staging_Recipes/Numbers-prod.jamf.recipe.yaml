@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
 Input:
   NAME: Numbers
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Numbers
+  OS_EXCLUDE_MAX: 10.13.6

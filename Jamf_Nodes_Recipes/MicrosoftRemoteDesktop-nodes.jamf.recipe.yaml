@@ -1,7 +1,7 @@
 Comment: FEED_URL must be added to the override.
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-script-nodes
 MinimumVersion: "2.3"
 
 Input:
