@@ -149,7 +149,7 @@ Process:
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOINSTALL_POLICY_NAME%"
       icon: ""
-      replace_policy: "False"
+      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Auto-update policy
@@ -157,7 +157,7 @@ Process:
       policy_template: "%AUTOUPDATE_POLICY_TEMPLATE%"
       policy_name: "%AUTOUPDATE_POLICY_NAME%"
       icon: ""
-      replace_policy: "False"
+      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy
