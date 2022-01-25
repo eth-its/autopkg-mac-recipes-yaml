@@ -18,9 +18,11 @@ Process:
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
 
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
   - Processor: StopProcessingIf
     Arguments:
-      predicate: "%UPDATE_PREDICATE%"
+      predicate: "%PROD_PREDICATE%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
