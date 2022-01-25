@@ -33,19 +33,7 @@
         </packages>
     </package_configuration>
     <scripts>
-        <size>1</size>
-        <script>
-            <name>%SCRIPT_NAME%</name>
-            <priority>After</priority>
-            <parameter4/>
-            <parameter5/>
-            <parameter6/>
-            <parameter7/>
-            <parameter8/>
-            <parameter9/>
-            <parameter10/>
-            <parameter11/>
-        </script>
+        <size>0</size>
     </scripts>
     <self_service>
         <use_for_self_service>false</use_for_self_service>
