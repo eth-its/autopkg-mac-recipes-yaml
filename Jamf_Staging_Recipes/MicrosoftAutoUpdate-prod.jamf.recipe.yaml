@@ -9,7 +9,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftAutoUpdate
   EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^$
+  EXTENSION_ATTRIBUTE_VALUE: ^None$
   TRIGGERONLY_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SCRIPT_NAME: MicrosoftAutoUpdate-postinstall.sh
   SCRIPT_PRIORITY: After

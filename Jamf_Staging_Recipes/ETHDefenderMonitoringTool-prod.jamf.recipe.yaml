@@ -9,7 +9,7 @@ Input:
   SELFSERVICE_ICON: Microsoft Defender ATP.png
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$|^$
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   SCRIPT_NAME: ETHDefenderMonitoringTool-postinstall.sh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

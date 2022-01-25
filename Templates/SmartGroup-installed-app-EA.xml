@@ -15,7 +15,7 @@
             <priority>1</priority>
             <and_or>and</and_or>
             <search_type>%EXTENSION_ATTRIBUTE_SEARCH_TYPE%</search_type>
-            <value>%EXTENSION_ATTRIBUTE_SEARCH_VALUE%</value>
+            <value>%EXTENSION_ATTRIBUTE_VALUE%</value>
         </criterion>
         <criterion>
             <name>Computer Group</name>

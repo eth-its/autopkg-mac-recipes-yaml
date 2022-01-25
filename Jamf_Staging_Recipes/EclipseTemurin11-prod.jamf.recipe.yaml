@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.EclipseTemurin11
   EXTENSION_ATTRIBUTE_NAME: EclipseTemurin11Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$|^$
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   SELFSERVICE_ICON: Eclipse Temurin.png
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml

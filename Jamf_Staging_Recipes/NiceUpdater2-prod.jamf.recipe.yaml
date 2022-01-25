@@ -9,7 +9,7 @@ Input:
   POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_SEARCH_VALUE: ^None$|^$
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: Start hr 0-23
