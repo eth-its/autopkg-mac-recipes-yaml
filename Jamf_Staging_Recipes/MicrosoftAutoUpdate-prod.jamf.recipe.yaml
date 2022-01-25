@@ -1,5 +1,4 @@
-Comment: Requires all the other "Microsoft (app) users" groups to already exist.
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftAutoUpdate-prod
 MinimumVersion: "2.3"
 

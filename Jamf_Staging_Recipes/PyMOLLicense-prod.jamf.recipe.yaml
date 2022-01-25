@@ -1,4 +1,4 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: Creates all production policies for a particular title.
 Comment: this policy does not need to be staged; this recipe is only for reporting purposes. The SELFSERVICE_POLICY_NAME key does not create a self-service policy - this is only so that the Slack and SharePoint reporting will work properly.
 Identifier: com.github.eth-its-recipes.jamf.PyMOLLicense-prod
 MinimumVersion: "2.3"
