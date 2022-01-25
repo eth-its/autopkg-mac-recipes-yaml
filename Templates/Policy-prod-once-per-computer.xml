@@ -29,7 +29,11 @@
     </scope>
     <package_configuration>
         <packages>
-            <size>0</size>
+            <size>1</size>
+            <package>
+                <name>%pkg_name%</name>
+                <action>Install</action>
+            </package>
         </packages>
     </package_configuration>
     <scripts>
