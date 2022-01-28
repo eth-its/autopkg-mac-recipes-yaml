@@ -1,0 +1,33 @@
+Description: Creates all production policies for a particular title.
+Comment: this policy does not need to be staged; this recipe is only for reporting purposes
+Identifier: com.github.eth-its-recipes.jamf.AdobeCCSerialRemovalTool-prod
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe CC Serial Removal Tool
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.AdobeCCSerialRemovalTool"
+  TRIGGER_POLICY_NAME: "%NAME%"
+  PKG_CATEGORY: Tools & Accessories
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
+  TRIGGER_NAME: Run-AdobeUnserializer
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  PROD_PREDICATE: "ready_to_stage == False"
+  SELFSERVICE_POLICY_NAME: Adobe CC Serial Removal Tool
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%PROD_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      replace_policy: "False"

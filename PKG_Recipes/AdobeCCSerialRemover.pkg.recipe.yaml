@@ -1,0 +1,72 @@
+Description: Downloads the latest version of Jamf Pro Suite and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.AdobeCCSerialRemovalTool
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.AdobeCCSerializer
+
+Input:
+  NAME: Adobe CC Serial Removal Tool
+  EXCEPTION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: Serializer
+  VENDOR: Adobe
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/AdobeSerialization"
+      source_path: "%pathname%/AdobeSerialization"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/helper.bin"
+      source_path: "%pathname%/helper.bin"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/prov.xml"
+      source_path: "%pathname%/prov.xml"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/RemoveVolumeSerial"
+      source_path: "%pathname%/RemoveVolumeSerial"
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+
+        DIR=$(dirname "$0")
+        echo "Running $DIR/RemoveVolumeSerial"
+        /bin/chmod +x "$DIR"/*
+
+        "$DIR"/RemoveVolumeSerial
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: com.adobe.cc.serializer.pkg.%version%
+        pkgname: "Adobe_Serializer-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
