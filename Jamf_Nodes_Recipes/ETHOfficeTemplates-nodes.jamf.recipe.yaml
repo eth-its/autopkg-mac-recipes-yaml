@@ -13,4 +13,4 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
   EXTENSION_ATTRIBUTE_SCRIPT: PkgReceipts-EA.sh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-pkgreceipt.xml
-  SELFSERVICE_ICON: Microsoft Word Template.png
+  SELFSERVICE_ICON: Microsoft Word Template 2021.png

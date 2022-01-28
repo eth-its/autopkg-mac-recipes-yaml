@@ -15,4 +15,4 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-pkgreceipt.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-pkgreceipt.xml
-  SELFSERVICE_ICON: Microsoft Word Template.png
+  SELFSERVICE_ICON: Microsoft Word Template 2021.png
