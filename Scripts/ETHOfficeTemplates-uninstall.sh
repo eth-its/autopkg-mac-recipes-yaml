@@ -10,13 +10,13 @@ if [[ -d "$template_dir" ]]; then
 fi
 
 # remove the defaults version key
-/usr/bin/defaults delete /Library/Preferences/ch.ethz.id.ETHTemplatesMSOffice 2>/dev/null
+/usr/bin/defaults delete /Library/Preferences/ch.ethz.id.ETHTemplatesMSOffice 2>/dev/null ||:
 
 # forget the package receipt
 echo "Forgetting packages"
 pkgutilcmd="/usr/sbin/pkgutil"
 
-receipts=$($pkgutilcmd --pkgs=ch.ethz.id.pkg.ETHTemplatesMSOffice*)
+receipts=$($pkgutilcmd --pkgs=ch.ethz.id.pkg.ETHTemplatesMSOffice* 2>/dev/null)
 while read -r receipt; do
     $pkgutilcmd --pkgs="${receipt}" && $pkgutilcmd --forget "${receipt}"
 done <<< "${receipts}"        
