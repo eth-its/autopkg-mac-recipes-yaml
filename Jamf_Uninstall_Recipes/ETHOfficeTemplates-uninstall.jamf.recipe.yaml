@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: ETH Templates MSOffice
+  PKG_ID: ch.ethz.id.pkg.ETHTemplatesMSOffice
   SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
   SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
