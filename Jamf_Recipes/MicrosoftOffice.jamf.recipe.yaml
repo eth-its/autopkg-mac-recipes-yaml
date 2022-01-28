@@ -1,0 +1,105 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice
+MinimumVersion: "2.3"
+ParentRecipe: com.github.grahampugh.recipes.pkg.MicrosoftOffice365
+
+Input:
+  NAME: Microsoft Office
+  JSS_INVENTORY_NAME: Microsoft Word.app
+  PKG_CATEGORY: Productivity
+  VERSIONTYPE: CFBundleVersion
+  PRODUCTID: "2009112"
+  PKG_NAME: MicrosoftOffice365SuiteBusinessPro
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Microsoft Office includes the following applications:
+    - Microsoft Word
+    - Microsoft Excel
+    - Microsoft PowerPoint
+    - Microsoft Outlook
+    - Microsoft OneNote
+    - Microsoft OneDrive
+    - Microsoft Teams
+
+    Users wishing to use Office 365 must subscribe to the Office 365 license (available via the ETH IT Shop) before logging in to Office 365. 
+
+    Go to:  
+    - [ETH IT Shop](https://itshop.ethz.ch)
+    - Login using your ETH E-Mail account credentials
+    - Go to Service Catalog -> Identity and Access: Cloud Subscription -> Microsoft Cloud Access
+    - Follow the instructions to subscribe.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  OS_EXCLUDE_MIN: 10.0.0
+  OS_EXCLUDE_MAX: 10.14.6
+  OS_LIMITS_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
+  OS_LIMITS_GROUP_TEMPLATE: SmartGroupTemplate-OSVersionLimits.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "Microsoft Office 365.png"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
+      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
