@@ -1,16 +1,15 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.ETHOfficeTemplates-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-scripts-2-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: ETH Templates MSOffice
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHOfficeTemplates
-  PREINSTALL_SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
-  PREINSTALL_SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
-  POSTINSTALL_SCRIPT_NAME: ETHOfficeTemplates-postinstall.sh
-  POSTINSTALL_SCRIPT_PATH: ETHOfficeTemplates-postinstall.sh
+  SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
+  SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
+  SCRIPT_PRIORITY: Before
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
-  EXTENSION_ATTRIBUTE_SCRIPT: ETHOfficeTemplates-EA.sh
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  EXTENSION_ATTRIBUTE_SCRIPT: PkgReceipts-EA.sh
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-pkgreceipt.xml
   SELFSERVICE_ICON: Microsoft Word Template.png

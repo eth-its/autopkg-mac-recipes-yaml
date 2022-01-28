@@ -6,16 +6,14 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ETHOfficeTemplates
 Input:
   NAME: ETH Templates MSOffice
   PKG_CATEGORY: Productivity
+  PKG_ID: ch.ethz.id.pkg.ETHTemplatesMSOffice
   POLICY_NAME: "%NAME% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
-  EXTENSION_ATTRIBUTE_SCRIPT: ETHOfficeTemplates-EA.sh
-  PREINSTALL_SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
-  PREINSTALL_SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
-  PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_PATH: ETHOfficeTemplates-postinstall.sh
-  POSTINSTALL_SCRIPT_NAME: ETHOfficeTemplates-postinstall.sh
-  POSTINSTALL_SCRIPT_PRIORITY: After
+  EXTENSION_ATTRIBUTE_SCRIPT: PkgReceipts-EA.sh
+  SCRIPT_PATH: ETHOfficeTemplates-uninstall.sh
+  SCRIPT_NAME: ETHOfficeTemplates-uninstall.sh
+  SCRIPT_PRIORITY: Before
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs the ETH Zuerich templates for Microsoft Word and PowerPoint.
@@ -23,7 +21,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-pkgreceipt.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -55,17 +53,9 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%POLICY_CATEGORY%"
-      script_name: "%PREINSTALL_SCRIPT_NAME%"
-      script_path: "%PREINSTALL_SCRIPT_PATH%"
-      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
-      replace_script: True
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%POLICY_CATEGORY%"
-      script_name: "%POSTINSTALL_SCRIPT_NAME%"
-      script_path: "%POSTINSTALL_SCRIPT_PATH%"
-      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader

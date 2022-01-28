@@ -10,7 +10,7 @@ if [[ -d "$template_dir" ]]; then
 fi
 
 # remove the defaults version key
-/usr/bin/defaults delete /Library/Preferences/ch.ethz.id.ETHTemplatesMSOffice
+/usr/bin/defaults delete /Library/Preferences/ch.ethz.id.ETHTemplatesMSOffice 2>/dev/null
 
 # forget the package receipt
 echo "Forgetting packages"
