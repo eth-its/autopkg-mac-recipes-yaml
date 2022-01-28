@@ -6,26 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: ETH Printer Drivers Ricoh Vol4
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHPrinterDriversRicohVol4
-  TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
-  TRIGGER_NAME: "%NAME%-install"
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  PROD_PREDICATE: "ready_to_stage == False"
-  SELFSERVICE_POLICY_NAME: "%NAME%"
-
-Process:
-  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
-    Arguments:
-      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
-
-  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%PROD_PREDICATE%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-    Arguments:
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
-      replace_policy: "False"
+  USERS_GROUP_NAME: "ETH Printers users"
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers Ricoh Vol4 Version
+  SELFSERVICE_ICON: ETH Printers.png
