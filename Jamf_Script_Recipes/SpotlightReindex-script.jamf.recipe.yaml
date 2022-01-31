@@ -10,7 +10,7 @@ Input:
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
   POLICY_NAME: "%NAME%"
-  SCRIPT_NAME: "Enable-TouchID-sudo.sh"
+  SCRIPT_NAME: "SpotlightReindex.sh"
   SCRIPT_PRIORITY: After
   SELFSERVICE_DISPLAY_NAME: Enable Touch ID for sudo
   SELFSERVICE_DESCRIPTION: Re-indexes the Spotlight search system. Use if your Spotlight search is not working properly.
