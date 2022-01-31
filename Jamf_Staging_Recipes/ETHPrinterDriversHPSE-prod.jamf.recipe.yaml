@@ -10,4 +10,6 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP SE Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   SELFSERVICE_ICON: ETH Printers.png
