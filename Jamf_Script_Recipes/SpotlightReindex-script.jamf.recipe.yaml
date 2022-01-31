@@ -14,7 +14,7 @@ Input:
   SCRIPT_PRIORITY: After
   SELFSERVICE_DISPLAY_NAME: Enable Touch ID for sudo
   SELFSERVICE_DESCRIPTION: Re-indexes the Spotlight search system. Use if your Spotlight search is not working properly.
-  SELFSERVICE_ICON: Terminal.png
+  SELFSERVICE_ICON: Spotlight.png
   INSTALL_BUTTON_TEXT: Re-index
   REINSTALL_BUTTON_TEXT: Re-index
   FORCE_DESCRIPTION: "false"
