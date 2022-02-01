@@ -13,10 +13,11 @@ DOC
 # takes parameter 4 from Jamf
 duration_minutes="$4"
 
-if [[ ! "$duration_minutes" -eq "$duration_minutes" ]]; then
-	echo "No elevaton duration set, so not enforcing any time restriction. Quitting postinstall script."
-	exit
+if [[ ! "$duration_minutes" ]]; then
+	duration_minutes="15"
 fi
+
+echo "Setting elevation time of $duration_minutes minute(s)."
 
 elevation_duration=$(( duration_minutes * 60 ))
 
@@ -27,13 +28,14 @@ demote_script_location="/Library/Management/ETHZ/Privileges"
 mkdir -p "$demote_script_location"
 
 # Stop the current launchagent and remove it prior to installing this updated one
-current_user=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
-uid=$(id -u "$current_user")
-/bin/launchctl asuser "$uid" /bin/launchctl unload -w "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
-/bin/rm -f "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
+launchdaemon="/Library/LaunchDaemons/corp.sap.privileges.plist"
+if [[ -f "$launchdaemon" ]]; then
+    /bin/launchctl unload -w "$launchdaemon" ||:
+    /bin/rm "$launchdaemon"
+fi
 
 # Wait for 2 seconds
-Sleep 2
+sleep 2
 
 # write 
 cat > "$demote_script_location/demote.sh" <<'END' 
@@ -46,13 +48,12 @@ cat > "$demote_script_location/demote.sh" <<'END'
 # The number of seconds before executing.
 
 ### Variables
-# The assumption here is that user 501 should be the sole admin.
-# However any admin name can be added to the ${valid_admins[@]} array
+# any admin name can be added to the ${valid_admins[@]} array
 logged_in_user=$(scutil <<<"show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
-valid_admins=(root ladmin spadmin)
+valid_admins=(root ladmin spadmin jamfmgmt localadmin)
 timer=$1
-if [[ ! "$timer" -eq "$timer" ]]; then
-	timer=15
+if [[ ! "$timer" ]]; then
+	timer=900
 fi
 
 ### Functions
@@ -84,9 +85,15 @@ members() {
 # Delay time
 sleep "$timer"
 
-# We need to make sure to not de-privilege $FIRST_ADMIN
+
+# We need to make sure to not de-privilege valid admins
 if [ -f "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI" ] && ! array_contains valid_admins "$logged_in_user"; then
-    su "$logged_in_user" -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --remove"
+    if su "$logged_in_user" -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --remove" ; then
+    # if "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --remove" ; then
+		echo "Privileges removed successfully"
+	else
+		echo "Privileges removal failed"
+	fi
 fi
 
 # Check local users for membership in admin group.
@@ -111,15 +118,15 @@ END
 
 # Create the launchagent file in the library and write to it
 # this is used to force demotion if the app is run normally
-cat > "/Library/LaunchAgents/corp.sap.privileges.plist" <<END 
+cat > "$launchdaemon" <<END 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Disabled</key>
+	<false/>
 	<key>Label</key>
 	<string>corp.sap.privileges</string>
-	<key>LimitLoadToSessionType</key>
-	<string>Aqua</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/bash</string>
@@ -130,6 +137,8 @@ cat > "/Library/LaunchAgents/corp.sap.privileges.plist" <<END
 	<array>
 		<string>/private/var/db/dslocal/nodes/Default/groups/admin.plist</string>
 	</array>
+	<key>RunAtLoad</key>
+	<true/>
 </dict>
 </plist>
 END
@@ -138,8 +147,7 @@ END
 sleep 2
 
 # adjust permissions correctly then load.
-sudo /usr/sbin/chown root:wheel "/Library/LaunchAgents/corp.sap.privileges.plist"
-sudo /bin/chmod 644 "/Library/LaunchAgents/corp.sap.privileges.plist"
+/usr/sbin/chown root:wheel "$launchdaemon"
+/bin/chmod 644 "$launchdaemon"
 
-uid=$(id -u "$current_user")
-/bin/launchctl asuser "$uid" /bin/launchctl load -w "/Library/LaunchAgents/corp.sap.privileges.plist"
+/bin/launchctl bootstrap system "$launchdaemon"

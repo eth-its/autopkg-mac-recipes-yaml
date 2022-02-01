@@ -89,8 +89,11 @@ current_user=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { 
 echo "Removing LaunchAgent"
 
 uid=$(id -u "$current_user")
-/bin/launchctl asuser "$uid" /bin/launchctl unload -w "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
-/bin/rm -f "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
+launchagent="/Library/LaunchAgents/corp.sap.privileges.plist"
+if [[ -f "$launchagent" ]]; then
+    /bin/launchctl asuser "$uid" /bin/launchctl unload -w "$launchagent" ||:
+    /bin/rm "$launchagent"
+fi
 
 # Wait for 2 seconds
 Sleep 2
