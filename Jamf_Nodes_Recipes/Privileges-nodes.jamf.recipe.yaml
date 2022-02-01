@@ -8,3 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Privileges"
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
   PARAMETER4_LABEL: "Elevation Time (minutes)"
+  SELFSERVICE_ICON: "Privileges 1.5.png"

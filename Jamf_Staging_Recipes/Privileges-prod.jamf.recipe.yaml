@@ -10,3 +10,4 @@ Input:
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Elevation Time (minutes)"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  SELFSERVICE_ICON: "Privileges 1.5.png"
