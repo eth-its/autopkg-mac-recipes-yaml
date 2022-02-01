@@ -53,7 +53,7 @@ END
 
 # Create the launchagent file in the library and write to it
 # this is used to force demotion if the app is run normally
-cat > /Library/LaunchAgents/corp.sap.privileges.plist <<"EOF"
+cat > /Library/LaunchAgents/corp.sap.privileges.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
