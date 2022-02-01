@@ -6,7 +6,7 @@
 	<string>RequiredDataOnly</string>
 	<key>Applications</key>
 	<dict>
-		<key>/Applications/Microsoft Defender ATP.app</key>
+		<key>/Applications/Microsoft Defender.app</key>
 		<dict>
 			<key>Application ID</key>
 			<string>WDAV00</string>
