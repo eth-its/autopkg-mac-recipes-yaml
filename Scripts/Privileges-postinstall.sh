@@ -1,23 +1,30 @@
-#!/bin/sh
-## Privileges postinstall
-## by Rupen Valand
-## https://macadmins.slack.com/archives/C0560V3BQ/p1635785790353100?thread_ts=1635782325.348900&cid=C0560V3BQ
-## Adapted by Graham Pugh based on an idea by James Smith 
-## https://macadmins.slack.com/archives/C01AVR04ES1/p1637921154284300?thread_ts=1637917979.279500&cid=C01AVR04ES1
+#!/bin/bash
 
+:<<DOC
+Privileges postinstall
+by Rupen Valand
+https://macadmins.slack.com/archives/C0560V3BQ/p1635785790353100?thread_ts=1635782325.348900&cid=C0560V3BQ
+
+Adapted by Graham Pugh based on an idea by James Smith 
+https://macadmins.slack.com/archives/C01AVR04ES1/p1637921154284300?thread_ts=1637917979.279500&cid=C01AVR04ES1
+DOC
 
 # Sets admin privileges for defined number of minutes
-duration_minutes=%PRIVILEGES_ELEVATION_DURATION%
+# takes parameter 4 from Jamf
+duration_minutes="$4"
+
+if [[ ! "$duration_minutes" -eq "$duration_minutes" ]]; then
+	echo "No elevaton duration set, so not enforcing any time restriction. Quitting postinstall script."
+	exit
+fi
+
 elevation_duration=$(( duration_minutes * 60 ))
 
-# demote policy trigger name
-demote_policy_trigger_name="Privileges-demote"
-
 # Location for demotion script
-script_location="/Library/Management/ETHZ/Privileges"
+demote_script_location="/Library/Management/ETHZ/Privileges"
 
 # make sure the demotion script location exists
-mkdir -p "$script_location"
+mkdir -p "$demote_script_location"
 
 # Get current user
 current_user=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
@@ -31,22 +38,22 @@ uid=$(id -u "$current_user")
 Sleep 2
 
 # write 
-cat > "$script_location" <<END 
+cat > "$demote_script_location/demote.sh" <<END 
 #!/bin/bash
 su -l $current_user -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --add"
+jamf recon  # do a recon to inform Jamf that the user is an admin
 
 # now wait for the designated number of minutes
 sleep $elevation_duration
 
 # now remove privileges
-# su -l $current_user -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --remove"
-/usr/local/jamf/bin/jamf policy -event "$demote_policy_trigger_name"
+su -l $current_user -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --remove"
+jamf recon  # do a recon to inform Jamf that the user is no longer an admin
 END
 
-
-
 # Create the launchagent file in the library and write to it
-cat > /Library/LaunchAgents/corp.sap.privileges.plist <<EOF
+# this is used to force demotion if the app is run normally
+cat > /Library/LaunchAgents/corp.sap.privileges.plist <<"EOF"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -57,8 +64,8 @@ cat > /Library/LaunchAgents/corp.sap.privileges.plist <<EOF
 	<string>Aqua</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Applications/Privileges.app/Contents/Resources/PrivilegesCLI</string>
-		<string>--remove</string>
+		<string>/bin/bash</string>
+		<string>$demote_script_location/demote.sh</string>
 	</array>
 	<key>WatchPaths</key>
 	<array>
