@@ -40,10 +40,7 @@ Sleep 2
 # write 
 cat > "$demote_script_location/demote.sh" <<END 
 #!/bin/bash
-su -l $current_user -c "/Applications/Privileges.app/Contents/Resources/PrivilegesCLI --add"
-jamf recon  # do a recon to inform Jamf that the user is an admin
-
-# now wait for the designated number of minutes
+# wait for the designated number of minutes
 sleep $elevation_duration
 
 # now remove privileges
