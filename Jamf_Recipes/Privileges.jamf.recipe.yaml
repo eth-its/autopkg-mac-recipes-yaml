@@ -19,6 +19,9 @@ Input:
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Elevation Time (minutes)"
+  DOCK_ITEM_NAME: Privileges
+  DOCK_ITEM_PATH: "/Applications/Privileges.app/"
+  DOCK_ITEM_ACTION: Add To End
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -28,7 +31,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-dockitem.xml
   SELFSERVICE_ICON: "Privileges 1.5.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -87,5 +90,12 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfDockItemUploader
+    Arguments:
+      dock_item_name: "%DOCK_ITEM_NAME%"
+      dock_item_type: "App"
+      dock_item_path: "%DOCK_ITEM_PATH%"
+      replace_dock_item: "False"
 
   - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

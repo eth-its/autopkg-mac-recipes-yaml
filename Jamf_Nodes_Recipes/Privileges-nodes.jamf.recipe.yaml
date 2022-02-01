@@ -8,3 +8,15 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Privileges"
   PARAMETER4_LABEL: "Elevation Time (minutes)"
   SELFSERVICE_ICON: "Privileges 1.5.png"
+  DOCK_ITEM_NAME: Privileges
+  DOCK_ITEM_PATH: "/Applications/Privileges.app/"
+  DOCK_ITEM_ACTION: Add To End
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-dockitem.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfDockItemUploader
+    Arguments:
+      dock_item_name: "%DOCK_ITEM_NAME%"
+      dock_item_type: "App"
+      dock_item_path: "%DOCK_ITEM_PATH%"
+      replace_dock_item: "False"
