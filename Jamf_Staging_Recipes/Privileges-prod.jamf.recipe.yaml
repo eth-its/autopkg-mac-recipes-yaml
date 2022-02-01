@@ -12,13 +12,4 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-dockitem.xml
   SELFSERVICE_ICON: "Privileges 1.5.png"
   DOCK_ITEM_NAME: Privileges
-  DOCK_ITEM_PATH: "/Applications/Privileges.app/"
   DOCK_ITEM_ACTION: Add To End
-
-Process:
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfDockItemUploader
-    Arguments:
-      dock_item_name: "%DOCK_ITEM_NAME%"
-      dock_item_type: "App"
-      dock_item_path: "%DOCK_ITEM_PATH%"
-      replace_dock_item: "False"
