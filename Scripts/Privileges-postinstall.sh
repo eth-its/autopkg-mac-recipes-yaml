@@ -31,8 +31,8 @@ current_user=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { 
 
 # Stop the current launchagent and remove it prior to installing this updated one
 uid=$(id -u "$current_user")
-/bin/launchctl asuser "$uid" /bin/launchctl unload -w "/Library/LaunchAgents/corp.sap.privileges.plist"
-/bin/rm -f "/Library/LaunchAgents/corp.sap.privileges.plist"
+/bin/launchctl asuser "$uid" /bin/launchctl unload -w "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
+/bin/rm -f "/Library/LaunchAgents/corp.sap.privileges.plist" ||:
 
 # Wait for 2 seconds
 Sleep 2
