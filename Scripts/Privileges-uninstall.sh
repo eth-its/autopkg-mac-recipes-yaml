@@ -82,17 +82,13 @@ else
     echo "Folder not found: /Applications/${app_name}.localized/"
 fi
 
-# Get current user
-current_user=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
+# Stop the current LaunchDaemon and remove it prior to installing this updated one
+echo "Removing LaunchDaemon"
 
-# Stop the current launchagent and remove it prior to installing this updated one
-echo "Removing LaunchAgent"
-
-uid=$(id -u "$current_user")
-launchagent="/Library/LaunchAgents/corp.sap.privileges.plist"
-if [[ -f "$launchagent" ]]; then
-    /bin/launchctl asuser "$uid" /bin/launchctl unload -w "$launchagent" ||:
-    /bin/rm "$launchagent"
+launchdaemon="/Library/LaunchDaemons/corp.sap.privileges.plist"
+if [[ -f "$launchdaemon" ]]; then
+    /bin/launchctl unload -w "$launchdaemon" ||:
+    /bin/rm "$launchdaemon"
 fi
 
 # Wait for 2 seconds
