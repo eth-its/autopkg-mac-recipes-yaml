@@ -14,7 +14,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_ICON: "%NAME%.png"
   DOCK_ITEM_NAME: "%NAME%"
-  DOCK_ITEM_PATH: "/Applications/%NAME%.app/"
+  DOCK_ITEM_PATH: "file://localhost/Applications/%NAME%.app/"
   DOCK_ITEM_ACTION: Add To End
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
