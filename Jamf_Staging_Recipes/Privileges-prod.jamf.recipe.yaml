@@ -9,5 +9,5 @@ Input:
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Elevation Time (minutes)"
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SELFSERVICE_ICON: "Privileges 1.5.png"
