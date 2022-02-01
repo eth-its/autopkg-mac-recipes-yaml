@@ -64,7 +64,7 @@ Process:
       script_path: "%SCRIPT_PATH%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      replace_script: True
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -89,7 +89,6 @@ Process:
       dock_item_name: "%DOCK_ITEM_NAME%"
       dock_item_type: "App"
       dock_item_path: "%DOCK_ITEM_PATH%"
-      replace_dock_item: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
