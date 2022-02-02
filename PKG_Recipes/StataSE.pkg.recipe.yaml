@@ -1,0 +1,164 @@
+Description: Downloads the latest version of Stata/SE and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.StataSE
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  LIST_NAME: Stata
+  NAME: StataSE
+  LIST_LANGUAGE: EN
+
+Process:
+  - Arguments:
+      flat_pkg_path: "%pathname%/*.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      purge_destination: True
+    Processor: FlatPkgUnpacker
+
+  - Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/StataSE.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack_SE"
+      purge_destination: True
+    Processor: PkgPayloadUnpacker
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack_SE/StataSE.app/Contents/Info.plist"
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/Install Stata.pkg"
+      source_pkg: "%pathname%/*.pkg"
+    Processor: PkgCopier
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/license.txt"
+      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install and activate Stata
+
+        DIR=$(dirname "$0")
+
+        logfile="/var/log/stata-install.log"
+        touch $logfile
+
+        CURRENTUSER=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
+        USERHOME="/Users/$CURRENTUSER"
+
+        MoveStata() {
+            # function to move app from /Applications/Stata to a version-specific folder
+            if [[ -d "/Applications/Stata" ]]; then
+                installed_version=$(/usr/bin/defaults read /Applications/Stata/StataSE.app/Contents/Info.plist CFBundleShortVersionString | cut -d. -f 1)
+                if [[ -d "/Applications/Stata $installed_version" ]]; then
+                    echo "Removing existing '/Applications/Stata $installed_version'..." >> $logfile
+                    /bin/rm -rf "/Applications/Stata $installed_version"
+                fi
+                echo "Version '$installed_version' is in place at /Applications/Stata - will move..." >> $logfile
+                /bin/mv "/Applications/Stata" "/Applications/Stata $installed_version"
+                if (test $? = 0) then
+                    echo "Stata was moved." >> $logfile
+                else
+                    echo "ERROR: Stata could not be moved." >> $logfile
+                fi
+            else
+                echo "Nothing to move" >> $logfile
+            fi
+        }
+
+        # function to install the Stata Installer Package with command line tools and move it to its own folder
+        InstallStataPKG() {
+            installer -applyChoiceChangesXML "$DIR/Stata_SE_Choices.xml" -pkg "$DIR/Install Stata.pkg" -target /
+
+            if (test $? = 0) then
+                echo "Stata installed." >> $logfile
+            else
+                echo "ERROR: Stata installation failed." >> $logfile
+                exit 1
+            fi
+
+        }
+
+        EnableNonAdminUpdates() {
+            # since updates can only be carried out from within the Application
+            # it is better to allow users to update themselves.
+            if id $CURRENTUSER && [[ -d "$USERHOME" ]]; then
+                echo "$CURRENTUSER is a real user, so setting app ownership to this user" >> $logfile
+                chown -R $CURRENTUSER:staff /Applications/Stata
+            else
+                echo "$CURRENTUSER is not a legitimate user, so setting app ownership to root" >> $logfile
+                chown -R root:staff /Applications/Stata
+            fi
+            echo "Setting mod to 775" >> $logfile
+            chmod -R 775 /Applications/Stata
+        }
+
+        AddStataLic() {
+            LICENSE=$(cat "$DIR/license.txt" | perl -pe 's/\R/!/g' | perl -pe 's/.*Serial number: //g' |  perl -pe 's/Code: //g' |  perl -pe 's/Authorization: //g' | perl -pe 's/!!/!/g')
+            echo "${LICENSE}!Staff!ETH Zurich!1386!" | tee "/Applications/Stata/stata.lic"
+            chmod 664 "/Applications/Stata/stata.lic"
+            chown root:admin "/Applications/Stata/stata.lic"
+
+            if [[ -f "/Applications/Stata/stata.lic" ]]; then
+                echo "License File stata.lic written to /Applications/Stata/stata.lic" >> $logfile
+            else
+                echo "ERROR: Could not write License file to /Applications/Stata/stata.lic" >> $logfile
+                exit 1
+            fi
+        }
+
+        ClearUp() {
+            echo "Looking for any old installers and deleting" >> $logfile
+            find /Applications -type d -name "Stata old*" -maxdepth 1 -exec rm -rf {} +
+        }
+
+        # do the work
+        MoveStata
+        sleep 1
+        InstallStataPKG
+        EnableNonAdminUpdates
+        AddStataLic
+        ClearUp
+        sleep 1
+        MoveStata
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: <array><string>StataSE</string></array>
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/Stata_SE_Choices.xml"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.StataSE%version%Installer
+        pkgname: "%LIST_NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/unpack_SE"
