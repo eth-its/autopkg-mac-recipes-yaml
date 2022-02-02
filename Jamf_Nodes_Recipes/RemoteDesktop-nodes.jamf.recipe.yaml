@@ -1,8 +1,11 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.RemoteDesktop-nodes
+Identifier: com.github.eth-its-recipes.jamf.AppleRemoteDesktop-nodes
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 
 Input:
   NAME: Remote Desktop
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.RemoteDesktop
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AppleRemoteDesktop
+  SELFSERVICE_ICON: "%NAME% 3.9.5.png"
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-max-forcedescription.xml
+  OS_EXCLUDE_MAX: 10.15.8

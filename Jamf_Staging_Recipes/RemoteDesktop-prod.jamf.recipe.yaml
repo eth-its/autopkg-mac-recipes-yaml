@@ -6,3 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
 Input:
   NAME: Remote Desktop
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.RemoteDesktop
+  SELFSERVICE_ICON: "%NAME% 3.9.5.png"
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-OS-exclude-max-forcedescription.xml
+  OS_EXCLUDE_MAX: 10.15.8
