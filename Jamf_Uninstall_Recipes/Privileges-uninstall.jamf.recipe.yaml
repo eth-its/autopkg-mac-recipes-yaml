@@ -1,0 +1,10 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Privileges-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: Privileges
+  SCRIPT_NAME: Privileges-uninstall.sh
+  SCRIPT_PATH: Privileges-uninstall.sh
+  SELFSERVICE_ICON: "Privileges 1.5.png"

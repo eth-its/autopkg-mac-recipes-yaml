@@ -1,0 +1,15 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Privileges-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: Privileges
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Privileges"
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: "Elevation Time (minutes)"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-dockitem.xml
+  SELFSERVICE_ICON: "Privileges 1.5.png"
+  DOCK_ITEM_NAME: Privileges
+  DOCK_ITEM_ACTION: Add To End

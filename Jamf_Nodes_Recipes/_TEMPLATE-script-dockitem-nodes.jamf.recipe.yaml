@@ -6,13 +6,16 @@ Comment: |
   If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
 
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.template-script-nodes
+Identifier: com.github.eth-its-recipes.jamf.template-script-dockitem-nodes
 MinimumVersion: "2.3"
 
 Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_ICON: "%NAME%.png"
+  DOCK_ITEM_NAME: "%NAME%"
+  DOCK_ITEM_PATH: "file://localhost/Applications/%NAME%.app/"
+  DOCK_ITEM_ACTION: Add To End
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -22,14 +25,14 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  UPDATE_PREDICATE: "pkg_uploaded == False"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-dockitem.xml
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Parameter 4"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -59,7 +62,7 @@ Process:
       script_path: "%SCRIPT_PATH%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      replace_script: True
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
@@ -82,6 +85,12 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfDockItemUploader
+    Arguments:
+      dock_item_name: "%DOCK_ITEM_NAME%"
+      dock_item_type: "App"
+      dock_item_path: "%DOCK_ITEM_PATH%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

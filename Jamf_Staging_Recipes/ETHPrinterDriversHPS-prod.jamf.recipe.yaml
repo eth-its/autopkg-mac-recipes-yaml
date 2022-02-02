@@ -7,6 +7,8 @@ Input:
   NAME: ETH Printer Drivers HP S
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHPrinterDriversHPS
   USERS_GROUP_NAME: "ETH Printers users"
+  AUTOINSTALL_GROUP_NAME: "ETH Printers auto-install"
+  AUTOUPDATE_GROUP_NAME: "ETH Printers auto-update"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP S Version
