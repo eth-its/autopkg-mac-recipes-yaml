@@ -42,7 +42,7 @@ Process:
 
   - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/license.txt"
-      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+      source_path: "%LIST_LICENSE_FILE_SOURCE%/%license_file_path%"
     Processor: Copier
 
   - Arguments:
@@ -107,7 +107,7 @@ Process:
 
         AddStataLic() {
             LICENSE=$(cat "$DIR/license.txt" | perl -pe 's/\R/!/g' | perl -pe 's/.*Serial number: //g' |  perl -pe 's/Code: //g' |  perl -pe 's/Authorization: //g' | perl -pe 's/!!/!/g')
-            echo "${LICENSE}!Staff!ETH Zurich!1386!" | tee "/Applications/Stata/stata.lic"
+            echo "${LICENSE}%LICENSE_SUFFIX%" | tee "/Applications/Stata/stata.lic"
             chmod 664 "/Applications/Stata/stata.lic"
             chown root:admin "/Applications/Stata/stata.lic"
 
