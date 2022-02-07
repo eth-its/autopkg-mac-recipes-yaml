@@ -46,6 +46,10 @@ Process:
       policy_name: "%POLICY_NAME%"
       replace_policy: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%POLICY_NAME%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
     Comment: Delete the untested policy
     Arguments:

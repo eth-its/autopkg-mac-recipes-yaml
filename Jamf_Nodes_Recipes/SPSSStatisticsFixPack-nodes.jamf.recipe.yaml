@@ -66,3 +66,7 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%POLICY_NAME%"
