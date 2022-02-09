@@ -10,6 +10,7 @@ Input:
   TRIGGER_POLICY_NAME: Privileges Configuration
   TRIGGER_NAME: PrivilegesConfiguration-install
   SCRIPT_NAME: Privileges-postinstall.sh
+  SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Elevation Time (minutes)"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   MESSAGE_FINISH: ""
