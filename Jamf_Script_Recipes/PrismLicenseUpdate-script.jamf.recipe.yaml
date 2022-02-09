@@ -4,6 +4,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Prism License Update
+  SCRIPT_CATEGORY: Science & Math
+  SCRIPT_PRIORITY: After
   EXPIRY_YEAR: "2022"
   POLICY_CATEGORY: Administration
   POLICY_TEMPLATE: Policy-prod-once-per-computer-script.xml
@@ -12,6 +14,21 @@ Input:
   SCRIPT_NAME: Prism-postinstall.sh
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
