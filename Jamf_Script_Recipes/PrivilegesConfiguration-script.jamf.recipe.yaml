@@ -4,16 +4,14 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Privileges Configuration
-  TIMEOUT: "20"
   TRIGGER_POLICY_CATEGORY: Triggered installers
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
   TRIGGER_POLICY_NAME: Privileges Configuration
   TRIGGER_NAME: PrivilegesConfiguration-install
   SCRIPT_NAME: Privileges-postinstall.sh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Elevation Time (minutes)"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  MESSAGE_FINISH: ""
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
