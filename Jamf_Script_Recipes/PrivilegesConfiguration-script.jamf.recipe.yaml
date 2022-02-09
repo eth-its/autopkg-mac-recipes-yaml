@@ -6,7 +6,7 @@ Input:
   NAME: Privileges Configuration
   TIMEOUT: "20"
   TRIGGER_POLICY_CATEGORY: Triggered installers
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameter4.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
   TRIGGER_POLICY_NAME: Privileges Configuration
   TRIGGER_NAME: PrivilegesConfiguration-install
   SCRIPT_NAME: Privileges-postinstall.sh
