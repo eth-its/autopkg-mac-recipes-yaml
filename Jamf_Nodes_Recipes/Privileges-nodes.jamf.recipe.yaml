@@ -7,4 +7,4 @@ Input:
   NAME: Privileges
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Privileges"
   SELFSERVICE_ICON: "Privileges 1.5.png"
-  POLICY_RUN_COMMAND: "jamf policy PrivilegesConfiguration-install"
+  POLICY_RUN_COMMAND: "jamf policy -event PrivilegesConfiguration-install"
