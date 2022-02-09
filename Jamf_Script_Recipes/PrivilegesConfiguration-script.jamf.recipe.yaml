@@ -11,10 +11,12 @@ Input:
   TRIGGER_NAME: PrivilegesConfiguration-install
   SCRIPT_NAME: Privileges-postinstall.sh
   PARAMETER4_LABEL: "Elevation Time (minutes)"
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  MESSAGE_FINISH: ""
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
       replace_policy: "False"
