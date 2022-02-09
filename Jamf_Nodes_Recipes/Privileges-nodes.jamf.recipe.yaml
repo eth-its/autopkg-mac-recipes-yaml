@@ -1,10 +1,9 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Privileges-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-dockitem-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-dockitem-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: Privileges
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Privileges"
-  PARAMETER4_LABEL: "Elevation Time (minutes)"
   SELFSERVICE_ICON: "Privileges 1.5.png"

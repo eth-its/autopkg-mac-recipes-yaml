@@ -14,7 +14,8 @@ DOC
 duration_minutes="$4"
 
 if [[ ! "$duration_minutes" ]]; then
-	duration_minutes="15"
+    echo "No Privileges time limitation set. Exiting."
+    exit 
 fi
 
 echo "Setting elevation time of $duration_minutes minute(s)."

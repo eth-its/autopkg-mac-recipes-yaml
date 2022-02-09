@@ -1,0 +1,20 @@
+Description: Creates a Once per computer policy to update the Prism license by running the postinstall script.
+Identifier: ch.ethz.id.jamf.script.PrivilegesConfiguration
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Privileges Configuration
+  TIMEOUT: "20"
+  TRIGGER_POLICY_CATEGORY: Triggered installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameter4.xml
+  TRIGGER_POLICY_NAME: Privileges Configuration
+  TRIGGER_NAME: PrivilegesConfiguration-install
+  SCRIPT_NAME: Privileges-postinstall.sh
+  PARAMETER4_LABEL: "Elevation Time (minutes)"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "False"
