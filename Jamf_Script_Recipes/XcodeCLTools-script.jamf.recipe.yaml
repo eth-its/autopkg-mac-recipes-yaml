@@ -28,6 +28,7 @@ Input:
   SELFSERVICE_ICON: Terminal.png
   INSTALL_BUTTON_TEXT: Install
   REINSTALL_BUTTON_TEXT: Reinstall
+  MESSAGE_FINISH: "%NAME% installation complete"
   FORCE_DESCRIPTION: "false"
 
 Process:
