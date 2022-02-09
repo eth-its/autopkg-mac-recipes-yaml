@@ -101,4 +101,4 @@ demote_script_location="/Library/Management/ETHZ/Privileges"
 
 # Forget packages (works for all versions)
 echo "Forgetting packages"
-/usr/sbin/pkgutil --forget com.sap.privileges ||:
+/usr/sbin/pkgutil --forget corp.sap.privileges ||:
