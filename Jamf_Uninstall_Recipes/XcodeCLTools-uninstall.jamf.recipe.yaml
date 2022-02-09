@@ -5,8 +5,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Xcode Command Line Tools
-  SCRIPT_NAME: XcodeCLTools-uninstall.sh
-  SCRIPT_PATH: XcodeCLTools-uninstall.sh
+  SCRIPT_NAME: XcodeCLTools-uninstall.zsh
+  SCRIPT_PATH: XcodeCLTools-uninstall.zsh
   EXTENSION_ATTRIBUTE_NAME: Xcode Command Line Tools
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: "^Installed$"
