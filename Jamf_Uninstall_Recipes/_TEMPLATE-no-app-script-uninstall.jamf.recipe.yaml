@@ -35,7 +35,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters.xml
