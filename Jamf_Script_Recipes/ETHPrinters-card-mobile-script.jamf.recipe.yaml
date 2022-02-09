@@ -5,8 +5,8 @@ MinimumVersion: "2.3"
 Comment: PARAMETER4_VALUE should be overridden with the print server's FQDN
 
 Input:
-  NAME: ETH Follow-Me Printer (card-hp)
-  PRINTER_NAME: card-hp
+  NAME: ETH Follow-Me Printer (Card-Mobile HP)
+  PRINTER_NAME: card-mobile-manual
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
@@ -21,25 +21,25 @@ Input:
   TRIGGER_NAME: card-hp-install
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   MESSAGE_FINISH: "%NAME% installation complete"
-  SCRIPT_NAME: ETHPrinterTemplate.sh
+  SCRIPT_NAME: ETHPrinterIPPTemplate.sh
   SCRIPT_PRIORITY: After
-  PARAMETER4_LABEL: Server
+  PARAMETER4_LABEL: Printer Address
   PARAMETER5_LABEL: Printer Name
   PARAMETER6_LABEL: GUI Display Name
   PARAMETER7_LABEL: Location (optional)
-  PARAMETER8_LABEL: Driver File (eg RICOH MP C5503)
+  PARAMETER8_LABEL: Driver File (default HP Color MFP E87640-50-60.gz)
   PARAMETER9_LABEL: Driver options (-o x=xx -o y=yy -o z=zz)
   PARAMETER10_LABEL: Default Printer (1 = yes)
   PARAMETER11_LABEL: Parameter 11
-  PARAMETER5_VALUE: "%PRINTER_NAME%"
-  PARAMETER6_VALUE: "%PRINTER_NAME%"
-  PARAMETER7_VALUE: "%PRINTER_NAME%"
+  PARAMETER5_VALUE: "card-mobile-manual"
+  PARAMETER6_VALUE: "Card-Mobile HP"
+  PARAMETER7_VALUE: "cloud"
   PARAMETER8_VALUE: HP Color MFP E87640-50-60.gz
-  PARAMETER9_VALUE: "-o HPOption_OutputBin=HP3BinMailbox -o HPOption_BookletMaker=True -o HPOption_HPFoldingOptions=MultiFold -o HPOption_HPStaplerOptions=HP2StapleUnit -o HPOption_HPPunchingOptions=HP24HolesUnit -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP520SheetInputTray -o HPOption_Tray6=HP3000SheetInputTray -o HPColorAsGray=BlackInkOnly -o MediaType=Plain -o PageRegion=A4 -o ImageableArea=A4 -o PaperDimension=A4 -o HPBookletPageSize=A4"
+  PARAMETER9_VALUE: "-o HPOption_HPPunchingOptions=HP24HolesUnit -o HPColorAsGray=BlackInkOnly -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP"
   PARAMETER10_VALUE: "1"
   PARAMETER11_VALUE: " "
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
-  SELFSERVICE_DESCRIPTION: Install the card-hp print queue along with any required drivers.
+  SELFSERVICE_DESCRIPTION: Install the Card-Mobile HP print queue along with any required drivers.
   SELFSERVICE_ICON: ETH Printers.png
   INSTALL_BUTTON_TEXT: Install
   REINSTALL_BUTTON_TEXT: Install
