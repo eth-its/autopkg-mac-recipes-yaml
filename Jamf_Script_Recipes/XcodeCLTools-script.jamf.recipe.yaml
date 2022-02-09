@@ -1,0 +1,63 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.XcodeCLTools-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Xcode Command Line Tools
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  INSTALLED_GROUP_NAME: "%NAME% enabled"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: Xcode Command Line Tools
+  EXTENSION_ATTRIBUTE_SCRIPT: XcodeCLTools-EA.sh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: "True"
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Development & Computing
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: XcodeCLTools-install.sh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: Install or upgrade the Xcode Command Line Tools
+  SELFSERVICE_DESCRIPTION: Installs the Xcode Command Line Tools. Run this if the commands you expect to use (git, python3, swift, strings etc) are not working.
+  SELFSERVICE_ICON: Terminal.png
+  INSTALL_BUTTON_TEXT: Enable
+  REINSTALL_BUTTON_TEXT: Enable
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
