@@ -28,6 +28,7 @@ Process:
       script_category: "%SCRIPT_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
