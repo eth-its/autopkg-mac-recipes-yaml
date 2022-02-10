@@ -16,7 +16,7 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: Software updates available
   EXTENSION_ATTRIBUTE_SCRIPT: SoftwareUpdates-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-  EXTENSION_ATTRIBUTE_VALUE: "True"
+  EXTENSION_ATTRIBUTE_VALUE: "true"
   POLICY_CATEGORY: Updates
   UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-available.xml
   UPDATES_POLICY_NAME: Install macOS Updates
