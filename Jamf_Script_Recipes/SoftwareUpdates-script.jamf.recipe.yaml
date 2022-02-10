@@ -23,7 +23,7 @@ Input:
   UPDATES_SELFSERVICE_DISPLAY_NAME: Install macOS Updates
   UPDATES_SELFSERVICE_ICON: System Preferences.png
   UPDATES_RUN_COMMAND: /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
-  SELFSERVICE_DESCRIPTION: |
+  UPDATES_SELFSERVICE_DESCRIPTION: |
     It has been determined that macOS software updates are available on your system. 
 
     Please click the Info button. The Software Update pane will open on your computer. Please install all available updates.
