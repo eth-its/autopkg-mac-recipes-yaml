@@ -10,3 +10,4 @@ Input:
   SELFSERVICE_ICON: "Privileges 1.5.png"
   DOCK_ITEM_NAME: Privileges
   DOCK_ITEM_ACTION: Add To End
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event PrivilegesConfiguration-install"
