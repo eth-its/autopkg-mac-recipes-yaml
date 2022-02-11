@@ -1,0 +1,85 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.SoftwareUpdate-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Software Updates
+  GROUP_NAME: Software Updates available
+  GROUP_TEMPLATE: SmartGroup-softwareupdates.xml
+  SCRIPT_NAME: Display pop-up message
+  SCRIPT_PATH: DisplayPopup.zsh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Dialogue message
+  PARAMETER5_LABEL: Button Text
+  PARAMETER4_VALUE: No macOS software updates available
+  PARAMETER5_VALUE: OK
+  EXTENSION_ATTRIBUTE_NAME: Software updates available
+  EXTENSION_ATTRIBUTE_SCRIPT: SoftwareUpdates-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: "true"
+  POLICY_CATEGORY: Updates
+  UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-available.xml
+  UPDATES_POLICY_NAME: Install macOS Updates
+  UPDATES_SELFSERVICE_DISPLAY_NAME: Install macOS Updates
+  UPDATES_SELFSERVICE_ICON: System Preferences.png
+  UPDATES_RUN_COMMAND: /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
+  UPDATES_SELFSERVICE_DESCRIPTION: |
+    It has been determined that macOS software updates are available on your system. 
+
+    Please click the Info button. The Software Update pane will open on your computer. Please install all available updates.
+
+    Note that if you have just installed software that does not require a restart, this pane may continue to show taht there are updates until the next time the computer inventory is uploaded to the management server.
+  NO_UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-none.xml
+  NO_UPDATES_POLICY_NAME: No macOS Updates Available
+  NO_UPDATES_SELFSERVICE_DISPLAY_NAME: No macOS Updates Available
+  NO_UPDATES_UPDATES_SELFSERVICE_DESCRIPTION: |
+    Your computer is up-to-date, and no **macOS software updates** are available or required.
+
+    **There is no need to click on the *info* button - this message is purely informational.**
+  NO_UPDATES_SELFSERVICE_ICON: No Software Updates Available.png
+  INSTALL_BUTTON_TEXT: Info
+  REINSTALL_BUTTON_TEXT: Info
+  FORCE_DESCRIPTION: "true"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service policy when updates are available
+    Arguments:
+      policy_template: "%UPDATES_POLICY_TEMPLATE%"
+      policy_name: "%UPDATES_POLICY_NAME%"
+      icon: "%UPDATES_SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service policy when no updates are available
+    Arguments:
+      policy_template: "%NO_UPDATES_POLICY_TEMPLATE%"
+      policy_name: "%NO_UPDATES_POLICY_NAME%"
+      icon: "%NO_UPDATES_SELFSERVICE_ICON%"
+      replace_policy: "True"
