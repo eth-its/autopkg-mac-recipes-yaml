@@ -30,6 +30,10 @@ Input:
   PARAMETER10_VALUE: "None"
   PARAMETER11_VALUE: "None"
   SELFSERVICE_ICON: "%NAME%.png"
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+  AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   TESTING_GROUP_NAME: Testing
