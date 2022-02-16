@@ -7,7 +7,7 @@ Input:
   NAME: coconutBattery
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     With coconutBattery you are always aware of your current battery health. It shows you live information about the battery quality in your Mac, iPhone and iPad.
 
