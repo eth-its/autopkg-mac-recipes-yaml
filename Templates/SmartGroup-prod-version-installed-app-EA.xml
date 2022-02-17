@@ -4,8 +4,17 @@
     <is_smart>true</is_smart>
     <criteria>
         <criterion>
-            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
+            <name>Application Title</name>
             <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>%JSS_INVENTORY_NAME%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
+            <priority>1</priority>
             <and_or>and</and_or>
             <search_type>matches regex</search_type>
             <value>%version_regex%</value>
@@ -14,7 +23,7 @@
         </criterion>
         <criterion>
             <name>%EXTENSION_ATTRIBUTE_NAME%</name>
-            <priority>1</priority>
+            <priority>2</priority>
             <and_or>or</and_or>
             <search_type>matches regex</search_type>
             <value>%version_regex_2%</value>
@@ -23,7 +32,7 @@
         </criterion>
         <criterion>
             <name>Computer Group</name>
-            <priority>2</priority>
+            <priority>3</priority>
             <and_or>and</and_or>
             <search_type>member of</search_type>
             <value>%USERS_GROUP_NAME%</value>
