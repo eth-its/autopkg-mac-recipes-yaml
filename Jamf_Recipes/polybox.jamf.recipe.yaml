@@ -7,6 +7,9 @@ Input:
   NAME: polybox
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  VERSION_STRING_TYPE: CFBundleVersion
+  EXTENSION_ATTRIBUTE_NAME: polybox Version
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
     polybox offers all ETH members Dropbox-similar ETH on-campus storage. Use it as a logical memory stick - store your data on the ETH campus.
