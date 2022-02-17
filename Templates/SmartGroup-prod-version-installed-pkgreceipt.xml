@@ -15,7 +15,7 @@
         <criterion>
             <name>%EXTENSION_ATTRIBUTE_NAME%</name>
             <priority>1</priority>
-            <and_or>or</and_or>
+            <and_or>and</and_or>
             <search_type>matches regex</search_type>
             <value>%version_regex%</value>
             <opening_paren>true</opening_paren>
