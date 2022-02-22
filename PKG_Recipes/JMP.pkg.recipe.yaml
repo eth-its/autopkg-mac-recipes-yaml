@@ -90,13 +90,13 @@ Process:
         fi
         else
           echo "JMP installer image not found at /Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg"
-          exit 1
+          do_exit=1
         fi
 
         # install JMP with ETH License
         if ! installer -target / -pkg "/Volumes/JMP_installer_image/JMP ${MAJOR}.pkg"; then
           echo "Failed to install JMP ${MAJOR}.pkg"
-          exit 1
+          do_exit=1
         fi
 
         # eject mounted JMP volumes
@@ -105,6 +105,10 @@ Process:
             dirname="$(basename "${path}")"
             hdiutil eject ${path}
         done
+
+        if [[ "$do_exit" -eq 1 ]]; then
+          exit 1
+        fi
 
         # relocate license
         if [[ -f "$HOME/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
