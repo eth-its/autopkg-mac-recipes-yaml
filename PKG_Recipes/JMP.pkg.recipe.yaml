@@ -8,7 +8,6 @@ Input:
   NAME: JMP
   LIST_LANGUAGE: ML
   LIST_NAME: JMP
-  MAJOR_VERSION: "14"
 
 Process:
   - Processor: PkgRootCreator
