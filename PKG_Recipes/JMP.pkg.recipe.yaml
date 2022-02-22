@@ -87,7 +87,6 @@ Process:
         echo "Mounting JMP installer image"
         if ! find /Volumes/JMP_image/JMP/JMP -name "*.dmg" -exec hdiutil attach {} -nobrowse -mountpoint /Volumes/JMP_installer_image \; ; then
           echo "Failed to mount JMP-Install.dmg"
-        fi
         else
           echo "JMP installer image not found at /Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg"
           do_exit=1
