@@ -71,14 +71,27 @@ Process:
 
         # attach main image
         echo "Mounting JMP image"
-        hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse -mountpoint /Volumes/JMP_${MAJOR}
+        if ! hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse -mountpoint /Volumes/JMP_image; then
+          echo "Failed to mount JMP_${MAJOR}.dmg"
+          exit 1
+        fi
 
         # attach installer image, located inside main image
         echo "Mounting JMP installer image"
-        hdiutil attach /Volumes/JMP_${MAJOR}/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg -nobrowse -mountpoint /Volumes/JMP_${MAJOR}_Installer
+        if [[ -f "/Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg" ]]; then
+          if ! hdiutil attach /Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg -nobrowse -mountpoint /Volumes/JMP_installer_image; then
+            echo "Failed to mount JMP-Install.dmg"
+          fi
+        else
+          echo "JMP installer image not found at /Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg"
+          exit 1
+        fi
 
         # install JMP with ETH License
-        installer -target / -pkg "/Volumes/JMP_${MAJOR}_Installer/JMP ${MAJOR}.pkg"
+        if ! installer -target / -pkg "/Volumes/JMP_installer_image/JMP ${MAJOR}.pkg"; then
+          echo "Failed to install JMP ${MAJOR}.pkg"
+          exit 1
+        fi
 
         # eject mounted JMP volumes
         for path in /Volumes/JMP*; do
