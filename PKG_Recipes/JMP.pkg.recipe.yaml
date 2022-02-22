@@ -72,14 +72,14 @@ Process:
 
         # attach main image
         echo "Mounting JMP image"
-        hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse
+        hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse -mountpoint /Volumes/JMP_${MAJOR}_${MINOR}
 
         # attach installer image, located inside main image
         echo "Mounting JMP installer image"
-        hdiutil attach /Volumes/JMP_${MAJOR}_${MINOR}/JMP/JMP/${MAJOR}_${MINOR}/Macintosh/JMP-Install.dmg -nobrowse
+        hdiutil attach /Volumes/JMP_${MAJOR}_${MINOR}/JMP/JMP/${MAJOR}_${MINOR}/Macintosh/JMP-Install.dmg -nobrowse -mountpoint /Volumes/JMP_${MAJOR}_${MINOR}-Installer
 
         # install JMP with ETH License
-        installer -target / -pkg "/Volumes/JMP-${MAJOR}-Installer/JMP ${MAJOR}.pkg"
+        installer -target / -pkg "/Volumes/JMP-${MAJOR}_${MINOR}-Installer/JMP ${MAJOR}.pkg"
 
         # eject mounted JMP volumes
         for path in /Volumes/JMP*; do
