@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeRemoval
   INSTALL_BUTTON_TEXT: "Uninstall"
   REINSTALL_BUTTON_TEXT: "Uninstall"
-  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'ETH Templates MSOffice-uninstall'"
   POLICY_MESSAGE_START: "Completely removing Microsoft Office and all settings"
   POLICY_MESSAGE_FINISH: "Completely removed Microsoft Office and all settings"
   SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"

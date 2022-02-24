@@ -22,7 +22,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Reset Office"
   POLICY_TEMPLATE: Policy-untested-selfservice-noexclusions.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'ETH Templates MSOffice-uninstall'"
   POLICY_MESSAGE_START: "Resetting Microsoft Office to factory settings"
   POLICY_MESSAGE_FINISH: "Microsoft Office has now been reset to factory settings"
   UPDATE_PREDICATE: "pkg_uploaded != True"
