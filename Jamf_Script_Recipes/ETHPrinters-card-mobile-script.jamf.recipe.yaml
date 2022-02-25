@@ -31,11 +31,11 @@ Input:
   PARAMETER9_LABEL: Driver options (-o x=xx -o y=yy -o z=zz)
   PARAMETER10_LABEL: Default Printer (1 = yes)
   PARAMETER11_LABEL: Parameter 11
-  PARAMETER5_VALUE: "card-mobile-manual"
+  PARAMETER5_VALUE: "card-mobile-hp"
   PARAMETER6_VALUE: "Card-Mobile HP"
   PARAMETER7_VALUE: "cloud"
   PARAMETER8_VALUE: HP Color MFP E87640-50-60.gz
-  PARAMETER9_VALUE: "-o HPOption_HPPunchingOptions=HP24HolesUnit -o HPColorAsGray=BlackInkOnly -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP"
+  PARAMETER9_VALUE: "-o HPOption_HPPunchingOptions=HP24HolesUnit -o HPColorAsGray=BlackInkOnly -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP520SheetInputTray -o HPOption_OutputBin=HP3BinMailbox -o HPOption_BookletMaker=True -o HPOption_HPFoldingOptions=MultiFold -o HPOption_HPStaplerOptions=HP2StapleUnit"
   PARAMETER10_VALUE: "1"
   PARAMETER11_VALUE: " "
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
