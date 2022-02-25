@@ -18,7 +18,7 @@ Input:
   AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
   AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
   AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
-  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall-noexclusion.xml
   AUTOUNINSTALL_POLICY_FREQUENCY: Once per day
   UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
 
