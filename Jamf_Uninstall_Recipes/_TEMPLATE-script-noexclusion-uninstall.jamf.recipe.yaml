@@ -30,8 +30,8 @@ Input:
   PARAMETER10_VALUE: "None"
   PARAMETER11_VALUE: "None"
   SELFSERVICE_ICON: "%NAME%.png"
-  INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
+  INSTALLED_GROUP_NAME: "%NAME% can be uninstalled"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml

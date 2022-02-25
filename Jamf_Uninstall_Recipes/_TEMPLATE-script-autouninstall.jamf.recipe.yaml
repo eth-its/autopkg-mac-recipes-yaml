@@ -14,8 +14,8 @@ Input:
   AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   USERS_GROUP_NAME: "%NAME% users"
-  INSTALLED_FOR_AUTOUNINSTALL_GROUP_NAME: "%NAME% can be auto-uninstalled"
-  INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
+  INSTALLED_GROUP_NAME: "%NAME% can be auto-uninstalled"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
   AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
   AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
@@ -31,8 +31,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE%"
-      computergroup_name: "%INSTALLED_FOR_AUTOUNINSTALL_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
