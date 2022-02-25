@@ -6,7 +6,7 @@ Comment: PARAMETER4_VALUE should be overridden with the print server's FQDN
 
 Input:
   NAME: ETH Follow-Me Printer (Card-Mobile HP)
-  PRINTER_NAME: card-mobile-hp
+  PRINTER_NAME: "Card-Mobile HP"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
