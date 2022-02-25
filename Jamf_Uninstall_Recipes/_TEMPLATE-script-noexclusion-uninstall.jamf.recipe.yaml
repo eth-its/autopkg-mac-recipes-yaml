@@ -31,13 +31,7 @@ Input:
   PARAMETER11_VALUE: "None"
   SELFSERVICE_ICON: "%NAME%.png"
   INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
-  TESTING_GROUP_NAME: Testing
-  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
