@@ -1,0 +1,46 @@
+Comment: |
+  This recipe is a template recipe for auto-uninstall policies which remove an app. It can be overridden directly if the NAME, SELF_SERVICE_DESCRIPTION, SELF_SERVICE_ICON and SCRIPT_PATH keys are overridden. 
+  If using a template script, supply the SCRIPT_NAME key to give the script a unique name in Jamf. 
+  For Application-uninstall.sh, provide the PKG_ID key in the override. This allows the app to be closed and the package receipt to be removed. You will also need to provide JSS_INVENTORY_NAME if this does not match NAME.
+  If the policy name does not match the NAME key, e.g. due to language or license being added to the policy name, SELF_SERVICE_DISPLAY_NAME and smart group name values may also need to be overridden.
+  Do not add things like language or license to the NAME key.
+
+Description: Creates an auto-uninstall policy.
+Identifier: com.github.eth-its-recipes.jamf.template-script-autouninstall-noexclusion
+MinimumVersion: "2.3"
+
+Input:
+  JSS_INVENTORY_NAME: "%NAME%.app"
+  USERS_GROUP_NAME: "%NAME% users"
+  INSTALLED_FOR_AUTOUNINSTALL_GROUP_NAME: "%NAME% can be auto-uninstalled"
+  INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
+  AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
+  AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
+  AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
+  AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once per day
+  UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOUNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%INSTALLED_FOR_AUTOUNINSTALL_GROUP_NAME%"
+      replace_group: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%AUTOUNINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+      replace_policy: True

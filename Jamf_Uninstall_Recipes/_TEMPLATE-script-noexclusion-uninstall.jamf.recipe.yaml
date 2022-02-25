@@ -6,7 +6,7 @@ Comment: |
   Do not add things like language or license to the NAME key.
 
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.template-script-uninstall
+Identifier: com.github.eth-its-recipes.jamf.template-script-uninstall-noexclusion
 MinimumVersion: "2.3"
 
 Input:
@@ -30,9 +30,6 @@ Input:
   PARAMETER10_VALUE: "None"
   PARAMETER11_VALUE: "None"
   SELFSERVICE_ICON: "%NAME%.png"
-  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
-  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
-  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -43,7 +40,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters.xml
@@ -88,12 +85,6 @@ Process:
     Arguments:
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: False
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
