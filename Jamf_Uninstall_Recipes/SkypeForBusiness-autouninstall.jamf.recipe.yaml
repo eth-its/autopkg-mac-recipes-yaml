@@ -5,6 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-autouninstall-noex
 
 Input:
   NAME: Skype for Business
-  SCRIPT_PATH: SkypeForBusiness-uninstall.sh
-  SCRIPT_NAME: SkypeForBusiness-uninstall.sh
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.microsoft.SkypeForBusiness
   INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
