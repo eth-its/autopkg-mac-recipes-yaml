@@ -6,7 +6,7 @@ Comment: PARAMETER4_VALUE should be overridden with the print server's FQDN
 
 Input:
   NAME: ETH Follow-Me Printer (Card-Mobile HP)
-  PRINTER_NAME: card-mobile-manual
+  PRINTER_NAME: card-mobile-hp
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
@@ -18,7 +18,7 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
-  TRIGGER_NAME: card-hp-install
+  TRIGGER_NAME: card-mobile-install
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   MESSAGE_FINISH: "%NAME% installation complete"
   SCRIPT_NAME: ETHPrinterIPPTemplate.sh
