@@ -7,4 +7,3 @@ Input:
   NAME: Skype for Business
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.microsoft.SkypeForBusiness
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall.xml
