@@ -3,7 +3,7 @@ Identifier: com.github.grahampugh.recipes.jamf.MicrosoftAutoUpdate-download-unte
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Check Microsoft AutoUpdate - 2019/O365 - untested
+  NAME: Check Microsoft AutoUpdate - untested
   IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration

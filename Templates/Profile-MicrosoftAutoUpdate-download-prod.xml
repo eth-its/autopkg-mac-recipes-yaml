@@ -35,9 +35,6 @@
                 <computer_group>
                     <name>Microsoft applications test users</name>
                 </computer_group>
-                <computer_group>
-                    <name>Microsoft Office 2016 installed</name>
-                </computer_group>
             </computer_groups>
             <users/>
             <user_groups/>

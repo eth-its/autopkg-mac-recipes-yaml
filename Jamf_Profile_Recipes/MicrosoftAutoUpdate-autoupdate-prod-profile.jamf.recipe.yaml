@@ -4,7 +4,7 @@ Identifier: com.github.grahampugh.recipes.jamf.MicrosoftAutoUpdate-autoupdate-pr
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Auto-update Microsoft AutoUpdate - 2019/O365 - production
+  NAME: Auto-update Microsoft AutoUpdate - production
   IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration
