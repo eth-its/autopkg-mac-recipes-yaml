@@ -18,7 +18,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  SELFSERVICE_POLICY_CATEGORY: Untested
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-noexclusions-install-package.xml
   SELFSERVICE_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
