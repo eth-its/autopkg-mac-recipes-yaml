@@ -51,7 +51,7 @@
         <recon>false</recon>
     </maintenance>
     <files_processes>
-        <run_command>%%SELFSERVICE_POLICY_RUN_COMMAND%</run_command>
+        <run_command>%SELFSERVICE_POLICY_RUN_COMMAND%</run_command>
     </files_processes>
     <user_interaction>
         <message_start>%SELFSERVICE_POLICY_MESSAGE_START%</message_start>
