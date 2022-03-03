@@ -1,0 +1,58 @@
+Comment: |
+  This is a template recipe and cannot be used without a child recipe or RecipeOverride.
+  UNTESTED_RECIPE_IDENTIFIER must be supplied
+  NAME, POLICY_NAME and SELFSERVICE_DISPLAY_NAME need to be provided in the child recipe.
+  If the app name does not match NAME.app, JSS_INVENTORY_NAME should also be overridden.
+  If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
+
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.template-noexclusions-selfservice-only-prod
+MinimumVersion: "2.3"
+
+Input:
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_ICON: "%NAME%.png"
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  SELFSERVICE_POLICY_CATEGORY: Untested
+  SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-noexclusions.xml
+  SELFSERVICE_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  PROD_PREDICATE: "ready_to_stage == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%PROD_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%LAST_RUN_POLICY_NAME%"
