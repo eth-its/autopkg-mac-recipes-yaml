@@ -12,3 +12,4 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: ETHPkgUninstallerVersion
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^$"
+  AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall-force.xml
