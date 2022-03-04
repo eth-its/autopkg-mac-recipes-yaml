@@ -23,6 +23,9 @@ Input:
   AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
   AUTOUNINSTALL_POLICY_FREQUENCY: Once per day
   UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
+  TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -45,4 +48,10 @@ Process:
     Arguments:
       policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+      replace_policy: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
       replace_policy: True
