@@ -47,6 +47,10 @@ Process:
       computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
       replace_group: False
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
