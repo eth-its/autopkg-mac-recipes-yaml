@@ -26,6 +26,9 @@ Input:
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  SCRIPT_NAME: Application-uninstall.sh
+  SCRIPT_PATH: Application-uninstall.sh
+  SCRIPT_PRIORITY: After
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
