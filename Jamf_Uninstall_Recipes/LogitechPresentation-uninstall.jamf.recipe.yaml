@@ -8,3 +8,7 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   SCRIPT_NAME: LogitechPresentation-uninstall.zsh
   SCRIPT_PATH: LogitechPresentation-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: LogitechPresentationVersion
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
