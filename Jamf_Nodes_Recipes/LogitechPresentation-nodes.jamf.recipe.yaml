@@ -7,5 +7,5 @@ Input:
   NAME: Logitech Presentation
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechPresentation
   EXTENSION_ATTRIBUTE_NAME: LogitechPresentationVersion
-  EXTENSION_ATTRIBUTE_SCRIPT: LogitechPresentation-EA.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: LogitechPresentation-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml

@@ -6,5 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Logitech Presentation
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
-  SCRIPT_NAME: LogitechPresentation-uninstall.sh
-  SCRIPT_PATH: LogitechPresentation-uninstall.sh
+  SCRIPT_NAME: LogitechPresentation-uninstall.zsh
+  SCRIPT_PATH: LogitechPresentation-uninstall.zsh
