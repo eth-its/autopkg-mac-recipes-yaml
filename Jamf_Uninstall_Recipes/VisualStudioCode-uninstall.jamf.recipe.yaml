@@ -7,3 +7,4 @@ Input:
   NAME: Visual Studio Code
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.microsoft.VSCode
+  SELFSERVICE_ICON: "%NAME% 1.65.png"

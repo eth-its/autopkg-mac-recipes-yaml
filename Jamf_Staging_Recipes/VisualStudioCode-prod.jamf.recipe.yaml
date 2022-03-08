@@ -7,3 +7,4 @@ Input:
   NAME: Visual Studio Code
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.VisualStudioCode
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: "%NAME% 1.65.png"

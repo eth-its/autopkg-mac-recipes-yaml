@@ -13,7 +13,7 @@ Input:
     Category: %PKG_CATEGORY%
   PKG_CATEGORY: Development & Computing
   POLICY_CATEGORY: Untested
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: "%NAME% 1.65.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
