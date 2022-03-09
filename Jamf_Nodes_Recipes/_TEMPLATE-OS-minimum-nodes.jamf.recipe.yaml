@@ -68,8 +68,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
-      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_VERSION_INELIGIBLE_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INELIGIBLE_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
