@@ -67,6 +67,8 @@ else
         echo "Installing drivers..."
         /usr/local/bin/jamf policy -event "ETH Printer Drivers HP S-install" -forceNoRecon
         /usr/local/bin/jamf policy -event "ETH Printer Drivers HP SE-install" -forceNoRecon
+        /usr/local/bin/jamf policy -event "ETH Printer Drivers Ricoh Vol3-install" -forceNoRecon
+        /usr/local/bin/jamf policy -event "ETH Printer Drivers Ricoh Vol4-install" -forceNoRecon
 
         # Look again, exit 1 if still not present
         if [[ ! -f "$driver_ppd" ]]; then
