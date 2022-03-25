@@ -1,0 +1,21 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.R-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-scripts-2-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: R
+  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.R
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  EXTENSION_ATTRIBUTE_NAME: "R Version"
+  EXTENSION_ATTRIBUTE_SCRIPT: R-EA.zsh
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
+  POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
