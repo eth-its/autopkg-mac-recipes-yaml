@@ -5,7 +5,14 @@
 echo "Installing R packages ..."
 echo "NOTE: You should have Xcode command-line tools installed for this..."
 
-/usr/local/bin/R --no-save --no-restore << 'EOF'
+R="/Library/Frameworks/R.framework/Resources/bin/R"
+# make a simlink to /usr/local/bin
+ln -s "$R" /usr/local/bin/R
+
+# we need to escape percent signs in the following for AutoPkg/JamfUploader compatibility
+percent=$'\045'
+
+"$R" --no-save --no-restore << EOF
 repos <- c(
 "http://stat.ethz.ch/CRAN"
 )
@@ -79,13 +86,13 @@ pkgs <- c(
 "waveslim",
 "wavethresh"
 )
-missing <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+missing <- pkgs[!(pkgs ${percent}in${percent} installed.packages()[,"Package"])]
 cat(paste("Missing Packets: ",length(missing),"\n"))
 if(length(missing)) install.packages(missing, repos=repos, dependencies=T)
 EOF
 
 echo "Updating any previously installed R packages ..."
-/usr/local/bin/R --no-save --no-restore << EOF
+"$R" --no-save --no-restore << EOF
 update.packages(repos="http://stat.ethz.ch/CRAN", ask=F)
 EOF
 
