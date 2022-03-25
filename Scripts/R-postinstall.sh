@@ -92,7 +92,7 @@ if(length(missing)) install.packages(missing, repos=repos, dependencies=T)
 EOF
 
 echo "Updating any previously installed R packages ..."
-"$R" --no-save --no-restore << EOF
+"$R" --no-save --no-restore << 'EOF'
 update.packages(repos="http://stat.ethz.ch/CRAN", ask=F)
 EOF
 
