@@ -1,0 +1,10 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Atom-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Atom
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Atom"
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: "%NAME% 1.60.png"
