@@ -40,28 +40,28 @@ function silent_app_quit() {
 
 # MAIN
 
-app_name="R.app"
+app_name="R"
 
 # quit the app if running
 silent_app_quit "$app_name"
 
 # Now remove the app
-echo "Removing application: ${app_name}"
+echo "Removing application: ${check_app_name}"
 
-app_to_trash="/Applications/$app_name"
+app_to_trash="/Applications/$check_app_name"
 
 # 1. Remove the application
 if [[ -d "${app_to_trash}" ]]; then
-    /bin/rm -Rf "${app_to_trash}"
+    if /bin/rm -Rf "${app_to_trash}"; then
+        echo "$app_name deleted successfully"
+    else
+        echo "$app_name failed to delete"
+        exit 1
+    fi
+else
+    echo "${app_to_trash} not found"
 fi
 
-echo "Checking if $app_name is actually deleted..."
-if [[ -d "${app_to_trash}" ]]; then
-    echo "$app_name failed to delete"
-    exit 1
-fi
-
-echo "$app_name deleted successfully"
 /usr/sbin/pkgutil --pkgs=org.R-project.R.GUI.pkg && /usr/sbin/pkgutil --forget org.R-project.R.GUI.pkg
 /usr/sbin/pkgutil --pkgs=org.r-project.R.el-capitan.GUI.pkg && /usr/sbin/pkgutil --forget org.r-project.R.el-capitan.GUI.pkg
 
