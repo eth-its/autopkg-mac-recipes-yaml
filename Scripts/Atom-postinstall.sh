@@ -4,7 +4,7 @@
 ################################################################################
 #
 # SOURCE
-# https://github.com/Daz-wallace/blog-snippets/tree/master/Mass-Deploying%20Settings%20for%20Atom
+# https://dazwallace.wordpress.com/2019/04/12/mass-deploying-settings-for-atom/
 #
 # DESCRIPTION
 # Loops through the /Users and User Template folders, pre-configuring Atom with:
