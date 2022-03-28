@@ -49,4 +49,7 @@
     <maintenance>
         <recon>true</recon>
     </maintenance>
+    <files_processes>
+        <run_command>%TRIGGER_UNINSTALL_POLICY_RUN_COMMAND%</run_command>
+    </files_processes>
 </policy>

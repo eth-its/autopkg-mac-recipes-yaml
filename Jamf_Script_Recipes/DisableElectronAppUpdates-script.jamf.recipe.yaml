@@ -1,5 +1,5 @@
-Description: Creates a Once per computer policy to update the Prism license by running the postinstall script.
-Identifier: ch.ethz.id.jamf.script.DisableElectronAppUpdates
+Description: Creates a trigger-only policy to disable Electron updates by running the postinstall script.
+Identifier: com.github.eth-its-recipes.jamf.script.DisableElectronAppUpdates
 MinimumVersion: "2.3"
 
 Input:

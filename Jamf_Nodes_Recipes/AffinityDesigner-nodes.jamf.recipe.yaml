@@ -1,0 +1,16 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AffinityDesigner-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Affinity Designer
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AffinityDesigner
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
+  SELFSERVICE_ICON: "%NAME%.png"
+  SCRIPT_NAME: jamf-policy-trigger.sh
+  SCRIPT_PATH: jamf-policy-trigger.sh
+  SCRIPT_CATEGORY: Administration
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: Trigger name
+  PARAMETER4_VALUE: Run-AffinityLicense
