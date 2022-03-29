@@ -72,3 +72,47 @@ if [[ -f "$ksadmin" ]]; then
 else
     echo "Error: $ksadmin doesn't exist"   
 fi
+
+# ensure updates are checked even when Chrome is not open
+# source https://babodee.wordpress.com/2020/06/16/managing-google-chrome-auto-updates/
+
+# Stop the current launchagent and remove it prior to installing this updated one
+launchagent="/Library/LaunchAgents/com.company.google.softwareupdatecheck"
+if [[ -f "$launchagent" ]]; then
+    /bin/launchctl bootout "$launchagent" ||:
+    /bin/rm "$launchagent"
+fi
+
+
+cat > "$launchagent" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>Label</key>
+<string>com.company.google.softwareupdatecheck</string>
+<key>LimitLoadToSessionType</key>
+<string>Aqua</string>
+<key>ProgramArguments</key>
+<array>
+<string>/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/MacOS/GoogleSoftwareUpdateAgent</string>
+<string>-runMode</string>
+<string>oneshot</string>
+<string>-userInitiated</string>
+<string>YES</string>
+<string>"$@"</string>
+</array>
+<key>RunAtLoad</key>
+<true/>
+<key>StartInterval</key>
+<integer>21600</integer>
+</dict>
+</plist>
+EOF
+
+# adjust permissions correctly then load.
+/usr/sbin/chown root:wheel "$launchagent"
+/bin/chmod 644 "$launchagent"
+
+/bin/launchctl enable system/com.company.google.softwareupdatecheck
+/bin/launchctl bootstrap system "$launchagent"
