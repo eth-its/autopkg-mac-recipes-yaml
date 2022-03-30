@@ -9,3 +9,4 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.seriflabs.affinitydesigner
   TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "jamf policy 'AffinityLicense-uninstall'"
+  SELFSERVICE_ICON: "%NAME% 1.10.png"
