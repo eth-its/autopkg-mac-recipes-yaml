@@ -9,7 +9,7 @@ Input:
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_NAME: AffinityLicense-uninstall
-  SCRIPT_NAME: AffinityLicense-uninstall.sh
+  SCRIPT_NAME: AffinityLicense-uninstall.zsh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
 
