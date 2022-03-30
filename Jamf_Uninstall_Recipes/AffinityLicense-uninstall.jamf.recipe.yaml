@@ -8,10 +8,10 @@ Input:
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
-  TRIGGER_NAME: AffinityLicense-uninstall
+  UNINSTALL_TRIGGER_NAME: AffinityLicense-uninstall
   SCRIPT_NAME: AffinityLicense-uninstall.zsh
   SCRIPT_PRIORITY: After
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
