@@ -16,7 +16,7 @@ Input:
   SCRIPT_CATEGORY: Creativity
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
-  TRIGGER_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: Run-AffinityLicense
   SCRIPT_NAME: AffinityLicense-install.zsh
   SCRIPT_PRIORITY: After
