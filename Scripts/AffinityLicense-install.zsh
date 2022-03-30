@@ -28,6 +28,9 @@ cat > "$defaults_file" <<EOF
 }
 EOF
 
+/bin/chmod 644 "$defaults_file"
+/usr/sbin/chown root:wheel "$defaults_file"
+
 if [[ -f "$defaults_file" ]]; then
     echo "License file successfully written"
 else
