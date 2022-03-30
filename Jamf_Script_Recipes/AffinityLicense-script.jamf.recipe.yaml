@@ -8,7 +8,7 @@ Comments: |
   - AFFINITY_LICENSE_USER_COUNT
 
 Description: Creates a trigger-only policy to install the Affinity license by running the postinstall script.
-Identifier: com.github.eth-its-recipes.jamf.script.DisableElectronAppUpdates
+Identifier: com.github.eth-its-recipes.jamf.script.AffinityLicense
 MinimumVersion: "2.3"
 
 Input:
