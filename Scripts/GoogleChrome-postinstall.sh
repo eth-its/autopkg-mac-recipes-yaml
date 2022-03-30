@@ -109,7 +109,7 @@ cat > "$launchagent" <<EOF
 <plist version="1.0">
 <dict>
 <key>Label</key>
-<string>com.company.google.softwareupdatecheck</string>
+<string>com.github.eth-its.google.softwareupdatecheck</string>
 <key>LimitLoadToSessionType</key>
 <string>Aqua</string>
 <key>ProgramArguments</key>
