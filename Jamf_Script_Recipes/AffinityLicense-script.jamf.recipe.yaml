@@ -66,3 +66,4 @@ Process:
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
