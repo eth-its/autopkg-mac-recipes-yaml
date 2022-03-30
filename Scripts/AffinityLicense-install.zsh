@@ -13,7 +13,9 @@ Required parameters:
 9 - User Count
 DOC
 
-defaults_file="/Library/Application Support/Serif/Affinity.defaults"
+defaults_file_path="/Library/Application Support/Serif"
+/bin/mkdir -p "$defaults_file_path"
+defaults_file="$defaults_file_path/Affinity.defaults"
 
 cat > "$defaults_file" <<EOF
 {
