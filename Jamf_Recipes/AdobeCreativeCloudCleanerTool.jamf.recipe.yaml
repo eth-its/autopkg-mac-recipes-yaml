@@ -5,7 +5,7 @@ ParentRecipe: com.github.blackthroat.pkg.AdobeCreativeCloudCleanerTool
 
 Input:
   NAME: Adobe Creative Cloud Cleaner Tool
-  TRIGGER_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   PKG_CATEGORY: Tools & Accessories
   SCRIPT_NAME: AdobeCreativeCloudCleanerTool-postinstall.zsh
   SCRIPT_PATH: AdobeCreativeCloudCleanerTool-postinstall.zsh
