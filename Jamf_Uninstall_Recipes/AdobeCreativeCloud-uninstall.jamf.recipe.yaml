@@ -5,5 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-runcommand-uninstall
 
 Input:
   NAME: Adobe Creative Cloud
+  JSS_INVENTORY_NAME: Creative Cloud Desktop App.app
   POLICY_RUN_COMMAND: "jamf policy -event Run-AdobeCCCleaner"
   SELFSERVICE_ICON: "%NAME% 5.3.png"
