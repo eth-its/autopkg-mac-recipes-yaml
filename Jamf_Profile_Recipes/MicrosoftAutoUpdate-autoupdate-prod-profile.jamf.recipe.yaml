@@ -10,11 +10,23 @@ Input:
   PROFILE_CATEGORY: Administration
   PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH.
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: MicrosoftAutoUpdate-autoupdate-prod.plist
+  PROFILE_PAYLOAD: MicrosoftAutoUpdate-autoupdate-deadline-prod.plist
   PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-autoupdate-prod.xml
   REPLACE_PROFILE: "True"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
 
 Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"

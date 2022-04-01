@@ -102,7 +102,7 @@
 	<key>HowToCheck</key>
 	<string>AutomaticDownload</string>
 	<key>ManifestServer</key>
-	<string>%INTERNAL_COLLATERAL_URL%</string>
+	<string>https://officecdnmac.microsoft.com/pr/%msoffice_version%/</string>
 	<key>StartDaemonOnAppLaunch</key>
 	<true/>
 	<key>UpdateCheckFrequency</key>
