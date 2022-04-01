@@ -7,7 +7,7 @@ Input:
   NAME: Microsoft Office
   JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.MicrosoftOffice"
-  SELFSERVICE_ICON: "%NAME% 10.png"
+  SELFSERVICE_ICON: "Microsoft Office 365.png"
   OS_EXCLUDE_MAX: 10.14.6
   PROFILE_IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
