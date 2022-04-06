@@ -9,7 +9,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
   TRIGGER_POLICY_NAME: Cisco AnyConnect Configuration
   TRIGGER_NAME: CiscoAnyConnectConfiguration-install
-  SCRIPT_NAME: CiscoAnyConnect-postinstall.sh
+  SCRIPT_NAME: CiscoAnyConnect-postinstall.zsh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Parameter 4"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
