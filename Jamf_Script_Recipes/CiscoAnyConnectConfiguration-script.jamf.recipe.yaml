@@ -5,6 +5,17 @@ MinimumVersion: "2.3"
 Input:
   NAME: Cisco AnyConnect Configuration
   SCRIPT_CATEGORY: Tools & Accessories
+  TESTING_GROUP_NAME: Testing
+  USERS_GROUP_NAME: Cisco AnyConnect Socket Filter installed
+  USERS_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
+  JSS_INVENTORY_NAME: Cisco AnyConnect Socket Filter.app
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_TEMPLATE: Policy-script-selfservice.xml
+  SELFSERVICE_POLICY_NAME: Cisco AnyConnect - Remove Network Extension
+  SELFSERVICE_DESCRIPTION: This will remove the Cisco AnyConnect Network Extension, which is installed by default by the Cisco AnyConnect installation package, but is not required for the VPN.
+  SELFSERVICE_ICON: Cisco AnyConnect Socket Filter.png
+  INSTALL_BUTTON_TEXT: Remove Extension
+  REINSTALL_BUTTON_TEXT: Remove Extension
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
   TRIGGER_POLICY_NAME: Cisco AnyConnect Configuration
@@ -32,6 +43,17 @@ Process:
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
