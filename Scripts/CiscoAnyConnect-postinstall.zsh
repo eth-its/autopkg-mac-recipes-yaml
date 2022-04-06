@@ -14,7 +14,7 @@ if [ ! "x${ACSOCKEXTACTIVE}" = "x" ]; then
     /usr/bin/su $user -c '/Applications/Cisco/Cisco\ AnyConnect\ Socket\ Filter.app/Contents/MacOS/Cisco\ AnyConnect\ Socket\ Filter -deactivateExt'
     echo "Network extension acsockext deactivated"
     # Remove the network extension KDF app.
-	/bin/rm -rf "/Applications/Cisco/Cisco AnyConnect Socket Filter.app"
+	# /bin/rm -rf "/Applications/Cisco/Cisco AnyConnect Socket Filter.app"
 else
     echo "Skip deactivating of network extension acsockext"
 fi
