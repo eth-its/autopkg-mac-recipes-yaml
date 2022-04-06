@@ -6,6 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Cisco AnyConnect Secure Mobility Client
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CiscoAnyConnect
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
