@@ -14,8 +14,8 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Cisco AnyConnect.png
-  SCRIPT_NAME: "%NAME%-postinstall.zsh"
-  SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  SCRIPT_NAME: CiscoAnyConnect-postinstall.zsh
+  SCRIPT_PATH: CiscoAnyConnect-postinstall.zsh
   SCRIPT_PRIORITY: After
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
