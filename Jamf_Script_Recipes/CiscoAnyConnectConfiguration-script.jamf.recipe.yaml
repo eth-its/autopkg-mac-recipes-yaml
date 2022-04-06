@@ -57,6 +57,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy
     Arguments:
+      POLICY_NAME: "%SELFSERVICE_POLICY_NAME%"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%SELFSERVICE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
