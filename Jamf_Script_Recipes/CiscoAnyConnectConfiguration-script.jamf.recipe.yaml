@@ -15,6 +15,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: Cisco AnyConnect - Remove Network Extension
   SELFSERVICE_DESCRIPTION: This will remove the Cisco AnyConnect Network Extension, which is installed by default by the Cisco AnyConnect installation package, but is not required for the VPN.
   SELFSERVICE_ICON: Cisco AnyConnect Socket Filter.png
+  FORCE_DESCRIPTION: "false"
   INSTALL_BUTTON_TEXT: Remove Extension
   REINSTALL_BUTTON_TEXT: Remove Extension
   TRIGGER_POLICY_CATEGORY: Triggered Installers
