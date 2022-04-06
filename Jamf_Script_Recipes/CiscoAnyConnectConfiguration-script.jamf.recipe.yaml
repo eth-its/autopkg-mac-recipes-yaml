@@ -34,6 +34,10 @@ Process:
     Arguments:
       category_name: "%TRIGGER_POLICY_CATEGORY%"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%SCRIPT_CATEGORY%"
