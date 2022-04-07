@@ -3,6 +3,7 @@ Identifier: com.github.eth-its-recipes.download.internal-sources
 MinimumVersion: "2.3"
 
 Input:
+  LIST_FILTER: ""
   LIST_LANGUAGE: ML
   LIST_LANGUAGE_COLUMN_NUMBER: "4"
   LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
@@ -11,6 +12,7 @@ Input:
   LIST_DELIMITER: ;
   LIST_NAME: Something
   LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_SUBFOLDER: ""
   LIST_MAJOR_VERSION: ""
   LIST_PATH_COLUMN_NUMBER: "6"
   LIST_TITLE_COLUMN_NUMBER: "1"
@@ -19,6 +21,7 @@ Input:
 
 Process:
   - Arguments:
+      list_filter: "%LIST_FILTER%"
       list_language: "%LIST_LANGUAGE%"
       list_name: "%LIST_NAME%"
       list_major_version: "%LIST_MAJOR_VERSION%"
@@ -29,6 +32,7 @@ Process:
       license_file_source: "%LIST_LICENSE_FILE_SOURCE%"
       list_delimiter: "%LIST_DELIMITER%"
       list_source: "%LIST_SOURCE%"
+      list_subfolder: "%LIST_SUBFOLDER%"
       mounted_repo: "%SOFTWARE_REPO%"
       path_col: "%LIST_PATH_COLUMN_NUMBER%"
       title_col: "%LIST_TITLE_COLUMN_NUMBER%"

@@ -109,9 +109,16 @@ class InternalUpdateChecker(Processor):
             "description": ("Filter DMGs by an additional string if specified."),
             "default": "",
         },
-        "alt_downloads_dir": {
+        "list_subfolder": {
             "required": False,
-            "description": ("Path to file containing list of IT Shop available items."),
+            "description": ("Additional subfolder to search inside if specified."),
+            "default": "",
+        },
+        "alt_download_dir": {
+            "required": False,
+            "description": (
+                "Alternative downloads directory to put the installer into."
+            ),
             "default": "",
         },
     }
@@ -252,14 +259,20 @@ class InternalUpdateChecker(Processor):
             raise ProcessorError("Empty output from SubDirectoryList!")
         return latest_product_details
 
-    def find_installer(self, file_path, product_repo, additional_filter):
+    def find_installer(self, file_path, product_repo, list_filter, list_subfolder):
         """Grab the DMG or PKG from the path."""
-        # Grabbing the newest DMG or PKG works for most of the apps.
-        # But for some we need to add an additional filter
-        if additional_filter:
+        installer_path = os.path.join(product_repo, file_path)
+        if list_subfolder:
+            # some installers are not in the root of the list folder due to some
+            # additional reason, like separate intel and arm installers.
+            installer_path = os.path.join(product_repo, file_path, list_subfolder)
+
+        if list_filter:
+            # Grabbing the newest DMG or PKG works for most of the apps.
+            # But for some we need to add an additional filter
             self.output(
-                "Looking for installers in {}/{} with filter {}".format(
-                    product_repo, file_path, additional_filter
+                "Looking for installers in {} with filter {}".format(
+                    installer_path, list_filter
                 ),
                 verbose_level=2,
             )
@@ -267,33 +280,31 @@ class InternalUpdateChecker(Processor):
                 newest_file = max(
                     glob.iglob(
                         os.path.join(
-                            product_repo,
-                            file_path,
-                            "*{}*.[DdPp][MmKk][Gg]".format(additional_filter),
+                            installer_path,
+                            "*{}*.[DdPp][MmKk][Gg]".format(list_filter),
                         )
                     ),
                     key=os.path.getctime,
                 )
             except ValueError:
-                raise ProcessorError(
-                    "No dmg or pkg found in {}/{}".format(product_repo, file_path)
-                )
+                raise ProcessorError("No dmg or pkg found in {}".format(installer_path))
         else:
             self.output(
-                "Looking for installers in {}/{}".format(product_repo, file_path),
+                "Looking for installers in {}".format(installer_path),
                 verbose_level=2,
             )
             try:
                 newest_file = max(
                     glob.iglob(
-                        os.path.join(product_repo, file_path, "*.[DdPp][MmKk][Gg]",)
+                        os.path.join(
+                            installer_path,
+                            "*.[DdPp][MmKk][Gg]",
+                        )
                     ),
                     key=os.path.getctime,
                 )
             except ValueError:
-                raise ProcessorError(
-                    "No dmg or pkg found in {}/{}".format(product_repo, file_path)
-                )
+                raise ProcessorError("No dmg or pkg found in {}".format(installer_path))
         return newest_file
 
     def main(self):
@@ -314,7 +325,8 @@ class InternalUpdateChecker(Processor):
         self.output("product_repo: {}".format(product_repo))
         recipe_cache_dir = self.env.get("RECIPE_CACHE_DIR")
         list_major_version = self.env.get("list_major_version")
-        additional_filter = self.env.get("LIST_FILTER")
+        list_filter = self.env.get("list_filter")
+        list_subfolder = self.env.get("list_subfolder")
 
         # set default downloads_dir if not specified
         alt_download_dir = self.env.get("alt_download_dir")
@@ -358,7 +370,7 @@ class InternalUpdateChecker(Processor):
         self.output("Latest folder: {}".format(file_path_in_list_basename))
 
         file_path = self.find_installer(
-            file_path_in_list_basename, product_repo, additional_filter
+            file_path_in_list_basename, product_repo, list_filter, list_subfolder
         )
         self.env["file_path"] = file_path
         self.output("File path of latest version: {}".format(file_path))

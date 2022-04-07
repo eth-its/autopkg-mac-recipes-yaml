@@ -1,0 +1,109 @@
+Description: Downloads latest COMSOL Multiphysics installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.comsol
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  NAME: COMSOL Multiphysics
+  LIST_NAME: Comsol Multiphysics
+  LIST_LANGUAGE: ML
+  LIST_SUBFOLDER: macOS_Intel
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/COMSOL.dmg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/setupconfig.ini"
+      file_mode: "0644"
+      file_content: |
+        installdir =
+        uninstall = 0
+        showgui = 0
+        autofinish = 0
+        quiet = 0
+
+        agree = 1
+        license = %COMSOL_LICENSE_URL%
+        name = %COMSOL_LICENSE_NAME%
+        company = %COMSOL_LICENSE_COMPANY%
+        lictype = %COMSOL_LICENSE_TYPE%
+
+        matlabdir =
+        proedir =
+        creopdir =
+        llexcelallusers = 0
+
+        doc = selected
+        applications = selected
+        cad = 1
+        licmanager = 1
+
+        shortcuts = 0
+        symlinks = 0
+        fileassoc = 1
+        checkupdate = 0
+
+        setsecuritypolicy = 0
+        security.comsol.allowbatch = 1
+        security.comsol.allowexternalprocess = 0
+        security.comsol.allowmethods = 1
+        security.comsol.allowapplications = 1
+        security.external.enable = 1
+        security.external.propertypermission = 0
+        security.external.runtimepermission = 0
+        security.external.filepermission = limited
+        security.external.socketpermission = 0
+        security.external.netpermission = 0
+        security.external.reflectpermission = 0
+        security.external.securitypermission = 0
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/bash
+
+        DIR=$(dirname "$0")
+
+        # attach main image
+        echo "Mounting COMSOL image"
+        APPPATH="/Volumes/COMSOL_setup_dmg"
+        mkdir -p "$APPPATH"
+        hdiutil attach "$DIR/COMSOL.dmg" -nobrowse -mountpoint "$APPPATH"
+
+        "$APPPATH/setup" -s "$DIR/setupconfig.ini"
+
+        hdiutil eject $APPPATH
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.comsol%version%
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
