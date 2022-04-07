@@ -1,8 +1,10 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.CiscoAnyConnect-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: Cisco AnyConnect Secure Mobility Client
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CiscoAnyConnect
+  SCRIPT_NAME: CiscoAnyConnect-postinstall.zsh
+  SCRIPT_PATH: CiscoAnyConnect-postinstall.zsh

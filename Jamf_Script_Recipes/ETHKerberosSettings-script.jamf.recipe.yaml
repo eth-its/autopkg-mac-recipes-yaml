@@ -1,0 +1,114 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.ETHKerberosSettings-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ETH Kerberos Settings
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: ETH Kerberos Settings
+  EXTENSION_ATTRIBUTE_SCRIPT: ETHKerberosSettings-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: "^Installed$"
+  TESTING_GROUP_NAME: Testing
+  SELFSERVICE_POLICY_CATEGORY: Tools & Utilities
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoinstall-all-software.xml
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
+  AUTOINSTALL_POLICY_CATEGORY: Auto-installers
+  AUTOINSTALL_POLICY_FREQUENCY: Once every day
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_NAME: ETHKerberosSettings-install
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SCRIPT_NAME: ETHKerberosSettings-install.zsh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: Installs the ETH recommended Kerberos settings. Run this if you are experiencing problems with printing to shared printers and queues.
+  SELFSERVICE_ICON: "%NAME%.png"
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Reinstall
+  MESSAGE_FINISH: "%NAME% installation complete"
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Auto-install policy
+    Arguments:
+      policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOINSTALL_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"

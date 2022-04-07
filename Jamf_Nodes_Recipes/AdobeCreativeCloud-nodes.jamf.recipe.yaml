@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloud-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe Creative Cloud
+  JSS_INVENTORY_NAME: Creative Cloud Desktop App.app
+  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.AdobeCreativeCloud"
+  SCRIPT_NAME: AdobeCreativeCloud-preinstall.zsh
+  SCRIPT_PATH: AdobeCreativeCloud-preinstall.zsh
+  SCRIPT_PRIORITY: Before
+  SELFSERVICE_ICON: "%NAME% 5.3.png"

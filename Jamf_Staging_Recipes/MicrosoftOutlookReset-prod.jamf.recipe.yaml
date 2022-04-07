@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOutlookReset-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-selfservice-only-prod
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft Outlook Reset
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOutlookReset
+  INSTALL_BUTTON_TEXT: "Reset Outlook"
+  REINSTALL_BUTTON_TEXT: "Reset Outlook"
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_MESSAGE_START: "Resetting Microsoft Outlook to factory settings"
+  SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Outlook has now been reset to factory settings"

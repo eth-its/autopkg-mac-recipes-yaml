@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Adobe CC Serial Removal Tool
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.AdobeCCSerialRemovalTool"
-  TRIGGER_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml

@@ -28,7 +28,6 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  REPLACE_PKG: "False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -39,7 +38,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
-      replace_pkg: "%REPLACE_PKG%"
       pkg_category: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson

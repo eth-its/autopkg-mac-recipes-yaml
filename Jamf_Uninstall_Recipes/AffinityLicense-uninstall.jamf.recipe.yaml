@@ -1,0 +1,35 @@
+Description: Creates a trigger-only policy to configure Prvileges by running the uninstall script.
+Identifier: com.github.eth-its-recipes.jamf.AffinityLicense-uninstall
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Affinity License
+  UNINSTALL_POLICY_CATEGORY: Uninstallers
+  TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
+  UNINSTALL_TRIGGER_NAME: AffinityLicense-uninstall
+  SCRIPT_NAME: AffinityLicense-uninstall.zsh
+  SCRIPT_PRIORITY: After
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%UNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_UNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"

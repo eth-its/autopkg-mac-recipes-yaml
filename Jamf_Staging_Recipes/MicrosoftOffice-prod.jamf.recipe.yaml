@@ -1,4 +1,4 @@
-Description: Creates all production policies for a particular title.
+Description: Creates all production policies for a particular title. This recipe also creates two configuration profiles for MAU updates.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
@@ -7,5 +7,42 @@ Input:
   NAME: Microsoft Office
   JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: "local.jamf.MicrosoftOffice"
-  SELFSERVICE_ICON: "%NAME% 10.png"
+  SELFSERVICE_ICON: "Microsoft Office 365.png"
   OS_EXCLUDE_MAX: 10.14.6
+  PROFILE_IDENTIFIER: com.microsoft.autoupdate2
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: Administration
+  DOWNLOAD_PROFILE_NAME: Check Microsoft AutoUpdate - production
+  DOWNLOAD_PROFILE_PAYLOAD: MicrosoftAutoUpdate-download-prod.plist
+  DOWNLOAD_PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-download-prod.xml
+  DOWNLOAD_PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH.
+  AUTOUPDATE_PROFILE_NAME: Auto-update Microsoft AutoUpdate - production
+  AUTOUPDATE_PROFILE_PAYLOAD: MicrosoftAutoUpdate-autoupdate-deadline-prod.plist
+  AUTOUPDATE_PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-autoupdate-prod.xml
+  AUTOUPDATE_PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH. These updates will be automatically updated with a deadline set of 7 days.
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%DOWNLOAD_PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%DOWNLOAD_PROFILE_TEMPLATE%"
+      payload: "%DOWNLOAD_PROFILE_PAYLOAD%"
+      identifier: "%PROFILE_IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%DOWNLOAD_PROFILE_DESCRIPTION%"
+      replace_profile: "%REPLACE_PROFILE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%AUTOUPDATE_PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%AUTOUPDATE_PROFILE_TEMPLATE%"
+      payload: "%AUTOUPDATE_PROFILE_PAYLOAD%"
+      identifier: "%PROFILE_IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%AUTOUPDATE_PROFILE_DESCRIPTION%"
+      replace_profile: "%REPLACE_PROFILE%"

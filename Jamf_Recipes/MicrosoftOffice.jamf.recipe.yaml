@@ -32,10 +32,9 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MIN: 10.0.0
   OS_EXCLUDE_MAX: 10.14.6
-  OS_LIMITS_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_LIMITS_GROUP_TEMPLATE: SmartGroupTemplate-OSVersionLimits.xml
+  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
+  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -45,7 +44,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-max.xml
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"

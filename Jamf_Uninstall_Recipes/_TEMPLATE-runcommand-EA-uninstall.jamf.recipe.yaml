@@ -1,5 +1,5 @@
 Comment: |
-  This recipe is a template recipe for uninstall policies which remove an app by running a process on the device. It can be overridden directly if the NAME, SELF_SERVICE_DESCRIPTION,  SELF_SERVICE_ICON and POLICY_RUN_COMMAND keys are overridden. 
+  This recipe is a template recipe for uninstall policies which remove an app by running a process on the device. It can be overridden directly if the NAME, SELF_SERVICE_DESCRIPTION, SELFSERVICE_ICON and POLICY_RUN_COMMAND keys are overridden. 
   If the policy name does not match the NAME key, e.g. due to language or license being added to the policy name, SELF_SERVICE_DISPLAY_NAME and smart group name values may also need to be overridden.
   Do not add things like language or license to the NAME key.
 

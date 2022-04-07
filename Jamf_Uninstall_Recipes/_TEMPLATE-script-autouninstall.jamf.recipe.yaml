@@ -23,11 +23,25 @@ Input:
   AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
   AUTOUNINSTALL_POLICY_FREQUENCY: Once per day
   UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
+  TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  SCRIPT_NAME: Application-uninstall.sh
+  SCRIPT_PATH: Application-uninstall.sh
+  SCRIPT_PRIORITY: After
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOUNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%AUTOUNINSTALL_POLICY_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -41,8 +55,18 @@ Process:
       computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
       replace_group: False
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+      replace_policy: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
       replace_policy: True

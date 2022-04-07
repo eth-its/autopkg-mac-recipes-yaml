@@ -3,6 +3,7 @@
 #######################################################################
 #
 # Remove R.app Script for Jamf Pro
+# includes elements from https://gist.github.com/ryangatchalian912/b87813937d47b75c922e825177f83a61
 #
 #######################################################################
 
@@ -39,50 +40,83 @@ function silent_app_quit() {
 
 # MAIN
 
-app_name="R.app"
+app_name="R"
 
 # quit the app if running
 silent_app_quit "$app_name"
 
 # Now remove the app
-echo "Removing application: ${app_name}"
+echo "Removing application: ${check_app_name}"
 
-app_to_trash="/Applications/$app_name"
+app_to_trash="/Applications/$check_app_name"
 
-# Remove the application
-/bin/rm -Rf "${app_to_trash}"
-
-echo "Checking if $app_name is actually deleted..."
+# 1. Remove the application
 if [[ -d "${app_to_trash}" ]]; then
-    echo "$app_name failed to delete"
+    if /bin/rm -Rf "${app_to_trash}"; then
+        echo "$app_name deleted successfully"
+    else
+        echo "$app_name failed to delete"
+        exit 1
+    fi
 else
-    echo "$app_name deleted successfully"
+    echo "${app_to_trash} not found"
 fi
 
-# Remove other components
+/usr/sbin/pkgutil --pkgs=org.R-project.R.GUI.pkg && /usr/sbin/pkgutil --forget org.R-project.R.GUI.pkg
+/usr/sbin/pkgutil --pkgs=org.r-project.R.el-capitan.GUI.pkg && /usr/sbin/pkgutil --forget org.r-project.R.el-capitan.GUI.pkg
+
+# 2. Framework
 echo "Removing /Library/Frameworks/R.framework"
-rm -Rf /Library/Frameworks/R.framework
-echo "Removing symlinks in /usr/local/bin"
-rm /usr/local/bin/R /usr/local/bin/Rscript
 
-# Removing tcltk and texinfo packages requires munki's removepackages
-munki_path="/usr/local/munki"
-if [[ ! -f "${munki_path}/removepackages" ]]; then
-    echo "${munki_path}/removepackages binary not installed! Installing now."
-    /usr/local/bin/jamf policy -event ETHPkgUninstallerTool-install
+# Verify that core R package bom exists. Otherwise, don't do anything.
+if [ -e /var/db/receipts/org.R-project.R.fw.pkg.bom ]; then
+    # Loop through all the files in the bom.
+    echo '>>> Removing bom files from org.R-project.R.fw.pkg.bom...'
+    lsbom -f -l -s -pf /var/db/receipts/org.R-project.R.fw.pkg.bom | while read i; do
+        # Remove each file listed in the bom.
+        rm -v /Library/Frameworks/${i#./}
+    done
 fi
+/usr/sbin/pkgutil --pkgs=org.R-project.R.fw.pkg && /usr/sbin/pkgutil --forget org.R-project.R.fw.pkg
+/usr/sbin/pkgutil --pkgs=org.r-project.R.el-capitan.GUI.pkg && /usr/sbin/pkgutil --forget org.r-project.R.el-capitan.GUI.pkg
 
-# Check again
-if [[ ! -f "${munki_path}/removepackages" ]]; then
-    echo "${munki_path}/removepackages binary not installed! Cannot continue."
-    exit 1
+# 3. tcltk
+if [ -e /var/db/receipts/org.r-project.x86_64.tcltk.bom ]; then
+    # Loop through all the files in the bom.
+    echo '>>> Removing bom files from org.r-project.x86_64.tcltk.bom...'
+    lsbom -f -l -s -pf /var/db/receipts/org.r-project.x86_64.tcltk.bom | while read i; do
+        # Remove each file listed in the bom.
+        rm -v /${i#./}
+    done
 fi
+/usr/sbin/pkgutil --pkgs=org.r-project.x86_64.tcltk.x11 && /usr/sbin/pkgutil --forget org.r-project.x86_64.tcltk.x11
 
-# Try to Forget the packages if we can find a match
-# Loop through the remaining parameters
-for package in org.R-project.R.GUI.pkg org.R-project.R.fw.pkg org.r-project.R.el-capitan.fw.pkg org.r-project.R.el-capitan.GUI.pkg org.r-project.x86_64.tcltk.x11 org.r-project.x86_64.texinfo; do
-	echo "Removing package ${package}..."
-	${munki_path}/removepackages -f ${package} | tr '\r' ';' | sed -e 's/^.*;//'
-done
+# 4. TeXInfo
+if [ -e /var/db/receipts/org.r-project.x86_64.texinfo.bom ]; then
+    # Loop through all the files in the bom.
+    echo '>>> Removing bom files from org.r-project.x86_64.texinfo.bom...'
+    lsbom -f -l -s -pf /var/db/receipts/org.r-project.x86_64.texinfo.bom | while read i; do
+        # Remove each file listed in the bom.
+        rm -v /${i#./}
+    done
+fi
+/usr/sbin/pkgutil --pkgs=org.r-project.x86_64.texinfo && /usr/sbin/pkgutil --forget org.r-project.x86_64.texinfo
+
+# 5. remove other files
+# Remove files and directories related to R for Mac OSX.
+echo "Removing any remaining R files and directories..."
+rm -rf /Library/Frameworks/R.framework ||:
+rm -rf /usr/local/lib/itcl* ||:
+rm -rf /usr/local/lib/sqlite* ||:
+rm -rf /usr/local/lib/thread* ||:
+rm -rf /usr/local/lib/tcl* ||:
+rm -rf /usr/local/lib/tdbc* ||:
+rm -rf /usr/local/lib/tk* ||:
+rm -rf /usr/local/lib/Tk* ||:
+rm -rf /usr/local/share/texinfo ||:
+rm -rf /usr/local/bin/{makeinfo,R,Rscript} ||:
+rm -rf /private/var/folders/h_/y0zznsx52311nbq4t46y3chm0000gn/C/org.R-project.R ||:
+rm -rf /var/db/receipts/org.R-project.R.* ||:
+rm -rf /var/db/receipts/org.r-project.x86_64.* ||:
 
 echo "$app_name deletion complete"
