@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.download.internal-sources
 
 Input:
   NAME: COMSOL Multiphysics
+  PLATFORM: x86_64
   LIST_NAME: Comsol Multiphysics
   LIST_LANGUAGE: ML
   LIST_SUBFOLDER: macOS_Intel
@@ -95,8 +96,8 @@ Process:
       force_pkg_build: true
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.comsol%version%
-        pkgname: "%NAME%-%version%"
+        id: ch.ethz.id.pkg.comsol%version%_%PLATFORM%
+        pkgname: "%NAME%-%PLATFORM%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: Scripts
