@@ -7,8 +7,8 @@ Input:
   NAME: COMSOL Multiphysics
   APP_FOLDER_VERSION: "60"
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %APP_FOLDER_VERSION%"
-  SCRIPT_PATH: Comsol-uninstall.sh
-  SCRIPT_NAME: Comsol-uninstall.sh
+  SCRIPT_PATH: Comsol-uninstall.zsh
+  SCRIPT_NAME: Comsol-uninstall.zsh
   PARAMETER4_TITLE: Comsol Version
   PARAMETER4_VALUE: "%APP_FOLDER_VERSION%"
   INSTALLED_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% installed"
