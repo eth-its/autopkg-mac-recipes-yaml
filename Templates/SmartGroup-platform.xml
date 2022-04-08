@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+    <name>%PLATFORM_EXCLUSION_GROUP_NAME%</name>
+    <is_smart>true</is_smart>
+    <criteria>
+        <criterion>
+            <name>Architecture Type</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>%PLATFORM_EXCLUSION%</value>
+        </criterion>
+    </criteria>
+</computer_group>
