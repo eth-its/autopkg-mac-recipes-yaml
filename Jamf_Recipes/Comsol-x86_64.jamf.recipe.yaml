@@ -13,9 +13,9 @@ Input:
   PKG_PLATFORM_ID: intel
   LIST_SUBFOLDER: macOS_Intel
   LIST_FILTER: "60"
-  APP_FOLDER_VERSION: "60"
-  POLICY_NAME: "%NAME% %APP_FOLDER_VERSION% %PLATFORM% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %APP_FOLDER_VERSION% %PLATFORM% (Testing)"
+  MAJOR_VERSION: "60"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %PLATFORM% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     **Important: COMSOL can only be installed while connected to the ETH network, because the license server must be accessible during the installation process. Please connect to a VPN if you are offsite.**
@@ -27,19 +27,19 @@ Input:
     Version: %version%
     Platform: %PLATFORM%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %APP_FOLDER_VERSION% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
