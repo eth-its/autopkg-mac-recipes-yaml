@@ -8,6 +8,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Comsol
 Input:
   NAME: COMSOL Multiphysics
   PLATFORM: x86_64
+  PKG_PLATFORM_ID: intel
   LIST_SUBFOLDER: macOS_Intel
   LIST_FILTER: "60"
   APP_FOLDER_VERSION: "60"

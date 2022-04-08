@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.download.internal-sources
 
 Input:
   NAME: COMSOL Multiphysics
-  PLATFORM: x86_64
+  PKG_PLATFORM_ID: intel
   LIST_NAME: Comsol Multiphysics
   LIST_LANGUAGE: ML
   LIST_SUBFOLDER: macOS_Intel
