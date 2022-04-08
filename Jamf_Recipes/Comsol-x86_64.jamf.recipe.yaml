@@ -18,11 +18,14 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %APP_FOLDER_VERSION% %PLATFORM% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
+    **Important: COMSOL can only be installed while connected to the ETH network, because the license server must be accessible during the installation process. Please connect to a VPN if you are offsite.**
+
     COMSOL Multiphysics is a general-purpose simulation software for modelling designs, devices, and processes in all fields of engineering, manufacturing, and scientific research. In addition to using multiphysics modelling for your own projects, you can also turn your models into simulation applications and digital twins for use by other design teams, manufacturing departments, test labs, customers, and more.
 
     The platform product can be used on its own or expanded with functionality from any combination of add-on modules for simulating electromagnetics, structural mechanics, acoustics, fluid flow, heat transfer, and chemical engineering. The add-on modules and LiveLink products connect seamlessly for a modelling workflow that remains the same regardless of what you are modelling.
 
     Version: %version%
+    Platform: %PLATFORM%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
