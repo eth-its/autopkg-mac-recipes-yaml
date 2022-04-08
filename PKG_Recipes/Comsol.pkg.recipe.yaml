@@ -96,7 +96,7 @@ Process:
       force_pkg_build: true
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.comsol%version%_%PLATFORM%
+        id: ch.ethz.id.pkg.comsol%version%%PLATFORM%
         pkgname: "%NAME%-%PLATFORM%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
