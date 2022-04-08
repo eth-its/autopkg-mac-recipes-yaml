@@ -1,7 +1,7 @@
 Comment: The license information is embedded in the package. This requires the values for   COMSOL_LICENSE_URL, COMSOL_LICENSE_NAME, COMSOL_LICENSE_COMPANY and COMSOL_LICENSE_TYPE to be overriden.
 
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Comsol
+Identifier: com.github.eth-its-recipes.jamf.Comsol-arm64
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Comsol
 
