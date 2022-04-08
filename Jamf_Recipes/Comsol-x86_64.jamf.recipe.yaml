@@ -8,6 +8,8 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Comsol
 Input:
   NAME: COMSOL Multiphysics
   PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PKG_PLATFORM_ID: intel
   LIST_SUBFOLDER: macOS_Intel
   LIST_FILTER: "60"
@@ -25,8 +27,6 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
-  PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
