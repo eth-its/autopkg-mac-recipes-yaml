@@ -72,6 +72,7 @@ class JamfUploadSharepointUpdater(Processor):
         "LANGUAGE": {"required": False, "description": "Policy language."},
         "LICENSE": {"required": False, "description": "Package license type."},
         "MAJOR_VERSION": {"required": False, "description": "Policy major version."},
+        "PLATFORM": {"required": False, "description": "Policy architecture."},
         "NAME": {"required": True, "description": "Product name."},
         "SELFSERVICE_POLICY_NAME": {
             "required": False,
@@ -196,6 +197,7 @@ class JamfUploadSharepointUpdater(Processor):
         policy_language = self.env.get("LANGUAGE")
         policy_license = self.env.get("LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
+        platform = self.env.get("PLATFORM")
         jss_url = self.env.get("JSS_URL")
         sp_url = self.env.get("SP_URL")
         sp_user = self.env.get("SP_USER")
@@ -211,6 +213,8 @@ class JamfUploadSharepointUpdater(Processor):
                     final_policy_name = final_policy_name + " " + policy_language
                 if policy_license:
                     final_policy_name = final_policy_name + " " + policy_license
+                if platform:
+                    final_policy_name = final_policy_name + " " + platform
 
                 policy_name = f"{final_policy_name} (Testing)"
                 self_service_policy_name = f"{final_policy_name} (Testing) v{version}"
