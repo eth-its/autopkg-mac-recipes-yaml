@@ -1,17 +1,19 @@
 Comment: The license information is embedded in the package. This requires the values for   COMSOL_LICENSE_URL, COMSOL_LICENSE_NAME, COMSOL_LICENSE_COMPANY and COMSOL_LICENSE_TYPE to be overriden.
 
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Comsol
+Identifier: com.github.eth-its-recipes.jamf.Comsol-x86_64
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Comsol
 
 Input:
   NAME: COMSOL Multiphysics
+  PLATFORM: x86_64
+  LIST_SUBFOLDER: macOS_Intel
   LIST_FILTER: "60"
   APP_FOLDER_VERSION: "60"
   JSS_INVENTORY_NAME: "COMSOL%APP_FOLDER_VERSION%.app"
-  POLICY_NAME: "%NAME% %APP_FOLDER_VERSION% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %APP_FOLDER_VERSION% (Testing)"
+  POLICY_NAME: "%NAME% %APP_FOLDER_VERSION% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %APP_FOLDER_VERSION% %PLATFORM% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     COMSOL Multiphysics is a general-purpose simulation software for modelling designs, devices, and processes in all fields of engineering, manufacturing, and scientific research. In addition to using multiphysics modelling for your own projects, you can also turn your models into simulation applications and digital twins for use by other design teams, manufacturing departments, test labs, customers, and more.
@@ -22,6 +24,9 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% %APP_FOLDER_VERSION% test users"
@@ -29,7 +34,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %APP_FOLDER_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
