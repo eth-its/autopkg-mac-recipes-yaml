@@ -1,7 +1,7 @@
 Description: Uploads a Mac App Store app configuration to the Jamf Pro Server.
-Identifier: com.github.eth-its-recipes.jamf.AppleConfigurator2-macapp
+Identifier: com.github.eth-its-recipes.jamf.GarageBand-macapp
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.SelfServiceMacApps-macapp
 
 Input:
-  NAME: Apple Configurator 2
+  NAME: GarageBand
