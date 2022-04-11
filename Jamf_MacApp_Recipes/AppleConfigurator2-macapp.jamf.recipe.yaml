@@ -8,6 +8,7 @@ Input:
   CATEGORY: Mac App Store Apps
   DEPLOYMENT_TYPE: Make Available in Self Service
   TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
 
