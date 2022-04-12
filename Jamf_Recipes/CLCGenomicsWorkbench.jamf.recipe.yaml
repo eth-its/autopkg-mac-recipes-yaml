@@ -1,4 +1,6 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. The CLC_LICENSE_SERVER and CLC_LICENSE_PORT keys should be overridden.
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. 
+  Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT.
 Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench
@@ -10,8 +12,8 @@ Input:
   JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
   LIST_LANGUAGE: EN
   MAJOR_VERSION: "20"
-  CLC_LICENSE_SERVER: ++ REPLACE-ME ++
-  CLC_LICENSE_PORT: '6200'
+  # CLC_LICENSE_SERVER: ++ REPLACE-ME ++
+  # CLC_LICENSE_PORT: '6200'
   POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Science & Math

@@ -1,4 +1,6 @@
-Description: Creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+  Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT.
 Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
@@ -7,8 +9,8 @@ Input:
   NAME: CLC Genomics Workbench
   JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
   MAJOR_VERSION: "20"
-  CLC_LICENSE_SERVER: ++ REPLACE-ME ++
-  CLC_LICENSE_PORT: "++ REPLACE-ME ++"
+  # CLC_LICENSE_SERVER: ++ REPLACE-ME ++
+  # CLC_LICENSE_PORT: "++ REPLACE-ME ++"
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CLCGenomicsWorkbench
   POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
