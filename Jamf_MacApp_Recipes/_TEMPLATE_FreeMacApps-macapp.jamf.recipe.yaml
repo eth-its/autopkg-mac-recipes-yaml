@@ -10,8 +10,6 @@ Input:
   AUTOINSTALL_TEMPLATE: MacApp-prod-autoinstall.xml
   SELFSERVICE_CATEGORY: Mac App Store Apps
   AUTOINSTALL_CATEGORY: Mac App Store auto-installers
-  SELFSERVICE_DEPLOYMENT_TYPE: Make Available in Self Service
-  AUTOINSTALL_DEPLOYMENT_TYPE: Install Automatically/Prompt Users to Install
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
@@ -54,6 +52,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfMacAppUploader
     Arguments:
-      macapp_name: "%NAME%"
+      macapp_name: "%AUTOINSTALL_DISPLAY_NAME%"
+      clone_from: "%NAME%"
       macapp_template: "%AUTOINSTALL_TEMPLATE%"
       replace_macapp: "True"
