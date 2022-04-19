@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mac_application>
+    <general>
+        <name>%AUTOINSTALL_DISPLAY_NAME%</name>
+        <version>%macapp_version%</version>
+        <is_free>%macapp_is_free%</is_free>
+        <bundle_id>%bundleid%</bundle_id>
+        <url>%appstore_url%</url>
+        <category>
+            <name>%AUTOINSTALL_CATEGORY%</name>
+        </category>
+        <site>
+            <name>None</name>
+        </site>
+        <deployment_type>Install Automatically/Prompt Users to Install</deployment_type>
+    </general>
+    <scope>
+        <all_computers>false</all_computers>
+        <computer_groups>
+            <computer_group>
+                <name>%AUTOINSTALL_GROUP_NAME%</name>
+            </computer_group>
+        </computer_groups>
+        <exclusions>
+            <computers/>
+            <computer_groups/>
+        </exclusions>
+    </scope>
+    <self_service/>
+    <vpp_codes/>
+    <vpp>
+        <assign_vpp_device_based_licenses>true</assign_vpp_device_based_licenses>
+        <vpp_admin_account_id>1</vpp_admin_account_id>
+    </vpp>
+</mac_application>
