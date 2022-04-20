@@ -10,6 +10,7 @@ Input:
   AUTOINSTALL_TEMPLATE: MacApp-prod-autoinstall.xml
   SELFSERVICE_CATEGORY: Mac App Store Apps
   AUTOINSTALL_CATEGORY: Mac App Store auto-installers
+  TESTING_GROUP_NAME: Testing
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
