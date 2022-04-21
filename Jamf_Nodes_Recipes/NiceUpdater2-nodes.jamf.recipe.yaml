@@ -9,6 +9,8 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameters.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
+  STATUS_EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Status
+  STATUS_EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-status-EA.sh
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
@@ -30,3 +32,11 @@ Input:
   PARAMETER11_VALUE: ""
   SELFSERVICE_ICON: Software Update.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Comment: This EA is not used in smart groups but is a convenience tool for creating an Advanced Search
+    Arguments:
+      ea_script_path: "%STATUS_EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%STATUS_EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
