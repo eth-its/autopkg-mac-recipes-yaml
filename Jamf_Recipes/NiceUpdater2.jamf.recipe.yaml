@@ -120,11 +120,11 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
-  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Comment: This EA is not used in smart groups but is a convenience tool for creating an Advanced Search
     Arguments:
       ea_script_path: "%STATUS_EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%STATUS_EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
