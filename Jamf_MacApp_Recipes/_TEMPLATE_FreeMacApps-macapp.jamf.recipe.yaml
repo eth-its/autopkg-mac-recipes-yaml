@@ -18,7 +18,6 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
-  VPP_ID: "1"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
