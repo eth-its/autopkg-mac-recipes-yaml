@@ -29,7 +29,7 @@ Input:
   PARAMETER8_VALUE: "3"
   PARAMETER9_VALUE: "3"
   PARAMETER10_VALUE: /Library/Scripts/nice_updater_custom_icon.png
-  PARAMETER11_VALUE: ""
+  PARAMETER11_VALUE: " "
   SELFSERVICE_ICON: Software Update.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
 
