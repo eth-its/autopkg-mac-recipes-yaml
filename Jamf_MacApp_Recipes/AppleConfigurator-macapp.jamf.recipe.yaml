@@ -6,7 +6,7 @@ Input:
   NAME: Apple Configurator
   ICON_URL: "https://ics.services.jamfcloud.com/icon/hash_13139b4d9732a8b2fa3bbe25e6c6373e8ef6b85a7c7ba2bd15615195d63bc648"
   AUTOINSTALL_DISPLAY_NAME: "Auto-install %NAME%"
-  SELFSERVICE_TEMPLATE: MacApp-prod-selfservice.xml
+  SELFSERVICE_TEMPLATE: MacApp-prod-selfservice-id.xml
   AUTOINSTALL_TEMPLATE: MacApp-prod-autoinstall.xml
   SELFSERVICE_CATEGORY: Mac App Store Apps
   AUTOINSTALL_CATEGORY: Mac App Store auto-installers
