@@ -1,7 +1,63 @@
 Description: Uploads a Mac App Store app configuration to the Jamf Pro Server.
 Identifier: com.github.eth-its-recipes.jamf.AppleConfigurator-macapp
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.FreeMacApps-macapp
 
 Input:
-  NAME: Apple Configurator
+  ICON_URL: "https://ics.services.jamfcloud.com/icon/hash_13139b4d9732a8b2fa3bbe25e6c6373e8ef6b85a7c7ba2bd15615195d63bc648"
+  AUTOINSTALL_DISPLAY_NAME: "Auto-install %NAME%"
+  SELFSERVICE_TEMPLATE: MacApp-prod-selfservice.xml
+  AUTOINSTALL_TEMPLATE: MacApp-prod-autoinstall.xml
+  SELFSERVICE_CATEGORY: Mac App Store Apps
+  AUTOINSTALL_CATEGORY: Mac App Store auto-installers
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+  TESTING_GROUP_NAME: Testing
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfIconUploader
+    Arguments:
+      icon_uri: "%ICON_URL%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfMacAppUploader
+    Arguments:
+      macapp_name: "%NAME%"
+      macapp_template: "%SELFSERVICE_TEMPLATE%"
+      replace_macapp: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOINSTALL_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfMacAppUploader
+    Arguments:
+      macapp_name: "%AUTOINSTALL_DISPLAY_NAME%"
+      clone_from: "%NAME%"
+      macapp_template: "%AUTOINSTALL_TEMPLATE%"
+      replace_macapp: "True"
