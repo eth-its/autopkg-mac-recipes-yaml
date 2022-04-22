@@ -10,4 +10,4 @@ Input:
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfIconUploader
     Arguments:
-      icon_url: "%ICON_URL%"
+      icon_uri: "%ICON_URL%"
