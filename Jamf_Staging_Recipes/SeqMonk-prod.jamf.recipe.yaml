@@ -7,9 +7,13 @@ Input:
   NAME: SeqMonk
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SeqMonk
-  SCRIPT_NAME: JDK-preinstall-check.sh
-  SCRIPT_PRIORITY: Before
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  PREINSTALL_SCRIPT_NAME: JDK-preinstall-check.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
+  POSTINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  POSTINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: R-install
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2-parameter4.xml
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"

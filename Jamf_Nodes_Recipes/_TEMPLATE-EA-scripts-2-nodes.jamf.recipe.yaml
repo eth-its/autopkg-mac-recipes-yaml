@@ -15,8 +15,12 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   PREINSTALL_SCRIPT_PRIORITY: Before
   PREINSTALL_SCRIPT_CATEGORY: Productivity
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: "Parameter 4"
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   POSTINSTALL_SCRIPT_PRIORITY: After
   POSTINSTALL_SCRIPT_CATEGORY: Productivity
+  POSTINSTALL_SCRIPT_PARAMETER4_LABEL: "Parameter 4"
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -26,7 +30,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
@@ -70,6 +74,7 @@ Process:
       script_name: "%PREINSTALL_SCRIPT_NAME%"
       script_path: "%PREINSTALL_SCRIPT_PATH%"
       script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
@@ -78,6 +83,7 @@ Process:
       script_name: "%POSTINSTALL_SCRIPT_NAME%"
       script_path: "%POSTINSTALL_SCRIPT_PATH%"
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%POSTINSTALL_SCRIPT_PARAMETER4_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader

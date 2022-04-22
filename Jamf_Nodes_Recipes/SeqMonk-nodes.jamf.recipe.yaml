@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.SeqMonk-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-scripts-2-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -9,10 +9,17 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SeqMonk
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SCRIPT_NAME: JDK-preinstall-check.sh
-  SCRIPT_PATH: JDK-preinstall-check.sh
-  SCRIPT_CATEGORY: Administration
-  SCRIPT_PRIORITY: Before
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
+  PREINSTALL_SCRIPT_NAME: JDK-preinstall-check.sh
+  PREINSTALL_SCRIPT_PATH: JDK-preinstall-check.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
+  POSTINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  POSTINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  POSTINSTALL_SCRIPT_CATEGORY: Administration
+  POSTINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: R-install
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"

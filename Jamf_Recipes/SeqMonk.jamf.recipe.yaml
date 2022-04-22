@@ -12,6 +12,8 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     A tool to visualise and analyse high throughput mapped sequence data.
 
+    Note: this tool requires an R installation. 
+
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
@@ -21,12 +23,18 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  SCRIPT_NAME: JDK-preinstall-check.sh
-  SCRIPT_PATH: JDK-preinstall-check.sh
+  PREINSTALL_SCRIPT_NAME: JDK-preinstall-check.sh
+  PREINSTALL_SCRIPT_PATH: JDK-preinstall-check.sh
   SCRIPT_CATEGORY: Administration
-  SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
+  POSTINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  POSTINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  POSTINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: R-install
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %LANGUAGE% complete'"
@@ -51,10 +59,19 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%POSTINSTALL_PARAMETER4_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
