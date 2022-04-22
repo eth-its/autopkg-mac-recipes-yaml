@@ -1,0 +1,13 @@
+Description: |
+  Uploads an icon to the Jamf Pro Server.
+  Requires the ICON_URL key. ICON_URL must be a URL on the https://ics.services.jamfcloud.com domain. The default icon is the Apple Configurator.png icon.
+Identifier: com.github.eth-its-recipes.jamf.upload-icon
+MinimumVersion: "2.3"
+
+Input:
+  ICON_URL: "https://ics.services.jamfcloud.com/icon/hash_13139b4d9732a8b2fa3bbe25e6c6373e8ef6b85a7c7ba2bd15615195d63bc648"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfIconUploader
+    Arguments:
+      icon_url: "%ICON_URL%"
