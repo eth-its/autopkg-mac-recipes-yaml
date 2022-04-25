@@ -17,12 +17,12 @@ Input:
   POLICY_CATEGORY: Untested
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
+  TRIGGERONLY_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   SCRIPT_NAME: Matlab-postinstall.sh
   SCRIPT_PATH: Matlab-postinstall.sh
@@ -37,18 +37,19 @@ Input:
   # Floating license trigger policy
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_TRIGGERONLY_POLICY_NAME: Install %FLOATING_POLICY_NAME% v%CF_BUNDLE_VERSION%
-  FLOATING_TRIGGERONLY_POLICY_TEMPLATE: MATLAB Node-PolicyTemplate-triggeronly.xml
-  FLOATING_TRIGGER_NAME: "%NAME%_%MAJOR_VERSION%_Floating-install"
+  FLOATING_TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-Floating-triggeronly.xml
+  FLOATING_TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Floating-install"
   # Floating license self service policy
-  FLOATING_POLICY_NAME: "%NAME%_%MAJOR_VERSION%_Floating %LANGUAGE% (Testing)"
-  FLOATING_POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating %LANGUAGE% test version installed"
-  FLOATING_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-untested-installed.xml
-  FLOATING_TEST_USERS_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating %LANGUAGE% test users"
-  FLOATING_TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  FLOATING_SELFSERVICE_DISPLAY_NAME: "%NAME%_%MAJOR_VERSION%_Floating %LANGUAGE% (Testing)"
+  FLOATING_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN (Testing)"
+  FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-untested-selfservice.xml
+  FLOATING_POLICY_RUN_COMMAND: jamf policy -event "%FLOATING_TRIGGER_NAME%"
+  FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test version installed"
+  FLOATING_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-test-version-installed.xml
+  FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
+  FLOATING_TEST_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-test-users.xml
+  FLOATING_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN (Testing)"
   FLOATING_SELFSERVICE_DESCRIPTION: |
-    This will install %NAME%_%MAJOR_VERSION%_Floating if not already installed, and then add the network ("floating") license.
+    This will install MATLAB_%MAJOR_VERSION%_Floating if not already installed, and then add the network ("floating") license.
 
     If the Node License is already installed, the Floating license will replace it, and it will be stored elsewhere on your drive, so that you can re-apply it later if required.
 
@@ -58,19 +59,20 @@ Input:
     Category: %PKG_CATEGORY%
   # Node license trigger policy
   NODE_PARAMETER7_VALUE: Node
-  NODE_TRIGGERONLY_POLICY_NAME: Install %FLOATING_POLICY_NAME% v%CF_BUNDLE_VERSION%
-  NODE_TRIGGERONLY_POLICY_TEMPLATE: MATLAB Floating-PolicyTemplate-triggeronly.xml
-  NODE_TRIGGER_NAME: "%NAME%_%MAJOR_VERSION%_Node-install"
+  NODE_TRIGGERONLY_POLICY_NAME: Install %NODE_POLICY_NAME% v%CF_BUNDLE_VERSION%
+  NODE_TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-Node-triggeronly.xml
+  NODE_TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Node-install"
   # Node license self service policy
-  NODE_POLICY_NAME: "%NAME%_%MAJOR_VERSION%_Node %LANGUAGE% (Testing)"
-  NODE_POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node %LANGUAGE% test version installed"
+  NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
+  NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
+  NODE_POLICY_RUN_COMMAND: jamf policy -event "%NODE_TRIGGER_NAME%"
+  NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
   NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-untested-installed.xml
-  NODE_TEST_USERS_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node %LANGUAGE% test users"
-  NODE_TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  NODE_SELFSERVICE_DISPLAY_NAME: "%NAME%_%MAJOR_VERSION%_Node %LANGUAGE% (Testing)"
+  NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
+  NODE_TEST_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-users.xml
+  NODE_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
   NODE_SELFSERVICE_DESCRIPTION: |
-    This will install %NAME%_%MAJOR_VERSION%_Node if not already installed.
+    This will install MATLAB_%MAJOR_VERSION%_Node if not already installed.
 
     If the Floating License is already installed, it will be moved and stored elsewhere on your drive, so that you can re-apply it later if required. If the Node license has previously already been activated on this computer, it will be moved back into place. Otherwise, you will have to activate the Node license after installation.
 
