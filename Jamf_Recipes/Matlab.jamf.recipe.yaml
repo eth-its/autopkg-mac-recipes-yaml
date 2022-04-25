@@ -6,7 +6,6 @@ Description: |
   - CF_BUNDLE_VERSION e.g. 9.10
   - INSTALLATION_KEY e.g. 11488-56649-62328-47783-...-46344-51530-33537-21222
   - LICENSE_SERVER e.g. license.company.com
-  - MANAGEMENT_PATH e.g. /Library/Management/MATLAB
 Identifier: com.github.eth-its-recipes.jamf.Matlab
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Matlab
@@ -16,6 +15,7 @@ Input:
   LANGUAGE: EN
   PKG_CATEGORY: Tools & Accessories
   POLICY_CATEGORY: Untested
+  MANAGEMENT_PATH: /Library/Management/MATLAB
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
