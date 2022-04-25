@@ -1,0 +1,94 @@
+Description: |
+  Downloads the latest version of MATLAB and creates a package.
+  The following keys must be overridden for this to function:
+  - MAJOR_VERSION e.g. R2022a
+  - LIST_MAJOR_VERSION e.g. R2022a
+  - CF_BUNDLE_VERSION e.g. 9.10
+  - INSTALLATION_KEY e.g. 11488-56649-62328-47783-...-46344-51530-33537-21222
+  - LICENSE_SERVER e.g. license.company.com
+Identifier: com.github.eth-its-recipes.pkg.Matlab
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  NAME: MATLAB
+  LIST_LANGUAGE: EN
+  LIST_NAME: MATLAB free
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/MATLAB_floating_license.dat"
+      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+    Processor: Copier
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/InstallForMacOSX.app"
+      source_path: "%pathname%/InstallForMacOSX.app"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        destination_folder=%MANAGEMENT_PATH%/install
+        fileInstallationKey=%INSTALLATION_KEY%
+        agreeToLicense=yes
+        outputFile=/var/log/MATLAB_install.log
+        mode=silent
+        licensePath=%MANAGEMENT_PATH%/MATLAB_floating_license.dat
+        lmgrFiles=false
+        lmgrService=false
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/installer_input.txt"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        # Matlab Floating postinstall Script
+
+        # Copy the license and installer file to a reliable location
+        /bin/mkdir -p %MANAGEMENT_PATH%/install
+        /bin/cp MATLAB_floating_license.dat %MANAGEMENT_PATH%/
+        /bin/cp installer_input.txt %MANAGEMENT_PATH%/
+
+        # run the installer
+        InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -inputFile %MANAGEMENT_PATH%/installer_input.txt
+
+        # rename app to Floating
+        if [[ -d "/Applications/MATLAB_%MAJOR_VERSION%.app" ]]; then
+            # is there an existing app of that name? better remove it!
+            if [[ -d "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app" ]]; then
+                echo "Existing MATLAB_%MAJOR_VERSION%_Floating.app found! Removing!"
+                /bin/rm -rf "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app"
+            fi
+            echo "Moving MATLAB_%MAJOR_VERSION%_Floating.app to /Applications"
+            /bin/mv "%MANAGEMENT_PATH%/install/MATLAB_%MAJOR_VERSION%.app" "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app"
+            /bin/rm -rf "%MANAGEMENT_PATH%/install"
+        fi
+        # Add permissions to the license file to help adjust it in future
+        chmod -R 775 /Applications/MATLAB_%MAJOR_VERSION%_Floating.app/licenses
+        chgrp -R staff /Applications/MATLAB_%MAJOR_VERSION%_Floating.app/licenses
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.MATLABInstaller
+        pkgname: "%NAME%-%MAJOR_VERSION%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%MAJOR_VERSION%"
+      force_pkg_build: True
+    Processor: PkgCreator
