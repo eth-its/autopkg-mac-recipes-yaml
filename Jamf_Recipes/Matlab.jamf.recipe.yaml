@@ -14,10 +14,7 @@ Input:
   NAME: MATLAB
   LANGUAGE: EN
   PKG_CATEGORY: Tools & Accessories
-  POLICY_CATEGORY: Untested
   MANAGEMENT_PATH: /Library/Management/MATLAB
-  TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
-  TRIGGERONLY_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
@@ -34,15 +31,17 @@ Input:
   PARAMETER4_VALUE: "%MAJOR_VERSION%"
   PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
   PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  POLICY_CATEGORY: Untested
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
-  FLOATING_PARAMETER7_VALUE: Floating
-  FLOATING_TRIGGERONLY_POLICY_NAME: Install %FLOATING_POLICY_NAME% v%CF_BUNDLE_VERSION%
-  FLOATING_TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-Floating-triggeronly.xml
-  FLOATING_TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Floating-install"
+  TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
+  TRIGGERONLY_POLICY_NAME: Install %FLOATING_POLICY_NAME% v%CF_BUNDLE_VERSION%
+  TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-triggeronly.xml
+  TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Floating-install"
   # Floating license self service policy
   FLOATING_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN (Testing)"
   FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-untested-selfservice.xml
-  FLOATING_POLICY_RUN_COMMAND: jamf policy -event "%FLOATING_TRIGGER_NAME%"
+  FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test version installed"
   FLOATING_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-test-version-installed.xml
   FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
@@ -57,15 +56,9 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  # Node license trigger policy
-  NODE_PARAMETER7_VALUE: Node
-  NODE_TRIGGERONLY_POLICY_NAME: Install %NODE_POLICY_NAME% v%CF_BUNDLE_VERSION%
-  NODE_TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-Node-triggeronly.xml
-  NODE_TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Node-install"
   # Node license self service policy
   NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
-  NODE_POLICY_RUN_COMMAND: jamf policy -event "%NODE_TRIGGER_NAME%"
   NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
   NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-untested-installed.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
@@ -141,17 +134,10 @@ Process:
       category_name: "%TRIGGERONLY_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-    Comment: Floating trigger policy
+    Comment: Trigger policy
     Arguments:
-      policy_template: "%FLOATING_TRIGGERONLY_POLICY_TEMPLATE%"
-      policy_name: "%FLOATING_TRIGGERONLY_POLICY_NAME%"
-      replace_policy: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-    Comment: Node trigger policy
-    Arguments:
-      policy_template: "%NODE_TRIGGERONLY_POLICY_TEMPLATE%"
-      policy_name: "%NODE_TRIGGERONLY_POLICY_NAME%"
+      policy_template: "%TRIGGERONLY_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGERONLY_POLICY_NAME%"
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

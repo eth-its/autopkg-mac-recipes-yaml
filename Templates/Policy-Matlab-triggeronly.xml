@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%FLOATING_TRIGGERONLY_POLICY_NAME%</name>
+        <name>%TRIGGERONLY_POLICY_NAME%</name>
         <enabled>true</enabled>
         <frequency>Ongoing</frequency>
         <category>

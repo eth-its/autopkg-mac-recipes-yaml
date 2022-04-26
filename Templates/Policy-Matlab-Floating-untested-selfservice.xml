@@ -34,7 +34,19 @@
         </packages>
     </package_configuration>
     <scripts>
-        <size>0</size>
+        <size>1</size>
+        <script>
+            <name>%SCRIPT_NAME%</name>
+            <priority>%SCRIPT_PRIORITY%</priority>
+            <parameter4>%PARAMETER4_LABEL%</parameter4>
+            <parameter5>%PARAMETER5_LABEL%</parameter5>
+            <parameter6>%PARAMETER6_LABEL%</parameter6>
+            <parameter7>%PARAMETER7_LABEL%</parameter7>
+            <parameter8/>
+            <parameter9/>
+            <parameter10/>
+            <parameter11/>
+        </script>
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
@@ -51,6 +63,6 @@
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>%FLOATING_POLICY_RUN_COMMAND%</run_command>
+        <run_command>%POLICY_RUN_COMMAND%</run_command>
     </files_processes>
 </policy>
