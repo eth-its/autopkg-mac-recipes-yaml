@@ -25,7 +25,11 @@
         </computer_groups>
         <exclusions>
             <computers/>
-            <computer_groups/>
+            <computer_groups>
+                <computer_group>
+                    <name>%NODE_TEST_VERSION_INSTALLED_GROUP_NAME%</name>
+                </computer_group>
+            </computer_groups>
         </exclusions>
     </scope>
     <package_configuration>
