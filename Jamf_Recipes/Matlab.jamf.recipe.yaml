@@ -59,6 +59,7 @@ Input:
   # Node license self service policy
   NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
+  NODE_PARAMETER7_VALUE: Node
   NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
   NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-version-installed.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
