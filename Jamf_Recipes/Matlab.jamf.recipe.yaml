@@ -60,7 +60,7 @@ Input:
   NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
   NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
-  NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-untested-installed.xml
+  NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-version-installed.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
   NODE_TEST_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-users.xml
   NODE_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
