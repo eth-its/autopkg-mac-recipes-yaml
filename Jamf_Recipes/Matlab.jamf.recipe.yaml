@@ -35,7 +35,7 @@ Input:
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
-  TRIGGERONLY_POLICY_NAME: Install %FLOATING_POLICY_NAME% v%CF_BUNDLE_VERSION%
+  TRIGGERONLY_POLICY_NAME: Install MATLAB_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
   TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-triggeronly.xml
   TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_Floating-install"
   # Floating license self service policy
