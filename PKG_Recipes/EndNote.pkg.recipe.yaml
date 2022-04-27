@@ -87,21 +87,18 @@ Process:
         #!/bin/bash
 
         DIR=$(dirname "$0")
-        endnote_version="EndNote %MAJOR_VERSION%"
         exit_code=0
 
         # create license file
         source_license_file="$DIR/license.dat"
-        dest_license_file="/Applications/$endnote_version/.license.dat"
-        company_name="%COMPANY_NAME%"
-        company_number="%COMPANY_NUMBER%"
+        dest_license_file="/Applications/EndNote %MAJOR_VERSION%/.license.dat"
         license_string=$(cat "$source_license_file")
 
         echo "Writing to $dest_license_file"
 
-        echo $company_name > "$dest_license_file"
-        echo $company_name >> "$dest_license_file"
-        echo $company_number >> "$dest_license_file"
+        echo "%COMPANY_NAME%" > "$dest_license_file"
+        echo "%COMPANY_NAME%" >> "$dest_license_file"
+        echo "%COMPANY_NUMBER%" >> "$dest_license_file"
         echo $license_string >> "$dest_license_file"
 
       file_mode: "0755"
