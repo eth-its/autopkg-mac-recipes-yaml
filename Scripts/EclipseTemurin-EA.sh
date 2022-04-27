@@ -16,7 +16,7 @@ fi
 
 if [[ $filter_name ]]; then
     # get the JVM version using java_home
-    latest_jvm=$(/usr/libexec/java_home -X -v $filter_name | grep -A2 -m3 Temurin | tail -n 1 | sed 's|<[^>]*>||g' | sed 's|^[[:space:]]*||' | grep "$filter_name." )
+    latest_jvm=$(/usr/libexec/java_home -X -v $filter_name | grep -A3 JVMVendor | grep -A2 Eclipse | tail -n 1 | sed 's|<[^>]*>||g' | sed 's|^[[:space:]]*||' | grep "$filter_name." )
 else
     latest_jvm="None"
 fi
