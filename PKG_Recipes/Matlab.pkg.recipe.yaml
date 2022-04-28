@@ -59,12 +59,17 @@ Process:
         #!/bin/bash
         # Matlab Floating postinstall Script
 
+        DIR=$(dirname "$0")
+
         major_version="%MAJOR_VERSION%"
+
+        # remove any existing config files
+        rm /Library/Management/MATLAB/installer_input.txt ||:
 
         # Copy the license and installer file to a reliable location
         /bin/mkdir -p /Library/Management/MATLAB/tmp_install
-        /bin/cp MATLAB_floating_license.dat /Library/Management/MATLAB/
-        /bin/cp installer_input.txt /Library/Management/MATLAB/
+        /bin/cp "$DIR"/MATLAB_floating_license.dat /Library/Management/MATLAB/
+        /bin/cp "$DIR"/installer_input.txt /Library/Management/MATLAB/
 
         # run the installer
         if /Library/Management/MATLAB/${major_version}/install -inputFile /Library/Management/MATLAB/installer_input.txt; then
