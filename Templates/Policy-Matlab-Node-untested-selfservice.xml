@@ -61,8 +61,8 @@
         <self_service_description>%NODE_SELFSERVICE_DESCRIPTION%</self_service_description>
     </self_service>
     <user_interaction>
-        <message_start>%NAME% is being installed.</message_start>
-        <message_finish>%NAME% has now been installed.</message_finish>
+        <message_start>%NODE_POLICY_NAME% is being installed.</message_start>
+        <message_finish>%NODE_POLICY_NAME% has now been installed.</message_finish>
     </user_interaction>
     <maintenance>
         <recon>true</recon>
