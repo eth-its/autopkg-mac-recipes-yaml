@@ -2,14 +2,16 @@ Description: |
   Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
   The following keys must be overridden for this to function:
   - MAJOR_VERSION e.g. R2022a
+  - LIST_MAJOR_VERSION e.g. R2022a
   - CF_BUNDLE_VERSION e.g. 9.10
   - INSTALLATION_KEY e.g. 11488-56649-62328-47783-...-46344-51530-33537-21222
   - LICENSE_SERVER e.g. license.company.com
-Identifier: com.github.eth-its-recipes.jamf.Matlab
+Identifier: com.github.eth-its-recipes.jamf.Matlab-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.Matlab
 
 Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Matlab
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
   NAME: MATLAB
   LANGUAGE: EN
   PKG_CATEGORY: Tools & Accessories
@@ -19,7 +21,6 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
-  UPDATE_PREDICATE: "pkg_uploaded != True"
   SCRIPT_NAME: Matlab-postinstall.sh
   SCRIPT_PATH: Matlab-postinstall.sh
   SCRIPT_PRIORITY: After
@@ -75,19 +76,25 @@ Input:
     Category: %PKG_CATEGORY%
 
 Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
-
-  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -159,5 +166,3 @@ Process:
       policy_name: "%NODE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-
-  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
