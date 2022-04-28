@@ -59,7 +59,7 @@ Process:
         #!/bin/bash
         # Matlab Floating postinstall Script
 
-        major_version="%MAJOR_VERSION"
+        major_version="%MAJOR_VERSION%"
 
         # Copy the license and installer file to a reliable location
         /bin/mkdir -p /Library/Management/MATLAB/tmp_install
