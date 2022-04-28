@@ -2,9 +2,7 @@ Description: |
   Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
   The following keys must be overridden for this to function:
   - MAJOR_VERSION e.g. R2022a
-  - LIST_MAJOR_VERSION e.g. R2022a
   - CF_BUNDLE_VERSION e.g. 9.10
-  - INSTALLATION_KEY e.g. 11488-56649-62328-47783-...-46344-51530-33537-21222
   - LICENSE_SERVER e.g. license.company.com
 Identifier: com.github.eth-its-recipes.jamf.Matlab-nodes
 MinimumVersion: "2.3"
