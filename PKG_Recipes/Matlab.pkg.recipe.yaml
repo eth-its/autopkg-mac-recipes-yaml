@@ -109,3 +109,9 @@ Process:
         version: "%MAJOR_VERSION%"
       force_pkg_build: True
     Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
