@@ -65,19 +65,27 @@ Process:
         /bin/cp installer_input.txt %MANAGEMENT_PATH%/
 
         # run the installer
-        /Library/Management/MATLAB/%version%/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -inputFile %MANAGEMENT_PATH%/installer_input.txt
-
-        # rename app to Floating
-        if [[ -d "/Applications/MATLAB_%MAJOR_VERSION%.app" ]]; then
-            # is there an existing app of that name? better remove it!
+        if /Library/Management/MATLAB/%version%/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -inputFile %MANAGEMENT_PATH%/installer_input.txt; then
+            # is there an existing app of that name? better remove it 
+            # if our new installation was successful!
             if [[ -d "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app" ]]; then
                 echo "Existing MATLAB_%MAJOR_VERSION%_Floating.app found! Removing!"
                 /bin/rm -rf "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app"
             fi
-            echo "Moving MATLAB_%MAJOR_VERSION%_Floating.app to /Applications"
-            /bin/mv "%MANAGEMENT_PATH%/install/MATLAB_%MAJOR_VERSION%.app" "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app"
-            /bin/rm -rf "%MANAGEMENT_PATH%/install"
+        else
+            echo "Failed to install application so aborting!"
+            exit 1
         fi
+
+        # rename app to Floating and move into Applications
+        echo "Moving MATLAB_%MAJOR_VERSION%_Floating.app to /Applications"
+        if /bin/mv "%MANAGEMENT_PATH%/install/MATLAB_%MAJOR_VERSION%.app" "/Applications/MATLAB_%MAJOR_VERSION%_Floating.app"; then
+            /bin/rm -rf "%MANAGEMENT_PATH%/install"
+        else
+            echo "Failed to move application so aborting!"
+            exit 1
+        fi
+
         # Add permissions to the license file to help adjust it in future
         chmod -R 775 /Applications/MATLAB_%MAJOR_VERSION%_Floating.app/licenses
         chgrp -R staff /Applications/MATLAB_%MAJOR_VERSION%_Floating.app/licenses
