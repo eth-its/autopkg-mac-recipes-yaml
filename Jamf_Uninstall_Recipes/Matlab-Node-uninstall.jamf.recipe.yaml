@@ -4,7 +4,7 @@ Description: |
   Requires MAJOR_VERSION to be added to the override
 Identifier: com.github.eth-its-recipes.jamf.Matlab-Node-uninstall
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-noexclusion-uninstall
 
 Input:
   NAME: Matlab
@@ -14,7 +14,7 @@ Input:
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE%"
   SCRIPT_PATH: Matlab-uninstall.zsh
   SCRIPT_NAME: Matlab-uninstall.zsh
-  PARAMETER4_TITLE: Major version
+  PARAMETER4_LABEL: Major version
   PARAMETER4_VALUE: "%MAJOR_VERSION%"
   INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
@@ -24,6 +24,4 @@ Input:
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE%"
   UNINSTALL_TRIGGER_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE%-uninstall"
   USERS_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE% users"
-  AUTOINSTALL_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE% auto-install"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
   SELFSERVICE_ICON: Matlab.png
