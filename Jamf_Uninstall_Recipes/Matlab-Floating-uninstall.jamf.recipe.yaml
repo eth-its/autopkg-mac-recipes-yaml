@@ -12,8 +12,8 @@ Input:
   LICENSE: Floating
   LANGUAGE: EN
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE%"
-  SCRIPT_PATH: Matlab-uninstall.sh
-  SCRIPT_NAME: Matlab-uninstall.sh
+  SCRIPT_PATH: Matlab-uninstall.zsh
+  SCRIPT_NAME: Matlab-uninstall.zsh
   PARAMETER4_TITLE: Major version
   PARAMETER4_VALUE: "%MAJOR_VERSION%"
   INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE% installed"
