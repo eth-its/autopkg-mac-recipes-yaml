@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.NessusAgent-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+
+Input:
+  NAME: Nessus Agent
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.NessusAgent
+  EXTENSION_ATTRIBUTE_NAME: Nessus Agent Version
+  EXTENSION_ATTRIBUTE_SCRIPT: NessusAgent-EA.sh
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
