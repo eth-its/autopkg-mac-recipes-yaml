@@ -6,7 +6,7 @@ Comment: |
   Do not add things like language or license to the NAME key.
 
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.template-script-uninstall-noexclusion
+Identifier: com.github.eth-its-recipes.jamf.template-script-noexclusion-uninstall
 MinimumVersion: "2.3"
 
 Input:
