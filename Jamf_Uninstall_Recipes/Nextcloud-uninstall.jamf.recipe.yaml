@@ -7,3 +7,4 @@ Input:
   NAME: Nextcloud
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.nextcloud.desktopclient
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
