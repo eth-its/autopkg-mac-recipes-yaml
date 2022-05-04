@@ -6,6 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Fiji
   LANGUAGE: EN
+  PKG_CATEGORY: Science & Math
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Fiji
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
