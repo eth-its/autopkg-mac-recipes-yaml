@@ -9,3 +9,4 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: Nessus Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: NessusAgent-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  POLICY_RUN_COMMAND: "jamf policy -event Run-NessusAgentLicense"
