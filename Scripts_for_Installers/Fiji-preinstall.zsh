@@ -8,4 +8,4 @@ if [ -d "$3/Applications/Fiji.app" ]; then
 fi
 
 # The internal updater requires the Xcode command line tools (for git)
-jamf policy -event Xcode_Command_Line_Tools-install
+jamf policy -event XcodeCLTools-install
