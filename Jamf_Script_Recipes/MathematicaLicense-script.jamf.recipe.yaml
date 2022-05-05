@@ -29,7 +29,8 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
+  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
+  NODE_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: Mathematica-license
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
@@ -101,9 +102,10 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       GROUP_NAME: "%FLOATING_GROUP_NAME%"
+      EXCLUSION_GROUP_NAME: "%NODE_GROUP_NAME%"
       TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
       PARAMETER6_VALUE: "%FLOATING_PARAMETER6_VALUE%"
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_template: "%FLOATING_TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%FLOATING_TRIGGER_POLICY_NAME%"
       replace_policy: "True"
 
@@ -112,6 +114,6 @@ Process:
       GROUP_NAME: "%NODE_GROUP_NAME%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
       PARAMETER6_VALUE: "%NODE_PARAMETER6_VALUE%"
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_template: "%NODE_TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%NODE_TRIGGER_POLICY_NAME%"
       replace_policy: "True"
