@@ -111,7 +111,7 @@ Process:
     Arguments:
       GROUP_NAME: "%NODE_GROUP_NAME%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
-      PARAMETER6_VALUE: "%NODE_PARAMETER6_VALUE"
+      PARAMETER6_VALUE: "%NODE_PARAMETER6_VALUE%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%NODE_TRIGGER_POLICY_NAME%"
       replace_policy: "True"
