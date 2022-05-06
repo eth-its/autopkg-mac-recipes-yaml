@@ -1,0 +1,39 @@
+Description: |
+  Checks /Volumes/AutoPkg_Local_Sources for update.
+
+  NOTE: This is a temporary recipe while automated Reader DC downloads using 
+  com.github.autopkg.download.AdobeReaderDC is not working
+Identifier: com.github.eth-its-recipes.download.AdobeAcrobatReaderDC
+MinimumVersion: "2.3"
+
+Input:
+  EXCEPTION: ""
+  LIMITATION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: Adobe_Acrobat_Reader_DC
+  VENDOR: Adobe
+  STOP_PREDICATE: "file_exists == True"
+
+Process:
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
+    Arguments:
+      EXCEPTION: "%EXCEPTION%"
+      LIMITATION: "%LIMITATION%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
+
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Arguments:
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
+
+  - Processor: StopProcessingIf
+    Comment: "Checks if the file already exists in the cache"
+    Arguments:
+      predicate: "%STOP_PREDICATE%"
+
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
+    Arguments:
+      url: "file://%root_path%/%version%/%latest_file%.zip"
+
+  - Processor: EndOfCheckPhase

@@ -1,0 +1,36 @@
+Description: |
+  Downloads the current Adobe Acrobat Reader DC pkg and repackages, replacing a problematic preinstall script, and enabling installation on non-boot volumes.
+
+  NOTE: This is a temporary recipe while automated Reader DC downloads using 
+  com.github.autopkg.download.AdobeReaderDC is not working
+Identifier: com.github.eth-its-recipes.pkg.AdobeAcrobatReaderDC
+ParentRecipe: com.github.eth-its-recipes.download.AdobeAcrobatReaderDC
+MinimumVersion: "2.3"
+
+Input:
+  NAME: AdobeReaderDC
+  LANGUAGE: English
+  MAJOR_VERSION: AcrobatDC
+
+Process:
+  - Processor: com.github.autopkg.download.AdobeReaderDC/AdobeReaderRepackager
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/*/application.pkg"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%"
+      pkg_payload_path: "%found_filename%/Payload"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/Adobe Acrobat Reader DC.app/Contents/Info.plist"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Adobe Acrobat Reader DC.app"
