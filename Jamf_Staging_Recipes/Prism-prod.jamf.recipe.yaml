@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Prism
   LANGUAGE: EN
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Prism"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Prism
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

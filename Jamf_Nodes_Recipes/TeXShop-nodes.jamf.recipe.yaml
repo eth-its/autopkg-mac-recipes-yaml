@@ -5,6 +5,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: TeXShop
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.TeXShop"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.TeXShop
   SCRIPT_NAME: "%NAME%-postinstall.zsh"
   SCRIPT_PATH: "%NAME%-postinstall.zsh"

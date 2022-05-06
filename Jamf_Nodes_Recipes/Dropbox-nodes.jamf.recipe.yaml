@@ -5,5 +5,5 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Dropbox
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Dropbox"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Dropbox
   SELFSERVICE_ICON: Dropbox 129.png

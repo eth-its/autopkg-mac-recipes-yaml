@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: Dropbox
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Dropbox"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Dropbox
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

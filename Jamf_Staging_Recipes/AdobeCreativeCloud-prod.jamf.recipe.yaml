@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Adobe Creative Cloud
   JSS_INVENTORY_NAME: Creative Cloud Desktop App.app
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.AdobeCreativeCloud"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeCreativeCloud
   SCRIPT_NAME: AdobeCreativeCloud-preinstall.zsh
   SCRIPT_PRIORITY: Before
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

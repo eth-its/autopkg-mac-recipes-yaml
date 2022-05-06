@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
 
 Input:
   NAME: Microsoft Remote Desktop
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.MicrosoftRemoteDesktop"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftRemoteDesktop
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SCRIPT_NAME: MicrosoftRemoteDesktop-preinstall.sh
   SCRIPT_PATH: MicrosoftRemoteDesktop-preinstall.sh
