@@ -2,7 +2,7 @@ Description: Uploads the pkg to the JSS, and creates a Self-Service Policy avail
 Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobatReaderDC
 MinimumVersion: "2.3"
 # ParentRecipe: com.github.autopkg.pkg.AdobeReaderDC
-ParentRecipe: com.github.eth-its-recipes.download.AdobeAcrobatReaderDC
+ParentRecipe: com.github.eth-its-recipes.pkg.AdobeAcrobatReaderDC
 
 Input:
   NAME: Adobe Acrobat Reader DC
