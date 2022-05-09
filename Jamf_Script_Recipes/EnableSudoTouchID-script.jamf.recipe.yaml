@@ -6,13 +6,15 @@ Input:
   NAME: Enable Touch ID for sudo
   EXTENSION_ATTRIBUTE_NAME: Touch ID for sudo status
   EXTENSION_ATTRIBUTE_SCRIPT: SudoTouchID-EA.zsh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
   EXTENSION_ATTRIBUTE_VALUE: "False"
   USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice-EA.xml
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  EXCLUSION_GROUP_NAME: "%NAME% enabled or ineligible"
+  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: "Enable-TouchID-sudo.sh"
   SCRIPT_PRIORITY: After
@@ -23,7 +25,7 @@ Input:
     Please note that Touch ID may not be available on your system.
 
     If you don't see the policy after upgrading macOS, run the "Update Inventory" item to ensure that the management system has checked the status since the upgrade.
-  SELFSERVICE_ICON: Terminal.png
+  SELFSERVICE_ICON: Touch ID.png
   INSTALL_BUTTON_TEXT: Enable Touch ID
   REINSTALL_BUTTON_TEXT: Enable Touch ID
   FORCE_DESCRIPTION: "false"
@@ -32,6 +34,12 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -46,8 +54,15 @@ Process:
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%EXCLUSION_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
+      replace_group: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
+      INSTALLED_GROUP_NAME: "%EXCLUSION_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
