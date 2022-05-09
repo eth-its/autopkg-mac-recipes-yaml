@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Prism
   LANGUAGE: EN
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Prism"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Prism
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SCRIPT_NAME: "%NAME%-postinstall.sh"

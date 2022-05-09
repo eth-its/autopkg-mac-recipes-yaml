@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 
 Input:
   NAME: Support
-  UNTESTED_RECIPE_IDENTIFIER: "local.jamf.Support"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support
   OS_EXCLUDE_MAX: 10.15.8
   OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
   OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml

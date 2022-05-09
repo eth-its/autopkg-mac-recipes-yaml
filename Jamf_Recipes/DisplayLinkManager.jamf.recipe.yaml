@@ -1,25 +1,18 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobatReaderDC
+Identifier: com.github.eth-its-recipes.jamf.DisplayLinkManager
 MinimumVersion: "2.3"
-# ParentRecipe: com.github.autopkg.pkg.AdobeReaderDC
-ParentRecipe: com.github.eth-its-recipes.pkg.AdobeAcrobatReaderDC
+ParentRecipe: com.github.smithjw.pkg.DisplayLink_Manager
 
 Input:
-  NAME: Adobe Acrobat Reader DC
+  NAME: DisplayLink Manager
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
+  PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Adobe Acrobat Reader DC is a PDF viewer application that allows viewing, printing, and adding comments to PDF documents.
+    DisplayLink Manager is a new way to enable your DisplayLink dock, adapter or monitor on macOS platforms. It's an application that combines our latest driver with features that streamline the setup of mutliple displays up to 4K.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MAX: 10.13.6
-  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
-  SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh
-  SCRIPT_PATH: AdobeAcrobatReaderDC-postinstall.sh
-  SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -29,8 +22,8 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-OS-exclude-max.xml
-  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -55,14 +48,6 @@ Process:
     Arguments:
       category_name: "%POLICY_CATEGORY%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      replace_script: True
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
@@ -74,12 +59,6 @@ Process:
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
-      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
-      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
