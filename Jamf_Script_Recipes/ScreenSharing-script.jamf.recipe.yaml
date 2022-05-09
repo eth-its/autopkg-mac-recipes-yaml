@@ -1,0 +1,89 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.EnableSudoTouchID-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Screen Sharing
+  EXTENSION_ATTRIBUTE_NAME: Screen Sharing status
+  EXTENSION_ATTRIBUTE_SCRIPT: ScreenSharing-EA.zsh
+  ENABLED_EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  DISABLED_EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
+  EXTENSION_ATTRIBUTE_VALUE: "True"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  ENABLED_EXCLUSION_GROUP_NAME: "%NAME% enabled"
+  DISABLED_EXCLUSION_GROUP_NAME: "%NAME% disabled"
+  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_NAME: "%NAME%"
+  ENABLE_SCRIPT_NAME: EnableScreenSharing.zsh
+  DISABLE_SCRIPT_NAME: DisableScreenSharing.zsh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  ENABLE_SELFSERVICE_DESCRIPTION: Enables Screen Sharing on this computer.
+  DISABLE_SELFSERVICE_DESCRIPTION: Disables Screen Sharing on this computer.
+  SELFSERVICE_ICON: Screen Sharing.png
+  ENABLE_BUTTON_TEXT: Enable
+  DISABLE_BUTTON_TEXT: Disable
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%ENABLE_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%DISABLE_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      EXCLUSION_GROUP_NAME: "%ENABLED_EXCLUSION_GROUP_NAME%"
+      computergroup_name: "%ENABLED_EXCLUSION_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      EXCLUSION_GROUP_NAME: "%DISABLED_EXCLUSION_GROUP_NAME%"
+      computergroup_name: "%DISABLED_EXCLUSION_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      SELFSERVICE_DESCRIPTION: "%ENABLE_SELFSERVICE_DESCRIPTION%"
+      INSTALL_BUTTON_TEXT: "%ENABLE_BUTTON_TEXT%"
+      REINSTALL_BUTTON_TEXT: "%ENABLE_BUTTON_TEXT%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      SELFSERVICE_DESCRIPTION: "%DISABLE_SELFSERVICE_DESCRIPTION%"
+      INSTALL_BUTTON_TEXT: "%DISABLE_BUTTON_TEXT%"
+      REINSTALL_BUTTON_TEXT: "%DISABLE_BUTTON_TEXT%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

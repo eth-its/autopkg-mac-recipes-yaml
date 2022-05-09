@@ -4,8 +4,12 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Enable Touch ID for sudo
+  EXTENSION_ATTRIBUTE_NAME: Touch ID for sudo status
+  EXTENSION_ATTRIBUTE_SCRIPT: SudoTouchID-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: "False"
   USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice-EA.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
@@ -13,7 +17,12 @@ Input:
   SCRIPT_NAME: "Enable-TouchID-sudo.sh"
   SCRIPT_PRIORITY: After
   SELFSERVICE_DISPLAY_NAME: Enable Touch ID for sudo
-  SELFSERVICE_DESCRIPTION: Enables sudo to be activated via Touch ID. Touch ID must be set up prior to running this item, and may need to be re-run after upgrading macOS.
+  SELFSERVICE_DESCRIPTION: |
+    Enables sudo to be activated via Touch ID. Touch ID must have been set up prior to running this item, and you will most likely need to be re-run this policy after upgrading macOS. 
+
+    Please note that Touch ID may not be available on your system.
+
+    If you don't see the policy after upgrading macOS, run the "Update Inventory" item to ensure that the management system has checked the status since the upgrade.
   SELFSERVICE_ICON: Terminal.png
   INSTALL_BUTTON_TEXT: Enable Touch ID
   REINSTALL_BUTTON_TEXT: Enable Touch ID
