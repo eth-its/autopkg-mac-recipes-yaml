@@ -4,6 +4,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Screen Sharing
+  ENABLE_POLICY_NAME: "%NAME% - Enable"
+  DISABLE_POLICY_NAME: "%NAME% - Disable"
   EXTENSION_ATTRIBUTE_NAME: Screen Sharing status
   EXTENSION_ATTRIBUTE_SCRIPT: ScreenSharing-EA.zsh
   ENABLED_EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
@@ -17,7 +19,6 @@ Input:
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
-  POLICY_NAME: "%NAME%"
   ENABLE_SCRIPT_NAME: EnableScreenSharing.zsh
   DISABLE_SCRIPT_NAME: DisableScreenSharing.zsh
   SCRIPT_PRIORITY: After
@@ -83,7 +84,7 @@ Process:
       REINSTALL_BUTTON_TEXT: "%ENABLE_BUTTON_TEXT%"
       SCRIPT_NAME: "%ENABLE_SCRIPT_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%ENABLE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
@@ -94,6 +95,6 @@ Process:
       REINSTALL_BUTTON_TEXT: "%DISABLE_BUTTON_TEXT%"
       SCRIPT_NAME: "%DISABLE_SCRIPT_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%DISABLE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
