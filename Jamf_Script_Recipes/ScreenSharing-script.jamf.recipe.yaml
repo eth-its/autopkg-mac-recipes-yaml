@@ -57,6 +57,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       EXCLUSION_GROUP_NAME: "%ENABLED_EXCLUSION_GROUP_NAME%"
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: "%ENABLED_EXTENSION_ATTRIBUTE_SEARCH_TYPE%"
       computergroup_name: "%ENABLED_EXCLUSION_GROUP_NAME%"
       computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
       replace_group: "True"
@@ -64,6 +65,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       EXCLUSION_GROUP_NAME: "%DISABLED_EXCLUSION_GROUP_NAME%"
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: "%DISABLED_EXTENSION_ATTRIBUTE_SEARCH_TYPE%"
       computergroup_name: "%DISABLED_EXCLUSION_GROUP_NAME%"
       computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
       replace_group: "True"
