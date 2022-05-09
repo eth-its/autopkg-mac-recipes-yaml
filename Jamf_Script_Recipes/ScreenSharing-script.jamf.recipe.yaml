@@ -37,6 +37,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%POLICY_CATEGORY%"
+      script_name: "%ENABLE_SCRIPT_NAME%"
       script_path: "%ENABLE_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
@@ -44,6 +45,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%POLICY_CATEGORY%"
+      script_name: "%DISABLE_SCRIPT_NAME%"
       script_path: "%DISABLE_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
