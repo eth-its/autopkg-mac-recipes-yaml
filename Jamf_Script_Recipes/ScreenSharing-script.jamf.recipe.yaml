@@ -18,7 +18,7 @@ Input:
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
   ENABLE_SCRIPT_NAME: EnableScreenSharing.zsh
   DISABLE_SCRIPT_NAME: DisableScreenSharing.zsh
   SCRIPT_PRIORITY: After
@@ -86,6 +86,7 @@ Process:
       REINSTALL_BUTTON_TEXT: "%ENABLE_BUTTON_TEXT%"
       SCRIPT_NAME: "%ENABLE_SCRIPT_NAME%"
       POLICY_NAME: "%ENABLE_POLICY_NAME%"
+      INSTALLED_GROUP_NAME: "%DISABLED_EXCLUSION_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%ENABLE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
@@ -98,6 +99,7 @@ Process:
       REINSTALL_BUTTON_TEXT: "%DISABLE_BUTTON_TEXT%"
       SCRIPT_NAME: "%DISABLE_SCRIPT_NAME%"
       POLICY_NAME: "%DISABLE_POLICY_NAME%"
+      INSTALLED_GROUP_NAME: "%ENABLED_EXCLUSION_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%DISABLE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
