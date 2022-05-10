@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
-  SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"
+  SELFSERVICE_ICON: Microsoft Office 365.png
   POLICY_RUN_COMMAND: "echo '%NAME% complete'"
   POLICY_MESSAGE_START: "Installing Microsoft Office Serial License"
   POLICY_MESSAGE_FINISH: "Microsoft Office Serial License has now been installed"
