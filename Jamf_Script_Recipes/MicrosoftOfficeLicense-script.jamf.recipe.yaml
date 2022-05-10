@@ -24,10 +24,10 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies
-  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
-  NODE_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: MicrosoftOffice-license
+  NODE_EXCLUSION_GROUP_NAME: Microsoft Office LTSC Standard License installed
   FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
   FLOATING_TRIGGER_POLICY_NAME: Install Microsoft Office 365 License
@@ -99,7 +99,6 @@ Process:
     Arguments:
       GROUP_NAME: "%FLOATING_GROUP_NAME%"
       EXCLUSION_GROUP_NAME: "%NODE_GROUP_NAME%"
-      TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
       PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
       TRIGGER_POLICY_RUN_COMMAND: "%FLOATING_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%FLOATING_TRIGGER_POLICY_TEMPLATE%"
@@ -109,7 +108,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       GROUP_NAME: "%NODE_GROUP_NAME%"
-      TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
+      EXCLUSION_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%NODE_TRIGGER_POLICY_TEMPLATE%"
