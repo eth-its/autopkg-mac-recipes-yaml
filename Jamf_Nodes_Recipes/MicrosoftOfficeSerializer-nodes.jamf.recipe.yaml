@@ -4,15 +4,15 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-customexclusion-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Office LTSC Standard license Installer
+  NAME: Microsoft Office LTSC Standard License
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
   SELFSERVICE_ICON: Microsoft Office 365.png
-  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
-  POLICY_MESSAGE_START: "Installing Microsoft Office LTSC Standard license"
-  POLICY_MESSAGE_FINISH: "Microsoft Office LTSC Standard license has now been installed"
-  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC Standard licensed"
+  POLICY_RUN_COMMAND: "echo '%NAME% installation complete'"
+  POLICY_MESSAGE_START: "Installing %NAME%"
+  POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
+  EXCLUSION_GROUP_NAME: "%NAME% installed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh

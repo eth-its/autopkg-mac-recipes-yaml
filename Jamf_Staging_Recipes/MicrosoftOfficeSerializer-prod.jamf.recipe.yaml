@@ -4,12 +4,19 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-selfservice-
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Office LTSC Standard license Installer
+  NAME: Microsoft Office LTSC Standard License
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
   SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
-  SELFSERVICE_POLICY_MESSAGE_START: "Installing Microsoft Office LTSC Standard License"
-  SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Office LTSC Standard License has now been installed"
+  SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
+  SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  EXCLUSION_GROUP_NAME: "%NAME% installed"
+  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
+  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: Volume
