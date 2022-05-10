@@ -20,7 +20,7 @@ Input:
   EXCLUSION_GROUP_NAME: "Microsoft Office Volume Licensed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
-  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: Volume
   POLICY_CATEGORY: Untested

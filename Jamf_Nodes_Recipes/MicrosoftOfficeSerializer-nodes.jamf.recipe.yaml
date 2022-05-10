@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeSerializer-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-customexclusion-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-customexclusion-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -14,3 +14,7 @@ Input:
   POLICY_MESSAGE_FINISH: "Microsoft Office Serial License has now been installed"
   EXCLUSION_GROUP_NAME: "Microsoft Office Volume Licensed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
+  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: Volume
