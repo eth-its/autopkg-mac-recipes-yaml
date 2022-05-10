@@ -17,7 +17,7 @@ Input:
     Category: %PKG_CATEGORY%
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "Microsoft Office Volume License test users"
+  TEST_USERS_GROUP_NAME: "Microsoft Office Serializer test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   EXCLUSION_GROUP_NAME: "Microsoft Office Volume Licensed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
