@@ -14,9 +14,6 @@ Input:
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
   TEST_USERS_GROUP_NAME: "%NAME% test users"
-  EXCLUSION_GROUP_NAME: "%NAME% installed"
-  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
-  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: Volume
