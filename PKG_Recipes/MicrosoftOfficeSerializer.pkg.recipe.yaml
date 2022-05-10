@@ -1,0 +1,13 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
+ParentRecipe: com.github.eth-its-recipes.download.MicrosoftOfficeSerializer
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft Office Serializer
+
+Process:
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/MicrosoftOfficeSerializer-%version%.pkg"
+      source_pkg: "%pathname%"
+    Processor: PkgCopier
