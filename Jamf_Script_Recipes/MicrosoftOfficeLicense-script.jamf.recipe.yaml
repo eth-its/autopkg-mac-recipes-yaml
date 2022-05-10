@@ -26,7 +26,7 @@ Input:
   # policies
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_NAME: MicrosoftOffice-license
+  TRIGGER_NAME: MicrosoftOfficeLicense-install
   NODE_EXCLUSION_GROUP_NAME: Microsoft Office LTSC Standard License installed
   FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
