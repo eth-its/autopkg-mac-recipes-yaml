@@ -7,8 +7,8 @@ Input:
   # smart groups
   FLOATING_GROUP_NAME: Microsoft Office users
   FLOATING_TESTING_GROUP_NAME: Testing
-  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard licensed
-  NODE_GROUP_NAME: Microsoft Office LTSC Standard licensed
+  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard license
+  NODE_GROUP_NAME: Microsoft Office LTSC Standard license users
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   GROUP_TEMPLATE: SmartGroup-users.xml
   # script

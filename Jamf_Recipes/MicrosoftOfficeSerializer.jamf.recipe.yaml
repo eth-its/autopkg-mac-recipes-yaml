@@ -4,12 +4,12 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
 
 Input:
-  NAME: Microsoft Office Serializer
+  NAME: Microsoft Office LTSC Standard license Installer
   PKG_CATEGORY: Tools & Accessories
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Installs the Microsoft Serial (Volume) license. Please note that use of the serial license still requires an Office 365 license to be purchased. 
+    Installs the Microsoft Microsoft Office LTSC Standard license. Please note that use of the this license still requires an Office 365 license to be purchased. 
 
     If you are signed into Office 365, this license takes precedence over the serial license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
 
@@ -17,9 +17,9 @@ Input:
     Category: %PKG_CATEGORY%
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "Microsoft Office Serializer test users"
+  TEST_USERS_GROUP_NAME: "Microsoft Office LTSC Standard license test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  EXCLUSION_GROUP_NAME: "Microsoft Office Volume Licensed"
+  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC Standard licensed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
@@ -31,8 +31,8 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice-customexclusion.xml
   SELFSERVICE_ICON: Microsoft Office 365.png
   POLICY_RUN_COMMAND: "echo '%NAME% complete'"
-  POLICY_MESSAGE_START: "Installing Microsoft Office Serial License"
-  POLICY_MESSAGE_FINISH: "Microsoft Office Serial License has now been installed"
+  POLICY_MESSAGE_START: "Installing Microsoft Office LTSC Standard license"
+  POLICY_MESSAGE_FINISH: "Microsoft Office LTSC Standard license has now been installed"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

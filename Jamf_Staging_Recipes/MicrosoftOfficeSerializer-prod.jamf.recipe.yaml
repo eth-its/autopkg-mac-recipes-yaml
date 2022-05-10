@@ -9,7 +9,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
   SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
-  SELFSERVICE_POLICY_MESSAGE_START: "Installing Microsoft Office Serial License"
-  SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Office Serial License has now been installed"
+  SELFSERVICE_POLICY_MESSAGE_START: "Installing Microsoft Office LTSC Standard License"
+  SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Office LTSC Standard License has now been installed"
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
