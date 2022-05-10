@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Office License
   # smart groups
-  FLOATING_GROUP_NAME: Microsoft Office 365 licensed
+  FLOATING_GROUP_NAME: Microsoft Office users
   FLOATING_TESTING_GROUP_NAME: Testing
   NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard licensed
   NODE_GROUP_NAME: Microsoft Office LTSC Standard licensed
@@ -67,7 +67,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Floating Smart Group
     Arguments:
-      TESTING_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
       USERS_GROUP_NAME: "%FLOATING_GROUP_NAME%"
       computergroup_template: "%GROUP_TEMPLATE%"
       computergroup_name: "%FLOATING_GROUP_NAME%"
@@ -84,7 +84,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node Smart Group
     Arguments:
-      TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
       USERS_GROUP_NAME: "%NODE_GROUP_NAME%"
       computergroup_template: "%GROUP_TEMPLATE%"
       computergroup_name: "%NODE_GROUP_NAME%"
