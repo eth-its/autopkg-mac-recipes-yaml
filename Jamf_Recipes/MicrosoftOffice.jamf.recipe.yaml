@@ -50,11 +50,9 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
-  - Processor: PlistReader
+  - Processor: com.github.grahampugh.recipes.commonprocessors/PkgInfoReader
     Arguments:
-      info_path: "%PATH%/Contents/Info.plist"
-      plist_keys:
-        LSMinimumSystemVersion: minimum_os_version
+      source_pkg: "%pathname%/*.pkg"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
