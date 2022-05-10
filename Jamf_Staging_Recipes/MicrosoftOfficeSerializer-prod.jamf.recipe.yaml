@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Productivity
   SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
   SELFSERVICE_ICON: "Microsoft Office 365.png"
