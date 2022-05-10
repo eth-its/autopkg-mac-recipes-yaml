@@ -4,7 +4,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-selfservice-
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Office Serializer
+  NAME: Microsoft Office LTSC Standard license Installer
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
