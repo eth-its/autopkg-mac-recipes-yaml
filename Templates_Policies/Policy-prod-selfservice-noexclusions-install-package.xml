@@ -48,7 +48,7 @@
         <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
     </self_service>
     <maintenance>
-        <recon>false</recon>
+        <recon>true</recon>
     </maintenance>
     <files_processes>
         <run_command>%SELFSERVICE_POLICY_RUN_COMMAND%</run_command>
