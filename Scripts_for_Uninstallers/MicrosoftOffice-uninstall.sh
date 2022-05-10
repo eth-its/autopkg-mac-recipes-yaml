@@ -58,8 +58,7 @@ echo "Removing Microsoft Office Preferences..."
 
 echo "Removing Microsoft Office licenses..."
 
-/usr/local/bin/jamf policy -event Microsoft_Office_Unlicense_Volume
-/usr/local/bin/jamf policy -event Microsoft_Office_Unlicense_O365
+/usr/local/bin/jamf policy -event Run-MicrosoftOfficeLicenseReset
 
 receipts="com.microsoft.package.Microsoft_Excel.app
 com.microsoft.package.Microsoft_PowerPoint.app

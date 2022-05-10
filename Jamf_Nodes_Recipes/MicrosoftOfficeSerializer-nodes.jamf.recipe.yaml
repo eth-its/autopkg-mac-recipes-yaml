@@ -18,3 +18,4 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: Volume
+  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard License

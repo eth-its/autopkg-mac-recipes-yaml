@@ -15,7 +15,7 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard License
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
