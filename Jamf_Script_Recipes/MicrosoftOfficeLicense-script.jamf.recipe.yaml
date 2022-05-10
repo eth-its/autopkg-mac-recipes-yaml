@@ -7,8 +7,8 @@ Input:
   # smart groups
   FLOATING_GROUP_NAME: Microsoft Office users
   FLOATING_TESTING_GROUP_NAME: Testing
-  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard license
-  NODE_GROUP_NAME: Microsoft Office LTSC Standard license users
+  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard License
+  NODE_GROUP_NAME: Microsoft Office LTSC Standard License users
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   GROUP_TEMPLATE: SmartGroup-users.xml
   # script
@@ -30,8 +30,8 @@ Input:
   TRIGGER_NAME: MicrosoftOffice-license
   FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
-  FLOATING_TRIGGER_POLICY_NAME: Microsoft Office 365 License
-  NODE_TRIGGER_POLICY_NAME: Microsoft Office LTSC Standard License
+  FLOATING_TRIGGER_POLICY_NAME: Install Microsoft Office 365 License
+  NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC Standard License
   FLOATING_PARAMETER4_VALUE: "--Volume"
   NODE_PARAMETER4_VALUE: "--O365"
   PARAMETER5_VALUE: "--ForceClose"
