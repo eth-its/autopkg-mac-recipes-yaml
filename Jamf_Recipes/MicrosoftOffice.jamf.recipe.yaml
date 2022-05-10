@@ -6,7 +6,6 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.MicrosoftOffice365
 Input:
   NAME: Microsoft Office
   JSS_INVENTORY_NAME: Microsoft Word.app
-  PATH: "/Applications/%JSS_INVENTORY_NAME%"
   PKG_CATEGORY: Productivity
   VERSIONTYPE: CFBundleVersion
   PRODUCTID: "2009112"
