@@ -18,6 +18,11 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_NAME: "%NAME%-install"
   SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-noexclusions-install-package.xml
   SELFSERVICE_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
@@ -37,6 +42,10 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
       category_name: "%SELFSERVICE_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -46,6 +55,15 @@ Process:
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self-Service policy
     Arguments:
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%SELFSERVICE_POLICY_NAME%"

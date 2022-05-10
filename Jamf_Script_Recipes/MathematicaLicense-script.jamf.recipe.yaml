@@ -4,7 +4,7 @@ Comments: |
   - NODE_LICENSE_STRING
 
 Description: Creates trigger-only policies to install the Mathematica license by running a postinstall script.
-Identifier: com.github.eth-its-recipes.jamf.script.AffinityLicense
+Identifier: com.github.eth-its-recipes.jamf.script.MathematicaLicense
 MinimumVersion: "2.3"
 
 Input:
