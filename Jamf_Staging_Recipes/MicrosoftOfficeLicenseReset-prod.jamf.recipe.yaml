@@ -12,3 +12,4 @@ Input:
   SELFSERVICE_POLICY_MESSAGE_START: "Resetting Microsoft Office License"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Office License has now been reset"
   SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"
+  TRIGGER_NAME: Run-MicrosoftOfficeLicenseReset

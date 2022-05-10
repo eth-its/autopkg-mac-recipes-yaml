@@ -12,3 +12,4 @@ Input:
   SELFSERVICE_POLICY_MESSAGE_START: "Removing all data from Microsoft Outlook"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Removed all data from Microsoft Outlook"
   SELFSERVICE_ICON: "Microsoft Outlook Reset.png"
+  TRIGGER_NAME: Run-MicrosoftOutlookDataRemoval

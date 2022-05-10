@@ -1,0 +1,851 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+# source: https://github.com/pbowden-msft/Unlicense/blob/master/Unlicense
+
+TOOL_NAME="Microsoft Office 365/2021/2019/2016 License Removal Tool"
+TOOL_VERSION="3.6"
+
+## Copyright (c) 2021 Microsoft Corp. All rights reserved.
+## Scripts are not supported under any Microsoft standard support program or service. The scripts are provided AS IS without warranty of any kind.
+## Microsoft disclaims all implied warranties including, without limitation, any implied warranties of merchantability or of fitness for a 
+## particular purpose. The entire risk arising out of the use or performance of the scripts and documentation remains with you. In no event shall
+## Microsoft, its authors, or anyone else involved in the creation, production, or delivery of the scripts be liable for any damages whatsoever 
+## (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary 
+## loss) arising out of the use of or inability to use the sample scripts or documentation, even if Microsoft has been advised of the possibility
+## of such damages.
+## Feedback: pbowden@microsoft.com
+
+# Constants
+SetConstants() {
+	O365PRODUCT="$HOME/Library/Group Containers/UBF8T346G9.Office"
+	WORDAPPPATH="/Applications/Microsoft Word.app"
+	EXCELAPPPATH="/Applications/Microsoft Excel.app"
+	POWERPOINTAPPPATH="/Applications/Microsoft PowerPoint.app"
+	OUTLOOKAPPPATH="/Applications/Microsoft Outlook.app"
+	PERPETUALLICENSE="/Library/Preferences/com.microsoft.office.licensingV2.plist"
+	SHAREDLICENSE="/Library/Application Support/Microsoft/Office365/com.microsoft.Office365.plist"
+	O365SUBMAIN="$O365PRODUCT/com.microsoft.Office365.plist"
+	O365SUBBAK1="$O365PRODUCT/com.microsoft.e0E2OUQxNUY1LTAxOUQtNDQwNS04QkJELTAxQTI5M0JBOTk4O.plist"
+	O365SUBBAK2="$O365PRODUCT/e0E2OUQxNUY1LTAxOUQtNDQwNS04QkJELTAxQTI5M0JBOTk4O"
+	O365SUBMAINB="$O365PRODUCT/com.microsoft.Office365V2.plist"
+	O365SUBBAK1B="$O365PRODUCT/com.microsoft.O4kTOBJ0M5ITQxATLEJkQ40SNwQDNtQUOxATL1YUNxQUO2E0e.plist"
+	O365SUBBAK2B="$O365PRODUCT/O4kTOBJ0M5ITQxATLEJkQ40SNwQDNtQUOxATL1YUNxQUO2E0e"
+	REGISTRY="$O365PRODUCT/MicrosoftRegistrationDB.reg"
+	VNEXTLICENSEPATH="$O365PRODUCT/Licenses"
+	VNEXTPERPETUALLICENSEPATH="/Library/Microsoft/Office/Licenses"
+}
+
+# HOME folder detection
+GetHomeFolder() {
+	HOME=$(dscl . read /Users/"$1" NFSHomeDirectory | cut -d ':' -f2 | cut -d ' ' -f2)
+	if [ "$HOME" = "" ]; then
+		if [ -d "/Users/$1" ]; then
+			HOME="/Users/$1"
+		else
+			HOME=$(eval echo "~$1")
+		fi
+	fi
+}
+
+# Shows tool usage and parameters
+ShowUsage() {
+	echo $TOOL_NAME - $TOOL_VERSION
+	echo "Purpose: Removes current Office 365/2021/2019/2016 for Mac activation license and returns apps to unlicensed state"
+	echo "Usage: ${(%):-%x} [--All] [--DetectOnly] [--O365] [--Volume] [--ForceClose] [--User] [--JamfUser]"
+	echo "Example: ${(%):-%x} --All --ForceClose"
+	echo
+	exit 0
+}
+
+# Check if Registry exists
+CheckRegistryExists() {
+if [ ! -f "$REGISTRY" ]; then
+	echo "ERROR: Registry DOES NOT exist at path $REGISTRY."
+	exit 1
+fi
+}
+
+# Check to see if we get a response from a URL request
+ContactURL() {
+	local URL="$1"
+	URLRESULT=$(curl --head -s $URL | awk '/HTTP/' | cut -d ' ' -f2)
+	echo $URLRESULT
+}
+
+# Get node_id value from Registry
+GetNodeId() {
+	local NAME="$1"
+	local PARENT="$2"
+	local NODEVALUE=$(sqlite3 "$REGISTRY" "SELECT node_id from HKEY_CURRENT_USER WHERE name='$NAME' AND parent_id=$PARENT;")
+	if [ "$NODEVALUE" = '' ]; then
+		echo "0"
+	else
+		echo "$NODEVALUE"
+	fi
+}
+
+# Get node value from Registry
+GetNodeVal() {
+	local NAME="$1"
+	local NODEID="$2"
+	local NODEVALUE=$(sqlite3 "$REGISTRY" "SELECT node_id from HKEY_CURRENT_USER_values WHERE name='$NAME' AND parent_id=$NODEID;")
+	if [ "$NODEVALUE" = '' ]; then
+		echo "0"
+	else
+		echo "$NODEVALUE"
+	fi
+}
+
+# Delete value from Registry
+DeleteValue() {
+	local NAME="$1"
+	local NODEID="$2"
+	sqlite3 "$REGISTRY" "DELETE FROM HKEY_CURRENT_USER_values WHERE name='$NAME' and node_id=$NODEID;"
+}
+
+# Remove all flighting keys from the specified app
+RemoveFlightData() {
+	local KEY_APP="$1"
+	# If the flight keys are set, remove the existing values
+	KEY_UPDATETIME=($GetNodeVal "FlightUpdateTime" "$KEY_APP")
+	if [ "$KEY_UPDATETIME" != "0" ]; then
+		DeleteValue "FlightUpdateTime" "$KEY_APP"
+	fi
+	KEY_ETAG=($GetNodeVal "ETag" "$KEY_APP")
+	if [ "$KEY_ETAG" != "0" ]; then
+		DeleteValue "ETag" "$KEY_APP"
+	fi
+	KEY_IMPRESSION=($GetNodeVal "ImpressionId" "$KEY_APP")
+	if [ "$KEY_IMPRESSION" != "0" ]; then
+		DeleteValue "ImpressionId" "$KEY_APP"
+	fi
+	KEY_EXPIRES=($GetNodeVal "Expires" "$KEY_APP")
+	if [ "$KEY_EXPIRES" != "0" ]; then
+		DeleteValue "Expires" "$KEY_APP"
+	fi
+	KEY_DEFERRED=($GetNodeVal "DeferredConfigs" "$KEY_APP")
+	if [ "$KEY_DEFERRED" != "0" ]; then
+		DeleteValue "DeferredConfigs" "$KEY_APP"
+	fi
+	KEY_CONFIGID=($GetNodeVal "ConfigIds" "$KEY_APP")
+	if [ "$KEY_CONFIGID" != "0" ]; then
+		DeleteValue "ConfigIds" "$KEY_APP"
+	fi
+	KEY_NUMBERLINES=($GetNodeVal "FlightNumberlines" "$KEY_APP")
+	if [ "$KEY_NUMBERLINES" != "0" ]; then
+		DeleteValue "FlightNumberlines" "$KEY_APP"
+	fi
+	KEY_TASREQ=($GetNodeVal "TasRequestPending" "$KEY_APP")
+	if [ "$KEY_TASREQ" != "0" ]; then
+		DeleteValue "TasRequestPending" "$KEY_APP"
+	fi
+	KEY_FLVER=($GetNodeVal "FlightingVersion" "$KEY_APP")
+	if [ "$KEY_FLVER" != "0" ]; then
+		DeleteValue "FlightingVersion" "$KEY_APP"
+	fi
+}
+
+# Check that all licensed applications are not running
+CheckRunning() {
+	OPENAPPS=0
+	WORDRUNSTATE=$(CheckLaunchState "$WORDAPPPATH")
+	if [ "$WORDRUNSTATE" = "1" ]; then
+		OPENAPPS=$(($OPENAPPS + 1))
+		echo "ERROR: Word must be closed before license files can be removed."
+	fi
+	EXCELRUNSTATE=$(CheckLaunchState "$EXCELAPPPATH")
+	if [ "$EXCELRUNSTATE" = "1" ]; then
+		OPENAPPS=$(($OPENAPPS + 1))
+		echo "ERROR: Excel must be closed before license files can be removed."
+	fi
+	POWERPOINTRUNSTATE=$(CheckLaunchState "$POWERPOINTAPPPATH")
+	if [ "$POWERPOINTRUNSTATE" = "1" ]; then
+		OPENAPPS=$(($OPENAPPS + 1))
+		echo "ERROR: PowerPoint must be closed before license files can be removed."
+	fi
+	OUTLOOKRUNSTATE=$(CheckLaunchState "$OUTLOOKAPPPATH")
+	if [ "$OUTLOOKRUNSTATE" = "1" ]; then
+		OPENAPPS=$(($OPENAPPS + 1))
+		echo "ERROR: Outlook must be closed before license files can be removed."
+	fi
+	if [ "$OPENAPPS" != "0" ]; then
+		echo
+		exit 1
+	fi
+}
+
+# Checks to see if a process is running
+CheckLaunchState() {
+	local RUNNING_RESULT=$(ps ax | grep -v grep | grep "$1")
+	if [ "${#RUNNING_RESULT}" -gt 0 ]; then
+		echo "1"
+	else
+		echo "0"
+	fi
+}
+
+# Forcibly terminates a running process
+ForceTerminate() {
+	$(ps ax | grep -v grep | grep "$1" | awk '{print $1}' | xargs pkill -HUP 2> /dev/null)
+}
+
+# Force quit all Office apps that integrate with licensing
+ForceQuitApps() {
+	ForceTerminate "$WORDAPPPATH"
+	ForceTerminate "$EXCELAPPPATH"
+	ForceTerminate "$POWERPOINTAPPPATH"
+	ForceTerminate "$OUTLOOKAPPPATH"
+}
+
+# Checks to see if a volume license file is present
+DetectPerpetualLicense() {
+	if [ -f "$PERPETUALLICENSE" ] || [ -e "$VNEXTPERPETUALLICENSEPATH" ]; then
+		echo "1"
+	else
+		echo "0"
+	fi
+}
+
+# Reports the type of perpetual license installed
+PerpetualLicenseType() {
+	if [ -f "$PERPETUALLICENSE" ]; then
+		/bin/cat "$PERPETUALLICENSE" | grep -q "A7vRjN2l/dCJHZOm8LKan11/zCYPCRpyChB6lOrgfi"
+		if [ "$?" = "0" ]; then
+				echo "Office 2019 Volume License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "Bozo+MzVxzFzbIo+hhzTl4JKv18WeUuUhLXtH0z36s"
+		if [ "$?" = "0" ]; then
+				echo "Office 2019 Preview Volume License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "A7vRjN2l/dCJHZOm8LKan1Jax2s2f21lEF8Pe11Y+V"
+		if [ "$?" = "0" ]; then
+				echo "Office 2016 Volume License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "DrL/l9tx4T9MsjKloHI5eX"
+		if [ "$?" = "0" ]; then
+				echo "Office 2016 Home and Business License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "C8l2E2OeU13/p1FPI6EJAn"
+		if [ "$?" = "0" ]; then
+				echo "Office 2016 Home and Student License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "Bozo+MzVxzFzbIo+hhzTl4m"
+		if [ "$?" = "0" ]; then
+				echo "Office 2019 Home and Business License"
+				return
+		fi
+		/bin/cat "$PERPETUALLICENSE" | grep -q "Bozo+MzVxzFzbIo+hhzTl4j"
+		if [ "$?" = "0" ]; then
+				echo "Office 2019 Home and Student License"
+				return
+		fi
+		echo "Office Perpetual License"
+	fi
+	if [ -e "$VNEXTPERPETUALLICENSEPATH" ]; then
+		echo "Office 2021 Consumer License"
+		return
+	fi
+}
+
+# Checks to see if an O365 subscription license file is present
+DetectO365License() {
+	if [ -f "$O365SUBMAIN" ] || [ -f "$O365SUBBAK1" ] || [ -f "$O365SUBBAK2" ] || [ -f "$O365SUBMAINB" ] || [ -f "$O365SUBBAK1B" ] || [ -f "$O365SUBBAK2B" ] || [ -n "$( DetectIfUserHasSignedIn )" ]; then
+		echo "1"
+	else
+		echo "0"
+	fi
+}
+
+# Checks to see if a user has signed into Office
+# In older versions of the Office Suite, this directory would exist even before logging in.
+# That said, this check isn't completely reliable as the directory and license file's contents do not change if the user has signed out of Office.
+DetectIfUserHasSignedIn() {
+	/usr/bin/find "$VNEXTLICENSEPATH" -type f ! -iname ".DS_Store" 2&> /dev/null
+}
+
+# Removes the volume license file
+RemovePerpetualLicense() {
+	VLREADYTOREMOVE=$(DetectPerpetualLicense)
+	if [ "$VLREADYTOREMOVE" = "1" ]; then
+		if [ -f "$PERPETUALLICENSE" ]; then
+			sudo rm -f "$PERPETUALLICENSE"
+			if [ "$?" = "0" ]; then
+				echo "0"
+			else
+				echo "1"
+			fi
+		fi
+		if [ -f "$VNEXTPERPETUALLICENSEPATH" ]; then
+			sudo rm -f "$VNEXTPERPETUALLICENSEPATH"
+			if [ "$?" = "0" ]; then
+				echo "0"
+			else
+				echo "1"
+			fi
+		fi
+	else
+		echo "2"
+	fi
+}
+
+# Removes the Office 365 Subscription license files
+RemoveO365License() {
+	O365READYTOREMOVE=$(DetectO365License)
+	if [ "$O365READYTOREMOVE" = "1" ]; then
+		if [ -f "$O365SUBMAIN" ]; then
+			rm -f "$O365SUBMAIN"
+		fi
+		if [ -f "$O365SUBBAK1" ]; then
+			rm -f "$O365SUBBAK1"
+		fi
+		if [ -f "$O365SUBBAK2" ]; then
+			rm -f "$O365SUBBAK2"
+		fi
+		if [ -f "$O365SUBMAINB" ]; then
+			rm -f "$O365SUBMAINB"
+		fi
+		if [ -f "$O365SUBBAK1B" ]; then
+			rm -f "$O365SUBBAK1B"
+		fi
+		if [ -f "$O365SUBBAK2B" ]; then
+			rm -f "$O365SUBBAK2B"
+		fi
+		if [ -f "$SHAREDLICENSE" ]; then
+			rm -f "$SHAREDLICENSE"
+		fi
+		if [ -n "$( DetectIfUserHasSignedIn )" ]; then
+			rm -rf "$VNEXTLICENSEPATH"
+		fi
+		O365VERIFYREMOVAL=$(DetectO365License)
+		if [ "$O365VERIFYREMOVAL" = "0" ]; then
+			echo "0"
+		else
+			echo "1"
+		fi
+	else
+		echo "2"
+	fi
+}
+
+# Removes the package receipt metadata
+RemoveReceipt() {
+	local PKGARRAY=($(pkgutil --pkgs=$1))
+	for p in "${PKGARRAY[@]}"
+	do
+		sudo pkgutil --forget $p
+		if [ $? -eq 0 ] ; then
+			echo "0"
+		else
+			echo "1"
+		fi
+	done
+}
+
+# Reset the first run experience for each licensed app
+ResetFRE() {
+	/usr/bin/defaults write com.microsoft.Word kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	/usr/bin/defaults write com.microsoft.Excel kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	/usr/bin/defaults write com.microsoft.Powerpoint kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	/usr/bin/defaults write com.microsoft.Outlook kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	/usr/bin/defaults write com.microsoft.Outlook FirstRunExperienceCompletedO15 -bool FALSE
+}
+
+# Reset the first run experience in sudo for each licensed app
+SudoResetFRE() {
+	sudo -u $USER /usr/bin/defaults write com.microsoft.Word kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	sudo -u $USER /usr/bin/defaults write com.microsoft.Excel kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	sudo -u $USER /usr/bin/defaults write com.microsoft.Powerpoint kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	sudo -u $USER /usr/bin/defaults write com.microsoft.Outlook kSubUIAppCompletedFirstRunSetup1507 -bool FALSE
+	sudo -u $USER /usr/bin/defaults write com.microsoft.Outlook FirstRunExperienceCompletedO15 -bool FALSE
+}
+
+# Checks to see if 'msoCredentialSchemeADAL' entries are present in the keychain
+FindEntryMsoCredentialSchemeADAL() {
+	/usr/bin/security find-internet-password -s 'msoCredentialSchemeADAL' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the first 'msoCredentialSchemeADAL' entry from the keychain
+RemoveEntryMsoCredentialSchemeADAL() {
+	/usr/bin/security delete-internet-password -s 'msoCredentialSchemeADAL' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if 'msoCredentialSchemeLiveId' entries are present in the keychain
+FindEntryMsoCredentialSchemeLiveId() {
+	/usr/bin/security find-internet-password -s 'msoCredentialSchemeLiveId' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the first 'msoCredentialSchemeLiveId' entry from the keychain
+RemoveEntryMsoCredentialSchemeLiveId() {
+	/usr/bin/security delete-internet-password -s 'msoCredentialSchemeLiveId' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if 'MSOpenTech.ADAL.1*' entries are present in the keychain
+FindEntryMSOpenTechADAL1() {
+	/usr/bin/security find-generic-password -G 'MSOpenTech.ADAL.1' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the first 'MSOpenTech.ADAL.1*' entry from the keychain
+RemoveEntryMSOpenTechADAL1() {
+	/usr/bin/security delete-generic-password -G 'MSOpenTech.ADAL.1' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Identities Cache 2' entry is present in the keychain (15.x builds)
+FindEntryOfficeIdCache2() {
+	/usr/bin/security find-generic-password -l 'Microsoft Office Identities Cache 2' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Identities Cache 2' entry from the keychain (15.x builds)
+RemoveEntryOfficeIdCache2() {
+	/usr/bin/security delete-generic-password -l 'Microsoft Office Identities Cache 2' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Identities Cache 3' entry is present in the keychain (16.x builds)
+FindEntryOfficeIdCache3() {
+	/usr/bin/security find-generic-password -l 'Microsoft Office Identities Cache 3' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Identities Cache 3' entry from the keychain (16.x builds)
+RemoveEntryOfficeIdCache3() {
+	/usr/bin/security delete-generic-password -l 'Microsoft Office Identities Cache 3' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Identities Settings 2' entry is present in the keychain (15.x builds)
+FindEntryOfficeIdSettings2() {
+	/usr/bin/security find-generic-password -l 'Microsoft Office Identities Settings 2' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Identities Settings 2' entry from the keychain (15.x builds)
+RemoveEntryOfficeIdSettings2() {
+	/usr/bin/security delete-generic-password -l 'Microsoft Office Identities Settings 2' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Identities Settings 3' entry is present in the keychain (16.x builds)
+FindEntryOfficeIdSettings3() {
+	/usr/bin/security find-generic-password -l 'Microsoft Office Identities Settings 3' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Identities Settings 3' entry from the keychain (16.x builds)
+RemoveEntryOfficeIdSettings3() {
+	/usr/bin/security delete-generic-password -l 'Microsoft Office Identities Settings 3' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Ticket Cache' entry is present in the keychain (16.x builds)
+FindEntryOfficeTicketCache() {
+	/usr/bin/security find-generic-password -l 'Microsoft Office Ticket Cache' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Ticket Cache' entry from the keychain (16.x builds)
+RemoveEntryOfficeTicketCache() {
+	/usr/bin/security delete-generic-password -l 'Microsoft Office Ticket Cache' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'com.microsoft.adalcache' entry is present in the keychain (16.x builds)
+FindEntryAdalCache() {
+	/usr/bin/security find-generic-password -l 'com.microsoft.adalcache' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'com.microsoft.adalcache' entry from the keychain (16.x builds)
+RemoveEntryAdalCache() {
+	/usr/bin/security delete-generic-password -l 'com.microsoft.adalcache' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Microsoft Office Data' entry is present in the keychain (16.45+ builds)
+FindEntryOfficeData() {
+	/usr/bin/security find-generic-password -G 'Microsoft Office Data' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Microsoft Office Data' entry from the keychain (16.45+ builds)
+RemoveEntryOfficeData() {
+	/usr/bin/security delete-generic-password -G 'Microsoft Office Data' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'com.helpshift.data_com.microsoft.Outlook' entry is present in the keychain
+FindEntryHelpShift() {
+	/usr/bin/security find-generic-password -l 'com.helpshift.data_com.microsoft.Outlook' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'com.helpshift.data_com.microsoft.Outlook' entry from the keychain
+RemoveEntryHelpShift() {
+	/usr/bin/security delete-generic-password -l 'com.helpshift.data_com.microsoft.Outlook' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'MicrosoftOfficeRMSCredential' entry is present in the keychain
+FindEntryRMSCredential() {
+	/usr/bin/security find-generic-password -l 'MicrosoftOfficeRMSCredential' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'MicrosoftOfficeRMSCredential' entry from the keychain
+RemoveEntryRMSCredential() {
+	/usr/bin/security delete-generic-password -l 'MicrosoftOfficeRMSCredential' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'MSProtection.framework.service' entry is present in the keychain
+FindEntryMSProtection() {
+	/usr/bin/security find-generic-password -l 'MSProtection.framework.service' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'MSProtection.framework.service' entry from the keychain
+RemoveEntryMSProtection() {
+	/usr/bin/security delete-generic-password -l 'MSProtection.framework.service' 2> /dev/null 1> /dev/null
+}
+
+# Checks to see if the 'Exchange' entry is present in the keychain
+FindEntryExchange() {
+	/usr/bin/security find-generic-password -l 'Exchange' 2> /dev/null 1> /dev/null
+	echo $?
+}
+
+# Removes the 'Exchange' entry from the keychain
+RemoveEntryExchange() {
+	/usr/bin/security delete-generic-password -l 'Exchange' 2> /dev/null 1> /dev/null
+}
+
+GetSudo() {
+# Checks to see if the user has root-level permissions
+	if [ "$EUID" != "0" ]; then
+		sudo -p "Enter administrator password: " echo
+		if [ $? -eq 0 ] ; then
+			echo "0"
+		else
+			echo "1"
+		fi
+	fi
+}
+
+# Detect Application Bundle Version
+GetAppVersion() {
+	/usr/bin/defaults read "${1}/Contents/Info.plist" CFBundleShortVersionString
+}
+
+# Evaluate command-line arguments
+if [[ $# = 0 ]]; then
+	ShowUsage
+else
+	for KEY in "$@"
+	do
+	case $KEY in
+		--Help|-h|--help)
+		ShowUsage
+		shift # past argument
+		;;
+		--All|-a|--all)
+		REMOVEVL=true
+		REMOVEO365=true
+		shift # past argument
+		;;
+		--DetectOnly|-d|--detectonly)
+		DETECT=true
+		shift # past argument
+		;;
+		--O365|-o|--o365)
+		REMOVEO365=true
+		shift # past argument
+		;;
+		--Volume|-v|--volume)
+		REMOVEVL=true
+		shift # past argument
+		;;
+		--ForceClose|-f|--forceclose)
+		FORCECLOSE=true
+		shift # past argument
+		;;
+		--User:*|-u:*)
+		USER=${KEY#*:}
+		GetHomeFolder "$USER"
+		shift # past argument
+		;;
+		--JamfUser)
+		# Used to remove Office 365/2021/2019/2016 activation for Jamf script. Example Self Service script.
+		# Parameter 4: --All, Parameter 5: --ForceClose, Parameter 6: --JamfUser
+		USER=$3
+		GetHomeFolder "$USER"
+		shift # past argument
+		;;
+	esac
+	done
+fi
+
+## Main
+SetConstants
+
+# Determine which Office Suite version is installed
+declare -a APPVERSIONS
+for app in "$WORDAPPPATH" "$EXCELAPPPATH" "$POWERPOINTAPPPATH" "$OUTLOOKAPPPATH"
+do
+	if [ -e "${app}" ]; then
+		APPVERSIONS+=$(GetAppVersion "${app}")
+	fi
+done
+
+# Check first for detection mode
+if [ $DETECT ]; then
+	VLPRESENT=$(DetectPerpetualLicense)
+	if [ "$VLPRESENT" = "1" ]; then
+		LICTYPE=$(PerpetualLicenseType)
+		echo "An $LICTYPE was detected."
+	else
+		echo "A volume or perpetual license was NOT detected."
+	fi
+	
+	O365PRESENT=$(DetectO365License)
+	if [ "$O365PRESENT" = "1" ]; then
+		echo "An Office 365 Subscription license was detected."
+	else
+		echo "An Office 365 Subscription license was NOT detected."
+	fi
+
+	if [ "$VLPRESENT" = "1" ] && [ "$O365PRESENT" = "1" ]; then
+		echo "WARNING: Both volume and Office 365 Subscription licenses were detected."
+
+		VERSIONCHECK=$((( ${${(@O)APPVERSIONS}[1]} >= 16.50 )) 2&> /dev/null; echo $?)
+
+		if [ $VERSIONCHECK = 0 ]; then
+			# Modern priority, v16.50 or newer
+			echo "If the Subscription license is valid, it will be prioritized over the volume license."
+		elif [ $VERSIONCHECK = 1 ]; then
+			# Legacy priority, v16.49 or older
+			echo "Only the volume license will be used."
+		elif [ $VERSIONCHECK = 2 ]; then
+			# No Office app bundles found at the expected locations
+			# Reply with modern priority verbiage
+			echo "WARNING: Unable to determine Office Suite version."
+			echo "If the Subscription license is valid, it will be prioritized over the volume license."
+		fi
+	fi
+	exit 0
+fi
+
+# Remove volume license
+if [ $REMOVEVL ]; then
+	PRIVS=$(GetSudo)
+	if [ "$PRIVS" = "1" ]; then
+		echo "1"
+		return
+	else
+		VLPRESENT=$(DetectPerpetualLicense)
+		if [ "$VLPRESENT" = "1" ]; then
+			if [ $FORCECLOSE ]; then
+				ForceQuitApps
+			else
+				CheckRunning
+			fi
+				REMOVEVLFILES=$(RemovePerpetualLicense)
+				if [ "$REMOVEVLFILES" = "0" ]; then
+					SudoResetFRE
+					echo "The volume license files were removed successfully."
+				elif [ "$REMOVEVLFILES" = "2" ]; then
+					echo "WARNING: No volume license files were present"
+				else
+					echo "ERROR: The volume license files could NOT be removed. Try using the sudo command to elevate permissions."
+					exit 1
+				fi
+				REMOVEVLRECEIPT=$(RemoveReceipt "com.microsoft.pkg.licensing.volume")
+		else
+			echo "WARNING: No volume license files were present"
+		fi
+	fi
+fi
+
+# Remove subscription license
+if [ $REMOVEO365 ]; then
+	O365PRESENT=$(DetectO365License)
+	if [ "$O365PRESENT" = "1" ]; then
+		if [ $FORCECLOSE ]; then
+			ForceQuitApps
+		else
+			CheckRunning
+		fi
+		# Find and remove 'msoCredentialSchemeADAL' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryMsoCredentialSchemeADAL)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryMsoCredentialSchemeADAL
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryMsoCredentialSchemeADAL)
+		done
+		
+		# Find and remove 'msoCredentialSchemeLiveId' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryMsoCredentialSchemeLiveId)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryMsoCredentialSchemeLiveId
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryMsoCredentialSchemeLiveId)
+		done
+		
+		# Find and remove 'MSOpenTech.ADAL.1*' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryMSOpenTechADAL1)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryMSOpenTechADAL1
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryMSOpenTechADAL1)
+		done
+		
+		# Find and remove 'Microsoft Office Identities Cache 2' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeIdCache2)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeIdCache2
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeIdCache2)
+		done
+		
+		# Find and remove 'Microsoft Office Identities Cache 3' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeIdCache3)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeIdCache3
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeIdCache3)
+		done
+		
+		# Find and remove 'Microsoft Office Identities Settings 2' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeIdSettings2)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeIdSettings2
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeIdSettings2)
+		done
+		
+		# Find and remove 'Microsoft Office Identities Settings 3' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeIdSettings3)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeIdSettings3
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeIdSettings3)
+		done
+		
+		# Find and remove 'Microsoft Office Ticket Cache' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeTicketCache)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeTicketCache
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeTicketCache)
+		done
+
+		# Find and remove 'com.microsoft.adalcache' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryAdalCache)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryAdalCache
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryAdalCache)
+		done
+
+		# Find and remove 'Microsoft Office Data' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryOfficeData)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryOfficeData
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryOfficeData)
+		done
+
+		# Find and remove 'MicrosoftOfficeRMSCredential' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryRMSCredential)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryRMSCredential
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryRMSCredential)
+		done
+		
+		# Find and remove 'MSProtection.framework.service' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryMSProtection)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryMSProtection
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryMSProtection)
+		done
+		#echo "Rights Management keychain entries removed"
+
+		# Find and remove 'com.helpshift.data_com.microsoft.Outlook' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryHelpShift)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryHelpShift
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryHelpShift)
+		done
+		#echo "HelpShift keychain entries removed"
+
+		# Find and remove 'Exchange' entries
+		MAXCOUNT=0
+		KEYNOTPRESENT=$(FindEntryExchange)
+		while [ "$KEYNOTPRESENT" = "0" ] || [ $MAXCOUNT -gt 20 ]; do
+			RemoveEntryExchange
+			let MAXCOUNT=MAXCOUNT+1
+			KEYNOTPRESENT=$(FindEntryExchange)
+		done
+		#echo "Exchange keychain entries removed"
+
+		REMOVEO365FILES=$(RemoveO365License)
+		if [ "$REMOVEO365FILES" = "0" ]; then
+			ResetFRE
+			echo "The Office 365 Subscription license files were removed successfully."
+		elif [ "$REMOVEO365FILES" = "2" ]; then
+			echo "WARNING: No Office 365 Subscription license files were present"
+		else
+			echo "ERROR: The Office 365 Subscription license files could NOT be removed."
+			exit 1
+		fi
+	else
+		echo "WARNING: No Office 365 Subscription license files were present"
+	fi
+fi
+
+if [ $REMOVEVL ] || [ $REMOVEO365 ]; then
+	# Check that MicrosoftRegistryDB.reg actually exists.
+	CheckRegistryExists
+	# Check to see if the flighting server is online
+	FLIGHTRESPONSE=$(ContactURL "https://client-office365-tas.msedge.net/ab?")
+	echo "Contacting flighting server: $FLIGHTRESPONSE"
+	# Walk the registry to find the id of the node that we need
+	KEY_SOFTWARE=$(GetNodeId "Software" '-1')
+	KEY_MICROSOFT=$(GetNodeId "Microsoft" "$KEY_SOFTWARE")
+	KEY_OFFICE=$(GetNodeId "Office" "$KEY_MICROSOFT")
+	KEY_VERSION=$(GetNodeId "16.0" "$KEY_OFFICE")
+	KEY_COMMON=$(GetNodeId "Common" "$KEY_VERSION")
+	KEY_TAS=$(GetNodeId "ExperimentTAS" "$KEY_COMMON")
+	KEY_WORD=$(GetNodeId "word" "$KEY_TAS")
+	KEY_EXCEL=$(GetNodeId "excel" "$KEY_TAS")
+	KEY_POWERPOINT=$(GetNodeId "powerpoint" "$KEY_TAS")
+	KEY_OUTLOOK=$(GetNodeId "outlook" "$KEY_TAS")
+	KEY_ONENOTE=$(GetNodeId "onenote" "$KEY_TAS")
+	KEY_LICENSING=$(GetNodeId "licensingdaemon" "$KEY_TAS")
+
+	RemoveFlightData "$KEY_WORD"
+	RemoveFlightData "$KEY_EXCEL"
+	RemoveFlightData "$KEY_POWERPOINT"
+	RemoveFlightData "$KEY_OUTLOOK"
+	RemoveFlightData "$KEY_ONENOTE"
+	RemoveFlightData "$KEY_LICENSING"
+
+	echo "Existing flight data removed."
+fi
+
+exit 0

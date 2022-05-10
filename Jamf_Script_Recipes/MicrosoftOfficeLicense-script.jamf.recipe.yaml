@@ -1,0 +1,117 @@
+Description: Creates trigger-only policies to install the Microsoft Office license by running a postinstall script or trigger.
+Identifier: com.github.eth-its-recipes.jamf.script.MicrosoftOfficeLicense
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft Office License
+  # smart groups
+  FLOATING_GROUP_NAME: Microsoft Office 365 licensed
+  FLOATING_TESTING_GROUP_NAME: Testing
+  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC Standard licensed
+  NODE_GROUP_NAME: Microsoft Office LTSC Standard licensed
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  GROUP_TEMPLATE: SmartGroup-users.xml
+  # script
+  SCRIPT_NAME: MicrosoftOffice-unlicense.zsh
+  SCRIPT_CATEGORY: Productivity
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Volume or O365
+  PARAMETER5_LABEL: ForceClose
+  PARAMETER6_LABEL: Parameter 6
+  PARAMETER7_LABEL: Parameter 7
+  PARAMETER8_LABEL: Parameter 8
+  PARAMETER9_LABEL: Parameter 9
+  PARAMETER10_LABEL: Parameter 10
+  PARAMETER11_LABEL: Parameter 11
+  # policies
+  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
+  NODE_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_NAME: MicrosoftOffice-license
+  FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
+  FLOATING_TRIGGER_POLICY_NAME: Microsoft Office 365 License
+  NODE_TRIGGER_POLICY_NAME: Microsoft Office LTSC Standard License
+  FLOATING_PARAMETER4_VALUE: "--Volume"
+  NODE_PARAMETER4_VALUE: "--O365"
+  PARAMETER5_VALUE: "--ForceClose"
+  PARAMETER6_VALUE: "None"
+  PARAMETER7_VALUE: "None"
+  PARAMETER8_VALUE: "None"
+  PARAMETER9_VALUE: "None"
+  PARAMETER10_VALUE: "None"
+  PARAMETER11_VALUE: "None"
+
+Process:
+  # Script
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: "True"
+
+  # Groups
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating Smart Group
+    Arguments:
+      TESTING_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
+      USERS_GROUP_NAME: "%FLOATING_GROUP_NAME%"
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%FLOATING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node Testing Static Group
+    Arguments:
+      TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node Smart Group
+    Arguments:
+      TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
+      USERS_GROUP_NAME: "%NODE_GROUP_NAME%"
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_GROUP_NAME%"
+      replace_group: "False"
+
+  # Policies
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      GROUP_NAME: "%FLOATING_GROUP_NAME%"
+      EXCLUSION_GROUP_NAME: "%NODE_GROUP_NAME%"
+      TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
+      PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
+      TRIGGER_POLICY_RUN_COMMAND: "%FLOATING_TRIGGER_POLICY_RUN_COMMAND%"
+      policy_template: "%FLOATING_TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%FLOATING_TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      GROUP_NAME: "%NODE_GROUP_NAME%"
+      TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
+      PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
+      TRIGGER_POLICY_RUN_COMMAND: "%NODE_TRIGGER_POLICY_RUN_COMMAND%"
+      policy_template: "%NODE_TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%NODE_TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
