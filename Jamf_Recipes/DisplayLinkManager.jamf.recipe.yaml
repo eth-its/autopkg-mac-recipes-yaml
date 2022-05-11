@@ -24,7 +24,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'DisplayLink Login Screen Extension-install'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

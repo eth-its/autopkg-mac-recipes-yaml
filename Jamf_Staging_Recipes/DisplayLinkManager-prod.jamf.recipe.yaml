@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: DisplayLink Manager
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.DisplayLinkManager
+  POLICY_RUN_COMMAND: "jamf policy -event 'DisplayLink Login Screen Extension-install'"
