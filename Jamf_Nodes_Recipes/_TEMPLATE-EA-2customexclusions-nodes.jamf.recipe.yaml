@@ -71,14 +71,14 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       EXCLUSION_GROUP_NAME: "%EXCLUSION1_GROUP_NAME%"
-      computergroup_name: "%EXCLUSION_GROUP_NAME%"
+      computergroup_name: "%EXCLUSION1_GROUP_NAME%"
       computergroup_template: "%EXCLUSION1_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       NOT_INSTALLED_GROUP_NAME: "%EXCLUSION2_GROUP_NAME%"
-      computergroup_name: "%EXCLUSION_GROUP_NAME%"
+      computergroup_name: "%EXCLUSION2_GROUP_NAME%"
       computergroup_template: "%EXCLUSION2_GROUP_TEMPLATE%"
       replace_group: "True"
 
