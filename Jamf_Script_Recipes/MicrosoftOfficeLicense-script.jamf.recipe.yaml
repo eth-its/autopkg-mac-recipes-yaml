@@ -14,8 +14,8 @@ Input:
   NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
   NODE_GROUP_NAME: Microsoft Office LTSC 2021 users
   # smart groups - 2019
-  2019_TESTING_GROUP_NAME: Testing - Microsoft Office 2019
-  2019_GROUP_NAME: Microsoft Office 2019 users
+  NODE_2019_TESTING_GROUP_NAME: Testing - Microsoft Office 2019
+  NODE_2019_GROUP_NAME: Microsoft Office 2019 users
   # script
   SCRIPT_NAME: MicrosoftOffice-unlicense.zsh
   SCRIPT_CATEGORY: Productivity
@@ -29,7 +29,7 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies - common
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplus2exclusions-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: MicrosoftOfficeLicense-install
   PARAMETER5_VALUE: "--ForceClose"
@@ -49,10 +49,10 @@ Input:
   NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC 2021 Volume License
   NODE_PARAMETER4_VALUE: "--O365"
   # policies - 2019
-  2019_EXCLUSION_GROUP_NAME: Microsoft Office 2019 installed
-  2019_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MSOffice2019-volumelicense"
-  2019_TRIGGER_POLICY_NAME: Install Microsoft Office 2019 Volume License
-  2019_PARAMETER4_VALUE: "--O365"
+  NODE_2019_EXCLUSION_GROUP_NAME: Microsoft Office 2019 installed
+  NODE_2019_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MSOffice2019-volumelicense"
+  NODE_2019_TRIGGER_POLICY_NAME: Install Microsoft Office 2019 Volume License
+  NODE_2019_PARAMETER4_VALUE: "--O365"
 
 Process:
   # Script
@@ -99,13 +99,13 @@ Process:
       TEST_USERS_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
       USERS_GROUP_NAME: "%NODE_GROUP_NAME%"
       computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%NODE_GROUP_NAME%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: 2019 Testing Static Group
     Arguments:
-      TESTING_GROUP_NAME: "%2019_TESTING_GROUP_NAME%"
+      TESTING_GROUP_NAME: "%NODE_2019_TESTING_GROUP_NAME%"
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
@@ -113,10 +113,10 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: 2019 Smart Group
     Arguments:
-      TEST_USERS_GROUP_NAME: "%2019_TESTING_GROUP_NAME%"
-      USERS_GROUP_NAME: "%2019_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%NODE_2019_TESTING_GROUP_NAME%"
+      USERS_GROUP_NAME: "%NODE_2019_GROUP_NAME%"
       computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%2019_GROUP_NAME%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   # Policies
@@ -125,9 +125,11 @@ Process:
       category_name: "%TRIGGER_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Microsoft Office 365
     Arguments:
       GROUP_NAME: "%FLOATING_GROUP_NAME%"
-      EXCLUSION_GROUP_NAME: "%NODE_GROUP_NAME%"
+      EXCLUSION1_GROUP_NAME: "%NODE_GROUP_NAME%"
+      EXCLUSION2_GROUP_NAME: "%NODE_2019_GROUP_NAME%"
       PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_RUN_COMMAND: "%FLOATING_TRIGGER_POLICY_RUN_COMMAND%"
@@ -136,9 +138,11 @@ Process:
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Microsoft Office LTSC 2021
     Arguments:
       GROUP_NAME: "%NODE_GROUP_NAME%"
-      EXCLUSION_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
+      EXCLUSION1_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
+      EXCLUSION2_GROUP_NAME: "%NODE_2019_EXCLUSION_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_TRIGGER_POLICY_RUN_COMMAND%"
@@ -147,12 +151,14 @@ Process:
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Microsoft Office 2019
     Arguments:
-      GROUP_NAME: "%2019_GROUP_NAME%"
-      EXCLUSION_GROUP_NAME: "%2019_EXCLUSION_GROUP_NAME%"
-      PARAMETER4_VALUE: "%2019_PARAMETER4_VALUE%"
-      TRIGGER_POLICY_NAME: "%2019_TRIGGER_POLICY_NAME%"
-      TRIGGER_POLICY_RUN_COMMAND: "%2019_TRIGGER_POLICY_RUN_COMMAND%"
+      GROUP_NAME: "%NODE_2019_GROUP_NAME%"
+      EXCLUSION1_GROUP_NAME: "%NODE_2019_EXCLUSION_GROUP_NAME%"
+      EXCLUSION2_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
+      PARAMETER4_VALUE: "%NODE_2019_PARAMETER4_VALUE%"
+      TRIGGER_POLICY_NAME: "%NODE_2019_TRIGGER_POLICY_NAME%"
+      TRIGGER_POLICY_RUN_COMMAND: "%NODE_2019_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%2019_TRIGGER_POLICY_NAME%"
+      policy_name: "%NODE_2019_TRIGGER_POLICY_NAME%"
       replace_policy: "True"
