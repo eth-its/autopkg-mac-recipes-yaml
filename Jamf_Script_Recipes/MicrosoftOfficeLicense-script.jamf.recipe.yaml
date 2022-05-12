@@ -82,7 +82,7 @@ Process:
       TEST_USERS_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
       USERS_GROUP_NAME: "%FLOATING_GROUP_NAME%"
       computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%FLOATING_GROUP_NAME%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -90,7 +90,7 @@ Process:
     Arguments:
       TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%NODE_TESTING_GROUP_NAME%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -107,7 +107,7 @@ Process:
     Arguments:
       TESTING_GROUP_NAME: "%2019_TESTING_GROUP_NAME%"
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%2019_TESTING_GROUP_NAME%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
