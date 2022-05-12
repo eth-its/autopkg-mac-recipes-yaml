@@ -12,10 +12,13 @@ Input:
   POLICY_RUN_COMMAND: "echo '%NAME% installation complete'"
   POLICY_MESSAGE_START: "Installing %NAME%"
   POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
-  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
-  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: "2021"
   TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "Microsoft Office LTSC 2021 test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
