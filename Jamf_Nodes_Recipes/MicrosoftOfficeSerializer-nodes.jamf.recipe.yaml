@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeSerializer-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-customexclusion-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-2customexclusions-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -20,5 +20,7 @@ Input:
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "Microsoft Office LTSC 2021 test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
-  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION1_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
+  EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml

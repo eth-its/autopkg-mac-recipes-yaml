@@ -20,8 +20,10 @@ Input:
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  EXCLUSION_GROUP_NAME: "Microsoft Office 2019 installed"
-  EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION1_GROUP_NAME: "Microsoft Office 2019 installed"
+  EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
+  EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
@@ -29,7 +31,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
-  POLICY_TEMPLATE: Policy-untested-selfservice-customexclusion.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-2customexclusions.xml
   SELFSERVICE_ICON: Microsoft Office 365.png
   POLICY_RUN_COMMAND: "echo '%NAME% installation complete'"
   POLICY_MESSAGE_START: "Installing %NAME%"
@@ -71,8 +73,16 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      EXCLUSION_GROUP_NAME: "%EXCLUSION1_GROUP_NAME%"
       computergroup_name: "%EXCLUSION_GROUP_NAME%"
-      computergroup_template: "%EXCLUSION_GROUP_TEMPLATE%"
+      computergroup_template: "%EXCLUSION1_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      NOT_INSTALLED_GROUP_NAME: "%EXCLUSION2_GROUP_NAME%"
+      computergroup_name: "%EXCLUSION_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION2_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

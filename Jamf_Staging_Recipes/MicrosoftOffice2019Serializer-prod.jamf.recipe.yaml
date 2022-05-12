@@ -15,7 +15,10 @@ Input:
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
   TRIGGER_NAME: MSOffice2019-volumelicense
   TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
-  INSTALLED_GROUP_NAME: "Microsoft Office 2019 installed"
+  EXCLUSION1_GROUP_NAME: "Microsoft Office 2019 installed"
+  EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
+  EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
   EXTENSION_ATTRIBUTE_VALUE: "2019"
