@@ -6,7 +6,7 @@ Comment: |
   If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
 
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.template-EA-customexclusion-nodes
+Identifier: com.github.eth-its-recipes.jamf.template-EA-2customexclusions-nodes
 MinimumVersion: "2.3"
 
 Input:
