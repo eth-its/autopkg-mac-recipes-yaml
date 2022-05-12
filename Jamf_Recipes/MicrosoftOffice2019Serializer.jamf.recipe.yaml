@@ -1,30 +1,30 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeSerializer
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice2019Serializer
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
 
 Input:
-  NAME: Microsoft Office LTSC 2021 Volume License
+  NAME: Microsoft Office 2019 Volume License
   PKG_CATEGORY: Productivity
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Installs the Microsoft Microsoft Office LTSC Standard 2021 Volume License. Please note that use of the this license still requires an Office 365 license to be purchased. 
+    Installs the Microsoft Microsoft Office 2019 Volume License. 
 
-    If you are signed into Office 365, this license takes precedence over the serial license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
+    If you are signed into Office 365, this license takes precedence over the volume license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
+  TESTING_GROUP_NAME: Testing - Microsoft Office 2019
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "Microsoft Office LTSC 2021 test users"
+  TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION_GROUP_NAME: "Microsoft Office 2019 installed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
-  EXTENSION_ATTRIBUTE_VALUE: "2021"
+  EXTENSION_ATTRIBUTE_VALUE: "2019"
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"

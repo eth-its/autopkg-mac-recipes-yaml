@@ -1,21 +1,21 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeSerializer-nodes
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice2019Serializer-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-customexclusion-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Office LTSC 2021 Volume License
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
+  NAME: Microsoft Office 2019 Volume License
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice2019Serializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
   SELFSERVICE_ICON: Microsoft Office 365.png
   POLICY_RUN_COMMAND: "echo '%NAME% installation complete'"
   POLICY_MESSAGE_START: "Installing %NAME%"
   POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
-  EXCLUSION_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION_GROUP_NAME: "Microsoft Office 2019 installed"
   EXCLUSION_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
-  EXTENSION_ATTRIBUTE_VALUE: "2021"
-  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
+  EXTENSION_ATTRIBUTE_VALUE: "2019"
+  TESTING_GROUP_NAME: Testing - Microsoft Office 2019
