@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.DisplayLinkManager-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
 MinimumVersion: "2.3"
 
 Input:
