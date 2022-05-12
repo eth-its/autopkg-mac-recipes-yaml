@@ -6,5 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: DisplayLink Manager
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
-  PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.displaylink.displaylinkmanagerapp
+  SCRIPT_PATH: DisplayLinkManager-uninstall.sh
+  SCRIPT_NAME: DisplayLinkManager-uninstall.sh
