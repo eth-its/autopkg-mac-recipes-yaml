@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
 
 Input:
   LIMITATION: "2019"
+  JSS_INVENTORY_NAME: Microsoft Word.app
   NAME: Microsoft Office 2019 Volume License
   PKG_CATEGORY: Productivity
   POLICY_NAME: "%NAME% (Testing)"

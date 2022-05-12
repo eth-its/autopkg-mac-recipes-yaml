@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Microsoft Office 2019 Volume License
+  JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice2019Serializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"

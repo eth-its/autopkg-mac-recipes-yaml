@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
 
 Input:
   NAME: Microsoft Office LTSC 2021 Volume License
+  JSS_INVENTORY_NAME: Microsoft Word.app
   PKG_CATEGORY: Productivity
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"

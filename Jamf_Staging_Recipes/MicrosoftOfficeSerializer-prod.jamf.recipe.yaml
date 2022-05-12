@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Microsoft Office LTSC 2021 Volume License
+  JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
