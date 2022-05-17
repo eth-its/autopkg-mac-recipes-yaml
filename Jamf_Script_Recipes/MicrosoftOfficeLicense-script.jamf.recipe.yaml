@@ -29,7 +29,7 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies - common
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: MicrosoftOfficeLicense-install
   PARAMETER5_VALUE: "--ForceClose"
