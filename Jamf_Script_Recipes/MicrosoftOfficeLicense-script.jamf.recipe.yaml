@@ -29,7 +29,7 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies - common
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplus2exclusions-parameters-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: MicrosoftOfficeLicense-install
   PARAMETER5_VALUE: "--ForceClose"
@@ -44,12 +44,10 @@ Input:
   FLOATING_TRIGGER_POLICY_NAME: Install Microsoft Office 365 License
   FLOATING_PARAMETER4_VALUE: "--Volume"
   # policies - node (LTSC 2021)
-  NODE_EXCLUSION_GROUP_NAME: Microsoft Office LTSC 2021 installed
   NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
   NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC 2021 Volume License
   NODE_PARAMETER4_VALUE: "--O365"
   # policies - 2019
-  NODE_2019_EXCLUSION_GROUP_NAME: Microsoft Office 2019 installed
   NODE_2019_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MSOffice2019-volumelicense"
   NODE_2019_TRIGGER_POLICY_NAME: Install Microsoft Office 2019 Volume License
   NODE_2019_PARAMETER4_VALUE: "--O365"
@@ -128,8 +126,6 @@ Process:
     Comment: Microsoft Office 365
     Arguments:
       GROUP_NAME: "%FLOATING_GROUP_NAME%"
-      EXCLUSION1_GROUP_NAME: "%NODE_GROUP_NAME%"
-      EXCLUSION2_GROUP_NAME: "%NODE_2019_GROUP_NAME%"
       PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_RUN_COMMAND: "%FLOATING_TRIGGER_POLICY_RUN_COMMAND%"
@@ -141,8 +137,6 @@ Process:
     Comment: Microsoft Office LTSC 2021
     Arguments:
       GROUP_NAME: "%NODE_GROUP_NAME%"
-      EXCLUSION1_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
-      EXCLUSION2_GROUP_NAME: "%NODE_2019_EXCLUSION_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_TRIGGER_POLICY_RUN_COMMAND%"
@@ -154,8 +148,6 @@ Process:
     Comment: Microsoft Office 2019
     Arguments:
       GROUP_NAME: "%NODE_2019_GROUP_NAME%"
-      EXCLUSION1_GROUP_NAME: "%NODE_2019_EXCLUSION_GROUP_NAME%"
-      EXCLUSION2_GROUP_NAME: "%NODE_EXCLUSION_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_2019_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_2019_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_2019_TRIGGER_POLICY_RUN_COMMAND%"
