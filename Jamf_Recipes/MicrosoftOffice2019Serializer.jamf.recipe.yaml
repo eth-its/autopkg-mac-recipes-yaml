@@ -8,14 +8,6 @@ Input:
   JSS_INVENTORY_NAME: Microsoft Word.app
   NAME: Microsoft Office 2019 Volume License
   PKG_CATEGORY: Productivity
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DESCRIPTION: |
-    Installs the Microsoft Microsoft Office 2019 Volume License. 
-
-    If you are signed into Office 365, this license takes precedence over the volume license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
   TESTING_GROUP_NAME: Testing - Microsoft Office 2019
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
@@ -36,6 +28,14 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: MSOffice2019-volumelicense
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Installs the Microsoft Microsoft Office 2019 Volume License. 
+
+    If you are signed into Office 365, this license takes precedence over the volume license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
   SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
   SELFSERVICE_POLICY_CATEGORY: Untested
   SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"

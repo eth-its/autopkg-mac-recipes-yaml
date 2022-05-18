@@ -26,6 +26,8 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: MSOffice2019-volumelicense
+  SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
   SELFSERVICE_POLICY_CATEGORY: Untested
   SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"

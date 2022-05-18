@@ -7,15 +7,6 @@ Input:
   NAME: Microsoft Office LTSC 2021 Volume License
   JSS_INVENTORY_NAME: Microsoft Word.app
   PKG_CATEGORY: Productivity
-  SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DESCRIPTION: |
-    Installs the Microsoft Microsoft Office LTSC Standard 2021 Volume License. Please note that use of the this license still requires an Office 365 license to be purchased. 
-
-    If you are signed into Office 365, this license takes precedence over the serial license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
   TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "Microsoft Office LTSC 2021 test users"
@@ -35,6 +26,15 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
+  SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Installs the Microsoft Microsoft Office LTSC Standard 2021 Volume License. Please note that use of the this license still requires an Office 365 license to be purchased. 
+
+    If you are signed into Office 365, this license takes precedence over the serial license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
   SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
   SELFSERVICE_POLICY_CATEGORY: Untested
   SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
