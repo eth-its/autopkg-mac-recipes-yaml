@@ -8,7 +8,7 @@ Input:
   POLICY_NAME: "0002 - %NAME%"
   POLICY_TEMPLATE: Policy-script-allcomputers-enrollment.xml
   POLICY_RUN_COMMAND: "echo 'the uninstallation of preinstalled Apple apps is complete'"
-  TRIGGER_NAME: "%NAME%"
+  TRIGGER_NAME: "PreinstalledAppleApps-uninstall"
   SCRIPT_NAME: PreinstalledAppleApps-uninstall.zsh
   SCRIPT_PRIORITY: After
   SCRIPT_CATEGORY: Administration
