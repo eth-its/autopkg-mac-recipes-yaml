@@ -29,7 +29,6 @@ Input:
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   # policies - common
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: MicrosoftOfficeLicense-install
   PARAMETER5_VALUE: "--ForceClose"
@@ -40,16 +39,19 @@ Input:
   PARAMETER10_VALUE: "None"
   PARAMETER11_VALUE: "None"
   # policies - floating
-  FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   FLOATING_TRIGGER_POLICY_NAME: Install Microsoft Office 365 License
+  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplus2exclusions-parameters-nonotification.xml
+  FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   FLOATING_PARAMETER4_VALUE: "--Volume"
   # policies - node (LTSC 2021)
-  NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
   NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC 2021 Volume License
+  NODE_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
+  NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
   NODE_PARAMETER4_VALUE: "--O365"
   # policies - 2019
-  NODE_2019_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MSOffice2019-volumelicense"
   NODE_2019_TRIGGER_POLICY_NAME: Install Microsoft Office 2019 Volume License
+  NODE_2019_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
+  NODE_2019_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MSOffice2019-volumelicense"
   NODE_2019_PARAMETER4_VALUE: "--O365"
 
 Process:
@@ -126,8 +128,11 @@ Process:
     Comment: Microsoft Office 365
     Arguments:
       GROUP_NAME: "%FLOATING_GROUP_NAME%"
+      EXCLUSION_GROUP1: "%NODE_GROUP_NAME%"
+      EXCLUSION_GROUP2: "%NODE_2019_GROUP_NAME%"
       PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
+      TRIGGER_POLICY_TEMPLATE: "%FLOATING_TRIGGER_POLICY_TEMPLATE%"
       TRIGGER_POLICY_RUN_COMMAND: "%FLOATING_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%FLOATING_TRIGGER_POLICY_NAME%"
@@ -139,6 +144,7 @@ Process:
       GROUP_NAME: "%NODE_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
+      TRIGGER_POLICY_TEMPLATE: "%NODE_TRIGGER_POLICY_TEMPLATE%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%NODE_TRIGGER_POLICY_NAME%"
@@ -150,6 +156,7 @@ Process:
       GROUP_NAME: "%NODE_2019_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_2019_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_2019_TRIGGER_POLICY_NAME%"
+      TRIGGER_POLICY_TEMPLATE: "%NODE_2019_TRIGGER_POLICY_TEMPLATE%"
       TRIGGER_POLICY_RUN_COMMAND: "%NODE_2019_TRIGGER_POLICY_RUN_COMMAND%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%NODE_2019_TRIGGER_POLICY_NAME%"
