@@ -12,7 +12,6 @@ MinimumVersion: "2.3"
 Input:
   SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -35,6 +34,7 @@ Input:
   SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  SELFSERVICE_ICON: "%NAME%.png"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
