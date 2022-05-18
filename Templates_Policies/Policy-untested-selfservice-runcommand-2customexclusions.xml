@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%POLICY_NAME%</name>
+        <name>%SELFSERVICE_POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>false</trigger_checkin>
@@ -13,7 +13,7 @@
         <trigger_other/>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%SELFSERVICE_POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
@@ -45,8 +45,8 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
-        <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
-        <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
+        <install_button_text>%SELFSERVICE_INSTALL_BUTTON_TEXT%</install_button_text>
+        <reinstall_button_text>%SELFSERVICE_REINSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
         <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
     </self_service>
@@ -58,6 +58,6 @@
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>%POLICY_RUN_COMMAND%</run_command>
+        <run_command>%SELFSERVICE_POLICY_RUN_COMMAND%</run_command>
     </files_processes>
 </policy>
