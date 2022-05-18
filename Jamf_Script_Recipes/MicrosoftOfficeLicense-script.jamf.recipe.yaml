@@ -15,11 +15,11 @@ Input:
   # smart groups - node (LTSC 2021)
   NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
   NODE_TEST_USERS_GROUP_NAME: Microsoft Office LTSC 2021 test users
-  NODE_GROUP_NAME: Microsoft Office LTSC 2021 users
+  NODE_USERS_GROUP_NAME: Microsoft Office LTSC 2021 users
   # smart groups - 2019
   NODE_2019_TESTING_GROUP_NAME: Testing - Microsoft Office 2019
   NODE_2019_TEST_USERS_GROUP_NAME: Microsoft Office 2019 test users
-  NODE_2019_GROUP_NAME: Microsoft Office 2019 users
+  NODE_2019_USERS_GROUP_NAME: Microsoft Office 2019 users
   # script
   SCRIPT_NAME: MicrosoftOffice-unlicense.zsh
   SCRIPT_CATEGORY: Productivity
