@@ -45,8 +45,8 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
-        <install_button_text>%SELFSERVICE_INSTALL_BUTTON_TEXT%</install_button_text>
-        <reinstall_button_text>%SELFSERVICE_REINSTALL_BUTTON_TEXT%</reinstall_button_text>
+        <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
+        <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
         <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
     </self_service>
