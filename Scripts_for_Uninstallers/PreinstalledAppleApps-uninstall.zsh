@@ -13,5 +13,8 @@ PreinstalledAppleApps=( "Keynote" "Numbers" "Pages" "GarageBand" "iMovie" )
 echo "Removing preinstalled Apple applications..."
 
 for appName in "${PreinstalledAppleApps[@]}"; do
-    [[ -d "/Applications/$appName.app" ]] && jamf policy -event "$appName-uninstall"
+    if [[ -d "/Applications/$appName.app" ]]; then
+        echo "Deleting '/Applications/$appName.app'"
+        jamf policy -event "$appName-uninstall"
+    fi
 done
