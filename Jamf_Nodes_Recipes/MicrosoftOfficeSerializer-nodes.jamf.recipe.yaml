@@ -9,10 +9,6 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
-  SELFSERVICE_ICON: Microsoft Office 365.png
-  POLICY_RUN_COMMAND: "echo '%NAME% installation complete'"
-  POLICY_MESSAGE_START: "Installing %NAME%"
-  POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
@@ -25,3 +21,14 @@ Input:
   EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
   EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
+  TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_NAME: Run-MicrosoftOfficeSerializer
+  SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
+  SELFSERVICE_POLICY_CATEGORY: Untested
+  SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
+  SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
+  SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
+  SELFSERVICE_ICON: Microsoft Office 365.png
