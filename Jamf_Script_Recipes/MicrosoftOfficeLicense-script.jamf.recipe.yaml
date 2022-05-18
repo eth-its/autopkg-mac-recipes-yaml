@@ -6,15 +6,19 @@ Input:
   NAME: Microsoft Office License
   # smart groups - common
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  GROUP_TEMPLATE: SmartGroup-users.xml
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   # smart groups - floating
   FLOATING_TESTING_GROUP_NAME: Testing
-  FLOATING_GROUP_NAME: Microsoft Office users
+  FLOATING_TEST_USERS_GROUP_NAME: Microsoft Office test users
+  FLOATING_USERS_GROUP_NAME: Microsoft Office users
   # smart groups - node (LTSC 2021)
   NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
+  NODE_TEST_USERS_GROUP_NAME: Microsoft Office LTSC 2021 test users
   NODE_GROUP_NAME: Microsoft Office LTSC 2021 users
   # smart groups - 2019
   NODE_2019_TESTING_GROUP_NAME: Testing - Microsoft Office 2019
+  NODE_2019_TEST_USERS_GROUP_NAME: Microsoft Office 2019 test users
   NODE_2019_GROUP_NAME: Microsoft Office 2019 users
   # script
   SCRIPT_NAME: MicrosoftOffice-unlicense.zsh
@@ -77,12 +81,21 @@ Process:
 
   # Groups
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Comment: Floating Smart Group
+    Comment: Floating Test Users Smart Group
     Arguments:
-      TEST_USERS_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
-      USERS_GROUP_NAME: "%FLOATING_GROUP_NAME%"
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
+      TESTING_GROUP_NAME: "%FLOATING_TESTING_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%FLOATING_TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%FLOATING_TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating Users Smart Group
+    Arguments:
+      TEST_USERS_GROUP_NAME: "%FLOATING_TEST_USERS_GROUP_NAME%"
+      USERS_GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%FLOATING_USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -90,33 +103,51 @@ Process:
     Arguments:
       TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
+      computergroup_name: "%NODE_TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Comment: Node Smart Group
+    Comment: Node Test Users Smart Group
     Arguments:
-      TEST_USERS_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
-      USERS_GROUP_NAME: "%NODE_GROUP_NAME%"
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
+      TESTING_GROUP_NAME: "%NODE_TESTING_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%NODE_TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_TEST_USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Comment: 2019 Testing Static Group
+    Comment: Node Users Smart Group
+    Arguments:
+      TEST_USERS_GROUP_NAME: "%NODE_TEST_USERS_GROUP_NAME%"
+      USERS_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node 2019 Testing Static Group
     Arguments:
       TESTING_GROUP_NAME: "%NODE_2019_TESTING_GROUP_NAME%"
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
+      computergroup_name: "%NODE_2019_TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Comment: 2019 Smart Group
+    Comment: Node 2019 Test Users Smart Group
     Arguments:
-      TEST_USERS_GROUP_NAME: "%NODE_2019_TESTING_GROUP_NAME%"
-      USERS_GROUP_NAME: "%NODE_2019_GROUP_NAME%"
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
+      TESTING_GROUP_NAME: "%NODE_2019_TESTING_GROUP_NAME%"
+      TEST_USERS_GROUP_NAME: "%NODE_2019_TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_2019_TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node 2019 Users Smart Group
+    Arguments:
+      TEST_USERS_GROUP_NAME: "%NODE_2019_TEST_USERS_GROUP_NAME%"
+      USERS_GROUP_NAME: "%NODE_2019_USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%NODE_2019_USERS_GROUP_NAME%"
       replace_group: "False"
 
   # Policies
@@ -127,9 +158,9 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Microsoft Office 365
     Arguments:
-      GROUP_NAME: "%FLOATING_GROUP_NAME%"
-      EXCLUSION1_GROUP_NAME: "%NODE_GROUP_NAME%"
-      EXCLUSION2_GROUP_NAME: "%NODE_2019_GROUP_NAME%"
+      GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
+      EXCLUSION1_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
+      EXCLUSION2_GROUP_NAME: "%NODE_USERS_2019_GROUP_NAME%"
       PARAMETER4_VALUE: "%FLOATING_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%FLOATING_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_TEMPLATE: "%FLOATING_TRIGGER_POLICY_TEMPLATE%"
@@ -141,7 +172,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Microsoft Office LTSC 2021
     Arguments:
-      GROUP_NAME: "%NODE_GROUP_NAME%"
+      GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_TEMPLATE: "%NODE_TRIGGER_POLICY_TEMPLATE%"
@@ -153,7 +184,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Microsoft Office 2019
     Arguments:
-      GROUP_NAME: "%NODE_2019_GROUP_NAME%"
+      GROUP_NAME: "%NODE_2019_USERS_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_2019_PARAMETER4_VALUE%"
       TRIGGER_POLICY_NAME: "%NODE_2019_TRIGGER_POLICY_NAME%"
       TRIGGER_POLICY_TEMPLATE: "%NODE_2019_TRIGGER_POLICY_TEMPLATE%"

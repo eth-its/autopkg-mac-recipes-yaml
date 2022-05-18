@@ -15,6 +15,7 @@ Input:
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
   TRIGGER_NAME: MSOffice2019-volumelicense
+  USERS_GROUP_NAME: "Microsoft Office 2019 users"
   TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
   EXCLUSION1_GROUP_NAME: "Microsoft Office 2019 installed"
   EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml

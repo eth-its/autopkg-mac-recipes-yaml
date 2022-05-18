@@ -16,8 +16,6 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   TRIGGER_POLICY_NAME: "Install %NAME%"
