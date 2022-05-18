@@ -96,7 +96,7 @@ Process:
       USERS_GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%FLOATING_USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True" # TEMP
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node Testing Static Group
@@ -113,7 +113,7 @@ Process:
       TEST_USERS_GROUP_NAME: "%NODE_TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       computergroup_name: "%NODE_TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True" # TEMP
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node Users Smart Group
@@ -122,7 +122,7 @@ Process:
       USERS_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%NODE_USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True" # TEMP
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node 2019 Testing Static Group
@@ -139,7 +139,7 @@ Process:
       TEST_USERS_GROUP_NAME: "%NODE_2019_TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       computergroup_name: "%NODE_2019_TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True" # TEMP
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node 2019 Users Smart Group
@@ -148,7 +148,7 @@ Process:
       USERS_GROUP_NAME: "%NODE_2019_USERS_GROUP_NAME%"
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%NODE_2019_USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True" # TEMP
 
   # Policies
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
