@@ -1,5 +1,5 @@
 RelaunchNotification: 2
-RelaunchNotificationPeriod: 43200000
+RelaunchNotificationPeriod: 345600000
 RelaunchWindow:
   entries:
     - duration_mins: 480

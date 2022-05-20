@@ -5,7 +5,7 @@
 	<key>RelaunchNotification</key>
 	<integer>2</integer>
 	<key>RelaunchNotificationPeriod</key>
-	<integer>43200000</integer>
+	<integer>345600000</integer>
 	<key>RelaunchWindow</key>
 	<dict>
 		<key>entries</key>
