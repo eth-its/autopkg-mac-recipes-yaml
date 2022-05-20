@@ -1,7 +1,7 @@
 Description: Uses io.github.hjuutilainen.download.TeamViewer recipe to download latest TeamViewer
 Identifier: com.github.eth-its-recipes.pkg.TeamViewer
 ParentRecipe: io.github.hjuutilainen.download.TeamViewer
-MinimumVersion: 0.2.5
+MinimumVersion: "2.3"
 
 Input:
   NAME: TeamViewer
