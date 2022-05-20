@@ -5,14 +5,13 @@ ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe Illustrator SDL
-  LIST_NAME: Adobe_Illustrator_CC_EN_NUL
-  MAJOR_VERSION: "2022"
-  LIMITATION: "26"
-  JSS_INVENTORY_NAME: Adobe Illustrator.app
+  NAME: Adobe Acrobat DC SDL
+  LIST_NAME: Adobe_Acrobat_DC_EN_NUL
+  JSS_INVENTORY_NAME: Adobe Acrobat.app
+  CATEGORY: Productivity
   SELF_SERVICE_DESCRIPTION: |
-    Installs Adobe Illustrator %MAJOR_VERSION% with a Shared Device License. This is intended only for labs.
+    Installs Adobe Acrobat DC with a Shared Device License. This is intended only for labs.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SELFSERVICE_ICON: "Adobe Illustrator 2022 SDL.png"
+  SELFSERVICE_ICON: "Adobe Acrobat DC SDL.png"
