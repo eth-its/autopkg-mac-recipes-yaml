@@ -39,7 +39,7 @@
         <use_for_self_service>false</use_for_self_service>
     </self_service>
     <maintenance>
-        <recon>false</recon>
+        <recon>true</recon>
     </maintenance>
     <files_processes/>
 </policy>
