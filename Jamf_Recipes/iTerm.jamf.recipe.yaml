@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.iTerm
 MinimumVersion: "2.3"
-ParentRecipe: com.github.moofit-recipes.pkg.ClickShare
+ParentRecipe: io.github.hjuutilainen.pkg.iTerm2
 
 Input:
   NAME: iTerm
