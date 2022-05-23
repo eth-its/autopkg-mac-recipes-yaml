@@ -1,0 +1,10 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.PopChar-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+
+Input:
+  NAME: PopChar
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.PopChar
+  POLICY_RUN_COMMAND: "jamf policy -event 'PopChar License-install'"
+  SELFSERVICE_ICON: PopChar 8.png
