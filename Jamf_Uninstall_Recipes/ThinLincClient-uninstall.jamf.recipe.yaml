@@ -1,0 +1,10 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.ThinLincClient-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: ThinLinc Client
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: se.cendio.tlclient
