@@ -5,7 +5,6 @@
 
 function silent_app_quit() {
     # silently kill the application.
-    appname="PopChar"
     if [[ $(pgrep -ix "$appname") ]]; then
         echo "Closing $appname"
         /usr/bin/osascript -e "quit app \"$appname\""
@@ -29,6 +28,8 @@ function silent_app_quit() {
     fi
 }
 
+appname="PopChar"
+
 # PopChar is installed in a directory along with the sitekey file, so we delete the entire directory
 if [[ -d "/Applications/$appname" ]]; then
     app_dir="/Applications/$appname"
@@ -42,6 +43,7 @@ silent_app_quit
 
 # Now remove the app
 echo "Removing application: ${app_dir}"
+rm -Rf "${app_dir}"
 
 # Try to Forget the packages
 pkgutilcmd="/usr/sbin/pkgutil"
