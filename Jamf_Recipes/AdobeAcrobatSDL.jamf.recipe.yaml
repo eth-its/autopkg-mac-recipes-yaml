@@ -9,7 +9,7 @@ Input:
   LIST_NAME: Adobe_Acrobat_DC_EN_NUL
   JSS_INVENTORY_NAME: Adobe Acrobat.app
   CATEGORY: Productivity
-  SELF_SERVICE_DESCRIPTION: |
+  SELFSERVICE_DESCRIPTION: |
     Installs Adobe Acrobat DC with a Shared Device License. This is intended only for labs.
 
     Version: %version%

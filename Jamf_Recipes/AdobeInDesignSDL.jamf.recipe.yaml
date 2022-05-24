@@ -8,7 +8,7 @@ Input:
   NAME: Adobe InDesign 2022 SDL
   LIST_NAME: Adobe_InDesign_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe InDesign 2022.app
-  SELF_SERVICE_DESCRIPTION: |
+  SELFSERVICE_DESCRIPTION: |
     Installs Adobe InDesign with a Shared Device License. This is intended only for labs.
 
     Version: %version%
