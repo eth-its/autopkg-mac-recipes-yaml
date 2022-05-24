@@ -5,12 +5,11 @@ ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe InDesign SDL
+  NAME: Adobe InDesign 2022 SDL
   LIST_NAME: Adobe_InDesign_CC_EN_NUL
-  MAJOR_VERSION: "2022"
-  JSS_INVENTORY_NAME: Adobe InDesign %MAJOR_VERSION%.app
+  JSS_INVENTORY_NAME: Adobe InDesign 2022.app
   SELF_SERVICE_DESCRIPTION: |
-    Installs Adobe InDesign %MAJOR_VERSION% with a Shared Device License. This is intended only for labs.
+    Installs Adobe InDesign with a Shared Device License. This is intended only for labs.
 
     Version: %version%
     Category: %PKG_CATEGORY%

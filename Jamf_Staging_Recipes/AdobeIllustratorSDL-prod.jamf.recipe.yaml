@@ -1,8 +1,7 @@
-Description: |
-  Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.AdobeIllustratorSDL-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.AdobeIllustratorSDL-prod
 MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: Adobe Illustrator 2022 SDL

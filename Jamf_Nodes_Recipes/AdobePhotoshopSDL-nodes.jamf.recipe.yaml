@@ -5,8 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe Photoshop SDL
-  MAJOR_VERSION: "2022"
-  JSS_INVENTORY_NAME: Adobe Photoshop %MAJOR_VERSION%.app
+  NAME: Adobe Photoshop 2022 SDL
+  JSS_INVENTORY_NAME: Adobe Photoshop 2022.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobePhotoshopSDL
   SELFSERVICE_ICON: Adobe Photoshop 23 SDL.png
