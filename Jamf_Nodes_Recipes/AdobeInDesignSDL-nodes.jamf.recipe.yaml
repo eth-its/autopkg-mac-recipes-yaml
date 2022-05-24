@@ -1,12 +1,12 @@
 Description: |
   Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.AdobeIlnDesignSDL-nodes
+Identifier: com.github.eth-its-recipes.jamf.AdobeInDesignSDL-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: Adobe InDesign 2022 SDL
   JSS_INVENTORY_NAME: Adobe InDesign 2022.app
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeIlnDesignSDL
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeInDesignSDL
   SELFSERVICE_ICON: Adobe InDesign 17 SDL.png
   POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
