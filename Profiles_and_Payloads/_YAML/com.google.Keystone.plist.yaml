@@ -1,0 +1,3 @@
+updatePolicies:
+  global:
+    UpdateDefault: 0

@@ -1,0 +1,32 @@
+Description: |
+  Downloads the latest PopChar.sitekey file and creates a package. This is required for licensing PopChar.
+Identifier: com.github.eth-its-recipes.pkg.PopCharLicense
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.PopCharLicense
+
+Input:
+  LIST_NAME: PopChar_License
+  NAME: PopChar License
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+        Applications/PopChar: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/PopChar/PopChar.sitekey"
+      source_path: "%pathname%"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.PopCharLicense
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"

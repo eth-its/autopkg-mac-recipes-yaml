@@ -1,0 +1,31 @@
+Description: Creates a trigger-only policy for the SDL version of the Adobe Creative Cloud app.
+Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloudSDL-prod
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe Creative Cloud SDL
+  TRIGGER_POLICY_NAME: Install %NAME%
+  JSS_INVENTORY_NAME: Creative Cloud Desktop App.app
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeCreativeCloudSDL
+  SCRIPT_NAME: AdobeCreativeCloud-preinstall.zsh
+  SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  TRIGGER_NAME: AdobeCreativeCloudSDL-install
+  SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%PROD_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      replace_policy: "True"

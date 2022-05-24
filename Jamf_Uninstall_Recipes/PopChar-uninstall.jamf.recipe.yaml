@@ -5,6 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: PopChar
-  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
-  PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: ch.ethz.id.pkg.PopChar
+  SCRIPT_NAME: PopChar-uninstall.zsh
+  SCRIPT_PATH: PopChar-uninstall.zsh
+  SELFSERVICE_ICON: PopChar 8.png

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policy>
+    <general>
+        <name>%POLICY_NAME%</name>
+        <enabled>true</enabled>
+        <trigger>EVENT</trigger>
+        <trigger_checkin>false</trigger_checkin>
+        <trigger_enrollment_complete>true</trigger_enrollment_complete>
+        <trigger_login>false</trigger_login>
+        <trigger_logout>false</trigger_logout>
+        <trigger_network_state_changed>false</trigger_network_state_changed>
+        <trigger_startup>false</trigger_startup>
+        <trigger_other>%TRIGGER_NAME%</trigger_other>
+        <frequency>Once per computer</frequency>
+        <category>
+            <name>%POLICY_CATEGORY%</name>
+        </category>
+    </general>
+    <scope>
+        <all_computers>true</all_computers>
+        <computer_groups/>
+        <exclusions>
+            <computers/>
+            <computer_groups/>
+        </exclusions>
+    </scope>
+    <package_configuration>
+        <packages>
+            <size>0</size>
+        </packages>
+    </package_configuration>
+    <scripts>
+        <size>1</size>
+        <script>
+            <name>%SCRIPT_NAME%</name>
+            <priority>%SCRIPT_PRIORITY%</priority>
+            <parameter4/>
+            <parameter5/>
+            <parameter6/>
+            <parameter7/>
+            <parameter8/>
+            <parameter9/>
+            <parameter10/>
+            <parameter11/>
+        </script>
+    </scripts>
+    <self_service>
+        <use_for_self_service>false</use_for_self_service>
+    </self_service>
+    <user_interaction/>
+    <maintenance>
+        <recon>true</recon>
+    </maintenance>
+    <files_processes>
+        <run_command/>
+    </files_processes>
+</policy>

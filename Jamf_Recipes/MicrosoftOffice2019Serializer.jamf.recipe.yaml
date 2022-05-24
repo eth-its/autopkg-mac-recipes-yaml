@@ -1,0 +1,117 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice2019Serializer
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
+
+Input:
+  LIMITATION: "2019"
+  JSS_INVENTORY_NAME: Microsoft Word.app
+  NAME: Microsoft Office 2019 Volume License
+  PKG_CATEGORY: Productivity
+  TESTING_GROUP_NAME: Testing - Microsoft Office 2019
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "Microsoft Office 2019 test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  EXCLUSION1_GROUP_NAME: "Microsoft Office 2019 installed"
+  EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
+  EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
+  EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
+  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: "2019"
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install License"
+  REINSTALL_BUTTON_TEXT: "Install License"
+  TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_NAME: MSOffice2019-volumelicense
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Installs the Microsoft Microsoft Office 2019 Volume License. 
+
+    If you are signed into Office 365, this license takes precedence over the volume license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
+  SELFSERVICE_POLICY_CATEGORY: Untested
+  SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
+  SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
+  SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
+  SELFSERVICE_ICON: Microsoft Office 365.png
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "True" # TEMP
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      EXCLUSION_GROUP_NAME: "%EXCLUSION1_GROUP_NAME%"
+      computergroup_name: "%EXCLUSION1_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION1_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      NOT_INSTALLED_GROUP_NAME: "%EXCLUSION2_GROUP_NAME%"
+      computergroup_name: "%EXCLUSION2_GROUP_NAME%"
+      computergroup_template: "%EXCLUSION2_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

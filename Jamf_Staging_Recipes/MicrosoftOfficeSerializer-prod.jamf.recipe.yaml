@@ -4,7 +4,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-customexclusion-selfservi
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Office LTSC Standard License
+  NAME: Microsoft Office LTSC 2021 Volume License
+  JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeSerializer
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
@@ -14,7 +15,12 @@ Input:
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  USERS_GROUP_NAME: "Microsoft Office LTSC 2021 users"
+  TEST_USERS_GROUP_NAME: "Microsoft Office LTSC 2021 test users"
+  EXCLUSION1_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
+  EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
+  EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
-  EXTENSION_ATTRIBUTE_VALUE: Volume
+  EXTENSION_ATTRIBUTE_VALUE: "2021"

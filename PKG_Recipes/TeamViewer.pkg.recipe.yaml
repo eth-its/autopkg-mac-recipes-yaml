@@ -1,7 +1,7 @@
 Description: Uses io.github.hjuutilainen.download.TeamViewer recipe to download latest TeamViewer
 Identifier: com.github.eth-its-recipes.pkg.TeamViewer
 ParentRecipe: io.github.hjuutilainen.download.TeamViewer
-MinimumVersion: 0.2.5
+MinimumVersion: "2.3"
 
 Input:
   NAME: TeamViewer
@@ -13,7 +13,7 @@ Process:
       flat_pkg_path: "%pathname%/Install TeamViewer.app/Contents/Resources/Install TeamViewer.pkg"
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
 
-  - Processor: PkgPayloadUnpacker
+  - Processor: com.github.eth-its-recipes.processors/PkgPayloadUnpacker2
     Arguments:
       pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/TeamViewerApp.pkg/Payload"
       destination_path: "%RECIPE_CACHE_DIR%/payload"

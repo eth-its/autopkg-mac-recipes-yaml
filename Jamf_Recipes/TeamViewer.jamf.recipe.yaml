@@ -1,7 +1,10 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.TeamViewer
 MinimumVersion: "2.3"
-ParentRecipe: com.justinrummel.pkg.TeamViewer
+# ParentRecipe: com.justinrummel.pkg.TeamViewer
+# Note: Temporary change of parent recipe until AutoPkg PkgPayloadUnpacker
+# is patched to allow unpacking using 'aa' where 'ditto' fails as in this case
+ParentRecipe: com.github.eth-its-recipes.pkg.TeamViewer
 
 Input:
   NAME: TeamViewer

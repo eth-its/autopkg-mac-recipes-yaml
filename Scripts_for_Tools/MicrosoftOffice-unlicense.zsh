@@ -1,6 +1,11 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+: <<END
+Local edits by G Pugh:
+- CheckRegistryExists does not exit 1 if no registry found. This allows the script to be run as a pre-cleanup for new installers without exiting with an error
+END
+
 # source: https://github.com/pbowden-msft/Unlicense/blob/master/Unlicense
 
 TOOL_NAME="Microsoft Office 365/2021/2019/2016 License Removal Tool"
@@ -61,8 +66,8 @@ ShowUsage() {
 # Check if Registry exists
 CheckRegistryExists() {
 if [ ! -f "$REGISTRY" ]; then
-	echo "ERROR: Registry DOES NOT exist at path $REGISTRY."
-	exit 1
+	echo "Registry DOES NOT exist at path $REGISTRY."
+	exit 0
 fi
 }
 

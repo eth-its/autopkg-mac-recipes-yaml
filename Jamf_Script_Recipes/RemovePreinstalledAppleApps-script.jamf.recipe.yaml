@@ -1,0 +1,32 @@
+Description: Creates a policy that runs at enrollment complete on all computers.
+Identifier: com.github.eth-its-recipes.jamf.RemovePreinstalledAppleApps-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Uninstall Preinstalled Apple Apps
+  POLICY_CATEGORY: Administration
+  POLICY_NAME: "0002 - %NAME%"
+  POLICY_TEMPLATE: Policy-script-allcomputers-enrollment.xml
+  POLICY_RUN_COMMAND: "echo 'the uninstallation of preinstalled Apple apps is complete'"
+  TRIGGER_NAME: "PreinstalledAppleApps-uninstall"
+  SCRIPT_NAME: PreinstalledAppleApps-uninstall.zsh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Administration
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"
