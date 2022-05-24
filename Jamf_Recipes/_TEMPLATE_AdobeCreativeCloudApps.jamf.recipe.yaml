@@ -25,7 +25,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
+  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

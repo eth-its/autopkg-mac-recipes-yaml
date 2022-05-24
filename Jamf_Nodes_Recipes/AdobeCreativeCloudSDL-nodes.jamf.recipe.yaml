@@ -11,3 +11,5 @@ Input:
   SCRIPT_PATH: AdobeCreativeCloud-preinstall.zsh
   SCRIPT_PRIORITY: Before
   SELFSERVICE_ICON: Adobe Creative Cloud 5.7 SDL.png
+  TRIGGER_NAME: AdobeCreativeCloudSDL-install-test-version
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-event.xml

@@ -29,7 +29,8 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  TRIGGER_NAME: AdobeCreativeCloudSDL-install-test-version
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-event.xml
   SELFSERVICE_ICON: Adobe Creative Cloud 5.7 SDL.png
   POLICY_RUN_COMMAND: echo 'Installation of %NAME% complete'
   UPDATE_PREDICATE: "pkg_uploaded != True"
