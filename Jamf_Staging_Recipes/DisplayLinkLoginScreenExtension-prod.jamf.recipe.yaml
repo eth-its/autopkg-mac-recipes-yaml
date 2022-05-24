@@ -13,7 +13,7 @@ Input:
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PROD_PREDICATE: "ready_to_stage == False"
-  SELFSERVICE_POLICY_NAME: PyMOL License
+  SELFSERVICE_POLICY_NAME: DisplayLink Login Screen Extension
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
