@@ -9,4 +9,4 @@ Input:
   MAJOR_VERSION: "2022"
   JSS_INVENTORY_NAME: Adobe InDesign %MAJOR_VERSION%.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeIlnDesignSDL
-  SELFSERVICE_ICON: "Adobe InDesign 2022 SDL.png"
+  SELFSERVICE_ICON: Adobe InDesign 23 SDL.png
