@@ -73,6 +73,9 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  # Keys for reporting only
+  POLICY_NAME: MATLAB %MAJOR_VERSION% %LANGUAGE% (Testing)
+  SELFSERVICE_DESCRIPTION: This is a special composite recipe which provides policies for both floating and node licensed MATLAB installers.
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
