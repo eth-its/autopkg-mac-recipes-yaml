@@ -14,7 +14,6 @@ Input:
   LANGUAGE: EN
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TESTING_GROUP_NAME: Testing
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
@@ -39,6 +38,7 @@ Input:
   FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-prod-selfservice.xml
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN installed"
+  FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-installed.xml
   FLOATING_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
   FLOATING_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-users.xml
   FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
@@ -57,6 +57,7 @@ Input:
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-selfservice.xml
   NODE_PARAMETER7_VALUE: Node
   NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
+  NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Node-Floating-installed.xml
   NODE_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
   NODE_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-users.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
@@ -100,7 +101,7 @@ Process:
     Arguments:
       INSTALLED_GROUP_NAME: "%FLOATING_INSTALLED_GROUP_NAME%"
       computergroup_name: "%FLOATING_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_template: "%FLOATING_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -116,7 +117,7 @@ Process:
     Arguments:
       INSTALLED_GROUP_NAME: "%NODE_INSTALLED_GROUP_NAME%"
       computergroup_name: "%NODE_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_template: "%NODE_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
