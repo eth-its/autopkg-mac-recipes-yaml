@@ -86,8 +86,9 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Floating users smart group
     Arguments:
-      computergroup_template: "%FLOATING_USERS_GROUP_TEMPLATE%"
+      USERS_GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
       computergroup_name: "%FLOATING_USERS_GROUP_NAME%"
+      computergroup_template: "%FLOATING_USERS_GROUP_TEMPLATE%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -101,6 +102,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node users smart group
     Arguments:
+      USERS_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
       computergroup_name: "%NODE_USERS_GROUP_NAME%"
       computergroup_template: "%NODE_USERS_GROUP_TEMPLATE%"
       replace_group: False
