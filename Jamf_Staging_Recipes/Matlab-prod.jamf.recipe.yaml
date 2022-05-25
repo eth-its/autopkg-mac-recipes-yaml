@@ -57,7 +57,7 @@ Input:
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-selfservice.xml
   NODE_PARAMETER7_VALUE: Node
   NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
-  NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Node-Floating-installed.xml
+  NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-installed.xml
   NODE_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
   NODE_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-users.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
