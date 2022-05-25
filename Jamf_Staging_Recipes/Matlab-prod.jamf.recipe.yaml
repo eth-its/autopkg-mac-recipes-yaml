@@ -131,3 +131,13 @@ Process:
       policy_name: "%NODE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%FLOATING_POLICY_NAME% (Testing)"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%NODE_POLICY_NAME% (Testing)"
