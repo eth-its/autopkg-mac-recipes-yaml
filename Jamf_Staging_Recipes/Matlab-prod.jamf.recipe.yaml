@@ -72,6 +72,7 @@ Input:
     Category: %PKG_CATEGORY%
   # Keys for reporting only
   SELFSERVICE_POLICY_NAME: MATLAB %MAJOR_VERSION% %LANGUAGE%
+  PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
