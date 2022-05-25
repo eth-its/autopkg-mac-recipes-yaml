@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Microsoft Office
+  JSS_INVENTORY_NAME: Microsoft Word.app
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   SCRIPT_PATH: MicrosoftOffice-uninstall.sh
   SCRIPT_NAME: MicrosoftOffice-uninstall.sh
