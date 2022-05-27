@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.VMwareHorizonClient
 MinimumVersion: "2.3"
-ParentRecipe: com.github.keeleysam.recipes.pkg.CarbonCopyCloner
+ParentRecipe: com.github.rtrouton.pkg.VMwareHorizonClient
 
 Input:
   NAME: VMware Horizon Client

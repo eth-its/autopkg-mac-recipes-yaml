@@ -14,7 +14,6 @@ Input:
   LANGUAGE: EN
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TESTING_GROUP_NAME: Testing
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
@@ -28,6 +27,7 @@ Input:
   PARAMETER4_VALUE: "%MAJOR_VERSION%"
   PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
   PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  SELFSERVICE_POLICY_CATEGORY: Science & Math
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
@@ -38,9 +38,10 @@ Input:
   FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-prod-selfservice.xml
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN installed"
-  FLOATING_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
+  FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-installed.xml
+  FLOATING_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN users"
   FLOATING_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-users.xml
-  FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
+  FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
   FLOATING_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN"
   FLOATING_SELFSERVICE_DESCRIPTION: |
     This will install MATLAB_%MAJOR_VERSION%_Floating if not already installed, and then add the network ("floating") license.
@@ -56,6 +57,7 @@ Input:
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-selfservice.xml
   NODE_PARAMETER7_VALUE: Node
   NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
+  NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-installed.xml
   NODE_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
   NODE_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-users.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
@@ -69,6 +71,9 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  # Keys for reporting only
+  SELFSERVICE_POLICY_NAME: MATLAB %MAJOR_VERSION% %LANGUAGE%
+  PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -86,13 +91,15 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Floating users smart group
     Arguments:
-      computergroup_template: "%FLOATING_USERS_GROUP_TEMPLATE%"
+      USERS_GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
       computergroup_name: "%FLOATING_USERS_GROUP_NAME%"
+      computergroup_template: "%FLOATING_USERS_GROUP_TEMPLATE%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Floating installed smart group
     Arguments:
+      INSTALLED_GROUP_NAME: "%FLOATING_INSTALLED_GROUP_NAME%"
       computergroup_name: "%FLOATING_INSTALLED_GROUP_NAME%"
       computergroup_template: "%FLOATING_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
@@ -100,13 +107,15 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node users smart group
     Arguments:
-      computergroup_template: "%NODE_USERS_GROUP_TEMPLATE%"
+      USERS_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
       computergroup_name: "%NODE_USERS_GROUP_NAME%"
+      computergroup_template: "%NODE_USERS_GROUP_TEMPLATE%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Comment: Node installed smart group
     Arguments:
+      INSTALLED_GROUP_NAME: "%NODE_INSTALLED_GROUP_NAME%"
       computergroup_name: "%NODE_INSTALLED_GROUP_NAME%"
       computergroup_template: "%NODE_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
@@ -126,3 +135,13 @@ Process:
       policy_name: "%NODE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%FLOATING_POLICY_NAME% (Testing)"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%NODE_POLICY_NAME% (Testing)"
