@@ -22,13 +22,13 @@ echo "Removing Lightroom if present"
 echo "Removing XD if present"
 [[ -d /Applications/Adobe\ XD ]] && rm -rf /Applications/Adobe\ XD ||:
 
-echo "Removing any Adobe 2020 apps if present"
-find /Applications -name "Adobe*2020" -maxdepth 1 -exec rm -rf {} +
+echo "Removing any Adobe 202x apps if present"
+find /Applications -name "Adobe*202*" -maxdepth 1 -exec rm -rf {} +
 
 echo "Removing any Adobe 2020 apps if present - second pass"
-find /Applications -name "Adobe*2020" -maxdepth 1 -exec rm -rf {} +
+find /Applications -name "Adobe*202*" -maxdepth 1 -exec rm -rf {} +
 
-echo "Removing Maxon Cinema 4D folder which is installed by Adobe After Effects CC 2020"
+echo "Removing Maxon Cinema 4D folder which is installed by Adobe After Effects CC 202x"
 find /Applications -name "Maxon Cinema 4D*" -maxdepth 1 -exec rm -rf {} +
 
 # delete the folders that remain
