@@ -14,11 +14,9 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_ICON: "%NAME%.png"
   PREINSTALL_SCRIPT_PRIORITY: Before
-  PREINSTALL_SCRIPT_CATEGORY: "%PKG_CATEGORY%"
   PREINSTALL_SCRIPT_PARAMETER4_LABEL: "Parameter 4"
   PREINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   POSTINSTALL_SCRIPT_PRIORITY: After
-  POSTINSTALL_SCRIPT_CATEGORY: "%PKG_CATEGORY%"
   POSTINSTALL_SCRIPT_PARAMETER4_LABEL: "Parameter 4"
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   TESTING_GROUP_NAME: Testing
@@ -70,7 +68,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%PREINSTALL_SCRIPT_CATEGORY%"
+      script_category: "%PKG_CATEGORY%"
       script_name: "%PREINSTALL_SCRIPT_NAME%"
       script_path: "%PREINSTALL_SCRIPT_PATH%"
       script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
@@ -79,7 +77,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%POSTINSTALL_SCRIPT_CATEGORY%"
+      script_category: "%PKG_CATEGORY%"
       script_name: "%POSTINSTALL_SCRIPT_NAME%"
       script_path: "%POSTINSTALL_SCRIPT_PATH%"
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
