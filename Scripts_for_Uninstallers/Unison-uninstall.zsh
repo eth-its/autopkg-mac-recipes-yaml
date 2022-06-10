@@ -54,7 +54,26 @@ silent_app_quit "$app_name"
 # Now remove the app
 echo "Removing application: ${app_name}"
 
-# remove cltool
+# Add standard path if none provided
+if [[ ! $app_name == *"/"* ]]; then
+	app_to_trash="/Applications/$app_name.app"
+else
+	app_to_trash="$app_name.app"
+fi
+
+echo "Application will be deleted: $app_to_trash"
+
+# Remove the application
+/bin/rm -Rf "${app_to_trash}"
+
+echo "Checking if $app_name is actually deleted..."
+if [[ -d "${app_to_trash}" ]]; then
+    echo "$app_name failed to delete"
+else
+    echo "$app_name deleted successfully"
+fi
+
+# additionally remove cltool
 cltool_path="/usr/local/bin/unison"
 if [[ -f "$cltool_path" ]]; then
     rm -f "$cltool_path"
