@@ -1,4 +1,6 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+  The cltools are installed using a postinstall script. This prevents a popup on launch and the requirement for admin rights to install them.
 Identifier: com.github.eth-its-recipes.jamf.Unison
 MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.unison
@@ -14,8 +16,8 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PATH: "%NAME%-postinstall.sh"
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PATH: "%NAME%-postinstall.zsh"
   SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml

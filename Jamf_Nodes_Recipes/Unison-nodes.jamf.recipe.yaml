@@ -12,3 +12,6 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   SELFSERVICE_ICON: Unison 2.png
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  SCRIPT_PRIORITY: After
