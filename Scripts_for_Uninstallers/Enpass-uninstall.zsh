@@ -10,7 +10,7 @@
 #######################################################################
 
 # Inputted variables
-appName="Enpass"
+app_name="Enpass"
 
 function silent_app_quit() {
     # silently kill the application.
@@ -43,25 +43,25 @@ function silent_app_quit() {
     fi
 }
 
-if [[ -z "${appName}" ]]; then
+if [[ -z "${app_name}" ]]; then
     echo "No application specified!"
     exit 1
 fi
 
 # quit the app if running
-silent_app_quit "$appName"
+silent_app_quit "$app_name"
 
 # Now remove the app
-echo "Removing application: ${appName}"
+echo "Removing application: ${app_name}"
 
 # Enpass may have localized, so make sure we get rid of any versions
 find /Applications -type d -name "Enpass*" -maxdepth 1 -exec rm -rf {} +
 
-echo "Checking if $appName is actually deleted..."
+echo "Checking if $app_name is actually deleted..."
 if [[ $(find /Applications -type d -name "Enpass*" -maxdepth 1) ]]; then 
-    echo "$appName failed to delete"
+    echo "$app_name failed to delete"
 else
-    echo "$appName deleted successfully"
+    echo "$app_name deleted successfully"
 fi
 
 # Try to Forget the packages if we can find a match
@@ -69,4 +69,4 @@ fi
         echo "Forgetting package in.sinew.Enpass-Desktop..."
         /usr/sbin/pkgutil --pkgs | /usr/bin/grep -i "in.sinew.Enpass-Desktop" | /usr/bin/xargs /usr/bin/sudo /usr/sbin/pkgutil --forget
 
-echo "$appName deletion complete"
+echo "$app_name deletion complete"
