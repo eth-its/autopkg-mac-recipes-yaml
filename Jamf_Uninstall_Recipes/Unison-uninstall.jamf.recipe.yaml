@@ -1,0 +1,20 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Unison-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: Unison
+  LANGUAGE: EN
+  SCRIPT_PATH: Unison-uninstall.zsh
+  SCRIPT_NAME: Unison-uninstall.zsh
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%."
+  AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  SELFSERVICE_ICON: Unison 2.png
