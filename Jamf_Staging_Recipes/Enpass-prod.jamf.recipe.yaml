@@ -1,0 +1,13 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Enpass-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: Enpass
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Enpass
+  POLICY_RUN_COMMAND: chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."
+  SCRIPT_NAME: "%NAME%-preinstall.zsh"
+  SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: Enpass 6.png
