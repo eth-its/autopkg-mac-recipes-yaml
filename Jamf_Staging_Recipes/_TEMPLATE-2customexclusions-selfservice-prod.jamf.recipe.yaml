@@ -16,9 +16,11 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  EXCLUSION1_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  NOT_INSTALLED_GROUP_NAME: "%NAME% not installed"
+  EXCLUSION1_GROUP_NAME: "%INSTALLED_GROUP_NAME%"
   EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
-  EXCLUSION2_GROUP_NAME: "%NAME% not installed"
+  EXCLUSION2_GROUP_NAME: "%NOT_INSTALLED_GROUP_NAME%"
   EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
