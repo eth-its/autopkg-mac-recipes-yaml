@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 
 Input:
   NAME: ChemDraw
+  JSS_INVENTORY_NAME: ChemDraw 20.0.app
   MAJOR_VERSION: "20"
   SCRIPT_PATH: ChemDraw-uninstall.zsh
   SCRIPT_NAME: ChemDraw-uninstall.zsh
