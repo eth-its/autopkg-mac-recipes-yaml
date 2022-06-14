@@ -1,0 +1,13 @@
+Description: Downloads the current release version of polybox and extracts the installer package.
+Identifier: com.github.eth-its-recipes.pkg.IBMSpectrumProtect
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.IBMSpectrumProtect
+
+Input:
+  NAME: IBM Spectrum Protect
+
+Process:
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/IBMSpectrumProtect-%version%.pkg"
+      source_pkg: "%pathname%/IBM Spectrum Protect.pkg"
+    Processor: PkgCopier

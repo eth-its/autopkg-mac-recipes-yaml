@@ -1,0 +1,21 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.IBMSpectrumProtect-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-scripts-2-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: IBM Spectrum Protect
+  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.IBMSpectrumProtect
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  PREINSTALL_SCRIPT_NAME: IBMSpectrumProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_PATH: IBMSpectrumProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: IBMSpectrumProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: IBMSpectrumProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml

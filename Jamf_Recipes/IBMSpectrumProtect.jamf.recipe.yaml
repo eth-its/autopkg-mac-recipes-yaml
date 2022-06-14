@@ -1,0 +1,107 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.IBMSpectrumProtect
+MinimumVersion: "2.3"
+ParentRecipe: com.github.grahampugh.recipes.pkg.R
+
+Input:
+  NAME: IBM Spectrum Protect
+  LANGUAGE: EN
+  PKG_CATEGORY: Connect & Remote
+  PREINSTALL_SCRIPT_NAME: IBMSpectrumProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_PATH: IBMSpectrumProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: IBMSpectrumProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: IBMSpectrumProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    **IBM Spectrum Protect**, formerly known as **Tivoli Storage Manager** (TSM), is a centrally managed Backup and Restore service, primarily intended for ETH servers. 
+
+    Please see the following instructions for setting up this software for backing up your client (requires VPN): [https://kb.ethz.ch/dbr/mac/installation](https://kb.ethz.ch/dbr/mac/installation).
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PREINSTALL_SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PREINSTALL_SCRIPT_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
