@@ -6,8 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ChemDraw
 
 Input:
   NAME: ChemDraw
-  MAJOR_VERSION: "21"
-  LIST_MAJOR_VERSION: "21"
+  MAJOR_VERSION: "20"
+  LIST_MAJOR_VERSION: "20"
   PKG_CATEGORY: Science & Math
   LANGUAGE: EN
   LIST_LANGUAGE: EN

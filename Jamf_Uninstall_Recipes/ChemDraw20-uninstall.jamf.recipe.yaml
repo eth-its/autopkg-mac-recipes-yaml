@@ -1,15 +1,15 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.ChemDraw21-uninstall
+Identifier: com.github.eth-its-recipes.jamf.ChemDraw20-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
 
 Input:
-  NAME: ChemDraw21
-  MAJOR_VERSION: "21"
-  SCRIPT_PATH: ChemDraw-uninstall.sh
-  SCRIPT_NAME: ChemDraw-uninstall.sh
+  NAME: ChemDraw20
+  MAJOR_VERSION: "20"
+  SCRIPT_PATH: ChemDraw-uninstall.zsh
+  SCRIPT_NAME: ChemDraw-uninstall.zsh
   PARAMETER4_LABEL: Major version
-  PARAMETER4_VALUE: "21"
+  PARAMETER4_VALUE: "20"
   LANGUAGE: EN
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%"
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% installed"

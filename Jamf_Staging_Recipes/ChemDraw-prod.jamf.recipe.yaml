@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: ChemDraw
-  MAJOR_VERSION: "17"
+  MAJOR_VERSION: "20"
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ChemDraw
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"

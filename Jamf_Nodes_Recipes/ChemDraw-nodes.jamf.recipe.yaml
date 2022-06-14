@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: ChemDraw
-  MAJOR_VERSION: "21"
+  MAJOR_VERSION: "20"
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ChemDraw
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
