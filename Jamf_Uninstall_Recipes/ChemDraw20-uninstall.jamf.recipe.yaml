@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
 
 Input:
-  NAME: ChemDraw20
+  NAME: ChemDraw
   MAJOR_VERSION: "20"
   SCRIPT_PATH: ChemDraw-uninstall.zsh
   SCRIPT_NAME: ChemDraw-uninstall.zsh
