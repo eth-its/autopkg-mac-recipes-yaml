@@ -15,7 +15,7 @@ Process:
     Processor: URLTextSearcher
 
   - Arguments:
-      url: "http://tsm-repo.ethz.ch/.test/mac/%dmg_name%"
+      url: "http://tsm-repo.ethz.ch/mac/%dmg_name%"
     Processor: URLDownloader
 
   - Processor: EndOfCheckPhase
