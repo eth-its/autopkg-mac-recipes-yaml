@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: IBM Spectrum Protect
   SEARCH_PATTERN: (?P<match>href="(?P<dmg_name>(?P<version>.*?)-TIV-TSMBAC-Mac\.dmg?)")
-  SEARCH_URL: http://tsm-repo.ethz.ch/.test/mac/?C=N;O=D
+  SEARCH_URL: http://tsm-repo.ethz.ch/mac/?C=N;O=D
 
 Process:
   - Arguments:
