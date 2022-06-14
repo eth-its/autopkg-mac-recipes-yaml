@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: ChemDraw
-  JSS_INVENTORY_NAME: ChemDraw 20.0.app
+  JSS_INVENTORY_NAME: ChemDraw 20.app
   MAJOR_VERSION: "20"
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ChemDraw
