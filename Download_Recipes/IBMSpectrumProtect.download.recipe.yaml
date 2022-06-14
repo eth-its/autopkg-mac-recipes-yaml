@@ -20,10 +20,10 @@ Process:
 
   - Processor: EndOfCheckPhase
 
-  - Arguments:
-      expected_authority_names:
-        - "Developer ID Installer: International  Business Machines Corp (PETKK2G752)"
-        - Developer ID Certification Authority
-        - Apple Root CA
-      input_path: "%pathname%/IBM Spectrum Protect.pkg"
-    Processor: CodeSignatureVerifier
+  # - Arguments:
+  #     expected_authority_names:
+  #       - "Developer ID Installer: International  Business Machines Corp (PETKK2G752)"
+  #       - Developer ID Certification Authority
+  #       - Apple Root CA
+  #     input_path: "%pathname%/IBM Spectrum Protect.pkg"
+  #   Processor: CodeSignatureVerifier
