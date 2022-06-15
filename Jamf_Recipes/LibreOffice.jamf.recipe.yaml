@@ -1,17 +1,17 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Thunderbird
+Identifier: com.github.eth-its-recipes.jamf.LibreOffice
 MinimumVersion: "2.3"
-ParentRecipe: com.github.autopkg.pkg.Thunderbird
+ParentRecipe: com.github.eth-its-recipes.pkg.LibreOfficeWithLanguagePack
 
 Input:
-  NAME: Thunderbird
-  LOCALE: en-GB
-  RELEASE: latest
+  NAME: LibreOffice
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    Mozilla Thunderbird is a free and open-source cross-platform email client, news client, RSS and chat client developed by the Mozilla Foundation.
+    LibreOffice ist die kostenlose Open-Source-Produktivitäts-Suite für Windows, Macintosh und Linux, die Ihnen sechs funktionsreiche Anwendungen für Ihre gesamte Dokumentenproduktion und Datenverarbeitung bietet: Writer, Calc, Impress, Draw, Math und Base.
+
+    LibreOffice is the free power-packed Open Source personal productivity suite for Windows, Macintosh and Linux, that gives you six feature-rich applications for all your document production and data processing needs: Writer, Calc, Impress, Draw, Math and Base.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -25,8 +25,8 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: Thunderbird 90.png
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
