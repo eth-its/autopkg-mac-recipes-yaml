@@ -1,0 +1,9 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.LibreOffice-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: LibreOffice
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LibreOffice
+  SELFSERVICE_ICON: LibreOffice 7.png

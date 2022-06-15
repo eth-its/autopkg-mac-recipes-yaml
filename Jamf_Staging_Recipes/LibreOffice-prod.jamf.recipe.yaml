@@ -1,0 +1,9 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.LibreOffice-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: LibreOffice
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LibreOffice
+  SELFSERVICE_ICON: LibreOffice 7.png
