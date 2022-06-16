@@ -5,5 +5,15 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: MestReNova
+  LANGUAGE: EN
   SCRIPT_NAME: MestReNova-uninstall.zsh
   SCRIPT_PATH: MestReNova-uninstall.zsh
+  SELFSERVICE_DESCRIPTION: Uninstalls %NAME%.
+  AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
