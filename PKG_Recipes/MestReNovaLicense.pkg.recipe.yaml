@@ -49,7 +49,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.mnovalicense.pkg
-        pkgname: "%NAME%-%version%"
+        pkgname: "MestreNovaLicense-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: Scripts
