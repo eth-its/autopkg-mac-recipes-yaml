@@ -9,6 +9,8 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MestReNova
   SCRIPT_NAME: "%NAME%-postinstall.zsh"
   SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   POLICY_RUN_COMMAND: "jamf policy -event 'MestReNova License-install'"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
