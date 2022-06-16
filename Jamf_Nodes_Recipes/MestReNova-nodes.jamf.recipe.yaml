@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MestReNova-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: MestReNova
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MestReNova
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  POLICY_RUN_COMMAND: "jamf policy -event 'MestReNova License-install'"

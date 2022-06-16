@@ -1,0 +1,12 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.MestReNova-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: MestReNova
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MestReNova
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'MestReNova License-install'"
