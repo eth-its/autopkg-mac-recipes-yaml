@@ -12,6 +12,8 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     MestReNova (Mnova) is a multivendor software suite designed for combined NMR, LC/GC/MS and Electronic and Vibrational Spectroscopic techniques.
 
+    MestReNova requires connection to the ETH network in order to validate the license. Please ensure that you are connected to the VPN if working offsite.
+
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
@@ -19,7 +21,7 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   SCRIPT_NAME: "%NAME%-postinstall.zsh"
   SCRIPT_PATH: "%NAME%-postinstall.zsh"

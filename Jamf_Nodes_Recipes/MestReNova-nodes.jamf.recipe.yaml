@@ -14,3 +14,4 @@ Input:
   POLICY_RUN_COMMAND: "jamf policy -event 'MestReNova License-install'"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
