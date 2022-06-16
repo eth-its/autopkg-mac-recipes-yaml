@@ -10,7 +10,6 @@ Input:
   LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
   LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
   LIST_DELIMITER: ;
-  LIST_NAME: Something
   LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
   LIST_SUBFOLDER: ""
   LIST_MAJOR_VERSION: ""
