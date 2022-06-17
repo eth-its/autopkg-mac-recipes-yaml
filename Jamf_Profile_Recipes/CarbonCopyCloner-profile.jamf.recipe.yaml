@@ -4,16 +4,16 @@ Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Carbon Copy Cloner
+  NAME: Carbon Copy Cloner (Testing)
   LANGUAGE: EN
   IDENTIFIER: com.bombich.ccc
   ORGANIZATION: ETH Zürich
-  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_GROUP_TEMPLATE: SmartGroup-untested-users.xml
   PROFILE_CATEGORY: Development & Computing
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
-  PROFILE_TEMPLATE: Profile-single-group.xml
+  PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Carbon Copy Cloner
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   REPLACE_PROFILE: "False"

@@ -1,21 +1,22 @@
+Comment: REGISTRATION_CODE, REGISTRATION_EMAIL, REGISTRATION_NAME, REGISTRATION_PRODUCT_NAME keys all need to be added to the recipe override.
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.GoogleChrome-profile
+Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Google Chrome
-  IDENTIFIER: com.google.Chrome
+  NAME: Carbon Copy Cloner
+  LANGUAGE: EN
+  IDENTIFIER: com.bombich.ccc
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: "Administration"
-  PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
-  PROFILE_DESCRIPTION: Enforces Google Chrome updates
-  USERS_GROUP_NAME: Google Chrome users
-  TEST_USERS_GROUP_NAME: Google Chrome test users
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  EXCLUSION_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  JSS_INVENTORY_NAME: "%NAME%.app"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  PROFILE_CATEGORY: Development & Computing
+  PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
+  PROFILE_TEMPLATE: Profile-1-group-1-exclusion.xml
+  PROFILE_NAME: Carbon Copy Cloner
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   REPLACE_PROFILE: "False"
 
 Process:
@@ -23,12 +24,6 @@ Process:
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
