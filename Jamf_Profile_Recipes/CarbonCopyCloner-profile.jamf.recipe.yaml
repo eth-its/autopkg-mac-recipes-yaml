@@ -10,7 +10,7 @@ Input:
   ORGANIZATION: ETH Zürich
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   PROFILE_CATEGORY: Development & Computing
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   PROFILE_TEMPLATE: Profile-1-group.xml
@@ -26,7 +26,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
