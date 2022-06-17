@@ -40,6 +40,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
+      EXCLUSION_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
