@@ -10,7 +10,7 @@ Input:
   ORGANIZATION: ETH Zürich
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-untested-users.xml
+  PROFILE_GROUP_TEMPLATE: SmartGroup-test-users.xml
   PROFILE_CATEGORY: Development & Computing
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   PROFILE_TEMPLATE: Profile-1-group.xml
