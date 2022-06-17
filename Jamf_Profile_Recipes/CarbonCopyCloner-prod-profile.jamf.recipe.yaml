@@ -10,6 +10,7 @@ Input:
   ORGANIZATION: ETH Zürich
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  EXCLUSION_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
   JSS_INVENTORY_NAME: "%NAME%.app"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
@@ -40,7 +41,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
-      EXCLUSION_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
