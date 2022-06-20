@@ -13,6 +13,9 @@ Input:
   POLICY_CATEGORY: Untested
   SELFSERVICE_DESCRIPTION: |
     An integrated interface for running descriptive statistics, regression, advanced statistics and more. SPSS Statistics can create publication ready charts, tables, and decision trees in one tool. Specialized extensions allow the SPSS Statistics syntax to be enhanced with R and Python through specialized extensions.
+
+    The client license for year 2022-2023 is installed along with the application.
+
     Version: %version%
     Category: %PKG_CATEGORY%
   PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
