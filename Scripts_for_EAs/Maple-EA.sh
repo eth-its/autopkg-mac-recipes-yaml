@@ -6,7 +6,7 @@ management_dir="/Library/Management/ETHZ/Maple"
 node_license_store="$management_dir/.Node.license"
 floating_license_store="$management_dir/.Floating.license"
 
-active_license="/Library/Frameworks/Maple.framework/Versions/current/license"
+active_license="/Library/Frameworks/Maple.framework/Versions/Current/license/license.dat"
 
 if [[ -f "$active_license" ]]; then
 	if cmp -s "$active_license" "$node_license_store"; then

@@ -54,7 +54,7 @@ if [[ -f "$management_dir/.$LICENSE_TYPE.license" ]]; then
     app_name="Maple $MAJOR_VERSION"
     silent_app_quit "$app_name"
 
-    /bin/cp "$management_dir/.$LICENSE_TYPE.license" /Library/Frameworks/Maple.framework/Versions/current/license
+    /bin/cp "$management_dir/.$LICENSE_TYPE.license" "/Library/Frameworks/Maple.framework/Versions/current/license/license.dat"
     echo "$LICENSE_TYPE license activated"
 else
     echo "ERROR: $LICENSE_TYPE license file not found"
