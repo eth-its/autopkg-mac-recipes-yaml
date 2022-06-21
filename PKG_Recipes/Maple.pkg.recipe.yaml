@@ -46,7 +46,7 @@ Process:
   - Processor: Copier
     Comment: Node license file
     Arguments:
-      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+      source_path: "%LIST_LICENSE_FILE_SOURCE%/%license_file_path%"
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/.Node.license"
 
   - Processor: FileCreator
