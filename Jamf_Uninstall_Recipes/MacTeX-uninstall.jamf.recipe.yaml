@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-EA-uninstall
 
 Input:
   NAME: MacTeX
+  LANGUAGE: EN
   SCRIPT_NAME: MacTeX-uninstall.zsh
   SCRIPT_PATH: MacTeX-uninstall.zsh
   EXTENSION_ATTRIBUTE_NAME: MacTeXVersion
