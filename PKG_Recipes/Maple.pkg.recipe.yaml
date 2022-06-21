@@ -73,36 +73,6 @@ Process:
       file_path: "%RECIPE_CACHE_DIR%/Scripts/README.txt"
 
   - Processor: FileCreator
-    Comment: Temporary replacement installbuilder.sh to fix bug
-    Arguments:
-      file_content: |
-        #!/bin/sh
-
-        runtimes_dir=$(cd "$(dirname "${0}")" && pwd)
-        os_version=`uname -r`
-        machine_platform=`uname -p`
-        machine_arch=`uname -m`
-        if [ "${os_version:0:1}" == "6" ];then
-            executable="none"
-        else
-          executable=osx-x86_64
-        fi
-
-        if [ "$executable" == "none" ]; then
-            echo "The current OS X version is not supported"
-            exit 1
-        fi
-                    
-                
-        if [ "${1}" == --help ] || [ "`id -u 2>/dev/null`" == "0" ];then
-            "`dirname \"${0}\"`/$executable" "$@"
-        else
-            "`dirname \"${0}\"`/Maple" $executable "$@"
-        fi
-      file_mode: "0644"
-      file_path: "%RECIPE_CACHE_DIR%/Scripts/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS/installbuilder.sh"
-
-  - Processor: FileCreator
     Comment: postinstall file
     Arguments:
       file_content: |
@@ -117,7 +87,11 @@ Process:
         /bin/cp -f "$DIR/README.txt" "$management_dir/README - DO NOT DELETE.txt"
 
         # run the installer referring to the option file
-        $DIR/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS/installbuilder.sh --optionfile $DIR/installer.properties 2>&1
+        # $DIR/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS/installbuilder.sh --optionfile $DIR/installer.properties 2>&1
+
+        # temporary fix to try and beat the broken OS check in Maple 2021
+        cd $DIR/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS
+        ./Maple" osx-x86_64 --optionfile $DIR/installer.properties 2>&1
 
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
