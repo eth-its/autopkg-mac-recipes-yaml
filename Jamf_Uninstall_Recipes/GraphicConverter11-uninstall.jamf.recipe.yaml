@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 Input:
   NAME: GraphicConverter
   MAJOR_VERSION: "11"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.lemkesoft.graphicconverter11
   SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
