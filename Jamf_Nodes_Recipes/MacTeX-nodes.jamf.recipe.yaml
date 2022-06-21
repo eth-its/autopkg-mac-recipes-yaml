@@ -1,0 +1,17 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MacTeX-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+
+Input:
+  NAME: MacTeX
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MacTeX
+  EXTENSION_ATTRIBUTE_NAME: MacTeXVersion
+  EXTENSION_ATTRIBUTE_SCRIPT: MacTeX-EA.zsh
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  SELFSERVICE_ICON: "%NAME%.png"
