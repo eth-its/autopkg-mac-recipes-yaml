@@ -1,0 +1,24 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.MacTeX-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-EA-uninstall
+
+Input:
+  NAME: MacTeX
+  LANGUAGE: EN
+  SCRIPT_NAME: MacTeX-uninstall.zsh
+  SCRIPT_PATH: MacTeX-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: MacTeXVersion
+  EXTENSION_ATTRIBUTE_SCRIPT: MacTeX-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"

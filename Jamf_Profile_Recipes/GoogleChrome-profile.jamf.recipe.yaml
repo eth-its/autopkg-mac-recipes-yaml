@@ -7,7 +7,7 @@ Input:
   IDENTIFIER: com.google.Chrome
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: "Administration"
-  PROFILE_TEMPLATE: Profile-single-group.xml
+  PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Enforces Google Chrome updates

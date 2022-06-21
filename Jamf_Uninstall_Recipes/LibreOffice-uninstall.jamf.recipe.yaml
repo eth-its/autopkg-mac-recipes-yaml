@@ -7,3 +7,4 @@ Input:
   NAME: LibreOffice
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: org.libreoffice.langpack-de
+  SELFSERVICE_ICON: LibreOffice 7.png

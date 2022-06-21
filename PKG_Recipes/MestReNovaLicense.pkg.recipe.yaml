@@ -1,0 +1,63 @@
+Description: Downloads the latest version of MestReNova and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.MestReNovaLicense
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources-check
+MinimumVersion: "2.3"
+
+Input:
+  NAME: MestReNova License
+  LIST_NAME: Mnova
+  LIST_LANGUAGE: EN
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/license.zip"
+      source_path: "%LIST_LICENSE_FILE_SOURCE%/%license_file_path%"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+
+        # Put the MestReNova license files onto the client
+        scriptsdir=$(dirname "$0")
+
+        # ensure the MestReNova support directory is in place
+        licensedir="/Library/Application Support/Mestrelab Research S.L./MestReNova/licenses"
+        /bin/mkdir -p "$licensedir"
+
+        /usr/bin/unzip "$scriptsdir/license.zip" -d /tmp/mnova_licenses
+        mv /tmp/mnova_licenses/license/* "$licensedir/"
+        rm -rf /tmp/mnova_licenses
+        echo "## MestreNova license files copied to $licensedir"
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.mnovalicense.pkg
+        pkgname: "MestReNovaLicense-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"

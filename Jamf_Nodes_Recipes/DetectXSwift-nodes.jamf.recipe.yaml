@@ -30,7 +30,7 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
   RECURRING_POLICY_CATEGORY: "%PKG_CATEGORY%"
-  RECURRING_POLICY_NAME: Run DetextX Search
+  RECURRING_POLICY_NAME: Run DetectX Search
   RECURRING_POLICY_TEMPLATE: Policy-script-recurring.xml
   RECURRING_POLICY_FREQUENCY: Once every day
   INSTALLED_GROUP_NAME: "%NAME% installed"

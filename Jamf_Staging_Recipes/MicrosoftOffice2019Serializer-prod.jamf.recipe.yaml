@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice2019Serializer-prod
-ParentRecipe: com.github.eth-its-recipes.jamf.template-customexclusion-selfservice-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-2customexclusions-selfservice-prod
 MinimumVersion: "2.3"
 
 Input:

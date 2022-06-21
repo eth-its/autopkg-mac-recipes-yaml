@@ -7,7 +7,7 @@ Input:
   IDENTIFIER: com.apple.applicationaccess
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration
-  PROFILE_TEMPLATE: Profile-single-group.xml
+  PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor)"
   PROFILE_PAYLOAD: "%IDENTIFIER%-Defer-%DEFERRAL_DAYS_MAJOR_UPDATES%-%DEFERRAL_DAYS_MINOR_UPDATES%.plist"
   PROFILE_DESCRIPTION: "Defers the availability of major software updates by %DEFERRAL_DAYS_MAJOR_UPDATES% and minor updates by %DEFERRAL_DAYS_MINOR_UPDATES%."
