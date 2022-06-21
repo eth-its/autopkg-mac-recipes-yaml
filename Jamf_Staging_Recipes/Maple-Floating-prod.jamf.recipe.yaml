@@ -1,0 +1,24 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Maple-Floating-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
+
+Input:
+  NAME: Maple
+  MAJOR_VERSION: "2021"
+  LICENSE: Floating
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Maple-Node
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION% %LICENSE%"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION% %LICENSE%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LICENSE%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LICENSE%"
+  TRIGGER_NAME: "SPSSStatistics %MAJOR_VERSION% %LICENSE%-install"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event '%LICENSE_SET_POLICY_TRIGGER_NAME%'"
+  LICENSE_SET_POLICY_TRIGGER_NAME: "Activate-SPSS-%MAJOR_VERSION%-%LICENSE%-License"
+  SELFSERVICE_ICON: Maple 2021.png

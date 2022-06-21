@@ -1,9 +1,9 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Maple2021-Floating
+Identifier: com.github.eth-its-recipes.jamf.Maple-Floating-nodes
 MinimumVersion: "2.3"
 
 Input:
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Maple2021-Node
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Maple-Node
   NAME: Maple
   LICENSE: Floating
   MAJOR_VERSION: "2021"
