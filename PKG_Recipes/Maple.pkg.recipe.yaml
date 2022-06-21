@@ -91,7 +91,7 @@ Process:
 
         # temporary fix to try and beat the broken OS check in Maple 2021
         cd $DIR/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS
-        ./Maple" osx-x86_64 --optionfile $DIR/installer.properties 2>&1
+        ./Maple osx-x86_64 --optionfile $DIR/installer.properties 2>&1
 
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
