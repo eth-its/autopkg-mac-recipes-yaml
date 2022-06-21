@@ -50,7 +50,7 @@ rm -f /Library/TeX/Documentation /Library/TeX/Local /Library/TeX/Root ||:
 echo "Forgetting packages"
 pkgutilcmd="/usr/sbin/pkgutil"
 
-receipts=$(pkgutil --pkgs=org.tug.mactex*)
+receipts=$(pkgutil --pkgs | grep -i org.tug.mactex )
 while read -r receipt; do
     $pkgutilcmd --pkgs=${receipt} && $pkgutilcmd --forget ${receipt}
 done <<< "${receipts}"
