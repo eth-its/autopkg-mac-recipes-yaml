@@ -1,0 +1,115 @@
+Description: |
+  Checks IT Shop for Maple installer and builds a pkg. 
+
+  This recipe is used for both Node and Floating licenses. The Node license entry is used in order to get the node license file from the IT Shop repo. The floating license file is generated in this recipe.
+
+  MAPLE_LICENSE_SERVER_URL must be overridden in the RecipeOverride.
+  MAJOR_VERSION can be overridden in the jamf recipe.
+Identifier: com.github.eth-its-recipes.pkg.Maple
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Maple
+  LIST_LANGUAGE: EN
+  LIST_NAME: Maple Node
+  LICENSE: Node
+  LIST_FILTER: MacInstaller
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Comment: Installer application
+    Arguments:
+      source_path: "%pathname%/*.app"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Maple%MAJOR_VERSION%Installer.app"
+
+  - Processor: FileCreator
+    Comment: Options file used for silent installation
+    Arguments:
+      file_content: |
+        mode=unattended
+        enableUpdates=0
+        checkForUpdatesNow=1
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/installer.properties"
+
+  - Processor: Copier
+    Comment: Node license file
+    Arguments:
+      source_path: "%LICENSE_FILE_SOURCE%/%license_file_path%"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/.Node.license"
+
+  - Processor: FileCreator
+    Comment: Floating license file
+    Arguments:
+      file_content: |
+        #
+        # License File for network installations
+        #
+        SERVER %MAPLE_LICENSE_SERVER_URL% ANY 2000
+        USE_SERVER
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/.Floating.license"
+
+  - Processor: FileCreator
+    Comment: Readme file
+    Arguments:
+      file_content: |
+        # README
+        This folder is used for storing Maple licenses. It allows the ETH management service to quickly switch between license types without reinstalling Maple. 
+
+        PLEASE DO NOT DELETE THIS FOLDER
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/README.txt"
+
+  - Processor: FileCreator
+    Comment: postinstall file
+    Arguments:
+      file_content: |
+        #!/bin/bash
+
+        DIR=$(dirname "$0")
+        management_dir="/Library/Management/ETHZ/Maple"
+
+        # move license files into management folder for use by Jamf
+        mkdir -p "$management_dir"
+        /bin/cp -f "$DIR/.Node.license" "$DIR/.Floating.license" "$management_dir/"
+        /bin/cp -f "$DIR/README.txt" "$management_dir/README - DO NOT DELETE.txt"
+
+        # run the installer referring to the option file
+        $DIR/Maple%MAJOR_VERSION%Installer.app/Contents/MacOS/installbuilder.sh --optionfile $DIR/installer.properties 2>&1
+
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/Scripts/Maple%MAJOR_VERSION%Installer.app/Contents/Info.plist"
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: com.maplesoft.maple%version%%LICENSE%.pkg
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/Scripts"
