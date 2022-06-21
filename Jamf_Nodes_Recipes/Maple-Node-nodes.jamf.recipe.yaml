@@ -40,11 +40,11 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: "%LICENSE%"
   TRIGGER_NAME: "Activate-%NAME%-%MAJOR_VERSION%-%LICENSE%-License"
   TRIGGER_POLICY_NAME: "Trigger Activate %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% License"
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %TRIGGER_POLICY_NAME% complete'"
   LICENSE_SET_POLICY_NAME: "Activate %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% License"
-  LICENSE_SET_POLICY_TEMPLATE: Policy-prod-selfservice-install-license-script.xml
+  LICENSE_SET_POLICY_TEMPLATE: Policy-prod-selfservice-install-license.xml
   LICENSE_SET_SELFSERVICE_DISPLAY_NAME: "Activate %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% License"
   LICENSE_SET_SELFSERVICE_DESCRIPTION: "Activates the %NAME% %MAJOR_VERSION% %LANGUAGE% %LICENSE% License"
   LICENSE_SET_INSTALL_BUTTON_TEXT: Activate
