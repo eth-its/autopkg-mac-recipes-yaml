@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Maple
 MinimumVersion: "2.3"
 
 Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Maple-Node
   NAME: Maple
   LICENSE: Node
   MAJOR_VERSION: "2021"
