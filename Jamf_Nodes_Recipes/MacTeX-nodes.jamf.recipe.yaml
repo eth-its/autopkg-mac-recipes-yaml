@@ -5,13 +5,14 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 
 Input:
   NAME: MacTeX
+  LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MacTeX
   EXTENSION_ATTRIBUTE_NAME: MacTeXVersion
   EXTENSION_ATTRIBUTE_SCRIPT: MacTeX-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
-  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %LANGUAGE% complete'"
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   SELFSERVICE_ICON: "%NAME%.png"
