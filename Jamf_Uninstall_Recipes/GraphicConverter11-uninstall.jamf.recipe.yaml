@@ -1,0 +1,11 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.GraphicConverter11-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: GraphicConverter
+  MAJOR_VERSION: "11"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.lemkesoft.graphicconverter11
+  SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
