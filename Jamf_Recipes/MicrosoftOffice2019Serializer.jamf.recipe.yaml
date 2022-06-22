@@ -28,6 +28,7 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: MSOffice2019-volumelicense
+  SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs the Microsoft Microsoft Office 2019 Volume License. 
