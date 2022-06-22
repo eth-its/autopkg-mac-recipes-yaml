@@ -12,6 +12,7 @@ Input:
   SELFSERVICE_POLICY_CATEGORY: Productivity
   SELFSERVICE_POLICY_MESSAGE_START: "Installing %NAME%"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "%NAME% has now been installed"
+  SELFSERVICE_POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   SELFSERVICE_ICON: "Microsoft Office 365.png"
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
