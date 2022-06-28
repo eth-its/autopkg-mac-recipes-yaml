@@ -9,3 +9,4 @@ Input:
   PARAMETER5_VALUE: org.keepassxc.keepassxc
   PARAMETER6_LABEL: Additional Package Receipt
   PARAMETER6_VALUE: org.keepassx.keepassxc
+  SELFSERVICE_ICON: KeePassXC 2.7.png

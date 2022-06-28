@@ -33,7 +33,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: KeePassXC 2.7.png
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"
 

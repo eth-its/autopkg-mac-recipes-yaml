@@ -10,3 +10,4 @@ Input:
   SCRIPT_PRIORITY: Before
   PARAMETER4_VALUE: "%NAME%-uninstall"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  SELFSERVICE_ICON: KeePassXC 2.7.png
