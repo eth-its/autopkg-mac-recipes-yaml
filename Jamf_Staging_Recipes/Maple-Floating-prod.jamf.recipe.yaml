@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: Maple
-  MAJOR_VERSION: "2021"
+  MAJOR_VERSION: "2022"
   LICENSE: Floating
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Maple-Node
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
