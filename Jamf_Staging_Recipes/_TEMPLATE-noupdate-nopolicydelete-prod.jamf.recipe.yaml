@@ -1,0 +1,118 @@
+Comment: |
+  This is a template recipe and cannot be used without a child recipe or RecipeOverride.
+  UNTESTED_RECIPE_IDENTIFIER must be supplied
+  NAME, SELFSERVICE_DESCRIPTION and SELFSERVICE_POLICY_CATEGORY need to be provided in the child recipe. 
+  If the app name does not match NAME.app, JSS_INVENTORY_NAME should also be overridden.
+  If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
+   may require additional information.
+
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.template-noupdate-nopolicydelete-prod
+MinimumVersion: "2.3"
+
+Input:
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  JSS_INVENTORY_NAME: "%NAME%.app"
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoinstall-all-software.xml
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
+  AUTOINSTALL_POLICY_CATEGORY: Auto-installers
+  AUTOINSTALL_POLICY_FREQUENCY: Once every day
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  TRIGGER_NAME: "%NAME%-install"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_ICON: "%NAME%.png"
+  PROD_PREDICATE: "ready_to_stage == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%PROD_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%USERS_GROUP_NAME%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%PROD_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%PROD_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Auto-install policy
+    Arguments:
+      policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOINSTALL_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      SELFSERVICE_POLICY_CATEGORY: "%PKG_CATEGORY%"
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

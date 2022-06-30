@@ -1,14 +1,14 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Node-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-nopolicydelete-prod
 
 Input:
   NAME: SPSS Statistics
   MAJOR_VERSION: "28"
   LICENSE: Node
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics28-Floating
-  LAST_RUN_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% (Testing)"
+  LAST_RUN_POLICY_NAME_OVERRIDE: "%NAME% %MAJOR_VERSION% %LICENSE% (Testing)"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% test users"
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LICENSE% users"
@@ -27,3 +27,9 @@ Input:
   POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
   POSTINSTALL_SCRIPT_PRIORITY: After
   SELFSERVICE_ICON: SPSS Statistics 28.png
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%LAST_RUN_POLICY_NAME_OVERRIDE%"
