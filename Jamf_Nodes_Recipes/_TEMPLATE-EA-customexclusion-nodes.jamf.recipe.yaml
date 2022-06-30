@@ -64,7 +64,7 @@ Process:
     Arguments:
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      replace_group: "True" # TEMP
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
