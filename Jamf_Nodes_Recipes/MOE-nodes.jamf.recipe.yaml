@@ -30,3 +30,4 @@ Input:
   POSTINSTALL_SCRIPT_PARAMETER5_LABEL: Server identification string
   POSTINSTALL_SCRIPT_PARAMETER5_VALUE: "%SERVER_ID_STRING%"
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4and5.xml
+  SELFSERVICE_ICON: MOE 2019.png

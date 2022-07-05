@@ -45,7 +45,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4and5.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: MOE 2019.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
