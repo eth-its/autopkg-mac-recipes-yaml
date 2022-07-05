@@ -1,0 +1,21 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.MOE2019_0102-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: MOE
+  LANGUAGE: EN
+  MAJOR_VERSION: "2019.0102"
+  SCRIPT_PATH: MOE-uninstall.sh
+  SCRIPT_NAME: MOE-uninstall.sh
+  PARAMETER4_LABEL: Major Version
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION% %LANGUAGE%"
