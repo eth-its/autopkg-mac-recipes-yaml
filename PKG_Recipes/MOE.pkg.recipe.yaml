@@ -59,10 +59,10 @@ Process:
         defaults write com.chemcomp.moe "$VER" "$folder_name"
 
         # remove quarantine bits from MOE.app
-        xattr -d -r com.apple.quarantine bin/MOE.app
+        xattr -d -r com.apple.quarantine "/Applications/$folder_name/bin/MOE.app"
 
         # make app files executable
-        find "$folder_name/bin/MOE.app" -type f -exec chmod -w {} \;
+        find "/Applications/$folder_name/bin/MOE.app" -type f -exec chmod -w {} \;
         # (end section adapted from $folder_name/bin/configure_macos)
 
       file_mode: "0755"
