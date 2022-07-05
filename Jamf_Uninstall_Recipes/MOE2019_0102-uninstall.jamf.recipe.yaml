@@ -7,8 +7,8 @@ Input:
   NAME: MOE
   LANGUAGE: EN
   MAJOR_VERSION: "2019.0102"
-  SCRIPT_PATH: MOE-uninstall.sh
-  SCRIPT_NAME: MOE-uninstall.sh
+  SCRIPT_PATH: MOE-uninstall.zsh
+  SCRIPT_NAME: MOE-uninstall.zsh
   PARAMETER4_LABEL: Major Version
   PARAMETER4_VALUE: "%MAJOR_VERSION%"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% auto-install"
