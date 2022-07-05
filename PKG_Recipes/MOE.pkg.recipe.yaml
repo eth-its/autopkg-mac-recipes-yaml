@@ -55,7 +55,7 @@ Process:
 
         # Set defaults registry entry for MOE.app to point to $MOE
 
-        VER=$(head -1 $folder_name/bin/MOE.app/Contents/Resources/moe_version)
+        VER=$(head -1 /Applications/$folder_name/bin/MOE.app/Contents/Resources/moe_version)
         defaults write com.chemcomp.moe "$VER" "$folder_name"
 
         # remove quarantine bits from MOE.app
