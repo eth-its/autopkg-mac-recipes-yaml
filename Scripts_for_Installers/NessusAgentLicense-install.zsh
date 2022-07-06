@@ -28,7 +28,6 @@ if /Library/NessusAgent/run/sbin/nessuscli agent link --key="$nessus_key" --host
     echo "[$(date)] License successfully applied" > "$logfile"
 else
     echo "[$(date)] ERROR: License file not applied" > "$logfile"
-    exit 1
 fi
 
 # check if the agent is linked
