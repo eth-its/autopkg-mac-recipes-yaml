@@ -1,0 +1,121 @@
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  The following Input must be overridden:
+  - SERVER_ID_STRING (e.g. 123.145.167.89 001122334455 6677)
+Identifier: com.github.eth-its-recipes.jamf.MOE
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.pkg.MOE
+
+Input:
+  NAME: MOE
+  LANGUAGE: EN
+  MAJOR_VERSION: "2019.0102"
+  PKG_CATEGORY: Science & Math
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: XQuartz-install
+  POSTINSTALL_SCRIPT_NAME: MOE-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: MOE-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PARAMETER4_LABEL: Major Version
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  POSTINSTALL_SCRIPT_PARAMETER5_LABEL: Server identification string
+  POSTINSTALL_SCRIPT_PARAMETER5_VALUE: "%SERVER_ID_STRING%"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    **Molecular Operating Environment** is an integrated Computer-Aided Molecular Design Platform for Small Molecules, Peptides and Biologics made by the Chemical Computing Group.
+
+    Note that this is a very large application that may take some time to install. Self Service may time out during the installation and fail
+    to correctly notify the completion of the installation. 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4and5.xml
+  SELFSERVICE_ICON: MOE 2019.png
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PREINSTALL_SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PREINSTALL_SCRIPT_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%POSTINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      script_parameter5: "%POSTINSTALL_SCRIPT_PARAMETER5_LABEL%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

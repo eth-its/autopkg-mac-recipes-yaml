@@ -1,0 +1,82 @@
+Description: Downloads the latest version of MOE and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.MOE
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.MOE
+
+Input:
+  LIST_EXCEPTION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: ChemComp_MOE
+  VENDOR: Chemical_Computing_Group
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/%latest_file%.dmg"
+      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install MOE
+
+        DIR=$(dirname "$0")
+
+        # remove quarantine flag from moe dmg
+        xattr -d com.apple.quarantine "$DIR/%latest_file%.dmg"
+
+        # attach dmg image
+        APPPATH="/Volumes/%latest_file%"
+        mkdir -p $APPPATH
+        echo "Mounting to $APPPATH"
+        hdiutil attach $DIR/%latest_file%.dmg -nobrowse -mountpoint $APPPATH
+
+        folder_path=$(find $APPPATH -name "moe_*" -maxdepth 1)
+        folder_name=$(basename "$folder_path")
+        echo "Copying $folder_path to /Applications/$folder_name"
+        cp -r "$folder_path" "/Applications/$folder_name"
+
+        # detach dmg image
+        hdiutil eject $APPPATH
+
+        # set up moe.app to point to the correct binary
+        # (this section adapted from $folder_name/bin/configure_macos)
+        echo "Configuring $folder_name/bin/MOE.app to point to \"$folder_name\""
+
+        # Set defaults registry entry for MOE.app to point to $MOE
+
+        VER=$(head -1 /Applications/$folder_name/bin/MOE.app/Contents/Resources/moe_version)
+        defaults write com.chemcomp.moe "$VER" "$folder_name"
+
+        # remove quarantine bits from MOE.app
+        xattr -d -r com.apple.quarantine "/Applications/$folder_name/bin/MOE.app"
+
+        # make app files executable
+        find "/Applications/$folder_name/bin/MOE.app" -type f -exec chmod -w {} \;
+        # (end section adapted from $folder_name/bin/configure_macos)
+
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.ChemCompMOE%version%
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator

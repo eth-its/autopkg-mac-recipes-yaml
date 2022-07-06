@@ -1,0 +1,33 @@
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+
+  The following Input must be overridden:
+  - SERVER_ID_STRING (e.g. 123.145.167.89 001122334455 6677)
+Identifier: com.github.eth-its-recipes.jamf.MOE-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-scripts-2-parameter4and5-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: MOE
+  LANGUAGE: EN
+  MAJOR_VERSION: "2019.0102"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MOE
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: XQuartz-install
+  POSTINSTALL_SCRIPT_NAME: MOE-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: MOE-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PARAMETER4_LABEL: Major Version
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  POSTINSTALL_SCRIPT_PARAMETER5_LABEL: Server identification string
+  POSTINSTALL_SCRIPT_PARAMETER5_VALUE: "%SERVER_ID_STRING%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4and5.xml
+  SELFSERVICE_ICON: MOE 2019.png
