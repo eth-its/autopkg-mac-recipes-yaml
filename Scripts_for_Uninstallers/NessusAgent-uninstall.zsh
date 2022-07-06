@@ -9,6 +9,27 @@
 
 echo "Running Nessus Agent uninstaller script"
 
+# files
+launchdaemon="/Library/LaunchDaemons/ch.ethz.nessus.plist"
+logfile="/Library/Logs/ethz-nessus-status.log"
+retry_script="/Library/Management/ETHZ/Nessus/nessus-link.zsh"
+
+# reset the existing launchdaemon if present
+if [[ -f "$launchdaemon" ]]; then
+    /bin/launchctl stop ch.ethz.nessus
+    /bin/launchctl unload "$launchdaemon"
+    /bin/rm "$launchdaemon"
+fi
+
+if [[ -f "$logfile" ]]; then
+    rm "$logfile"
+fi
+
+if [[ -f "$retry_script" ]]; then
+    rm "$retry_script"
+fi
+
+
 # unlink agent
 /Library/NessusAgent/run/sbin/nessuscli agent unlink --force
 

@@ -23,6 +23,7 @@ exec > >(tee "${logfile}") 2>&1
 
 # files
 launchdaemon="/Library/LaunchDaemons/ch.ethz.nessus.plist"
+retry_script="/Library/Management/ETHZ/Nessus/nessus-link.zsh"
 
 # reset the existing launchdaemon if present
 if [[ -f "$launchdaemon" ]]; then
