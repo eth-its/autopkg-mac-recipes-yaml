@@ -21,37 +21,38 @@ nessus_group="$7"
 logfile="/Library/Logs/ethz-nessus-status.log"
 exec > >(tee "${logfile}") 2>&1
 
-# get hostname
-hostname="$(hostname)"
-
 # files
 launchdaemon="/Library/LaunchDaemons/ch.ethz.nessus.plist"
 
-# run the command
-if /Library/NessusAgent/run/sbin/nessuscli agent link --key="$nessus_key" --host="$nessus_host" --port="$nessus_port" --name="$hostname" --groups="$nessus_group"; then
-    echo "[$(date)] License successfully applied"
-else
-    echo "[$(date)] ERROR: License file not applied"
+# reset the existing launchdaemon if present
+if [[ -f "$launchdaemon" ]]; then
+    /bin/launchctl stop ch.ethz.nessus
+    /bin/launchctl unload "$launchdaemon"
+    /bin/rm "$launchdaemon"
 fi
 
-# check if the agent is linked
+# check agent status
 link_connection=$(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:" | sed 's|Linked to: ||')
-# if not linked, write a script that will try again and create a launchdaemon. The script should remove the launchdaemon once the connection is successful.
-if [[ "$link_connection" == "None" ]]; then
-    echo "[$(date)] License file not applied, setting up LaunchDaemon"
-    retry_script_location="/Library/Management/ETHZ/Nessus"
-    retry_script="$retry_script_location/nessus-link.zsh"
-    mkdir -p "$retry_script_location"
-
-    # reset the existing launchdaemon if present
-    if [[ -f "$launchdaemon" ]]; then
-        /bin/launchctl stop ch.ethz.nessus
-        /bin/launchctl unload "$launchdaemon"
-        /bin/rm "$launchdaemon"
+if [[ "$link_connection" != "None" ]]; then
+    echo "[$(date)] Agent is linked."
+    exit 0
+else
+    # run the command
+    if /Library/NessusAgent/run/sbin/nessuscli agent link --key="$nessus_key" --host="$nessus_host" --port="$nessus_port" --name="$(hostname)" --groups="$nessus_group"; then
+        echo "[$(date)] License successfully applied" > "$logfile"
+    else
+        echo "[$(date)] ERROR: License file not applied" > "$logfile"
     fi
+    # check again
+    link_connection=$(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:" | sed 's|Linked to: ||')
+    if [[ "$link_connection" != "None" ]]; then
+        echo "[$(date)] Agent is linked."
+        exit 0
+    fi
+fi
 
-    rm "$retry_script"
-    cat > "$retry_script" <<'END' 
+rm "$retry_script"
+cat > "$retry_script" <<'END' 
 #!/bin/zsh
 
 # input variables
@@ -85,12 +86,13 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
     fi
 fi
 END
-    /usr/sbin/chown root:wheel "$retry_script"
-    /bin/chmod 755 "$retry_script"
-    echo "[$(date)] Link script written to /Library/Management/ETHZ/Nessus/nessus-link.zsh"
 
-    # Create the launchdaemon
-    cat > "$launchdaemon" <<END 
+/usr/sbin/chown root:wheel "$retry_script"
+/bin/chmod 755 "$retry_script"
+echo "[$(date)] Link script written to /Library/Management/ETHZ/Nessus/nessus-link.zsh"
+
+# Create the launchdaemon
+cat > "$launchdaemon" <<END 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -109,29 +111,26 @@ END
         <string>$nessus_group</string>
     </array>
     <key>StartInterval</key>
-    <integer>30</integer>
+    <integer>300</integer>
     <key>RunAtLoad</key>
     <true/>
 </dict>
 </plist>
 END
 
-    # wait for 2 seconds
-    sleep 2
+# wait for 2 seconds
+sleep 2
 
-    # adjust permissions correctly then load.
-    /usr/sbin/chown root:wheel "$launchdaemon"
-    /bin/chmod 755 "$launchdaemon"
+# adjust permissions correctly then load.
+/usr/sbin/chown root:wheel "$launchdaemon"
+/bin/chmod 755 "$launchdaemon"
 
-    if /bin/launchctl load "$launchdaemon"; then
-        if /bin/launchctl start ch.ethz.nessus; then
-            echo "[$(date)] LaunchDaemon started."
-        else
-            echo "[$(date)] ERROR: LaunchDaemon failed to start."
-        fi
+if /bin/launchctl load "$launchdaemon"; then
+    if /bin/launchctl start ch.ethz.nessus; then
+        echo "[$(date)] LaunchDaemon started."
     else
-        echo "[$(date)] ERROR: LaunchDaemon load failed."
+        echo "[$(date)] ERROR: LaunchDaemon failed to start."
     fi
 else
-    echo "[$(date)] Agent is linked."
+    echo "[$(date)] ERROR: LaunchDaemon load failed."
 fi
