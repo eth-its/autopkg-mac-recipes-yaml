@@ -36,12 +36,12 @@ Process:
         xattr -d com.apple.quarantine "$DIR/%latest_file%.dmg"
 
         # attach dmg image
-        APPPATH="/Volumes/%latest_file%"
+        APPPATH="/Volumes/MOE_installer"
         mkdir -p $APPPATH
         echo "Mounting to $APPPATH"
         hdiutil attach $DIR/%latest_file%.dmg -nobrowse -mountpoint $APPPATH
 
-        folder_path=$(find $APPPATH -name "moe_*" -maxdepth 1)
+        folder_path=$(find $APPPATH -name "moe*" -maxdepth 1)
         folder_name=$(basename "$folder_path")
         echo "Copying $folder_path to /Applications/$folder_name"
         cp -r "$folder_path" "/Applications/$folder_name"
