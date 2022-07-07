@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: MacTeX
+  LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MacTeX
   EXTENSION_ATTRIBUTE_NAME: MacTeXVersion
   EXTENSION_ATTRIBUTE_SCRIPT: MacTeX-EA.sh
