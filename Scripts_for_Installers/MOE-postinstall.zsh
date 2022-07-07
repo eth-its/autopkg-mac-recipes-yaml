@@ -10,4 +10,4 @@ Required parameters:
 DOC
 
 echo "SERVER $5
-USE_SERVER" > "/Applications/moe_$4/license.dat"
+USE_SERVER" > "/Applications/moe$4/license.dat"
