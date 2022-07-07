@@ -80,3 +80,9 @@ Process:
         scripts: Scripts
         version: "%version%"
     Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PathDeleter
