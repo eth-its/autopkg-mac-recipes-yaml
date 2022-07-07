@@ -43,8 +43,8 @@ Process:
 
         folder_path=$(find $APPPATH -name "moe*" -maxdepth 1)
         folder_name=$(basename "$folder_path")
-        echo "Copying $folder_path to /Applications/$folder_name"
-        cp -r "$folder_path" "/Applications/$folder_name"
+        echo "Copying $folder_path to /Applications/moe%MAJOR_VERSION%"
+        cp -r "$folder_path" "/Applications/moe%MAJOR_VERSION%"
 
         # detach dmg image
         hdiutil eject $APPPATH
