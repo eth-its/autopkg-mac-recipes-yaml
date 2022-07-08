@@ -13,3 +13,4 @@ Input:
   SELFSERVICE_POLICY_MESSAGE_START: "Completely removing Microsoft Office and all settings"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Completely removed Microsoft Office and all settings"
   TRIGGER_NAME: Run-MicrosoftOfficeRemoval
+  SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"
