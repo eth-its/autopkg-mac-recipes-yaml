@@ -1,0 +1,22 @@
+Description: Creates a Software Restriction that prevents the Install macOS Ventura beta.app process from running.
+Identifier: com.github.eth-its-recipes.jamf.macOSVenturaBeta-restrict
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Install macOS Ventura beta
+  JSS_INVENTORY_NAME: "%NAME%.app"
+  SOFTWARE_RESTRICTION_NAME: Restrict %NAME%
+  SOFTWARE_RESTRICTION_TEMPLATE: Restriction-nosscope.xml
+  SOFTWARE_RESTRICTION_MESSAGE: "The macOS Ventura beta installation app is currently restricted from being run. Please contact your IT administrator for more information."
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfSoftwareRestrictionUploader
+    Arguments:
+      restriction_name: "%SOFTWARE_RESTRICTION_NAME%"
+      restriction_template: "%SOFTWARE_RESTRICTION_TEMPLATE%"
+      process_name: "%NAME%"
+      match_exact_process_name: "True"
+      send_notification: "False"
+      kill_process: "True"
+      delete_executable: "False"
+      display_message: "%SOFTWARE_RESTRICTION_MESSAGE%"
