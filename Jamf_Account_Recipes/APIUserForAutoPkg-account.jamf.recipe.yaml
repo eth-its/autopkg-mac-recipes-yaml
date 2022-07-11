@@ -4,13 +4,14 @@ Description: |
   The following must be put in an override:
   - NAME
   - DOMAIN
+  - EMAIL
 
 Identifier: com.github.eth-its-recipes.jamf.account.StandardLDAPGroup
 MinimumVersion: "2.3"
 
 Input:
-  ACCOUNT_TYPE: group
-  ACCOUNT_TEMPLATE: Account-group-LDAP.xml
+  ACCOUNT_TYPE: user
+  ACCOUNT_TEMPLATE: Account-user-AutoPkg.xml
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfAccountUploader
