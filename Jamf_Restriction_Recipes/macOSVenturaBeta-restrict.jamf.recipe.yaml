@@ -6,7 +6,7 @@ Input:
   NAME: Install macOS Ventura beta
   JSS_INVENTORY_NAME: "%NAME%.app"
   SOFTWARE_RESTRICTION_NAME: Restrict %NAME%
-  SOFTWARE_RESTRICTION_TEMPLATE: Restriction-nosscope.xml
+  SOFTWARE_RESTRICTION_TEMPLATE: Restriction-noscope.xml
   SOFTWARE_RESTRICTION_MESSAGE: "The macOS Ventura beta installation app is currently restricted from being run. Please contact your IT administrator for more information."
 
 Process:
