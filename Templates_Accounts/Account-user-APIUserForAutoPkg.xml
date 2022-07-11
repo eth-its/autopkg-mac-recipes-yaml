@@ -45,7 +45,7 @@
             <privilege>Update macOS Configuration Profiles</privilege>
             <privilege>Create Restricted Software Records</privilege>
             <privilege>Read Restricted Software Records</privilege>
-            <privilege>Update Restricted Software Recordss</privilege>
+            <privilege>Update Restricted Software Records</privilege>
             <privilege>Create Mac Applications</privilege>
             <privilege>Read Mac Applications</privilege>
             <privilege>Update Mac Applications</privilege>
