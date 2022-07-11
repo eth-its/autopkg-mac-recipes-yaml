@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <account>
     <name>%NAME%</name>
-    <password>%JSS_AUTOPKG_PASSWORD%</password>
+    <password>%PASSWORD%</password>
     <directory_user>false</directory_user>
-    <full_name>AutoPkg JSSImporter</full_name>
+    <full_name>%FULL_NAME%</full_name>
     <email>%EMAIL%</email>
     <email_address>%EMAIL%</email_address>
     <enabled>Enabled</enabled>
