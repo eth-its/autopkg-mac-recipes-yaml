@@ -42,29 +42,17 @@ Process:
         hdiutil attach $DIR/%latest_file%.dmg -nobrowse -mountpoint $APPPATH
 
         folder_path=$(find $APPPATH -name "moe*" -maxdepth 1)
-        folder_name=$(basename "$folder_path")
-        echo "Copying $folder_path to /Applications/moe%MAJOR_VERSION%"
-        cp -r "$folder_path" "/Applications/moe%MAJOR_VERSION%"
+        folder_name="moe_%MAJOR_VERSION%"
+        echo "Copying $folder_path to /Applications/$folder_name"
+        cp -r "$folder_path" "/Applications/$folder_name"
 
         # detach dmg image
         hdiutil eject $APPPATH
 
         # set up moe.app to point to the correct binary
-        # (this section adapted from $folder_name/bin/configure_macos)
-        echo "Configuring $folder_name/bin/MOE.app to point to \"$folder_name\""
-
-        # Set defaults registry entry for MOE.app to point to $MOE
-
-        VER=$(head -1 /Applications/$folder_name/bin/MOE.app/Contents/Resources/moe_version)
-        defaults write com.chemcomp.moe "$VER" "$folder_name"
-
-        # remove quarantine bits from MOE.app
-        xattr -d -r com.apple.quarantine "/Applications/$folder_name/bin/MOE.app"
-
-        # make app files executable
-        find "/Applications/$folder_name/bin/MOE.app" -type f -exec chmod -w {} \;
-        # (end section adapted from $folder_name/bin/configure_macos)
-
+        # (this section adapted from /Applications/$folder_name/bin/configure_macos)
+        echo "Running configure_macos script"
+        /Applications/$folder_name/bin/configure_macos
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
     Processor: FileCreator
