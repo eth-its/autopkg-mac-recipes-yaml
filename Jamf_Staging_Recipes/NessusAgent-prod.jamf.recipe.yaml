@@ -11,4 +11,4 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
-  POLICY_RUN_COMMAND: "jamf policy -event Run-NessusAgentLicense"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-NessusAgentLicense"
