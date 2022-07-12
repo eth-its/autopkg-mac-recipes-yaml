@@ -43,7 +43,7 @@ fi
 silent_app_quit "$appName"
 
 echo "Deleting MOE $MAJOR_VERSION"
-find /Applications -name "moe_$MAJOR_VERSION" -type d -maxdepth 1 -exec /bin/rm -rf {} \;
+find /Applications -name "moe*$MAJOR_VERSION" -type d -maxdepth 1 -exec /bin/rm -rf {} \;
 
 # Forget packages
 echo "Forgetting packages"
