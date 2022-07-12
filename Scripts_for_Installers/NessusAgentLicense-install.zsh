@@ -28,8 +28,7 @@ mkdir -p "/Library/Management/ETHZ/Nessus"
 
 # reset the existing launchdaemon if present
 if [[ -f "$launchdaemon" ]]; then
-    /bin/launchctl stop ch.ethz.nessus
-    /bin/launchctl unload "$launchdaemon"
+    /bin/launchctl unload -F "$launchdaemon"
     /bin/rm "$launchdaemon"
 fi
 
