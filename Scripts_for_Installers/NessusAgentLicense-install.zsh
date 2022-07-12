@@ -24,6 +24,7 @@ exec > >(tee "${logfile}") 2>&1
 # files
 launchdaemon="/Library/LaunchDaemons/ch.ethz.nessus.plist"
 retry_script="/Library/Management/ETHZ/Nessus/nessus-link.zsh"
+mkdir -p "/Library/Management/ETHZ/Nessus"
 
 # reset the existing launchdaemon if present
 if [[ -f "$launchdaemon" ]]; then
@@ -40,9 +41,9 @@ if [[ "$link_connection" != "None" ]]; then
 else
     # run the command
     if /Library/NessusAgent/run/sbin/nessuscli agent link --key="$nessus_key" --host="$nessus_host" --port="$nessus_port" --name="$(hostname)" --groups="$nessus_group"; then
-        echo "[$(date)] License successfully applied" > "$logfile"
+        echo "[$(date)] License successfully applied"
     else
-        echo "[$(date)] ERROR: License file not applied" > "$logfile"
+        echo "[$(date)] ERROR: License file not applied"
     fi
     # check again
     link_connection=$(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:" | sed 's|Linked to: ||')
@@ -52,7 +53,10 @@ else
     fi
 fi
 
-rm "$retry_script"
+if [[ -f "$retry_script" ]]; then
+    rm "$retry_script"
+fi
+
 cat > "$retry_script" <<'END' 
 #!/bin/zsh
 
@@ -88,9 +92,15 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
 fi
 END
 
-/usr/sbin/chown root:wheel "$retry_script"
-/bin/chmod 755 "$retry_script"
-echo "[$(date)] Link script written to /Library/Management/ETHZ/Nessus/nessus-link.zsh"
+if [[ -f "$retry_script" ]]; then
+    /usr/sbin/chown root:wheel "$retry_script"
+    /bin/chmod 755 "$retry_script"
+    echo "[$(date)] Link script written to $retry_script"
+else
+    echo "[$(date)] Error: $retry_script not found"
+    exit 1
+fi
+
 
 # Create the launchdaemon
 cat > "$launchdaemon" <<END 
@@ -131,7 +141,9 @@ if /bin/launchctl load "$launchdaemon"; then
         echo "[$(date)] LaunchDaemon started."
     else
         echo "[$(date)] ERROR: LaunchDaemon failed to start."
+        exit 1
     fi
 else
     echo "[$(date)] ERROR: LaunchDaemon load failed."
+    exit 1
 fi
