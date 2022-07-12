@@ -35,6 +35,7 @@ Input:
   PARAMETER9_VALUE: "None"
   PARAMETER10_VALUE: "None"
   PARAMETER11_VALUE: "None"
+  REPLACE_POLICY: "False"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -64,4 +65,4 @@ Process:
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
-      replace_policy: "True"
+      replace_policy: "%REPLACE_POLICY%"
