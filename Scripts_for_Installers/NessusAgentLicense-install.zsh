@@ -77,11 +77,17 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
         # remove the launchdaemon
         if [[ -f "$launchdaemon" ]]; then
             echo "[$(date)] Removing $launchdaemon" >> "$logfile"
-            /bin/launchctl unload -F "$launchdaemon"
+            /bin/launchctl unload -F "$launchdaemon" &
+            sleep 2
             if /bin/rm "$launchdaemon"; then
                 echo "[$(date)] $launchdaemon removed" >> "$logfile"
             else
-                echo "[$(date)] $launchdaemon was not removed" >> "$logfile"
+                echo "[$(date)] ERROR: $launchdaemon was not removed" >> "$logfile"
+            fi
+            if /bin/rm "/Library/Management/ETHZ/Nessus/nessus-link.zsh"; then
+                echo "[$(date)] nessus-link.zsh removed" >> "$logfile"
+            else
+                echo "[$(date)] ERROR: nessus-link.zsh was not removed" >> "$logfile"
             fi
         fi
     else
@@ -135,12 +141,8 @@ sleep 2
 /bin/chmod 755 "$launchdaemon"
 
 if /bin/launchctl load "$launchdaemon"; then
-    if /bin/launchctl start ch.ethz.nessus; then
-        echo "[$(date)] LaunchDaemon started."
-    else
-        echo "[$(date)] ERROR: LaunchDaemon failed to start."
-        exit 1
-    fi
+    sleep 2
+    echo "[$(date)] LaunchDaemon started."
 else
     echo "[$(date)] ERROR: LaunchDaemon load failed."
     exit 1
