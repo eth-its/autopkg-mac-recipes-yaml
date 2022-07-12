@@ -77,8 +77,6 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
         # remove the launchdaemon
         if [[ -f "$launchdaemon" ]]; then
             echo "[$(date)] Removing $launchdaemon" >> "$logfile"
-            /bin/launchctl unload -F "$launchdaemon" &
-            sleep 2
             if /bin/rm "$launchdaemon"; then
                 echo "[$(date)] $launchdaemon removed" >> "$logfile"
             else
@@ -89,6 +87,8 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
             else
                 echo "[$(date)] ERROR: nessus-link.zsh was not removed" >> "$logfile"
             fi
+            # finally, unload the launchdaemon
+            /bin/launchctl unload -F "$launchdaemon"
         fi
     else
         echo "[$(date)] ERROR: License file not applied (from LaunchDaemon)" >> "$logfile"
