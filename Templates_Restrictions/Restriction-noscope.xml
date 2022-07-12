@@ -10,8 +10,6 @@
         <display_message>%display_message%</display_message>
     </general>
     <scope>
-        <computer_groups>
-            <computer_group/>
-        </computer_groups>
+        <computer_groups/>
     </scope>
 </restricted_software>
