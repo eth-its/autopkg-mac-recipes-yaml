@@ -20,6 +20,7 @@ Input:
   PREINSTALL_SCRIPT_PARAMETER4_VALUE: XQuartz-install
   POSTINSTALL_SCRIPT_NAME: MOE-postinstall.zsh
   POSTINSTALL_SCRIPT_PATH: MOE-postinstall.zsh
+  POSTINSTALL_SCRIPT_CATEGORY: Science & Math
   POSTINSTALL_SCRIPT_PRIORITY: After
   POSTINSTALL_SCRIPT_PARAMETER4_LABEL: Major Version
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "%MAJOR_VERSION%"
@@ -30,8 +31,9 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     **Molecular Operating Environment** is an integrated Computer-Aided Molecular Design Platform for Small Molecules, Peptides and Biologics made by the Chemical Computing Group.
 
-    Note that this is a very large application that may take some time to install. Self Service may time out during the installation and fail
-    to correctly notify the completion of the installation. 
+    This is a very large application that may take some time to install. Self Service may time out during the installation and fail to correctly notify the completion of the installation.
+
+    **INFORMATION: Your computer must be restarted after the installation of MOE is completed.**
 
     Version: %version%
     Category: %PKG_CATEGORY%
