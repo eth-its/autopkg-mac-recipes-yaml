@@ -16,8 +16,7 @@ retry_script="/Library/Management/ETHZ/Nessus/nessus-link.zsh"
 
 # reset the existing launchdaemon if present
 if [[ -f "$launchdaemon" ]]; then
-    /bin/launchctl stop ch.ethz.nessus
-    /bin/launchctl unload "$launchdaemon"
+    /bin/launchctl unload -F "$launchdaemon"
     /bin/rm "$launchdaemon"
 fi
 

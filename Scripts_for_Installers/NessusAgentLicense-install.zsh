@@ -78,8 +78,7 @@ if [[ $(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:"
         # remove the launchdaemon
         if [[ -f "$launchdaemon" ]]; then
             echo "[$(date)] Removing $launchdaemon" >> "$logfile"
-            /bin/launchctl stop ch.ethz.nessus
-            /bin/launchctl unload "$launchdaemon"
+            /bin/launchctl unload -F "$launchdaemon"
             if /bin/rm "$launchdaemon"; then
                 echo "[$(date)] $launchdaemon removed" >> "$logfile"
             else
