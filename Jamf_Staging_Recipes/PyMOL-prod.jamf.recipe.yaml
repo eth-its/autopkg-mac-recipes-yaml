@@ -6,4 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: PyMOL
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.PyMOL
-  POLICY_RUN_COMMAND: "jamf policy -event 'PyMOL License-install'"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'PyMOL License-install'"
