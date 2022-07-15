@@ -7,6 +7,7 @@ Input:
   NAME: Papers
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Papers
+  OS_EXCLUDE_MIN: "11.0"
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PRIORITY: Before
   PARAMETER4_VALUE: "%NAME%-uninstall"

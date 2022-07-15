@@ -7,6 +7,9 @@ Input:
   NAME: Papers
   LANGUAGE: EN
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  OS_EXCLUDE_MIN: "11.0"
+  OS_EXCLUDE_MIN_GROUP_NAME: "macOS %OS_EXCLUDE_MIN% or newer"
+  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
@@ -29,7 +32,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min-script-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %LANGUAGE% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -73,6 +76,12 @@ Process:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%OS_EXCLUDE_MIN_GROUP_NAME%"
+      computergroup_template: "%OS_EXCLUDE_MIN_GROUP_TEMPLATE%"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:

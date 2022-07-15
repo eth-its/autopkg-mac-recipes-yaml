@@ -1,15 +1,16 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Papers-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-min-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: Papers
   LANGUAGE: EN
+  OS_EXCLUDE_MIN: "11.0"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Papers
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min-script-parameter4.xml
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh
   SCRIPT_CATEGORY: Administration
