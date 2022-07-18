@@ -8,7 +8,7 @@
     <key>PasswordLength</key>
     <integer>14</integer>
     <key>RemovePassChars</key>
-    <string>{}[]|</string>
+    <string></string>
     <key>Method</key>
     <string>Local</string>
     <key>FirstPass</key>
