@@ -3,16 +3,16 @@ Identifier: com.github.grahampugh.recipes.jamf.GoogleChrome-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Google Chrome
-  IDENTIFIER: com.google.Chrome
+  NAME: macOSLAPS
+  IDENTIFIER: edu.psu.macoslaps
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
-  PROFILE_DESCRIPTION: Enforces Google Chrome updates
-  USERS_GROUP_NAME: Google Chrome users
-  TEST_USERS_GROUP_NAME: Google Chrome test users
+  PROFILE_DESCRIPTION: Default settings for macOSLAPS
+  USERS_GROUP_NAME: macOSLAPS users
+  TEST_USERS_GROUP_NAME: macOSLAPS test users
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_TEST_GROUP_TEMPLATE: SmartGroup-test-users.xml
   TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"

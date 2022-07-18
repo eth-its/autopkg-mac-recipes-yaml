@@ -1,0 +1,17 @@
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>DaysTillExpiration</key>
+    <integer>14</integer>
+    <key>LocalAdminAccount</key>
+    <string>ladmin</string>
+    <key>PasswordLength</key>
+    <integer>14</integer>
+    <key>RemovePassChars</key>
+    <string>{}[]|</string>
+    <key>Method</key>
+    <string>Local</string>
+    <key>FirstPass</key>
+    <string>changeme!</string>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.macOSLAPS-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: macOSLAPS
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOSLAPS
+  EXTENSION_ATTRIBUTE_NAME: macOSLAPS Version
+  EXTENSION_ATTRIBUTE_SCRIPT: macOSLAPS-EA.sh
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
