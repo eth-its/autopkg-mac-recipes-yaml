@@ -1,4 +1,9 @@
-Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  The following keys must be added to the Recipe Override:
+  - LOCAL_ADMIN_ACCOUNT
+  - FIRST_PASSWORD
 Identifier: com.github.grahampugh.recipes.jamf.GoogleChrome-profile
 MinimumVersion: "2.3"
 
