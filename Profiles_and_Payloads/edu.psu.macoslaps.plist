@@ -4,7 +4,7 @@
     <key>DaysTillExpiration</key>
     <integer>14</integer>
     <key>LocalAdminAccount</key>
-    <string>ladmin</string>
+    <string>%LOCAL_ADMIN_ACCOUNT%</string>
     <key>PasswordLength</key>
     <integer>14</integer>
     <key>RemovePassChars</key>
@@ -12,6 +12,6 @@
     <key>Method</key>
     <string>Local</string>
     <key>FirstPass</key>
-    <string>changeme!</string>
+    <string>%FIRST_PASSWORD%</string>
 </dict>
 </plist>
