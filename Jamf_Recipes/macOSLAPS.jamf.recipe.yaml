@@ -62,14 +62,14 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      ea_script_path: "%PASSWORD_EXTENSION_ATTRIBUTE_NAME%"
-      ea_name: "%PASSWORD_EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_script_path: "%PASSWORD_EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%PASSWORD_EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      ea_script_path: "%EXPIRY_EXTENSION_ATTRIBUTE_NAME%"
-      ea_name: "%EXPIRY_EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_script_path: "%EXPIRY_EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXPIRY_EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
