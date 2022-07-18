@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -8,7 +9,7 @@
     <key>PasswordLength</key>
     <integer>14</integer>
     <key>RemovePassChars</key>
-    <string></string>
+    <string>{}[]|</string>
     <key>Method</key>
     <string>Local</string>
     <key>FirstPass</key>
