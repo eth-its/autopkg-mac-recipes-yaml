@@ -109,7 +109,7 @@ Process:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: True
 
-  - Processor: com.github.grahampugh.commonprocessors/Sleep
+  - Processor: com.github.grahampugh.recipes.commonprocessors/Sleep
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
