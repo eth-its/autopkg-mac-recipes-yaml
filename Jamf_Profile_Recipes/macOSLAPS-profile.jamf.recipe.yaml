@@ -13,7 +13,7 @@ Input:
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME%"
+  PROFILE_NAME: macOSLAPS Settings
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Default settings for macOSLAPS
   USERS_GROUP_NAME: macOSLAPS users
