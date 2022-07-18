@@ -6,6 +6,10 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Office License Reset
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOfficeLicenseReset
+  INSTALLED_GROUP_NAME: Microsoft Office installed
+  USERS_GROUP_NAME: Microsoft Office users
+  JSS_INVENTORY_NAME: Microsoft Word.app
+  USERS_GROUP_TEMPLATE: SmartGroup-prod-installed.xml
   INSTALL_BUTTON_TEXT: "Reset License"
   REINSTALL_BUTTON_TEXT: "Reset License"
   SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
