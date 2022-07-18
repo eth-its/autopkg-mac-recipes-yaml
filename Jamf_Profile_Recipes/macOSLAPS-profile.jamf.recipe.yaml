@@ -4,7 +4,7 @@ Description: |
   The following keys must be added to the Recipe Override:
   - LOCAL_ADMIN_ACCOUNT
   - FIRST_PASSWORD
-Identifier: com.github.grahampugh.recipes.jamf.GoogleChrome-profile
+Identifier: com.github.grahampugh.recipes.jamf.macOSLAPS-profile
 MinimumVersion: "2.3"
 
 Input:
