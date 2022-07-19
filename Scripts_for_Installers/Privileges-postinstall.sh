@@ -31,7 +31,7 @@ mkdir -p "$demote_script_location"
 # Stop the current launchagent and remove it prior to installing this updated one
 launchdaemon="/Library/LaunchDaemons/corp.sap.privileges.plist"
 if [[ -f "$launchdaemon" ]]; then
-    /bin/launchctl bootout "$launchdaemon" ||:
+    /bin/launchctl unload -F "$launchdaemon"
     /bin/rm "$launchdaemon"
 fi
 
@@ -151,5 +151,5 @@ sleep 2
 /usr/sbin/chown root:wheel "$launchdaemon"
 /bin/chmod 644 "$launchdaemon"
 
-/bin/launchctl enable system/corp.sap.privileges
-/bin/launchctl bootstrap system "$launchdaemon"
+/bin/launchctl load -w "$launchdaemon"
+/bin/launchctl start corp.sap.privileges
