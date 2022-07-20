@@ -11,7 +11,7 @@ DOC
 eraseinstall="/Library/Management/erase-install/erase-install.sh"
 
 if [[ -f "$eraseinstall" ]]; then
-    eraseinstall_version=$(grep "version=" | cut -d= -f2)
+    eraseinstall_version=$(grep -e "^version\=\"*\.*\"" "$eraseinstall" | sed 's|"||g' | cut -d= -f2)
 else
     eraseinstall_version="None"
 fi
