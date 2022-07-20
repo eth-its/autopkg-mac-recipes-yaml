@@ -1,72 +1,12 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.erase-install-nodes
 MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 
 Input:
   NAME: erase-install.sh
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.erase-install
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Administration
   EXTENSION_ATTRIBUTE_NAME: erase-install Version
   EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.zsh
-  TESTING_GROUP_NAME: Testing
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
-  POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_ICON: Erase and Reinstall macOS.png
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
-  UPDATE_PREDICATE: "pkg_uploaded == False"
-
-Process:
-  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
-    Arguments:
-      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
-    Arguments:
-      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
-      replace_ea: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%PKG_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
-    Arguments:
-      replace_pkg: "False"
-      replace_pkg_metadata: "True"
-      pkg_category: "%PKG_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
-      replace_group: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-    Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
-      icon: "%SELFSERVICE_ICON%"
-      replace_policy: "True"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
