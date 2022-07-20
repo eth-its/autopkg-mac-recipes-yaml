@@ -4,27 +4,36 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.erase-install
 
 Input:
-  NAME: Erase and Reinstall macOS
+  NAME: erase-install.sh
   INSTALLER: erase-install-depnotify
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  EXTENSION_ATTRIBUTE_NAME: erase-install Version
+  EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.sh
   PKG_CATEGORY: Tools & Accessories
-  EXTENSION_ATTRIBUTE_NAME: Boot Volume Type
-  EXTENSION_ATTRIBUTE_SCRIPT: BootVolumeType-EA.sh
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
-  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-erase-install-ineligible.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --update --erase --sameos --depnotify
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: |
-    WARNING! This will completely erase the device and reinstall macOS to the latest version.
+    This installs the erase-install.sh script and DEPNotify, which is used by the following policies:
+    * Download macOS Catalina
+    * Download macOS Big Sur
+    * Download macOS Monterey
+    * Upgrade to macOS Catalina
+    * Upgrade to macOS Big Sur
+    * Upgrade to macOS Monterey
+    * Erase and Reinstall macOS
+
+    This testing policy is only required to test the new version. The above policies will run the trigger to install the current version.
   SELFSERVICE_ICON: Erase and Reinstall macOS.png
-  INSTALL_BUTTON_TEXT: ERASE!
-  REINSTALL_BUTTON_TEXT: ERASE!
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
@@ -66,8 +75,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
-      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader

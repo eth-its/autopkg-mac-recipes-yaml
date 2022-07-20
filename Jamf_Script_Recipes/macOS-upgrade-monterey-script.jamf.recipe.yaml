@@ -1,0 +1,50 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.macos-upgrade-monterey-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Upgrade to macOS Monterey
+  POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "11.99"
+  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9])
+  SCRIPT_NAME: "macOS-upgrade-monterey.zsh"
+  SCRIPT_PRIORITY: After
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  SELFSERVICE_DESCRIPTION: |
+    WARNING! This will download the latest version of macOS Monterey and install it on the system volume. All work should be saved and backed up before starting.
+  SELFSERVICE_ICON: Install macOS Monterey.png
+  INSTALL_BUTTON_TEXT: Upgrade macOS
+  REINSTALL_BUTTON_TEXT: Upgrade macOS
+  FORCE_DESCRIPTION: "true"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
+      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

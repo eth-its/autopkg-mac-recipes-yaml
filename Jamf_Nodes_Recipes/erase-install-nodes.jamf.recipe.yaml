@@ -1,30 +1,25 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.macos-monterey-upgrade-nodes
+Identifier: com.github.eth-its-recipes.jamf.erase-install-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Upgrade to macOS Monterey
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.macOS-erase-install
+  NAME: erase-install.sh
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.erase-install
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Updates
+  PKG_CATEGORY: Administration
+  EXTENSION_ATTRIBUTE_NAME: erase-install Version
+  EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.sh
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
-  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
-  MIN_OS_VERSION: "10.12.4"
-  MAX_OS_VERSION: "11.99"
-  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9])
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-macOS.xml
-  POLICY_RUN_COMMAND: /Library/Management/erase-install/erase-install.sh --os=12 --update --reinstall --cleanup-after-use --depnotify
-  SELFSERVICE_DESCRIPTION: |
-    WARNING! This will download the latest version of macOS Monterey and install it on the system volume. All work should be saved and backed up before starting.
-  SELFSERVICE_ICON: Install macOS Monterey.png
-  INSTALL_BUTTON_TEXT: Upgrade macOS
-  REINSTALL_BUTTON_TEXT: Upgrade macOS
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SELFSERVICE_ICON: Erase and Reinstall macOS.png
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_PREDICATE: "pkg_uploaded == False"
 
 Process:
@@ -35,6 +30,12 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:

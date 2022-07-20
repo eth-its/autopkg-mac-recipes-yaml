@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: macOS Managed Updates
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NiceUpdater2
-  POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
