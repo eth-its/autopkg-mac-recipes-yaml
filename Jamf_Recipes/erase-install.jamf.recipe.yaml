@@ -12,7 +12,6 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.zsh
   PKG_CATEGORY: Tools & Accessories
   TESTING_GROUP_NAME: Testing
-  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -60,12 +59,6 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
