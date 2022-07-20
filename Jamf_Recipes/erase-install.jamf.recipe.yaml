@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   EXTENSION_ATTRIBUTE_NAME: erase-install Version
-  EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: erase-install-EA.zsh
   PKG_CATEGORY: Tools & Accessories
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
