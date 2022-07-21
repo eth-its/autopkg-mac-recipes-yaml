@@ -13,6 +13,7 @@ Input:
   PASSWORD_EXTENSION_ATTRIBUTE_SCRIPT: macOSLAPS-password-EA.sh
   EXPIRY_EXTENSION_ATTRIBUTE_NAME: macOSLAPS expiration
   EXPIRY_EXTENSION_ATTRIBUTE_SCRIPT: macOSLAPS-expiration-EA.sh
+  POLICY_RUN_COMMAND: /usr/local/laps/macOSLAPS -resetPassword
 
 Process:
   # extra processors for the two EAs that are used to collect the password and expiration
@@ -27,4 +28,3 @@ Process:
       ea_script_path: "%EXPIRY_EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%EXPIRY_EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
-
