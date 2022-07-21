@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.AdobeAcrobatReaderDC
 
 Input:
   NAME: Adobe Acrobat Reader DC
+  OS_VERSION: Mac OS 10.15.0
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Productivity
@@ -14,7 +15,7 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MAX: 10.13.6
+  OS_EXCLUDE_MAX: 10.14.6
   OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
   OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
   SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh

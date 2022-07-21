@@ -10,4 +10,4 @@ Input:
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
-  OS_EXCLUDE_MAX: 10.13.6
+  OS_EXCLUDE_MAX: 10.14.6
