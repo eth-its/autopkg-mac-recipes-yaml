@@ -9,7 +9,7 @@
     <key>PasswordLength</key>
     <integer>14</integer>
     <key>RemovePassChars</key>
-    <string>!#$&amp;'()*+,-/:;&lt;=&gt;?@YZ[\]^_`yz{|}~&quot;</string>
+    <string>!#$&amp;&apos;()*+,-/:;&lt;=&gt;?@YZ[\]^_`yz{|}~&quot;</string>
     <key>Method</key>
     <string>Local</string>
     <key>FirstPass</key>
