@@ -10,3 +10,4 @@ Input:
   VERSION_STRING_TYPE: CFBundleVersion
   EXTENSION_ATTRIBUTE_NAME: polybox Version
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
+  SELFSERVICE_ICON: polybox 2.10.png

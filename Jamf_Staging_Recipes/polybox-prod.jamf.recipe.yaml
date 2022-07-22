@@ -12,3 +12,4 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-app-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  SELFSERVICE_ICON: polybox 2.10.png
