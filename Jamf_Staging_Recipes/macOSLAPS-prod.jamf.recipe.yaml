@@ -10,3 +10,4 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: macOSLAPS-EA.zsh
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  TRIGGER_POLICY_RUN_COMMAND: /usr/local/laps/macOSLAPS -resetPassword

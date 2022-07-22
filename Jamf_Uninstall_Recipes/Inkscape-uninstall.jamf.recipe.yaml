@@ -8,3 +8,4 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: org.inkscape.Inkscape
+  SELFSERVICE_ICON: Inkscape 1.2.png
