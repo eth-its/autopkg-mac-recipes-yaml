@@ -7,3 +7,4 @@ Input:
   NAME: Inkscape
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Inkscape
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: Inkscape 1.2.png
