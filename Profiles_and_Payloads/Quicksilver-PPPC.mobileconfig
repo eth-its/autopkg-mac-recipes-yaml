@@ -40,7 +40,7 @@
 			</dict>
 		</array>
 		<key>PayloadDescription</key>
-		<string>Adds DetectX to TCC</string>
+		<string>Gives Quicksilver Accessibility permissions</string>
 		<key>PayloadDisplayName</key>
 		<string>Quicksilver Privacy Preferences</string>
 		<key>PayloadIdentifier</key>
