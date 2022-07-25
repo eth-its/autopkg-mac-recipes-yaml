@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Microsoft Teams
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  SELFSERVICE_ICON: Microsoft Teams 5.png
