@@ -8,11 +8,6 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
-  SELFSERVICE_DESCRIPTION: |
-    DetectX a lightweight, on-demand dedicated search and troubleshooting tool, probably the fastest of its kind, that can identify malware, adware, keyloggers, potentially unwanted apps and potentially destabilising apps on a mac. It can also help you to identify unknown and novel threats through its Profiler and History functions.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
