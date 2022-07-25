@@ -7,3 +7,4 @@ Input:
   NAME: Rectangle
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.knollsoft.Rectangle.pkg
+  SELFSERVICE_ICON: Rectangle 0.5.png

@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 Input:
   NAME: Rectangle
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Rectangle
+  SELFSERVICE_ICON: Rectangle 0.5.png
