@@ -1,5 +1,5 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.DetectX-profile
+Identifier: com.github.grahampugh.recipes.jamf.DetectXSwift-profile
 MinimumVersion: "2.3"
 
 Input:
@@ -9,10 +9,10 @@ Input:
   PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: DetectX settings
-  PROFILE_MOBILECONFIG: DetectX-settings.mobileconfig
-  PROFILE2_NAME: Privacy Preferences - DetectX
-  PROFILE2_MOBILECONFIG: DetectX-PPPC.mobileconfig
+  PROFILE_NAME: DetectX Swift Settings
+  PROFILE_MOBILECONFIG: DetectXSwift-settings.mobileconfig
+  PROFILE2_NAME: DetectX Swift Privacy Preferences
+  PROFILE2_MOBILECONFIG: DetectXSwift-PPPC.mobileconfig
   REPLACE_PROFILE: "False"
   REPLACE_PROFILE2: "False"
 
