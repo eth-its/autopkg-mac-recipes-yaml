@@ -97,8 +97,6 @@ Process:
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: False
 
-  - Processor: com.github.grahampugh.recipes.commonprocessors/Sleep
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
@@ -110,8 +108,6 @@ Process:
       computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: True
-
-  - Processor: com.github.grahampugh.recipes.commonprocessors/Sleep
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
