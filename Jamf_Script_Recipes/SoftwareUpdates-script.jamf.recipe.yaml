@@ -42,16 +42,6 @@ Process:
     Arguments:
       category_name: "%POLICY_CATEGORY%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%POLICY_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL%"
-      replace_script: "True"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
