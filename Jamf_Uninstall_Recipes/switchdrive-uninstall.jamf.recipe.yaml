@@ -8,3 +8,6 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.switchdrive.desktopclient
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: switchdrive Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
