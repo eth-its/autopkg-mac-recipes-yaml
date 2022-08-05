@@ -22,7 +22,7 @@ Process:
     Processor: Versioner
 
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/%download_url%"
+      pkg_path: "%RECIPE_CACHE_DIR%/switchdrive-%version%.pkg"
       source_pkg: "%pathname%"
     Processor: PkgCopier
 
