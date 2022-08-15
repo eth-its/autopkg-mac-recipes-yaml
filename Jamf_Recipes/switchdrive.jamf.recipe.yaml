@@ -11,6 +11,10 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     The switchdrive desktop client offers desktop synchronisation with the SWITCHdrive file hosting service.
 
+    **Information: ETH accounts do not have access to SWITCHdrive. Use polybox.** 
+
+    Access may be possible through other affiliations such as swissuniversities, UZH, etc. 
+
     Version: %version%
     Category: %PKG_CATEGORY%
   EXTENSION_ATTRIBUTE_NAME: switchdrive Version
