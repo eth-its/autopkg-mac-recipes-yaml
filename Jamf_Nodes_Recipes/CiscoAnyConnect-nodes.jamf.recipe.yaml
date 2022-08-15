@@ -8,3 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CiscoAnyConnect
   SCRIPT_NAME: CiscoAnyConnect-postinstall.zsh
   SCRIPT_PATH: CiscoAnyConnect-postinstall.zsh
+  SELFSERVICE_ICON: Cisco AnyConnect.png
