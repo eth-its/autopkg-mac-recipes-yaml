@@ -1,0 +1,15 @@
+Description: Download recipe for the polybox desktop client.
+Identifier: com.github.eth-its-recipes.download.OpenScapeCleint
+MinimumVersion: "2.3"
+
+Input:
+  NAME: OpenScape Client
+
+Process:
+  - Processor: URLDownloader
+    Comment: Download the setup package (note that the package is not signed)
+    Arguments:
+      url: "https://polybox.ethz.ch/index.php/s/SSYPpH1iWskH5HE/download?path=%2F&files=UCDesktopAppSetup.pkg"
+      filename: UCDesktopAppSetup.pkg
+
+  - Processor: EndOfCheckPhase

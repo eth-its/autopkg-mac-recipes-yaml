@@ -6,13 +6,6 @@ Input:
   NAME: Software Updates
   GROUP_NAME: Software Updates available
   GROUP_TEMPLATE: SmartGroup-softwareupdates.xml
-  SCRIPT_NAME: Display pop-up message
-  SCRIPT_PATH: DisplayPopup.zsh
-  SCRIPT_PRIORITY: After
-  PARAMETER4_LABEL: Dialogue message
-  PARAMETER5_LABEL: Button Text
-  PARAMETER4_VALUE: No macOS software updates available
-  PARAMETER5_VALUE: OK
   EXTENSION_ATTRIBUTE_NAME: Software updates available
   EXTENSION_ATTRIBUTE_SCRIPT: SoftwareUpdates-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
@@ -23,6 +16,8 @@ Input:
   UPDATES_SELFSERVICE_DISPLAY_NAME: Install macOS Updates
   UPDATES_SELFSERVICE_ICON: System Preferences.png
   UPDATES_RUN_COMMAND: /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
+  UPDATES_INSTALL_BUTTON_TEXT: Info
+  UPDATES_REINSTALL_BUTTON_TEXT: Info
   UPDATES_SELFSERVICE_DESCRIPTION: |
     It has been determined that macOS software updates are available on your system. 
 
@@ -32,29 +27,20 @@ Input:
   NO_UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-none.xml
   NO_UPDATES_POLICY_NAME: No macOS Updates Available
   NO_UPDATES_SELFSERVICE_DISPLAY_NAME: No macOS Updates Available
+  NO_UPDATES_SELFSERVICE_ICON: No Software Updates Available.png
+  NO_UPDATES_RUN_COMMAND: launchctl kickstart -k system/com.apple.softwareupdated; /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
+  NO_UPDATES_INSTALL_BUTTON_TEXT: Check again
+  NO_UPDATES_REINSTALL_BUTTON_TEXT: Check again
   NO_UPDATES_UPDATES_SELFSERVICE_DESCRIPTION: |
     Your computer is up-to-date, and no **macOS software updates** are available or required.
 
-    **There is no need to click on the *info* button - this message is purely informational.**
-  NO_UPDATES_SELFSERVICE_ICON: No Software Updates Available.png
-  INSTALL_BUTTON_TEXT: Info
-  REINSTALL_BUTTON_TEXT: Info
+    Click on the button to check again.
   FORCE_DESCRIPTION: "true"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%POLICY_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL%"
-      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
