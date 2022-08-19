@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<account>
+    <name>%NAME%</name>
+    <password>%PASSWORD%</password>
+    <directory_user>false</directory_user>
+    <full_name>%FULL_NAME%</full_name>
+    <email>%EMAIL%</email>
+    <email_address>%EMAIL%</email_address>
+    <enabled>Enabled</enabled>
+    <force_password_change>true</force_password_change>
+    <access_level>Full Access</access_level>
+    <privilege_set>Custom</privilege_set>
+    <privileges>
+        <jss_objects>
+            <privilege>Create Advanced Computer Searches</privilege>
+            <privilege>Read Advanced Computer Searches</privilege>
+            <privilege>Update Advanced Computer Searches</privilege>
+            <privilege>Create Advanced Mobile Device Searches</privilege>
+            <privilege>Read Advanced Mobile Device Searches</privilege>
+            <privilege>Update Advanced Mobile Device Searches</privilege>
+            <privilege>Create Advanced User Searches</privilege>
+            <privilege>Read Advanced User Searches</privilege>
+            <privilege>Update Advanced User Searches</privilege>
+            <privilege>Create_API_Integrations</privilege>
+            <privilege>Read_API_Integrations</privilege>
+            <privilege>Update_API_Integrations</privilege>
+            <privilege>Create Computer PreStage Enrollments</privilege>
+            <privilege>Read Computer PreStage Enrollments</privilege>
+            <privilege>Update Computer PreStage Enrollments</privilege>
+            <privilege>Create Computers</privilege>
+            <privilege>Read Computers</privilege>
+            <privilege>Update Computers</privilege>
+            <privilege>Delete Computers</privilege>
+            <privilege>Create Mobile Device PreStage Enrollments</privilege>
+            <privilege>Read Mobile Device PreStage Enrollments</privilege>
+            <privilege>Update Mobile Device PreStage Enrollments</privilege>
+            <privilege>Create Mobile Devices</privilege>
+            <privilege>Read Mobile Devices</privilege>
+            <privilege>Update Mobile Devices</privilege>
+            <privilege>Create Smart Computer Groups</privilege>
+            <privilege>Read Smart Computer Groups</privilege>
+            <privilege>Update Smart Computer Groups</privilege>
+            <privilege>Create Smart Mobile Device Groups</privilege>
+            <privilege>Read Smart Mobile Device Groups</privilege>
+            <privilege>Update Smart Mobile Device Groups</privilege>
+            <privilege>Create Static Computer Groups</privilege>
+            <privilege>Read Static Computer Groups</privilege>
+            <privilege>Update Static Computer Groups</privilege>
+            <privilege>Create Static Mobile Device Groups</privilege>
+            <privilege>Read Static Mobile Device Groups</privilege>
+            <privilege>Update Static Mobile Device Groups</privilege>
+        </jss_objects>
+        <jss_settings>
+            <privilege>Read User-Initiated Enrollment</privilege>
+        </jss_settings>
+        <jss_actions>
+            <privilege>Allow User to Enroll</privilege>
+            <privilege>Assign Users to Computers</privilege>
+            <privilege>Assign Users to Mobile Devices</privilege>
+            <privilege>Change Password</privilege>
+            <privilege>Dismiss Notifications</privilege>
+            <privilege>Enroll Computers and Mobile Devices</privilege>
+            <privilege>Flush MDM Commands</privilege>
+            <privilege>Flush Policy Logs</privilege>
+            <privilege>Send Blank Pushes to Mobile Devices</privilege>
+            <privilege>Send Command to Renew MDM Profile</privilege>
+            <privilege>Send Enable Bootstrap Token Command</privilege>
+            <privilege>View Event Logs</privilege>
+            <privilege>View MDM command information in Jamf Pro API</privilege>
+        </jss_actions>
+        <recon/>
+        <casper_admin/>
+        <casper_remote/>
+    </privileges>
+</account>

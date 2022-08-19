@@ -1,0 +1,23 @@
+Description: |
+  Creates or updates an account based on a template. Note that LDAP Groups cannot be created, only updated.
+
+  The following must be put in an override:
+  - NAME
+  - FULL_NAME
+  - PASSWORD
+  - EMAIL
+
+Identifier: com.github.eth-its-recipes.jamf.account.APIUserForPCLM
+MinimumVersion: "2.3"
+
+Input:
+  ACCOUNT_TYPE: user
+  ACCOUNT_TEMPLATE: Account-user-APIUserForPCLM.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfAccountUploader
+    Arguments:
+      account_name: "%NAME%"
+      account_type: "%ACCOUNT_TYPE%"
+      account_template: "%ACCOUNT_TEMPLATE%"
+      replace_account: "True"
