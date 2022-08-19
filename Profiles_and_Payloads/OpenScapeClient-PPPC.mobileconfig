@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>Enables System Events</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenScape Client Privacy Settings</string>
+			<key>PayloadIdentifier</key>
+			<string>813D67EA-30D6-44B8-9C24-D2461B87611E</string>
+			<key>PayloadOrganization</key>
+			<string>ETH Zürich</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>2D71354D-DE23-4D90-B4A1-DEA626E45A96</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>AppleEvents</key>
+				<array>
+					<dict>
+						<key>AEReceiverCodeRequirement</key>
+						<string>identifier "com.apple.systemevents" and anchor apple</string>
+						<key>AEReceiverIdentifier</key>
+						<string>com.apple.systemevents</string>
+						<key>AEReceiverIdentifierType</key>
+						<string>bundleID</string>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.unify.ucwcdesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "4XGDRF4ETY"</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.unify.ucwcdesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Enables System Events</string>
+	<key>PayloadDisplayName</key>
+	<string>OpenScape Client Privacy Settings</string>
+	<key>PayloadIdentifier</key>
+	<string>813D67EA-30D6-44B8-9C24-D2461B87611E</string>
+	<key>PayloadOrganization</key>
+	<string>ETH Zürich</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>97F7ABA4-E98C-4FA6-ABC2-B05C7BA27738</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
