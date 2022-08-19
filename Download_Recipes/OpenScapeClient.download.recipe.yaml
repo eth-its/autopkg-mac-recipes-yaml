@@ -1,5 +1,5 @@
 Description: Download recipe for the polybox desktop client.
-Identifier: com.github.eth-its-recipes.download.OpenScapeCleint
+Identifier: com.github.eth-its-recipes.download.OpenScapeClient
 MinimumVersion: "2.3"
 
 Input:
