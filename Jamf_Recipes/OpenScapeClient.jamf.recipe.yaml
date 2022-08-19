@@ -52,9 +52,11 @@ Process:
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      category_name: "%POLICY_CATEGORY%"
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -73,6 +75,10 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
