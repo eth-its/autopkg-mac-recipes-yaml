@@ -1,0 +1,86 @@
+Description: Downloads the current release version of polybox and extracts the installer package.
+Identifier: com.github.eth-its-recipes.pkg.OpenScapeClient
+MinimumVersion: 0.4.0
+ParentRecipe: com.github.eth-its-recipes.download.OpenScapeClient
+
+Input: {}
+
+Process:
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%"
+    Processor: FlatPkgUnpacker
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/com.unify.ucwcdesktop.pkg/Payload"
+      purge_destination: True
+    Processor: PkgPayloadUnpacker
+
+  - Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/payload/UCDesktopApp.app/Contents/Info.plist"
+      plist_version_key: CFBundleVersion
+    Processor: Versioner
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/UCDesktopAppSetup.pkg"
+      source_pkg: "%pathname%"
+    Processor: PkgCopier
+
+  - Processor: URLDownloader
+    Comment: Download the config json file
+    Arguments:
+      url: "https://polybox.ethz.ch/index.php/s/SSYPpH1iWskH5HE/download?path=%2F&files=deployment.json"
+      filename: deployment.json
+      download_dir: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+        ## script to install UCDesktopApp with configuration
+
+        DIR=$(dirname "$0")
+
+        logfile="/var/log/UCDesktop-install.log"
+        touch $logfile
+
+        /usr/sbin/installer -pkg "$DIR/UCDesktopAppSetup.pkg" -target /
+
+        if (test $? = 0) then
+            echo "UCDesktopApp installed." >> $logfile
+        else
+            echo "ERROR: UCDesktopApp installation failed." >> $logfile
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.OpenScapeClient
+        pkgname: "OpenScapeClient-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/payload"
+    Processor: PathDeleter

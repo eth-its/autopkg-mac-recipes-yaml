@@ -1,0 +1,84 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.OpenScapeClient
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.pkg.OpenScapeClient
+
+Input:
+  NAME: OpenScape Client
+  JSS_INVENTORY_NAME: UCDesktopApp.app
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  VERSION_STRING_TYPE: CFBundleVersion
+  EXTENSION_ATTRIBUTE_NAME: OpenScape Client Version
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
+  PKG_CATEGORY: Connect & Remote
+  SELFSERVICE_DESCRIPTION: |
+    The OpenScape desktop client for macOS (currently named UCDesktopApp.app, short for Unified Communications Desktop App) is ETH's unified communications solution. It is available as a desktop client for PC and Mac, mobile client for iOS and Android, and as a web client for Microsoft Edge and Google Chrome.
+
+    For instrutions on migrating to the OpenScape system, please visit the [Quick Start UC Web Client](https://unlimited.ethz.ch/pages/viewpage.action?pageId=125212672) wiki page.
+
+    For instructions on setup, please visit the [UC Erweiterung Desktop App / Web Client](https://unlimited.ethz.ch/pages/viewpage.action?pageId=125213186) wiki page.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-app-EA.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: OpenScape Client.png
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
