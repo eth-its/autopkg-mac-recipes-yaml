@@ -6,3 +6,4 @@ MinimumVersion: "2.3"
 Input:
   NAME: Suspicious Package
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SuspiciousPackage
+  SELFSERVICE_ICON: Suspicious Package 4.png

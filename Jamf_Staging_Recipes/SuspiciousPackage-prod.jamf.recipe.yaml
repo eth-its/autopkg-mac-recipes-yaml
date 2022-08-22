@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Suspicious Package
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SuspiciousPackage
+  SELFSERVICE_ICON: Suspicious Package 4.png
