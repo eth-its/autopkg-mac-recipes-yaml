@@ -12,7 +12,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Matlab
 Input:
   NAME: MATLAB
   LANGUAGE: EN
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Science & Math
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
