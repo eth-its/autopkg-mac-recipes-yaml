@@ -9,7 +9,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Closes all Microsoft Office applications, checks for damage and performs repairs as necessary. Resets caches, credentials and configuration data.
+    Closes all Microsoft Office applications, checks for damage and performs repairs as necessary. Resets caches, credentials, license activations and configuration data.
 
     Version: %version%
     Category: %PKG_CATEGORY%
