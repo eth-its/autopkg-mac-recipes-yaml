@@ -1,0 +1,14 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.owncloud-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: owncloud
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.owncloud
+  VERSION_STRING_TYPE: CFBundleVersion
+  EXTENSION_ATTRIBUTE_NAME: owncloud Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-app-EA.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml

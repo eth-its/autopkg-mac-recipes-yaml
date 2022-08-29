@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.owncloud-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+
+Input:
+  NAME: owncloud
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.owncloud
+  VERSION_STRING_TYPE: CFBundleVersion
+  EXTENSION_ATTRIBUTE_NAME: owncloud Version
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
