@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 Input:
   NAME: owncloud
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.owncloud
+  JSS_INVENTORY_NAME: "%NAME%.app"
   VERSION_STRING_TYPE: CFBundleVersion
   EXTENSION_ATTRIBUTE_NAME: owncloud Version
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
