@@ -1,7 +1,7 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
-  Requires the "Quicksilver users" group to have already been created.
+  Requires the "OpenScape Client users" group to have already been created.
 Identifier: com.github.grahampugh.recipes.jamf.OpenScapeClient-profile
 MinimumVersion: "2.3"
 
@@ -15,11 +15,6 @@ Input:
   REPLACE_PROFILE: "False"
 
 Process:
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%PROFILE_CATEGORY%"
-      replace_category: "False"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"
