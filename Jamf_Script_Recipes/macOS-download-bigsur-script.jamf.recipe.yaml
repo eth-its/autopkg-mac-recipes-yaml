@@ -17,12 +17,12 @@ Input:
   SCRIPT_NAME: "macOS-download-bigsur.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Big Sur.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Big Sur.png
   INSTALL_BUTTON_TEXT: Download
-  REINSTALL_BUTTON_TEXT: Download
+  REINSTALL_BUTTON_TEXT: Download Again
   FORCE_DESCRIPTION: "false"
 
 Process:
