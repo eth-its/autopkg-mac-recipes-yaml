@@ -10,6 +10,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeCreativeCloudSDL
   SCRIPT_NAME: AdobeCreativeCloud-preinstall.zsh
   SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   TRIGGER_NAME: AdobeCreativeCloudSDL-install
   SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
