@@ -17,7 +17,7 @@ Input:
   SCRIPT_NAME: "macOS-upgrade-bigsur.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will download the latest version of macOS Big Sur and install it on the system volume. All work should be saved and backed up before starting.
   SELFSERVICE_ICON: Install macOS Big Sur.png
