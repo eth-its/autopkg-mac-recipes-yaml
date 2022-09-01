@@ -38,12 +38,6 @@ Process:
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
-      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
-      replace_group: "True"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
