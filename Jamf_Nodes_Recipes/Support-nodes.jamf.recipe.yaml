@@ -1,13 +1,11 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Support-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
 
 Input:
   NAME: Support
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support
-  OS_EXCLUDE_MAX: 10.15.8
-  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
+  minimum_os_version: "11.0"
   SELFSERVICE_ICON: "ETH.png"
   POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'"

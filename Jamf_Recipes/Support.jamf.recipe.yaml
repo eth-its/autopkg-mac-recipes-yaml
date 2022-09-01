@@ -15,7 +15,7 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INELIGIBLE_GROUP_NAME: "%NAME% ineligible for test version"
   TEST_VERSION_INELIGIBLE_GROUP_TEMPLATE: SmartGroup-test-version-ineligible.xml
-  MINIMUM_OS_VERSION: "11.0"
+  minimum_os_version: "11.0"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -74,7 +74,6 @@ Process:
     Arguments:
       computergroup_name: "%TEST_VERSION_INELIGIBLE_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INELIGIBLE_GROUP_TEMPLATE%"
-      minimum_os_version: "%MINIMUM_OS_VERSION%%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
