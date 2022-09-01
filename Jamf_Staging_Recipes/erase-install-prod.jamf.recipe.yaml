@@ -1,7 +1,6 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.erase-install-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: erase-install.sh
