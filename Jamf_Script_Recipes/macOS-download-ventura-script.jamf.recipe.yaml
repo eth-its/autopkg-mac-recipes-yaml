@@ -17,13 +17,15 @@ Input:
   SCRIPT_NAME: "macOS-download-ventura.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible-notification.xml
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Ventura.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Ventura.png
   INSTALL_BUTTON_TEXT: Download
   REINSTALL_BUTTON_TEXT: Download Again
   FORCE_DESCRIPTION: "false"
+  MESSAGE_START: The macOS Monterey installer application will now be downloaded.
+  MESSAGE_FINNISH: The macOS Monterey installer has been downloaded to the Applications folder.
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
