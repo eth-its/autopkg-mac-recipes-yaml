@@ -25,7 +25,7 @@ Input:
   REINSTALL_BUTTON_TEXT: Download Again
   FORCE_DESCRIPTION: "false"
   MESSAGE_START: The macOS Big Sur installer application will now be downloaded.
-  MESSAGE_FINNISH: The macOS Big Sur installer has been downloaded to the Applications folder.
+  MESSAGE_FINISH: The macOS Monterey installer has been downloaded to the Applications folder.
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
