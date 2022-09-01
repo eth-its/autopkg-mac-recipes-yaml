@@ -12,6 +12,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   TRIGGER_NAME: AdobeCreativeCloudSDL-install
   SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
+  PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
