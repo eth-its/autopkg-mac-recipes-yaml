@@ -1,4 +1,5 @@
 Description: Creates a trigger-only policy for the SDL version of the Adobe Creative Cloud app.
+Comment: this policy does not need to be staged; this recipe is only for reporting purposes
 Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloudSDL-prod
 MinimumVersion: "2.3"
 
@@ -13,6 +14,7 @@ Input:
   TRIGGER_NAME: AdobeCreativeCloudSDL-install
   SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
   PROD_PREDICATE: "ready_to_stage == False"
+  SELFSERVICE_POLICY_NAME: Adobe Creative Cloud SDL
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
