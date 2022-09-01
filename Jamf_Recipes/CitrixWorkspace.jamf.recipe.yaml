@@ -13,9 +13,6 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MAX: 10.14.6
-  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -25,7 +22,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-max.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -62,12 +59,6 @@ Process:
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
-      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
-      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
