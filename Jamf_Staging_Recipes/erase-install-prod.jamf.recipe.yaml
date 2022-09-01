@@ -9,7 +9,7 @@ Input:
   PKG_CATEGORY: Connect & Remote
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
-  TRIGGER_NAME: "%NAME%-install"
+  TRIGGER_NAME: "erase-install-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_POLICY_NAME: erase-install.sh
 
