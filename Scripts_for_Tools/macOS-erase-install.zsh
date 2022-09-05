@@ -8,6 +8,9 @@ DOC
 
 eraseinstall="/Library/Management/erase-install/erase-install.sh"
 
-jamf policy -event "erase-install-install"
+if [[ ! -f "$eraseinstall" ]]; then
+    jamf policy -event "erase-install-install"
+fi
+
 /Library/Management/erase-install/erase-install.sh --update --erase --sameos --depnotify --current-user
 

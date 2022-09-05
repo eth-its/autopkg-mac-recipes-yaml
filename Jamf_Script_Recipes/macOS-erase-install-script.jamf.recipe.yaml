@@ -25,17 +25,18 @@ Process:
     Arguments:
       category_name: "%POLICY_CATEGORY%"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
-      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
-      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

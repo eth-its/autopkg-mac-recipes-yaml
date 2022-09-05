@@ -1,11 +1,8 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.CitrixWorkspace-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 
 Input:
   NAME: Citrix Workspace
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CitrixWorkspace
-  OS_EXCLUDE_MAX: 10.14.6
-  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
