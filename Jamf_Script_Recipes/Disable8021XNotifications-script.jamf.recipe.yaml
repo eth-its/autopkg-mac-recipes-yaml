@@ -1,0 +1,45 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Disable8021XAutoDetect-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Network 802.1X Auto-Detect - Disable
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: Disable8021XAutoDetect.sh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: Network 802.1X Auto-Detect - Disable
+  SELFSERVICE_DESCRIPTION: Disables auto-detect setting for 802.1X for the logged-in user.
+  SELFSERVICE_ICON: System Preferences.png
+  INSTALL_BUTTON_TEXT: Disable
+  REINSTALL_BUTTON_TEXT: Disable
+  FORCE_DESCRIPTION: "true"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
