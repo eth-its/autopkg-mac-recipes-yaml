@@ -8,7 +8,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: Disable8021XAutoDetect.sh
   SCRIPT_PRIORITY: After
