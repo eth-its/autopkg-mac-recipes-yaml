@@ -1,23 +1,22 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.macos-erase-install-script
+Identifier: com.github.eth-its-recipes.jamf.CreateNewUser-script
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Erase and Reinstall macOS
-  POLICY_NAME: "%NAME%"
-  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  NAME: Create New User
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: Testing
-  SCRIPT_NAME: "macOS-erase-install.zsh"
-  SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
-  SELFSERVICE_DESCRIPTION: |
-    WARNING! This will completely erase the device and reinstall macOS to the latest version.
-  SELFSERVICE_ICON: Erase and Reinstall macOS.png
-  INSTALL_BUTTON_TEXT: ERASE!
-  REINSTALL_BUTTON_TEXT: ERASE!
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: CreateNewUser.sh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: Create New User
+  SELFSERVICE_DESCRIPTION: Creates a new user using on-screen dialogues windows. Your administrator may have preset some of the settings.
+  SELFSERVICE_ICON: System Preferences.png
+  INSTALL_BUTTON_TEXT: Create User
+  REINSTALL_BUTTON_TEXT: Create User
   FORCE_DESCRIPTION: "true"
 
 Process:

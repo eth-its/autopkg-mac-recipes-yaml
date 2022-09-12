@@ -13,22 +13,31 @@ Input:
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
   MAX_OS_VERSION: "11.99"
-  MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-1]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-7]|Macmini[7-9]|MacPro[6-9])
+  MODEL_IDENTIFIER_REGEX: ^(iMac14,4|iMac1[5-9]|iMac2[0-1]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-7]|Macmini[7-9]|MacPro[6-9]|VirtualMac)
   SCRIPT_NAME: "macOS-download-bigsur.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible-notification.xml
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Big Sur.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Big Sur.png
   INSTALL_BUTTON_TEXT: Download
-  REINSTALL_BUTTON_TEXT: Download
+  REINSTALL_BUTTON_TEXT: Download Again
   FORCE_DESCRIPTION: "false"
+  MESSAGE_START: The macOS Big Sur installer application will now be downloaded.
+  MESSAGE_FINISH: The macOS Monterey installer has been downloaded to the Applications folder.
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:

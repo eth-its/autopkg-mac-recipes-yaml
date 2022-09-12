@@ -1,7 +1,6 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.erase-install-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: erase-install.sh
@@ -10,7 +9,7 @@ Input:
   PKG_CATEGORY: Connect & Remote
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
-  TRIGGER_NAME: "%NAME%-install"
+  TRIGGER_NAME: "erase-install-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_POLICY_NAME: erase-install.sh
 
@@ -30,3 +29,8 @@ Process:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%LAST_RUN_POLICY_NAME%"

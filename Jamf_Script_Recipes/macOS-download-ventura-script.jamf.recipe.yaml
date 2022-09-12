@@ -1,9 +1,9 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.macos-download-monterey-script
+Identifier: com.github.eth-its-recipes.jamf.macos-download-ventura-script
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Download macOS Monterey Installer
+  NAME: Download macOS Ventura Installer
   POLICY_NAME: "%NAME%"
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
   USERS_GROUP_NAME: "%NAME% users"
@@ -12,15 +12,15 @@ Input:
   INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
-  MAX_OS_VERSION: "12.99"
-  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9|Mac1[3-9]|VirtualMac)
-  SCRIPT_NAME: "macOS-download-monterey.zsh"
+  MAX_OS_VERSION: "13.99"
+  MODEL_IDENTIFIER_REGEX: ^(iMac(1[8-9]|[2-9]\d)|^MacPro[7-9]|iMacPro|Macmini([8-9]|\d\d)|MacBookAir([8-9]|\d\d)|MacBook(\d\d)|MacBookPro(1[4-9])|Mac1[3-9]|VirtualMac)
+  SCRIPT_NAME: "macOS-download-ventura.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible-notification.xml
   SELFSERVICE_DESCRIPTION: |
-    Downloads 'Install macOS Monterey.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
-  SELFSERVICE_ICON: Install macOS Monterey.png
+    Downloads 'Install macOS Ventura.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
+  SELFSERVICE_ICON: Install macOS Ventura.png
   INSTALL_BUTTON_TEXT: Download
   REINSTALL_BUTTON_TEXT: Download Again
   FORCE_DESCRIPTION: "false"

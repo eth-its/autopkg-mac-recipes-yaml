@@ -12,5 +12,5 @@ if [[ ! -f "$eraseinstall" ]]; then
     jamf policy -event "erase-install-install"
 fi
 
-/Library/Management/erase-install/erase-install.sh --os 11 --update --reinstall --cleanup-after-use --depnotify --current-user
+/Library/Management/erase-install/erase-install.sh --os 13 --update --reinstall --cleanup-after-use --depnotify --current-user --beta --seed PublicSeed
 
