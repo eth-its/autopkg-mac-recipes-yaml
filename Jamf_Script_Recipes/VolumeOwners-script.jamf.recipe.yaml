@@ -8,7 +8,7 @@ Input:
   GROUP_NAME: No Volume Owners
   GROUP_TEMPLATE: SmartGroup-installed-no-users-EA.xml
 
-Processor:
+Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
