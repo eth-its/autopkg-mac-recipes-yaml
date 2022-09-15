@@ -1,0 +1,16 @@
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeAfterEffectsSDL
+ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe After Effects CC 2022 SDL
+  LIST_NAME: Adobe_After_Effects_CC_EN_NUL
+  JSS_INVENTORY_NAME: Adobe After Effects CC 2022.app
+  SELFSERVICE_DESCRIPTION: |
+    Installs Adobe After Effects CC with a Shared Device License. This is intended only for labs.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_ICON: Adobe After Effects CC SDL.png
