@@ -7,5 +7,5 @@ Input:
   NAME: Adobe Lightroom Classic CC 2022 SDL
   JSS_INVENTORY_NAME: Adobe Lightroom Classic.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeLightroomClassicSDL
-  SELF_SERVICE_ICON: Adobe Lightroom Classic CC SDL.png
+  SELFSERVICE_ICON: Adobe Lightroom Classic CC SDL.png
   POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install

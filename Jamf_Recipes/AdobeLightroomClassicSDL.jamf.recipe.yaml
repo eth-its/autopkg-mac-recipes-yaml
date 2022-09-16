@@ -13,4 +13,4 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SELF_SERVICE_ICON: Adobe Lightroom Classic CC SDL.png
+  SELFSERVICE_ICON: Adobe Lightroom Classic CC SDL.png
