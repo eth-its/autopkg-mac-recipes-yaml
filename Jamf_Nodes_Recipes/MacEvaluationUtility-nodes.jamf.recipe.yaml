@@ -6,3 +6,4 @@ MinimumVersion: "2.3"
 Input:
   NAME: Mac Evaluation Utility
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MacEvaluationUtility
+  minimum_os_version: "11.0"
