@@ -6,5 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: PopChar
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.PopChar
-  POLICY_RUN_COMMAND: "jamf policy -event 'PopChar License-install'"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'PopChar License-install'"
   SELFSERVICE_ICON: PopChar 8.png
