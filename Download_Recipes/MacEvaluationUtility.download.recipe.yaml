@@ -1,0 +1,27 @@
+Description: Checks /Volumes/AutoPkg_Local_Sources for update.
+Identifier: com.github.eth-its-recipes.download.MacEvaluationUtility
+MinimumVersion: "2.3"
+
+Input:
+  EXCEPTION: ""
+  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LIST_NAME: MacEvaluationUtility
+  VENDOR: Apple
+
+Process:
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
+    Arguments:
+      EXCEPTION: "%EXCEPTION%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
+
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Arguments:
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
+
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
+    Arguments:
+      url: file://%root_path%/%version%/%latest_file%.dmg
+
+  - Processor: EndOfCheckPhase

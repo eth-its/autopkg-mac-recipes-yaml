@@ -1,0 +1,8 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.MacEvaluationUtility-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-prod
+
+Input:
+  NAME: Mac Evaluation Utility
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MacEvaluationUtility
