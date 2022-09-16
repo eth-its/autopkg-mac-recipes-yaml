@@ -10,7 +10,7 @@
         <trigger_logout>false</trigger_logout>
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
-        <trigger_other>false</trigger_other>
+        <trigger_other></trigger_other>
         <frequency>Ongoing</frequency>
         <category>
             <name>%POLICY_CATEGORY%</name>
