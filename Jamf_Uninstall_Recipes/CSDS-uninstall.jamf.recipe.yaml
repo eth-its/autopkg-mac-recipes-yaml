@@ -1,0 +1,15 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.CSDS-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: CSD Suite
+  SCRIPT_NAME: CSDS-uninstall.zsh
+  SCRIPT_PATH: CSDS-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: CSDS Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  SELFSERVICE_ICON: CSDS.png

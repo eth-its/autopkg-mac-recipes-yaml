@@ -1,0 +1,70 @@
+Description: |
+  Downloads the latest version of MOE and creates a package.
+
+  Required override keys:
+  - ACTIVATION_KEY
+Identifier: com.github.eth-its-recipes.pkg.CSDS
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.CSDS
+
+Input:
+  NAME: CSDS
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/%latest_file%.dmg"
+      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install CSDS
+
+        DIR=$(dirname "$0")
+
+        # remove quarantine flag from CSDS dmg
+        xattr -d com.apple.quarantine "$DIR/%latest_file%.dmg"
+
+        # attach dmg image
+        APPPATH="/Volumes/csds-osx"
+        mkdir -p $APPPATH
+        echo "Mounting to $APPPATH"
+        hdiutil attach $DIR/%latest_file%.dmg -nobrowse -mountpoint $APPPATH
+
+        # now run the silent installer
+        /Volumes/csds-osx/csds-osx.app/Contents/MacOS/osx-x86_64 --prefix /Applications/CSDS --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
+
+        # detach dmg image
+        hdiutil eject $APPPATH
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.CSDS
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PathDeleter

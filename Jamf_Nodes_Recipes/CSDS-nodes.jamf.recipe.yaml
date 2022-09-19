@@ -1,0 +1,12 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CSDS-nodes
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+
+Input:
+  NAME: CSD Suite
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CSDS
+  EXTENSION_ATTRIBUTE_NAME: CSDS Version
+  EXTENSION_ATTRIBUTE_SCRIPT: CSDS-EA.zsh
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  SELFSERVICE_ICON: CSDS.png
