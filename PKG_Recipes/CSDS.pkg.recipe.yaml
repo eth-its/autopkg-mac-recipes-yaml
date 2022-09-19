@@ -12,48 +12,52 @@ Input:
 
 Process:
   - Arguments:
-      pkgdirs: {}
+      pkgdirs:
+        parts_dir: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
     Processor: PkgRootCreator
 
   - Arguments:
-      pkgdirs:
-        Library: "0775"
-        Library/Management: "0775"
-        Library/Management/ETHZ: "0775"
-        Library/Management/ETHZ/CSDS: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
   - Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/CSDS/%latest_file%.dmg"
-      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
-    Processor: Copier
+      parts_dir: "%RECIPE_CACHE_DIR%/Scripts/parts_dir"
+      large_file_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
+    Processor: com.github.eth-its-recipes.processors/LargeFileSplitter
 
   - Arguments:
       file_content: |
         #!/bin/bash
         ## script to install CSDS
 
-        DIR="/Library/Management/ETHZ/CSDS"
+        DIR=$(dirname "$0")
+
+        # make a temporary directory to reassemble the DMG in
+        echo "Creating temporary working directory"
+        tempDirectory=$( /usr/bin/mktemp -d "/private/tmp/CSDS.XXXXXX" )
+        cd "$tempDirectory"
+        echo "Recombining file parts"
+        /bin/cat "$DIR"/x* > "$tempDirectory/%latest_file%.dmg"
 
         # remove quarantine flag from CSDS dmg
-        xattr -d com.apple.quarantine "$DIR/%latest_file%.dmg"
+        xattr -d com.apple.quarantine "$tempDirectory/%latest_file%.dmg"
 
         # attach dmg image
         APPPATH="/Volumes/csds-osx"
-        mkdir -p $APPPATH
+        mkdir -p "$APPPATH"
         echo "Mounting to $APPPATH"
-        hdiutil attach $DIR/%latest_file%.dmg -nobrowse -mountpoint $APPPATH
+        hdiutil attach "$tempDirectory/%latest_file%.dmg" -nobrowse -mountpoint "$APPPATH"
 
         # now run the silent installer
         /Volumes/csds-osx/csds-osx.app/Contents/MacOS/osx-x86_64 --prefix /Applications/CSDS --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
 
         # detach dmg image
-        hdiutil eject $APPPATH
+        hdiutil eject "$APPPATH"
 
         # delete dmg
-        rm -Rf "/Library/Management/ETHZ/CSDS"
+        rm -Rf "$tempDirectory"
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
     Processor: FileCreator
