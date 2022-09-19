@@ -17,12 +17,16 @@ Process:
     Processor: PkgRootCreator
 
   - Arguments:
-      pkgdirs: {}
+      pkgdirs:
+        Library: "0775"
+        Library/Management: "0775"
+        Library/Management/ETHZ: "0775"
+        Library/Management/ETHZ/CSDS: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
   - Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Scripts/%latest_file%.dmg"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/CSDS/%latest_file%.dmg"
       source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
     Processor: Copier
 
@@ -31,7 +35,7 @@ Process:
         #!/bin/bash
         ## script to install CSDS
 
-        DIR=$(dirname "$0")
+        DIR="/Library/Management/ETHZ/CSDS"
 
         # remove quarantine flag from CSDS dmg
         xattr -d com.apple.quarantine "$DIR/%latest_file%.dmg"
@@ -47,9 +51,19 @@ Process:
 
         # detach dmg image
         hdiutil eject $APPPATH
+
+        # delete dmg
+        rm -Rf "/Library/Management/ETHZ/CSDS"
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
     Processor: FileCreator
+
+  - Arguments:
+      version: "%version%"
+      pkgtype: flat
+      template_path: CSDS-PackageInfoTemplate.xml
+      infofile: "%RECIPE_CACHE_DIR%/PackageInfo"
+    Prcoessor: PkgInfoCreator
 
   - Arguments:
       force_pkg_build: true
@@ -58,9 +72,7 @@ Process:
         id: ch.ethz.id.pkg.CSDS
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-        pkgtype: flat
         scripts: Scripts
-        version: "%version%"
     Processor: PkgCreator
 
   - Arguments:
