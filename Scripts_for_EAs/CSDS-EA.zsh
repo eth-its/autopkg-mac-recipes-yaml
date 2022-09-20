@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # CSDS version finder extension attribute
 
