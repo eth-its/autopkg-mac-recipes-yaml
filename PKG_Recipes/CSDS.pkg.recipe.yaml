@@ -63,20 +63,15 @@ Process:
     Processor: FileCreator
 
   - Arguments:
-      version: "%version%"
-      pkgtype: flat
-      template_path: CSDS-PackageInfoTemplate.xml
-      infofile: "%RECIPE_CACHE_DIR%/PackageInfo"
-    Processor: PkgInfoCreator
-
-  - Arguments:
       force_pkg_build: true
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.CSDS
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
         scripts: Scripts
+        version: "%version%"
     Processor: PkgCreator
 
   - Arguments:
