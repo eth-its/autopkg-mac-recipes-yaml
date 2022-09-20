@@ -16,8 +16,6 @@
 """See docstring for LargeFileSplitter class"""
 
 import os.path
-import shutil
-import subprocess
 
 from autopkglib import Processor
 
@@ -48,8 +46,10 @@ class LargeFileSplitter(Processor):
         with open(large_file_path, "rb") as f:
             chunk = f.read(CHUNK_SIZE)
             while chunk:
-                with open("chunk_" + str(file_number), "wb") as chunk_file:
-                    chunk_file.write(os.path.join(parts_dir, chunk))
+                with open(
+                    os.path.join(parts_dir, "chunk_" + str(file_number)), "wb"
+                ) as chunk_file:
+                    chunk_file.write(chunk)
                 file_number += 1
                 chunk = f.read(CHUNK_SIZE)
 
