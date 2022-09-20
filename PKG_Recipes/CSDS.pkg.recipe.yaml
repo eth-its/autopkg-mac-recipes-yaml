@@ -39,7 +39,7 @@ Process:
         tempDirectory=$( /usr/bin/mktemp -d "/private/tmp/CSDS.XXXXXX" )
         cd "$tempDirectory"
         echo "Recombining file parts"
-        /bin/cat "$DIR"/chunk_* > "$tempDirectory/%latest_file%.dmg"
+        /bin/cat "$DIR"/parts_dir/chunk_* > "$tempDirectory/%latest_file%.dmg"
 
         # remove quarantine flag from CSDS dmg
         xattr -d com.apple.quarantine "$tempDirectory/%latest_file%.dmg"

@@ -1,7 +1,0 @@
-<pkg-info format-version="2"
-    identifier="ch.ethz.id.pkg.CSDS"
-    install-location="/"
-    auth="root"
-    large-payload="true"
-    min-os-version="12">
-</pkg-info>
