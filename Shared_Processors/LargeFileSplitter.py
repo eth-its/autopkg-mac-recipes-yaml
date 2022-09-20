@@ -44,10 +44,16 @@ class LargeFileSplitter(Processor):
     def split(self, large_file_path, parts_dir):
         """Do the split"""
         large_file = os.path.basename(large_file_path)
-        shutil.copy(large_file_path, parts_dir)
-        split_cmd = f"/usr/bin/split -b 500m '{parts_dir}/{large_file}'"
-        # run the command
-        subprocess.check_output(split_cmd)
+
+        CHUNK_SIZE = 500
+        file_number = 1
+        with open(large_file_path) as f:
+            chunk = f.read(CHUNK_SIZE)
+            while chunk:
+                with open("chunk_" + str(file_number)) as chunk_file:
+                    chunk_file.write(os.path.join(parts_dir, chunk))
+                file_number += 1
+                chunk = f.read(CHUNK_SIZE)
 
     def main(self):
         """Split that file!"""
