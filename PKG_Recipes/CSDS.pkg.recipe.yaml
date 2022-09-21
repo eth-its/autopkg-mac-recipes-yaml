@@ -25,7 +25,7 @@ Process:
   - Arguments:
       parts_dir: "%RECIPE_CACHE_DIR%/Scripts/parts_dir"
       large_file_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
-    Processor: com.github.eth-its-recipes.processors/LargeFileZipper
+    Processor: com.github.eth-its-recipes.processors/LargeFileSpltter
 
   - Arguments:
       file_content: |
