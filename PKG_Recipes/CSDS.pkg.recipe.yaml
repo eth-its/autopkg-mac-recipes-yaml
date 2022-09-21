@@ -54,6 +54,10 @@ Process:
 
             # detach dmg image
             hdiutil eject "$APPPATH"
+        else
+            echo "DMG not found (probably the reassemblage failed). Cannot continue."
+            exit 1
+        fi
 
         # delete dmg
         rm -Rf "$tempDirectory"
