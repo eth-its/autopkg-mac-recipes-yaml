@@ -41,9 +41,15 @@ class LargeFileSplitter(Processor):
 
     def split(self, large_file_path, parts_dir):
         """Do the split"""
-        split_cmd = f"/usr/bin/split -b 1024m '{large_file_path}' '{parts_dir}/chunk_'"
+        split_cmd = [
+            "/usr/bin/split",
+            "-b",
+            "1024m",
+            large_file_path,
+            f"{parts_dir}/chunk_",
+        ]
         # run the command
-        subprocess.check_output(split_cmd)
+        subprocess.run(split_cmd)
 
     def main(self):
         """Split that file!"""
