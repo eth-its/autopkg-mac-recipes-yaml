@@ -1,4 +1,8 @@
-Description: Creates all production policies for a particular title.
+Description: |
+  Creates all production policies for a particular title.
+
+  Required overrides:
+  - HOSTNAME
 Identifier: com.github.eth-its-recipes.jamf.GlobalProtect-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
@@ -6,3 +10,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: GlobalProtect
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GlobalProtect
+  SCRIPT_NAME: "%NAME%-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_VALUE: "%HOSTNAME%"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml

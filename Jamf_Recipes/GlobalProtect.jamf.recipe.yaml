@@ -1,4 +1,8 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - HOSTNAME
 Identifier: com.github.eth-its-recipes.jamf.GlobalProtect
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.GlobalProtect
@@ -13,6 +17,11 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  SCRIPT_NAME: "%NAME%-preinstall.sh"
+  SCRIPT_PATH: "%NAME%-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: "Portal address"
+  PARAMETER4_VALUE: "%HOSTNAME%"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -22,7 +31,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -43,6 +52,14 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:

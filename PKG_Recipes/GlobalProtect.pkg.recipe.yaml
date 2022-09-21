@@ -1,4 +1,8 @@
-Description: Imports GlobalProtect into FileWave.
+Description: |
+  Downloads the latest version of GlobalProtect and creates a package.
+
+  Required overrides:
+  - HOSTNAME
 Identifier: com.github.eth-its-recipes.pkg.GlobalProtect
 ParentRecipe: com.github.peshay.download.GlobalProtect
 MinimumVersion: "2.3"

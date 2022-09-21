@@ -1,8 +1,18 @@
-Description: Creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - HOSTNAME
 Identifier: com.github.eth-its-recipes.jamf.GlobalProtect-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: GlobalProtect
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GlobalProtect
+  SCRIPT_NAME: "%NAME%-preinstall.sh"
+  SCRIPT_PATH: "%NAME%-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: "Portal address"
+  PARAMETER4_VALUE: "%HOSTNAME%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
