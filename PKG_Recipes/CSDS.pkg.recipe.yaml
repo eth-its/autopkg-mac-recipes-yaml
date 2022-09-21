@@ -25,7 +25,7 @@ Process:
   - Arguments:
       parts_dir: "%RECIPE_CACHE_DIR%/Scripts/parts_dir"
       large_file_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
-    Processor: com.github.eth-its-recipes.processors/LargeFileSplitter
+    Processor: com.github.eth-its-recipes.processors/LargeFileZipper
 
   - Arguments:
       file_content: |
@@ -38,23 +38,22 @@ Process:
         echo "Creating temporary working directory"
         tempDirectory=$( /usr/bin/mktemp -d "/private/tmp/CSDS.XXXXXX" )
         cd "$tempDirectory"
-        echo "Recombining file parts"
-        /bin/cat "$DIR"/parts_dir/chunk_* > "$tempDirectory/%latest_file%.dmg"
+        echo "Unzipping and recombining file parts"
+        /usr/bin/unzip "$DIR"/parts_dir/%latest_file%.dmg.zip -o -d "$tempDirectory/%latest_file%.dmg"
 
-        # remove quarantine flag from CSDS dmg
-        xattr -d com.apple.quarantine "$tempDirectory/%latest_file%.dmg"
+        if [[ -f "$tempDirectory/%latest_file%.dmg" ]]; then
+            APPPATH="/Volumes/csds-osx"
+            echo "DMG successfully recombined - mounting to $APPPATH"
+            # attach dmg image
+            mkdir -p "$APPPATH"
+            echo "Mounting to $APPPATH"
+            hdiutil attach "$tempDirectory/%latest_file%.dmg" -nobrowse -mountpoint "$APPPATH"
 
-        # attach dmg image
-        APPPATH="/Volumes/csds-osx"
-        mkdir -p "$APPPATH"
-        echo "Mounting to $APPPATH"
-        hdiutil attach "$tempDirectory/%latest_file%.dmg" -nobrowse -mountpoint "$APPPATH"
+            # now run the silent installer
+            "$APPPATH/csds-osx.app/Contents/MacOS/osx-x86_64" --prefix /Applications/CSDS --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
 
-        # now run the silent installer
-        /Volumes/csds-osx/csds-osx.app/Contents/MacOS/osx-x86_64 --prefix /Applications/CSDS --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
-
-        # detach dmg image
-        hdiutil eject "$APPPATH"
+            # detach dmg image
+            hdiutil eject "$APPPATH"
 
         # delete dmg
         rm -Rf "$tempDirectory"
