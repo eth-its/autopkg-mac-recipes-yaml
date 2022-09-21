@@ -13,19 +13,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""See docstring for LargeFileZipper class"""
+"""See docstring for LargeFileSplitter class"""
 
-import os.path
 import subprocess
 
 from autopkglib import Processor
 
 
-__all__ = ["LargeFileZipper"]
+__all__ = ["LargeFileSplitter"]
 
 
-class LargeFileZipper(Processor):
-    """Zips a large file into 1 GB chunks."""
+class LargeFileSplitter(Processor):
+    """Splits a large file into 500 MB chunks."""
 
     description = __doc__
     input_variables = {
@@ -42,14 +41,9 @@ class LargeFileZipper(Processor):
 
     def split(self, large_file_path, parts_dir):
         """Do the split"""
-        CHUNK_SIZE = 1024
-        large_file = os.path.basename(large_file_path)
-        zip_cmd = (
-            f"/usr/bin/zip -r -s {CHUNK_SIZE}M '{parts_dir}/{large_file}.zip' "
-            f"{large_file_path}"
-        )
+        split_cmd = f"/usr/bin/split -b 1024m '{large_file_path}' '{parts_dir}/chunk_'"
         # run the command
-        subprocess.check_output(zip_cmd)
+        subprocess.check_output(split_cmd)
 
     def main(self):
         """Split that file!"""
@@ -59,5 +53,5 @@ class LargeFileZipper(Processor):
 
 
 if __name__ == "__main__":
-    PROCESSOR = LargeFileZipper()
+    PROCESSOR = LargeFileSplitter()
     PROCESSOR.execute_shell()

@@ -38,8 +38,8 @@ Process:
         echo "Creating temporary working directory"
         tempDirectory=$( /usr/bin/mktemp -d "/private/tmp/CSDS.XXXXXX" )
         cd "$tempDirectory"
-        echo "Unzipping and recombining file parts"
-        /usr/bin/unzip "$DIR"/parts_dir/%latest_file%.dmg.zip -o -d "$tempDirectory/%latest_file%.dmg"
+        echo "Recombining file parts"
+        /bin/cat "$DIR"/parts_dir/chunk_* > "$tempDirectory/%latest_file%.dmg"
 
         if [[ -f "$tempDirectory/%latest_file%.dmg" ]]; then
             APPPATH="/Volumes/csds-osx"
