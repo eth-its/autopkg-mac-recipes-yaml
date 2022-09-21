@@ -24,7 +24,8 @@ __all__ = ["LargeFileSplitter"]
 
 
 class LargeFileSplitter(Processor):
-    """Splits a large file into 500 MB chunks."""
+    """Splits a large file into 1024 MB chunks. The file can be recompiled in a shell script using
+    /bin/cat chunk_* > recompiled_file[.suffix]"""
 
     description = __doc__
     input_variables = {
