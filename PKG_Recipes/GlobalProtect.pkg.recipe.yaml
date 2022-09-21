@@ -1,0 +1,34 @@
+Description: Imports GlobalProtect into FileWave.
+Identifier: com.github.eth-its-recipes.pkg.GlobalProtect
+ParentRecipe: com.github.peshay.download.GlobalProtect
+MinimumVersion: "2.3"
+
+Input:
+  NAME: GlobalProtect
+  PLATFORM: mac
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/gp.pkg/Payload"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/payload/Contents/Info.plist"
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/GlobalProtect-%version%.pkg"
+      source_pkg: "%pathname%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/payload"
