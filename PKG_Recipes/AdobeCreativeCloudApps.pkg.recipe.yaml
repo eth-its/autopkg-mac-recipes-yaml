@@ -18,14 +18,12 @@ Process:
     Processor: Unarchiver
 
   - Arguments:
-      pkgdirs:
-        Applications: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
   - Arguments:
-      pkgdirs:
-        Applications: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
     Processor: PkgRootCreator
 
