@@ -13,7 +13,7 @@ Input:
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
   MAX_OS_VERSION: "11.99"
-  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9|Mac1[3-9]|VirtualMac)
+  MODEL_IDENTIFIER_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9]|Mac1[3-9]|VirtualMac)
   SCRIPT_NAME: "macOS-upgrade-monterey.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
