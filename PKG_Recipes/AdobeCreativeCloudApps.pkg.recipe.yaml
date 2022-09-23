@@ -18,9 +18,50 @@ Process:
     Processor: Unarchiver
 
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
-      source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/Build/*_Install.pkg"
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/%LIST_NAME%_Install.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/Build/Install.pkg"
     Processor: PkgCopier
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install an Adobe bundle-style package
+
+        DIR=$(dirname "$0")
+
+        if [[ -d "$DIR/Install.pkg" ]]; then
+            echo "installing %LIST_NAME% %version%"
+            installer -tgt / -pkg "$DIR/Install.pkg"
+        else
+            echo "ERROR: installer package not found"
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: com.adobe.%LIST_NAME%.pkg
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
 
   - Processor: PathDeleter
     Arguments:
