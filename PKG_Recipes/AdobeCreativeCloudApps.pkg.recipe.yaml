@@ -14,6 +14,7 @@ Process:
       purge_destination: True
       archive_path: "%pathname%"
       destination_path: "%RECIPE_CACHE_DIR%/unzip"
+      USE_PYTHON_NATIVE_EXTRACTOR: True
     Processor: Unarchiver
 
   - Arguments:
@@ -64,3 +65,5 @@ Process:
     Arguments:
       path_list:
         - "%RECIPE_CACHE_DIR%/unzip"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/Scripts"
