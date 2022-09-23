@@ -52,7 +52,7 @@ Process:
       force_pkg_build: True
       pkg_request:
         chown: []
-        id: com.adobe.%LIST_NAME%.pkg
+        id: ch.ethz.id.%NAME%.pkg
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
