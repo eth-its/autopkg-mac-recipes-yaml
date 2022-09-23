@@ -10,7 +10,7 @@
 echo "Running CSDS uninstaller script"
 
 # run the installer if present
-uninstaller="/Applications/CSDS/CSD_2022/uninstall.app/Contents/MacOS/osx-x86_64"
+uninstaller="/Applications/CSDS %MAJOR_VERSION%/CSD_%MAJOR_VERSION%/uninstall.app/Contents/MacOS/osx-x86_64"
 if [[ -f "$uninstaller" ]]; then
     if "$uninstaller" --mode unattended; then
         echo "Uninstaller ran successfully"
@@ -19,7 +19,7 @@ if [[ -f "$uninstaller" ]]; then
     fi
 fi
 
-csds_folder="/Applications/CSDS"
+csds_folder="/Applications/CSDS %MAJOR_VERSION%"
 
 # remove files
 if [[ -d "$csds_folder" ]]; then

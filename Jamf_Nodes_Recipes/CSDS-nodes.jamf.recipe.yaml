@@ -5,8 +5,14 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 
 Input:
   NAME: CSD Suite
+  MAJOR_VERSION: "2022"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CSDS
   EXTENSION_ATTRIBUTE_NAME: CSDS Version
   EXTENSION_ATTRIBUTE_SCRIPT: CSDS-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   SELFSERVICE_ICON: CSDS.png
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"

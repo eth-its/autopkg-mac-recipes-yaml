@@ -3,12 +3,14 @@ Description: |
 
   Required override keys:
   - ACTIVATION_KEY
+  - MAJOR_VERSION
 Identifier: com.github.eth-its-recipes.pkg.CSDS
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.download.CSDS
 
 Input:
   NAME: CSDS
+  MAJOR_VERSION: "2022"
 
 Process:
   - Arguments:
@@ -50,7 +52,7 @@ Process:
             hdiutil attach "$tempDirectory/%latest_file%.dmg" -nobrowse -mountpoint "$APPPATH"
 
             # now run the silent installer
-            "$APPPATH/csds-osx.app/Contents/MacOS/osx-x86_64" --prefix /Applications/CSDS --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
+            "$APPPATH/csds-osx.app/Contents/MacOS/osx-x86_64" --prefix "/Applications/CSDS %MAJOR_VERSION%" --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
 
             # detach dmg image
             hdiutil eject "$APPPATH"

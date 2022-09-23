@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.CSDS-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: CSD Suite
@@ -12,3 +12,11 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   SELFSERVICE_ICON: CSDS.png
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION%"
