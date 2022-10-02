@@ -8,8 +8,8 @@ Input:
   GROUP_TEMPLATE: SmartGroup-softwareupdates.xml
   EXTENSION_ATTRIBUTE_NAME: Software updates available
   EXTENSION_ATTRIBUTE_SCRIPT: SoftwareUpdates-EA.zsh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-  EXTENSION_ATTRIBUTE_VALUE: "true"
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^0$|^$|^false$
   POLICY_CATEGORY: Updates
   UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-available.xml
   UPDATES_POLICY_NAME: Install macOS Updates
