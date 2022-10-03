@@ -1,0 +1,76 @@
+Description: Downloads the latest version of Cisco Secure Client and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.CiscoSecureClient
+ParentRecipe: com.github.eth-its-recipes.download.CiscoAnyConnect
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Profiles: "0755"
+        Profiles/vpn: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/CiscoSecureClient.pkg"
+      source_pkg: "%pathname%/*.pkg"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/ChoicesXMLGenerator
+    Arguments:
+      choices_pkg_path: "%pkg_path%"
+      choices_xml_dest: "%RECIPE_CACHE_DIR%/Scripts/choices.xml"
+      desired_choices:
+        - choice_vpn
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Profiles/vpn/ethz.xml"
+      source_path: "%root_path%/VPN_Profiles/vpn/ethz*.xml"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Profiles/vpn/staff-net.xml"
+      source_path: "%root_path%/VPN_Profiles/vpn/staff-net.xml"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Profiles/vpn/student-net.xml"
+      source_path: "%root_path%/VPN_Profiles/vpn/student-net.xml"
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install and activate Cisco Secure Client
+
+        DIR=$(dirname "$0")
+
+        /usr/sbin/installer -applyChoiceChangesXML "$DIR/choices.xml" -pkg "$DIR/CiscoSecureClient.pkg" -target /
+
+        if (test $? = 0) then
+            echo "Cisco Secure Client installed."
+        else
+            echo "ERROR: Cisco Secure Client installation failed."
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.CiscoSecureClient
+        pkgname: CiscoSecureClient-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"

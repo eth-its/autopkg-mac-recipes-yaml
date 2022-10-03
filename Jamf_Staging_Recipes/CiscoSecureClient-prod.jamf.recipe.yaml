@@ -1,0 +1,11 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.CiscoSecureClient-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: Cisco Secure Client
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CiscoSecureClient
+  SCRIPT_NAME: CiscoSecureClient-postinstall.zsh
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
