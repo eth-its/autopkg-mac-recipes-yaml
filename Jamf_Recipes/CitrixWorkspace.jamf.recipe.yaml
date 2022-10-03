@@ -15,6 +15,9 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  SCRIPT_NAME: CitrixWorkspace-postinstall.zsh
+  SCRIPT_PATH: CitrixWorkspace-postinstall.zsh
+  SCRIPT_PRIORITY: After
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -44,9 +47,13 @@ Process:
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      category_name: "%POLICY_CATEGORY%"
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -65,6 +72,10 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

@@ -1,8 +1,10 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.CitrixWorkspace-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 
 Input:
   NAME: Citrix Workspace
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CitrixWorkspace
+  SCRIPT_NAME: CitrixWorkspace-postinstall.zsh
+  SCRIPT_PATH: CitrixWorkspace-postinstall.zsh
