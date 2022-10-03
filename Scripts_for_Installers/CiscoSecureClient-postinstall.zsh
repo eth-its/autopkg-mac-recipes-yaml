@@ -8,6 +8,9 @@
 user=$(/usr/bin/stat -f %Su "/dev/console")
 ACSOCKEXTACTIVE=$(/usr/bin/systemextensionsctl list | grep acsockext)
 
+# give the extension a chance to be installed
+sleep 10
+
 if [ ! "x${ACSOCKEXTACTIVE}" = "x" ]; then
     echo "Deactivating network extension acsockext"
     # Need to run as logged in user, as user needs to authorize the extension deactivation.
