@@ -7,3 +7,4 @@ Input:
   NAME: Citrix Workspace
   SCRIPT_NAME: CitrixWorkspace-uninstall.sh
   SCRIPT_PATH: CitrixWorkspace-uninstall.sh
+  SELFSERVICE_ICON: Citrix Workspace 22.png

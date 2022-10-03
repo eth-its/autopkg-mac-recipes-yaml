@@ -8,3 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CitrixWorkspace
   SCRIPT_NAME: CitrixWorkspace-postinstall.zsh
   SCRIPT_PATH: CitrixWorkspace-postinstall.zsh
+  SELFSERVICE_ICON: Citrix Workspace 22.png

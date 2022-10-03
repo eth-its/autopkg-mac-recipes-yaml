@@ -6,3 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Citrix Workspace
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CitrixWorkspace
+  SCRIPT_NAME: CitrixWorkspace-postinstall.zsh
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: Citrix Workspace 22.png
