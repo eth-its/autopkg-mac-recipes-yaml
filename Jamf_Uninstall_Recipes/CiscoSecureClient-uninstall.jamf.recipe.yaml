@@ -5,5 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Cisco Secure Client
-  SCRIPT_PATH: CiscoSecureClient-uninstall.sh
-  SCRIPT_NAME: CiscoSecureClient-uninstall.sh
+  SCRIPT_PATH: CiscoSecureClient-uninstall.zsh
+  SCRIPT_NAME: CiscoSecureClient-uninstall.zsh
