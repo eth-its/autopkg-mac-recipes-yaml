@@ -17,7 +17,7 @@ while ! /usr/bin/systemextensionsctl list | grep acsockext; do
         echo "ERROR: timed out - Skip deactivating of network extension acsockext"
         exit
     fi
-do
+done
 
 echo "Deactivating network extension acsockext"
 # Need to run as logged in user, as user needs to authorize the extension deactivation.
