@@ -11,4 +11,4 @@ Input:
   JSS_INVENTORY_NAME: zoom.us.app
   VERSION_STRING_TYPE: CFBundleVersion
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
-  SELFSERVICE_ICON: zoom.us.png
+  SELFSERVICE_ICON: zoom.us 5.png
