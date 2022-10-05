@@ -232,4 +232,8 @@ get_marketing_model_name() {
 
 result=$(get_marketing_model_name)
 
+if [[ "$result" == *"error"* ]]; then
+	result="Virtual Machine"
+fi
+
 echo "<result>$result</result>"
