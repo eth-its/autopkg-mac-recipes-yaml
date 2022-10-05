@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title. This recipe also creates two configuration profiles for MAU updates.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-OS-minimum-prod
 
 Input:
   NAME: Microsoft Office
@@ -20,9 +20,25 @@ Input:
   AUTOUPDATE_PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-autoupdate-prod.xml
   AUTOUPDATE_PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH. These updates will be automatically updated with a deadline set of 7 days.
   REPLACE_PROFILE: "True"
+  AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
+  AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoupdate-all-software.xml
+  AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
+  AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate.xml
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME%"
+      computergroup_template: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOUPDATE_GROUP_NAME%"
+      computergroup_template: "%AUTOUPDATE_GROUP_TEMPLATE%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
