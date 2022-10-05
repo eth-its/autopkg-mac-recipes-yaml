@@ -91,12 +91,6 @@ Process:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       replace_group: "False"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%PROD_VERSION_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%PROD_VERSION_INSTALLED_GROUP_TEMPLATE%"
-      replace_group: "True"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Trigger-only policy
     Arguments:
