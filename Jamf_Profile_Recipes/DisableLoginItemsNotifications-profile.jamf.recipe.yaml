@@ -4,7 +4,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Login Items Notifications
-  PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
   PROFILE_CATEGORY: "Notifications"
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME%"
