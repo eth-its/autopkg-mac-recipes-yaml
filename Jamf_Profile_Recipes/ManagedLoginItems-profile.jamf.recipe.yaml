@@ -4,9 +4,9 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Managed Login Items
-  GROUP_NAME: Profile 'Jamf Service Management Background Apps' installed
+  GROUP_NAME: Jamf Managed Login Items profile installed
   GROUP_TEMPLATE: SmartGroup-profile-installed.xml
-  INSTALLED_PROFILE_NAME: Jamf Service Management Background Apps
+  INSTALLED_PROFILE_IDENTIFIER: com.jamf.servicemanagement.backgroundapps
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"

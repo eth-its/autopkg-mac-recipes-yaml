@@ -4,11 +4,11 @@
     <is_smart>true</is_smart>
     <criteria>
         <criterion>
-            <name>Profile Name</name>
+            <name>Profile Identifier</name>
             <priority>0</priority>
             <and_or>and</and_or>
             <search_type>has</search_type>
-            <value>%INSTALLED_PROFILE_NAME%</value>
+            <value>%INSTALLED_PROFILE_IDENTIFIER%</value>
         </criterion>
     </criteria>
 </computer_group>
