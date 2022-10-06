@@ -1,0 +1,26 @@
+Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.DisableLoginItemsNotifications-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Login Items Notifications
+  PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
+  PROFILE_CATEGORY: "Notifications"
+  PROFILE_TEMPLATE: Profile-all-computers.xml
+  PROFILE_NAME: "%NAME%"
+  PROFILE_MOBILECONFIG: DisableLoginItemsNotifications.mobileconfig
+  REPLACE_PROFILE: "False"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      replace_profile: "%REPLACE_PROFILE%"
