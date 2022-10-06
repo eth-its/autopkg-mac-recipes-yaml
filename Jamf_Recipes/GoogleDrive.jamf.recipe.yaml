@@ -9,7 +9,9 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Google Drive provides synchronisation of files between your desktop computer and your Google Drive account.
+    Google Drive provides synchronisation of files between your desktop computer and your Google Drive account. 
+
+    Shortcuts to Google Docs, Sheets and Slides are also provided, which will open your default browser at the appropriate page.
 
     Version: %version%
     Category: %PKG_CATEGORY%
