@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+    <name>%GROUP_NAME%</name>
+    <is_smart>true</is_smart>
+    <criteria>
+        <criterion>
+            <name>Profile Identifier</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>%INSTALLED_PROFILE_IDENTIFIER%</value>
+        </criterion>
+    </criteria>
+</computer_group>

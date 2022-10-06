@@ -1,0 +1,35 @@
+Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.ManagedLoginItems-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Managed Login Items
+  GROUP_NAME: Jamf Managed Login Items profile installed
+  GROUP_TEMPLATE: SmartGroup-profile-installed.xml
+  INSTALLED_PROFILE_IDENTIFIER: com.jamf.servicemanagement.backgroundapps
+  PROFILE_CATEGORY: Administration
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_NAME: "%NAME%"
+  PROFILE_MOBILECONFIG: ManagedLoginItems.mobileconfig
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
