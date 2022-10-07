@@ -1,0 +1,71 @@
+Description: Creates Self Service and Trgiger policies to remove the Cisco Secure Client Socket Filter
+Identifier: com.github.eth-its-recipes.jamf.script.CiscoSecureClientRemoveSocketFilter
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Cisco Secure Client - Remove Socket Filter
+  SCRIPT_CATEGORY: Tools & Accessories
+  USERS_GROUP_NAME: Cisco Secure Client Socket Filter installed
+  INSTALLED_GROUP_NAME: Cisco Secure Client Socket Filter installed
+  USERS_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
+  JSS_INVENTORY_NAME: Cisco Secure Client - Socket Filter.app
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_NAME: Cisco Secure Client - Remove Socket Filter
+  SELFSERVICE_DISPLAY_NAME: Cisco Secure Client - Remove Socket Filter
+  SELFSERVICE_DESCRIPTION: This will remove the Cisco Secure Client Network Extension, which is installed by default by the Cisco Secure Client installation package, but is not required for the VPN.
+  SELFSERVICE_ICON: Cisco Secure Client Socket Filter.png
+  FORCE_DESCRIPTION: "false"
+  INSTALL_BUTTON_TEXT: Remove Extension
+  REINSTALL_BUTTON_TEXT: Remove Extension
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  TRIGGER_POLICY_NAME: Cisco Secure Client - trigger remove Socket Filter
+  TRIGGER_NAME: CiscoSecureClient-RemoveSocketFilter
+  SCRIPT_NAME: CiscoSecureClient-postinstall.zsh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: "Parameter 4"
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
