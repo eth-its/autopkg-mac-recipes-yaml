@@ -12,7 +12,7 @@ timeout=120
 i=1
 while ! /usr/bin/systemextensionsctl list | grep acsockext; do
     sleep 1
-    i=((i+1))
+    i=$((i+1))
     if [[ $i -ge $timeout ]]; then
         echo "ERROR: timed out - Skip deactivating of network extension acsockext"
         exit
