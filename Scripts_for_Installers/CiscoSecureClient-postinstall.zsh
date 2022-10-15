@@ -8,11 +8,11 @@
 user=$(/usr/bin/stat -f %Su "/dev/console")
 
 # give the extension a chance to be installed
-timeout=120
+timeout=60
 i=1
 while ! /usr/bin/systemextensionsctl list | grep acsockext; do
     sleep 1
-    i=((i+1))
+    i=$((i++))
     if [[ $i -ge $timeout ]]; then
         echo "ERROR: timed out - Skip deactivating of network extension acsockext"
         exit

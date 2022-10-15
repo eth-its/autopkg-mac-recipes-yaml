@@ -24,6 +24,7 @@ Input:
   AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoupdate-all-software.xml
   AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
   AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate.xml
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter

@@ -1,4 +1,5 @@
 #!/bin/zsh
+# shellcheck shell=bash
 
 ## List Volume Owners
 
