@@ -1,4 +1,5 @@
 #!/bin/zsh
+# shellcheck shell=bash
 
 autoload is-at-least
 

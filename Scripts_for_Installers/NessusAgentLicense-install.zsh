@@ -58,6 +58,7 @@ fi
 
 cat > "$retry_script" <<'END' 
 #!/bin/zsh
+# shellcheck shell=bash
 
 # input variables
 nessus_host="$1"
