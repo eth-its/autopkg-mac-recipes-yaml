@@ -12,7 +12,7 @@
 			<key>PayloadType</key>
 			<string>com.apple.servicemanagement</string>
 			<key>PayloadUUID</key>
-			<string>13DD0FA1-C94C-49EB-B00E-747F701DCC8E</string>
+			<string>525DB758-68D9-44B0-BD48-BE89E42C6A50</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Rules</key>
@@ -125,7 +125,7 @@
 					<key>Comment</key>
 					<string>polybox</string>
 					<key>RuleType</key>
-					<string>BundleIdentifier</string>
+					<string>TeamIdentifier</string>
 					<key>RuleValue</key>
 					<string>4AP2STM4H5</string>
 				</dict>
@@ -133,7 +133,7 @@
 					<key>Comment</key>
 					<string>Bitwarden</string>
 					<key>RuleType</key>
-					<string>BundleIdentifier</string>
+					<string>TeamIdentifier</string>
 					<key>RuleValue</key>
 					<string>LTZ2PFU5D6</string>
 				</dict>
@@ -153,6 +153,38 @@
 					<key>RuleValue</key>
 					<string>DE8Y96K9QP</string>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Microsoft</string>
+					<key>RuleType</key>
+					<string>LabelPrefix</string>
+					<key>RuleValue</key>
+					<string>com.microsoft</string>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Dell</string>
+					<key>RuleType</key>
+					<string>LabelPrefix</string>
+					<key>RuleValue</key>
+					<string>Qisda.DDPM</string>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Adobe</string>
+					<key>RuleType</key>
+					<string>LabelPrefix</string>
+					<key>RuleValue</key>
+					<string>com.adobe</string>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>DetectX Swift</string>
+					<key>RuleType</key>
+					<string>Label</string>
+					<key>RuleValue</key>
+					<string>com.sqwarq.DetectX-Swift.observer</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
@@ -171,7 +203,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>69D24543-5BDE-4916-9AAF-C11DB32320E4</string>
+	<string>63E2E019-1F26-47BF-81B3-486080AB57F7</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>TargetDeviceType</key>
