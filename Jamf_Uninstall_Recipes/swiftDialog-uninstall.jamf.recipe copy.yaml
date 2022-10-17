@@ -1,0 +1,14 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.swiftDialog-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: swiftDialog
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  SCRIPT_NAME: swiftDialog-uninstall.zsh
+  SCRIPT_PATH: swiftDialog-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: swiftDialog Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
