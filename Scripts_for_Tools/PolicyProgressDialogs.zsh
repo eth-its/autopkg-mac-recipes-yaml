@@ -232,7 +232,6 @@ cat > "$launchdaemon" <<END
 	<array>
 		<string>/bin/zsh</string>
 		<string>$progress_script_location/swiftDialogLauncher.zsh</string>
-		<string>$elevation_duration</string>
 	</array>
 	<key>WatchPaths</key>
 	<array>
