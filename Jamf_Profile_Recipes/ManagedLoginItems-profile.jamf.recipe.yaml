@@ -10,7 +10,7 @@ Input:
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_MOBILECONFIG: ManagedLoginItems.mobileconfig
+  PROFILE_MOBILECONFIG: LoginItems.mobileconfig
   REPLACE_PROFILE: "True"
 
 Process:
