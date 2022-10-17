@@ -35,7 +35,7 @@ function dialog_cmd() {
 
 function launch_dialog() {
 	update_log "launching main dialog with log ${dialog_log}"
-    /usr/local/bin/dialog --moveable --position bottomright --mini --title "${policy_name}" --icon "${icon}" --message "Please wait for the process to complete." --progress 8 --commandfile "${dialog_log}" &
+    /usr/local/bin/dialog --moveable --position bottomright --mini --title "${policy_name}" --icon "${icon}" --message "Please wait while we perform a management task on your computer" --progress 8 --commandfile "${dialog_log}" &
     PID=$!
     update_log "main dialog running in the background with PID $PID"
     sleep 0.1
@@ -52,7 +52,7 @@ function dialog_error() {
 
 function quit_script() {
 	update_log "sending quit command"
-    dialog_cmd "quit: "
+    [[ -f "/usr/local/bin/dialog" ]] && dialog_cmd "quit: "
     sleep 0.1
     # brutal hack - need to find a better way
     pgrep tail && pkill tail
@@ -61,14 +61,14 @@ function quit_script() {
 		rm "${dialog_log}"
     fi
     update_log "removing $lock_file"
-    rm -f "$lock_file"
+    rm -f "$lock_file" ||:
     update_log "***** End *****"
     exit 0
 }
 
 function read_jamf_log() {
     update_log "starting jamf log read"    
-    launchd_removal_count=0
+    launchd_count=1
     if [[ "${jamf_pid}" ]]; then
         update_log "processing jamf pro log for PID ${jamf_pid}"
         while read -r line; do    
@@ -96,14 +96,14 @@ function read_jamf_log() {
                         quit_script
                     fi
                 ;;
-                *"Removing existing launchd task"*|*"Inventory will be updated when all queued actions in Self Service are complete."*)
-                    $(( launchd_removal_count++ ))
-                    if [[ ${launchd_removal_count} -ge 2 ]]; then
+                *"Removing existing launchd task"*)
+                    $(( launchd_removal_count-- ))
+                    if [[ ${launchd_removal_count} -le 0 ]]; then
                         update_log "Launchd task removed"
                         dialog_cmd "progresstext: Completed"
                         dialog_cmd "progress: complete"
                         sleep 2
-                        update_log "Ambiguous Break"
+                        update_log "Launchd Break"
                         quit_script
                     else
                         progresstext=$(echo "${status_line}" | awk -F "]: " '{print $NF}')
@@ -113,8 +113,10 @@ function read_jamf_log() {
                     fi
                 ;;
                 *"Executing Policy"*)
-                    # running a trigger so we need to switch to the new PID
+                    # running a trigger so we need to switch to the new PID and add another launchd
+                    $(( launchd_count++ ))
                     jamf_pid=$( awk -F"[][]" '{print $2}' <<< "$status_line" )
+                    update_log "processing jamf pro log for PID ${jamf_pid}"
                     progresstext=$(echo "${status_line}" | awk -F "]: " '{print $NF}')
                     update_log "Reading policy entry : ${progresstext}"
                     dialog_cmd "progresstext: ${progresstext}"
@@ -142,6 +144,10 @@ function read_jamf_log() {
 
 function main() {
     update_log "***** Start *****"
+    if [[ ! -e "/usr/local/bin/dialog" ]]; then
+        update_log "dialog not installed!"
+        quit_script
+    fi
     last_log_entry=$( tail -n 1 "$jamf_log" )
     update_log "$last_log_entry"
     if [[ -f "$lock_file" ]]; then
