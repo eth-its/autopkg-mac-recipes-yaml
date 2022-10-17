@@ -2,8 +2,18 @@
 
 # This script will create a LaunchDaemon that watches the Jamf log for changes and launches swiftDialog if anything is getting installed
 
+# icon to show on dialogs
+icon="${4}"   # jamf parameter 4
+if [[ -z "$icon" ]]; then
+    icon="/Applications/ETH Self Service.app"
+fi
+
 # Location of swiftDialog progress script
-progress_script_location="/Library/Management/ETHZ/Progress"
+progress_script_location="${5}"   # jamf parameter 5
+if [[ -z "$progress_script_location" ]]; then
+    progress_script_location="/Library/Management/ETHZ/PolicyProgressDialogs"
+fi
+
 lock_file="/var/tmp/lock.txt"
 
 # make sure the demotion script location exists
@@ -43,11 +53,19 @@ dialog_log=$(mktemp /var/tmp/dialog.XXX)
 chmod 644 ${dialog_log}
 script_log="/var/tmp/jamfprogress.log"
 lock_file="/var/tmp/lock.txt"
-icon="/Applications/ETH Self Service.app"
 count=0
 
+# icon to show on dialogs
+icon="${1}"
+if [[ -z $icon ]]; then
+    icon="/Library/Application Support/JAMF/bin/Management Action.app/Contents/MacOS/Management Action"
+fi
+
 # Location of this script
-progress_script_location="/Library/Management/ETHZ/Progress"
+progress_script_location="${2}"
+if [[ -z "$progress_script_location" ]]; then
+    progress_script_location="/Library/Management/swiftDialog"
+fi
 
 function update_log() {
     /bin/echo "$(date) ${1}" >> "$script_log"
@@ -121,7 +139,7 @@ function read_jamf_log() {
                         quit_script
                     fi
                 ;;
-                *"Removing existing launchd task"*)
+                *"Removing existing launchd task"*|*"Inventory will be updated when all queued actions in Self Service are complete."*)
                     $(( launchd_removal_count++ ))
                     if [[ ${launchd_removal_count} -ge 2 ]]; then
                         update_log "Launchd task removed"
