@@ -12,11 +12,19 @@
 			<key>PayloadType</key>
 			<string>com.apple.servicemanagement</string>
 			<key>PayloadUUID</key>
-			<string>4BE94817-E3FC-44F5-BDEC-7F4BEFB71F6C</string>
+			<string>525DB758-68D9-44B0-BD48-BE89E42C6A50</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Rules</key>
 			<array>
+				<dict>
+					<key>Comment</key>
+					<string>Jamf Software</string>
+					<key>RuleType</key>
+					<string>TeamIdentifier</string>
+					<key>RuleValue</key>
+					<string>483DWKW443</string>
+				</dict>
 				<dict>
 					<key>Comment</key>
 					<string>Google</string>
@@ -80,6 +88,22 @@
 					<string>LabelPrefix</string>
 					<key>RuleValue</key>
 					<string>ch.ethz</string>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Jamf Software</string>
+					<key>RuleType</key>
+					<string>LabelPrefix</string>
+					<key>RuleValue</key>
+					<string>com.jamf</string>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Jamf Software</string>
+					<key>RuleType</key>
+					<string>LabelPrefix</string>
+					<key>RuleValue</key>
+					<string>com.jamfsoftware</string>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -179,7 +203,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>C1FAEB22-ACA6-4471-9601-2564C5E7FF4E</string>
+	<string>63E2E019-1F26-47BF-81B3-486080AB57F7</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>TargetDeviceType</key>
