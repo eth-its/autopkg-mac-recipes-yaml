@@ -13,6 +13,9 @@ Input:
     Category: %PKG_CATEGORY%
   PKG_CATEGORY: Development & Computing
   POLICY_CATEGORY: Untested
+  SCRIPT_NAME: VisualStudioCode-postinstall.zsh
+  SCRIPT_PATH: VisualStudioCode-postinstall.zsh
+  SCRIPT_PRIORITY: After
   SELFSERVICE_ICON: "%NAME% 1.65.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
@@ -22,7 +25,7 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."; jamf policy -event "DisableElectronAppUpdates"'
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -46,6 +49,14 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
