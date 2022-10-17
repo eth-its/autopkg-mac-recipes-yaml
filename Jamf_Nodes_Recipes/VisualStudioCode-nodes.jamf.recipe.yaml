@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Visual Studio Code
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.VisualStudioCode
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."; jamf policy -event "DisableElectronAppUpdates"'
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   SCRIPT_NAME: VisualStudioCode-postinstall.zsh
   SCRIPT_PATH: VisualStudioCode-postinstall.zsh
   SELFSERVICE_ICON: "%NAME% 1.65.png"
