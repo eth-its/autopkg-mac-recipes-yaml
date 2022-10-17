@@ -27,7 +27,7 @@ function dialog_cmd() {
 
 function launch_dialog() {
 	update_log "launching main dialog with log ${dialog_log}"
-    /usr/local/bin/dialog --mini --title "${policy_name}" --icon "${icon}" --message "Please wait for the process to complete." --progress 8 --commandfile "${dialog_log}" &
+    /usr/local/bin/dialog --moveable --position bottomright --mini --title "${policy_name}" --icon "${icon}" --message "Please wait for the process to complete." --progress 8 --commandfile "${dialog_log}" &
     PID=$!
     update_log "main dialog running in the background with PID $PID"
     sleep 0.1
@@ -36,7 +36,7 @@ function launch_dialog() {
 function dialog_error() {
 	update_log "launching error dialog"
     errormsg="### Error\n\nSomething went wrong. Please contact IT support and report the following error message:\n\n${1}"
-    /usr/local/bin/dialog --ontop --moveable --position bottomright --title "Jamf Policy Error" --icon "${icon}" --overlayicon caution --message "${errormsg}"
+    /usr/local/bin/dialog --ontop --title "Jamf Policy Error" --icon "${icon}" --overlayicon caution --message "${errormsg}"
     PID=$!
     update_log "error dialog running in the background with PID $PID"
     sleep 0.1
