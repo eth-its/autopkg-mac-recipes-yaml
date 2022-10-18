@@ -11,7 +11,7 @@ Input:
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: Testing
-  POLICY_CATEGORY: Tools & Accessories
+  POLICY_CATEGORY: Connect & Remote
   POLICY_TEMPLATE: Policy-script-selfservice-disabled.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: "CiscoSecureClientAddRealm.sh"
