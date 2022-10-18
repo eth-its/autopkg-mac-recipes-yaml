@@ -1,4 +1,4 @@
-Description: Creates a trigger-only policy to configure Prvileges by running the postinstall script.
+Description: Creates a trigger-only policy to configure anyconnect by running the postinstall script.
 Identifier: com.github.eth-its-recipes.jamf.script.CiscoAnyConnectConfiguration
 MinimumVersion: "2.3"
 
