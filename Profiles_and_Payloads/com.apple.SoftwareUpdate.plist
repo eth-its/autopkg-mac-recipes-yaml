@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>AllowPreReleaseInstallation</key>
+        <true/>
+        <key>AutomaticCheckEnabled</key>
+        <true/>
+        <key>AutomaticDownload</key>
+        <true/>
+        <key>AutomaticallyInstallAppUpdates</key>
+        <true/>
+        <key>AutomaticallyInstallMacOSUpdates</key>
+        <true/>
+        <key>CatalogURL</key>
+        <string/>
+        <key>ConfigDataInstall</key>
+        <true/>
+        <key>CriticalUpdateInstall</key>
+        <true/>
+        <key>restrict-software-update-require-admin-to-install</key>
+        <false/>
+    </dict>
+</plist>
