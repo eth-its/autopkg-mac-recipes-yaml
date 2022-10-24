@@ -26,7 +26,3 @@ Process:
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_NAME%"
       replace_policy: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
-    Arguments:
-      policy_name: "%POLICY_NAME%"
