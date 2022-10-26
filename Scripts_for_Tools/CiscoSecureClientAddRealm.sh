@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #######################################################################
-# Configure a Cisco AnyConnect realm
+# Configure a Cisco Secure Client realm
 #######################################################################
 
 if [[ $4 ]]; then
@@ -14,7 +14,7 @@ else
 fi
 hostaddress="%HOST%"
 hostname="$hostaddress/$realm"
-outputfile="/opt/cisco/anyconnect/profile/$realm.xml"
+outputfile="/opt/cisco/secureclient/vpn/profile/$realm.xml"
 
 cat > "$outputfile" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
