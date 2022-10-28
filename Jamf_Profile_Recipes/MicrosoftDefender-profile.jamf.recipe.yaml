@@ -19,6 +19,7 @@ Process:
     Arguments:
       profile_name: Microsoft Defender Settings
       profile_category: "%PROFILE_CATEGORY%"
+      profile_template: Profile-1-group.xml
       mobileconfig: MicrosoftDefender.mobileconfig
       replace_profile: True
       computergroup_name: "%GROUP_NAME%"
