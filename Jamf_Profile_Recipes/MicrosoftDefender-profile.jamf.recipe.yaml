@@ -30,6 +30,7 @@ Process:
       profile_name: Microsoft Defender Onboarding Settings
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: Profile-1-group.xml
+      mobileconfig: ""
       payload: WindowsDefenderATPOnboarding.plist
       identifier: com.microsoft.wdav.atp
       organization: "%ORGANIZATION%"
