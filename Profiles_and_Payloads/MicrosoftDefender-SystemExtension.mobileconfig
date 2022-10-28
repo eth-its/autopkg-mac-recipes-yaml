@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>AllowUserOverrides</key>
+                <true/>
+                <key>AllowedSystemExtensions</key>
+                <dict>
+                    <key>UBF8T346G9</key>
+                    <array>
+                        <string>com.microsoft.wdav.epsext</string>
+                        <string>com.microsoft.wdav.netext</string>
+                    </array>
+                </dict>
+                <key>PayloadDescription</key>
+                <string></string>
+                <key>PayloadDisplayName</key>
+                <string>System Extensions</string>
+                <key>PayloadEnabled</key>
+                <true/>
+                <key>PayloadIdentifier</key>
+                <string>23374370-B1C6-4E6C-B94B-2D4990042CE6</string>
+                <key>PayloadOrganization</key>
+                <string>ETH Zurich</string>
+                <key>PayloadType</key>
+                <string>com.apple.system-extension-policy</string>
+                <key>PayloadUUID</key>
+                <string>23374370-B1C6-4E6C-B94B-2D4990042CE6</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string></string>
+        <key>PayloadDisplayName</key>
+        <string>Microsoft Defender - System Extension</string>
+        <key>PayloadEnabled</key>
+        <true/>
+        <key>PayloadIdentifier</key>
+        <string>E09DF4F4-05F2-4C43-9AB3-8412774489A0</string>
+        <key>PayloadOrganization</key>
+        <string>ETH Zurich</string>
+        <key>PayloadRemovalDisallowed</key>
+        <true/>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>E09DF4F4-05F2-4C43-9AB3-8412774489A0</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
