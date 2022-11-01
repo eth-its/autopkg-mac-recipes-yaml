@@ -214,7 +214,7 @@
         <key>PayloadEnabled</key>
         <true/>
         <key>PayloadIdentifier</key>
-        <string>0AE5710C-2D67-48BA-94A3-07E6138FC5D9</string>
+        <string>B7D79895-8F1D-43CC-8B7E-CA5E4D2DBE0B</string>
         <key>PayloadOrganization</key>
         <string>ETH Zurich</string>
         <key>PayloadRemovalDisallowed</key>
@@ -224,7 +224,7 @@
         <key>PayloadType</key>
         <string>Configuration</string>
         <key>PayloadUUID</key>
-        <string>0AE5710C-2D67-48BA-94A3-07E6138FC5D9</string>
+        <string>B7D79895-8F1D-43CC-8B7E-CA5E4D2DBE0B</string>
         <key>PayloadVersion</key>
         <integer>1</integer>
     </dict>
