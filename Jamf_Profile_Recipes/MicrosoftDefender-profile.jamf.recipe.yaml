@@ -5,10 +5,19 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Defender
   GROUP_NAME: Microsoft Defender users
+  TEST_SERVER_GROUP_NAME: Microsoft Defender test users
+  TESTING_GROUP_NAME: Testing - Microsoft Defender Text Context
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Microsoft Defender
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
@@ -25,15 +34,29 @@ Process:
       computergroup_name: "%GROUP_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Comment: Microsoft Defender Onboarding Settings
+    Comment: Microsoft Defender Onboarding Settings - Test Context
     Arguments:
-      profile_name: Microsoft Defender Onboarding Settings
+      profile_name: Microsoft Defender Onboarding Settings - Test Context
       profile_category: "%PROFILE_CATEGORY%"
+      computergroup_name: "%GROUP_NAME%"
+      profile_template: Profile-1-group.xml
+      mobileconfig: ""
+      payload: WindowsDefenderATPOnboarding-Test.plist
+      identifier: com.microsoft.wdav.atp
+      organization: "%ORGANIZATION%"
+      profile_description: Microsoft Defender Onboarding Settings
+      replace_profile: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Comment: Microsoft Defender Onboarding Settings - Prod Context
+    Arguments:
+      profile_name: Microsoft Defender Onboarding Settings - Prod Context
+      profile_category: "%PROFILE_CATEGORY%"
+      computergroup_name: "%GROUP_NAME%"
       profile_template: Profile-1-group.xml
       mobileconfig: ""
       payload: WindowsDefenderATPOnboarding.plist
       identifier: com.microsoft.wdav.atp
       organization: "%ORGANIZATION%"
       profile_description: Microsoft Defender Onboarding Settings
-      computergroup_name: "%GROUP_NAME%"
       replace_profile: True
