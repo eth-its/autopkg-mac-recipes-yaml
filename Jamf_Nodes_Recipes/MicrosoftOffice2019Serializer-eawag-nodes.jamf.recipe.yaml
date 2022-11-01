@@ -24,4 +24,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
-      pkg_category: "%CATEGORY%"
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
