@@ -1,0 +1,32 @@
+Description: Creates a dummy profile used for fixing orphaned profiles
+Identifier: com.github.grahampugh.recipes.jamf.NullProfile-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "[Fix] Dummy Profile for fixing orphaned profiles"
+  IDENTIFIER: ch.ethz.id.null
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: "Administration"
+  PROFILE_TEMPLATE: Profile-no-scope.xml
+  PROFILE_NAME: "%NAME%"
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_DESCRIPTION: This profile does not do anything. It is only used to allow the removal of other profiles that got deleted by mistake.
+  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      replace_profile: "%REPLACE_PROFILE%"

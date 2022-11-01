@@ -14,6 +14,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
   SELFSERVICE_ICON: "%NAME%.png"
   TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
@@ -47,6 +48,12 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:

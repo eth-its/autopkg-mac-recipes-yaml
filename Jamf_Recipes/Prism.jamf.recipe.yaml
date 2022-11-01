@@ -7,8 +7,8 @@ Input:
   NAME: Prism
   LANGUAGE: EN
   MAJOR_VERSION: "9"
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     **GraphPad Prism**, available for both Windows and Mac computers, combines scientific graphing, comprehensive curve fitting (nonlinear regression), understandable statistics, and data organization.
