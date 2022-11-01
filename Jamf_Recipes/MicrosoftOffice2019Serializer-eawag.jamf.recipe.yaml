@@ -7,6 +7,7 @@ Input:
   LIMITATION: "2019"
   NAME: Microsoft Office Serializer
   CATEGORY: eawag
+  UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
