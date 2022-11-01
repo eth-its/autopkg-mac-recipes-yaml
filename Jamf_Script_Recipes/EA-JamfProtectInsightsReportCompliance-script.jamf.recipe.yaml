@@ -1,0 +1,20 @@
+Description: This just uploads an EA to Jamf.
+Identifier: com.github.eth-its-recipes.jamf.script.JamfProtectInsightsReportCompliance-EA
+MinimumVersion: "2.3"
+
+Input:
+  EXTENSION_ATTRIBUTE_URL: https://raw.githubusercontent.com/jamf/jamfprotect/main/jamf_pro_extension_attributes/jamf_protect_last_insights_report_compliance.sh
+  EXTENSION_ATTRIBUTE_NAME: Jamf Protect Insights Report Compliance
+  EXTENSION_ATTRIBUTE_SCRIPT: JamfProtectInsightsReportCompliance-EA.sh
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%EXTENSION_ATTRIBUTE_URL%"
+      filename: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%pathname%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
