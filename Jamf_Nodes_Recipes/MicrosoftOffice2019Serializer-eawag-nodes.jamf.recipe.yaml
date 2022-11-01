@@ -1,0 +1,27 @@
+Description: Uploads a package to Jamf Pro
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOfficeSerializer-eawag-nodes
+MinimumVersion: "2.3"
+
+Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice2019Serializer
+  NAME: Microsoft Office Serializer
+  CATEGORY: eawag
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%CATEGORY%"

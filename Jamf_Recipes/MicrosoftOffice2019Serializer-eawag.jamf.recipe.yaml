@@ -1,0 +1,26 @@
+Description: Uploads a package to Jamf Pro
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice2019Serializer-eawag
+ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer-eawag
+MinimumVersion: "2.3"
+
+Input:
+  LIMITATION: "2019"
+  NAME: Microsoft Office Serializer
+  CATEGORY: eawag
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
