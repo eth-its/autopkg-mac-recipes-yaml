@@ -6,17 +6,17 @@ MinimumVersion: "2.3"
 Input:
   LIMITATION: "2019"
   NAME: Microsoft Office Serializer
-  CATEGORY: eawag
+  PKG_CATEGORY: eawag
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%CATEGORY%"
+      category_name: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
-      pkg_category: "%CATEGORY%"
+      pkg_category: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
