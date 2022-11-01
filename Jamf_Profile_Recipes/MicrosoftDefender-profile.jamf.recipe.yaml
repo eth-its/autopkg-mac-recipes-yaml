@@ -6,7 +6,7 @@ Input:
   NAME: Microsoft Defender
   GROUP_NAME: Microsoft Defender users
   TEST_SERVER_GROUP_NAME: Microsoft Defender test users
-  TESTING_GROUP_NAME: Testing - Microsoft Defender Text Context
+  TESTING_GROUP_NAME: Testing - Microsoft Defender Test Context
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Microsoft Defender
@@ -50,7 +50,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Comment: Microsoft Defender Onboarding Settings - Prod Context
     Arguments:
-      EXCLUSION_GROUP_NAME: Microsoft Defender Onboarding Settings - Test Context
+      EXCLUSION_GROUP_NAME: "%TESTING_GROUP_NAME%"
       profile_name: Microsoft Defender Onboarding Settings - Prod Context
       profile_category: "%PROFILE_CATEGORY%"
       computergroup_name: "%GROUP_NAME%"
