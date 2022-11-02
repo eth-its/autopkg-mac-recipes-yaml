@@ -1,7 +1,7 @@
 Description: |
-  Downloads the current Adobe Acrobat Reader DC pkg and repackages, replacing a problematic preinstall script, and enabling installation on non-boot volumes.
-Identifier: com.github.eth-its-recipes.pkg.AdobeAcrobatReaderDC
-ParentRecipe: com.github.autopkg.download.AdobeReaderDC
+  Downloads the current Adobe Acrobat Reader pkg and repackages, replacing a problematic preinstall script, and enabling installation on non-boot volumes.
+Identifier: com.github.eth-its-recipes.pkg.AdobeAcrobatReader
+ParentRecipe: com.github.autopkg.download.AdobeReader
 MinimumVersion: "2.3"
 
 Input:

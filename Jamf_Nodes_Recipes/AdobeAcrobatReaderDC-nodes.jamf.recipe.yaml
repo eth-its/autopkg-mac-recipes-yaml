@@ -1,14 +1,12 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobatReaderDC-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: Adobe Acrobat Reader DC
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeAcrobatReaderDC
+  JSS_INVENTORY_NAME: Adobe Acrobat Reader.app
   SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh
   SCRIPT_PATH: AdobeAcrobatReaderDC-postinstall.sh
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
-  OS_EXCLUDE_MAX: 10.14.6
-  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
-  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
