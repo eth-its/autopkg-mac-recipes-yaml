@@ -39,7 +39,7 @@
         <key>SecondRowTitleMiddle</key>
         <string>Check in</string>
         <key>SecondRowTypeMiddle</key>
-        <string>Command</string>
+        <string>DistributedNotification</string>
         <key>SecondRowLinkMiddle</key>
         <string>/usr/local/bin/jamf policy</string>
         <key>SecondRowSymbolRight</key>
