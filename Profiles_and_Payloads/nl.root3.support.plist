@@ -28,8 +28,6 @@
         <string>/Library/Management/ETH/SupportApp/ETH.png</string>
         <key>SecondRowTitleLeft</key>
         <string>Support Ticket</string>
-        <key>SecondRowSubtitleLeft</key>
-        <string>Open the ETH Service Desk support site</string>
         <key>SecondRowTypeLeft</key>
         <string>URL</string>
         <key>SecondRowLinkLeft</key>
@@ -38,8 +36,6 @@
         <string>arrow.up.circle</string>
         <key>SecondRowTitleMiddle</key>
         <string>Check in</string>
-        <key>SecondRowSubtitleMiddle</key>
-        <string>Check in with the ETH Mac Management Service</string>
         <key>SecondRowTypeMiddle</key>
         <string>Command</string>
         <key>SecondRowLinkMiddle</key>
@@ -48,8 +44,6 @@
         <string>lock.open</string>
         <key>SecondRowTitleRight</key>
         <string>Get Admin Rights</string>
-        <key>SecondRowSubtitleRight</key>
-        <string>Click to request admin rights</string>
         <key>SecondRowTypeRight</key>
         <string>App</string>
         <key>SecondRowLinkRight</key>
