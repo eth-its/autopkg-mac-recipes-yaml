@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>ErrorMessage</key>
+        <string>Could not complete your request. Please contact your administrator.</string>
+        <key>FirstRowLinkLeft</key>
+        <string>https://ethz.ch/services/en/it-services/service-desk.html</string>
+        <key>FirstRowLinkRight</key>
+        <string>com.jamfsoftware.selfservice.mac</string>
+        <key>FirstRowSubtitleLeft</key>
+        <string>Visit the ITS Services Desk</string>
+        <key>FirstRowSymbolLeft</key>
+        <string>questionmark.circle.fill</string>
+        <key>FirstRowTitleLeft</key>
+        <string>Service Desk</string>
+        <key>FirstRowTitleRight</key>
+        <string>ETH Self Service</string>
+        <key>FirstRowSubtitleRight</key>
+        <string>Open the Self Service kiosk</string>
+        <key>FirstRowTypeLeft</key>
+        <string>URL</string>
+        <key>FirstRowTypeRight</key>
+        <string>App</string>
+        <key>HideFirstRow</key>
+        <false/>
+        <key>HideSecondRow</key>
+        <false/>
+        <key>Logo</key>
+        <string>/Library/Management/ETH/SupportApp/ETH.png</string>
+        <key>SecondRowTitleLeft</key>
+        <string>Support Ticket</string>
+        <key>SecondRowTypeLeft</key>
+        <string>URL</string>
+        <key>SecondRowLinkLeft</key>
+        <string>http://smartdesk.ethz.ch/</string>
+        <key>SecondRowSymbolMiddle</key>
+        <string>arrow.up.circle</string>
+        <key>SecondRowTitleMiddle</key>
+        <string>Check in</string>
+        <key>SecondRowTypeMiddle</key>
+        <string>DistributedNotification</string>
+        <key>SecondRowLinkMiddle</key>
+        <string>/usr/local/bin/jamf policy</string>
+        <key>SecondRowSymbolRight</key>
+        <string>lock.open</string>
+        <key>SecondRowTitleRight</key>
+        <string>Get Admin Rights</string>
+        <key>SecondRowTypeRight</key>
+        <string>App</string>
+        <key>SecondRowLinkRight</key>
+        <string>corp.sap.privileges</string>
+        <key>StatusBarIconNotifierEnabled</key>
+        <true/>
+        <key>Title</key>
+        <string>ETH Support</string>
+    </dict>
+</plist>

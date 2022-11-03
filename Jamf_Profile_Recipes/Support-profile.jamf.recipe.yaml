@@ -1,0 +1,31 @@
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Requires the "Support users" group to have already been created.
+Identifier: com.github.grahampugh.recipes.jamf.Quicksilver-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Support
+  IDENTIFIER: nl.root3.support
+  ORGANIZATION: ETH Zürich
+  GROUP_NAME: "%NAME% users"
+  PROFILE_CATEGORY: "Administration"
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_NAME: Support App Settings
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_DESCRIPTION: This profile supplies the ETH-specific settings for the Support menu bar application.
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
