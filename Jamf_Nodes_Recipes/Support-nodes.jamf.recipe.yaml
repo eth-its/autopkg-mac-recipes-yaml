@@ -8,4 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support
   minimum_os_version: "11.0"
   SELFSERVICE_ICON: "ETH.png"
-  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'; jamf policy -event 'SupportHelper-install'"
