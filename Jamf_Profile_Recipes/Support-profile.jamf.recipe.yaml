@@ -15,7 +15,7 @@ Input:
   PROFILE_NAME: Support App Settings
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: This profile supplies the ETH-specific settings for the Support menu bar application.
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
@@ -27,4 +27,5 @@ Process:
       identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
+      computergroup_name: "%GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
