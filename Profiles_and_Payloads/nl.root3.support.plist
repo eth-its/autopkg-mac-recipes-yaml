@@ -16,6 +16,8 @@
         <string>Service Desk</string>
         <key>FirstRowTitleRight</key>
         <string>ETH Self Service</string>
+        <key>FirstRowSubtitleRight</key>
+        <string>Open the Self Service kiosk</string>
         <key>FirstRowTypeLeft</key>
         <string>URL</string>
         <key>FirstRowTypeRight</key>
