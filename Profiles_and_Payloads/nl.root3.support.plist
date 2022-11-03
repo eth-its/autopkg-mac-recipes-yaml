@@ -34,6 +34,8 @@
         <string>URL</string>
         <key>SecondRowLinkLeft</key>
         <string>http://smartdesk.ethz.ch/</string>
+        <key>SecondRowSymbolMiddle</key>
+        <string>arrow.up.circle</string>
         <key>SecondRowTitleMiddle</key>
         <string>Check in</string>
         <key>SecondRowSubtitleMiddle</key>
