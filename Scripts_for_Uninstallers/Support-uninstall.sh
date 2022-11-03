@@ -84,9 +84,13 @@ fi
 
 # Additional files to delete
 echo "Deleting other files"
-
+launchctl bootout system "/Library/LaunchDaemons/nl.root3.support.plist" &> /dev/null
 /bin/rm -f /Library/LaunchAgents/nl.root3.support.plist ||:
+/bin/rm -f /Library/LaunchDaemons/nl.root3.support.plist ||:
+/bin/rm -f /usr/local/bin/SupportHelper ||:
+
 
 # Forget packages (works for all versions)
 echo "Forgetting packages"
 /usr/sbin/pkgutil --forget nl.root3.support ||:
+/usr/sbin/pkgutil --forget nl.root3.support.helper ||:

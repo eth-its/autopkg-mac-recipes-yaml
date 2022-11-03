@@ -1,0 +1,16 @@
+Description: Downloads the latest version of the Support app Helper.
+Identifier: com.github.eth-its-recipes.download.SupportHelper
+MinimumVersion: "2.3"
+
+Input:
+  NAME: SupportHelper
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: (SupportHelper.*.pkg)
+      github_repo: root3nl/SupportApp
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
