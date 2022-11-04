@@ -5,6 +5,9 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Adobe Acrobat Reader DC
+  APPLICATION_NAME_HAS: Adobe Acrobat Reader
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has.xml
   SCRIPT_NAME: AdobeAcrobatReaderDC-uninstall.sh
   SCRIPT_PATH: AdobeAcrobatReaderDC-uninstall.sh
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
