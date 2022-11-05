@@ -1,7 +1,10 @@
-Comment: FEED_URL must be added to the override.
-Description: Creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - FEED_URL
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -12,4 +15,3 @@ Input:
   SCRIPT_PRIORITY: Before
   POLICY_RUN_COMMAND: sudo -u "$(stat -f%Su /dev/console)" -i /Applications/Microsoft\ Remote\ Desktop.app/Contents/MacOS/Microsoft\ Remote\ Desktop --script feed write "%FEED_URL%" --accept-certificates
   SELFSERVICE_ICON: "%NAME% 10.png"
-  OS_EXCLUDE_MAX: 10.13.6

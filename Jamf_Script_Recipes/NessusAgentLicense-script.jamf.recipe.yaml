@@ -1,11 +1,11 @@
-Comments: |
+Description: |
+  Creates a trigger-only policy to install the Messus Agent license by running the postinstall script.
+
   Requires the following keys to be overridden:
   - NESSUS_AGENT_KEY
   - NESSUS_AGENT_GROUP
   - NESSUS_AGENT_HOST
   - NESSUS_AGENT_PORT
-
-Description: Creates a trigger-only policy to install the Messus Agent license by running the postinstall script.
 Identifier: com.github.eth-its-recipes.jamf.script.NessusAgentLicense
 MinimumVersion: "2.3"
 

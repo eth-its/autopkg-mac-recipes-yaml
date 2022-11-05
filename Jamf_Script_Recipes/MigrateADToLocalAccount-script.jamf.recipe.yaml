@@ -1,5 +1,9 @@
-Comment: Requires FQDN and KNOWN_USER keys in the RecipeOverride for the Extension Attribute.
-Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Required overrides:
+  - FQDN
+  - KNOWN_USER
 Identifier: com.github.eth-its-recipes.jamf.MigrateADToLocalAccount-script
 MinimumVersion: "2.3"
 

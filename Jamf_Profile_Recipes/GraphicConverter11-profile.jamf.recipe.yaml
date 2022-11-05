@@ -1,7 +1,8 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
-  SERIAL key must be overridden.
+  Required overrides:
+  - SERIAL (this is the license key)
 Identifier: com.github.grahampugh.recipes.jamf.GraphicConverter11-profile
 MinimumVersion: "2.3"
 

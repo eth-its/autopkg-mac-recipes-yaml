@@ -1,4 +1,8 @@
-Description: Creates all production policies for a particular title.
+Description: |
+  Creates all production policies for a particular title.
+
+  Required overrides:
+  - FLOATING_LICENSE_URL
 Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Floating-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod

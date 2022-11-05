@@ -1,8 +1,10 @@
-Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Required overrides:
+  - PARAMETER4_VALUE (should be the print server's FQDN)
 Identifier: com.github.eth-its-recipes.jamf.ETHPrinters-card-mobile-script
 MinimumVersion: "2.3"
-
-Comment: PARAMETER4_VALUE should be overridden with the print server's FQDN
 
 Input:
   NAME: ETH Follow-Me Printer (Card-Mobile HP)

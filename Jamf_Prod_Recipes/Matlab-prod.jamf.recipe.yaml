@@ -1,6 +1,7 @@
 Description: |
   Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-  The following keys must be overridden for this to function:
+
+  The following keys must be overridden:
   - MAJOR_VERSION e.g. R2022a
   - CF_BUNDLE_VERSION e.g. 9.10
   - LICENSE_SERVER e.g. license.company.com

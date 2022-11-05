@@ -1,4 +1,8 @@
-Description: Creates all production policies for a particular title.
+Description: |
+  Creates all production policies for a particular title.
+
+  The following Input must be overridden:
+  - SERVER_ID_STRING (e.g. 123.145.167.89 001122334455 6677)
 Identifier: com.github.eth-its-recipes.jamf.MOE-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod

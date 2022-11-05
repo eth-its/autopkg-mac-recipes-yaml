@@ -1,9 +1,9 @@
-Comments: |
+Description: |
+  Creates trigger-only policies to install the Mathematica license by running a postinstall script.
+
   Requires the following keys to be overridden:
   - FLOATING_LICENSE_SERVER
   - NODE_LICENSE_STRING
-
-Description: Creates trigger-only policies to install the Mathematica license by running a postinstall script.
 Identifier: com.github.eth-its-recipes.jamf.script.MathematicaLicense
 MinimumVersion: "2.3"
 

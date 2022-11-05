@@ -1,6 +1,9 @@
 Description: |
-  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. 
-  Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT.
+  Creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - CLC_LICENSE_SERVER
+  - CLC_LICENSE_PORT
 Identifier: com.github.eth-its-recipes.jamf.CLCGenomicsWorkbench
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench

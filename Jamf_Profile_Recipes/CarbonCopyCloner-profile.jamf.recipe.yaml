@@ -1,5 +1,13 @@
-Comment: REGISTRATION_CODE, REGISTRATION_EMAIL, REGISTRATION_NAME, REGISTRATION_PRODUCT_NAME keys all need to be added to the recipe override.
-Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  This profile is for the untested version of Carbon Copy Cloner. At certain times, the license key changes, so we need a separate profile for untested and tested versions.
+
+  Required override keys:
+  - REGISTRATION_CODE
+  - REGISTRATION_EMAIL
+  - REGISTRATION_NAME
+  - REGISTRATION_PRODUCT_NAME
 Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
 MinimumVersion: "2.3"
 

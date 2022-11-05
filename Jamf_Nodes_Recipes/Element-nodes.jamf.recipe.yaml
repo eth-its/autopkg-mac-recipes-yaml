@@ -1,4 +1,8 @@
-Description: Creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - DEFAULT_SERVER_URL
 Identifier: com.github.eth-its-recipes.jamf.Element-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
@@ -7,4 +11,3 @@ Input:
   NAME: Element
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Element
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
-  DEFAULT_SERVER_URL: https://staffchat.ethz.ch

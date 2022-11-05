@@ -1,4 +1,8 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - FLOATING_LICENSE_URL
 Comment: Requires adding the FLOATING_LICENSE_URL key to the override.
 Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics28-Floating
 ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatistics28

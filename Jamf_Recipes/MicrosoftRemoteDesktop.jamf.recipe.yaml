@@ -1,5 +1,10 @@
-Comment: VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf. FEED_URL must be added to the override.
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Comment:
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+  VERSIONTYPE key in rtrouton's pkg recipe is overwritten here to provide the CFBundleVersion for Jamf.
+
+  Required overrides:
+  - FEED_URL
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftRemoteDesktop
 MinimumVersion: "2.3"
 ParentRecipe: com.github.rtrouton.pkg.microsoftremotedesktop
