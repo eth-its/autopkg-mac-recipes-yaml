@@ -8,9 +8,7 @@ DOC
 
 eraseinstall="/Library/Management/erase-install/erase-install.sh"
 
-if [[ ! -f "$eraseinstall" ]]; then
-    jamf policy -event "erase-install-install"
-fi
+jamf policy -event "erase-install-install"
 
-/Library/Management/erase-install/erase-install.sh --os 13 --update --move --cleanup-after-use --depnotify --current-user --beta --seed PublicSeed
+/Library/Management/erase-install/erase-install.sh --os 13 --update --move --cleanup-after-use --depnotify --current-user
 
