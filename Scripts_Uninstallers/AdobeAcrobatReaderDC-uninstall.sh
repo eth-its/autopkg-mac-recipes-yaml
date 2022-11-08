@@ -13,6 +13,7 @@ function silent_app_quit() {
     check_app_name="${app_name/\(/\\(}"       # escape any brackets for the pgrep
     check_app_name="${check_app_name/\)/\\)}"  # escape any brackets for the pgrep
     check_app_name="${check_app_name}.app"     # add the .app back
+    echo "Checking if ${check_app_name} is open"
     if pgrep -f "/${check_app_name}" ; then
         echo "Closing $app_name"
         /usr/bin/osascript -e "quit app \"$app_name\"" &
@@ -39,12 +40,11 @@ function silent_app_quit() {
 
 # MAIN
 
-app_name="Adobe Acrobat Reader DC"
-new_app_name="Adobe Acrobat Reader"
-
 # quit the app if running
+app_name="Adobe Acrobat Reader DC"
 silent_app_quit "$app_name"
-silent_app_quit "$new_app_name"
+app_name="Adobe Acrobat Reader"
+silent_app_quit "$app_name"
 
 # now remove everything that was in the package payload
 /bin/rm -rf "/Applications/Adobe Acrobat Reader DC.app" ||:
