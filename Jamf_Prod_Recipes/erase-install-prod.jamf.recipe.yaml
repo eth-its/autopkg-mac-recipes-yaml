@@ -12,6 +12,7 @@ Input:
   TRIGGER_NAME: "erase-install-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_POLICY_NAME: erase-install.sh
+  PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
