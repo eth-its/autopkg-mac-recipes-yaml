@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.GPGSuite-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -8,3 +8,7 @@ Input:
   JSS_INVENTORY_NAME: GPG Keychain.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GPGSuite
   SELFSERVICE_ICON: GPG Keychain.png
+  EXTENSION_ATTRIBUTE_NAME: Nextcloud Version
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
+  VERSION_STRING_TYPE: CFBundleShortVersionString
+  VERSION_PLIST: /Library/Application Support/GPGTools/version.plist

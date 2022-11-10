@@ -9,6 +9,10 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
+  EXTENSION_ATTRIBUTE_NAME: GPG Suite Version
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverrideFullPath-EA.sh
+  VERSION_STRING_TYPE: CFBundleShortVersionString
+  VERSION_PLIST: /Library/Application Support/GPGTools/version.plist
   SELFSERVICE_DESCRIPTION: |
     GPG Suite is a set of tools for protecting files and emails. For full details see the [GPG Suite website](https://gpgtools.org).
 
@@ -23,7 +27,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-app-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -52,6 +56,12 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
