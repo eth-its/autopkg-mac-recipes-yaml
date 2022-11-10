@@ -1,0 +1,12 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.GPGSuite-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: GPG Suite
+  SELFSERVICE_DESCRIPTION: "Uninstalls the GPG Suite applications and tools. Note that this will attempt to close your Mail application if open."
+  SCRIPT_PATH: GPGSuite-uninstall.sh
+  SCRIPT_NAME: GPGSuite-uninstall.sh
+  JSS_INVENTORY_NAME: GPG Keychain.app
+  SELFSERVICE_ICON: GPG Keychain.png
