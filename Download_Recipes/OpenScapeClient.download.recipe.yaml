@@ -9,7 +9,7 @@ Process:
   - Processor: URLDownloader
     Comment: Download the setup package (note that the package is not signed)
     Arguments:
-      url: "https://polybox.ethz.ch/index.php/s/SSYPpH1iWskH5HE/download?path=%2F&files=UCDesktopAppSetup.pkg"
+      url: "https://polybox.ethz.ch/index.php/s/p47WGtTrBOGsbyE/download?path=%2F&files=UCDesktopAppSetup.pkg"
       filename: UCDesktopAppSetup.pkg
 
   - Processor: EndOfCheckPhase
