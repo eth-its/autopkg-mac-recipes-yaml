@@ -11,8 +11,9 @@ echo "Logged in user: $loggedInUser"
 
 # make and set permissions on the app and Application Support folder
 /usr/sbin/chown -R "$loggedInUser":staff "/Applications/Visual Studio Code.app"
-mkdir -p "/Users/$loggedInUser/Library/Application Support/Code"
+mkdir -p "/Users/$loggedInUser/Library/Application Support/Code/User"
 /usr/sbin/chown -R "$loggedInUser":staff "/Users/$loggedInUser/Library/Application Support/Code"
+/usr/sbin/chown -R "$loggedInUser":staff "/Users/$loggedInUser/Library/Application Support/Code/User"
 
 # path to config.json
 settingsfile="/Users/$loggedInUser/Library/Application Support/Code/User/settings.json"
