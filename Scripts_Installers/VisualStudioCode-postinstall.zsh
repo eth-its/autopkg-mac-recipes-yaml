@@ -9,6 +9,11 @@
 loggedInUser=$( /usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }' )
 echo "Logged in user: $loggedInUser"
 
+# make and set permissions on the app and Application Support folder
+/usr/sbin/chown -R "$loggedInUser":staff "/Applications/Visual Studio Code.app"
+mkdir -p "/Users/$loggedInUser/Library/Application Support/Code"
+/usr/sbin/chown -R "$loggedInUser":staff "/Users/$loggedInUser/Library/Application Support/Code"
+
 # path to config.json
 settingsfile="/Users/$loggedInUser/Library/Application Support/Code/User/settings.json"
 
