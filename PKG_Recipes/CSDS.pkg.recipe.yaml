@@ -70,7 +70,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.CSDS%MAJOR_VERSION%
-        pkgname: "%NAME%-%version%"
+        pkgname: "CSDS-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: Scripts
