@@ -10,7 +10,7 @@
 echo "Running CSDS uninstaller script"
 
 # run the installer if present
-uninstaller="/Applications/CSDS %MAJOR_VERSION%/CSD_%MAJOR_VERSION%/uninstall.app/Contents/MacOS/osx-x86_64"
+uninstaller="/Applications/CSDS/CSD_%MAJOR_VERSION%/uninstall.app/Contents/MacOS/osx-x86_64"
 if [[ -f "$uninstaller" ]]; then
     if "$uninstaller" --mode unattended; then
         echo "Uninstaller ran successfully"
@@ -19,14 +19,14 @@ if [[ -f "$uninstaller" ]]; then
     fi
 fi
 
-csds_folder="/Applications/CSDS %MAJOR_VERSION%"
+csds_folder="/Applications/CSDS"
 
 # remove files
 if [[ -d "$csds_folder" ]]; then
-    if rm -rf "$csds_folder"; then
-        echo "Removed $csds_folder"
+    if rm -rf "$csds_folder/*_%MAJOR_VERSION%"; then
+        echo "Removed $csds_folder/*_%MAJOR_VERSION%"
     else
-        echo "ERROR: failed to remove $csds_folder"
+        echo "ERROR: failed to remove $csds_folder/*_%MAJOR_VERSION%"
         exit 1
     fi
 fi
@@ -34,8 +34,8 @@ fi
 # Forget package
 echo "Forgetting package receipt"
 pkgutilcmd="/usr/sbin/pkgutil"
-receipt="ch.ethz.id.pkg.CSDS"
+receipt="ch.ethz.id.pkg.CSDS%MAJOR_VERSION%"
 
 $pkgutilcmd --pkgs="$receipt" && $pkgutilcmd --forget "$receipt"
 
-echo "CSDS deletion complete"
+echo "CSDS %MAJOR_VERSION% deletion complete"

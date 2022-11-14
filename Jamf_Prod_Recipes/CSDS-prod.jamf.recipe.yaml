@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
-  NAME: CSD Suite
+  NAME: CSD Suite (GOLD)
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CSDS
   EXTENSION_ATTRIBUTE_NAME: CSDS %MAJOR_VERSION% Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex

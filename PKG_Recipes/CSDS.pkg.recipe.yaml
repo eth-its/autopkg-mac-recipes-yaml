@@ -8,9 +8,7 @@ Identifier: com.github.eth-its-recipes.pkg.CSDS
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.download.CSDS
 
-Input:
-  NAME: CSDS
-  MAJOR_VERSION: "2022"
+Input: {}
 
 Process:
   - Arguments:
@@ -52,7 +50,7 @@ Process:
             hdiutil attach "$tempDirectory/%latest_file%.dmg" -nobrowse -mountpoint "$APPPATH"
 
             # now run the silent installer
-            "$APPPATH/csds-osx.app/Contents/MacOS/osx-x86_64" --prefix "/Applications/CSDS %MAJOR_VERSION%" --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
+            "$APPPATH/csds-osx.app/Contents/MacOS/osx-x86_64" --prefix "/Applications/CSDS" --mode unattended --unattendedmodeui none --Licensing ActivateAfterInstall --activation_key "%ACTIVATION_KEY%"
 
             # detach dmg image
             hdiutil eject "$APPPATH"
@@ -71,7 +69,7 @@ Process:
       force_pkg_build: true
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.CSDS
+        id: ch.ethz.id.pkg.CSDS%MAJOR_VERSION%
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat

@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 
 Input:
-  NAME: CSD Suite
+  NAME: CSD Suite (GOLD)
   MAJOR_VERSION: "2022"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CSDS
   EXTENSION_ATTRIBUTE_NAME: CSDS %MAJOR_VERSION% Version

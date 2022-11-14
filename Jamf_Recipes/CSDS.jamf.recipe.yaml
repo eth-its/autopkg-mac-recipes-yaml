@@ -8,7 +8,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.CSDS
 
 Input:
-  NAME: CSD Suite
+  NAME: CSD Suite (GOLD)
   MAJOR_VERSION: "2022"
   POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"

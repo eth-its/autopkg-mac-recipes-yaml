@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: CSD Suite
+  NAME: CSD Suite (GOLD)
   MAJOR_VERSION: "2022"
   SCRIPT_NAME: CSDS-uninstall.zsh
   SCRIPT_PATH: CSDS-uninstall.zsh
