@@ -23,11 +23,23 @@ csds_folder="/Applications/CSDS"
 
 # remove files
 if [[ -d "$csds_folder" ]]; then
-    if rm -rf "$csds_folder/*_%MAJOR_VERSION%"; then
+    if /bin/rm -rf "$csds_folder/"*_%MAJOR_VERSION%; then
         echo "Removed $csds_folder/*_%MAJOR_VERSION%"
     else
         echo "ERROR: failed to remove $csds_folder/*_%MAJOR_VERSION%"
         exit 1
+    fi
+fi
+
+# remove CSDS folder if empty
+if find "$csds_folder" -mindepth 1 -maxdepth 1 | read; then
+    echo "$csds_folder not empty so not deleting"
+else
+    echo "$csds_folder empty so deleting"
+    if /bin/rm -rf "$csds_folder"; then
+        echo "Removed $csds_folder"
+    else
+        echo "ERROR: failed to remove $csds_folder"
     fi
 fi
 
