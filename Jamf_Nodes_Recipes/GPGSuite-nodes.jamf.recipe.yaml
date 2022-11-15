@@ -9,6 +9,6 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GPGSuite
   SELFSERVICE_ICON: GPG Keychain.png
   EXTENSION_ATTRIBUTE_NAME: GPG Suite Version
-  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverrideFullPath-EA.sh
   VERSION_STRING_TYPE: CFBundleShortVersionString
   VERSION_PLIST: /Library/Application Support/GPGTools/version.plist
