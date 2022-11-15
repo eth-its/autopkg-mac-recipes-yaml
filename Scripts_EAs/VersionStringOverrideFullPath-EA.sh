@@ -1,6 +1,6 @@
 #!/bin/sh
-string_type=%VERSION_STRING_TYPE%
-path_to_plist=%VERSION_PLIST%
+string_type="%VERSION_STRING_TYPE%"
+path_to_plist="%VERSION_PLIST%"
 version_string="None"
 if [ -f "$path_to_plist" ]; then
     version_string=$(defaults read "$path_to_plist" $string_type)
