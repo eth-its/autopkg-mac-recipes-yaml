@@ -39,6 +39,10 @@ else
     /usr/bin/open -a "/Applications/Cortex XDR Uninstaller.app"
 fi
 
+# now remove the uninstaller from all locations
+rm -rf "/Applications/Cortex XDR Uninstaller.app" ||:
+rm -rf "/Library/Management/PaloAlto" ||:
+
 # Try to Forget the packages if we can find a match
 /usr/sbin/pkgutil --pkgs=com.paloaltonetworks.pkg.cortex && /usr/sbin/pkgutil --forget com.paloaltonetworks.pkg.cortex
 
