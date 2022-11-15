@@ -11,7 +11,7 @@ Input:
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Cortex XDR Settings
-  PROFILE_MOBILECONFIG: CortexXDR_UnifiedConfigProfile_ARM64_V3_Unsigned.mobileconfig
+  PROFILE_MOBILECONFIG: CortexXDR.mobileconfig
   REPLACE_PROFILE: "False"
 
 Process:

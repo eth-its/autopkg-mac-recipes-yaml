@@ -5,14 +5,20 @@
         <key>PayloadContent</key>
         <array>
             <dict>
+                <key>PayloadDescription</key>
+                <string></string>
                 <key>PayloadDisplayName</key>
-                <string>Cortex XDR Privacy Preferences Policy Control</string>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadEnabled</key>
+                <true/>
                 <key>PayloadIdentifier</key>
-                <string>com.apple.TCC.configuration-profile-policy.213ACE76-4F58-483F-8F6F-6F165158F087</string>
+                <string>A6309FDF-E26E-4E22-A70C-B78FFF06A55F</string>
+                <key>PayloadOrganization</key>
+                <string>eawag</string>
                 <key>PayloadType</key>
                 <string>com.apple.TCC.configuration-profile-policy</string>
                 <key>PayloadUUID</key>
-                <string>213ACE76-4F58-483F-8F6F-6F165158F087</string>
+                <string>A6309FDF-E26E-4E22-A70C-B78FFF06A55F</string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
                 <key>Services</key>
@@ -27,17 +33,15 @@
                             <key>AEReceiverIdentifierType</key>
                             <string>bundleID</string>
                             <key>Allowed</key>
-                            <true/>
+                            <integer>1</integer>
                             <key>CodeRequirement</key>
                             <string>identifier "com.paloaltonetworks.traps-agent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
-                            <key>Comment</key>
-                            <string></string>
                             <key>Identifier</key>
                             <string>com.paloaltonetworks.traps-agent</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                             <key>StaticCode</key>
-                            <false/>
+                            <integer>0</integer>
                         </dict>
                         <dict>
                             <key>AEReceiverCodeRequirement</key>
@@ -47,17 +51,15 @@
                             <key>AEReceiverIdentifierType</key>
                             <string>bundleID</string>
                             <key>Allowed</key>
-                            <true/>
+                            <integer>1</integer>
                             <key>CodeRequirement</key>
                             <string>identifier "com.paloaltonetworks.traps-agent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
-                            <key>Comment</key>
-                            <string></string>
                             <key>Identifier</key>
                             <string>com.paloaltonetworks.traps-agent</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                             <key>StaticCode</key>
-                            <false/>
+                            <integer>0</integer>
                         </dict>
                         <dict>
                             <key>AEReceiverCodeRequirement</key>
@@ -67,65 +69,47 @@
                             <key>AEReceiverIdentifierType</key>
                             <string>bundleID</string>
                             <key>Allowed</key>
-                            <true/>
+                            <integer>1</integer>
                             <key>CodeRequirement</key>
                             <string>identifier "com.paloaltonetworks.traps-agent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
-                            <key>Comment</key>
-                            <string></string>
                             <key>Identifier</key>
                             <string>com.paloaltonetworks.traps-agent</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                             <key>StaticCode</key>
-                            <false/>
+                            <integer>0</integer>
                         </dict>
                     </array>
                     <key>SystemPolicyAllFiles</key>
                     <array>
                         <dict>
                             <key>Allowed</key>
-                            <true/>
+                            <integer>1</integer>
                             <key>CodeRequirement</key>
                             <string>identifier "com.paloaltonetworks.traps.securityextension" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
-                            <key>Comment</key>
-                            <string></string>
                             <key>Identifier</key>
                             <string>com.paloaltonetworks.traps.securityextension</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                             <key>StaticCode</key>
-                            <false/>
+                            <integer>0</integer>
                         </dict>
                         <dict>
                             <key>Allowed</key>
-                            <true/>
+                            <integer>1</integer>
                             <key>CodeRequirement</key>
                             <string>identifier pmd and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
-                            <key>Comment</key>
-                            <string></string>
                             <key>Identifier</key>
                             <string>/Library/Application Support/PaloAltoNetworks/Traps/bin/pmd</string>
                             <key>IdentifierType</key>
                             <string>path</string>
                             <key>StaticCode</key>
-                            <false/>
+                            <integer>0</integer>
                         </dict>
                     </array>
                 </dict>
             </dict>
             <dict>
-                <key>PayloadUUID</key>
-                <string>29CD608E-42FC-4FCA-A07B-D3C6FF932CA5</string>
-                <key>PayloadType</key>
-                <string>com.apple.system-extension-policy</string>
-                <key>PayloadIdentifier</key>
-                <string>com.apple.system-extension-policy.29CD608E-42FC-4FCA-A07B-D3C6FF932CA5</string>
-                <key>PayloadDisplayName</key>
-                <string>Cortex XDR System Extensions</string>
-                <key>PayloadVersion</key>
-                <integer>1</integer>
-                <key>PayloadEnabled</key>
-                <true/>
                 <key>AllowUserOverrides</key>
                 <true/>
                 <key>AllowedSystemExtensions</key>
@@ -136,6 +120,22 @@
                         <string>com.paloaltonetworks.traps.networkextension</string>
                     </array>
                 </dict>
+                <key>PayloadDescription</key>
+                <string></string>
+                <key>PayloadDisplayName</key>
+                <string>System Extensions</string>
+                <key>PayloadEnabled</key>
+                <true/>
+                <key>PayloadIdentifier</key>
+                <string>088F68B2-1EA6-4BF2-B878-3E02777B0665</string>
+                <key>PayloadOrganization</key>
+                <string>ETH Zurich</string>
+                <key>PayloadType</key>
+                <string>com.apple.system-extension-policy</string>
+                <key>PayloadUUID</key>
+                <string>088F68B2-1EA6-4BF2-B878-3E02777B0665</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
             </dict>
             <dict>
                 <key>FilterDataProviderBundleIdentifier</key>
@@ -146,30 +146,30 @@
                 <string>com.paloaltonetworks.traps.networkextension</string>
                 <key>FilterPacketProviderDesignatedRequirement</key>
                 <string>anchor apple generic and identifier "com.paloaltonetworks.traps.networkextension"</string>
-                <key>FilterGrade</key>
-                <string>firewall</string>
                 <key>FilterPackets</key>
                 <true/>
                 <key>FilterSockets</key>
                 <true/>
                 <key>FilterType</key>
                 <string>Plugin</string>
-                <key>PayloadDescription</key>
-                <string>Content Filter for the Cortex XDR agent network extension</string>
                 <key>PayloadDisplayName</key>
-                <string>Cortex XDR Network Content Filter</string>
+                <string>Web Content Filter Payload</string>
                 <key>PayloadIdentifier</key>
-                <string>com.apple.webcontent-filter.C9BF4213-282C-4D7A-89F8-DC19A5EC6136</string>
+                <string>12E0249C-8A39-43FA-B2A3-19D12D632549</string>
+                <key>PayloadOrganization</key>
+                <string>JAMF Software</string>
                 <key>PayloadType</key>
                 <string>com.apple.webcontent-filter</string>
                 <key>PayloadUUID</key>
-                <string>C9BF4213-282C-4D7A-89F8-DC19A5EC6136</string>
+                <string>12E0249C-8A39-43FA-B2A3-19D12D632549</string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
                 <key>PluginBundleID</key>
                 <string>com.paloaltonetworks.cortex.app</string>
                 <key>UserDefinedName</key>
                 <string>Cortex XDR Network Filter</string>
+                <key>VendorConfig</key>
+                <dict/>
             </dict>
             <dict>
                 <key>NotificationSettings</key>
@@ -183,13 +183,7 @@
                         <string>com.paloaltonetworks.traps-agent</string>
                         <key>CriticalAlertEnabled</key>
                         <true/>
-                        <key>GroupingType</key>
-                        <integer>0</integer>
                         <key>NotificationsEnabled</key>
-                        <true/>
-                        <key>PreviewType</key>
-                        <integer>0</integer>
-                        <key>ShowInCarPlay</key>
                         <true/>
                         <key>ShowInLockScreen</key>
                         <true/>
@@ -200,27 +194,29 @@
                     </dict>
                 </array>
                 <key>PayloadDisplayName</key>
-                <string>Cortex XDR Notifications</string>
+                <string>Notifications Payload</string>
                 <key>PayloadIdentifier</key>
-                <string>com.apple.notificationsettings.37703D68-C703-4A94-9A1B-D3BB4B7ECAFD</string>
+                <string>A4297673-5180-4CBD-BA45-C30BCBD19BC6</string>
+                <key>PayloadOrganization</key>
+                <string>JAMF Software</string>
                 <key>PayloadType</key>
                 <string>com.apple.notificationsettings</string>
                 <key>PayloadUUID</key>
-                <string>37703D68-C703-4A94-9A1B-D3BB4B7ECAFD</string>
+                <string>54E15809-9DF6-4E96-A025-0D23BC69C588</string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
             </dict>
         </array>
         <key>PayloadDescription</key>
-        <string>Cortex XDR Configuration (M1): PPPC + KEXT + SEs + Content Filter + Notifications</string>
+        <string></string>
         <key>PayloadDisplayName</key>
-        <string>Cortex XDR Settings</string>
-        <key>PayloadIdentifier</key>
-        <string>com.paloaltonetworks.cortex.D2F1500E-C460-41F3-9851-AB390EA99CEF</string>
-        <key>PayloadOrganization</key>
-        <string>Palo Alto Networks</string>
+        <string>Cortex XDR Settings - eawag</string>
         <key>PayloadEnabled</key>
         <true/>
+        <key>PayloadIdentifier</key>
+        <string>1953F385-D863-41CC-8170-A2F2F79AFE25</string>
+        <key>PayloadOrganization</key>
+        <string>eawag</string>
         <key>PayloadRemovalDisallowed</key>
         <true/>
         <key>PayloadScope</key>
@@ -228,10 +224,8 @@
         <key>PayloadType</key>
         <string>Configuration</string>
         <key>PayloadUUID</key>
-        <string>D2F1500E-C460-41F3-9851-AB390EA99CEF</string>
+        <string>1953F385-D863-41CC-8170-A2F2F79AFE25</string>
         <key>PayloadVersion</key>
         <integer>1</integer>
-        <key>TargetDeviceType</key>
-        <integer>5</integer>
     </dict>
 </plist>
