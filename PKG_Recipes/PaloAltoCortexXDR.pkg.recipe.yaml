@@ -1,0 +1,74 @@
+Description: Downloads the latest version of Palo Alto Cortex XDR and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.PaloAltoCortexXDR
+ParentRecipe: com.github.eth-its-recipes.download.PaloAltoCortexXDR
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Profiles: "0755"
+        Profiles/vpn: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unzip"
+      purge_destination: true
+    Processor: Unarchiver
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/PaloAltoCortexXDR.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/unzip/*.pkg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Config.xml"
+      source_path: "%RECIPE_CACHE_DIR%/unzip/*.xml"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/Cortex XDR Uninstaller.app"
+      source_path: "%RECIPE_CACHE_DIR%/unzip/*.app"
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install Palo Alto Cortex XDR
+
+        DIR=$(dirname "$0")
+
+        if /usr/sbin/installer -pkg "$DIR/PaloAltoCortexXDR.pkg" -target /
+        then
+            echo "Palo Alto Cortex XDR installed."
+        else
+            echo "ERROR: Palo Alto Cortex XDR installation failed."
+            exit 1
+        fi
+
+        # copy uninstaller to a management location for the installer
+        mkdir -p /Library/Management/PaloAlto/CortexXDR
+        /bin/cp -r "$DIR/Cortex XDR Uninstaller.app" "/Library/Management/PaloAlto/CortexXDR/Cortex XDR Uninstaller.app"
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.PaloAltoCortexXDR
+        pkgname: PaloAltoCortexXDR-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
