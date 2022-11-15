@@ -1,4 +1,8 @@
-Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Optional override:
+  - UNINSTALL_PASSWORD - the uninstall password
 Identifier: com.github.eth-its-recipes.jamf.CortexXDR-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
@@ -8,3 +12,6 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   SCRIPT_PATH: CortexXDR-uninstall.zsh
   SCRIPT_NAME: CortexXDR-uninstall.zsh
+  UNINSTALL_PASSWORD: ""
+  PARAMETER4_LABEL: Uninstall password
+  PARAMETER4_VALUE: "%UNINSTALL_PASSWORD%"
