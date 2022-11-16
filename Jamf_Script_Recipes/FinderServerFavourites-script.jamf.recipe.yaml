@@ -56,8 +56,9 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      USERS_GROUP_NAME: "%RECURRING_GROUP_NAME%"
       computergroup_template: "%RECURRING_GROUP_TEMPLATE%"
-      computergroup_name: "%RECURRING_GROUP_NAME%"
+      computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
