@@ -12,7 +12,7 @@ workdir="/Library/Management/FinderServerFavourites"
 
 if [[ ! -f "$workdir/FinderServerFavourites.py" ]]; then
     # FinderServerFavourites not installed, run trigger to install
-    jamf policy -event Run-FinderServerFavourites
+    jamf policy -event FinderServerFavourites-install
 fi
 
 # bundled python directory
