@@ -3,15 +3,16 @@ Identifier: com.github.eth-its-recipes.jamf.script.FinderServerFavourites
 MinimumVersion: "2.3"
 
 Input:
-  NAME: FinderServerFavourites
-  SCRIPT_CATEGORY: Administration
-  TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
-  TRIGGER_POLICY_NAME: "Install %NAME%"
-  TRIGGER_NAME: Run-FinderServerFavourites
+  NAME: Manage Favourite Servers
+  SCRIPT_CATEGORY: Tools & Accessories
+  RECURRING_GROUP_NAME: "%NAME% users"
+  RECURRING_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  RECURRING_POLICY_CATEGORY: Tools & Accessories
+  RECURRING_POLICY_FREQUENCY: Once per computer
+  RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
+  RECURRING_POLICY_NAME: Manage Favourite Servers
   SCRIPT_NAME: FinderServerFavourites.sh
   SCRIPT_PRIORITY: After
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PARAMETER4_LABEL: add / remove
   PARAMETER5_LABEL: Server 1
   PARAMETER6_LABEL: Server 2
@@ -36,7 +37,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%TRIGGER_POLICY_CATEGORY%"
+      category_name: "%RECURRING_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -53,8 +54,14 @@ Process:
       script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%RECURRING_GROUP_TEMPLATE%"
+      computergroup_name: "%RECURRING_GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
+      policy_template: "%RECURRING_POLICY_TEMPLATE%"
+      policy_name: "%RECURRING_POLICY_NAME%"
       replace_policy: "True"
