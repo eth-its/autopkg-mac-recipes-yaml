@@ -7,6 +7,8 @@ Input:
   SCRIPT_CATEGORY: Tools & Accessories
   RECURRING_GROUP_NAME: "%NAME% users"
   RECURRING_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: "Testing - %NAME%"
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   RECURRING_POLICY_CATEGORY: Tools & Accessories
   RECURRING_POLICY_FREQUENCY: Once per computer
   RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
@@ -53,6 +55,12 @@ Process:
       script_parameter10: "%PARAMETER10_LABEL%"
       script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
