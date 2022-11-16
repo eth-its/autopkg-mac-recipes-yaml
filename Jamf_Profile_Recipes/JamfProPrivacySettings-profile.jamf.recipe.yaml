@@ -3,19 +3,17 @@ Identifier: com.github.grahampugh.recipes.jamf.PPPCJamfAppleEvents-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Jamf Pro Privacy Preferences
+  NAME: Jamf Pro Privacy Settings
   PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
   PROFILE_CATEGORY: "Privacy Preferences"
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_MOBILECONFIG: Jamf-PPPC.mobileconfig
-  REPLACE_PROFILE: "False"
+  PROFILE_MOBILECONFIG: JamfProPrivacySettings.mobileconfig
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
-      replace_category: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
@@ -23,4 +21,4 @@ Process:
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
-      replace_profile: "%REPLACE_PROFILE%"
+      replace_profile: "True"
