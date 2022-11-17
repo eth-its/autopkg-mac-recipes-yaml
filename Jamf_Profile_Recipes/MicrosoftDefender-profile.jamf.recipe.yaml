@@ -18,6 +18,12 @@ Process:
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
@@ -29,16 +35,16 @@ Process:
       profile_name: Microsoft Defender Settings
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: Profile-1-group.xml
+      computergroup_name: "%GROUP_NAME%"
       mobileconfig: MicrosoftDefender.mobileconfig
       replace_profile: True
-      computergroup_name: "%GROUP_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Comment: Microsoft Defender Onboarding Settings - Test Context
     Arguments:
       profile_name: Microsoft Defender Onboarding Settings - Test Context
       profile_category: "%PROFILE_CATEGORY%"
-      computergroup_name: "%GROUP_NAME%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       profile_template: Profile-1-group.xml
       mobileconfig: ""
       payload: WindowsDefenderATPOnboarding-Test.plist
