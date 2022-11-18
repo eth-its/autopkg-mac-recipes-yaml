@@ -8,4 +8,4 @@ Input:
   JSS_INVENTORY_NAME: Adobe Premiere Pro 2022.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobePremiereProSDL
   SELFSERVICE_ICON: Adobe Premiere Pro 22 SDL.png
-  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install

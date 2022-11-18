@@ -8,4 +8,4 @@ Input:
   JSS_INVENTORY_NAME: Adobe InDesign 2022.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeInDesignSDL
   SELFSERVICE_ICON: Adobe InDesign 17 SDL.png
-  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install

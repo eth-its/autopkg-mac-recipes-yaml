@@ -8,4 +8,4 @@ Input:
   JSS_INVENTORY_NAME: Adobe Photoshop 2022.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobePhotoshopSDL
   SELFSERVICE_ICON: Adobe Photoshop 23 SDL.png
-  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
