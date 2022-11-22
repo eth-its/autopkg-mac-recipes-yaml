@@ -7,7 +7,8 @@ Input:
   NAME: Nextcloud
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Nextcloud
   EXTENSION_ATTRIBUTE_NAME: Nextcloud Version
-  EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   JSS_INVENTORY_NAME: "%NAME%.app"
   VERSION_STRING_TYPE: CFBundleVersion
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
