@@ -8,7 +8,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Jamf Pro Notifications
   GROUP_NAME: "%NAME% users"
-  PROFILE_CATEGORY: Notifications
+  PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Jamf Pro Notifications
   PROFILE_MOBILECONFIG: JamfProNotifications.mobileconfig
