@@ -7,7 +7,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Jamf Pro Notifications
-  GROUP_NAME: "%NAME% users"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users-with-all-managed-clients.xml
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Jamf Pro Notifications
@@ -15,8 +16,20 @@ Input:
   REPLACE_PROFILE: "False"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
+      GROUP_NAME: "%USERS_GROUP_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
