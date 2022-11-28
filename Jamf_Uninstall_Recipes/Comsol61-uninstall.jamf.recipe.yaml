@@ -1,11 +1,11 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.Comsol-uninstall
+Identifier: com.github.eth-its-recipes.jamf.Comsol61-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
 
 Input:
   NAME: COMSOL Multiphysics
-  MAJOR_VERSION: "60"
+  MAJOR_VERSION: "61"
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
   SCRIPT_PATH: Comsol-uninstall.zsh
   SCRIPT_NAME: Comsol-uninstall.zsh
