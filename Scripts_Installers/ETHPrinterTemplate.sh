@@ -65,8 +65,7 @@ else
     if [[ ! -f "$driver_ppd" ]]; then
         # driver not present. Try installing ETH printer drivers using Jamf policy triggers
         echo "Installing drivers..."
-        /usr/local/bin/jamf policy -event "ETH Printer Drivers HP S-install" -forceNoRecon
-        /usr/local/bin/jamf policy -event "ETH Printer Drivers HP SE-install" -forceNoRecon
+        /usr/local/bin/jamf policy -event "ETH Printer Drivers HP-install" -forceNoRecon
         /usr/local/bin/jamf policy -event "ETH Printer Drivers Ricoh Vol3-install" -forceNoRecon
         /usr/local/bin/jamf policy -event "ETH Printer Drivers Ricoh Vol4-install" -forceNoRecon
 
