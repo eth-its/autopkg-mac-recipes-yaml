@@ -1,0 +1,16 @@
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  Required overrides:
+  - ETH_PRINTERS_SMB_URL
+  - ETH_PRINTERS_SMB_USERNAME
+  - ETH_PRINTERS_SMB_PASSWORD
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP
+ParentRecipe: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-Template
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ETH Printer Drivers HP
+  DRIVER_TYPE: UniPS
+  PKG_ID: com.hp.pkg.swls.printer-essentials-UniPS.version
+  EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP UniPS Version
