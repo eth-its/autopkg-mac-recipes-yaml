@@ -1,0 +1,17 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinterDrivers-HP-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: ETH Printer Drivers HP
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHPrinterDriversHP
+  USERS_GROUP_NAME: "ETH Printers users"
+  AUTOINSTALL_GROUP_NAME: "ETH Printers auto-install"
+  AUTOUPDATE_GROUP_NAME: "ETH Printers auto-update"
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP UniPS Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
+  SELFSERVICE_ICON: ETH Printers.png
