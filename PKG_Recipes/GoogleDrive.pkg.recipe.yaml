@@ -14,7 +14,7 @@ Process:
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
       flat_pkg_path: "%pathname%/GoogleDrive.pkg"
 
-  - Processor: PkgPayloadUnpacker
+  - Processor: com.github.eth-its-recipes.processors/PkgPayloadUnpacker2
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/payload"
       pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/GoogleDrive_x86_64.pkg/Payload"
