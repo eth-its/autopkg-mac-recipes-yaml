@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>AutoUpdateState</key>
+        <string>Manual</string>
+        <key>ShowHelperInMenuBar</key>
+        <false/>
+        <key>CEIPEnabled</key>
+        <false/>
+        <key>StoreURLs</key>
+        <array>
+            <string>%CITRIX_SERVER_URL%https://zo-srv-citweb.ethz.ch</string>
+        </array>
+    </dict>
+</plist>

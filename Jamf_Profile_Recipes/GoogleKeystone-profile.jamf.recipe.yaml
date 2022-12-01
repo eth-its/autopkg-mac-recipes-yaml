@@ -1,5 +1,5 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.GoogleKeystone-profile
+Identifier: com.github.eth-its-recipes.jamf.GoogleKeystone-profile
 MinimumVersion: "2.3"
 
 Input:
