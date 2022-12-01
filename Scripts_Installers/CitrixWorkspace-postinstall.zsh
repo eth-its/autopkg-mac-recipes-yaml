@@ -1,10 +1,15 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-# disable and remove Citrix Workspace LaunchAgent
+# Turn off the Citrix Workspace Helper Tool
 
+# kill the various processes
 if pgrep "Citrix Workspace"; then
     pkill "Citrix Workspace"
+fi
+
+if pgrep "AuthManager_Mac"; then
+    pkill "AuthManager_Mac"
 fi
 
 # current logged-in user's short name
@@ -12,24 +17,7 @@ current_user=$(/bin/ls -la /dev/console | /usr/bin/cut -d " " -f 4)
 uid=$(id -u "$current_user")
 echo "Current user is $current_user"
 
-launchagent="/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
+# set preference to remove the helper tool
+/usr/bin/defaults write "/Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist" ShowHelperInMenuBar 0
 
-# reset any old version
-if [[ -f "$launchagent" ]]; then
-    if /bin/launchctl disable "user/$uid/com.citrix.ReceiverHelper"; then
-        echo "LaunchAgent successfully disabled"
-    else
-        echo "LaunchAgent was not disabled."
-    fi
-    if sudo -u "$current_user" -i /bin/launchctl unload -F "$launchagent"; then
-        echo "LaunchAgent successfully unloaded"
-    else
-        echo "LaunchAgent was not unloaded."
-    fi
-
-    if /bin/rm "$launchagent"; then
-        echo "LaunchAgent successfully deleted"
-    else
-        echo "LaunchAgent was not deleted."
-    fi
-fi
+echo "Written preferences to /Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist"
