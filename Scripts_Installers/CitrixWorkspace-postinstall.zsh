@@ -19,6 +19,6 @@ echo "Current user is $current_user"
 
 # set preference to remove the helper tool
 /usr/bin/defaults write "/Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist" ShowHelperInMenuBar 0
-/usr/sbin/chown "$current_user:staff" /Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist"
+/usr/sbin/chown "$current_user:staff" "/Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist"
 
 echo "Written preferences to /Users/$current_user/Library/Preferences/com.citrix.receiver.nomas.plist"
