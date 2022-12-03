@@ -10,7 +10,7 @@
         <false/>
         <key>StoreURLs</key>
         <array>
-            <string>%CITRIX_SERVER_URL%https://zo-srv-citweb.ethz.ch</string>
+            <string>%CITRIX_SERVER_URL%</string>
         </array>
     </dict>
 </plist>
