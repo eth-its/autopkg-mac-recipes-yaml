@@ -1,11 +1,11 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.DisableEraseAllContentsAndSettings-profile
+Identifier: com.github.eth-its-recipes.jamf.DisableEraseAllContentsAndSettings-profile
 MinimumVersion: "2.3"
 
 Input:
   NAME: Disable Erase All Contents And Settings
   IDENTIFIER: com.apple.applicationaccess
-  ORGANIZATION: ETH Zürich
+  ORGANIZATION: Apple
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"

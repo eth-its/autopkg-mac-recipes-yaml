@@ -6,15 +6,15 @@
         <array>
             <dict>
                 <key>PayloadDescription</key>
-                <string></string>
+                <string>Allows the Cortex XDR application to access all files on the system and monitor events.</string>
                 <key>PayloadDisplayName</key>
-                <string>Privacy Preferences Policy Control</string>
+                <string>Privacy Preferences Policy Control Payload</string>
                 <key>PayloadEnabled</key>
                 <true/>
                 <key>PayloadIdentifier</key>
                 <string>A6309FDF-E26E-4E22-A70C-B78FFF06A55F</string>
                 <key>PayloadOrganization</key>
-                <string>eawag</string>
+                <string>%ORGANIZATION%</string>
                 <key>PayloadType</key>
                 <string>com.apple.TCC.configuration-profile-policy</string>
                 <key>PayloadUUID</key>
@@ -121,7 +121,7 @@
                     </array>
                 </dict>
                 <key>PayloadDescription</key>
-                <string></string>
+                <string>Allows the Cortex XDR network and security extensions to function.</string>
                 <key>PayloadDisplayName</key>
                 <string>System Extensions</string>
                 <key>PayloadEnabled</key>
@@ -129,7 +129,7 @@
                 <key>PayloadIdentifier</key>
                 <string>088F68B2-1EA6-4BF2-B878-3E02777B0665</string>
                 <key>PayloadOrganization</key>
-                <string>ETH Zurich</string>
+                <string>%ORGANIZATION%</string>
                 <key>PayloadType</key>
                 <string>com.apple.system-extension-policy</string>
                 <key>PayloadUUID</key>
@@ -152,12 +152,14 @@
                 <true/>
                 <key>FilterType</key>
                 <string>Plugin</string>
+                <key>PayloadDescription</key>
+                <string>Allows the Cortex XDR web content filter to function.</string>
                 <key>PayloadDisplayName</key>
                 <string>Web Content Filter Payload</string>
                 <key>PayloadIdentifier</key>
                 <string>12E0249C-8A39-43FA-B2A3-19D12D632549</string>
                 <key>PayloadOrganization</key>
-                <string>JAMF Software</string>
+                <string>%ORGANIZATION%</string>
                 <key>PayloadType</key>
                 <string>com.apple.webcontent-filter</string>
                 <key>PayloadUUID</key>
@@ -193,12 +195,14 @@
                         <true/>
                     </dict>
                 </array>
+                <key>PayloadDescription</key>
+                <string>Allows notifications for the Cortex XDR application.</string>
                 <key>PayloadDisplayName</key>
                 <string>Notifications Payload</string>
                 <key>PayloadIdentifier</key>
                 <string>A4297673-5180-4CBD-BA45-C30BCBD19BC6</string>
                 <key>PayloadOrganization</key>
-                <string>JAMF Software</string>
+                <string>%ORGANIZATION%</string>
                 <key>PayloadType</key>
                 <string>com.apple.notificationsettings</string>
                 <key>PayloadUUID</key>
@@ -208,15 +212,15 @@
             </dict>
         </array>
         <key>PayloadDescription</key>
-        <string></string>
+        <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
-        <string>Cortex XDR Settings - eawag</string>
+        <string>%PROFILE_NAME%</string>
         <key>PayloadEnabled</key>
         <true/>
         <key>PayloadIdentifier</key>
         <string>1953F385-D863-41CC-8170-A2F2F79AFE25</string>
         <key>PayloadOrganization</key>
-        <string>eawag</string>
+        <string>%ORGANIZATION%</string>
         <key>PayloadRemovalDisallowed</key>
         <true/>
         <key>PayloadScope</key>

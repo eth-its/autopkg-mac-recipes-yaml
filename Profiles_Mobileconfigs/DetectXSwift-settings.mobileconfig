@@ -44,13 +44,13 @@
             </dict>
         </array>
         <key>PayloadDescription</key>
-        <string>Disables autoupdates for DetectX Swift</string>
+        <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
-        <string>DetectX Swift update settings</string>
+        <string>%PROFILE_NAME%</string>
         <key>PayloadIdentifier</key>
         <string>ch.ethz.id.DetectX-Swift-update-settings</string>
         <key>PayloadOrganization</key>
-        <string>ETH Zurich</string>
+        <string>%ORGANIZATION%</string>
         <key>PayloadRemovalDisallowed</key>
         <true/>
         <key>PayloadScope</key>

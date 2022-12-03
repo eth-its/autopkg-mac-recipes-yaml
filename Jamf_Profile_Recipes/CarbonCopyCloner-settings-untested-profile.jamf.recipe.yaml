@@ -8,21 +8,21 @@ Description: |
   - REGISTRATION_EMAIL
   - REGISTRATION_NAME
   - REGISTRATION_PRODUCT_NAME
-Identifier: com.github.grahampugh.recipes.jamf.CarbonCopyCloner-profile
+Identifier: com.github.eth-its-recipes.jamf.CarbonCopyCloner-settings-untested-profile
 MinimumVersion: "2.3"
 
 Input:
   NAME: Carbon Copy Cloner
   LANGUAGE: EN
   IDENTIFIER: com.bombich.ccc
-  ORGANIZATION: ETH Zürich
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
-  JSS_INVENTORY_NAME: "%NAME%.app"
   USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  JSS_INVENTORY_NAME: "%NAME%.app"
   PROFILE_CATEGORY: Development & Computing
+  PROFILE_NAME: "%NAME% (Testing)"
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
+  ORGANIZATION: "%NAME%"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: Carbon Copy Cloner (Testing)
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   REPLACE_PROFILE: "False"
 

@@ -2,7 +2,7 @@ Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
   Requires the "Dell Display And Peripheral Manager users" group and the relevant category to have already been created.
-Identifier: com.github.grahampugh.recipes.jamf.DellDisplayAndPeripheralManager-profile
+Identifier: com.github.eth-its-recipes.jamf.DellDisplayAndPeripheralManager-profile
 MinimumVersion: "2.3"
 
 Input:
@@ -10,8 +10,10 @@ Input:
   GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: Dell Display And Peripheral Manager Privacy Preferences
-  PROFILE_MOBILECONFIG: DellDisplayAndPeripheralManager-PPPC.mobileconfig
+  PROFILE_NAME: Dell Display And Peripheral Manager Privacy Settings
+  PROFILE_DESCRIPTION: Manages Accessibility settings for the Dell Display and Peripheral Manager
+  ORGANIZATION: "%NAME%"
+  PROFILE_MOBILECONFIG: DellDisplayAndPeripheralManager-privacy.mobileconfig
   REPLACE_PROFILE: "False"
 
 Process:

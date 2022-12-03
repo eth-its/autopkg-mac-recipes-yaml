@@ -1,12 +1,14 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.DisableLoginItemsNotifications-profile
+Identifier: com.github.eth-its-recipes.jamf.DisableLoginItemsNotifications-profile
 MinimumVersion: "2.3"
 
 Input:
   NAME: Login Items Notifications
+  ORGANIZATION: Apple
   PROFILE_CATEGORY: "Notifications"
-  PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME%"
+  PROFILE_DESCRIPTION: Disables notifications regarding login items.
+  PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_MOBILECONFIG: DisableLoginItemsNotifications.mobileconfig
   REPLACE_PROFILE: "False"
 

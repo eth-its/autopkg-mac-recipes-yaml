@@ -1,5 +1,5 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.grahampugh.recipes.jamf.ManagedLoginItems-profile
+Identifier: com.github.eth-its-recipes.jamf.ManagedLoginItems-profile
 MinimumVersion: "2.3"
 
 Input:
@@ -8,9 +8,11 @@ Input:
   GROUP_TEMPLATE: SmartGroup-profile-installed.xml
   INSTALLED_PROFILE_IDENTIFIER: com.jamf.servicemanagement.backgroundapps
   PROFILE_CATEGORY: Administration
-  PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_MOBILECONFIG: LoginItems.mobileconfig
+  PROFILE_DESCRIPTION: Enforces the ability for critical applications to launch or perform actions at startup or login.
+  ORGANIZATION: Apple
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_MOBILECONFIG: ManagedLoginItems.mobileconfig
   REPLACE_PROFILE: "True"
 
 Process:

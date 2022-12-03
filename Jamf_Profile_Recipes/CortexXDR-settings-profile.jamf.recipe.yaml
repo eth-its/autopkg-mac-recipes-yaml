@@ -1,18 +1,22 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
-  Requires the "OpenScape Client users" group to have already been created.
-Identifier: com.github.grahampugh.recipes.jamf.JamfProNotifications-profile
+  Requires the "Cortex XDR users" group to have already been created.
+Identifier: com.github.eth-its-recipes.jamf.CortexXDR-settings-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Jamf Pro Notifications
+  NAME: Cortex XDR
   USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users-with-all-managed-clients.xml
-  PROFILE_CATEGORY: Administration
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: Jamf Pro Notifications
-  PROFILE_MOBILECONFIG: JamfProNotifications.mobileconfig
+  PROFILE_NAME: Cortex XDR Settings
+  PROFILE_DESCRIPTION: Settings that allow the Cortex XDR application to function.
+  ORGANIZATION: "%NAME%"
+  PROFILE_MOBILECONFIG: CortexXDR.mobileconfig
   REPLACE_PROFILE: "False"
 
 Process:
@@ -23,16 +27,21 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
-      GROUP_NAME: "%USERS_GROUP_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%GROUP_NAME%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"

@@ -6,15 +6,15 @@
         <array>
             <dict>
                 <key>PayloadDescription</key>
-                <string>This profile allows specified applications to display information to the logged-in user.</string>
+                <string>Allows Jamf Pro to access the system and perform actions required to function.</string>
                 <key>PayloadDisplayName</key>
-                <string>Privacy Preferences Policy Control - Jamf notifications</string>
+                <string>Privacy Preferences Policy Control Payload</string>
                 <key>PayloadEnabled</key>
                 <true/>
                 <key>PayloadIdentifier</key>
                 <string>158DA6F8-F480-4023-8FF2-35E594BC3E50</string>
                 <key>PayloadOrganization</key>
-                <string>ETH Zurich</string>
+                <string>%ORGANIZATION%</string>
                 <key>PayloadType</key>
                 <string>com.apple.TCC.configuration-profile-policy</string>
                 <key>PayloadUUID</key>
@@ -234,15 +234,15 @@
             </dict>
         </array>
         <key>PayloadDescription</key>
-        <string></string>
+        <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
-        <string>Jamf Pro Privacy Settings</string>
+        <string>%PROFILE_NAME%</string>
         <key>PayloadEnabled</key>
         <true/>
         <key>PayloadIdentifier</key>
         <string>12007ceb-bfaf-4e94-99a8-1685ea7059a2</string>
         <key>PayloadOrganization</key>
-        <string>ETH Zurich</string>
+        <string>%ORGANIZATION%</string>
         <key>PayloadRemovalDisallowed</key>
         <true/>
         <key>PayloadScope</key>

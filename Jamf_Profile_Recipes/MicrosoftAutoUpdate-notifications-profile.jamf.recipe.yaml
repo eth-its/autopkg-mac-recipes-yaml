@@ -1,26 +1,20 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-
-  Required overrides:
-  - SERIAL (this is the license key)
-Identifier: com.github.eth-its-recipes.jamf.GraphicConverter11-profile
+Identifier: com.github.eth-its-recipes.jamf.JamfProNotifications-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: GraphicConverter
-  MAJOR_VERSION: "11"
-  IDENTIFIER: com.lemkesoft.graphicconverter11
-  ORGANIZATION: LemkeSoft
+  NAME: Microsoft AutoUpdate Notifications
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME% %MAJOR_VERSION%"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
-  PROFILE_DESCRIPTION: Licenses GraphicConverter %MAJOR_VERSION%.
-  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  PROFILE_NAME: "%NAME%"
+  PROFILE_DESCRIPTION: Enables notifications for Microsoft AutoUpdate
+  ORGANIZATION: Microsoft
+  PROFILE_MOBILECONFIG: MicrosoftAutoUpdate-notifications.mobileconfig
   REPLACE_PROFILE: "False"
 
 Process:
@@ -31,24 +25,22 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
+      GROUP_NAME: "%USERS_GROUP_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
-      payload: "%PROFILE_PAYLOAD%"
-      identifier: "%IDENTIFIER%"
-      organization: "%ORGANIZATION%"
-      profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      profile_computergroup: "%GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
