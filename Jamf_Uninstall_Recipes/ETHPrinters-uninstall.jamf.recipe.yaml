@@ -11,3 +11,6 @@ Input:
   SELFSERVICE_FORCE_DESCRIPTION: "true"
   PKG_ID: "ch.ethz.ethprinters.pkg"
   PKG_ID_2: "com.houdah.ETH-Printers"
+  PKG_ID_3: ""
+  PKG_ID_4: ""
+  PKG_ID_5: ""
