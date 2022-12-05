@@ -4,4 +4,4 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.FreeMacApps-macapp
 
 Input:
-  NAME: Mattermost
+  NAME: Mattermost Desktop
