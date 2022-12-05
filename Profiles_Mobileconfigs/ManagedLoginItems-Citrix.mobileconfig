@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDisplayName</key>
+                <string>Service Management - Managed Login Items</string>
+                <key>PayloadIdentifier</key>
+                <string>com.apple.servicemanagement.B43CFB10-997B-40CF-8AB6-D8B8E11F575A</string>
+                <key>PayloadType</key>
+                <string>com.apple.servicemanagement</string>
+                <key>PayloadUUID</key>
+                <string>B43CFB10-997B-40CF-8AB6-D8B8E11F575A</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Rules</key>
+                <array>
+                    <dict>
+                        <key>Comment</key>
+                        <string>Citrix</string>
+                        <key>RuleType</key>
+                        <string>TeamIdentifier</string>
+                        <key>RuleValue</key>
+                        <string>S272Y5R93J</string>
+                    </dict>
+                </array>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ETHZurich.1D965114-145F-49A2-BD0D-BE256BD278BD</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadRemovalDisallowed</key>
+        <true/>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>1D965114-145F-49A2-BD0D-BE256BD278BD</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>TargetDeviceType</key>
+        <integer>5</integer>
+    </dict>
+</plist>
