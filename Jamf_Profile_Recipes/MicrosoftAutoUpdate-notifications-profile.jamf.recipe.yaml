@@ -11,7 +11,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
   PROFILE_CATEGORY: Notifications
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME%"
+  PROFILE_NAME: Microsoft AutoUpdate Notifications
   PROFILE_DESCRIPTION: Enables notifications for Microsoft AutoUpdate
   ORGANIZATION: Microsoft
   PROFILE_MOBILECONFIG: MicrosoftAutoUpdate-notifications.mobileconfig
