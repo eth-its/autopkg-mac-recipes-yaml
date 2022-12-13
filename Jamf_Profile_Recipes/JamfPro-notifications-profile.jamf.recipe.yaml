@@ -13,6 +13,7 @@ Input:
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Jamf Pro Notifications
+  PROFILE_DESCRIPTION: Enforces notifications for Jamf Pro policies.
   PROFILE_MOBILECONFIG: JamfPro-notifications.mobileconfig
   REPLACE_PROFILE: "False"
 
