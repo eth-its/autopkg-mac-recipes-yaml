@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>enforcedSoftwareUpdateMajorOSDeferredInstallDelay</key>
+		<integer>90</integer>
+		<key>enforcedSoftwareUpdateMinorOSDeferredInstallDelay</key>
+		<integer>0</integer>
+		<key>enforcedSoftwareUpdateNonOSDeferredInstallDelay</key>
+		<integer>0</integer>
+		<key>forceDelayedAppSoftwareUpdates</key>
+		<true/>
+		<key>forceDelayedMajorSoftwareUpdates</key>
+		<true/>
+		<key>forceDelayedSoftwareUpdates</key>
+		<true/>
+	</dict>
+</plist>
