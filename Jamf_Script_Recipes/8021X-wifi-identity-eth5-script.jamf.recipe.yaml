@@ -4,14 +4,16 @@ Identifier: com.github.eth-its-recipes.jamf.script.8021XWifiIdentity
 MinimumVersion: "2.3"
 
 Input:
-  NAME: 802.1X Wifi Identity
+  NAME: 802.1X Wifi Identity - eth-5
   RECURRING_POLICY_CATEGORY: Administration
-  RECURRING_POLICY_TEMPLATE: Policy-script-recurring.xml
+  RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameter4.xml
   RECURRING_POLICY_NAME: "%NAME%"
   RECURRING_POLICY_FREQUENCY: Once every week
   RECURRING_GROUP_NAME: Device Authentication id-dock
   SCRIPT_NAME: 8021X-wifi-identity.sh
   SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: SSID
+  PARAMETER4_VALUE: eth-5
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -23,6 +25,7 @@ Process:
       script_category: "%RECURRING_POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader

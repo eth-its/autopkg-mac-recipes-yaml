@@ -5,7 +5,7 @@
 # name and create a user level identity preference linked to the
 # same certificate found in the system level identity preference.
 #
-# Note: This only works based on the asumption that Jamf Pro keeps
+# Note: This only works based on the assumption that Jamf Pro keeps
 # the system level identity preference updated accordingly!
 #
 # Source: https://macadmins.slack.com/archives/C826G2XCL/p1671022752569959?thread_ts=1670967228.762929&cid=C826G2XCL

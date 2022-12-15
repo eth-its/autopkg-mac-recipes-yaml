@@ -1,0 +1,35 @@
+Description: |
+  Creates a Once per week policy to set a user identity for 802.1X.
+Identifier: com.github.eth-its-recipes.jamf.script.8021XWifiIdentity
+MinimumVersion: "2.3"
+
+Input:
+  NAME: 802.1X Wifi Identity - eth
+  RECURRING_POLICY_CATEGORY: Administration
+  RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameter4.xml
+  RECURRING_POLICY_NAME: "%NAME%"
+  RECURRING_POLICY_FREQUENCY: Once every week
+  RECURRING_GROUP_NAME: Device Authentication id-dock
+  SCRIPT_NAME: 8021X-wifi-identity.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: SSID
+  PARAMETER4_VALUE: eth
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%RECURRING_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%RECURRING_POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%RECURRING_POLICY_TEMPLATE%"
+      policy_name: "%RECURRING_POLICY_NAME%"
+      replace_policy: "True"
