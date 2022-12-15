@@ -5,9 +5,10 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: 802.1X Wifi Identity
-  POLICY_CATEGORY: Administration
-  POLICY_TEMPLATE: Policy-prod-script-8021XWifiIdentity.xml
-  POLICY_NAME: "%NAME%"
+  RECURRING_POLICY_CATEGORY: Administration
+  RECURRING_POLICY_TEMPLATE: Policy-script-recurring.xml
+  RECURRING_POLICY_NAME: "%NAME%"
+  RECURRING_POLICY_FREQUENCY: Once every week
   USERS_GROUP_NAME: Device Authentication id-dock
   SCRIPT_NAME: 8021X-wifi-identity.sh
   SCRIPT_PRIORITY: After
@@ -15,11 +16,11 @@ Input:
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%POLICY_CATEGORY%"
+      category_name: "%RECURRING_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%POLICY_CATEGORY%"
+      script_category: "%RECURRING_POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
@@ -27,5 +28,5 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%RECURRING_POLICY_NAME%"
       replace_policy: "True"
