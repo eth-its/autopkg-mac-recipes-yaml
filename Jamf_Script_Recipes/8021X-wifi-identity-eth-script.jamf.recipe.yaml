@@ -1,6 +1,6 @@
 Description: |
   Creates a Once per week policy to set a user identity for 802.1X.
-Identifier: com.github.eth-its-recipes.jamf.script.8021XWifiIdentity
+Identifier: com.github.eth-its-recipes.jamf.script.8021XWifiIdentity-eth
 MinimumVersion: "2.3"
 
 Input:
