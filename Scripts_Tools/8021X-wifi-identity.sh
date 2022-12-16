@@ -38,16 +38,6 @@ if [[ "$hash" == "" ]]; then
 	exit 1
 fi
 
-# Grab username from Wifi System object / If you also need a username password object. 
-username=$(security find-generic-password  -s 'com.apple.network.eap.system.item.wlan.ssid.$wifi' | awk -F "\"" '/acct/ {print $4}')
-
-# Exit if no wifi username is found
-if [[ "$username" == "" ]]; then
-	echo "No wifi username found. Exiting..."
-	exit 1
-fi
-
-
 #
 # Action
 #
@@ -62,8 +52,4 @@ su root -c "security delete-generic-password -s 'com.apple.network.eap.user.item
 
 # Set identity preference
 su root -c "security set-identity-preference -Z '$hash' -s 'com.apple.network.eap.user.identity.wlan.ssid.$wifi'"
-
-# Only needed if you also need password object
-su root -c "security add-generic-password -A -a '$username' -D '802.1X Password' -l '$wifi' -s 'com.apple.network.eap.user.item.wlan.ssid.$wifi'"
-
 exit 0
