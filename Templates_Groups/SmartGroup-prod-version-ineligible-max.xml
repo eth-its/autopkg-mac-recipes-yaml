@@ -16,7 +16,7 @@
             <name>Operating System Version</name>
             <priority>1</priority>
             <and_or>and</and_or>
-            <search_type>more than or equal</search_type>
+            <search_type>greater than or equal</search_type>
             <value>%INELIGIBLE_OS_VERSION%</value>
             <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>
