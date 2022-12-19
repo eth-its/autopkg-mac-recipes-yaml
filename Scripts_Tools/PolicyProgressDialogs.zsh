@@ -22,6 +22,11 @@ mkdir -p "$progress_script_location"
 # jamf log
 jamf_log="/var/log/jamf.log"
 
+# ensure swiftDialog is installed
+if [[ ! -d "/Library/Application Support/Dialog/Dialog.app" ]]; then
+    jamf policy -event "swiftDialog-install"
+fi
+
 # Stop the current launchagent and remove it prior to installing this updated one
 ld_label="com.github.grahampugh.swiftDialogLauncher"
 launchdaemon="/Library/LaunchDaemons/$ld_label.plist"
