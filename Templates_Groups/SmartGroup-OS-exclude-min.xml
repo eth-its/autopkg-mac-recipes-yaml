@@ -7,7 +7,7 @@
             <name>Operating System Version</name>
             <priority>0</priority>
             <and_or>and</and_or>
-            <search_type>more than or equal</search_type>
+            <search_type>greater than or equal</search_type>
             <value>%OS_EXCLUDE_MIN%</value>
         </criterion>
     </criteria>
