@@ -11,3 +11,4 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^None$"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml

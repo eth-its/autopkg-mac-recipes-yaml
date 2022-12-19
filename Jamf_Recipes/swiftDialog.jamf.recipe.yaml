@@ -16,7 +16,7 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: swiftDialog Version
   EXTENSION_ATTRIBUTE_SCRIPT: swiftDialog-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
