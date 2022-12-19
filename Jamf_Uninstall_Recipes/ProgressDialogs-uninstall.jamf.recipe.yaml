@@ -1,0 +1,15 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.XcodeCLTools-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-no-app-uninstall
+
+Input:
+  NAME: Policy Progress Dialogs
+  SCRIPT_NAME: PolicyProgressDialogs-uninstall.zsh
+  SCRIPT_PATH: PolicyProgressDialogs-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: Policy Progress Dialogs
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: "^Installed$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  SELFSERVICE_ICON: swiftDialog.png
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
