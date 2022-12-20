@@ -7,3 +7,4 @@ Input:
   NAME: Dell Display And Peripheral Manager
   JSS_INVENTORY_NAME: DDPM.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.DellDisplayAndPeripheralManager
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/DDPM" && echo "Corrected permissions for %NAME%."'
