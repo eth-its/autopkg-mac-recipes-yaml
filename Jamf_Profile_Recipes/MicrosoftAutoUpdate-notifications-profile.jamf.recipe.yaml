@@ -7,8 +7,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Microsoft AutoUpdate Notifications
-  USERS_ALL_MICROSOFT_APPS_NAME: "Microsoft applications users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
+  USERS_GROUP_ALL_MICROSOFT_APPS_NAME: Microsoft applications users
+  USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
   PROFILE_CATEGORY: Notifications
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Microsoft AutoUpdate Notifications
@@ -25,13 +25,13 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_ALL_MICROSOFT_APPS_NAME%"
+      computergroup_template: "%USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_ALL_MICROSOFT_APPS_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
-      GROUP_NAME: "%USERS_ALL_MICROSOFT_APPS_NAME%"
+      GROUP_NAME: "%USERS_GROUP_ALL_MICROSOFT_APPS_NAME%"
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"

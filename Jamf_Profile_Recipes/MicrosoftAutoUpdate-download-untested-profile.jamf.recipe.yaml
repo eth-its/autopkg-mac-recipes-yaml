@@ -4,6 +4,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Check Microsoft AutoUpdate - untested
+  TEST_USERS_GROUP_ALL_MICROSOFT_APPS_NAME: Microsoft applications test users
+  TEST_USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-test-users-Microsoft-all-apps.xml
   IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration
@@ -14,6 +16,12 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TEST_USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_ALL_MICROSOFT_APPS_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"

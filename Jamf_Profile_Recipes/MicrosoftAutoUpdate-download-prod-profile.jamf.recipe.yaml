@@ -5,6 +5,8 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Check Microsoft AutoUpdate - production
+  USERS_GROUP_ALL_MICROSOFT_APPS_NAME: Microsoft applications users
+  USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
   IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: Administration
@@ -26,6 +28,12 @@ Process:
       predicate: "%UPDATE_PREDICATE%"
 
   - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_ALL_MICROSOFT_APPS_NAME%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
