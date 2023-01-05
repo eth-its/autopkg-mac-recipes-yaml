@@ -15,17 +15,12 @@ Input:
   PROFILE_PAYLOAD: MicrosoftAutoUpdate-download-prod.plist
   PROFILE_TEMPLATE: Profile-MicrosoftAutoUpdate-download-prod.xml
   REPLACE_PROFILE: "True"
-  UPDATE_PREDICATE: "pkg_metadata_updated == False"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
 
 Process:
   - Processor: com.github.eth-its-recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
 
   - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
 
