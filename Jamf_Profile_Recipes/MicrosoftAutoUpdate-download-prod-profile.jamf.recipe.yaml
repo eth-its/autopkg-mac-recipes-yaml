@@ -18,7 +18,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
 
 Process:
-  - Processor: com.github.eth-its-recipes.preprocessors/LastRecipeRunChecker
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
 
