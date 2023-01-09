@@ -63,6 +63,7 @@ if [[ $alertTimeoutSeconds ]]; then
     [[ $maxNotificationCount ]] && defaults write "$preferenceFileFullPath" MaxNotificationCount -int "$maxNotificationCount"
     [[ $afterEmptyUpdateDelayDayCount ]] && defaults write "$preferenceFileFullPath" AfterEmptyUpdateDelayDayCount -int "$afterEmptyUpdateDelayDayCount"
     [[ $afterFullUpdateDelayDayCount ]] && defaults write "$preferenceFileFullPath" AfterFullUpdateDelayDayCount -int "$afterFullUpdateDelayDayCount"
+    [[ $customIconPath ]] && defaults write "$preferenceFileFullPath" customIconPath -string "$customIconPath"
 fi
 
 # Start our LaunchDaemon
