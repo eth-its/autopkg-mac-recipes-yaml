@@ -29,13 +29,13 @@ Input:
   PARAMETER7_VALUE: "7"
   PARAMETER8_VALUE: "3"
   PARAMETER9_VALUE: "3"
-  PARAMETER10_VALUE: /Library/Scripts/nice_updater_custom_icon.png
+  PARAMETER10_VALUE: /Applications/ETH Self Service.app
   PARAMETER11_VALUE: " "
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs a tool maintained by ETH IT Services which encourages you to keep your computer up to date through reminder notifications.
 
-    You are allowed to defer the installation up to ten times before you are required to install the updates.
+    You are allowed to defer the installation up to seven times before you are required to install the updates.
 
     Version: %version%
     Category: %PKG_CATEGORY%

@@ -26,7 +26,7 @@ Input:
   PARAMETER7_VALUE: "7"
   PARAMETER8_VALUE: "3"
   PARAMETER9_VALUE: "3"
-  PARAMETER10_VALUE: /Library/Scripts/nice_updater_custom_icon.png
+  PARAMETER10_VALUE: /Applications/ETH Self Service.app
   PARAMETER11_VALUE: ""
   SELFSERVICE_ICON: Software Update.png
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
