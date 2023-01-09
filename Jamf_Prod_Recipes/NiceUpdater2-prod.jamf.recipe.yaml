@@ -28,6 +28,6 @@ Input:
   PARAMETER9_VALUE: "3"
   PARAMETER10_VALUE: /Applications/ETH Self Service.app
   PARAMETER11_VALUE: ""
-  SELFSERVICE_ICON: Software Update.png
+  SELFSERVICE_ICON: Software Update 2022.png
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml

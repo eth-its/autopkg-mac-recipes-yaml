@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-runcommand-EA-uninstall
 
 Input:
   NAME: macOS Managed Updates
-  SELFSERVICE_ICON: Software Update.png
+  SELFSERVICE_ICON: Software Update 2022.png
   TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: /bin/bash /Library/Scripts/nice_updater_uninstall.sh
   EXTENSION_ATTRIBUTE_NAME: macOS Managed Updates Tool Version
   EXTENSION_ATTRIBUTE_SCRIPT: NiceUpdater2-EA.sh
