@@ -11,6 +11,7 @@ Required parameters:
 7 - Licensed Email Account
 8 - License Signature
 9 - User Count
+10 - License Expiry
 DOC
 
 defaults_file_path="/Library/Application Support/Serif"
@@ -22,6 +23,8 @@ cat > "$defaults_file" <<EOF
     "designerProductKey": "$4",
     "disableCheckForUpdates": true,
     "disableEULA": true,
+    "disableRegistration": true,
+    "licenseExpiry": "${10}",
     "licensedTo": "$7",
     "photoProductKey": "$6",
     "publisherProductKey": "$5",
