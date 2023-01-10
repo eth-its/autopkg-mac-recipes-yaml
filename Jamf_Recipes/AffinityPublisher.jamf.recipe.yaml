@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.AffinityPublisher
 
 Input:
-  NAME: Affinity Publisher
+  NAME: Affinity Publisher 2
   LANGUAGE_CODE: en-gb
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -20,7 +20,7 @@ Input:
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
-  SELFSERVICE_ICON: "%NAME% 1.10.png"
+  SELFSERVICE_ICON: "%NAME% 2.png"
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh
   SCRIPT_CATEGORY: Administration
