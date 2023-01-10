@@ -18,7 +18,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: Run-AffinityLicense
-  SCRIPT_NAME: AffinityLicense-install.zsh
+  SCRIPT_NAME: Affinity2License-install.zsh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PARAMETER4_LABEL: Designer product key
