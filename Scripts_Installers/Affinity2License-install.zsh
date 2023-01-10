@@ -24,7 +24,7 @@ cat > "$defaults_file" <<EOF
     "disableCheckForUpdates": true,
     "disableEULA": true,
     "disableRegistration": true,
-    "licenseExpiry": "${10}",
+    "licenceExpiry": "${10}",
     "licensedTo": "$7",
     "photoProductKey": "$6",
     "publisherProductKey": "$5",
