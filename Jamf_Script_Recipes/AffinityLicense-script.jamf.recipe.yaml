@@ -6,6 +6,7 @@ Comments: |
   - AFFINITY_LICENSE_ACCOUNT
   - AFFINITY_LICENSE_SIGNATURE
   - AFFINITY_LICENSE_USER_COUNT
+  - AFFINITY_LICENSE_EXPIRY_DATE
 
 Description: Creates a trigger-only policy to install the Affinity license by running the postinstall script.
 Identifier: com.github.eth-its-recipes.jamf.script.AffinityLicense
@@ -18,7 +19,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: Run-AffinityLicense
-  SCRIPT_NAME: AffinityLicense-install.zsh
+  SCRIPT_NAME: Affinity2License-install.zsh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PARAMETER4_LABEL: Designer product key
@@ -27,7 +28,7 @@ Input:
   PARAMETER7_LABEL: Licensed account
   PARAMETER8_LABEL: Signature
   PARAMETER9_LABEL: User count
-  PARAMETER10_LABEL: Parameter 10
+  PARAMETER10_LABEL: License Expiry Date
   PARAMETER11_LABEL: Parameter 11
   PARAMETER4_VALUE: "%AFFINITY_DESIGNER_PRODUCT_KEY%"
   PARAMETER5_VALUE: "%AFFINITY_PUBLISHER_PRODUCT_KEY%"
@@ -35,7 +36,7 @@ Input:
   PARAMETER7_VALUE: "%AFFINITY_LICENSE_ACCOUNT%"
   PARAMETER8_VALUE: "%AFFINITY_LICENSE_SIGNATURE%"
   PARAMETER9_VALUE: "%AFFINITY_LICENSE_USER_COUNT%"
-  PARAMETER10_VALUE: "None"
+  PARAMETER10_VALUE: "%AFFINITY_LICENSE_EXPIRY_DATE%"
   PARAMETER11_VALUE: "None"
 
 Process:

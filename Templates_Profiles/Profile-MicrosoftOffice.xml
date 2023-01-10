@@ -24,7 +24,7 @@
                 <name>Microsoft Office 2019 users</name>
             </computer_group>
             <computer_group>
-                <name>Microsoft Office 365 users</name>
+                <name>Microsoft Office users</name>
             </computer_group>
         </computer_groups>
         <exclusions>
