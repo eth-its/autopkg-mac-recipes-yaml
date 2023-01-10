@@ -20,7 +20,7 @@ Input:
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
-  SELFSERVICE_ICON: "%NAME% 2.png"
+  SELFSERVICE_ICON: "%NAME%.png"
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh
   SCRIPT_CATEGORY: Administration

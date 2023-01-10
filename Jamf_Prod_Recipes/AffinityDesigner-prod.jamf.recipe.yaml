@@ -4,10 +4,10 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
-  NAME: Affinity Designer
+  NAME: Affinity Designer 2
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AffinityDesigner
   POLICY_TEMPLATE: Policy-prod-selfservice-script-parameter4.xml
-  SELFSERVICE_ICON: "%NAME% 1.10.png"
+  SELFSERVICE_ICON: "%NAME%.png"
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh
   SCRIPT_CATEGORY: Administration
