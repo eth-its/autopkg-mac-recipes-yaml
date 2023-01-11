@@ -10,7 +10,7 @@ Input:
   RECURRING_POLICY_CATEGORY: Administration
   RECURRING_POLICY_TEMPLATE: Policy-script-recurring.xml
   RECURRING_POLICY_NAME: "Run %NAME%"
-  RECURRING_POLICY_FREQUENCY: Once every week
+  RECURRING_POLICY_FREQUENCY: Once every day
   RECURRING_GROUP_NAME: silnite installed
   SCRIPT_NAME: silnite-run.zsh
   SCRIPT_PRIORITY: After
