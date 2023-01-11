@@ -12,3 +12,4 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  SELFSERVICE_ICON: Terminal.png
