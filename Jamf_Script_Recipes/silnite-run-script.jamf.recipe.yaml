@@ -18,8 +18,8 @@ Input:
   GROUP_TEMPLATE: SmartGroup-generic-EA.xml
   EXTENSION_ATTRIBUTE_NAME: XProtect status
   EXTENSION_ATTRIBUTE_SCRIPT: silnite-xprotect-EA.zsh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
-  EXTENSION_ATTRIBUTE_VALUE: up to date
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: out of date
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
