@@ -89,9 +89,19 @@ Process:
 
         # find the setup script
         installer=$(find "$APPPATH" -maxdepth 1 -name "COMSOL*.app" | head -n 1)
-        "$installer" -s "$DIR/setupconfig.ini"
-
-        hdiutil eject $APPPATH
+        if [[ $installer ]]; then
+            echo "Installing $installer" 
+            if "$installer" -s "$DIR/setupconfig.ini"; then
+                echo "Installation succeeded"
+            else
+                echo "ERROR: installation failed"
+            fi
+            hdiutil eject $APPPATH
+        else
+            echo "ERROR: Installer not found."
+            hdiutil eject $APPPATH
+            exit 1
+        fi
 
   - Processor: PkgCreator
     Arguments:
