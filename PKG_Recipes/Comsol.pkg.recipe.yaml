@@ -87,7 +87,9 @@ Process:
         mkdir -p "$APPPATH"
         hdiutil attach "$DIR/COMSOL.dmg" -nobrowse -mountpoint "$APPPATH"
 
-        "$APPPATH/setup" -s "$DIR/setupconfig.ini"
+        # find the setup script
+        installer=$(find "$APPPATH" -maxdepth 1 -name "COMSOL*.app" | head -n 1)
+        "$installer" -s "$DIR/setupconfig.ini"
 
         hdiutil eject $APPPATH
 
