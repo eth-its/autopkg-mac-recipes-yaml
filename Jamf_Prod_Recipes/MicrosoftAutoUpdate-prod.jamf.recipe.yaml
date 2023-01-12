@@ -15,8 +15,8 @@ Input:
   SCRIPT_CATEGORY: Productivity
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users-MicrosoftAutoUpdate.xml
-  USERS_ALL_MICROSOFT_APPS_NAME: Microsoft applications - all user groups (do not edit)
-  USERS_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
+  USERS_GROUP_ALL_MICROSOFT_APPS_NAME: Microsoft applications - all user groups (do not edit)
+  USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
   AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
   AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
   AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate-users-group.xml
@@ -58,8 +58,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%USERS_ALL_MICROSOFT_APPS_NAME%"
-      computergroup_template: "%USERS_ALL_MICROSOFT_APPS_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_ALL_MICROSOFT_APPS_NAME%"
+      computergroup_template: "%USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
