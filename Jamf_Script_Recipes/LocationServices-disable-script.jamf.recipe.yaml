@@ -1,9 +1,9 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.EnableLocationServices-script
+Identifier: com.github.eth-its-recipes.jamf.LocationServices-disable-script
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Enable Location Services
+  NAME: Disable Location Services
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   INSTALLED_GROUP_NAME: "%NAME% enabled"
@@ -14,15 +14,15 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: "True"
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice-exclusion.xml
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
   POLICY_NAME: "%NAME%"
-  SCRIPT_NAME: EnableLocationServices.sh
+  SCRIPT_NAME: LocationServices-disable.sh
   SCRIPT_PRIORITY: After
-  SELFSERVICE_DISPLAY_NAME: Enable Location Services
-  SELFSERVICE_DESCRIPTION: Enables Location Services so that the Time Zone adjusts correctly for location.
+  SELFSERVICE_DISPLAY_NAME: Disable Location Services
+  SELFSERVICE_DESCRIPTION: Disables Location Services.
   SELFSERVICE_ICON: System Preferences.png
-  INSTALL_BUTTON_TEXT: Enable
-  REINSTALL_BUTTON_TEXT: Enable
+  INSTALL_BUTTON_TEXT: Disable
+  REINSTALL_BUTTON_TEXT: Disable
   FORCE_DESCRIPTION: "false"
 
 Process:
@@ -57,6 +57,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
+      USERS_GROUP_NAME: "%INSTALLED_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
