@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Disable Location Services
-  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_NAME: Location Services users
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   INSTALLED_GROUP_NAME: Location Services enabled
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
