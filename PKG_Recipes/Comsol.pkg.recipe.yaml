@@ -89,9 +89,9 @@ Process:
 
         # find the setup script
         installer=$(find "$APPPATH" -maxdepth 1 -name "COMSOL*.app" | head -n 1)
-        if [[ $installer ]]; then
+        if [[ -d "$installer" ]]; then
             echo "Installing $installer" 
-            if "$installer" -s "$DIR/setupconfig.ini"; then
+            if "$installer/Contents/Resources/setup" -s "$DIR/setupconfig.ini"; then
                 echo "Installation succeeded"
             else
                 echo "ERROR: installation failed"
