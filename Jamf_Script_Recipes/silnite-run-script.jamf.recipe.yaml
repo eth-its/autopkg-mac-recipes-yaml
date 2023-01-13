@@ -14,23 +14,11 @@ Input:
   RECURRING_GROUP_NAME: silnite installed
   SCRIPT_NAME: silnite-run.zsh
   SCRIPT_PRIORITY: After
-  GROUP_NAME: XProtect out of date
-  GROUP_TEMPLATE: SmartGroup-generic-EA.xml
-  EXTENSION_ATTRIBUTE_NAME: XProtect status
-  EXTENSION_ATTRIBUTE_SCRIPT: silnite-xprotect-EA.zsh
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-  EXTENSION_ATTRIBUTE_VALUE: out of date
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%RECURRING_POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
-    Arguments:
-      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
-      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -38,12 +26,6 @@ Process:
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%GROUP_TEMPLATE%"
-      computergroup_name: "%GROUP_NAME%"
-      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

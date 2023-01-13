@@ -10,7 +10,7 @@
 #######################################################################
 
 # location of saved XDR uninstaller
-uninstaller_location="/Library/Management/PaloAlto/CortexXDR/Cortex XDR Uninstaller.app"
+uninstaller_location="/Applications/Cortex XDR Uninstaller.app"
 
 # uninstaller password in Parameter 4
 password=""

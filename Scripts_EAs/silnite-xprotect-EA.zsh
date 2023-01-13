@@ -5,6 +5,7 @@
 # This requires silnite to be installed with a daily output made to a known json file
 
 # variables
+silnite_bin="/usr/local/bin/silnite"
 silnite_dir="/Users/Shared/ETHZ/silnite"
 silnite_output="$silnite_dir/silnite.json"
 
@@ -32,8 +33,10 @@ xprotect_diff=$(( xprotect_latest - xprotect_version ))
 
 if [[ $xprotect_diff -gt 0 ]]; then
     result="Out of date"
-elif  [[ $xprotect_diff -eq 0 ]]; then
+elif [[ $xprotect_diff -le 0 ]]; then
     result="Up to date"
+elif [[ ! -f "$silnite_bin" ]]; then
+    result="Not collected"
 else
     result="ERROR"
 fi
