@@ -7,8 +7,6 @@
 silnite_dir="/Users/Shared/ETHZ/silnite"
 silnite_version_file="$silnite_dir/silnite-version.txt"
 
-mkdir -p "$silnite_dir"
-
 version=""
 if [[ -f "$silnite_version_file" ]]; then
     version=$(/bin/cat "$silnite_version_file")
