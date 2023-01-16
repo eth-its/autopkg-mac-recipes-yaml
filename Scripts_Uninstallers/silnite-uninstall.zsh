@@ -26,3 +26,11 @@ if  [[ -d "$silnite_dir" ]]; then
 else
     echo "silnite output directory not found"
 fi
+
+# clean up any relics
+old_silnite_dir="/Users/Shared/ETHZ/silnite"
+if [[ -d "$old_silnite_dir "]]; then
+    rm -rf "$old_silnite_dir"
+    [[ $(/bin/ls -A "/Users/Shared/ETHZ") ]] || rm -rf "/Users/Shared/ETHZ"
+fi
+
