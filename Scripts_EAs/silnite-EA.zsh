@@ -12,6 +12,13 @@ if [[ -f "$silnite_version_file" ]]; then
     version=$(/bin/cat "$silnite_version_file")
 fi
 
+# clean up any relics
+# old_silnite_dir="/Users/Shared/ETHZ/silnite"
+# if [[ -d "$old_silnite_dir" ]]; then
+#     rm -rf "$old_silnite_dir"
+#     [[ $(/bin/ls -A "/Users/Shared/ETHZ") ]] || rm -rf "/Users/Shared/ETHZ"
+# fi
+
 result="None"
 
 if [[ $version ]]; then

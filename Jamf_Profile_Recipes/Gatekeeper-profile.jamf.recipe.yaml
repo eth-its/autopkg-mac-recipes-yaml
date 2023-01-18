@@ -4,13 +4,36 @@ Identifier: com.github.eth-its-recipes.jamf.Gatekeeper-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Gatekeeper
+  NAME: Gatekeeper Settings
   PROFILE_NAME: Gatekeeper Settings
   PROFILE_MOBILECONFIG: Gatekeeper.mobileconfig
-  PROFILE_TEMPLATE: Profile-ignore-scope.xml
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_CATEGORY: Security
+  PROFILE_DESCRIPTION: Ensures Gatekeeper is set to "Mac App Store and identified developers"
+  ORGANIZATION: ETH Zurich
+  USERS_GROUP_NAME: "%NAME% enforced"
+  TEST_USERS_GROUP_NAME: "Testing - %NAME%"
+  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"

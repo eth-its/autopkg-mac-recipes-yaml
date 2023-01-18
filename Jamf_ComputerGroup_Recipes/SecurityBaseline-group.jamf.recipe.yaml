@@ -35,3 +35,24 @@ Process:
       computergroup_template: SmartGroup-generic-EA.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
+
+  # Firewall
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: SmartGroup-FirewallOff.xml
+      computergroup_name: Firewall settings not compliant
+      replace_group: "True"
+
+  # FileVault
+  # - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  #   Arguments:
+  #     computergroup_template: SmartGroup-FileVaultOff.xml
+  #     computergroup_name: FileVault not compliant
+  #     replace_group: "True"
+
+  # Software Update Settings
+  # - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+  #   Arguments:
+  #     computergroup_template: SmartGroup-NoSoftwareUpdatesProfile.xml
+  #     computergroup_name: Software Update Settings not compliant
+  #     replace_group: "True"
