@@ -9,7 +9,7 @@ Input:
   PROFILE_CATEGORY: Security
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_PAYLOAD: com.apple.applicationaccess-EACAS.plist
   PROFILE_DESCRIPTION: Disables the Erase All Contents And Settings menu item in System Preferences.
   USERS_GROUP_NAME: "%NAME% enforced"
   TEST_USERS_GROUP_NAME: "Testing - %NAME%"
