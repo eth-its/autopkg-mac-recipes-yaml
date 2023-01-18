@@ -44,7 +44,7 @@
         <key>PayloadDescription</key>
         <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
-        <string>Firewall Recommended Settings</string>
+        <string>Firewall Settings</string>
         <key>PayloadEnabled</key>
         <true/>
         <key>PayloadIdentifier</key>
