@@ -14,6 +14,8 @@ Input:
   USERS_GROUP_NAME: "%NAME% enforced"
   TEST_USERS_GROUP_NAME: "Testing - %NAME%"
   TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
   REPLACE_PROFILE: "True"
 
 Process:
