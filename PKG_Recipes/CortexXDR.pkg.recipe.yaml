@@ -32,12 +32,12 @@ Process:
   - Processor: Copier
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/Config.xml"
-      source_path: "%RECIPE_CACHE_DIR%/unzip/*.xml"
+      source_path: "%RECIPE_CACHE_DIR%/unzip/Cortex*/*.xml"
 
   - Processor: Copier
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/Cortex XDR Uninstaller.app"
-      source_path: "%RECIPE_CACHE_DIR%/unzip/*.app"
+      source_path: "%RECIPE_CACHE_DIR%/unzip/Cortex*/*.app"
 
   - Processor: FileCreator
     Arguments:
