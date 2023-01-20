@@ -10,12 +10,5 @@
             <search_type>%EXTENSION_ATTRIBUTE_SEARCH_TYPE%</search_type>
             <value>%EXTENSION_ATTRIBUTE_VALUE%</value>
         </criterion>
-        <criterion>
-            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
-            <priority>0</priority>
-            <and_or>and</and_or>
-            <search_type>does not match regex</search_type>
-            <value>^$</value>
-        </criterion>
     </criteria>
 </computer_group>
