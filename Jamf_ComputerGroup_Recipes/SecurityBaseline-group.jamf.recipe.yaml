@@ -43,6 +43,13 @@ Process:
       computergroup_name: Firewall settings not compliant
       replace_group: "True"
 
+  # Recovery Lock
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: SmartGroup-RecoveryLockOff.xml
+      computergroup_name: Recovery Lock settings not compliant
+      replace_group: "True"
+
   # FileVault
   # - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
   #   Arguments:
@@ -51,8 +58,18 @@ Process:
   #     replace_group: "True"
 
   # Software Update Settings
-  # - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-  #   Arguments:
-  #     computergroup_template: SmartGroup-NoSoftwareUpdatesProfile.xml
-  #     computergroup_name: Software Update Settings not compliant
-  #     replace_group: "True"
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: Software Update Settings status
+      ea_script_path: SoftwareUpdateStatus-EA.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      GROUP_NAME: Software Update settings not compliant
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
+      EXTENSION_ATTRIBUTE_VALUE: Compliant
+      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
