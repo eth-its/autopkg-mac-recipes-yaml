@@ -1,0 +1,22 @@
+Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
+Identifier: com.github.eth-its-recipes.jamf.group.SecurityBaseline-SoftwareUpdate
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: Software Update Settings status
+      ea_script_path: SoftwareUpdateStatus-EA.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      GROUP_NAME: Software Update settings not compliant
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
+      EXTENSION_ATTRIBUTE_VALUE: Compliant
+      computergroup_template: SmartGroup-generic-EA-not-empty.xml
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
