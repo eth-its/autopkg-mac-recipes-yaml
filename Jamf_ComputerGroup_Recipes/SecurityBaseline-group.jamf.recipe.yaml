@@ -70,6 +70,6 @@ Process:
       GROUP_NAME: Software Update settings not compliant
       EXTENSION_ATTRIBUTE_SEARCH_TYPE: is not
       EXTENSION_ATTRIBUTE_VALUE: Compliant
-      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_template: SmartGroup-generic-EA-not-empty.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
