@@ -3,7 +3,7 @@
 <plist version="1.0">
     <dict>
         <key>AllowPreReleaseInstallation</key>
-        <true/>
+        <false/>
         <key>AutomaticCheckEnabled</key>
         <true/>
         <key>AutomaticDownload</key>

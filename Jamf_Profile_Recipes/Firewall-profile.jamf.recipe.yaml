@@ -1,15 +1,15 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy.
-Identifier: com.github.eth-its-recipes.jamf.Gatekeeper-profile
+Identifier: com.github.eth-its-recipes.jamf.Firewall-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Gatekeeper Settings
-  PROFILE_NAME: Gatekeeper Settings
-  PROFILE_MOBILECONFIG: Gatekeeper.mobileconfig
+  NAME: Firewall Settings
+  PROFILE_NAME: Firewall Settings
+  PROFILE_MOBILECONFIG: Firewall.mobileconfig
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_CATEGORY: Security
-  PROFILE_DESCRIPTION: Ensures Gatekeeper is set to "Mac App Store and identified developers"
+  PROFILE_DESCRIPTION: Ensures Firewall is enabled.
   ORGANIZATION: ETH Zurich
   USERS_GROUP_NAME: "%NAME% enforced"
   TEST_USERS_GROUP_NAME: "Testing - %NAME%"

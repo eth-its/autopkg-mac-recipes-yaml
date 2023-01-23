@@ -6,17 +6,17 @@ Input:
   NAME: Disable Erase All Contents And Settings
   IDENTIFIER: com.apple.applicationaccess
   ORGANIZATION: Apple
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: Security
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_PAYLOAD: com.apple.applicationaccess-EACAS.plist
   PROFILE_DESCRIPTION: Disables the Erase All Contents And Settings menu item in System Preferences.
-  USERS_GROUP_NAME: Disable Erase All Contents And Settings users
-  TEST_USERS_GROUP_NAME: Disable Erase All Contents And Settings test users
+  USERS_GROUP_NAME: "%NAME% enforced"
+  TEST_USERS_GROUP_NAME: "Testing - %NAME%"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
   TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

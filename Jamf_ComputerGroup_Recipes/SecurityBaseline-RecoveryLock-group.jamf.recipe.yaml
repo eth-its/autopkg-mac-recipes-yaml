@@ -1,0 +1,12 @@
+Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
+Identifier: com.github.eth-its-recipes.jamf.group.SecurityBaseline-RecoveryLock
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: SmartGroup-RecoveryLockOff.xml
+      computergroup_name: Recovery Lock settings not compliant
+      replace_group: "True"

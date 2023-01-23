@@ -47,6 +47,7 @@ Input:
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters.xml
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
   UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
@@ -76,7 +77,7 @@ Process:
       script_parameter9: "%PARAMETER9_LABEL%"
       script_parameter10: "%PARAMETER10_LABEL%"
       script_parameter11: "%PARAMETER11_LABEL%"
-      replace_script: True
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
@@ -88,35 +89,41 @@ Process:
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: False
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: False
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
-      replace_group: False
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
       computergroup_name: "%INSTALLED_GROUP_NAME%"
-      replace_group: True
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%UNINSTALL_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
-      replace_policy: True
+      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
-      replace_policy: True
+      replace_policy: "True"

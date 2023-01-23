@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>Applications</key>
+                <array/>
+                <key>BlockAllIncoming</key>
+                <false/>
+                <key>EnableFirewall</key>
+                <true/>
+                <key>PayloadDisplayName</key>
+                <string>Firewall</string>
+                <key>PayloadIdentifier</key>
+                <string>B5D1A2FB-E393-4297-848F-B8D9D9862D0D</string>
+                <key>PayloadOrganization</key>
+                <string>JAMF Software</string>
+                <key>PayloadType</key>
+                <string>com.apple.security.firewall</string>
+                <key>PayloadUUID</key>
+                <string>B5D1A2FB-E393-4297-848F-B8D9D9862D0D</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+            <dict>
+                <key>PayloadDisplayName</key>
+                <string>PreferenceSecurity</string>
+                <key>PayloadIdentifier</key>
+                <string>167B26EA-CA31-4DB9-B534-5894E8D3342F</string>
+                <key>PayloadOrganization</key>
+                <string>JAMF Software</string>
+                <key>PayloadType</key>
+                <string>com.apple.preference.security</string>
+                <key>PayloadUUID</key>
+                <string>167B26EA-CA31-4DB9-B534-5894E8D3342F</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>dontAllowFireWallUI</key>
+                <false/>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>Firewall Settings</string>
+        <key>PayloadEnabled</key>
+        <true/>
+        <key>PayloadIdentifier</key>
+        <string>8520C68B-E998-4CC1-A118-625F47308455</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadRemovalDisallowed</key>
+        <true/>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>8520C68B-E998-4CC1-A118-625F47308455</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
