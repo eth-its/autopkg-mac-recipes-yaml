@@ -10,5 +10,5 @@ eraseinstall="/Library/Management/erase-install/erase-install.sh"
 
 jamf policy -event "erase-install-install"
 
-/Library/Management/erase-install/erase-install.sh --update --erase --sameos --depnotify --current-user
+/Library/Management/erase-install/erase-install.sh --update --erase --sameos
 
