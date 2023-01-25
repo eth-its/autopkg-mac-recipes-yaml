@@ -12,19 +12,19 @@ Input:
   NAME: CLC Genomics Workbench
   LANGUAGE: EN
   LIST_NAME: CLC Genomics Workbench
-  JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   LIST_LANGUAGE: EN
-  MAJOR_VERSION: "20"
+  MAJOR_VERSION: "23"
   # CLC_LICENSE_SERVER: ++ REPLACE-ME ++
   # CLC_LICENSE_PORT: '6200'
   POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    **CLC Genomics Workbench 20** - a software package supporting your daily bioinformatics work.
+    **CLC Genomics Workbench 23** - a software package supporting your daily bioinformatics work.
 
     **Note**
-    On macOS 10.14+, during installation you may be asked to allow "Installer.app" to control "System Events.app". This is required for installation to proceed. It does not require administrator rights.
+    During installation you may be asked to allow "Installer.app" to control "System Events.app". This is required for installation to proceed. It does not require administrator rights.
     After installation is complete, as a security measure you can disallow access by going to **System Preferences - Security and Privacy - Privacy - Automation** and un-checking "System Events.app" in the "Installer.app" item.
 
     Version: %version%

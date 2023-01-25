@@ -5,8 +5,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: CLC Genomics Workbench
-  JSS_INVENTORY_NAME: "CLC Genomics Workbench 20.app"
-  MAJOR_VERSION: "20"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  MAJOR_VERSION: "23"
   CLC_LICENSE_SERVER: ++ REPLACE-ME ++
   CLC_LICENSE_PORT: "++ REPLACE-ME ++"
   LANGUAGE: EN
