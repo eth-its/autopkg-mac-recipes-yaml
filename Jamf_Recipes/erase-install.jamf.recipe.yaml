@@ -5,7 +5,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.erase-install
 
 Input:
   NAME: erase-install.sh
-  INSTALLER: erase-install-depnotify
+  INSTALLER: erase-install
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   EXTENSION_ATTRIBUTE_NAME: erase-install Version
