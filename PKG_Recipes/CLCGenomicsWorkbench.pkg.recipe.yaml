@@ -1,19 +1,21 @@
 Description: |
   Downloads latest CLC Genomics Workbench installer and uses it to create a package.
-  Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT.
+  Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT, plus MAJOR_VERSION
 Identifier: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+ParentRecipe: com.github.grahampugh.recipes.download.CLCGenomicsWorkbench
 
 Input:
   NAME: CLC Genomics Workbench
-  LIST_NAME: CLC Genomics Workbench
-  LIST_LANGUAGE: EN
-  MAJOR_VERSION: "20"
+  MAJOR_VERSION: "23"
   # CLC_LICENSE_SERVER: REPLACE-ME
   # CLC_LICENSE_PORT: '6200'
 
 Process:
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "NOT version BEGINSWITH '%MAJOR_VERSION%'"
+
   - Processor: PkgRootCreator
     Arguments:
       pkgdirs: {}
@@ -27,7 +29,7 @@ Process:
   - Processor: Copier
     Arguments:
       source_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/Scripts/CLCGenomicsWorkbench_%MAJOR_VERSION%.dmg"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/CLCGenomicsWorkbench.dmg"
 
   - Arguments:
       file_content: |
@@ -57,7 +59,7 @@ Process:
         echo "Mounting CLC Genomics Workbench image"
         APPPATH="/Volumes/CLCGenomicsWorkb"
         mkdir -p $APPPATH
-        hdiutil attach $DIR/CLCGenomicsWorkbench_%MAJOR_VERSION%.dmg -nobrowse -mountpoint $APPPATH
+        hdiutil attach $DIR/CLCGenomicsWorkbench.dmg -nobrowse -mountpoint $APPPATH
 
         $APPPATH/CLC\ Genomics\ Workbench\ Installer.app/Contents/MacOS/JavaApplicationStub -q
 
