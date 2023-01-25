@@ -8,14 +8,13 @@
 # Note: This only works based on the asumption that Jamf Pro keeps
 # the system level identity preference updated accordingly!
 #
-# Source: https://macadmins.slack.com/archives/C826G2XCL/p1671023029867429?thread_ts=1670967228.762929&cid=C826G2XCL
 
 #
 # Prerequisites
 #
 
 # Grab the profile id
-profileid=$(security find-generic-password -l "Network" | awk -F '"' '/com.apple.network.eap.system.item.profileid/{print $4}' | awk -F '.' '{print $NF}')
+profileid=$(/usr/bin/defaults read /Library/Preferences/SystemConfiguration/com.apple.network.eapolclient.configuration.plist SystemModeEthernetProfileID)
 
 # Grab hash - macOS 10.14 and earlier use SHA-1 hashes
 osVersion=$(sw_vers -productVersion)
