@@ -10,20 +10,43 @@
 #
 
 #
-# Prerequisites
+# Grab the profile id
 #
 
-# Grab the profile id
-profileid=$(/usr/bin/defaults read /Library/Preferences/SystemConfiguration/com.apple.network.eapolclient.configuration.plist SystemModeEthernetProfileID)
+# first we get all profile IDs
+profileid_list=$(plutil -extract Profiles raw /Library/Preferences/SystemConfiguration/com.apple.network.eapolclient.configuration.plist)
 
+# convert to a list
+profile_ids=()
+while read -r line ; do
+    profile_ids+=("$line")
+done <<< "$profileid_list"
+
+# figure out which ID is assigned the name "Network" -> this is the LAN profile ID
+for id in "${profile_ids[@]}"; do
+    UserDefinedName=$(/usr/libexec/PlistBuddy -c "Print :Profiles:$id:UserDefinedName" /Library/Preferences/SystemConfiguration/com.apple.network.eapolclient.configuration.plist)
+    if [[ $UserDefinedName == "Network" ]]; then
+        lan_profile_id="$id"
+    fi
+done
+
+# fail if we didn't find the right one
+if [[ ! "$lan_profile_id" ]]; then
+    echo "ERROR: Profile ID not found"
+    exit 1
+fi
+
+#
 # Grab hash - macOS 10.14 and earlier use SHA-1 hashes
+#
+
 osVersion=$(sw_vers -productVersion)
 if [[ "$osVersion" =~ ^10.11.* ]] || [[ "$osVersion" =~ ^10.12.* ]] || [[ "$osVersion" =~ ^10.13.* ]] || [[ "$osVersion" =~ ^10.14.* ]]; then
 	# Use SHA-1
-	hash=$(security get-identity-preference -Z -s "com.apple.network.eap.system.identity.profileid.$profileid" | awk '/SHA-1/{print $NF}')
+	hash=$(security get-identity-preference -Z -s "com.apple.network.eap.system.identity.profileid.$lan_profile_id" | awk '/SHA-1/{print $NF}')
 else
 	# Use SHA-256
-	hash=$(security get-identity-preference -Z -s "com.apple.network.eap.system.identity.profileid.$profileid" | awk '/SHA-256/{print $NF}')
+	hash=$(security get-identity-preference -Z -s "com.apple.network.eap.system.identity.profileid.$lan_profile_id" | awk '/SHA-256/{print $NF}')
 fi
 
 # Exit if no hash is found
@@ -42,9 +65,9 @@ fi
 su root -c "security default-keychain -d user -s /Library/Keychains/System.keychain"
 
 # Clear existing identity preference
-su root -c "security set-identity-preference -n -s 'com.apple.network.eap.user.identity.profileid.$profileid'"
+su root -c "security set-identity-preference -n -s 'com.apple.network.eap.user.identity.profileid.$lan_profile_id'"
 
 # Set identity preference
-su root -c "security set-identity-preference -Z '$hash' -s 'com.apple.network.eap.user.identity.profileid.$profileid'"
+su root -c "security set-identity-preference -Z '$hash' -s 'com.apple.network.eap.user.identity.profileid.$lan_profile_id'"
 
 exit 0
