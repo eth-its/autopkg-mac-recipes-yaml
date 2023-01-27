@@ -1,0 +1,22 @@
+Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
+Identifier: com.github.eth-its-recipes.jamf.group.BatteryHealthDegraded
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: Battery Capacity
+      ea_script_path: BatteryCapacity-EA.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      GROUP_NAME: Battery Health Degraded
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: has
+      EXTENSION_ATTRIBUTE_VALUE: degraded
+      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
