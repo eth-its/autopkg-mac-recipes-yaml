@@ -9,7 +9,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "ETH Support Menu Bar App (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
-    The Support app is a macOS menu bar app built for organizations to shortcuts to easily access support channels or other company resources such as a website or a file server. It requires macOS 11 or above.
+    The ETH Support app provides useful information about your system, as well as direct links to resources such as opening a support ticket, opening the Self Service app and gaining admin privileges via the Privileges app.
 
     Version: %version%
     Category: %PKG_CATEGORY%
