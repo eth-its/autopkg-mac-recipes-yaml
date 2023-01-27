@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
 Input:
   NAME: Support
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support
+  SELFSERVICE_DISPLAY_NAME: "ETH Support Menu Bar App (Testing)"
   minimum_os_version: "11.0"
   SELFSERVICE_ICON: "ETH.png"
   POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation-install'; jamf policy -event 'SupportHelper-install'"

@@ -6,7 +6,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.SupportApp
 Input:
   NAME: Support
   POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "ETH Support Menu Bar App (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     The Support app is a macOS menu bar app built for organizations to shortcuts to easily access support channels or other company resources such as a website or a file server. It requires macOS 11 or above.
