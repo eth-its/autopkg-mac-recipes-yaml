@@ -5,8 +5,18 @@ MinimumVersion: "2.3"
 Input: {}
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: Volume Owners
+      ea_script_path: VolumeOwners-EA.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: SmartGroup-NoVolumeOwners.xml
-      computergroup_name: No Volume Owners
+      GROUP_NAME: No Volume Owners
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+      EXTENSION_ATTRIBUTE_VALUE: None
+      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
