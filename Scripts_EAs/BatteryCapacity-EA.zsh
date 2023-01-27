@@ -5,7 +5,9 @@
 
 capacity=$(system_profiler SPPowerDataType | sed -n -e 's/^.*Maximum Capacity: //p' | sed 's/\%//')
 
-if [[ $capacity -lt 80 ]]; then
+if [[ ! $capacity ]]; then
+    echo "<result>No battery</result>"
+elif [[ $capacity -lt 80 ]]; then
     echo "<result>$capacity - degraded</result>"
 else
     echo "<result>$capacity</result>"
