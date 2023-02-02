@@ -25,4 +25,5 @@ Input:
   SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE%"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE%"
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'
+  TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-forcedescription.xml
