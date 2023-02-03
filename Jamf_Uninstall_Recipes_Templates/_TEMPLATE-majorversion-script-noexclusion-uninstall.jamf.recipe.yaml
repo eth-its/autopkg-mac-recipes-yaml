@@ -23,7 +23,7 @@ Input:
   PKG_ID_5: "None"
   SELFSERVICE_ICON: "%NAME%.png"
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
@@ -32,7 +32,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameter4.xml
