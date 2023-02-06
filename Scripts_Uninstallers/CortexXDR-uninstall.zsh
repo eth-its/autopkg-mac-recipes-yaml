@@ -18,6 +18,12 @@ if [[ $4 ]]; then
     password="$4"
 fi
 
+# remove an existing uninstaller
+if [[ -d "/Applications/Cortex XDR Uninstaller.app" ]]; then
+    echo "Removing existing Cortex XDR uninstaller"
+    rm -rf "/Applications/Cortex XDR Uninstaller.app"
+fi
+
 # copy the uninstaller to /Applications
 if [[ -d "$uninstaller_location" ]]; then
     echo "Copying Cortex XDR uninstaller to /Applications"
