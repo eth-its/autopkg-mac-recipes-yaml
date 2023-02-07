@@ -27,7 +27,7 @@ fi
 # copy the uninstaller to /Applications
 if [[ -d "$uninstaller_location" ]]; then
     echo "Copying Cortex XDR uninstaller to /Applications"
-    cp -r "$uninstaller_location" /Applications/
+    mv "$uninstaller_location" /Applications/
 else
     echo "Could not find Cortex XDR uninstaller"
     exit 1
@@ -39,6 +39,7 @@ if [[ $password ]]; then
         echo "Cortex XDR uninstallation complete"
     else
         echo "Cortex XDR uninstallation failed"
+        /usr/bin/open -a "/Applications/Cortex XDR Uninstaller.app"
     fi
 else
     echo "No password provided, so cannot run the automated uninstaller. Opening the uninstaller app instead"
