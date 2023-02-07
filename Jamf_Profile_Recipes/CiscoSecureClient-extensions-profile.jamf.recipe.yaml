@@ -15,7 +15,7 @@ Input:
   PROFILE_DESCRIPTION: Settings that allow the Cisco Secure Client application to function.
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: CiscoSecureClient-SystemExtension.mobileconfig
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
