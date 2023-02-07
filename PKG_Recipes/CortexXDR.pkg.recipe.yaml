@@ -47,15 +47,13 @@ Process:
 
         DIR=$(dirname "$0")
 
-        # copy uninstaller to a management location for the installer
-        mkdir -p /Library/Management/PaloAlto/CortexXDR
-        # clear out any existing versions
+        # copy uninstaller to Applications and hide it
         rm -rf "/Library/Management/PaloAlto/CortexXDR/Cortex XDR Uninstaller.app" "/Applications/Cortex XDR Uninstaller.app"
 
-        # Now copy to the management folder
-        if /bin/cp -r "$DIR/Cortex XDR Uninstaller.app" "/Library/Management/PaloAlto/CortexXDR/Cortex XDR Uninstaller.app"
+        if /bin/cp -r "$DIR/Cortex XDR Uninstaller.app" "/Applications/Cortex XDR Uninstaller.app"
         then
-            echo "Palo Alto Cortex XDR Uninstaller installed."
+            echo "Palo Alto Cortex XDR Uninstaller installed. Hiding it."
+            chflags hidden "/Applications/Cortex XDR Uninstaller.app"
         else
             echo "ERROR: Palo Alto Cortex XDR uninstaller installation failed."
             exit 1
