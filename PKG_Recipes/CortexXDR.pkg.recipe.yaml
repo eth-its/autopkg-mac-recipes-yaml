@@ -47,14 +47,6 @@ Process:
 
         DIR=$(dirname "$0")
 
-        if /usr/sbin/installer -pkg "$DIR/PaloAltoCortexXDR.pkg" -target /
-        then
-            echo "Palo Alto Cortex XDR installed."
-        else
-            echo "ERROR: Palo Alto Cortex XDR installation failed."
-            exit 1
-        fi
-
         # copy uninstaller to a management location for the installer
         mkdir -p /Library/Management/PaloAlto/CortexXDR
         # clear out any existing versions
@@ -68,6 +60,16 @@ Process:
             echo "ERROR: Palo Alto Cortex XDR uninstaller installation failed."
             exit 1
         fi
+
+        # now install Cortex XDR
+        if /usr/sbin/installer -pkg "$DIR/PaloAltoCortexXDR.pkg" -target /
+        then
+            echo "Palo Alto Cortex XDR installed."
+        else
+            echo "ERROR: Palo Alto Cortex XDR installation failed."
+            exit 1
+        fi
+
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
 
