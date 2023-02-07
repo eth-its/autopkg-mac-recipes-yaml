@@ -4,17 +4,17 @@ Identifier: com.github.eth-its-recipes.jamf.CortexXDR-settings-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Cortex XDR
+  NAME: Cisco Secure Client
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: Cortex XDR Settings
-  PROFILE_DESCRIPTION: Settings that allow the Cortex XDR application to function.
+  PROFILE_NAME: Cisco Secure Client - Socket Filter
+  PROFILE_DESCRIPTION: Settings that allow the Cisco Secure Client application to function.
   ORGANIZATION: "%NAME%"
-  PROFILE_MOBILECONFIG: CortexXDR.mobileconfig
+  PROFILE_MOBILECONFIG: CiscoSecureClient-SystemExtension.mobileconfig
   REPLACE_PROFILE: "False"
 
 Process:
