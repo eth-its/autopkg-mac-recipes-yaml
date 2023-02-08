@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.DellDisplayAndPeripheralManager-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -8,3 +8,5 @@ Input:
   JSS_INVENTORY_NAME: DDPM.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.DellDisplayAndPeripheralManager
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/DDPM" && echo "Corrected permissions for %NAME%."'
+  SCRIPT_NAME: DellDisplayAndPeripheralManager-postinstall.zsh
+  SCRIPT_PATH: DellDisplayAndPeripheralManager-postinstall.zsh

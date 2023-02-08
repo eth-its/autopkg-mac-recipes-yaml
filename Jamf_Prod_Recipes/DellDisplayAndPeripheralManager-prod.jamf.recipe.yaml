@@ -8,3 +8,6 @@ Input:
   JSS_INVENTORY_NAME: DDPM.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.DellDisplayAndPeripheralManager
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/DDPM" && echo "Corrected permissions for %NAME%."'
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SCRIPT_NAME: DellDisplayAndPeripheralManager-postinstall.zsh
+  SCRIPT_PRIORITY: After
