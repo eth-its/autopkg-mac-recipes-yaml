@@ -3,7 +3,7 @@ Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithVentura
 MinimumVersion: "2.3"
 
 Input:
-  COMPATIBILITY_REGEX: ^(Mac(1[3-9]|BookPro1[4-8]|BookAir([89]|10)|Pro[7-9]|Book\d{2,})|iMac(Pro\d+|(1[89]|[2-9]\d))|Macmini[89]|VirtualMac\d+),\d+$
+  COMPATIBILITY_REGEX: ^(iMac1[8-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[8-9]|MacBookAir1[0-9]|MacBookPro1[4-9]|Macmini[8-9]|Macmini1[0-9]|MacPro[7-9]|Mac1[3-9]|VirtualMac)
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
