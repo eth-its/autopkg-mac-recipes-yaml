@@ -1,0 +1,13 @@
+Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
+Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithMonterey
+MinimumVersion: "2.3"
+
+Input:
+  COMPATIBILITY_REGEX: (^Mac1[3-9]|MacBook(9|\d{2})|MacBookAir([7-9]|\d{2})|Macmini([7-9]|\d{2})|MacPro([6-9]|1\d)|iMacPro[1-9]|iMac(1[6-9]|2[0-9])),\d|MacBookPro1(1,[45]|[2-9],\d)
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: SmartGroup-ModelNotCompatibleWith.xml
+      computergroup_name: Not compatible with macOS Monterey
+      replace_group: "True"

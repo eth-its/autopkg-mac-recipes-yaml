@@ -1,0 +1,13 @@
+Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
+Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithBigSur
+MinimumVersion: "2.3"
+
+Input:
+  COMPATIBILITY_REGEX: (MacBook(1[0-9]|9|8)|MacBookAir(1[0-9]|[6-9])|MacBookPro1[1-9]|Macmini(1[0-9]|[7-9])|MacPro[6-9]|iMacPro1),\d|iMac(14,4|1[5-9],\d|2[0-9],\d)
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: SmartGroup-ModelNotCompatibleWith.xml
+      computergroup_name: Not compatible with macOS Big Sur
+      replace_group: "True"
