@@ -3,7 +3,7 @@ Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithBigSur
 MinimumVersion: "2.3"
 
 Input:
-  COMPATIBILITY_REGEX: ^(iMac1[6-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[7-9]|MacBookAir1[0-9]|MacBookPro11,[4-9]|MacBookPro1[2-9]|Macmini[7-9]|Macmini10|MacPro[6-9]|Mac1[3-9]|VirtualMac)
+  COMPATIBILITY_REGEX: ^(iMac14,[4-9]|iMac1[5-9]|iMac2[0-9]|iMacPro|MacBook[8-9]|MacBook1[0-9]|MacBookAir[6-9]|MacBookAir1[0-9]|MacBookPro1[1-9]|Macmini[7-9]|Macmini1[0-9]|MacPro[6-9]|Mac1[3-9]|VirtualMac)
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
