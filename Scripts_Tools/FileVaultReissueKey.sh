@@ -86,7 +86,7 @@ fi
 if [ -n "$6" ]; then
     haltMsg="$6"
 else
-    haltMsg="Please Contact IT for Further assistance."
+    haltMsg="Please Contact IT for further assistance."
 fi
 
 if [[ -n "$7" ]]; then
@@ -112,7 +112,7 @@ system_build=$( /usr/bin/sw_vers -buildVersion )
 ## This first user check sees if the logged in account is already authorized with FileVault 2
 userCheck=$(fdesetup list | awk -v usrN="$userNameUUID" -F, 'match($0, usrN) {print $1}')
 if [ "${userCheck}" != "${userName}" ]; then
-    echo "This user is not a FileVault 2 enabled user."
+    echo "This user is not a FileVault-enabled user."
     exit 3
 fi
 
@@ -145,7 +145,7 @@ return userPass
 end run")
 
     if [ "$?" == "1" ]; then
-        echo "User Canceled"
+        echo "User Cancelled"
         exit 0
     fi
 
@@ -183,14 +183,14 @@ expect eof
 successAlert () {
     /usr/bin/osascript -e "
 on run
-display dialog \"\" & return & \"Your FileVault Key was successfully Changed\" with title \"$orgName FileVault Key Reset\" buttons {\"Close\"} default button 1 with icon POSIX file \"$brandIcon\"
+display dialog \"\" & return & \"Your FileVault key was successfully changed\" with title \"$orgName FileVault Key Reset\" buttons {\"Close\"} default button 1 with icon POSIX file \"$brandIcon\"
 end run"
 }
 
 errorAlert () {
     /usr/bin/osascript -e "
 on run
-display dialog \"FileVault Key not Changed\" & return & \"$result\" buttons {\"Cancel\", \"Try Again\"} default button 2 with title \"$orgName FileVault Key Reset\" with icon POSIX file \"$brandIcon\"
+display dialog \"FileVault key not changed\" & return & \"$result\" buttons {\"Cancel\", \"Try Again\"} default button 2 with title \"$orgName FileVault Key Reset\" with icon POSIX file \"$brandIcon\"
 end run"
 
     if [ "$?" == "1" ]; then
@@ -204,7 +204,7 @@ end run"
 haltAlert () {
     /usr/bin/osascript -e "
 on run
-display dialog \"FileVault Key not changed\" & return & \"$haltMsg\" buttons {\"Close\"} default button 1 with title \"$orgName FileVault Key Reset\" with icon POSIX file \"$brandIcon\"
+display dialog \"FileVault key not changed\" & return & \"$haltMsg\" buttons {\"Close\"} default button 1 with title \"$orgName FileVault Key Reset\" with icon POSIX file \"$brandIcon\"
 end run
 "
 }
