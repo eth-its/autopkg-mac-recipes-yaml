@@ -1,8 +1,4 @@
-Description: |
-  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-
-  Required overrides:
-  - PARAMETER4_VALUE (should be the organisation name)
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.grahampugh.recipes.jamf.FileVaultReissueKey-script
 MinimumVersion: "2.3"
 
@@ -30,6 +26,7 @@ Input:
   PARAMETER9_LABEL: Parameter 9
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_VALUE: "ETH Zürich"
   PARAMETER5_VALUE: "3"
   PARAMETER6_VALUE: Please contact your IT support administrators if you have any problems.
   PARAMETER7_VALUE: ""
