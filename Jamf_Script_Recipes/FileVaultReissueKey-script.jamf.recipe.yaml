@@ -1,0 +1,45 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.grahampugh.recipes.jamf.FileVaultReissueKey-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Reissue FileVault Key
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: "FileVaultReissueKey.sh"
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: Reissue the FileVault key and upload to the management system. Run this only if asked to do so by your IT administrator.
+  SELFSERVICE_ICON: FileVault.png
+  INSTALL_BUTTON_TEXT: Reissiue key
+  REINSTALL_BUTTON_TEXT: Reissiue key
+  FORCE_DESCRIPTION: "true"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
