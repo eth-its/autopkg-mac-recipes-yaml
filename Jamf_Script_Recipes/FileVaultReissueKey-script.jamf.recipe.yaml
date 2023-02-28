@@ -1,4 +1,8 @@
-Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Description: |
+  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Required overrides:
+  - PARAMETER4_VALUE (should be the organisation name)
 Identifier: com.github.grahampugh.recipes.jamf.FileVaultReissueKey-script
 MinimumVersion: "2.3"
 
@@ -8,7 +12,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Tools & Accessories
-  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_TEMPLATE: Policy-script-selfservice-parameters.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: "FileVaultReissueKey.sh"
   SCRIPT_PRIORITY: After
@@ -18,6 +22,21 @@ Input:
   INSTALL_BUTTON_TEXT: Reissiue key
   REINSTALL_BUTTON_TEXT: Reissiue key
   FORCE_DESCRIPTION: "true"
+  PARAMETER4_LABEL: Org Name
+  PARAMETER5_LABEL: No of attempts
+  PARAMETER6_LABEL: Contact information
+  PARAMETER7_LABEL: Icon path
+  PARAMETER8_LABEL: Parameter 8
+  PARAMETER9_LABEL: Parameter 9
+  PARAMETER10_LABEL: Parameter 10
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER5_VALUE: "3"
+  PARAMETER6_VALUE: Please contact your IT support administrators if you have any problems.
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
