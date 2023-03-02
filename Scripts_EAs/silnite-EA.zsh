@@ -19,7 +19,7 @@ fi
 #     [[ $(/bin/ls -A "/Users/Shared/ETHZ") ]] || rm -rf "/Users/Shared/ETHZ"
 # fi
 
-result="None"
+result=""
 
 if [[ $version ]]; then
     result="$version"

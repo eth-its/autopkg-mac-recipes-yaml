@@ -11,7 +11,7 @@ silnite_version_file="$silnite_dir/silnite-version.txt"
 mkdir -p "$silnite_dir"
 
 if echo "$version" > "$silnite_version_file"; then
-    echo "silnite version $version to $silnite_version_file"
+    echo "Wrote silnite version $version to $silnite_version_file"
 else
     echo "ERROR: could not write to version file"
     exit 1
