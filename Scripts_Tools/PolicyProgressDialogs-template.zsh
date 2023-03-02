@@ -4,10 +4,12 @@
 
 # source https://github.com/bartreardon/swiftDialog-scripts/blob/main/JamfSelfService/jss-progress.sh
 
+current_user=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 jamf_pid=""
 jamf_log="/var/log/jamf.log"
 dialog_log=$(mktemp /var/tmp/dialog.XXX)
-chmod 644 ${dialog_log}
+chmod 644 "${dialog_log}"
+chown "$current_user:wheel" "${dialog_log}"
 script_log="/var/tmp/jamfprogress.log"
 lock_file="/var/tmp/lock.txt"
 count=0
