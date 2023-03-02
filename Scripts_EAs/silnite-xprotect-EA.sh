@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # shellcheck shell=bash
 
 # Read the output from silnite to find out whether XProtect is up to date

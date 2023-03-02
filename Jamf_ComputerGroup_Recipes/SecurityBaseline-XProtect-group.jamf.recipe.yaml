@@ -8,7 +8,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       EXTENSION_ATTRIBUTE_NAME: XProtect status
-      ea_script_path: silnite-xprotect-EA.zsh
+      ea_script_path: silnite-xprotect-EA.sh
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
 
