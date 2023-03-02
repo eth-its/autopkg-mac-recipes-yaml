@@ -1,7 +1,7 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.SophosAntiVirus-uninstall
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-noexclusion-uninstall
 
 Input:
   NAME: Sophos Anti-Virus
