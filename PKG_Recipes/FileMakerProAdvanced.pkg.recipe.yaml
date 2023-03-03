@@ -6,7 +6,7 @@ Input:
   NAME: FileMaker Pro Advanced
   LICENSED_ORG: "ETH Zuerich"
   MAJOR_VERSION: "18"
-  UPDATE_FEED: "https://www.filemaker.com/support/updaters/product-updaters.txt"
+  major_version: "18"
   LIST_NAME: Filemaker Pro
   LIST_MAJOR_VERSION: "18"
   LIST_LANGUAGE: ML
