@@ -1,6 +1,6 @@
 Description: Downloads latest FileMaker Pro Advanced disk image and extracts the package from within. The MAJOR_VERSION should be overridden in the jss recipe to obtain a particular version. Otherwise, the latest available version will be downloaded. The LICENSE_FILE_SOURCE is also required for licensing.
 Identifier: com.github.eth-its-recipes.pkg.FilemakerProAdvanced
-ParentRecipe: com.github.grahampugh.recipes.download.filemakerpro
+ParentRecipe: com.github.grahampugh.recipes.download.FileMakerPro
 
 Input:
   NAME: FileMaker Pro Advanced
