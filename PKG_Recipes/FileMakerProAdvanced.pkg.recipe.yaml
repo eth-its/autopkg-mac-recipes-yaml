@@ -19,6 +19,7 @@ Input:
   LIST_PATH_COLUMN_NUMBER: "6"
   LIST_TITLE_COLUMN_NUMBER: "1"
   LIST_VERSION_COLUMN_NUMBER: "2"
+  SOFTWARE_REPO: /Volumes/mac
   STOP_PREDICATE: "file_exists == True"
 
 Process:
