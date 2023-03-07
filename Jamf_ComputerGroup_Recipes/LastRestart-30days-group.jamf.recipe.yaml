@@ -4,7 +4,6 @@ MinimumVersion: "2.3"
 
 Input:
   DAYS_AGO: "30"
-  UPTIME_REGEX: '^(3[1-9]|[4-9][0-9]|\d{3,})$'
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
@@ -18,7 +17,7 @@ Process:
     Arguments:
       GROUP_NAME: "Last Restart greater than %DAYS_AGO% days"
       EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
-      EXTENSION_ATTRIBUTE_VALUE: "%UPTIME_REGEX%"
+      EXTENSION_ATTRIBUTE_VALUE: '^(3[1-9]|[4-9][0-9]|\d{3,})$'
       computergroup_template: SmartGroup-generic-EA.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
