@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   DAYS_AGO: "30"
-  UPTIME_REGEX: ^(3[1-9]|[4-9][0-9]|\d{3,})$
+  UPTIME_REGEX: '^(3[1-9]|[4-9][0-9]|\d{3,})$'
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
