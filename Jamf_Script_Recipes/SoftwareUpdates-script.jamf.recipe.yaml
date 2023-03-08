@@ -23,7 +23,7 @@ Input:
 
     Please click the Info button. The Software Update pane will open on your computer. Please install all available updates.
 
-    Note that if you have just installed software that does not require a restart, this pane may continue to show taht there are updates until the next time the computer inventory is uploaded to the management server.
+    Note that if you have just installed software that does not require a restart, this pane may continue to show that there are updates until the next time the computer inventory is uploaded to the management server.
   NO_UPDATES_POLICY_TEMPLATE: Policy-softwareupdates-none.xml
   NO_UPDATES_POLICY_NAME: No macOS Updates Available
   NO_UPDATES_SELFSERVICE_DISPLAY_NAME: No macOS Updates Available
