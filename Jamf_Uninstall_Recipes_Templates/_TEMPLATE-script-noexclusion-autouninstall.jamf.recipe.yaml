@@ -12,7 +12,7 @@ MinimumVersion: "2.3"
 Input:
   JSS_INVENTORY_NAME: "%NAME%.app"
   USERS_GROUP_NAME: "%NAME% users"
-  INSTALLED_GROUP_NAME: "%NAME% can be auto-uninstalled"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
   AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml

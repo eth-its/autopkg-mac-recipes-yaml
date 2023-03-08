@@ -1,25 +1,24 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.silnite
+Identifier: com.github.eth-its-recipes.jamf.FilemakerPro18Advanced
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.silnite
+ParentRecipe: com.github.eth-its-recipes.pkg.FilemakerProAdvanced
 
 Input:
-  NAME: silnite
+  NAME: FileMaker Pro 18 Advanced
+  JSS_INVENTORY_NAME: FileMaker Pro 18 Advanced.app
+  LIST_NAME: Filemaker Pro
+  MAJOR_VERSION: "18"
+  LICENSED_ORG: "ETH Zuerich"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
-  SCRIPT_NAME: "%NAME%-postinstall.zsh"
-  SCRIPT_PATH: "%NAME%-postinstall.zsh"
-  SCRIPT_PRIORITY: After
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    silnite is a tool for reporting the version of on-board Apple security tools such as XProtect and Gatekeeper.
+    FileMaker Pro %MAJOR_VERSION% Advanced is the tool you use to create a custom app. You also use FileMaker Pro %MAJOR_VERSION% Advanced to access your app on a Windows or Mac computer. Start by importing data from a spreadsheet or using a built-in Starter app to manage contacts, inventory, meetings, and more. Or even quickly build a new app from the beginning. FileMaker Pro %MAJOR_VERSION% Advanced includes a set of advanced tools to help you design and develop custom apps faster and easier. Plus, you'll get robust analysis capabilities, powerful diagnostic tools, and much more.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  EXTENSION_ATTRIBUTE_NAME: silnite Version
-  EXTENSION_ATTRIBUTE_SCRIPT: silnite-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
@@ -27,8 +26,8 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SELFSERVICE_ICON: Terminal.png
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -49,23 +48,9 @@ Process:
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
-    Arguments:
-      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
-      replace_ea: "True"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:

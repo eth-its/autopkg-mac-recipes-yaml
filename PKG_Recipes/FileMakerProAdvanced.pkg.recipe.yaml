@@ -1,0 +1,139 @@
+Description: Downloads latest FileMaker Pro Advanced disk image and extracts the package from within. The MAJOR_VERSION should be overridden in the jss recipe to obtain a particular version. Otherwise, the latest available version will be downloaded. The LICENSE_FILE_SOURCE is also required for licensing.
+Identifier: com.github.eth-its-recipes.pkg.FilemakerProAdvanced
+ParentRecipe: com.github.grahampugh.recipes.download.filemakerproadvanced
+
+Input:
+  NAME: FileMaker Pro Advanced
+  LICENSED_ORG: "ETH Zuerich"
+  MAJOR_VERSION: "18"
+  major_version: "18"
+  LIST_NAME: Filemaker Pro
+  LIST_MAJOR_VERSION: "18"
+  LIST_LANGUAGE: ML
+  LIST_LANGUAGE_COLUMN_NUMBER: "4"
+  LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
+  LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
+  LIST_DELIMITER: ;
+  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_PATH_COLUMN_NUMBER: "6"
+  LIST_TITLE_COLUMN_NUMBER: "1"
+  LIST_VERSION_COLUMN_NUMBER: "2"
+  SOFTWARE_REPO: /Volumes/mac
+  STOP_PREDICATE: "file_exists == True"
+
+Process:
+  - Arguments:
+      list_language: "%LIST_LANGUAGE%"
+      list_name: "%LIST_NAME%"
+      list_major_version: "%LIST_MAJOR_VERSION%"
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      lang_col: "%LIST_LANGUAGE_COLUMN_NUMBER%"
+      license_col: "%LIST_LICENSE_KEY_COLUMN_NUMBER%"
+      license_file_col: "%LIST_LICENSE_FILE_COLUMN_NUMBER%"
+      license_file_source: "%LIST_LICENSE_FILE_SOURCE%"
+      list_delimiter: "%LIST_DELIMITER%"
+      list_source: "%LIST_SOURCE%"
+      mounted_repo: "%SOFTWARE_REPO%"
+      path_col: "%LIST_PATH_COLUMN_NUMBER%"
+      title_col: "%LIST_TITLE_COLUMN_NUMBER%"
+      version_col: "%LIST_VERSION_COLUMN_NUMBER%"
+    Comment: Get list of versions of a product. Outputs path to latest version.
+    Processor: com.github.eth-its-recipes.processors/InternalUpdateChecker
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/temp_for_version"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/temp_unpack"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/FileMakerProAdvancedInstaller.pkg"
+      source_pkg: "%pathname%/*.pkg"
+    Processor: PkgCopier
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      purge_destination: true
+      destination_path: "%RECIPE_CACHE_DIR%/temp_for_version"
+      flat_pkg_path: "%pkg_path%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/temp_for_version/fmpa*Application.pkg"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      purge_destination: true
+      destination_path: "%RECIPE_CACHE_DIR%/temp_unpack"
+      pkg_payload_path: "%found_filename%/Payload"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/temp_unpack/FileMaker Pro %MAJOR_VERSION% Advanced.app/Contents/Info.plist"
+
+  - Arguments:
+      file_content: |
+        AI_USERNAME=ETH Administrator
+        AI_ORGANIZATION=%LICENSED_ORG%
+        AI_LICENSEKEY=
+        AI_NONEWDATABASES=0
+        AI_REGISTRATION=0
+        AI_SKIPDIALOG=1
+        AI_DISABLEUPDATENOTIFY=1
+        AI_DISABLEVERSIONNOTIFY=1
+        AI_DISABLEPLUGINS=0
+        AI_DISABLEXDBC=0
+        AI_DISABLEIWP=0
+        AI_LICENSE_ACCEPTED=1
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/Assisted Install.txt"
+    Processor: FileCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/LicenseCert.fmcert"
+      source_path: "%LIST_LICENSE_FILE_SOURCE%/%license_file_path%"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+
+        installer -tgt / -pkg FileMakerProAdvancedInstaller.pkg
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      force_pkg_build: true
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.FileMakerPro%MAJOR_VERSION%AdvancedInstaller
+        pkgname: "%LIST_NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/temp_for_version"
+        - "%RECIPE_CACHE_DIR%/temp_unpack"
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"

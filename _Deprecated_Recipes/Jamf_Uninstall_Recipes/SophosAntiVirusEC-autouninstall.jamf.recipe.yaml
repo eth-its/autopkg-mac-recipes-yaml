@@ -8,7 +8,3 @@ Input:
   SCRIPT_PATH: SophosAntiVirus-uninstall.sh
   SCRIPT_NAME: SophosAntiVirus-uninstall.sh
   PKG_ID: ch.ethz.id.pkg.SophosAntiVirusEC
-  EXTENSION_ATTRIBUTE_NAME: SophosGroupPath
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_VALUE: "^(Unmanaged)*$"
-  INSTALLED_FOR_AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-installed-for-autouninstall-EA.xml

@@ -1,22 +1,23 @@
 Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
-Identifier: com.github.eth-its-recipes.jamf.group.SecurityBaseline-XProtect
+Identifier: com.github.eth-its-recipes.jamf.group.LastRestart-30days
 MinimumVersion: "2.3"
 
-Input: {}
+Input:
+  DAYS_AGO: "30"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      EXTENSION_ATTRIBUTE_NAME: XProtect status
-      ea_script_path: silnite-xprotect-EA.sh
+      EXTENSION_ATTRIBUTE_NAME: Last Restart
+      ea_script_path: LastRestart-EA.zsh
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      GROUP_NAME: XProtect out of date
-      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
-      EXTENSION_ATTRIBUTE_VALUE: out of date
+      GROUP_NAME: "Last Restart greater than %DAYS_AGO% days"
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+      EXTENSION_ATTRIBUTE_VALUE: '^(3[1-9]|[4-9][0-9]|\d{3,})$'
       computergroup_template: SmartGroup-generic-EA.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
