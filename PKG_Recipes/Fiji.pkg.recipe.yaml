@@ -40,7 +40,6 @@ Process:
         options: purge_ds_store
         pkgname: "%NAME%-%version%"
         version: "%version%"
-      force_pkg_build: true
     Processor: PkgCreator
 
   - Processor: PathDeleter

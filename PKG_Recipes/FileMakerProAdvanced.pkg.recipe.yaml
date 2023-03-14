@@ -119,7 +119,6 @@ Process:
     Processor: FileCreator
 
   - Arguments:
-      force_pkg_build: true
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.FileMakerPro%MAJOR_VERSION%AdvancedInstaller

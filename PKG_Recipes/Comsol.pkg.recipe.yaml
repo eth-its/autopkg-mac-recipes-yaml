@@ -105,7 +105,6 @@ Process:
 
   - Processor: PkgCreator
     Arguments:
-      force_pkg_build: true
       pkg_request:
         chown: []
         id: "ch.ethz.id.pkg.comsol%version%%PKG_PLATFORM_ID%"
