@@ -16,18 +16,6 @@
             <name>%POLICY_CATEGORY%</name>
         </category>
     </general>
-    <scope>
-        <all_computers>false</all_computers>
-        <computer_groups>
-            <computer_group>
-                <name>%RECURRING_GROUP_NAME%</name>
-            </computer_group>
-        </computer_groups>
-        <exclusions>
-            <computers/>
-            <computer_groups/>
-        </exclusions>
-    </scope>
     <package_configuration>
         <packages>
             <size>0</size>
@@ -39,13 +27,13 @@
             <name>%SCRIPT_NAME%</name>
             <priority>%SCRIPT_PRIORITY%</priority>
             <parameter4>%PARAMETER4_VALUE%</parameter4>
-            <parameter5>%PARAMETER5_VALUE%</parameter5>
-            <parameter6>%PARAMETER6_VALUE%</parameter6>
-            <parameter7>%PARAMETER7_VALUE%</parameter7>
-            <parameter8>%PARAMETER8_VALUE%</parameter8>
-            <parameter9>%PARAMETER9_VALUE%</parameter9>
-            <parameter10>%PARAMETER10_VALUE%</parameter10>
-            <parameter11>%PARAMETER11_VALUE%</parameter11>
+            <parameter5/>
+            <parameter6/>
+            <parameter7/>
+            <parameter8/>
+            <parameter9/>
+            <parameter10/>
+            <parameter11/>
         </script>
     </scripts>
     <self_service>

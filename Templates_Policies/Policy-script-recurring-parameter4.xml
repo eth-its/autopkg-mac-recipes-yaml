@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%RECURRING_POLICY_NAME%</name>
+        <name>%POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>true</trigger_checkin>
@@ -11,9 +11,9 @@
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
         <trigger_other></trigger_other>
-        <frequency>%RECURRING_POLICY_FREQUENCY%</frequency>
+        <frequency>%POLICY_FREQUENCY%</frequency>
         <category>
-            <name>%RECURRING_POLICY_CATEGORY%</name>
+            <name>%POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
