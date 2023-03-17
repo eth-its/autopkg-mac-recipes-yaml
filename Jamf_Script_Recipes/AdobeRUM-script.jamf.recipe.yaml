@@ -1,7 +1,7 @@
 Description: |
   Creates a Once per week policy to update any Adobe CC SDL apps by running Adobe RUM.
 
-  Requires the 7 "Adobe XYZ SDL installed" groups to already exist.
+  Requires the 8 "Adobe XYZ installed" groups and "Adobe Creative Cloud auto-update" to already exist.
 Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM
 MinimumVersion: "2.3"
 
@@ -10,7 +10,6 @@ Input:
   POLICY_CATEGORY: Administration
   POLICY_TEMPLATE: Policy-prod-script-AdobeRUM.xml
   POLICY_NAME: "%NAME%"
-  INSTALLED_GROUP_NAME: Adobe Creative Cloud SDL applications installed
   SCRIPT_NAME: AdobeRUM.sh
   SCRIPT_PRIORITY: After
 
