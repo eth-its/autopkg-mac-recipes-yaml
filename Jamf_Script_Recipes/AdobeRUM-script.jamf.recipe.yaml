@@ -6,7 +6,7 @@ Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe Remote Update Manager
+  NAME: Run Adobe Remote Update Manager
   POLICY_CATEGORY: Administration
   POLICY_TEMPLATE: Policy-prod-script-AdobeRUM.xml
   POLICY_NAME: "%NAME%"
