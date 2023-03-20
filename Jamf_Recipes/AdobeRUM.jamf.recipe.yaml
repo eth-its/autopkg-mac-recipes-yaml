@@ -6,6 +6,7 @@ ParentRecipe: com.github.novaksam.pkg.AdobeRUM
 Input:
   NAME: Adobe Remote Update Manager
   POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Adobe Remote Update Manager is used to keep the Adobe Creative Cloud applications up to date. 
 
