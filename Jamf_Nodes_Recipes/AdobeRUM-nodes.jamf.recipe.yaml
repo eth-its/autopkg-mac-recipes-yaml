@@ -6,7 +6,6 @@ MinimumVersion: "2.3"
 Input:
   NAME: Adobe Remote Update Manager
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeRUM
-  TRIGGER_POLICY_NAME: "Install %NAME%"
   EXTENSION_ATTRIBUTE_NAME: Adobe RUM Version
   EXTENSION_ATTRIBUTE_SCRIPT: AdobeRUM-EA.zsh
   PKG_CATEGORY: Tools & Accessories
