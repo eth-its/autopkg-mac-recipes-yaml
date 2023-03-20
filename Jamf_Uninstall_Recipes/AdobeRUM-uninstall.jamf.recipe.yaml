@@ -13,3 +13,5 @@ Input:
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   SELFSERVICE_ICON: "%NAME%.png"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  USERS_GROUP_NAME: Adobe Creative Cloud users
+  AUTOINSTALL_GROUP_NAME: Adobe Creative Cloud auto-update
