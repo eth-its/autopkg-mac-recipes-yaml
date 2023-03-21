@@ -1,23 +1,33 @@
 Description: |
-  Creates a Once per week policy to update any Adobe CC SDL apps by running Adobe RUM.
+  Creates a trigger policy, plus Self Service and Once every day policy to update any Adobe CC apps by running Adobe RUM.
 
-  Requires the 8 "Adobe XYZ installed" groups and "Adobe Creative Cloud auto-update" to already exist.
+  Requires all categories, the 8 "Adobe XYZ installed" groups, "Adobe Creative Cloud users" "Adobe Creative Cloud installed", and "Adobe Creative Cloud auto-update" to already exist.
 Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Run Adobe Remote Update Manager
-  POLICY_CATEGORY: Administration
-  POLICY_TEMPLATE: Policy-prod-script-AdobeRUM.xml
-  POLICY_NAME: "%NAME%"
+  NAME: Adobe Remote Update Manager
+  SELFSERVICE_DISPLAY_NAME: Update Adobe Creative Cloud Apps
+  SELFSERVICE_DESCRIPTION: Run the Adobe Remote Update Manager to ensure that all Creative Cloud applications plus Adobe Acrobat are kept up to date.
+  INSTALL_BUTTON_TEXT: Update
+  REINSTALL_BUTTON_TEXT: Update
+  FORCE_DESCRIPTION: "false"
+  TRIGGER_POLICY_NAME: Run %NAME%
+  TRIGGER_POLICY_CATEGORY: Triggered Installs
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  TRIGGER_POLICY_RUN_COMMAND: "echo '%NAME% run complete'"
+  TRIGGER_NAME: Run-AdobeRUM-install
+  SELFSERVICE_POLICY_NAME: Update Adobe Creative Cloud Apps
+  SELFSERVICE_POLICY_CATEGORY: Updates
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-AdobeRUM.xml
+  AUTOUPDATE_POLICY_NAME: Auto-update Adobe Creative Cloud Apps
+  AUTOUPDATE_POLICY_CATEGORY: Auto-updates
+  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate-AdobeRUM.xml
+  AUTOUPDATE_POLICY_FREQUENCY: Once every day
   SCRIPT_NAME: AdobeRUM.sh
   SCRIPT_PRIORITY: After
 
 Process:
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%POLICY_CATEGORY%"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%POLICY_CATEGORY%"
@@ -26,7 +36,22 @@ Process:
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger policy
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self-Service Policy
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Auto-update Policy
+    Arguments:
+      policy_template: "%AUTOUPDATE_POLICY_TEMPLATE%"
+      policy_name: "%AUTOUPDATE_POLICY_NAME%"
       replace_policy: "True"

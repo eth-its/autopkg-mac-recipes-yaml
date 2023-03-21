@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%POLICY_NAME%</name>
+        <name>%AUTOUPDATE_POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>true</trigger_checkin>
@@ -10,9 +10,9 @@
         <trigger_logout>false</trigger_logout>
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
-        <frequency>Once every week</frequency>
+        <frequency>%AUTOUPDATE_POLICY_FREQUENCY%</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%AUTOUPDATE_POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
@@ -54,19 +54,7 @@
         </packages>
     </package_configuration>
     <scripts>
-        <size>1</size>
-        <script>
-            <name>%SCRIPT_NAME%</name>
-            <priority>After</priority>
-            <parameter4/>
-            <parameter5/>
-            <parameter6/>
-            <parameter7/>
-            <parameter8/>
-            <parameter9/>
-            <parameter10/>
-            <parameter11/>
-        </script>
+        <size>0</size>
     </scripts>
     <self_service>
         <use_for_self_service>false</use_for_self_service>
@@ -74,5 +62,7 @@
     <maintenance>
         <recon>true</recon>
     </maintenance>
-    <files_processes/>
+    <files_processes>
+        <run_command>%TRIGGER_POLICY_RUN_COMMAND%</run_command>
+    </files_processes>
 </policy>
