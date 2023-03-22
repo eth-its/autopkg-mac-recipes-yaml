@@ -21,7 +21,7 @@ Input:
   SELFSERVICE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-AdobeRUM.xml
   AUTOUPDATE_POLICY_NAME: Auto-update Adobe Creative Cloud Apps
-  AUTOUPDATE_POLICY_CATEGORY: Auto-updates
+  AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
   AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate-AdobeRUM.xml
   AUTOUPDATE_POLICY_FREQUENCY: Once every day
   SCRIPT_NAME: AdobeRUM.sh
