@@ -13,7 +13,7 @@ Input:
   REINSTALL_BUTTON_TEXT: Update
   FORCE_DESCRIPTION: "false"
   TRIGGER_POLICY_NAME: Run %NAME%
-  TRIGGER_POLICY_CATEGORY: Triggered Installs
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
   TRIGGER_POLICY_RUN_COMMAND: "echo '%NAME% run complete'"
   TRIGGER_NAME: Run-AdobeRUM-install
