@@ -12,7 +12,7 @@
         <trigger_startup>false</trigger_startup>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%SELFSERVICE_POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
