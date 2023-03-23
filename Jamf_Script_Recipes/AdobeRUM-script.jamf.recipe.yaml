@@ -53,7 +53,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%AUTOUPDATE_POLICY_CATEGORY%"
-      script_path: "%AUTOUPDATE_SCRIPT_NAME%"
+      script_path: "%AUTOCHECK_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
 
