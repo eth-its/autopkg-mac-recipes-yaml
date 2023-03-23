@@ -6,24 +6,20 @@ Check if updates for Adobe CC Apps are available - Jamf Pro Extension Attribute
 by Graham Pugh
 DOC
 
-rum="/usr/local/bin/RemoteUpdateManager"
+# log file
+loglocation="/Library/Management/ETHZ/Adobe"
+logfile="$loglocation/RemoteUpdateManager.txt"
 
-if [[ -f "$rum" ]]; then
-    output=$(/usr/local/bin/RemoteUpdateManager --action=list 2>/dev/null)
-    exit_code=$?
-    if [[ $exit_code -eq 0 ]]; then
-        if grep -q 'No new applicable Updates.' <<< "$output"; then
-            result="Up to date"
-        elif grep -q 'Following Updates' <<< "$output"; then
-            result="Updates available"
-        else 
-            result="Unknown"
-        fi
-    elif [[ $exit_code -eq 1 ]]; then
-        result="RUM execution error"
+if [[ -f "$logfile" ]]; then
+    if grep -q 'No new applicable Updates.' "$logfile"; then
+        result="Up to date"
+    elif grep -q 'Following Updates' "$logfile"; then
+        result="Updates available"
+    else 
+        result="Unknown"
     fi
 else
-    result="RUM not installed"
+    result="RUM logfile missing"
 fi
 
 echo "<result>$result</result>"
