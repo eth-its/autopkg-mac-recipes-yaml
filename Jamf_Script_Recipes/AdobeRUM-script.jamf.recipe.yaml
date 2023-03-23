@@ -32,7 +32,7 @@ Input:
   SCRIPT_PRIORITY: After
   AUTOCHECK_POLICY_NAME: Check Adobe Creative Cloud Apps
   AUTOCHECK_POLICY_CATEGORY: Auto-updaters
-  AUTOCHECK_POLICY_TEMPLATE: Policy-prod-autoupdate-AdobeRUM.xml
+  AUTOCHECK_POLICY_TEMPLATE: Policy-prod-autocheck-AdobeRUM.xml
   AUTOCHECK_POLICY_FREQUENCY: Once every day
   AUTOCHECK_SCRIPT_NAME: AdobeRUM-list.sh
   EXTENSION_ATTRIBUTE_NAME: Adobe Creative Cloud apps status
