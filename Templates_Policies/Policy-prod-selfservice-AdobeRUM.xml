@@ -51,6 +51,6 @@
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>%TRIGGER_POLICY_RUN_COMMAND%</run_command>
+        <run_command>jamf policy -event "%TRIGGER_NAME%"</run_command>
     </files_processes>
 </policy>
