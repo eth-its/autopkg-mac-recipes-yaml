@@ -73,6 +73,7 @@ Process:
     Comment: Trigger policy for AdobeRUM-install
     Arguments:
       TRIGGER_NAME: "%INSTALL_TRIGGER_NAME%"
+      TRIGGER_POLICY_NAME: "%INSTALL_TRIGGER_POLICY_NAME%"
       SCRIPT_NAME: "%AUTOUPDATE_SCRIPT_NAME%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%INSTALL_TRIGGER_POLICY_NAME%"
@@ -82,6 +83,7 @@ Process:
     Comment: Trigger policy for AdobeRUM-list
     Arguments:
       TRIGGER_NAME: "%LIST_TRIGGER_NAME%"
+      TRIGGER_POLICY_NAME: "%LIST_TRIGGER_POLICY_NAME%"
       SCRIPT_NAME: "%AUTOCHECK_SCRIPT_NAME%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%LIST_TRIGGER_POLICY_NAME%"
