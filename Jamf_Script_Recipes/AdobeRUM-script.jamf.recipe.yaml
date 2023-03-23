@@ -20,6 +20,7 @@ Input:
   SELFSERVICE_POLICY_NAME: Update Adobe Creative Cloud Apps
   SELFSERVICE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-AdobeRUM.xml
+  SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
   AUTOUPDATE_POLICY_NAME: Auto-update Adobe Creative Cloud Apps
   AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
   AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate-AdobeRUM.xml
@@ -47,6 +48,7 @@ Process:
     Arguments:
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
