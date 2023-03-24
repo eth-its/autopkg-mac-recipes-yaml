@@ -13,11 +13,14 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  TEST_USERS_GROUP_NAME: Adobe Creative Cloud test users
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: Adobe Creative Cloud users
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
   AUTOUPDATE_GROUP_NAME: Adobe Creative Cloud auto-update
   AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate-users-group.xml
+  AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
@@ -46,6 +49,12 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOUPDATE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
