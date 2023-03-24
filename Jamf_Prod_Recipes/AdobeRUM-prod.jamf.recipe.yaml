@@ -23,6 +23,9 @@ Input:
   AUTOUPDATE_GROUP_NAME: Adobe Creative Cloud auto-update
   AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate-users-group.xml
   AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
+  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate.xml
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME%"
+  AUTOUPDATE_POLICY_FREQUENCY: Once every day
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
