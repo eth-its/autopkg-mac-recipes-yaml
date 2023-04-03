@@ -61,6 +61,11 @@ class JamfUploadSlackReporter(Processor):
             "description": ("Slack message display name."),
             "default": "AutoPkg",
         },
+        "title": {
+            "required": False,
+            "description": ("Slack message title."),
+            "default": "",
+        },
         "slack_icon_url": {
             "required": False,
             "description": ("Slack display icon URL."),
@@ -86,6 +91,7 @@ class JamfUploadSlackReporter(Processor):
         selfservice_policy_name = self.env.get("SELFSERVICE_POLICY_NAME")
         version = self.env.get("version")
         pkg_name = self.env.get("pkg_name")
+        title = self.env.get("title")
         policy_language = self.env.get("POLICY_LANGUAGE")
         policy_license = self.env.get("POLICY_LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
@@ -107,9 +113,13 @@ class JamfUploadSlackReporter(Processor):
             self.output(f"Version: {version}")
             self.output(f"Production Category: {category}")
 
+            if not title:
+                title = "Item moved to Production"
+
             if pkg_name:
                 slack_text = (
-                    f"*Item moved to Production:*\nURL: {jss_url}\n"
+                    f"*{title}:*\n"
+                    + f"JSS address: {jss_url}\n"
                     + f"Title: *{selfservice_policy_name}*\n"
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*\n"
@@ -117,7 +127,8 @@ class JamfUploadSlackReporter(Processor):
                 )
             else:
                 slack_text = (
-                    f"*Item moved to Production:*\nURL: {jss_url}\n"
+                    f"*{title}:*\n"
+                    + f"JSS address: {jss_url}\n"
                     + f"Title: *{selfservice_policy_name}*\n"
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*"
@@ -156,9 +167,12 @@ class JamfUploadSlackReporter(Processor):
             self.output("Current Category: %s" % policy_category)
 
             if pkg_name:
+                if not title:
+                    title = "New Package added to JSS"
+
                 slack_text = (
-                    "*New Item added to JSS:*\n"
-                    + f"URL: {jss_url}\n"
+                    f"*{title}:*\n"
+                    + f"JSS address: {jss_url}\n"
                     + f"Title: *{selfservice_policy_name}*\n"
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*\n"
@@ -166,9 +180,12 @@ class JamfUploadSlackReporter(Processor):
                     + f"Package: *{pkg_name}*"
                 )
             else:
+                if not title:
+                    title = "New Item added to JSS"
+
                 slack_text = (
-                    "*New Item added to JSS:*\n"
-                    + f"URL: {jss_url}\n"
+                    f"*{title}:*\n"
+                    + f"JSS address: {jss_url}\n"
                     + f"Title: *{selfservice_policy_name}*\n"
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*\n"
