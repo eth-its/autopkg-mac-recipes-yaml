@@ -1,8 +1,6 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
-  Requires the "Citrix Workspace users" group and the relevant category to have already been created.
-
   Required overrides:
   - CITRIX_SERVER_URL
 Identifier: com.github.eth-its-recipes.jamf.CitrixWorkspace-profile
@@ -11,20 +9,39 @@ MinimumVersion: "2.3"
 Input:
   NAME: Citrix Workspace
   IDENTIFIER: com.citrix.receiver.nomas
-  GROUP_NAME: "%NAME% users"
+  ORGANIZATION: Citrix
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Citrix Workspace Settings
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Restricts Citrix Workspace updates and sets the default server URL
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
-      mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%GROUP_NAME%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
