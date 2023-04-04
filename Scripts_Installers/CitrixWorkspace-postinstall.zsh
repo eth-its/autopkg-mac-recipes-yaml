@@ -25,7 +25,7 @@ echo "Current user is $current_user (ID $uid)"
 
 helper_agent="com.citrix.ReceiverHelper"
 
-if /bin/launchctl list "$helper_agent"; then
+if sudo -u $current_user /bin/launchctl list "$helper_agent"; then
     if /bin/launchctl bootout gui/$uid/$helper_agent; then
         echo "ReceiverHelper LaunchAgent successfully unloaded"
     else
@@ -41,7 +41,7 @@ fi
 
 web_agent="com.citrix.Weblauncher"
 
-if /bin/launchctl list "$web_agent"; then
+if sudo -u $current_user /bin/launchctl list "$web_agent"; then
     if /bin/launchctl bootout gui/$uid/$web_agent; then
         echo "WebLauncher LaunchAgent successfully unloaded"
     else
