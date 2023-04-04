@@ -3,6 +3,7 @@ Description: |
 
   The following must be put in an override:
   - NAME
+  - DOMAIN
 
 Identifier: com.github.eth-its-recipes.jamf.account.APIUserForSAM
 MinimumVersion: "2.3"
