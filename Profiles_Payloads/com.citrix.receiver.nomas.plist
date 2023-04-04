@@ -4,8 +4,6 @@
     <dict>
         <key>AutoUpdateState</key>
         <string>Manual</string>
-        <key>ShowHelperInMenuBar</key>
-        <false/>
         <key>CEIPEnabled</key>
         <false/>
         <key>StoreURLs</key>
