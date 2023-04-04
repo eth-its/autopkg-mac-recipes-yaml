@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%POLICY_NAME%</name>
+        <name>%AUTOCHECK_POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>true</trigger_checkin>
-        <trigger_enrollment_complete>false</trigger_enrollment_complete>
+        <trigger_enrollment_complete>true</trigger_enrollment_complete>
         <trigger_login>false</trigger_login>
         <trigger_logout>false</trigger_logout>
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
-        <trigger_other></trigger_other>
-        <frequency>%POLICY_FREQUENCY%</frequency>
+        <frequency>%AUTOUPDATE_POLICY_FREQUENCY%</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%AUTOUPDATE_POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%RECURRING_GROUP_NAME%</name>
+                <name>Adobe Creative Cloud installed</name>
             </computer_group>
         </computer_groups>
         <exclusions>
             <computers/>
-            <computer_groups/>
+            <computer_groups>
+                <computer_group>
+                    <name>Adobe Creative Cloud auto-update</name>
+                </computer_group>
+            </computer_groups>
         </exclusions>
     </scope>
     <package_configuration>
@@ -34,28 +37,15 @@
         </packages>
     </package_configuration>
     <scripts>
-        <size>1</size>
-        <script>
-            <name>%SCRIPT_NAME%</name>
-            <priority>%SCRIPT_PRIORITY%</priority>
-            <parameter4>%PARAMETER4_VALUE%</parameter4>
-            <parameter5>%PARAMETER5_VALUE%</parameter5>
-            <parameter6>%PARAMETER6_VALUE%</parameter6>
-            <parameter7>%PARAMETER7_VALUE%</parameter7>
-            <parameter8>%PARAMETER8_VALUE%</parameter8>
-            <parameter9>%PARAMETER9_VALUE%</parameter9>
-            <parameter10>%PARAMETER10_VALUE%</parameter10>
-            <parameter11>%PARAMETER11_VALUE%</parameter11>
-        </script>
+        <size>0</size>
     </scripts>
     <self_service>
         <use_for_self_service>false</use_for_self_service>
     </self_service>
-    <user_interaction/>
     <maintenance>
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command/>
+        <run_command>jamf policy -event "%LIST_TRIGGER_NAME%"</run_command>
     </files_processes>
 </policy>

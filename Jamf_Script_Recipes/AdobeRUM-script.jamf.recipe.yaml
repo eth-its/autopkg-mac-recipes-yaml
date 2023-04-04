@@ -1,33 +1,116 @@
 Description: |
-  Creates a Once per week policy to update any Adobe CC SDL apps by running Adobe RUM.
+  Creates a trigger policy, plus Self Service and Once every day policy to update any Adobe CC apps by running Adobe RUM.
 
-  Requires the 7 "Adobe XYZ SDL installed" groups to already exist.
+  Requires all categories, the 8 "Adobe XYZ installed" groups, "Adobe Creative Cloud users" "Adobe Creative Cloud installed", and "Adobe Creative Cloud auto-update" to already exist.
 Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM
 MinimumVersion: "2.3"
 
 Input:
   NAME: Adobe Remote Update Manager
-  POLICY_CATEGORY: Administration
-  POLICY_TEMPLATE: Policy-prod-script-AdobeRUM.xml
-  POLICY_NAME: "%NAME%"
-  INSTALLED_GROUP_NAME: Adobe Creative Cloud SDL applications installed
-  SCRIPT_NAME: AdobeRUM.sh
+  SELFSERVICE_DISPLAY_NAME: Update Adobe Creative Cloud Apps
+  SELFSERVICE_DESCRIPTION: |
+    Run the Adobe Remote Update Manager to ensure that all Creative Cloud applications plus Adobe Acrobat are kept up to date.
+  INSTALL_BUTTON_TEXT: Update
+  REINSTALL_BUTTON_TEXT: Update
+  FORCE_DESCRIPTION: "false"
+  LIST_TRIGGER_POLICY_NAME: Check %NAME%
+  INSTALL_TRIGGER_POLICY_NAME: Run %NAME%
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  TRIGGER_POLICY_RUN_COMMAND: "echo '%NAME% run complete'"
+  INSTALL_TRIGGER_NAME: Run-AdobeRUM-install
+  LIST_TRIGGER_NAME: Run-AdobeRUM-list
+  SELFSERVICE_POLICY_NAME: Update Adobe Creative Cloud Apps
+  SELFSERVICE_POLICY_CATEGORY: Updates
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-AdobeRUM.xml
+  SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
+  AUTOUPDATE_POLICY_NAME: Auto-update Adobe Creative Cloud Apps
+  AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
+  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate-AdobeRUM.xml
+  AUTOUPDATE_POLICY_FREQUENCY: Once every day
+  AUTOUPDATE_SCRIPT_NAME: AdobeRUM-install.sh
   SCRIPT_PRIORITY: After
+  AUTOCHECK_POLICY_NAME: Check Adobe Creative Cloud Apps
+  AUTOCHECK_POLICY_CATEGORY: Auto-updaters
+  AUTOCHECK_POLICY_TEMPLATE: Policy-prod-autocheck-AdobeRUM.xml
+  AUTOCHECK_POLICY_FREQUENCY: Once every day
+  AUTOCHECK_SCRIPT_NAME: AdobeRUM-list.sh
+  EXTENSION_ATTRIBUTE_NAME: Adobe Creative Cloud apps status
+  EXTENSION_ATTRIBUTE_SCRIPT: AdobeCCApps-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: Up to date
+  GROUP_NAME: Adobe Creative Cloud apps up to date
+  GROUP_TEMPLATE: SmartGroup-generic-EA.xml
 
 Process:
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%POLICY_CATEGORY%"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%POLICY_CATEGORY%"
-      script_path: "%SCRIPT_NAME%"
+      script_category: "%AUTOUPDATE_POLICY_CATEGORY%"
+      script_name: "%AUTOUPDATE_SCRIPT_NAME%"
+      script_path: "%AUTOUPDATE_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      script_category: "%AUTOUPDATE_POLICY_CATEGORY%"
+      script_name: "%AUTOCHECK_SCRIPT_NAME%"
+      script_path: "%AUTOCHECK_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger policy for AdobeRUM-install
+    Arguments:
+      TRIGGER_NAME: "%INSTALL_TRIGGER_NAME%"
+      TRIGGER_POLICY_NAME: "%INSTALL_TRIGGER_POLICY_NAME%"
+      SCRIPT_NAME: "%AUTOUPDATE_SCRIPT_NAME%"
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%INSTALL_TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger policy for AdobeRUM-list
+    Arguments:
+      TRIGGER_NAME: "%LIST_TRIGGER_NAME%"
+      TRIGGER_POLICY_NAME: "%LIST_TRIGGER_POLICY_NAME%"
+      SCRIPT_NAME: "%AUTOCHECK_SCRIPT_NAME%"
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%LIST_TRIGGER_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self-Service Policy
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Auto-update Policy
+    Arguments:
+      TRIGGER_NAME: "%INSTALL_TRIGGER_NAME%"
+      policy_template: "%AUTOUPDATE_POLICY_TEMPLATE%"
+      policy_name: "%AUTOUPDATE_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Auto-check Policy
+    Arguments:
+      TRIGGER_NAME: "%LIST_TRIGGER_NAME%"
+      policy_template: "%AUTOCHECK_POLICY_TEMPLATE%"
+      policy_name: "%AUTOCHECK_POLICY_NAME%"
       replace_policy: "True"

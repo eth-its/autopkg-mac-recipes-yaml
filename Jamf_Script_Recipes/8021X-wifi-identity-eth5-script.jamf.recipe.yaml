@@ -5,11 +5,10 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: 802.1X Wifi Identity - eth-5
-  RECURRING_POLICY_CATEGORY: Administration
-  RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameter4.xml
-  RECURRING_POLICY_NAME: "%NAME%"
-  RECURRING_POLICY_FREQUENCY: Once every week
-  RECURRING_GROUP_NAME: Device Authentication id-dock
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-script-recurring-parameter4-noscope.xml
+  POLICY_NAME: "%NAME%"
+  POLICY_FREQUENCY: Once every week
   SCRIPT_NAME: 8021X-wifi-identity.sh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: SSID
@@ -18,11 +17,11 @@ Input:
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%RECURRING_POLICY_CATEGORY%"
+      category_name: "%POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%RECURRING_POLICY_CATEGORY%"
+      script_category: "%POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
@@ -30,6 +29,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%RECURRING_POLICY_TEMPLATE%"
-      policy_name: "%RECURRING_POLICY_NAME%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
       replace_policy: "True"

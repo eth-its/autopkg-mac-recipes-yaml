@@ -1,0 +1,18 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeRUM-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: Adobe Remote Update Manager
+  SCRIPT_NAME: AdobeRUM-uninstall.zsh
+  SCRIPT_PATH: AdobeRUM-uninstall.zsh
+  EXTENSION_ATTRIBUTE_NAME: Adobe RUM Version
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  USERS_GROUP_NAME: Adobe Creative Cloud users
+  AUTOINSTALL_GROUP_NAME: Adobe Creative Cloud auto-update
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoupdate-users-group.xml

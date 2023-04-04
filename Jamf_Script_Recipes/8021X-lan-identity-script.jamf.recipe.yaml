@@ -5,28 +5,27 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: 802.1X LAN Identity
-  RECURRING_POLICY_CATEGORY: Administration
-  RECURRING_POLICY_TEMPLATE: Policy-script-recurring.xml
-  RECURRING_POLICY_NAME: "%NAME%"
-  RECURRING_POLICY_FREQUENCY: Once every week
-  RECURRING_GROUP_NAME: Device Authentication id-dock
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-script-recurring-noscope.xml
+  POLICY_NAME: "%NAME%"
+  POLICY_FREQUENCY: Once every week
   SCRIPT_NAME: 8021X-lan-identity.sh
   SCRIPT_PRIORITY: After
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%RECURRING_POLICY_CATEGORY%"
+      category_name: "%POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%RECURRING_POLICY_CATEGORY%"
+      script_category: "%POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%RECURRING_POLICY_TEMPLATE%"
-      policy_name: "%RECURRING_POLICY_NAME%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
       replace_policy: "True"
