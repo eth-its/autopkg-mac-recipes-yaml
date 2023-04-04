@@ -7,6 +7,8 @@ Input:
   NAME: Dropbox
 
 Process:
-  - Arguments:
-      version: "%version%"
-    Processor: AppPkgCreator
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: AppPkgCreator
