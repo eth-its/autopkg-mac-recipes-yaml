@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<account>
+    <name>%NAME%</name>
+    <directory_user>true</directory_user>
+    <ldap_server>
+        <id>1</id>
+        <name>%DOMAIN%</name>
+    </ldap_server>
+    <enabled>Enabled</enabled>
+    <access_level>Full Access</access_level>
+    <privilege_set>Custom</privilege_set>
+    <privileges>
+        <jss_objects>
+            <privilege>Read Computers</privilege>
+        </jss_objects>
+        <jss_settings/>
+        <jss_actions/>
+        <recon/>
+        <casper_admin/>
+        <casper_remote/>
+        <casper_imaging/>
+    </privileges>
+</account>

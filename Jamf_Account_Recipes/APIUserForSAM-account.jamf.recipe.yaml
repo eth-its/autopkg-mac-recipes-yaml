@@ -1,0 +1,20 @@
+Description: |
+  Creates or updates an account based on a template. 
+
+  The following must be put in an override:
+  - NAME
+
+Identifier: com.github.eth-its-recipes.jamf.account.APIUserForSAM
+MinimumVersion: "2.3"
+
+Input:
+  ACCOUNT_TYPE: user
+  ACCOUNT_TEMPLATE: Account-user-APIUserForSAM.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfAccountUploader
+    Arguments:
+      account_name: "%NAME%"
+      account_type: "%ACCOUNT_TYPE%"
+      account_template: "%ACCOUNT_TEMPLATE%"
+      replace_account: "True"
