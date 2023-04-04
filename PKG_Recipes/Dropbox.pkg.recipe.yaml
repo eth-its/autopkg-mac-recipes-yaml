@@ -1,4 +1,4 @@
-Description: Placeholder pkg recipe - just moves the pkg to create the pkg_path variable.
+Description: Creates a package of the application.
 Identifier: com.github.eth-its-recipes.pkg.Dropbox
 ParentRecipe: com.github.autopkg.download.dropbox
 MinimumVersion: "2.3"
@@ -8,4 +8,5 @@ Input:
 
 Process:
   - Arguments:
+      version: "%version%"
     Processor: AppPkgCreator
