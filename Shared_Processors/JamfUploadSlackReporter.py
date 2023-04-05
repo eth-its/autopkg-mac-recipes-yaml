@@ -107,14 +107,14 @@ class JamfUploadSlackReporter(Processor):
         if recipe_type == "prod":
             untested_policy_name = f"{selfservice_policy_name} (Testing)"
 
+            if not title:
+                title = "Item staged to Production"
+            self.output(f"Message Title: {title}")
             self.output(f"JSS address: {jss_url}")
             self.output(f"Title: {selfservice_policy_name}")
             self.output(f"Untested policy: {untested_policy_name}")
             self.output(f"Version: {version}")
             self.output(f"Production Category: {category}")
-
-            if not title:
-                title = "Item moved to Production"
 
             if pkg_name:
                 slack_text = (
@@ -158,14 +158,6 @@ class JamfUploadSlackReporter(Processor):
             if policy_license:
                 selfservice_policy_name = selfservice_policy_name + " " + policy_license
 
-            self.output("JSS address: %s" % jss_url)
-            self.output("Title: %s" % selfservice_policy_name)
-            self.output("Policy: %s" % policy_name)
-            self.output("Version: %s" % version)
-            self.output("Package: %s" % pkg_name)
-            self.output("Production Category: %s" % category)
-            self.output("Current Category: %s" % policy_category)
-
             if pkg_name:
                 if not title:
                     title = "New Package added to JSS"
@@ -192,6 +184,15 @@ class JamfUploadSlackReporter(Processor):
                     + f"Policy Name: *{policy_name}*\n"
                     + "No new package uploaded"
                 )
+
+            self.output(f"Message Title: {title}")
+            self.output("JSS address: %s" % jss_url)
+            self.output("Title: %s" % selfservice_policy_name)
+            self.output("Policy: %s" % policy_name)
+            self.output("Version: %s" % version)
+            self.output("Package: %s" % pkg_name)
+            self.output("Production Category: %s" % category)
+            self.output("Current Category: %s" % policy_category)
 
             slack_data = {
                 "text": slack_text,
