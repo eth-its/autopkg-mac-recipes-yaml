@@ -23,3 +23,4 @@ Input:
   POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
+  skip_script_key_substitution: "True"

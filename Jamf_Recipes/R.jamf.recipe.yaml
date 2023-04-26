@@ -76,6 +76,7 @@ Process:
       script_name: "%POSTINSTALL_SCRIPT_NAME%"
       script_path: "%POSTINSTALL_SCRIPT_PATH%"
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      skip_script_key_substitution: "True"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader

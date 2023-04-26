@@ -9,9 +9,6 @@ R="/Library/Frameworks/R.framework/Resources/bin/R"
 # make a simlink to /usr/local/bin
 ln -s "$R" /usr/local/bin/R
 
-# we need to escape percent signs in the following for AutoPkg/JamfUploader compatibility
-percent=$'\045'
-
 "$R" --no-save --no-restore << EOF
 repos <- c(
 "http://stat.ethz.ch/CRAN"
@@ -86,7 +83,7 @@ pkgs <- c(
 "waveslim",
 "wavethresh"
 )
-missing <- pkgs[!(pkgs ${percent}in${percent} installed.packages()[,"Package"])]
+missing <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
 cat(paste("Missing Packets: ",length(missing),"\n"))
 if(length(missing)) install.packages(missing, repos=repos, dependencies=T)
 EOF
