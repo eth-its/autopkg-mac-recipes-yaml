@@ -24,6 +24,7 @@
             <privilege>Create Packages</privilege>
             <privilege>Read Packages</privilege>
             <privilege>Update Packages</privilege>
+            <privilege>Delete Packages</privilege>
             <privilege>Create Policies</privilege>
             <privilege>Read Policies</privilege>
             <privilege>Update Policies</privilege>
