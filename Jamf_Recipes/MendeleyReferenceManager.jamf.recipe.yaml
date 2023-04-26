@@ -11,6 +11,9 @@ Input:
   POLICY_CATEGORY: Untested
   SELFSERVICE_DESCRIPTION: |
     A modern alternative to the Mendeley Desktop application: add papers directly from your browser with a few clicks or import any documents from your desktop. Access your library from anywhere. Windows, Mac, Linux and all browsers.
+
+    Note, to obtain the Microsoft Word Add-In, go to **Tools -> Install Mendeley Cite for Word**, which will take you directly to the Office 365 Store. From there you should login to Microsoft 365 using your ETH login and 2FA code. 
+    
     Version: %version%
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Mendeley Reference Manager.png
