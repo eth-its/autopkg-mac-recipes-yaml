@@ -6,7 +6,7 @@ ParentRecipe: com.github.homebysix.pkg.GraphicConverter
 
 Input:
   NAME: GraphicConverter
-  MAJOR_VERSION: "11"
+  MAJOR_VERSION: "12"
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   PKG_CATEGORY: Creativity
   SELFSERVICE_DESCRIPTION: |
