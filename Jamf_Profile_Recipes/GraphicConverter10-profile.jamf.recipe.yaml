@@ -1,16 +1,16 @@
 Description: |
-  Uploads a computer configuration to the Jamf Pro Server and creates a Smart Group.
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 
   Required overrides:
   - ORGANIZATION
   - SERIAL (this is the license key)
-Identifier: com.github.eth-its-recipes.jamf.GraphicConverter12-profile
+Identifier: com.github.eth-its-recipes.jamf.GraphicConverter10-profile
 MinimumVersion: "2.3"
 
 Input:
   NAME: GraphicConverter
-  MAJOR_VERSION: "12"
-  IDENTIFIER: com.lemkesoft.graphicconverter12
+  MAJOR_VERSION: "10"
+  IDENTIFIER: com.lemkesoft.graphicconverter10
   PROFILE_CATEGORY: Administration
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% %MAJOR_VERSION%"
