@@ -8,5 +8,5 @@ Input:
   JSS_INVENTORY_NAME: Microsoft Word.app
   PKG_CATEGORY: Productivity
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
-  SELFSERVICE_ICON: "Microsoft Office 365.png"
+  SELFSERVICE_ICON: Microsoft 365.png
   POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"

@@ -44,7 +44,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-minimum.xml
-  SELFSERVICE_ICON: "Microsoft Office 365.png"
+  SELFSERVICE_ICON: Microsoft 365.png
   POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
