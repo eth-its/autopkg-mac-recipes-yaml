@@ -5,5 +5,4 @@
 # This is achieved by creating the following files
 # before installing the package. 
 
-touch /tmp/silentInstaller
 touch /tmp/tvonlystartservice
