@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: ETH Defender Monitoring Tool
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHDefenderMonitoringTool
-  SELFSERVICE_ICON: Microsoft Defender ATP.png
+  SELFSERVICE_ICON: Microsoft Defender.png
   EXTENSION_ATTRIBUTE_NAME: ETH Templates MSOffice Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$

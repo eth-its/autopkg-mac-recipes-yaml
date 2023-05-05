@@ -2,6 +2,7 @@
 ## ETH Defender Monitoring Tool Version EA
 
 install_dir="/Library/Application Support/ETHZ/Defender"
+version="None"
 
 if [[ -d "$install_dir" ]]; then
     # create version file if not present
