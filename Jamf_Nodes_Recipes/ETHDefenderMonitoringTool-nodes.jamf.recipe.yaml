@@ -11,4 +11,4 @@ Input:
   SCRIPT_NAME: ETHDefenderMonitoringTool-postinstall.sh
   SCRIPT_PATH: ETHDefenderMonitoringTool-postinstall.sh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
-  SELFSERVICE_ICON: Microsoft Defender ATP.png
+  SELFSERVICE_ICON: Microsoft Defender.png

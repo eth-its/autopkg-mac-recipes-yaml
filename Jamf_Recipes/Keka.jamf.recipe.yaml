@@ -1,34 +1,29 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.ETHDefenderMonitoringTool
+Identifier: com.github.eth-its-recipes.jamf.Keka
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.ETHDefenderMonitoringTool
+ParentRecipe: com.github.moofit-recipes.pkg.Keka
 
 Input:
-  NAME: ETH Defender Monitoring Tool
+  NAME: Keka
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
-    This tool is designed to be used in conjunction with Microsoft Defender ATP at ETH Zürich.
+    The macOS file archiver.
 
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  EXTENSION_ATTRIBUTE_NAME: ETH Defender Monitoring Tool Version
-  EXTENSION_ATTRIBUTE_SCRIPT: ETHDefenderMonitoringTool-EA.sh
-  SCRIPT_NAME: ETHDefenderMonitoringTool-postinstall.sh
-  SCRIPT_PATH: ETHDefenderMonitoringTool-postinstall.sh
-  SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SELFSERVICE_ICON: Microsoft Defender.png
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -48,20 +43,6 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      replace_script: True
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
-    Arguments:
-      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
-      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:

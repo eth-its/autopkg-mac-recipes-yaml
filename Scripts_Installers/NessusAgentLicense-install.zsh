@@ -34,7 +34,9 @@ fi
 
 # check agent status
 link_connection=$(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:" | sed 's|Linked to: ||')
-if [[ "$link_connection" != "None" ]]; then
+linked_host=$(cut -d: -f1 <<< "$link_connection")
+linked_port=$(cut -d: -f2 <<< "$link_connection")
+if [[ "$linked_host" == "$nessus_host" && "$linked_port" == "$nessus_port" ]]; then
     echo "[$(date)] Agent is linked."
     exit 0
 else
@@ -46,7 +48,9 @@ else
     fi
     # check again
     link_connection=$(/Library/NessusAgent/run/sbin/nessuscli agent status | grep "Linked to:" | sed 's|Linked to: ||')
-    if [[ "$link_connection" != "None" ]]; then
+    linked_host=$(cut -d: -f1 <<< "$link_connection")
+    linked_port=$(cut -d: -f2 <<< "$link_connection")
+    if [[ "$linked_host" == "$nessus_host" && "$linked_port" == "$nessus_port" ]]; then
         echo "[$(date)] Agent is linked."
         exit 0
     fi
