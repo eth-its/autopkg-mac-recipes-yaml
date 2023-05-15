@@ -25,7 +25,7 @@ Process:
 
   - Arguments:
       pkg_path: "%RECIPE_CACHE_DIR%/TeamViewer-%version%.pkg"
-      source_pkg: "%pathname%"
+      source_pkg: "%flat_pkg_path%"
     Processor: PkgCopier
 
   - Processor: PathDeleter
