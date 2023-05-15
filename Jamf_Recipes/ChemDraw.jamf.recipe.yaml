@@ -16,6 +16,8 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     Take your chemical drawing experience to the next level, enhanced with even more time-saving chemical intelligence, publication-worthy graphical templates and scientific tools.
 
+    **Please note:** the license for ChemDraw is not installed automatically, because the vendors do not give us a mechanism to do it. You must activate the license that has been purchased from the IT-Shop.
+
     Version: %version%
     Category: %PKG_CATEGORY%
   POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
@@ -29,7 +31,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: ChemDraw 20.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"

@@ -15,3 +15,4 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
   SELFSERVICE_ICON: ChemDraw 20.png
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
