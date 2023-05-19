@@ -48,7 +48,7 @@
         <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
         <self_service_categories>
             <category>
-                <name>%SELFSERVICE_POLICY_CATEGORY</name>
+                <name>%SELFSERVICE_POLICY_CATEGORY%</name>
                 <display_in>true</display_in>
                 <feature_in>false</feature_in>
             </category>
