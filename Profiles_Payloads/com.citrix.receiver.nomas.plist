@@ -4,6 +4,8 @@
     <dict>
         <key>AutoUpdateState</key>
         <string>Manual</string>
+        <key>AutoLaunchAppOnRestart</key>
+        <false/>
         <key>CEIPEnabled</key>
         <false/>
         <key>StoreURLs</key>
