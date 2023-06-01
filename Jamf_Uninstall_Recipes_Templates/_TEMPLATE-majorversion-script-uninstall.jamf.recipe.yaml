@@ -27,7 +27,7 @@ Input:
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"

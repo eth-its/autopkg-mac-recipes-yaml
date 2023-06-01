@@ -1,12 +1,16 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.TeamViewer-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-scripts-2-nodes
 
 Input:
   NAME: TeamViewer
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.TeamViewer
-  SCRIPT_NAME: "%NAME%-preinstall.sh"
-  SCRIPT_PATH: "%NAME%-preinstall.sh"
-  SCRIPT_PRIORITY: Before
-  SELFSERVICE_ICON: TeamViewer 15.png
+  PREINSTALL_SCRIPT_NAME: "%NAME%-preinstall.sh"
+  PREINSTALL_SCRIPT_PATH: "%NAME%-preinstall.sh"
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.sh"
+  POSTINSTALL_SCRIPT_PATH: "%NAME%-postinstall.sh"
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  SELFSERVICE_ICON: TeamViewer 15.41.png

@@ -49,6 +49,13 @@
         <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
         <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
+        <self_service_categories>
+            <category>
+                <name>%SELFSERVICE_POLICY_CATEGORY%</name>
+                <display_in>true</display_in>
+                <feature_in>false</feature_in>
+            </category>
+        </self_service_categories>
     </self_service>
     <user_interaction>
         <message_start>%NAME% is being installed.</message_start>

@@ -8,7 +8,7 @@ Input:
   LANGUAGE: EN
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     MacTeX is a redistribution of TeX Live, a typesetting environment. Note that since the MacTeX distribution package is only made annually, the bundled version of TeXShop is generally older than the version distributed separately.
 

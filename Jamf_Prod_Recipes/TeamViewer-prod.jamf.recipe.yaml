@@ -6,6 +6,9 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: TeamViewer
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.TeamViewer
-  SCRIPT_NAME: "%NAME%-preinstall.sh"
-  SCRIPT_PRIORITY: Before
-  SELFSERVICE_ICON: TeamViewer 15.png
+  PREINSTALL_SCRIPT_NAME: "%NAME%-preinstall.sh"
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.sh"
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  SELFSERVICE_ICON: TeamViewer 15.41.png
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml

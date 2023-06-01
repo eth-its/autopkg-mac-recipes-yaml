@@ -24,8 +24,8 @@ Process:
       plist_version_key: CFBundleShortVersionString
 
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/switchdrive-%version%.pkg"
-      source_pkg: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/TeamViewer-%version%.pkg"
+      source_pkg: "%flat_pkg_path%"
     Processor: PkgCopier
 
   - Processor: PathDeleter
