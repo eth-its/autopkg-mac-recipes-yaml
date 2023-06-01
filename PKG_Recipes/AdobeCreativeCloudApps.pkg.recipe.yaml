@@ -32,15 +32,15 @@ Process:
       source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/Build/*_Install.pkg"
     Processor: PkgCopier
 
-  - Processor: FileFinder
-    Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/unzip/*/*.ccp"
+  # - Processor: FileFinder
+  #   Arguments:
+  #     pattern: "%RECIPE_CACHE_DIR%/unzip/*/*.ccp"
 
-  - Processor: URLTextSearcher
-    Arguments:
-      url: "file://%found_filename%"
-      # re_pattern: SAPCode.%SAP_CODE%.*productVersion\>(?P<version>.*?)<\/productVersion.*TargetFolderName.%SAP_CODE%
-      re_pattern: productVersion\>(?P<new_version>%version*\.*?)<\/productVersion
+  # - Processor: URLTextSearcher
+  #   Arguments:
+  #     url: "file://%found_filename%"
+  #     # re_pattern: SAPCode.%SAP_CODE%.*productVersion\>(?P<version>.*?)<\/productVersion.*TargetFolderName.%SAP_CODE%
+  #     re_pattern: productVersion\>(?P<new_version>%version%*\.*?)<\/productVersion
 
   - Arguments:
       file_content: |
