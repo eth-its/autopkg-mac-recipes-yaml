@@ -5,8 +5,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe After Effects CC 2022 SDL
-  JSS_INVENTORY_NAME: Adobe After Effects CC 2022.app
+  NAME: Adobe After Effects CC 2023 SDL
+  JSS_INVENTORY_NAME: Adobe After Effects CC 2023.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeAfterEffectsSDL
   SELFSERVICE_ICON: Adobe After Effects CC SDL 22.png
   POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
