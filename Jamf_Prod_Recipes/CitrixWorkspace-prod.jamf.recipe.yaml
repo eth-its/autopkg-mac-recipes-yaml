@@ -11,5 +11,6 @@ Input:
   PREINSTALL_SCRIPT_PARAMETER4_VALUE: "%NAME%-uninstall"
   POSTINSTALL_SCRIPT_NAME: CitrixWorkspace-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: ""
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2-parameter4.xml
   SELFSERVICE_ICON: Citrix Workspace 22.png
