@@ -10,11 +10,11 @@
                 <key>PayloadDisplayName</key>
                 <string>Privacy Preferences Policy Control</string>
                 <key>PayloadIdentifier</key>
-                <string>ch.ethz.A9FC8DC5-1957-4B02-8B93-586E6BC5CD28</string>
+                <string>ch.ethz.D7A3A94A-432E-400E-90DF-B7DDB23FDE6E</string>
                 <key>PayloadType</key>
                 <string>com.apple.TCC.configuration-profile-policy</string>
                 <key>PayloadUUID</key>
-                <string>A9FC8DC5-1957-4B02-8B93-586E6BC5CD28</string>
+                <string>D7A3A94A-432E-400E-90DF-B7DDB23FDE6E</string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
                 <key>Services</key>
@@ -25,15 +25,30 @@
                             <key>Allowed</key>
                             <true/>
                             <key>CodeRequirement</key>
-                            <string>identifier "com.blacktree.Quicksilver" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = ATVCND8EAP</string>
+                            <string>anchor apple generic and identifier "com.teamviewer.TeamViewerQS" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = H7UGFBUGV6)</string>
                             <key>Comment</key>
-                            <string></string>
+                            <string>TeamViewerQS</string>
                             <key>Identifier</key>
-                            <string>com.blacktree.Quicksilver</string>
+                            <string>com.teamviewer.TeamViewerQS</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                             <key>StaticCode</key>
                             <false/>
+                        </dict>
+                    </array>
+                    <key>ScreenCapture</key>
+                    <array>
+                        <dict>
+                            <key>Authorization</key>
+                            <string>AllowStandardUserToSetSystemService</string>
+                            <key>CodeRequirement</key>
+                            <string>anchor apple generic and identifier "com.teamviewer.TeamViewerQS" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = H7UGFBUGV6)</string>
+                            <key>Comment</key>
+                            <string>TeamViewerQS</string>
+                            <key>Identifier</key>
+                            <string>com.teamviewer.TeamViewerQS</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
                         </dict>
                     </array>
                 </dict>
@@ -44,7 +59,7 @@
         <key>PayloadDisplayName</key>
         <string>%PROFILE_NAME%</string>
         <key>PayloadIdentifier</key>
-        <string>ch.ethz.35F1C758-7993-45CE-AA37-72C6CC997E8D</string>
+        <string>ch.ethz.07836A1C-A02D-4B65-9F42-B9B1D08B623C</string>
         <key>PayloadOrganization</key>
         <string>%ORGANIZATION%</string>
         <key>PayloadScope</key>
@@ -52,7 +67,7 @@
         <key>PayloadType</key>
         <string>Configuration</string>
         <key>PayloadUUID</key>
-        <string>35F1C758-7993-45CE-AA37-72C6CC997E8D</string>
+        <string>07836A1C-A02D-4B65-9F42-B9B1D08B623C</string>
         <key>PayloadVersion</key>
         <integer>1</integer>
     </dict>

@@ -13,7 +13,7 @@ Input:
   PROFILE_TEMPLATE: Profile-1-group.xml
   ORGANIZATION: "%NAME%"
   PROFILE_NAME: DetectX Swift Privacy Settings
-  PROFILE_MOBILECONFIG: DetectXSwift-privacy.mobileconfig
+  PROFILE_MOBILECONFIG: DetectXSwift-PPPC.mobileconfig
   REPLACE_PROFILE: "False"
   REPLACE_PROFILE2: "False"
 

@@ -13,7 +13,7 @@ Input:
   PROFILE_NAME: Microsoft Office Privacy Settings
   PROFILE_DESCRIPTION: Manages Full Disk Access settings for Microsoft Office
   ORGANIZATION: "%NAME%"
-  PROFILE_MOBILECONFIG: MicrosoftOffice-privacy.mobileconfig
+  PROFILE_MOBILECONFIG: MicrosoftOffice-PPPC.mobileconfig
   REPLACE_PROFILE: "True"
 
 Process:

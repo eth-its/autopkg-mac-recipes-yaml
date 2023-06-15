@@ -1,7 +1,5 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-
-  Requires the "OpenScape Client users" group to have already been created.
 Identifier: com.github.eth-its-recipes.jamf.JamfProNotifications-profile
 MinimumVersion: "2.3"
 
