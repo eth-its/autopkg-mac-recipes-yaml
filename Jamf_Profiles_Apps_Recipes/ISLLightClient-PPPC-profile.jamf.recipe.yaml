@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: ISL Light Client
+  LANGUAGE: EN
   GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-1-group.xml
@@ -12,9 +13,9 @@ Input:
   PROFILE_DESCRIPTION: "Manages Accessibility settings for %NAME%"
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: ISLLightClient-PPPC.mobileconfig
-  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   REPLACE_PROFILE: "False"
 
