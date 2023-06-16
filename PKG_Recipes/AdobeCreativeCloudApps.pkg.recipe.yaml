@@ -18,62 +18,11 @@ Process:
     Processor: Unarchiver
 
   - Arguments:
-      pkgdirs: {}
-      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PkgRootCreator
-
-  - Arguments:
-      pkgdirs: {}
-      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
-    Processor: PkgRootCreator
-
-  - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/Install.pkg"
+      pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
       source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/Build/*_Install.pkg"
     Processor: PkgCopier
-
-  # - Processor: FileFinder
-  #   Arguments:
-  #     pattern: "%RECIPE_CACHE_DIR%/unzip/*/*.ccp"
-
-  # - Processor: URLTextSearcher
-  #   Arguments:
-  #     url: "file://%found_filename%"
-  #     # re_pattern: SAPCode.%SAP_CODE%.*productVersion\>(?P<version>.*?)<\/productVersion.*TargetFolderName.%SAP_CODE%
-  #     re_pattern: productVersion\>(?P<new_version>%version%*\.*?)<\/productVersion
-
-  - Arguments:
-      file_content: |
-        #!/bin/bash
-        ## script to install an Adobe bundle-style package
-
-        DIR=$(dirname "$0")
-
-        if [[ -d "$DIR/Install.pkg" ]]; then
-            echo "installing %LIST_NAME% %version%"
-            installer -tgt / -pkg "$DIR/Install.pkg"
-        else
-            echo "ERROR: installer package not found"
-        fi
-      file_mode: "0755"
-      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
-    Processor: FileCreator
-
-  - Arguments:
-      force_pkg_build: True
-      pkg_request:
-        chown: []
-        id: ch.ethz.id.%NAME%.pkg
-        pkgname: "%NAME%-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-        pkgtype: flat
-        scripts: Scripts
-        version: "%version%"
-    Processor: PkgCreator
 
   - Processor: PathDeleter
     Arguments:
       path_list:
         - "%RECIPE_CACHE_DIR%/unzip"
-        - "%RECIPE_CACHE_DIR%/pkgroot"
-        - "%RECIPE_CACHE_DIR%/Scripts"
