@@ -8,8 +8,9 @@ Description: |
   - SELF_SERVICE_DESCRIPTION
   - SELF_SERVICE_ICON
   - pkg_name
+  - version
 
-  The package will not be uploaded, so there is no parent recipe, but we also need to manually supply the 'pkg_name' key.
+  The package will not be uploaded, so there is no parent recipe, but we also need to manually supply the 'pkg_name' and `version` keys.
 Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
 MinimumVersion: "2.3"
 # ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloudApps
