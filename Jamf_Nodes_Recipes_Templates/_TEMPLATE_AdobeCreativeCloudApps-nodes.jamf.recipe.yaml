@@ -1,37 +1,38 @@
-Description: |
-  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Comment: |
+  This is a template recipe and cannot be used without a child recipe or RecipeOverride.
+  UNTESTED_RECIPE_IDENTIFIER must be supplied
+  NAME, POLICY_NAME and SELFSERVICE_DISPLAY_NAME need to be provided in the child recipe.
+  If the app name does not match NAME.app, JSS_INVENTORY_NAME should also be overridden.
+  If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
 
-  The following keys must be overridden:
-  - NAME
-  - LIST_NAME
-  - JSS_INVENTORY_NAME
-  - SELF_SERVICE_DESCRIPTION
-  - SELF_SERVICE_ICON
-  - pkg_name
-  - version
-
-  The package will not be uploaded, so there is no parent recipe, but we also need to manually supply the 'pkg_name' and `version` keys.
-Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template-nodes
 MinimumVersion: "2.3"
-# ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloudApps
 
 Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  POLICY_CATEGORY: Untested
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Comment: Since no package is being uploaded by AutoPkg, we need to ignore the package path
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+      ignore_pkg_path: "True"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -66,5 +67,3 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-
-  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
