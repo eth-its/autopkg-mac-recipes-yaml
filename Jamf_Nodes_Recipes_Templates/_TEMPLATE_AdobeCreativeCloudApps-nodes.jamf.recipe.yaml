@@ -28,8 +28,10 @@ Input:
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Comment: Since no package is being uploaded by AutoPkg, we need to ignore the package path
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+      ignore_pkg_path: "True"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
