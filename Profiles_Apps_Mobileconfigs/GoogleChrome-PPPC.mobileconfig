@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>ch.ethz.E7B06B5B-1ADB-4E1A-AC5F-92A90142EAB7</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>E7B06B5B-1ADB-4E1A-AC5F-92A90142EAB7</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+                <dict>
+                    <key>ScreenCapture</key>
+                    <array>
+                        <dict>
+                            <key>Authorization</key>
+                            <string>AllowStandardUserToSetSystemService</string>
+                            <key>CodeRequirement</key>
+                            <string>(identifier "com.google.Chrome" or identifier "com.google.Chrome.beta" or identifier "com.google.Chrome.dev" or identifier "com.google.Chrome.canary") and certificate leaf = H"c9a99324ca3fcb23dbcc36bd5fd4f9753305130a"</string>
+                            <key>Comment</key>
+                            <string>Google Chrome</string>
+                            <key>Identifier</key>
+                            <string>com.google.Chrome</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ch.ethz.159B13F1-B2C2-461E-8EF8-17372B70F8A4</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>159B13F1-B2C2-461E-8EF8-17372B70F8A4</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
