@@ -11,7 +11,7 @@ Input:
   PROFILE_CATEGORY: "Administration"
   PROFILE_TEMPLATE: Profile-MicrosoftOffice.xml
   PROFILE_NAME: Microsoft Office Privacy Settings
-  PROFILE_DESCRIPTION: Manages Full Disk Access settings for Microsoft Office
+  PROFILE_DESCRIPTION: Manages Full Disk Access and Screencapture settings for Microsoft Office
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: MicrosoftOffice-PPPC.mobileconfig
   REPLACE_PROFILE: "True"

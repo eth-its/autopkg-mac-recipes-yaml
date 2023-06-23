@@ -60,6 +60,21 @@
 							<string>bundleID</string>
 						</dict>
 					</array>
+					<key>ScreenCapture</key>
+                    <array>
+                        <dict>
+                            <key>Authorization</key>
+                            <string>AllowStandardUserToSetSystemService</string>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.microsoft.Powerpoint" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.microsoft.Powerpoint</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                    </array>
 				</dict>
 			</dict>
 		</array>
