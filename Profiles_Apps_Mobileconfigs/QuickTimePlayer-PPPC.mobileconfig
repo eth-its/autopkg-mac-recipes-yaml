@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>ch.ethz.3EF4F1CF-C6D9-45F7-A222-4B95202E70C2</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>3EF4F1CF-C6D9-45F7-A222-4B95202E70C2</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+                <dict>
+                    <key>ScreenCapture</key>
+                    <array>
+                        <dict>
+                            <key>Authorization</key>
+                            <string>AllowStandardUserToSetSystemService</string>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.apple.QuickTimePlayerX" and anchor apple</string>
+                            <key>Comment</key>
+                            <string>QuickTimePlayerX</string>
+                            <key>Identifier</key>
+                            <string>com.apple.QuickTimePlayerX</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ch.ethz.BF5E8B45-411C-4964-988B-4DE6603A46B4</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>BF5E8B45-411C-4964-988B-4DE6603A46B4</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
