@@ -1,0 +1,31 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.EndNote21-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: EndNote
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.EndNote21
+  TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  MAJOR_VERSION: "21"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% current version installed"
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %MAJOR_VERSION%"
+  UPDATE_POLICY_NAME: "Update %NAME% %MAJOR_VERSION%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION%"
+  TRIGGER_NAME: "%NAME% %MAJOR_VERSION%-install"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION%"
+  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% %MAJOR_VERSION% will be updated to version %version%."
+  SCRIPT_NAME: "%NAME%-postinstall.sh"
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: EndNote 20.png
