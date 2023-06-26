@@ -1,7 +1,7 @@
 Description: Downloads latest stable Fiji zip file and builds a package. The installer package includes a preinstall script that will check for an existing Fiji.app in /Applications and remove it if found.
 Identifier: com.github.eth-its-recipes.pkg.Fiji
 MinimumVersion: "2.3"
-ParentRecipe: com.github.rtrouton.download.Fiji
+ParentRecipe: com.github.eth-its-recipes.download.Fiji
 
 Input:
   NAME: Fiji
