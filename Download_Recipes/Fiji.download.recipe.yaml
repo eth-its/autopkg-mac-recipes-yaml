@@ -1,0 +1,20 @@
+Description: Download recipe for Fiji, which downloads a zip file containing the latest stable version of Fiji for Mac OS X. Fiji is an image processing package and can be described as a distribution of ImageJ (and ImageJ2) together with Java, Java3D and a lot of plugins organized into a coherent menu structure.
+Identifier: com.github.eth-its-recipes.download.Fiji
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Fiji
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: \d*\.\d*\.\d*
+      url: https://downloads.imagej.net/fiji/releases/?C=N;O=D
+      result_output_var_name: version
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%version%.zip"
+      url: "https://downloads.imagej.net/fiji/releases/%version%/fiji-%version%-macosx.zip"
+
+  - Processor: EndOfCheckPhase
