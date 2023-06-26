@@ -1,7 +1,7 @@
 Description: Downloads latest Endnote installer and the license file from a local repository, and creates a package.
 Identifier: com.github.eth-its-recipes.pkg.EndNote
-MinimumVersion: 1.0.0
-ParentRecipe: com.github.rtrouton.download.EndNote20
+MinimumVersion: "2.3"
+ParentRecipe: com.github.rtrouton.download.EndNote21
 
 Input:
   NAME: EndNote
