@@ -8,13 +8,13 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      re_pattern: \d*\.\d*\.\d*
-      url: https://downloads.imagej.net/fiji/releases/?C=N;O=D
+      re_pattern: (\d{8}-\d{4})
+      url: https://downloads.imagej.net/fiji/archive/?C=N;O=D
       result_output_var_name: version
 
   - Processor: URLDownloader
     Arguments:
       filename: "%NAME%-%version%.zip"
-      url: "https://downloads.imagej.net/fiji/releases/%version%/fiji-%version%-macosx.zip"
+      url: "https://downloads.imagej.net/fiji/latest/fiji-macosx.zip"
 
   - Processor: EndOfCheckPhase
