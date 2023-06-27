@@ -1,30 +1,29 @@
 Description: |
-  Downloads the latest version of EndNote 20 and makes a pkg of it then uploads it to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+  Downloads the latest version of EndNote 21 and makes a pkg of it then uploads it to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 
   Required overrides:
   - COMPANY_NUMBER
-Identifier: com.github.eth-its-recipes.jamf.EndNote20
+Identifier: com.github.eth-its-recipes.jamf.EndNote21
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.EndNote
 
 Input:
   NAME: EndNote
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
-  LANGUAGE: EN
-  MAJOR_VERSION: "20"
-  LIST_MAJOR_VERSION: "20"
+  MAJOR_VERSION: "21"
+  LIST_MAJOR_VERSION: "21"
   COMPANY_NAME: ETH ZUERICH
-  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     EndNote is the industry standard software tool for publishing and managing bibliographies, citations and references on the Windows and Macintosh desktop.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
