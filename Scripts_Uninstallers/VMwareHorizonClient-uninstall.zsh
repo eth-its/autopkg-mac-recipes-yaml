@@ -66,19 +66,9 @@ else
     echo "$folderToDelete deleted successfully"
 fi
 
-# Try to Forget the packages if we can find a match
-# Loop through the remaining parameters
-pkg_1="com.vmware.horizon.pkg"
-pkg_2="None"
-pkg_3="None"
-pkg_4="None"
-pkg_5="None"
-for (( i = 1; i < 5; i++ )); do
-    pkg_id=pkg_$i
-    if [[ ${!pkg_id} != "None" ]]; then
-        echo "Forgetting package ${!pkg_id}..."
-        /usr/sbin/pkgutil --pkgs | /usr/bin/grep -i "${!pkg_id}" | /usr/bin/xargs /usr/bin/sudo /usr/sbin/pkgutil --forget
-    fi
-done
+# Forget the package
+pkg_id="com.vmware.horizon.pkg"
+echo "Forgetting package $pkg_id..."
+/usr/sbin/pkgutil --pkgs | /usr/bin/grep -i $pkg_id | /usr/bin/xargs /usr/bin/sudo /usr/sbin/pkgutil --forget
 
 echo "$appName deletion complete"
