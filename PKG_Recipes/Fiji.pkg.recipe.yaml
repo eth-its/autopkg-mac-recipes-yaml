@@ -30,6 +30,12 @@ Process:
         CFBundleShortVersionString: "%version%"
     Processor: PlistEditor
 
+  - Processor: com.github.grahampugh.recipes.commonprocessors/StringReplacer
+    Arguments:
+      input_string: "%version%"
+      string_to_replace: "-"
+      replacement_string: "."
+
   - Arguments:
       pkg_request:
         chown:
@@ -38,8 +44,8 @@ Process:
             user: root
         id: org.fiji
         options: purge_ds_store
-        pkgname: "%NAME%-%version%"
-        version: "%version%"
+        pkgname: "%NAME%-%output_string%"
+        version: "%output_string%"
     Processor: PkgCreator
 
   - Processor: PathDeleter
