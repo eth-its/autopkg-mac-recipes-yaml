@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>ch.ethz.45CDF14A-2280-42B0-8647-AA01C2053F92</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>45CDF14A-2280-42B0-8647-AA01C2053F92</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+                <dict>
+                    <key>Accessibility</key>
+                    <array>
+                        <dict>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <false/>
+                        </dict>
+                    </array>
+                    <key>AppleEvents</key>
+                    <array>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.apple.finder" and anchor apple</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.apple.finder</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>anchor apple generic and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = JQ525L2MZD)</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.adobe.Acrobat.Pro</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>anchor apple generic and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = JQ525L2MZD)</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.adobe.Reader</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>anchor apple generic and identifier "com.jamfsoftware.selfservice.mac" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "483DWKW443")</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.jamfsoftware.selfservice.mac</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "43AQ936H96"</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>org.mozilla.firefox</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>(identifier "com.google.Chrome" or identifier "com.google.Chrome.beta" or identifier "com.google.Chrome.dev" or identifier "com.google.Chrome.canary") and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = EQHXZ8M8AV</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.google.Chrome</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.Excel" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.Excel</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.Powerpoint" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.Powerpoint</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.Outlook" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.Outlook</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.Word" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.Word</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>(anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = K36BKF7T3D) and identifier "com.apple.iWork.Keynote"</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.apple.iWork.Keynote</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.apple.Preview" and anchor apple</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.apple.Preview</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.apple.Safari" and anchor apple</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.apple.Safari</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logitech.presenter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logitech.presenter</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ch.ethz.C9F8DE10-324D-4A06-8945-AD8A53DD80F7</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>C9F8DE10-324D-4A06-8945-AD8A53DD80F7</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
