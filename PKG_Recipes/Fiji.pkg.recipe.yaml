@@ -22,22 +22,23 @@ Process:
       purge_destination: true
     Processor: Unarchiver
 
-  - Arguments:
-      input_plist_path: "%pkgroot%/Applications/Fiji.app/Contents/Info.plist"
-      output_plist_path: "%pkgroot%/Library/Application Support/Fiji/AdaptedInfo.plist"
-      plist_data:
-        CFBundleVersion: "%version%"
-        CFBundleShortVersionString: "%version%"
-    Processor: PlistEditor
-
   - Processor: com.github.grahampugh.recipes.commonprocessors/StringReplacer
     Arguments:
       input_string: "%version%"
       string_to_replace: "-"
       replacement_string: "."
 
+  - Arguments:
+      Comment: The version key is re-written here for use in subsequent processors
+      version: "%output_string%"
+      input_plist_path: "%pkgroot%/Applications/Fiji.app/Contents/Info.plist"
+      output_plist_path: "%pkgroot%/Library/Application Support/Fiji/AdaptedInfo.plist"
+      plist_data:
+        CFBundleVersion: "%output_string%"
+        CFBundleShortVersionString: "%output_string%"
+    Processor: PlistEditor
+
   - Processor: PkgCreator
-    Comment: The version key is re-written here for use in subsequent processors
     Arguments:
       pkg_request:
         chown:
@@ -48,7 +49,6 @@ Process:
         options: purge_ds_store
         pkgname: "%NAME%-%output_string%"
         version: "%output_string%"
-      version: "%output_string%"
 
   - Processor: PathDeleter
     Arguments:
