@@ -15,7 +15,7 @@ Input:
   PROFILE_DESCRIPTION: Enables notifications for Microsoft AutoUpdate
   ORGANIZATION: Microsoft
   PROFILE_MOBILECONFIG: MicrosoftAutoUpdate-notifications.mobileconfig
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
