@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>ch.ethz.B6BBAF5E-D73E-49E4-8835-9C7B1BDC966B</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>B6BBAF5E-D73E-49E4-8835-9C7B1BDC966B</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+                <dict>
+                    <key>AppleEvents</key>
+                    <array>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.autoupdate2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.autoupdate2</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <integer>1</integer>
+                            <key>CodeRequirement</key>
+                            <string>anchor apple generic and identifier "com.jamf.management.Jamf" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "483DWKW443")</string>
+                            <key>Identifier</key>
+                            <string>com.jamf.management.Jamf</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <integer>0</integer>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.autoupdate2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.autoupdate2</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <integer>1</integer>
+                            <key>CodeRequirement</key>
+                            <string>anchor apple generic and identifier "com.jamf.management.Jamf" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "483DWKW443")</string>
+                            <key>Identifier</key>
+                            <string>com.jamf.management.Jamf</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <integer>0</integer>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.autoupdate2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.autoupdate2</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <integer>1</integer>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.apple.Terminal" and anchor apple</string>
+                            <key>Identifier</key>
+                            <string>com.apple.Terminal</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <integer>0</integer>
+                        </dict>
+                        <dict>
+                            <key>AEReceiverCodeRequirement</key>
+                            <string>identifier "com.microsoft.autoupdate2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                            <key>AEReceiverIdentifier</key>
+                            <string>com.microsoft.autoupdate2</string>
+                            <key>AEReceiverIdentifierType</key>
+                            <string>bundleID</string>
+                            <key>Allowed</key>
+                            <integer>1</integer>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.apple.sshd-keygen-wrapper" and anchor apple</string>
+                            <key>Identifier</key>
+                            <string>/usr/libexec/sshd-keygen-wrapper</string>
+                            <key>IdentifierType</key>
+                            <string>path</string>
+                            <key>StaticCode</key>
+                            <integer>0</integer>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ch.ethz.72A951FD-19AC-41CD-B33C-3BFA1CE16CFB</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>72A951FD-19AC-41CD-B33C-3BFA1CE16CFB</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
