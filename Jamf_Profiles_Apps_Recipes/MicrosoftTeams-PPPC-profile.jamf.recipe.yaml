@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Teams
   GROUP_NAME: "%NAME% users"
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: "Privacy Preferences"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
   PROFILE_DESCRIPTION: "Manages Accessibility settings for %NAME%"
