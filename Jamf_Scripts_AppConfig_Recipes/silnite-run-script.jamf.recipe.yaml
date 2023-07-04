@@ -1,5 +1,5 @@
 Description: |
-  Creates a Once per day policy to run silnite. Also creates the smart group that determines if XProtect is up-to-date
+  Creates a Once per day policy to run silnite.
 
   Requires the "silnite installed" group to already exist.
 Identifier: com.github.eth-its-recipes.jamf.script.silentnite-run

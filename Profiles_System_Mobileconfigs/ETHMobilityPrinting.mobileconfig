@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-	<plist version="1.0">
-	<dict>
-		<key>PayloadContent</key>
-		<array>
-			 <dict>
-	<key>AirPrint</key>
-	<array>
-		<dict>
-	<key>IPAddress</key>
-	<string>mobileprintstaff.ethz.ch</string>
-	<key>ResourcePath</key>
-	<string>/printers/card-mobile</string>
-	<key>Port</key><integer>9164</integer>
-	<key>ForceTLS</key><true/>
-</dict>
-	</array>
-	<key>PayloadDescription</key>
-	<string>Configures AirPrint settings</string>
-	<key>PayloadDisplayName</key>
-	<string>AirPrint</string>
-	<key>PayloadIdentifier</key>
-	<string>com.papercut.pmitc.airprint</string>
-	<key>PayloadType</key>
-	<string>com.apple.airprint</string>
-	<key>PayloadUUID</key>
-	<string>28F8D150-7803-4EDF-B1B3-DB04B166A0C9</string>
-	<key>PayloadVersion</key>
-	<integer>1</integer>
-</dict>
-		</array>
-		<key>PayloadDescription</key><string>PaperCut printer configuration for iOS device printing.</string>
-		<key>PayloadOrganisation</key><string>PaperCut Software</string>
-		<key>PayloadDisplayName</key>
-		<string>PaperCut Mobility Print for iOS</string>
-		<key>PayloadIdentifier</key>
-		<string>PaperCut Mobility Print iOS Profile from mobileprintstaff.ethz.ch</string>
-		<key>PayloadUUID</key>
-		<string>3E1C607D-6DB0-4611-9ED5-3959895A47EB</string>
-		<key>PayloadType</key>
-		<string>Configuration</string>
-		<key>PayloadVersion</key>
-		<integer>1</integer>
-	</dict>
-	</plist>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>AirPrint</key>
+                <array>
+                    <dict>
+                        <key>IPAddress</key>
+                        <string>mobileprintstaff.ethz.ch</string>
+                        <key>ResourcePath</key>
+                        <string>/printers/card-mobile</string>
+                        <key>Port</key>
+                        <integer>9164</integer>
+                        <key>ForceTLS</key>
+                        <true/>
+                    </dict>
+                </array>
+                <key>PayloadDescription</key>
+                <string>Configures AirPrint settings</string>
+                <key>PayloadDisplayName</key>
+                <string>AirPrint</string>
+                <key>PayloadIdentifier</key>
+                <string>com.papercut.pmitc.airprint</string>
+                <key>PayloadType</key>
+                <string>com.apple.airprint</string>
+                <key>PayloadUUID</key>
+                <string>28F8D150-7803-4EDF-B1B3-DB04B166A0C9</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>PaperCut printer configuration for iOS device printing.</string>
+        <key>PayloadOrganisation</key>
+        <string>PaperCut Software</string>
+        <key>PayloadDisplayName</key>
+        <string>PaperCut Mobility Print for iOS</string>
+        <key>PayloadIdentifier</key>
+        <string>PaperCut Mobility Print iOS Profile from mobileprintstaff.ethz.ch</string>
+        <key>PayloadUUID</key>
+        <string>3E1C607D-6DB0-4611-9ED5-3959895A47EB</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>

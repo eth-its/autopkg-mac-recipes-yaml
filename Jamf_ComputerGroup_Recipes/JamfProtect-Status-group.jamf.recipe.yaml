@@ -1,0 +1,39 @@
+Description: This just uploads an EA to Jamf.
+Identifier: com.github.eth-its-recipes.jamf.script.JamfProtectStatus-EA
+MinimumVersion: "2.3"
+
+Input:
+  EXTENSION_ATTRIBUTE_URL: https://raw.githubusercontent.com/jamf/jamfprotect/main/jamf_pro_extension_attributes/jamf_protect_application_status.sh
+  EXTENSION_ATTRIBUTE_NAME: Jamf Protect Status
+  EXTENSION_ATTRIBUTE_SCRIPT: JamfProtectStatus-EA.sh
+  GROUP_NAME: Jamf Protect Status Not Compliant
+  GROUP_TEMPLATE: SmartGroup-generic-EA-3-criteria.xml
+  # Check that Jamf Protect is installed
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_1: is not
+  EXTENSION_ATTRIBUTE_VALUE_1: Protect binary does not exist
+  # Check that System Extension is not Active and Enabled
+  EXTENSION_ATTRIBUTE_AND_OR_2: and
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_2: is not
+  EXTENSION_ATTRIBUTE_VALUE_2: Protected
+  # Check that Launch Service is not Active
+  EXTENSION_ATTRIBUTE_AND_OR_3: and
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_3: is not
+  EXTENSION_ATTRIBUTE_VALUE_3: Enrolling
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%EXTENSION_ATTRIBUTE_URL%"
+      filename: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%pathname%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"

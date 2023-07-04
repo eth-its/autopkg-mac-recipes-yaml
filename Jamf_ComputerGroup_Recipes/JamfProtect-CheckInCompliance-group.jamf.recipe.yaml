@@ -6,6 +6,15 @@ Input:
   EXTENSION_ATTRIBUTE_URL: https://raw.githubusercontent.com/jamf/jamfprotect/main/jamf_pro_extension_attributes/jamf_protect_last_check_in_compliance.sh
   EXTENSION_ATTRIBUTE_NAME: Jamf Protect Check-in Compliance
   EXTENSION_ATTRIBUTE_SCRIPT: JamfProtectCheckInCompliance-EA.sh
+  GROUP_NAME: Jamf Protect Check-in Not Compliant
+  GROUP_TEMPLATE: SmartGroup-generic-EA-2-criteria.xml
+  # Check that Jamf Protect is installed
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_1: is not
+  EXTENSION_ATTRIBUTE_VALUE_1: Protect binary not found
+  # Check that System Extension is not Active and Enabled
+  EXTENSION_ATTRIBUTE_AND_OR_2: and
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_2: is
+  EXTENSION_ATTRIBUTE_VALUE_2: Not Protected
 
 Process:
   - Processor: URLDownloader
@@ -18,3 +27,9 @@ Process:
       ea_script_path: "%pathname%"
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"

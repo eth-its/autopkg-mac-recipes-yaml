@@ -1,0 +1,39 @@
+Description: This uploads an EA to Jamf and creates a smart group. This checks whether the Jamf Protect binary is installed but the system extension or launch services are not running properly.
+Identifier: com.github.eth-its-recipes.jamf.script.JamfProtectLaunchStatus-EA
+MinimumVersion: "2.3"
+
+Input:
+  EXTENSION_ATTRIBUTE_URL: https://raw.githubusercontent.com/jamf/jamfprotect/main/jamf_pro_extension_attributes/jamf_protect_application_running_type_and_status.sh
+  EXTENSION_ATTRIBUTE_NAME: Jamf Protect Launch Status
+  EXTENSION_ATTRIBUTE_SCRIPT: JamfProtectLaunchStatus-EA.sh
+  GROUP_NAME: Jamf Protect Launch Status Not Compliant
+  GROUP_TEMPLATE: SmartGroup-generic-EA-3-criteria.xml
+  # Check that Jamf Protect is installed
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_1: is not
+  EXTENSION_ATTRIBUTE_VALUE_1: Protect binary not found
+  # Check that System Extension is not Active and Enabled
+  EXTENSION_ATTRIBUTE_AND_OR_2: and
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_2: is not
+  EXTENSION_ATTRIBUTE_VALUE_2: System Extension - Active and Enabled
+  # Check that Launch Service is not Active
+  EXTENSION_ATTRIBUTE_AND_OR_3: and
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE_3: is not
+  EXTENSION_ATTRIBUTE_VALUE_3: Launch Service - Active
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%EXTENSION_ATTRIBUTE_URL%"
+      filename: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%pathname%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
