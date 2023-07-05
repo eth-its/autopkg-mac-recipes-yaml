@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.FileMakerPro
 
 Input:
   NAME: FileMaker Pro
-  MAJOR_VERSION: "20"
+  MAJOR_VERSION: "2023"
   LICENSED_ORG: "ETH Zuerich"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
