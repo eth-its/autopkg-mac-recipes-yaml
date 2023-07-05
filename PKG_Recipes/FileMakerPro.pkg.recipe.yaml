@@ -1,6 +1,6 @@
 Description: Downloads latest FileMaker Pro disk image and extracts the package from within. The LIST_MAJOR_VERSION should be overridden in the jss recipe to obtain a particular version. Otherwise, the latest available version will be downloaded. The LIST_LICENSE_FILE_SOURCE is also required for licensing.
 Identifier: com.github.eth-its-recipes.pkg.FileMakerPro
-ParentRecipe: com.github.grahampugh.recipes.download.FileMakerPro
+ParentRecipe: com.github.apizz.download.FileMakerProClaris
 
 Input:
   NAME: FileMaker Pro
