@@ -5,7 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.pkg.FileMakerPro
 
 Input:
   NAME: FileMaker Pro
-  LIST_NAME: Filemaker Pro
   LICENSED_ORG: "ETH Zuerich"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -29,7 +28,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: FileMaker Pro 2023.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
