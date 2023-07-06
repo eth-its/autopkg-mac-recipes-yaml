@@ -21,7 +21,7 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   EXCLUSION_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
-  PROFILE_CATEGORY: Development & Computing
+  PROFILE_CATEGORY: Application Settings
   PROFILE_NAME: Carbon Copy Cloner
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   ORGANIZATION: "%NAME%"

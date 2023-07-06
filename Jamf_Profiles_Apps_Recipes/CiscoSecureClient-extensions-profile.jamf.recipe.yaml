@@ -9,7 +9,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: System Extensions
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Cisco Secure Client - Socket Filter
   PROFILE_DESCRIPTION: Settings that allow the Cisco Secure Client application to function.

@@ -10,9 +10,20 @@ Input:
   TESTING_GROUP_NAME: Testing - Microsoft Defender Test Context
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: Microsoft Defender
+  PROFILE_CATEGORY_SETTINGS: Application Settings
+  PROFILE_CATEGORY_PPPC: Privacy Settings
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY_SETTINGS%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY_PPPC%"
+      replace_category: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
@@ -34,7 +45,7 @@ Process:
     Comment: Microsoft Defender Settings
     Arguments:
       profile_name: Microsoft Defender Settings
-      profile_category: "%PROFILE_CATEGORY%"
+      profile_category: "%PROFILE_CATEGORY_SETTINGS%"
       profile_template: Profile-1-group.xml
       computergroup_name: "%GROUP_NAME%"
       mobileconfig: MicrosoftDefender.mobileconfig
@@ -44,7 +55,7 @@ Process:
     Comment: Microsoft Defender Privacy Settings
     Arguments:
       profile_name: Microsoft Defender Privacy Settings
-      profile_category: "%PROFILE_CATEGORY%"
+      profile_category: "%PROFILE_CATEGORY_PPPC%"
       profile_template: Profile-1-group.xml
       computergroup_name: "%GROUP_NAME%"
       mobileconfig: MicrosoftDefender-PPPC.mobileconfig
@@ -54,7 +65,7 @@ Process:
     Comment: Microsoft Defender Onboarding Settings - Test Context
     Arguments:
       profile_name: Microsoft Defender Onboarding Settings - Test Context
-      profile_category: "%PROFILE_CATEGORY%"
+      profile_category: "%PROFILE_CATEGORY_SETTINGS%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       profile_template: Profile-1-group.xml
       mobileconfig: ""
@@ -69,7 +80,7 @@ Process:
     Arguments:
       EXCLUSION_GROUP_NAME: "%TESTING_GROUP_NAME%"
       profile_name: Microsoft Defender Onboarding Settings - Prod Context
-      profile_category: "%PROFILE_CATEGORY%"
+      profile_category: "%PROFILE_CATEGORY_SETTINGS%"
       computergroup_name: "%GROUP_NAME%"
       profile_template: Profile-1-group-1-exclusion.xml
       mobileconfig: ""

@@ -6,7 +6,7 @@ Input:
   NAME: "[Fix] Dummy Profile for fixing orphaned profiles"
   IDENTIFIER: ch.ethz.id.null
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: System Settings
   PROFILE_TEMPLATE: Profile-no-scope.xml
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"

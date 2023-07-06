@@ -9,7 +9,7 @@ Input:
   NAME: Microsoft AutoUpdate
   USERS_GROUP_ALL_MICROSOFT_APPS_NAME: Microsoft applications users
   USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-users-Microsoft-all-apps.xml
-  PROFILE_CATEGORY: "Privacy Preferences"
+  PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Microsoft AutoUpdate Privacy Settings
   PROFILE_DESCRIPTION: Allows Terminal and the Jamf binary to send Apple events to Microsoft AutoUpdate

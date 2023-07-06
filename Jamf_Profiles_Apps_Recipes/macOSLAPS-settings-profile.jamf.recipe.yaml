@@ -11,7 +11,7 @@ Input:
   NAME: macOSLAPS
   IDENTIFIER: edu.psu.macoslaps
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: macOSLAPS Settings
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"

@@ -7,7 +7,7 @@ Input:
   GROUP_NAME: Jamf Managed Login Items profile installed
   GROUP_TEMPLATE: SmartGroup-profile-installed.xml
   INSTALLED_PROFILE_IDENTIFIER: com.jamf.servicemanagement.backgroundapps
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: System Settings
   PROFILE_NAME: "%NAME%"
   PROFILE_DESCRIPTION: Enforces the ability for critical applications to launch or perform actions at startup or login.
   ORGANIZATION: Apple

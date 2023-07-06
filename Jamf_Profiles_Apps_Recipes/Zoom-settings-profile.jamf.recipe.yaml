@@ -11,7 +11,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Settings"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
@@ -19,6 +19,11 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"

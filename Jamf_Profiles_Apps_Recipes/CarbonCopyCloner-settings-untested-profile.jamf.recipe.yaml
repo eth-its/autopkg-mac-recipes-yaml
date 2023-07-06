@@ -18,7 +18,7 @@ Input:
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   JSS_INVENTORY_NAME: "%NAME%.app"
-  PROFILE_CATEGORY: Development & Computing
+  PROFILE_CATEGORY: Application Settings
   PROFILE_NAME: "%NAME% (Testing)"
   PROFILE_DESCRIPTION: License and settings for Carbon Copy Cloner (v6)
   ORGANIZATION: "%NAME%"

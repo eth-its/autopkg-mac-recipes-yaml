@@ -6,7 +6,7 @@ Input:
   NAME: Microsoft Office
   IDENTIFIER: com.microsoft.office
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: Application Settings
   PROFILE_DESCRIPTION: Settings for Microsoft Office applications
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: com.microsoft.office.plist
@@ -14,6 +14,11 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"

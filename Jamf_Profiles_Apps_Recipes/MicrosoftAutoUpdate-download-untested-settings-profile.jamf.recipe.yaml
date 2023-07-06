@@ -8,7 +8,7 @@ Input:
   TEST_USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE: SmartGroup-test-users-Microsoft-all-apps.xml
   IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: Application Settings
   PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Production" channel.
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: MicrosoftAutoUpdate-download-untested.plist
@@ -16,6 +16,11 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TEST_USERS_GROUP_ALL_MICROSOFT_APPS_TEMPLATE%"

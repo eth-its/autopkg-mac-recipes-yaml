@@ -11,7 +11,7 @@ Input:
   NAME: GraphicConverter
   MAJOR_VERSION: "10"
   IDENTIFIER: com.lemkesoft.graphicconverter10
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% %MAJOR_VERSION%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"

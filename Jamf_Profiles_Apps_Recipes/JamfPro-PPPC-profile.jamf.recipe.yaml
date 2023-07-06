@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Jamf Pro Privacy Settings
   PROFILE_GROUP_TEMPLATE: SmartGroup-installed.xml
-  PROFILE_CATEGORY: "Privacy Preferences"
+  PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME%"
   PROFILE_DESCRIPTION: Full disk access for Jamf Pro.

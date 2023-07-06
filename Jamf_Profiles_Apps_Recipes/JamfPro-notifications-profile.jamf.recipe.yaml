@@ -8,7 +8,7 @@ Input:
   ORGANIZATION: Jamf
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users-with-all-managed-clients.xml
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: Notification Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Jamf Pro Notifications
   PROFILE_DESCRIPTION: Enforces notifications for Jamf Pro policies.

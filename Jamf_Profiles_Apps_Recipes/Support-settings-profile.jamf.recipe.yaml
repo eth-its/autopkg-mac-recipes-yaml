@@ -10,7 +10,7 @@ Input:
   IDENTIFIER: nl.root3.support
   ORGANIZATION: ETH Zürich
   GROUP_NAME: "%NAME% users"
-  PROFILE_CATEGORY: "Administration"
+  PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Support App Settings
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
@@ -18,6 +18,11 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"

@@ -6,7 +6,7 @@ Input:
   NAME: Defer Software Updates
   IDENTIFIER: com.apple.applicationaccess
   ORGANIZATION: ETH Zürich
-  PROFILE_CATEGORY: Administration
+  PROFILE_CATEGORY: System Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major) %DEFERRAL_DAYS_MINOR_UPDATES% (minor)"
   PROFILE_PAYLOAD: "%IDENTIFIER%-Defer-%DEFERRAL_DAYS_MAJOR_UPDATES%-%DEFERRAL_DAYS_MINOR_UPDATES%.plist"

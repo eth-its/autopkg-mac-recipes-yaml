@@ -8,7 +8,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Office
   GROUP_NAME: "%NAME% users"
-  PROFILE_CATEGORY: "Privacy Preferences"
+  PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-MicrosoftOffice.xml
   PROFILE_NAME: Microsoft Office Privacy Settings
   PROFILE_DESCRIPTION: Manages Full Disk Access and Screencapture settings for Microsoft Office
