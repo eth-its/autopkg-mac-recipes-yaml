@@ -1,11 +1,11 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.TeamViewer-settings-profile
+Identifier: com.github.eth-its-recipes.jamf.Zoom-settings-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: TeamViewer
-  IDENTIFIER: com.teamviewer.teamviewer.preferences
+  NAME: Zoom Client
+  IDENTIFIER: us.zoom.config
   ORGANIZATION: "%NAME%"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
@@ -15,7 +15,7 @@ Input:
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Settings"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
-  PROFILE_DESCRIPTION: Restricts TeamViewer updates
+  PROFILE_DESCRIPTION: Controls sign-in and updates for the Zoom client.
   REPLACE_PROFILE: "True"
 
 Process:
