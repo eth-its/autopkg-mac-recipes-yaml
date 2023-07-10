@@ -28,6 +28,7 @@ for id in "${profile_ids[@]}"; do
     if [[ $UserDefinedName == "Network" ]]; then
         echo "LAN profile found"
         lan_profile_id="$id"
+        echo " -> $lan_profile_id"
     fi
 done
 
