@@ -4,7 +4,7 @@
   <access_level>Full Access</access_level>
   <privilege_set>Custom</privilege_set>
   <ldap_server>
-    <id>%ID%</id>
+    <!-- <id>%ID%</id> -->
     <name>%DOMAIN%</name>
   </ldap_server>
   <site>
