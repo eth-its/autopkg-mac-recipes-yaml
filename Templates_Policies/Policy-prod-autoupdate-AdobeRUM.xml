@@ -25,22 +25,22 @@
                 <name>Adobe Acrobat DC SDL installed</name>
             </computer_group>
             <computer_group>
-                <name>Adobe After Effects CC 2022 SDL installed</name>
+                <name>Adobe After Effects 2023 SDL installed</name>
             </computer_group>
             <computer_group>
-                <name>Adobe Illustrator 2022 SDL installed</name>
+                <name>Adobe Illustrator 2023 SDL installed</name>
             </computer_group>
             <computer_group>
-                <name>Adobe InDesign 2022 SDL installed</name>
+                <name>Adobe InDesign 2023 SDL installed</name>
             </computer_group>
             <computer_group>
                 <name>Adobe Lightroom Classic SDL installed</name>
             </computer_group>
             <computer_group>
-                <name>Adobe Photoshop 2022 SDL installed</name>
+                <name>Adobe Photoshop 2023 SDL installed</name>
             </computer_group>
             <computer_group>
-                <name>Adobe Premiere Pro 2022 SDL installed</name>
+                <name>Adobe Premiere Pro 2023 SDL installed</name>
             </computer_group>
         </computer_groups>
         <exclusions>
