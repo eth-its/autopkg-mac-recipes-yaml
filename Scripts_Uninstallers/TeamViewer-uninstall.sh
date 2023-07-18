@@ -11,7 +11,7 @@
 #######################################################################
 
 loggedInUser=$( /bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }' )
-loggedInUserHome=$( /usr/bin/dscl . -read /Users/$loggedInUser | grep NFSHomeDirectory: | cut -c 19- | head -n 1 )
+loggedInUserHome=$( /usr/bin/dscl . -read "/Users/$loggedInUser" | grep NFSHomeDirectory: | cut -c 19- | head -n 1 )
 
 function silent_app_quit() {
     # silently kill the application.
@@ -60,6 +60,10 @@ else
 	app_to_trash="$app_name.app"
 fi
 
+# chown to the user to account for the "clever" uninstaller
+chmod -R 755 "${app_to_trash}"
+chown -R "$loggedInUser:staff" "${app_to_trash}"
+
 echo "Application will be deleted: $app_to_trash"
 # Remove the application
 /bin/rm -Rf "${app_to_trash}"
@@ -92,12 +96,13 @@ echo "Deleting other files"
 /bin/rm -f /Library/LaunchAgents/com.teamviewer.teamviewer_desktop.plist ||:
 /bin/rm -f /Library/LaunchDaemons/com.teamviewer.Helper.plist ||:
 /bin/rm -f /Library/PrivilegedHelperTools/com.teamviewer.Helper ||:
+/bin/rm -rf "/Library/Application Support/TeamViewer" ||:
 /bin/rm -rf "$loggedInUserHome/Library/Application Support/TeamViewer" ||:
 /bin/rm -rf "$loggedInUserHome/Library/Caches/com.teamviewer.TeamViewer" ||:
 
 # Forget packages (works for all versions)
 echo "Forgetting packages"
 tv_pkgs=$( /usr/sbin/pkgutil --pkgs | /usr/bin/grep com.teamviewer.teamviewer | /usr/bin/grep -v com.teamviewer.TeamViewerQS )
-while read pkg; do
-    /usr/sbin/pkgutil --forget $pkg ||:
+while read -r pkg; do
+    /usr/sbin/pkgutil --forget "$pkg" ||:
 done <<< "$tv_pkgs"
