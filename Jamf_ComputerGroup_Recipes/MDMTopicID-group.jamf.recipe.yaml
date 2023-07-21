@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   EXTENSION_ATTRIBUTE_NAME: MDM APNS Topic ID
-  EXTENSION_ATTRIBUTE_SCRIPT: MDMTopicID-EA.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: MDMTopicID-EA.zsh
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
