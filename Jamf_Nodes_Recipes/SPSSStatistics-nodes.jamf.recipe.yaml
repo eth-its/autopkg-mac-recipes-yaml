@@ -55,6 +55,7 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
