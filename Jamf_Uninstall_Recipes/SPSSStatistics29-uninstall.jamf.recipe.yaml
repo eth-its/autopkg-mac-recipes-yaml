@@ -6,7 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 Input:
   NAME: SPSS Statistics
   MAJOR_VERSION: "29"
-  LICENSE: Floating
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
   SCRIPT_PATH: SPSS Statistics-uninstall.sh
   SCRIPT_NAME: SPSS Statistics-uninstall.sh
