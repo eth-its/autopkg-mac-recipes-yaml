@@ -21,4 +21,4 @@ Input:
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
-  SELFSERVICE_ICON: SPSS Statistics 28.png
+  SELFSERVICE_ICON: SPSS Statistics 29.png

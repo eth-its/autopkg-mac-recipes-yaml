@@ -52,7 +52,7 @@ Input:
   LICENSE_INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% Floating License activated"
   LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
   MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% Floating License is now activated"
-  SELFSERVICE_ICON: SPSS Statistics 28.png
+  SELFSERVICE_ICON: SPSS Statistics 29.png
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% installed"
