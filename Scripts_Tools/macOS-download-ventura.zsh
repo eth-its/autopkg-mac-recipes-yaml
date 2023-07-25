@@ -2,13 +2,11 @@
 # shellcheck shell=bash
 
 : <<DOC 
-erase-install run script
+erase-install run script for downloading the latest available Install macOS Ventura.app
 by Graham Pugh
 DOC
 
-eraseinstall="/Library/Management/erase-install/erase-install.sh"
-
 jamf policy -event "erase-install-install"
 
-/Library/Management/erase-install/erase-install.sh --os 13 --update --move --cleanup-after-use
+/Library/Management/erase-install/erase-install.sh --os 13 --update --check-power
 
