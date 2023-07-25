@@ -1,0 +1,32 @@
+Description: |
+  Creates all production policies for a particular title.
+
+  Required overrides:
+  - FLOATING_LICENSE_URL
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
+
+Input:
+  NAME: SPSS Statistics
+  MAJOR_VERSION: "29"
+  LICENSE: Floating
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION%%"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %MAJOR_VERSION%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION%"
+  TRIGGER_NAME: "SPSSStatistics %MAJOR_VERSION%-install"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event '%LICENSE_SET_POLICY_TRIGGER_NAME%'"
+  LICENSE_SET_POLICY_TRIGGER_NAME: "Activate-SPSS-%MAJOR_VERSION%-Floating-License"
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  SELFSERVICE_ICON: SPSS Statistics 29.png

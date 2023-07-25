@@ -1,0 +1,24 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatistics29-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: SPSS Statistics
+  MAJOR_VERSION: "29"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  SCRIPT_PATH: SPSS Statistics-uninstall.sh
+  SCRIPT_NAME: SPSS Statistics-uninstall.sh
+  PARAMETER4_TITLE: Major version
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_TRIGGER_NAME: "%NAME% %MAJOR_VERSION%-uninstall"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  SELFSERVICE_ICON: SPSS Statistics 29.png
