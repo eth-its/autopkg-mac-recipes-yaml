@@ -43,6 +43,13 @@
         <self_service_display_name>%UNINSTALL_SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
         <self_service_description>%UNINSTALL_SELFSERVICE_DESCRIPTION%</self_service_description>
         <force_users_to_view_description>%SELFSERVICE_FORCE_DESCRIPTION%</force_users_to_view_description>
+        <self_service_categories>
+            <category>
+                <name>%UNINSTALL_POLICY_CATEGORY%</name>
+                <display_in>true</display_in>
+                <feature_in>false</feature_in>
+            </category>
+        </self_service_categories>
     </self_service>
     <maintenance>
         <recon>true</recon>
