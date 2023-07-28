@@ -20,18 +20,18 @@ Set the webhook_url to the one provided by Slack when you create the webhook at
 https://my.slack.com/services/new/incoming-webhook/
 """
 
+import json
 
-from __future__ import absolute_import
-
-import requests
-
-from autopkglib import Processor  # pylint: disable=import-error
+from autopkglib import (
+    ProcessorError,
+    URLGetter,
+)  # pylint: disable=import-error
 
 
 __all__ = ["JamfUploadSlackReporter"]
 
 
-class JamfUploadSlackReporter(Processor):
+class JamfUploadSlackReporter(URLGetter):
     description = (
         "Posts to Slack via webhook based on output of a JamfPolicyUploader process. "
         "Takes elements from "
@@ -134,18 +134,6 @@ class JamfUploadSlackReporter(Processor):
                     + f"Category: *{category}*"
                 )
 
-            slack_data = {
-                "text": slack_text,
-                "username": username,
-                "icon_url": slack_icon_url,
-            }
-
-            response = requests.post(webhook_url, json=slack_data)
-            if response.status_code != 200:
-                raise ValueError(
-                    "Request to slack returned an error %s, the response is:\n%s"
-                    % (response.status_code, response.text)
-                )
         # section for untested recipes
         else:
             selfservice_policy_name = name
@@ -194,18 +182,36 @@ class JamfUploadSlackReporter(Processor):
             self.output("Production Category: %s" % category)
             self.output("Current Category: %s" % policy_category)
 
-            slack_data = {
-                "text": slack_text,
-                "username": username,
-                "icon_url": slack_icon_url,
-            }
+        # create the json data to be sent
+        slack_data = {
+            "text": slack_text,
+            "username": username,
+            "icon_url": slack_icon_url,
+        }
+        json_data = json.dumps(slack_data)
 
-            response = requests.post(webhook_url, json=slack_data)
-            if response.status_code != 200:
-                raise ValueError(
-                    "Request to slack returned an error %s, the response is:\n%s"
-                    % (response.status_code, response.text)
-                )
+        # Build the required curl switches
+        curl_opts = [
+            "--data",
+            json_data,
+            "--header",
+            "Content-Type: application/json",
+            "--request",
+            "POST",
+            "--show-error",
+            "--silent",
+            webhook_url,
+        ]
+
+        # Initialize the curl_cmd, add the curl options, and execute the curl
+        try:
+            curl_cmd = self.prepare_curl_cmd()
+            curl_cmd.extend(curl_opts)
+            response = self.download_with_curl(curl_cmd)
+            self.output(response, verbose_level=3)
+
+        except Exception:
+            raise ProcessorError("Failed to complete the post")  # noqa
 
 
 if __name__ == "__main__":
