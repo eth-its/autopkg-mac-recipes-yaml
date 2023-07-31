@@ -9,4 +9,4 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   SELFSERVICE_ICON: Inkscape 1.2.png
   PROD_VERSION_INELIGIBLE_GROUP_TEMPLATE: SmartGroup-prod-version-ineligible-max.xml
-  INELIGIBLE_OS_VERSION: "13.0"
+  INELIGIBLE_OS_VERSION: "14.0"
