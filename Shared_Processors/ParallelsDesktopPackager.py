@@ -90,9 +90,11 @@ class ParallelsDesktopPackager(Processor):
             file.write(filedata)
 
         # Now to edit the bundle version in Info.plist
-        p = plistlib.load(INFO_PLIST_PATH)
+        with open(INFO_PLIST_PATH, "rb") as file:
+            p = plistlib.load(file)
         p["CFBundleShortVersionString"] = version
-        plistlib.dump(p, INFO_PLIST_PATH)
+        with open(INFO_PLIST_PATH, "wb") as file:
+            plistlib.dump(p, file)
 
 
 if __name__ == "__main__":
