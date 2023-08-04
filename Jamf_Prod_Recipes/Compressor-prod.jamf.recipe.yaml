@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
 Input:
   NAME: Compressor
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Compressor
+  SELFSERVICE_ICON: Compressor 4.png

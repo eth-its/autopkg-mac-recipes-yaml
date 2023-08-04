@@ -27,7 +27,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-minimum.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: Logic Pro X 10.7.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 

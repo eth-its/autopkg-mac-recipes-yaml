@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-prod
 Input:
   NAME: Final Cut Pro
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.FinalCutPro
+  SELFSERVICE_ICON: Final Cut Pro 10.6.png
