@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.FreeMacApps-macapp
 
 Input:
   NAME: Mattermost Desktop
-  JSS_INVENTORY_NAME: Mattermost
+  JSS_INVENTORY_NAME: Mattermost.app
   TEST_USERS_GROUP_NAME: Mattermost test users
   USERS_GROUP_NAME: Mattermost users
   AUTOINSTALL_GROUP_NAME: Mattermost auto-install
