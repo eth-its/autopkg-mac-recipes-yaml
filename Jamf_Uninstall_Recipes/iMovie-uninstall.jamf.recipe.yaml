@@ -7,4 +7,5 @@ Input:
   NAME: iMovie
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.apple.pkg.iMovie_AppStore
+  PARAMETER5_VALUE: com.apple.iMovieApp
+  SELFSERVICE_ICON: iMovie 10.3.png

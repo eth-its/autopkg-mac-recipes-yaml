@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-max-nodes
 Input:
   NAME: Motion
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Motion
+  SELFSERVICE_ICON: Motion 5.png

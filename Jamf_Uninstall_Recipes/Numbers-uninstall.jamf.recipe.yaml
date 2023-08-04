@@ -7,4 +7,5 @@ Input:
   NAME: Numbers
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.apple.pkg.Numbers
+  PARAMETER5_VALUE: com.apple.iWork.Numbers
+  SELFSERVICE_ICON: Numbers 13.png

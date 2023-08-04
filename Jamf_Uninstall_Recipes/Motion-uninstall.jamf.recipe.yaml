@@ -1,11 +1,11 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.GarageBand-uninstall
+Identifier: com.github.eth-its-recipes.jamf.Motion-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: GarageBand
+  NAME: Motion
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.apple.garageband10
-  SELFSERVICE_ICON: GarageBand 10.14.png
+  PARAMETER5_VALUE: com.apple.motionapp
+  SELFSERVICE_ICON: Motion 5.png

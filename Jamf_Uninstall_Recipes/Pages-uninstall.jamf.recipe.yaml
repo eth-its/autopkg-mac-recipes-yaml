@@ -7,4 +7,5 @@ Input:
   NAME: Pages
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.apple.pkg.Pages
+  PARAMETER5_VALUE: com.apple.iWork.Pages
+  SELFSERVICE_ICON: Pages 13.png
