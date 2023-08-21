@@ -4,20 +4,20 @@ MinimumVersion: "2.3"
 
 Comment: All variables must be in the environment supplied by the GitLab Runner using input keys.
 
-Input: {}
+Input:
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MAC_URL%"
-      mount_point: "%MOUNTPOINTS%/mac"
+      mount_point: "/tmp/mac"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MACLIC_URL%"
-      mount_point: "%MOUNTPOINTS%/maclic"
+      mount_point: "/tmp/maclic"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDMACMAIN_USER%:%IDMACMAIN_PASS%@%IDMACMAIN_URL%"
-      mount_point: "%MOUNTPOINTS%/AutoPkg_Local_Sources"
+      mount_point: "/tmp/AutoPkg_Local_Sources"
