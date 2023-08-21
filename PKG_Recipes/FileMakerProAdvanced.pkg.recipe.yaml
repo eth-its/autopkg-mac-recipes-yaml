@@ -12,14 +12,14 @@ Input:
   LIST_LANGUAGE: ML
   LIST_LANGUAGE_COLUMN_NUMBER: "4"
   LIST_LICENSE_FILE_COLUMN_NUMBER: "9"
-  LIST_LICENSE_FILE_SOURCE: /Volumes/maclic/PRD/Mac/licensefiles
+  LIST_LICENSE_FILE_SOURCE: /tmp/maclic/PRD/Mac/licensefiles
   LIST_LICENSE_KEY_COLUMN_NUMBER: "8"
   LIST_DELIMITER: ;
-  LIST_SOURCE: /Volumes/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
+  LIST_SOURCE: /tmp/maclic/PRD/Mac/ListofSoftwareItemsForMacPackaging-v5.csv
   LIST_PATH_COLUMN_NUMBER: "6"
   LIST_TITLE_COLUMN_NUMBER: "1"
   LIST_VERSION_COLUMN_NUMBER: "2"
-  SOFTWARE_REPO: /Volumes/mac
+  SOFTWARE_REPO: /tmp/mac
   STOP_PREDICATE: "file_exists == True"
 
 Process:

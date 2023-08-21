@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: ETH Defender Monitoring Tool
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: Defender_Monitoring_Tool
   VENDOR: ETH
 

@@ -7,7 +7,7 @@ Input:
   NAME: ETH Printers
   EXCEPTION: ""
   LIST_NAME: Printers
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   VENDOR: ETH
 
 Process:

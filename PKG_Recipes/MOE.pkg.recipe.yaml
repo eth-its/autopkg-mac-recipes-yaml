@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.download.MOE
 
 Input:
   LIST_EXCEPTION: ""
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: ChemComp_MOE
   VENDOR: Chemical_Computing_Group
 

@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.download.AdobeCCSerializer
 Input:
   NAME: Adobe CC Serial Removal Tool
   EXCEPTION: ""
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: Serializer
   VENDOR: Adobe
 

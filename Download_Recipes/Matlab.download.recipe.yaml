@@ -1,10 +1,10 @@
-Description: "Checks /Volumes/AutoPkg_Local_Sources for update. Requires: override of NAME, LIST_NAME and VENDOR."
+Description: "Checks /tmp/AutoPkg_Local_Sources for update. Requires: override of NAME, LIST_NAME and VENDOR."
 Identifier: com.github.eth-its-recipes.download.Matlab
 MinimumVersion: "2.3"
 
 Input:
   EXCEPTION: ""
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: MATLAB
   VENDOR: Mathworks
   STOP_PREDICATE: file_exists == True

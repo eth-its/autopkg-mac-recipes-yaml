@@ -1,4 +1,4 @@
-Description: Checks /Volumes/AutoPkg_Local_Sources for update.
+Description: Checks /tmp/AutoPkg_Local_Sources for update.
 Identifier: com.github.eth-its-recipes.download.SPSSStatisticsFixPack
 MinimumVersion: "2.3"
 

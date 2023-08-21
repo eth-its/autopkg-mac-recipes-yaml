@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: PyMOL License
-  LOCAL_REPO: /Volumes/AutoPkg_Local_Sources
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: PopChar_License
   VENDOR: ETH
 
