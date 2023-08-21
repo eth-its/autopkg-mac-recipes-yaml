@@ -10,14 +10,14 @@ Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MAC_URL%"
-      mount_point: "/Volumes/mac"
+      mount_point: "%MOUNTPOINTS%/mac"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MACLIC_URL%"
-      mount_point: "/Volumes/maclic"
+      mount_point: "%MOUNTPOINTS%/maclic"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
       smb_path: "//%IDMACMAIN_USER%:%IDMACMAIN_PASS%@%IDMACMAIN_URL%"
-      mount_point: "/Volumes/AutoPkg_Local_Sources"
+      mount_point: "%MOUNTPOINTS%/AutoPkg_Local_Sources"
