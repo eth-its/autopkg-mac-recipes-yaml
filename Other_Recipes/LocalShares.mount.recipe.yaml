@@ -9,11 +9,11 @@ Input: {}
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
-      smb_path: "//%IDES_USER%:%IDES_PASSWORD%@%IDES_MAC_URL%"
+      smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MAC_URL%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
-      smb_path: "//%IDES_USER%:%IDES_PASSWORD%@%IDES_MACLIC_URL%"
+      smb_path: "//%IDES_USER%:%IDES_PASS%@%IDES_MACLIC_URL%"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
     Arguments:
