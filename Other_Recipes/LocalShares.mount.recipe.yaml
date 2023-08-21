@@ -1,0 +1,20 @@
+Description: Mounts the local shares. Required for most of the Download recipes to work at ETH.
+Identifier: com.github.eth-its-recipes.mount.LocalShares
+MinimumVersion: "2.3"
+
+Comment: All variables must be in the environment supplied by the GitLab Runner using input keys.
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
+    Arguments:
+      smb_path: "//%IDES_USER%:%IDES_PASSWORD%@%IDES_MAC_URL%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
+    Arguments:
+      smb_path: "//%IDES_USER%:%IDES_PASSWORD%@%IDES_MACLIC_URL%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
+    Arguments:
+      smb_path: "//%IDMACMAIN_USER%:%IDMACMAIN_PASS%@%IDMACMAIN_URL%"
