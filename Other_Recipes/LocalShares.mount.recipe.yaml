@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Comment: All variables must be in the environment supplied by the GitLab Runner using input keys.
 
-Input:
+Input: {}
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/SMBMounter
