@@ -6,7 +6,7 @@ Input:
   NAME: erase-install.sh
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.erase-install
   TRIGGER_POLICY_NAME: "%NAME%"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Tools & Utilities
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_NAME: "erase-install-install"

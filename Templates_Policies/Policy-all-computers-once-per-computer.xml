@@ -10,6 +10,7 @@
         <trigger_logout>false</trigger_logout>
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
+        <trigger_other>%TRIGGER_NAME%</trigger_other>
         <frequency>Once per computer</frequency>
         <category>
             <name>%POLICY_CATEGORY%</name>

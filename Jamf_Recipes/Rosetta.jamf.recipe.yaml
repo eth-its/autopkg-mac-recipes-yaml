@@ -9,6 +9,7 @@ Input:
   POLICY_CATEGORY: Administration
   POLICY_NAME: "0001 - Install Rosetta 2"
   POLICY_TEMPLATE: Policy-all-computers-once-per-computer.xml
+  TRIGGER_NAME: Rosetta2-install
   EXTENSION_ATTRIBUTE_NAME: Rosetta 2
   EXTENSION_ATTRIBUTE_SCRIPT: Rosetta-EA.sh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
