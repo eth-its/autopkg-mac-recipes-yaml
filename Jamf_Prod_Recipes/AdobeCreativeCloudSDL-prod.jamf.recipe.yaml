@@ -34,3 +34,8 @@ Process:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%LAST_RUN_POLICY_NAME%"
