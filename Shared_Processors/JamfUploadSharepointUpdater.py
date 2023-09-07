@@ -339,7 +339,19 @@ class JamfUploadSharepointUpdater(Processor):
                         app_in_test_coordination_tested_but_not_released = self.check_list(
                             site, "Jamf Test Coordination", criteria
                         )
-                        if app_in_test_coordination_tested_but_not_released:
+                        if is_app_autostage:
+                            self.output(
+                                "Jamf Test Coordination: Setting 'Status'='Autostage' for "
+                                + self_service_policy_name
+                            )
+                            self.update_record(
+                                site,
+                                "Jamf Test Coordination",
+                                "Status",
+                                "Autostage",
+                                criteria,
+                            )
+                        elif app_in_test_coordination_tested_but_not_released:
                             self.output(
                                 "Jamf Test Coordination: Setting 'Status'='Needs review' for "
                                 + self_service_policy_name
