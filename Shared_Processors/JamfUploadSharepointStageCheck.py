@@ -105,6 +105,32 @@ class JamfUploadSharepointStageCheck(Processor):
         self.output(query, verbose_level=3)
         return fields, query
 
+    def check_autostage_jamf_content_list(self, site, product_name, version):
+        """Check the 'Jamf Content List' list to see if the content should be auto-staged"""
+        listname = "Jamf Content List"
+        sp_list = site.List(listname)
+
+        criteria = {}
+        criteria["Self Service Content"] = ["Eq", product_name]
+        criteria["Untested Version"] = ["Eq", version]
+        criteria["Autostage"] = ["Eq", "Yes"]
+        fields, query = self.build_query(criteria)
+
+        content_list_autostage_passed = False
+
+        if sp_list.GetListItems(fields=fields, query=query):
+            content_list_autostage_passed = True
+            self.output(f"Jamf Content List for Autostage passed: {content_list_autostage_passed}")
+        else:
+            self.output(
+                "Jamf Content List: No entry named "
+                + product_name
+                + " with version "
+                + version
+                + " with autostage set to Yes"
+            )
+        return content_list_autostage_passed
+
     def check_jamf_content_list(self, site, product_name, version):
         """Check the version against the untested version in the 'Jamf Content List' list"""
         listname = "Jamf Content List"
@@ -236,7 +262,14 @@ class JamfUploadSharepointStageCheck(Processor):
                 ready_to_stage = True
         elif "prd" in jss_url:
             # prd
+            # check if autostage and test review passed
             if (
+                self.check_autostage_jamf_content_list(site, sharepoint_policy_name)
+                and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
+            ):
+                ready_to_stage = True
+            # else check that test coordination is done and content list set as ready for production
+            elif (
                 self.check_jamf_content_test(site, sharepoint_policy_name)
                 and self.check_jamf_content_list(site, selfservice_policy_name, version)
                 and self.check_jamf_test_coordination(site, sharepoint_policy_name)
