@@ -270,8 +270,8 @@ class JamfUploadSharepointStageCheck(Processor):
                 ready_to_stage = True
             # else check that test coordination is done and content list set as ready for production
             elif (
-                self.check_jamf_content_test(site, sharepoint_policy_name)
-                and self.check_jamf_content_list(site, selfservice_policy_name, version)
+                self.check_jamf_content_list(site, selfservice_policy_name, version)
+                and self.check_jamf_content_test(site, sharepoint_policy_name)
                 and self.check_jamf_test_coordination(site, sharepoint_policy_name)
                 and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
             ):
