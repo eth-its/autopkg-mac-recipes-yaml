@@ -236,7 +236,57 @@ class JamfUploadSharepointUpdater(Processor):
                 # connect to the sharepoint site
                 site = self.connect_sharepoint(sp_url, sp_user, sp_pass)
 
+                # Now write to the Jamf Content List
+                # First, check if there is an existing entry for this policy
+                criteria = {}
+                criteria["Self Service Content"] = ["Eq", final_policy_name]
+
+                app_in_content_list = self.check_list(
+                    site, "Jamf Content List", criteria
+                )
+
+                # if not, create the entry
+                if not app_in_content_list:
+                    self.output(
+                        "Jamf Content List: Adding new entry for " + final_policy_name
+                    )
+                    self.add_record(
+                        site,
+                        "Jamf Content List",
+                        "Self Service Content",
+                        final_policy_name,
+                    )
+                else:
+                    self.output(
+                        "Jamf Content List: Updating existing entry for "
+                        + final_policy_name
+                    )
+                # now update the other keys in the entry
+                self.output(
+                    "Jamf Content List: Setting 'Untested Version' "
+                    + version
+                    + " for "
+                    + final_policy_name
+                )
+                self.update_record(
+                    site, "Jamf Content List", "Untested Version", version, criteria,
+                )
+                self.update_record(
+                    site, "Jamf Content List", "Category", category, criteria,
+                )
+                self.update_record(
+                    site, "Jamf Content List", "Content Type", "Application", criteria,
+                )
+
                 # Now write to Jamf Test Coordination list
+                # First, check if the content is set to Autostage in the content list.
+                criteria = {}
+                criteria["Autostage"] = ["Eq", "Yes"]
+
+                is_app_autostage = self.check_list(
+                    site, "Jamf Content List", criteria
+                )
+
                 # First, check if there is an existing entry for this policy (including version)
                 # which has been released
                 criteria = {}
@@ -360,6 +410,18 @@ class JamfUploadSharepointUpdater(Processor):
                         final_policy_name,
                         criteria,
                     )
+                    if is_app_autostage:
+                        self.output(
+                            "Jamf Test Coordination: Setting 'Status'='Autostage' for "
+                            + self_service_policy_name
+                        )
+                        self.update_record(
+                            site,
+                            "Jamf Test Coordination",
+                            "Status",
+                            "Autostage",
+                            criteria,
+                        )
 
                 # Now write to Jamf Test Review list
                 # First, check if there is an existing entry for this policy (including version)
@@ -480,48 +542,6 @@ class JamfUploadSharepointUpdater(Processor):
                         final_policy_name,
                         criteria,
                     )
-
-                # Now write to the Jamf Content List
-                # First, check if there is an existing entry for this policy
-                criteria = {}
-                criteria["Self Service Content"] = ["Eq", final_policy_name]
-
-                app_in_content_list = self.check_list(
-                    site, "Jamf Content List", criteria
-                )
-
-                # if not, create the entry
-                if not app_in_content_list:
-                    self.output(
-                        "Jamf Content List: Adding new entry for " + final_policy_name
-                    )
-                    self.add_record(
-                        site,
-                        "Jamf Content List",
-                        "Self Service Content",
-                        final_policy_name,
-                    )
-                else:
-                    self.output(
-                        "Jamf Content List: Updating existing entry for "
-                        + final_policy_name
-                    )
-                # now update the other keys in the entry
-                self.output(
-                    "Jamf Content List: Setting 'Untested Version' "
-                    + version
-                    + " for "
-                    + final_policy_name
-                )
-                self.update_record(
-                    site, "Jamf Content List", "Untested Version", version, criteria,
-                )
-                self.update_record(
-                    site, "Jamf Content List", "Category", category, criteria,
-                )
-                self.update_record(
-                    site, "Jamf Content List", "Content Type", "Application", criteria,
-                )
 
         # section for prod recipes
         else:
