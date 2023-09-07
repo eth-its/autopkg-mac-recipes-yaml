@@ -264,7 +264,7 @@ class JamfUploadSharepointStageCheck(Processor):
             # prd
             # check if autostage and test review passed
             if (
-                self.check_autostage_jamf_content_list(site, sharepoint_policy_name, version)
+                self.check_autostage_jamf_content_list(site, selfservice_policy_name, version)
                 and self.check_jamf_test_review(site, sharepoint_policy_name, jss_url)
             ):
                 ready_to_stage = True
