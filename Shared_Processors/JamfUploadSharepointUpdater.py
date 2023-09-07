@@ -281,6 +281,7 @@ class JamfUploadSharepointUpdater(Processor):
                 # Now write to Jamf Test Coordination list
                 # First, check if the content is set to Autostage in the content list.
                 criteria = {}
+                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
                 criteria["Autostage"] = ["Eq", "Yes"]
 
                 is_app_autostage = self.check_list(
@@ -295,7 +296,7 @@ class JamfUploadSharepointUpdater(Processor):
                         f"Jamf Content List: {self_service_policy_name} is not set to Autostage"
                     )
 
-                # First, check if there is an existing entry for this policy (including version)
+                # Now, check if there is an existing entry for this policy (including version)
                 # which has been released
                 criteria = {}
                 criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
@@ -337,7 +338,7 @@ class JamfUploadSharepointUpdater(Processor):
                             self_service_policy_name,
                         ]
                         criteria['Status'] = ["Neq", "Autostage"]
-                        
+
                         self.output(
                             "Jamf Test Coordination: Setting 'Status'='Autostage' for "
                             + self_service_policy_name
