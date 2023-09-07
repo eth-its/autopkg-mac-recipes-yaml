@@ -281,7 +281,7 @@ class JamfUploadSharepointUpdater(Processor):
                 # Now write to Jamf Test Coordination list
                 # First, check if the content is set to Autostage in the content list.
                 criteria = {}
-                criteria["Self Service Content Name"] = ["Eq", self_service_policy_name]
+                criteria["Self Service Content Name"] = ["Eq", final_policy_name]
                 criteria["Autostage"] = ["Eq", "Yes"]
 
                 is_app_autostage = self.check_list(
@@ -289,11 +289,11 @@ class JamfUploadSharepointUpdater(Processor):
                 )
                 if is_app_autostage:
                     self.output(
-                        f"Jamf Content List: {self_service_policy_name} is set to Autostage"
+                        f"Jamf Content List: {final_policy_name} is set to Autostage"
                     )
                 else:
                     self.output(
-                        f"Jamf Content List: {self_service_policy_name} is not set to Autostage"
+                        f"Jamf Content List: {final_policy_name} is not set to Autostage"
                     )
 
                 # Now, check if there is an existing entry for this policy (including version)
