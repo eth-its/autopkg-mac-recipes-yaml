@@ -286,6 +286,14 @@ class JamfUploadSharepointUpdater(Processor):
                 is_app_autostage = self.check_list(
                     site, "Jamf Content List", criteria
                 )
+                if is_app_autostage:
+                    self.output(
+                        f"Jamf Content List: {self_service_policy_name} is set to Autostage"
+                    )
+                else:
+                    self.output(
+                        f"Jamf Content List: {self_service_policy_name} is not set to Autostage"
+                    )
 
                 # First, check if there is an existing entry for this policy (including version)
                 # which has been released
@@ -321,48 +329,57 @@ class JamfUploadSharepointUpdater(Processor):
                 )
 
                 if exact_policy_in_test_coordination:
-                    # reset Status if any work had already been done on the existing entry
-                    check_criteria = [
-                        "In progress",
-                        "Done",
-                        "Deferred",
-                        "Waiting for other test manager",
-                    ]
-                    for check in check_criteria:
+                    if is_app_autostage:
+                        # set Status to Autostage on the existing entry
                         criteria = {}
                         criteria["Self Service Content Name"] = [
                             "Eq",
                             self_service_policy_name,
                         ]
-                        criteria["Release Completed"] = ["Eq", "No"]
-                        criteria["Status"] = ["Eq", check]
-                        app_in_test_coordination_tested_but_not_released = self.check_list(
-                            site, "Jamf Test Coordination", criteria
+                        criteria['Status'] = ["Neq", "Autostage"]
+                        
+                        self.output(
+                            "Jamf Test Coordination: Setting 'Status'='Autostage' for "
+                            + self_service_policy_name
                         )
-                        if is_app_autostage:
-                            self.output(
-                                "Jamf Test Coordination: Setting 'Status'='Autostage' for "
-                                + self_service_policy_name
+                        self.update_record(
+                            site,
+                            "Jamf Test Coordination",
+                            "Status",
+                            "Autostage",
+                            criteria,
+                        )
+                    else:
+                        # reset Status if any work had already been done on the existing entry
+                        check_criteria = [
+                            "In progress",
+                            "Done",
+                            "Deferred",
+                            "Waiting for other test manager",
+                        ]
+                        for check in check_criteria:
+                            criteria = {}
+                            criteria["Self Service Content Name"] = [
+                                "Eq",
+                                self_service_policy_name,
+                            ]
+                            criteria["Release Completed"] = ["Eq", "No"]
+                            criteria["Status"] = ["Eq", check]
+                            app_in_test_coordination_tested_but_not_released = self.check_list(
+                                site, "Jamf Test Coordination", criteria
                             )
-                            self.update_record(
-                                site,
-                                "Jamf Test Coordination",
-                                "Status",
-                                "Autostage",
-                                criteria,
-                            )
-                        elif app_in_test_coordination_tested_but_not_released:
-                            self.output(
-                                "Jamf Test Coordination: Setting 'Status'='Needs review' for "
-                                + self_service_policy_name
-                            )
-                            self.update_record(
-                                site,
-                                "Jamf Test Coordination",
-                                "Status",
-                                "Needs review",
-                                criteria,
-                            )
+                            if app_in_test_coordination_tested_but_not_released:
+                                self.output(
+                                    "Jamf Test Coordination: Setting 'Status'='Needs review' for "
+                                    + self_service_policy_name
+                                )
+                                self.update_record(
+                                    site,
+                                    "Jamf Test Coordination",
+                                    "Status",
+                                    "Needs review",
+                                    criteria,
+                                )
                 else:
                     # check if there is an entry with the same final policy name that is
                     # not release completed
