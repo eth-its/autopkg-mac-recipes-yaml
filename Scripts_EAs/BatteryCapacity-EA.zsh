@@ -11,7 +11,7 @@ if [[ "$arch" == "arm64" ]]; then
 fi
 
 if [[ ! $condition ]]; then
-    echo "<result>No battery</result>"
+    echo "<result>Normal (No battery)</result>"
 else
     echo "<result>$condition$capacity</result>"
 fi
