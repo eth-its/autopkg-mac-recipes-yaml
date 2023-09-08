@@ -7,13 +7,13 @@ arch=$(/usr/bin/arch)
 condition=$(system_profiler SPPowerDataType | grep "Condition:" | sed 's/.*Condition: //')
 
 if [[ "$arch" == "arm64" ]]; then
-    capacity=" ($(system_profiler SPPowerDataType | grep "Maximum Capacity:" | sed 's/.*Maximum Capacity: //')%)"
+    capacity=" ($(system_profiler SPPowerDataType | grep "Maximum Capacity:" | sed 's/.*Maximum Capacity: //'))"
 fi
 
 if [[ ! $condition ]]; then
     echo "<result>No battery</result>"
 else
-    echo "<result>$condition</result>"
+    echo "<result>$condition$capacity</result>"
 fi
 
 exit 0
