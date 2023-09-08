@@ -1,0 +1,32 @@
+Description: Creates a trgiger policy containing a script scoped to all computers
+Identifier: com.github.eth-its-recipes.jamf.Rosetta2-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Rosetta 2
+  POLICY_CATEGORY: Triggered Installers
+  POLICY_NAME: "Install %NAME%"
+  POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  POLICY_RUN_COMMAND: "echo 'Rosetta 2 installation complete'"
+  TRIGGER_NAME: "Rosetta-2-install"
+  SCRIPT_NAME: Rosetta-2-install.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Administration
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"
