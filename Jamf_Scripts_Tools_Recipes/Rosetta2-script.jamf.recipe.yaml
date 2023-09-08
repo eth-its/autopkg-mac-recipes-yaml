@@ -5,9 +5,9 @@ MinimumVersion: "2.3"
 Input:
   NAME: Rosetta 2
   POLICY_CATEGORY: Triggered Installers
-  POLICY_NAME: "Install %NAME%"
-  POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
-  POLICY_RUN_COMMAND: "echo 'Rosetta 2 installation complete'"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Rosetta 2 installation complete'"
   TRIGGER_NAME: "Rosetta-2-install"
   SCRIPT_NAME: Rosetta-2-install.sh
   SCRIPT_PRIORITY: After
@@ -27,6 +27,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
       replace_policy: "True"
