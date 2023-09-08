@@ -653,11 +653,13 @@ class JamfUploadSharepointUpdater(Processor):
             # set Jamf Test Coordination to "Release Completed"="Yes" only from PRD
             if "prd" in jss_url:
                 # First, check if the content is set to Autostage in the content list.
-                criteria = {}
-                criteria["Self Service Content"] = ["Eq", final_policy_name]
-                criteria["Autostage"] = ["Eq", "Yes"]
+                autostage_criteria = {}
+                autostage_criteria["Self Service Content"] = ["Eq", final_policy_name]
+                autostage_criteria["Autostage"] = ["Eq", "Yes"]
 
-                is_app_autostage = self.check_list(site, "Jamf Content List", criteria)
+                is_app_autostage = self.check_list(
+                    site, "Jamf Content List", autostage_criteria
+                )
                 if is_app_autostage:
                     self.output(
                         f"Jamf Content List: {final_policy_name} is set to Autostage"
