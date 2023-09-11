@@ -27,7 +27,7 @@ Process:
 
   - Processor: Copier
     Arguments:
-      source_path: "%destination_path%/Build/*.pkg/Contents/Resources"
+      source_path: "%destination_path%/*/Build/*.pkg/Contents/Resources"
       destination_path: "%RECIPE_CACHE_DIR%/Scripts"
       overwrite: True
 
