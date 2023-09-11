@@ -46,7 +46,10 @@
     <self_service>
         <use_for_self_service>false</use_for_self_service>
     </self_service>
-    <user_interaction/>
+    <user_interaction>
+        <message_start></message_start>
+        <message_finish></message_finish>
+    </user_interaction>
     <maintenance>
         <recon>true</recon>
     </maintenance>
