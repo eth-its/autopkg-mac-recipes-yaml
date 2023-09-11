@@ -1,20 +1,43 @@
-Description: Downloads latest Adobe Creative Cloud installer and uses it to create a package.
+Description: |
+  Downloads latest Adobe Creative Cloud installer and uses it to create a package.
+
+  Required overrides:
+  - PKG_NAME
+  - NAME
+  - LIST_NAME
 Identifier: com.github.eth-its-recipes.pkg.AdobeCreativeCloud
-MinimumVersion: 1.0.0
+MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.download.AdobeCreativeCloud
 
 Input:
   NAME: Adobe Creative Cloud
 
 Process:
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
   - Processor: Unarchiver
     Arguments:
       archive_path: "%pathname%"
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
       purge_destination: True
 
-  - Processor: PkgCopier
+  - Processor: Copier
     Arguments:
-      source_pkg: "%RECIPE_CACHE_DIR%/unpack/CCD*/Build/*Install.pkg"
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      source_path: "%destination_path%/Build/*.pkg/Contents/Resources"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts"
       overwrite: True
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: com.adobe.Acrobat.NUL.pkg
+        pkgname: "%PKG_NAME%-%version%"
+        pkgtype: flat
+        scripts: "%RECIPE_CACHE_DIR%/unpack/"
+        version: "%version%"
+    Processor: PkgCreator

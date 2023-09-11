@@ -1,0 +1,17 @@
+Description: |
+  Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobatSDL-noupload
+ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe Acrobat DC SDL
+  LIST_NAME: Adobe_Acrobat_DC_EN_NUL
+  JSS_INVENTORY_NAME: Adobe Acrobat.app
+  CATEGORY: Productivity
+  SELFSERVICE_DESCRIPTION: |
+    Installs Adobe Acrobat DC with a Shared Device License. This is intended only for labs.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_ICON: Adobe Acrobat 22 SDL.png
