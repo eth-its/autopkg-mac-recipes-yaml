@@ -1,0 +1,14 @@
+Description: Downloads latest Adobe Creative Cloud installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.AdobeCreativeCloudFlatPackage
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.AdobeCreativeCloudFlatPackage
+
+Input:
+  NAME: Adobe Creative Cloud
+
+Process:
+  - Processor: PkgCopier
+    Arguments:
+      source_pkg: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      overwrite: True
