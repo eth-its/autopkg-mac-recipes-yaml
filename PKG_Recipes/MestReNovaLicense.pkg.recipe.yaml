@@ -39,7 +39,8 @@ Process:
         /usr/bin/unzip "$scriptsdir/license.zip" -d /tmp/mnova_licenses
         mv /tmp/mnova_licenses/license/* "$licensedir/"
         rm -rf /tmp/mnova_licenses
-        echo "## MestreNova license files copied to $licensedir"
+        chmod 644 "$licensedir"/*
+        echo "## MestreNova license files copied to $licensedir and set to be readable"
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
     Processor: FileCreator
