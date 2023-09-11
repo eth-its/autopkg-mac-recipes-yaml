@@ -34,14 +34,6 @@
         <script>
             <name>%SCRIPT_NAME%</name>
             <priority>%SCRIPT_PRIORITY%</priority>
-            <parameter4/>
-            <parameter5/>
-            <parameter6/>
-            <parameter7/>
-            <parameter8/>
-            <parameter9/>
-            <parameter10/>
-            <parameter11/>
         </script>
     </scripts>
     <self_service>
