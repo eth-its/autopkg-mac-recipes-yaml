@@ -37,6 +37,7 @@ Process:
         chown: []
         id: com.adobe.Acrobat.NUL.pkg
         pkgname: "%PKG_NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: "%RECIPE_CACHE_DIR%/unpack/"
         version: "%version%"
