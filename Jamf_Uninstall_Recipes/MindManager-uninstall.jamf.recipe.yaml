@@ -8,3 +8,4 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   SCRIPT_NAME: MindManager-uninstall.sh
   SCRIPT_PATH: MindManager-uninstall.sh
+  SELFSERVICE_ICON: "%NAME% 23.png"

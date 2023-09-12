@@ -6,6 +6,11 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: MindManager
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MindManager
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PRIORITY: After
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: "%NAME% 23.png"
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "%NAME%-uninstall"
+  POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.sh"
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: ""
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2-parameter4.xml

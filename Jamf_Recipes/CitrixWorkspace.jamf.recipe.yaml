@@ -44,6 +44,10 @@ Process:
     Arguments:
       category_name: "%PKG_CATEGORY%"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PREINSTALL_SCRIPT_CATEGORY%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
