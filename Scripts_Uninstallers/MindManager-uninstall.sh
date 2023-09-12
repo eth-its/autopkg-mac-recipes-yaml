@@ -65,7 +65,7 @@ function delete_app() {
 
 }
 
-appName="MindManager.app"
+appName="MindManager"
 silent_app_quit "$appName"
 delete_app "$appName"
 
