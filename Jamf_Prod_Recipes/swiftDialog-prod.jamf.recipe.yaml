@@ -7,7 +7,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.swiftDialog
   PKG_CATEGORY: Tools & Utilities
   TRIGGER_NAME: "swiftDialog-install"
-  TRIGGER_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"

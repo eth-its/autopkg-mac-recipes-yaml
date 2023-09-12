@@ -1,0 +1,48 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.first-run-setup-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: First Run Setup
+  POLICY_CATEGORY: Administration
+  POLICY_NAME: "0000 - %NAME%"
+  POLICY_TEMPLATE: Policy-script-allcomputers-enrollment.xml
+  POLICY_RUN_COMMAND: "echo 'First run script complete'"
+  TRIGGER_NAME: "first-run-setup"
+  SCRIPT_NAME: first-run-setup.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Administration
+  PARAMETER4_LABEL: Set to 'dialog' to show welcome window
+  PARAMETER5_LABEL: Optional policy trigger
+  PARAMETER6_LABEL: Optional policy trigger
+  PARAMETER7_LABEL: Optional policy trigger
+  PARAMETER8_LABEL: Optional policy trigger
+  PARAMETER9_LABEL: Optional policy trigger
+  PARAMETER10_LABEL: Optional policy trigger
+  PARAMETER11_LABEL: Optional policy trigger
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"

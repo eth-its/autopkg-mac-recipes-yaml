@@ -29,6 +29,8 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Comment: This processor uploads the package with the license file in it
     Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

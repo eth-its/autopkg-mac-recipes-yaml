@@ -269,13 +269,25 @@ class JamfUploadSharepointUpdater(Processor):
                     + final_policy_name
                 )
                 self.update_record(
-                    site, "Jamf Content List", "Untested Version", version, criteria,
+                    site,
+                    "Jamf Content List",
+                    "Untested Version",
+                    version,
+                    criteria,
                 )
                 self.update_record(
-                    site, "Jamf Content List", "Category", category, criteria,
+                    site,
+                    "Jamf Content List",
+                    "Category",
+                    category,
+                    criteria,
                 )
                 self.update_record(
-                    site, "Jamf Content List", "Content Type", "Application", criteria,
+                    site,
+                    "Jamf Content List",
+                    "Content Type",
+                    "Application",
+                    criteria,
                 )
 
                 # Now write to Jamf Test Coordination list
@@ -284,9 +296,7 @@ class JamfUploadSharepointUpdater(Processor):
                 criteria["Self Service Content"] = ["Eq", final_policy_name]
                 criteria["Autostage"] = ["Eq", "Yes"]
 
-                is_app_autostage = self.check_list(
-                    site, "Jamf Content List", criteria
-                )
+                is_app_autostage = self.check_list(site, "Jamf Content List", criteria)
                 if is_app_autostage:
                     self.output(
                         f"Jamf Content List: {final_policy_name} is set to Autostage"
@@ -337,7 +347,7 @@ class JamfUploadSharepointUpdater(Processor):
                             "Eq",
                             self_service_policy_name,
                         ]
-                        criteria['Status'] = ["Neq", "Autostage"]
+                        criteria["Status"] = ["Neq", "Autostage"]
 
                         self.output(
                             "Jamf Test Coordination: Setting 'Status'='Autostage' for "
@@ -366,8 +376,10 @@ class JamfUploadSharepointUpdater(Processor):
                             ]
                             criteria["Release Completed"] = ["Eq", "No"]
                             criteria["Status"] = ["Eq", check]
-                            app_in_test_coordination_tested_but_not_released = self.check_list(
-                                site, "Jamf Test Coordination", criteria
+                            app_in_test_coordination_tested_but_not_released = (
+                                self.check_list(
+                                    site, "Jamf Test Coordination", criteria
+                                )
                             )
                             if app_in_test_coordination_tested_but_not_released:
                                 self.output(
@@ -390,7 +402,9 @@ class JamfUploadSharepointUpdater(Processor):
                     criteria["Status"] = ["Neq", "Obsolete"]
 
                     app_in_test_coordination_not_released = self.check_list(
-                        site, "Jamf Test Coordination", criteria,
+                        site,
+                        "Jamf Test Coordination",
+                        criteria,
                     )
                     if app_in_test_coordination_not_released:
                         self.output(
@@ -510,7 +524,9 @@ class JamfUploadSharepointUpdater(Processor):
                     criteria["Release Completed TST"] = ["Eq", "No"]
 
                     app_in_test_review_not_released = self.check_list(
-                        site, "Jamf Test Review", criteria,
+                        site,
+                        "Jamf Test Review",
+                        criteria,
                     )
 
                     # if not release completed in TST, delete the record
@@ -520,7 +536,9 @@ class JamfUploadSharepointUpdater(Processor):
                             + final_policy_name
                         )
                         self.delete_record(
-                            site, "Jamf Test Review", criteria,
+                            site,
+                            "Jamf Test Review",
+                            criteria,
                         )
                     # if not release completed in PRD, set the record to skipped
                     else:
@@ -529,7 +547,9 @@ class JamfUploadSharepointUpdater(Processor):
                         criteria["Release Completed PRD"] = ["Eq", "No"]
 
                         app_in_test_review_not_released_to_prd = self.check_list(
-                            site, "Jamf Test Review", criteria,
+                            site,
+                            "Jamf Test Review",
+                            criteria,
                         )
                         if app_in_test_review_not_released_to_prd:
                             self.output(
@@ -629,8 +649,26 @@ class JamfUploadSharepointUpdater(Processor):
                     final_policy_name,
                     criteria,
                 )
+
             # set Jamf Test Coordination to "Release Completed"="Yes" only from PRD
             if "prd" in jss_url:
+                # First, check if the content is set to Autostage in the content list.
+                autostage_criteria = {}
+                autostage_criteria["Self Service Content"] = ["Eq", final_policy_name]
+                autostage_criteria["Autostage"] = ["Eq", "Yes"]
+
+                is_app_autostage = self.check_list(
+                    site, "Jamf Content List", autostage_criteria
+                )
+                if is_app_autostage:
+                    self.output(
+                        f"Jamf Content List: {final_policy_name} is set to Autostage"
+                    )
+                else:
+                    self.output(
+                        f"Jamf Content List: {final_policy_name} is not set to Autostage"
+                    )
+                # now write the changes to Test Coordination
                 self.output(
                     "Jamf Test Coordination: Setting 'Release Completed'='Yes' for "
                     + self_service_policy_name
@@ -642,13 +680,30 @@ class JamfUploadSharepointUpdater(Processor):
                     "Yes",
                     criteria,
                 )
-                self.output(
-                    "Jamf Test Coordination: Setting 'Status'='Done' for "
-                    + self_service_policy_name
-                )
-                self.update_record(
-                    site, "Jamf Test Coordination", "Status", "Done", criteria,
-                )
+                if is_app_autostage:
+                    self.output(
+                        "Jamf Test Coordination: Setting 'Status'='Autostage' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Coordination",
+                        "Status",
+                        "Autostage",
+                        criteria,
+                    )
+                else:
+                    self.output(
+                        "Jamf Test Coordination: Setting 'Status'='Done' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Coordination",
+                        "Status",
+                        "Done",
+                        criteria,
+                    )
 
             # Now write to Jamf Test Review list
             # Here we need to set Release Completed to True
@@ -695,7 +750,11 @@ class JamfUploadSharepointUpdater(Processor):
                     + self_service_policy_name
                 )
                 self.update_record(
-                    site, "Jamf Test Review", "Release Completed TST", "Yes", criteria,
+                    site,
+                    "Jamf Test Review",
+                    "Release Completed TST",
+                    "Yes",
+                    criteria,
                 )
                 # Set ready for production to Yes in case we are forcing the staging
                 self.output(
@@ -703,7 +762,11 @@ class JamfUploadSharepointUpdater(Processor):
                     + self_service_policy_name
                 )
                 self.update_record(
-                    site, "Jamf Test Review", "Ready for Production", "Yes", criteria,
+                    site,
+                    "Jamf Test Review",
+                    "Ready for Production",
+                    "Yes",
+                    criteria,
                 )
             # set Jamf Test Review to "Release Completed PRD"="Yes" only from PRD
             elif "prd" in jss_url:
@@ -712,7 +775,11 @@ class JamfUploadSharepointUpdater(Processor):
                     + self_service_policy_name
                 )
                 self.update_record(
-                    site, "Jamf Test Review", "Release Completed PRD", "Yes", criteria,
+                    site,
+                    "Jamf Test Review",
+                    "Release Completed PRD",
+                    "Yes",
+                    criteria,
                 )
 
             # Now write to the Jamf Content List (PRD only)
@@ -748,7 +815,11 @@ class JamfUploadSharepointUpdater(Processor):
                     + final_policy_name
                 )
                 self.update_record(
-                    site, "Jamf Content List", "Untested Version", "", criteria,
+                    site,
+                    "Jamf Content List",
+                    "Untested Version",
+                    "",
+                    criteria,
                 )
                 self.output(
                     "Jamf Content List: Setting 'Prod. Version'='"

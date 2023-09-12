@@ -15,8 +15,8 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       GROUP_NAME: Battery Health Degraded
-      EXTENSION_ATTRIBUTE_SEARCH_TYPE: has
-      EXTENSION_ATTRIBUTE_VALUE: degraded
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: not like
+      EXTENSION_ATTRIBUTE_VALUE: Normal
       computergroup_template: SmartGroup-generic-EA.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
