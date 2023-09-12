@@ -105,6 +105,7 @@
                         <key>RuleValue</key>
                         <string>4AP2STM4H5</string>
                     </dict>
+                    <dict>
                         <key>Comment</key>
                         <string>Nextcloud</string>
                         <key>RuleType</key>
