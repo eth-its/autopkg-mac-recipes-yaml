@@ -10,7 +10,7 @@ Input:
   PROFILE_DESCRIPTION: Disables notifications regarding login items.
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_MOBILECONFIG: DisableLoginItemsNotifications.mobileconfig
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
