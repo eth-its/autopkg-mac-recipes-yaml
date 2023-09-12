@@ -19,6 +19,14 @@
                 <array>
                     <dict>
                         <key>Comment</key>
+                        <string>Citrix</string>
+                        <key>RuleType</key>
+                        <string>TeamIdentifier</string>
+                        <key>RuleValue</key>
+                        <string>S272Y5R93J</string>
+                    </dict>
+                    <dict>
+                        <key>Comment</key>
                         <string>Google</string>
                         <key>RuleType</key>
                         <string>TeamIdentifier</string>
@@ -91,11 +99,18 @@
                     </dict>
                     <dict>
                         <key>Comment</key>
-                        <string>polybox</string>
+                        <string>polybox owncloud and switchdrive</string>
                         <key>RuleType</key>
                         <string>TeamIdentifier</string>
                         <key>RuleValue</key>
                         <string>4AP2STM4H5</string>
+                    </dict>
+                        <key>Comment</key>
+                        <string>Nextcloud</string>
+                        <key>RuleType</key>
+                        <string>TeamIdentifier</string>
+                        <key>RuleValue</key>
+                        <string>NKUJUXUJ3B</string>
                     </dict>
                     <dict>
                         <key>Comment</key>
