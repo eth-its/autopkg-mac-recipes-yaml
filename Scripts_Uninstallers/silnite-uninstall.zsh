@@ -3,7 +3,7 @@
 
 # variables
 silnite_bin="/usr/local/bin/silnite"
-silnite_dir="/Users/Shared/ETHZ/silnite"
+silnite_dir="/Library/Application Support/ETHZ/silnite"
 
 # remove the silnite binary
 if [[ -f "$silnite_bin" ]]; then
