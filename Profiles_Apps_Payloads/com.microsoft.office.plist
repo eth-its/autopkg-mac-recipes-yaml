@@ -12,5 +12,7 @@
     <true/>
     <key>ShowWhatsNewOnLaunch</key>
     <true/>
+    <key>InstallDefender</key>
+    <false/>
   </dict>
 </plist>
