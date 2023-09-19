@@ -16,6 +16,9 @@ if [[ -f "$uninstaller" ]]; then
     else
         echo "Something went wrong during the uninstallation of Microsoft Defender"
     fi
+elif [[ -d "/Applications/Microsoft Defender.app" ]]; then
+    echo "Microsoft Defender uninstaller not found. Deleting it manually instead."
+    rm -Rf "/Applications/Microsoft Defender.app" ||:
 else
-    echo "Microsoft Defender uninstaller not found. Cannot proceed. Try Open Finder > Applications. Right click on Microsoft Defender for Endpoint > Move to Trash."
+    echo "Microsoft Defender does not appear to be installed on this device."
 fi
