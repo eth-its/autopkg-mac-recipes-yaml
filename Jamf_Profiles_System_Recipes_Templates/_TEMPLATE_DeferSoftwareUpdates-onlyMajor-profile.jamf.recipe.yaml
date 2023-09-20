@@ -1,0 +1,49 @@
+Description: Template profile - DEFERRAL_DAYS_MAJOR_UPDATES, should be set in an override
+Identifier: com.github.eth-its-recipes.jamf.DeferSoftwareUpdates-onlyMajor-Template-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Defer Software Updates
+  IDENTIFIER: com.apple.applicationaccess
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: System Settings
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_NAME: "%NAME% %DEFERRAL_DAYS_MAJOR_UPDATES% (major)"
+  PROFILE_PAYLOAD: "%IDENTIFIER%-Defer-onlyMajor.plist"
+  PROFILE_DESCRIPTION: "Defers the availability of major software updates by %DEFERRAL_DAYS_MAJOR_UPDATES%."
+  USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) users"
+  TEST_USERS_GROUP_NAME: "Defer Software Updates %DEFERRAL_DAYS_MAJOR_UPDATES% (major) test users"
+  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  REPLACE_PROFILE: "False"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
