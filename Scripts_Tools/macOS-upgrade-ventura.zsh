@@ -8,5 +8,5 @@ DOC
 
 jamf policy -event "erase-install-install"
 
-/Library/Management/erase-install/erase-install.sh --os 13 --update --reinstall --cleanup-after-use --check-power
+/Library/Management/erase-install/erase-install.sh --os 13 --update --reinstall --cleanup-after-use --check-power --rebootdelay 60
 

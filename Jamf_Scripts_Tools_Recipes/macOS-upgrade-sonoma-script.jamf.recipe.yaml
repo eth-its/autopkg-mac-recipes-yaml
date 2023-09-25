@@ -1,0 +1,61 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.macos-upgrade-sonoma-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Upgrade to macOS Sonoma
+  POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "14.99"
+  MODEL_IDENTIFIER_REGEX: ^(iMac(19|[2-9]\d)|^MacPro[7-9]|iMacPro|Macmini([8-9]|\d\d)|MacBookAir([8-9]|\d\d)|MacBook(\d\d)|MacBookPro(1[5-9])|Mac1[3-9]|VirtualMac)
+  SCRIPT_NAME: "macOS-upgrade-sonoma.zsh"
+  SCRIPT_PRIORITY: After
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
+  SELFSERVICE_DESCRIPTION: |
+    WARNING! This will download the latest version of macOS Sonoma and install it on the system volume. 
+
+    This can also be used to upgrade to a newer version of macOS Sonoma than is currently installed, or to reinstall the OS without losing data as a troubleshooting tool. 
+
+    **All work should be saved and backed up before starting.**
+  SELFSERVICE_ICON: Install macOS Sonoma.png
+  INSTALL_BUTTON_TEXT: Upgrade macOS
+  REINSTALL_BUTTON_TEXT: Upgrade macOS
+  FORCE_DESCRIPTION: "true"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
+      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
