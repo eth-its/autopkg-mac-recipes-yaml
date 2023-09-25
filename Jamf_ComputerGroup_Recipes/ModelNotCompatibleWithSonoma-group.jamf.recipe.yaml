@@ -1,13 +1,13 @@
 Description: Creates a set of EAs and smart groups concerned with monitoring a Mac client security baseline.
-Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithVentura
+Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithSonoma
 MinimumVersion: "2.3"
 
 Input:
-  COMPATIBILITY_REGEX: ^(iMac1[8-9]|iMac2[0-9]|iMacPro|MacBook9|MacBook1[0-9]|MacBookAir[8-9]|MacBookAir1[0-9]|MacBookPro1[4-9]|Macmini[8-9]|Macmini1[0-9]|MacPro[7-9]|Mac1[3-9]|VirtualMac)
+  COMPATIBILITY_REGEX: ^(iMac[1-9],\d|iMac1[0-8],\d|Macmini[1-7],\d|MacPro[1-6],\d|MacBook([1-9]|10),\d|MacBookAir[1-7],\d|MacBookPro[1-9],\d|MacBookPro1[0-4],\d)$
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: SmartGroup-ModelNotCompatibleWith.xml
-      computergroup_name: Not compatible with macOS Ventura
+      computergroup_name: Not compatible with macOS Sonoma
       replace_group: "True"
