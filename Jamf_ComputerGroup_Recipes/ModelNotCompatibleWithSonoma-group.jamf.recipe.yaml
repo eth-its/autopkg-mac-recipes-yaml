@@ -3,7 +3,7 @@ Identifier: com.github.eth-its-recipes.jamf.group.ModelNotCompatibleWithSonoma
 MinimumVersion: "2.3"
 
 Input:
-  COMPATIBILITY_REGEX: (iMac[1-9],\d|iMac1[0-8],\d|Macmini[1-7],\d|MacPro[1-6],\d|MacBook([1-9]|10),\d|MacBookAir[1-7],\d|MacBookPro[1-9],\d|MacBookPro1[0-4],\d)$
+  COMPATIBILITY_REGEX: (^Mac1[3-9],\b[0-9]{1,2}\b|MacBook\d{2}|MacBookAir([8-9]|\d{2}),[1-9]|Macmini[8-9],\b[0-9]{1,2}\b|MacPro[7-9],\b[0-9]{1,2}\b|iMacPro[1-9],\b[0-9]{1,2}\b|iMac(19|2[0-9]),\d|MacBookPro(1[5-9]|2[0-9]),\b[0-9]{1,2}\b)
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
