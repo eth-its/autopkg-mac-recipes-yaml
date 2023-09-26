@@ -78,3 +78,6 @@ Process:
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
+    Comment: The MAJOR_VERSION key is added here to prevent the major version being reported to the JamfUploadSlackReporter processor
+    Arguments:
+      MAJOR_VERSION: ""
