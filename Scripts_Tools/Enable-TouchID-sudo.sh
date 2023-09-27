@@ -3,6 +3,8 @@
 
 : <<DOC
 Enable TouchID for sudo
+by Graham Pugh
+
 from https://github.com/flammable/enable_sudo_touchid/blob/master/munki_postinstall_script.sh
 and https://sixcolors.com/post/2023/08/in-macos-sonoma-touch-id-for-sudo-can-survive-updates/
 DOC
