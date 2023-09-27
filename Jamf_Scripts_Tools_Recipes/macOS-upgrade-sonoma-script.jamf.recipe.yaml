@@ -18,6 +18,7 @@ Input:
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will download the latest version of macOS Sonoma and install it on the system volume. 
 

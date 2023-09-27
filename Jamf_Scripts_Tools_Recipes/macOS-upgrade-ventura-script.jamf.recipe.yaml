@@ -18,6 +18,7 @@ Input:
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will download the latest version of macOS Ventura and install it on the system volume. All work should be saved and backed up before starting.
   SELFSERVICE_ICON: Install macOS Ventura.png

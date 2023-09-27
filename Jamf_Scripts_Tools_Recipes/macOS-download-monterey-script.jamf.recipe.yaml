@@ -18,6 +18,7 @@ Input:
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible-notification.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     Downloads 'Install macOS Monterey.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
   SELFSERVICE_ICON: Install macOS Monterey.png

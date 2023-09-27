@@ -13,6 +13,7 @@ Input:
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     WARNING! This will completely erase the device and reinstall macOS to the latest version.
   SELFSERVICE_ICON: Erase and Reinstall macOS.png
