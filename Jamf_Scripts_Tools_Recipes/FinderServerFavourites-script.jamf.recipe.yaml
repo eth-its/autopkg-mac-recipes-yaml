@@ -69,6 +69,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
+      POLICY_NAME: "%RECURRING_POLICY_NAME%"
       policy_template: "%RECURRING_POLICY_TEMPLATE%"
       policy_name: "%RECURRING_POLICY_NAME%"
       replace_policy: "True"
