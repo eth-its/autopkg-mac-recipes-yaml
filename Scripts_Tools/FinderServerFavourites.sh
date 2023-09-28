@@ -10,11 +10,6 @@ DOC
 
 workdir="/Library/Management/FinderServerFavourites"
 
-if [[ ! -f "$workdir/FinderServerFavourites.py" ]]; then
-    # FinderServerFavourites not installed, run trigger to install
-    jamf policy -event FinderServerFavourites-install
-fi
-
 # bundled python directory
 relocatable_python_path="$workdir/Python.framework/Versions/Current/bin/python3"
 
@@ -28,5 +23,8 @@ echo "User: $user"
 echo "Mode: $4"
 echo "Servers: $5 $6 $7 $8 $9 ${10} ${11}"
 
+# ensure the file exists
+sudo -u "$user" -i touch "/Users/$user/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.FavoriteServers.sfl2"
+
 # now call the script
-"$relocatable_python_path" "$workdir/FinderServerFavourites.py" "$user" "$4" "$5" "$6" "$7" "$8" "$9" "${10}" "${11}"
+sudo -u "$user" -i "$relocatable_python_path" "$workdir/FinderServerFavourites.py" "$user" "$4" "$5" "$6" "$7" "$8" "$9" "${10}" "${11}"
