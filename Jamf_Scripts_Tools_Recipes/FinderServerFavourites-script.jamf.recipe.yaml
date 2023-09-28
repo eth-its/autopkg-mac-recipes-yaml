@@ -9,10 +9,10 @@ Input:
   RECURRING_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
   TESTING_GROUP_NAME: "Testing - %NAME%"
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  RECURRING_POLICY_CATEGORY: Tools & Accessories
-  RECURRING_POLICY_FREQUENCY: Once per computer
-  RECURRING_POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
-  RECURRING_POLICY_NAME: Manage Favourite Servers
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_FREQUENCY: Once per computer
+  POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
+  POLICY_NAME: Manage Favourite Servers
   SCRIPT_NAME: FinderServerFavourites.sh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: add / remove
@@ -39,7 +39,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%RECURRING_POLICY_CATEGORY%"
+      category_name: "%POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -69,7 +69,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      POLICY_NAME: "%RECURRING_POLICY_NAME%"
-      policy_template: "%RECURRING_POLICY_TEMPLATE%"
-      policy_name: "%RECURRING_POLICY_NAME%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
       replace_policy: "True"
