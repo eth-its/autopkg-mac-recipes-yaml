@@ -63,7 +63,7 @@
         <use_for_self_service>false</use_for_self_service>
     </self_service>
     <user_interaction>
-        <message_start>%NAME% v%version% is being installed.</message_start>
+        <message_start></message_start>
         <message_finish>%NAME% v%version% has now been installed.</message_finish>
     </user_interaction>
     <maintenance>
