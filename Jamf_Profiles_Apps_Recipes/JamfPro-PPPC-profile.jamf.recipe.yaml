@@ -9,6 +9,7 @@ Input:
   PROFILE_NAME: "%NAME%"
   PROFILE_DESCRIPTION: Full disk access for Jamf Pro.
   PROFILE_MOBILECONFIG: JamfProPrivacySettings.mobileconfig
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -21,4 +22,4 @@ Process:
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
-      replace_profile: "True"
+      replace_profile: "%REPLACE_PROFILE"

@@ -24,7 +24,7 @@ Input:
   ORGANIZATION: "%NAME%"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

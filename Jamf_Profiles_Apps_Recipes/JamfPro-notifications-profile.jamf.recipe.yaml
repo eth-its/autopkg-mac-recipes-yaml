@@ -13,7 +13,7 @@ Input:
   PROFILE_NAME: Jamf Pro Notifications
   PROFILE_DESCRIPTION: Enforces notifications for Jamf Pro policies.
   PROFILE_MOBILECONFIG: JamfPro-notifications.mobileconfig
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader

@@ -21,7 +21,7 @@ Input:
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
   TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
-  REPLACE_PROFILE: "False"
+  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
