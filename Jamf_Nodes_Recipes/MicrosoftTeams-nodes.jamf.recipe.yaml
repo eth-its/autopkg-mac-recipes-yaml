@@ -6,4 +6,6 @@ MinimumVersion: "2.3"
 Input:
   NAME: Microsoft Teams
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftTeams
+  APPLICATION_NAME_HAS: Microsoft Teams
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   SELFSERVICE_ICON: Microsoft Teams 5.png
