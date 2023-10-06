@@ -16,15 +16,16 @@ relocatable_python_path="$workdir/Python.framework/Versions/Current/bin/python3"
 # obtain arguments
 
 # set parameters
-user=$(/usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | /usr/bin/awk -F': ' '/[[:space:]]+Name[[:space:]]:/ { if ( $2 != "loginwindow" ) { print $2 }}')
+current_user=$(/usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | /usr/bin/awk -F': ' '/[[:space:]]+Name[[:space:]]:/ { if ( $2 != "loginwindow" ) { print $2 }}')
+current_user_id="$(echo 'show State:/Users/ConsoleUser' | scutil | awk '($1 == "UID") { print $NF; exit }')"
 
 # print settings
-echo "User: $user"
+echo "User: $current_user"
 echo "Mode: $4"
 echo "Servers: $5 $6 $7 $8 $9 ${10} ${11}"
 
 # ensure the file exists
-sudo -u "$user" -i touch "/Users/$user/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.FavoriteServers.sfl2"
+/bin/launchctl asuser "${current_user_id}" sudo -u "$current_user" -i touch "/Users/$current_user/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.FavoriteServers.sfl2"
 
 # now call the script
-sudo -u "$user" -i "$relocatable_python_path" "$workdir/FinderServerFavourites.py" "$user" "$4" "$5" "$6" "$7" "$8" "$9" "${10}" "${11}"
+/bin/launchctl asuser "${current_user_id}" sudo -u "$current_user" -i "$relocatable_python_path" "$workdir/FinderServerFavourites.py" --user "$current_user" --mode "$4" "$5" "$6" "$7" "$8" "$9" "${10}" "${11}"
