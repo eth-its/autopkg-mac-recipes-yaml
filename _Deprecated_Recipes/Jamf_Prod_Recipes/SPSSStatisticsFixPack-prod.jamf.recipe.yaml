@@ -4,15 +4,14 @@ MinimumVersion: "2.3"
 
 Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatisticsFixPack
-  NAME: SPSS Statistics Sonoma FixPack
-  MAJOR_VERSION: 29
+  NAME: SPSS Statistics Security Update
   POLICY_NAME: "%NAME%"
   POLICY_CATEGORY: Science & Math
   POLICY_TEMPLATE: Policy-prod-once-per-computer.xml
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% installed"
+  INSTALLED_GROUP_NAME: "SPSS Statistics any version installed"
   PROD_PREDICATE: "ready_to_stage == False"
-  SELFSERVICE_POLICY_NAME: SPSS Statistics Sonoma FixPack
+  SELFSERVICE_POLICY_NAME: SPSS Statistics Security Update
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker

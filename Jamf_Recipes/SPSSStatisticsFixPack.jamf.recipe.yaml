@@ -4,18 +4,19 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack
 
 Input:
-  NAME: SPSS Statistics Security Update
+  NAME: SPSS Statistics Sonoma FixPack
+  MAJOR_VERSION: 29
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    This security update patches a serious security vulnerability that is present in all versions of SPSS Statistics (with Node or Floating license). Please run this as soon as possible.
+    This update patches SPSS Statistics %MAJOR_VERSION% for use on macOS Sonoma.
   JSS_INVENTORY_NAME: SPSS Statistics.app
-  INSTALLED_GROUP_NAME: "SPSS Statistics any version installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-SPSSStatisticsFixPack.xml
+  INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-SPSSStatisticsFixPack.xml
-  SELFSERVICE_ICON: "SPSS Statistics 28.png"
+  SELFSERVICE_ICON: SPSS Statistics 29.png
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install"

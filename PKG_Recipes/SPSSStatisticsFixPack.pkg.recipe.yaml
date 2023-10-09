@@ -10,6 +10,44 @@ Input:
 
 Process:
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics-FixPack-%version%.pkg"
-      source_pkg: "%pathname%"
-    Processor: PkgCopier
+      pkgdirs:
+        Applications: "0775"
+        Applications/IBM SPSS Statistics %MAJOR_VERSION%: "0775"
+        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app: "0775"
+        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents: "0775"
+        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%pkgroot%/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib"
+      purge_destination: True
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/ChangeModeOwner
+    Arguments:
+      group: wheel
+      mode: "755"
+      owner: root
+      resource_path: "%pkgroot%/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/libplatdep.dylib"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.SPSSStatisticsFixPack
+        pkgname: SPSSStatisticsFixPack-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
