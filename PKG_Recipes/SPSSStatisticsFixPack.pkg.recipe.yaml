@@ -22,7 +22,7 @@ Process:
   - Processor: Unarchiver
     Arguments:
       archive_path: "%pathname%"
-      destination_path: "%pkgroot%/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts"
       purge_destination: True
 
   - Arguments:
