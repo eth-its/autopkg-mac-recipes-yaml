@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.SPSSStatisticsFixPack
+Identifier: com.github.eth-its-recipes.jamf.SPSSStatisticsFixPack-log4j
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack
+ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack-log4j
 
 Input:
   NAME: SPSS Statistics Security Update

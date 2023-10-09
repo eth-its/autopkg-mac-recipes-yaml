@@ -1,5 +1,5 @@
 Description: Checks /tmp/AutoPkg_Local_Sources for update.
-Identifier: com.github.eth-its-recipes.download.SPSSStatisticsFixPack
+Identifier: com.github.eth-its-recipes.download.SPSSStatisticsFixPack-log4j
 MinimumVersion: "2.3"
 
 Input:
