@@ -7,6 +7,8 @@ Input:
   NAME: SPSS Statistics Sonoma FixPack
   MAJOR_VERSION: "29"
   POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    This update patches SPSS Statistics %MAJOR_VERSION% for use on macOS Sonoma.
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   JSS_INVENTORY_NAME: SPSS Statistics.app
