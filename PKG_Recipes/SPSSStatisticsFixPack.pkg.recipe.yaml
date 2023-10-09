@@ -50,6 +50,7 @@ Process:
 
   - Processor: PkgCreator
     Arguments:
+      force_pkg_build: True
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.SPSSStatisticsFixPack
