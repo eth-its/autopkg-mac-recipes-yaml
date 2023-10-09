@@ -22,8 +22,13 @@ Process:
   - Processor: Unarchiver
     Arguments:
       archive_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/Scripts"
+      destination_path: "%RECIPE_CACHE_DIR%/unzip"
       purge_destination: True
+
+  - Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/unzip/*/libplatdep.dylib"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/libplatdep.dylib"
+    Processor: Copier
 
   - Arguments:
       file_content: |
@@ -63,4 +68,5 @@ Process:
   - Arguments:
       path_list:
         - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/unzip"
     Processor: PathDeleter
