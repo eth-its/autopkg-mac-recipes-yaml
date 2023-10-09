@@ -10,12 +10,7 @@ Input:
 
 Process:
   - Arguments:
-      pkgdirs:
-        Applications: "0775"
-        Applications/IBM SPSS Statistics %MAJOR_VERSION%: "0775"
-        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app: "0775"
-        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents: "0775"
-        Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
@@ -30,12 +25,28 @@ Process:
       destination_path: "%pkgroot%/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib"
       purge_destination: True
 
-  - Processor: com.github.grahampugh.recipes.commonprocessors/ChangeModeOwner
-    Arguments:
-      group: wheel
-      mode: "755"
-      owner: root
-      resource_path: "%pkgroot%/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/libplatdep.dylib"
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+        ## script to install the SPSS Statistics 29 fixpack for macOS Sonoma
+
+        DIR=$(dirname "$0")
+
+        logfile="/var/log/SPSSStatisticsFixPack-install.log"
+        touch $logfile
+
+        cp "$DIR/libplatdep.dylib" "/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/"
+
+        if (test $? = 0) then
+            chmod 755 "/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/libplatdep.dylib"
+            echo "SPSSStatisticsFixPack installed." >> $logfile
+        else
+            echo "ERROR: SPSSStatisticsFixPack installation failed." >> $logfile
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
 
   - Processor: PkgCreator
     Arguments:
@@ -44,6 +55,7 @@ Process:
         id: ch.ethz.id.pkg.SPSSStatisticsFixPack
         pkgname: SPSSStatisticsFixPack-%version%
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        scripts: Scripts
         pkgtype: flat
         version: "%version%"
 
