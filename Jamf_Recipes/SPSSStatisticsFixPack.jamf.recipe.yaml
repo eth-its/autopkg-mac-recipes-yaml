@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack
 
 Input:
   NAME: SPSS Statistics Sonoma FixPack
-  MAJOR_VERSION: 29
+  MAJOR_VERSION: "29"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
