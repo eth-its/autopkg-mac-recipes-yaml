@@ -1,0 +1,15 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.pkg.SPSSStatisticsFixPack-log4j
+ParentRecipe: com.github.eth-its-recipes.download.SPSSStatisticsFixPack-log4j
+MinimumVersion: "2.3"
+
+Comment: Requires MAJOR_VERSION to be supplied in the override/child recipe
+
+Input:
+  NAME: SPSS Statistics Fix Pack
+
+Process:
+  - Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics-FixPack-%version%.pkg"
+      source_pkg: "%pathname%"
+    Processor: PkgCopier

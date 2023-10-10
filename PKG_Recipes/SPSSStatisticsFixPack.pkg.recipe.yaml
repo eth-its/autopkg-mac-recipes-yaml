@@ -10,6 +10,63 @@ Input:
 
 Process:
   - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/SPSSStatistics-FixPack-%version%.pkg"
-      source_pkg: "%pathname%"
-    Processor: PkgCopier
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unzip"
+      purge_destination: True
+
+  - Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/unzip/*/libplatdep.dylib"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/libplatdep.dylib"
+    Processor: Copier
+
+  - Arguments:
+      file_content: |
+        #!/bin/sh
+        ## script to install the SPSS Statistics 29 fixpack for macOS Sonoma
+
+        DIR=$(dirname "$0")
+
+        logfile="/var/log/SPSSStatisticsFixPack-install.log"
+        touch $logfile
+
+        cp "$DIR/libplatdep.dylib" "/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/"
+
+        if (test $? = 0) then
+            chmod 755 "/Applications/IBM SPSS Statistics %MAJOR_VERSION%/SPSS Statistics.app/Contents/lib/libplatdep.dylib"
+            echo "SPSSStatisticsFixPack installed." >> $logfile
+        else
+            echo "ERROR: SPSSStatisticsFixPack installation failed." >> $logfile
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.SPSSStatisticsFixPack
+        pkgname: SPSSStatisticsFixPack-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        scripts: Scripts
+        pkgtype: flat
+        version: "%version%"
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/unzip"
+    Processor: PathDeleter

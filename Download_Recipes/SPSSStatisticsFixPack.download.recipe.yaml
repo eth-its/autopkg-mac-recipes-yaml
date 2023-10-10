@@ -3,14 +3,22 @@ Identifier: com.github.eth-its-recipes.download.SPSSStatisticsFixPack
 MinimumVersion: "2.3"
 
 Input:
-  INCLUDE_PRERELEASES: "False"
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
+  LIST_NAME: SPSS_Statistics_FixPacks
+  VENDOR: IBM
 
 Process:
-  - Processor: GitHubReleasesInfoProvider
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
     Arguments:
-      github_repo: eth-its/IBM-SPSS-log4j-fixes
-      include_prereleases: "%INCLUDE_PRERELEASES%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
+
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Arguments:
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
 
   - Processor: URLDownloader
+    Arguments:
+      url: file://%root_path%/%version%/%latest_file%.zip
 
   - Processor: EndOfCheckPhase

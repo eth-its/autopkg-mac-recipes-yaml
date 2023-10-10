@@ -1,0 +1,16 @@
+Description: Checks /tmp/AutoPkg_Local_Sources for update.
+Identifier: com.github.eth-its-recipes.download.SPSSStatisticsFixPack-log4j
+MinimumVersion: "2.3"
+
+Input:
+  INCLUDE_PRERELEASES: "False"
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: eth-its/IBM-SPSS-log4j-fixes
+      include_prereleases: "%INCLUDE_PRERELEASES%"
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase

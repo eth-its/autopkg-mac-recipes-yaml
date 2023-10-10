@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>EmailAddress</key>
+			<string>$EMAIL</string>
+			<key>Host</key>
+			<string>mail.ethz.ch</string>
+			<key>PayloadDisplayName</key>
+			<string>$USERNAME</string>
+			<key>PayloadIdentifier</key>
+			<string>com.apple.eas.account.70D2DD37-C8D6-4769-AC58-35036F75E84A</string>
+			<key>PayloadType</key>
+			<string>com.apple.eas.account</string>
+			<key>PayloadUUID</key>
+			<string>D9764BCD-FBE7-42C7-BF62-25291ED6B27C</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>SMIMEEnableEncryptionPerMessageSwitch</key>
+			<true/>
+			<key>SMIMEEnablePerMessageSwitch</key>
+			<true/>
+			<key>SMIMEEncryptByDefaultUserOverrideable</key>
+			<true/>
+			<key>SMIMEEncryptionCertificateUUIDUserOverrideable</key>
+			<true/>
+			<key>SMIMESigningCertificateUUIDUserOverrideable</key>
+			<true/>
+			<key>SMIMESigningUserOverrideable</key>
+			<true/>
+			<key>SSL</key>
+			<true/>
+			<key>UserName</key>
+			<string>$USERNAME</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Enable S/MIME</string>
+	<key>PayloadDisplayName</key>
+	<string>Exchange ActiveSync Settings</string>
+	<key>PayloadIdentifier</key>
+	<string>3-2D5874BD-E325-498B-B1A7-686EEBA325DD</string>
+	<key>PayloadOrganization</key>
+	<string>ETH Zürich</string>
+	<key>PayloadRemovalDisallowed</key>
+	<true/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>5B846A3C-EB86-4925-B23F-52C393E27964</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
