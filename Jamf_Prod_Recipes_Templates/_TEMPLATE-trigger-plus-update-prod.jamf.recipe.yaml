@@ -35,6 +35,7 @@ Input:
   UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update.xml
   UPDATE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_NAME: "%NAME%"
+  SELFSERVICE_POLICY_CATEGORY: Connect & Remote
   INSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_BUTTON_TEXT: "Update to %version%"
   SELFSERVICE_ICON: "%NAME%.png"
