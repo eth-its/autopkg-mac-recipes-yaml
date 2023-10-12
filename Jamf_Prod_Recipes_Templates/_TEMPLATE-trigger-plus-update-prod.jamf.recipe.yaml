@@ -11,12 +11,12 @@ Identifier: com.github.eth-its-recipes.jamf.template-trigger-plus-update-prod
 MinimumVersion: "2.3"
 
 Input:
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
-  AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoupdate-all-software.xml
-  AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
-  AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate.xml
+  AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE: SmartGroup-autoupdate-excluded.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
   UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -28,8 +28,8 @@ Input:
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   AUTOUPDATE_POLICY_NAME: "Auto-update %NAME%"
-  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-autoupdate.xml
-  AUTOUPDATE_POLICY_CATEGORY: Auto-updaters
+  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-preset-autoupdate.xml
+  AUTOUPDATE_POLICY_CATEGORY: Preset auto-updaters
   AUTOUPDATE_POLICY_FREQUENCY: Once every day
   UPDATE_POLICY_NAME: "Update %NAME%"
   UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update.xml
@@ -85,14 +85,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME%"
-      computergroup_template: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%AUTOUPDATE_GROUP_NAME%"
-      computergroup_template: "%AUTOUPDATE_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOUPDATE_EXCLUDED_GROUP_NAME%"
+      computergroup_template: "%AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
