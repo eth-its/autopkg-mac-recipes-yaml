@@ -8,5 +8,9 @@ Input:
   APPLICATION_NAME_HAS: Microsoft Teams
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has.xml
+  SCRIPT_NAME: MicrosoftTeams-uninstall.sh
+  SCRIPT_PATH: MicrosoftTeams-uninstall.sh
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.microsoft.teams
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   SELFSERVICE_ICON: Microsoft Teams 5.png
