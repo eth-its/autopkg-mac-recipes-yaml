@@ -15,7 +15,7 @@ Input:
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
+  AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% auto-update excluded"
   AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE: SmartGroup-autoupdate-excluded.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
