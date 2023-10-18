@@ -1,0 +1,99 @@
+Description: |
+  Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+  Required overrides:
+  - PARAMETER4_VALUE (should be the print server's FQDN)
+Identifier: com.github.eth-its-recipes.jamf.ETHPrinters-Dialog-card-mobile-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Add Printer with Dialog (Card-Mobile HP)
+  PRINTER_NAME: "Card-Mobile HP"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_USERS_GROUP_NAME: Testing
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
+  SELFSERVICE_POLICY_CATEGORY: Connect & Remote
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-parameters.xml
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_NAME: card-mobile-install
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  MESSAGE_FINISH: "%NAME% installation complete"
+  SCRIPT_NAME: PrinterAddViaDialog.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Printer Address
+  PARAMETER5_LABEL: Driver options (-o x=xx -o y=yy -o z=zz)
+  PARAMETER6_LABEL: Parameter 6
+  PARAMETER7_LABEL: Parameter 7
+  PARAMETER8_LABEL: Parameter 8
+  PARAMETER9_LABEL: Parameter 9
+  PARAMETER10_LABEL: Parameter 10
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER5_VALUE: "-o HPOption_HPPunchingOptions=HP24HolesUnit -o HPColorAsGray=BlackInkOnly -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP520SheetInputTray -o HPOption_OutputBin=HP3BinMailbox -o HPOption_BookletMaker=True -o HPOption_HPFoldingOptions=MultiFold -o HPOption_HPStaplerOptions=HP2StapleUnit"
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: Install the Card-Mobile HP print queue along with any required drivers.
+  SELFSERVICE_ICON: ETH Printers.png
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Install
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SELFSERVICE_POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service install policy
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
