@@ -39,7 +39,7 @@ Input:
   PARAMETER8_VALUE: ""
   PARAMETER10_VALUE: ""
   PARAMETER11_VALUE: ""
-  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "Add Printer (Card-Mobile HP)"
   SELFSERVICE_DESCRIPTION: Install the Card-Mobile HP print queue along with any required drivers.
   SELFSERVICE_ICON: ETH Printers.png
   INSTALL_BUTTON_TEXT: Install
