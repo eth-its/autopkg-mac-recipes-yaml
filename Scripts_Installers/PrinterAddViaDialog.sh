@@ -50,7 +50,7 @@ if [[ -f "/private/etc/cups/ppd/${PRINTER_PPD_NAME}.ppd" ]]; then
     pkill jamfHelper
 else
     echo "Printer does NOT already exist so nothing to delete"
-    /bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CURRENT_USER" "$JAMF_HELPER" -windowType utility -title "$ADD_TITLE" -description "$ADD_DIALOG" -icon "$PRINTER_ICON" -button1 "$BUTTON1" -defaultButton "1" &
+    /bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CURRENT_USER" "$JAMF_HELPER" -windowType utility -title "$ADD_TITLE" -description "$ADD_DIALOG" -icon "$PRINTER_ICON" -button1 "$BUTTON1" -defaultButton "1"
 fi
 
 # Open the AddPrinter.app and pass the URL to the printer to add the device
