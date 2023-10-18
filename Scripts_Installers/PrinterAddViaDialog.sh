@@ -9,7 +9,7 @@
 
 # Provide the printer DNS address as parameter 4 variable
 PRINTER_DNS_ADDRESS="$4"
-# Provide any optional printer defaults that need set as parameter 5 variable - get these with lpoptions -p $PRINTER_QUEUE_NAME -l
+# Provide any optional printer defaults that need set as parameter 5 variable - get these with lpoptions -p $PRINTER_PPD_NAME -l
 PRINTER_DEFAULT_OPTIONS="$5"
 
 
@@ -31,11 +31,11 @@ BUTTON1="OK"
 # Queue name is the bonjour name with dashes replaced by underscores.
 PRINTER_PPD_NAME=$(basename "$PRINTER_DNS_ADDRESS" | sed 's|-|_|g')
 
-if [ -f "/private/etc/cups/ppd/${PRINTER_QUEUE_NAME}.ppd" ] 
+if [ -f "/private/etc/cups/ppd/${PRINTER_PPD_NAME}.ppd" ] 
 then
     echo "Printer already exists delete it first to avoid duplicate"
-    /usr/sbin/lpadmin -x "${PRINTER_QUEUE_NAME}"
-    # /usr/sbin/lpadmin -x "${PRINTER_QUEUE_NAME}___Fax"
+    /usr/sbin/lpadmin -x "${PRINTER_PPD_NAME}"
+    # /usr/sbin/lpadmin -x "${PRINTER_PPD_NAME}___Fax"
     /bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CURRENT_USER" "$JAMF_HELPER" -windowType utility -title "Removing Existing Printer" -description "$WAIT" -icon "$PRINTER_ICON" -button1 "$BUTTON1" -defaultButton "1" &
     sleep 10
     pkill jamfHelper
