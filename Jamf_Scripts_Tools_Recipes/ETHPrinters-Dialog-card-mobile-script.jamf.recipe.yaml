@@ -44,7 +44,7 @@ Input:
   SELFSERVICE_DESCRIPTION: Install the Card-Mobile HP print queue along with any required drivers.
   SELFSERVICE_ICON: ETH Printers.png
   INSTALL_BUTTON_TEXT: Install
-  REINSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Reinstall
   FORCE_DESCRIPTION: "false"
 
 Process:
