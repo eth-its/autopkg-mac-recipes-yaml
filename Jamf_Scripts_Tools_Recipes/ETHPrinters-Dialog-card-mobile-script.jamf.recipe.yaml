@@ -8,7 +8,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Add Printer (Card-Mobile HP)
-  PRINTER_NAME: "Card-Mobile HP"
+  PRINTER_NAME: "card-mobile"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
