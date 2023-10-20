@@ -31,7 +31,7 @@ generic_ppd=0
 default_printer="${10}"
 
 # Populate these options if you want to set specific options for the printer. E.g. duplexing installed, etc.
-options_global="-o PageSize=A4 -o auth-info-required=negotiate -o Duplex=DuplexNoTumble -o printer-is-shared=false -o printer-error-policy=abort-job"
+options_global="-o PageSize=A4 -o auth-info-required=username,password -o Duplex=DuplexNoTumble -o printer-is-shared=false -o printer-error-policy=abort-job"
 
 # Further options that can be supplied via Jamf Parameter. These must include the "-o" flag for each option
 options_specific="$9"
