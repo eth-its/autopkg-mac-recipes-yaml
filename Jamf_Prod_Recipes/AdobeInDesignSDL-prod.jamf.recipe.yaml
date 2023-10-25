@@ -4,8 +4,8 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template-prod
 
 Input:
-  NAME: Adobe InDesign 2023 SDL
-  JSS_INVENTORY_NAME: Adobe InDesign 2023.app
+  NAME: Adobe InDesign 2024 SDL
+  JSS_INVENTORY_NAME: Adobe InDesign 2024.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeInDesignSDL
   SELFSERVICE_ICON: Adobe InDesign 17 SDL.png
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
