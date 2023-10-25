@@ -4,8 +4,8 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template-prod
 
 Input:
-  NAME: Adobe Illustrator 2023 SDL
-  JSS_INVENTORY_NAME: Adobe Illustrator.app
+  NAME: Adobe Illustrator 2024 SDL
+  JSS_INVENTORY_NAME: Adobe Illustrator 2024.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeIllustratorSDL
   SELFSERVICE_ICON: Adobe Illustrator 26 SDL.png
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install
