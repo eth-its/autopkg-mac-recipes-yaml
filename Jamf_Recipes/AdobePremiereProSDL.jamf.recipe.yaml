@@ -5,9 +5,9 @@ ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloud
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe Premiere Pro 2023 SDL
+  NAME: Adobe Premiere Pro 2024 SDL
   LIST_NAME: Adobe_Premiere_Pro_CC_EN_NUL
-  JSS_INVENTORY_NAME: Adobe Premiere Pro 2023.app
+  JSS_INVENTORY_NAME: Adobe Premiere Pro 2024.app
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe Premiere Pro with a Shared Device License. This is intended only for labs.
 
