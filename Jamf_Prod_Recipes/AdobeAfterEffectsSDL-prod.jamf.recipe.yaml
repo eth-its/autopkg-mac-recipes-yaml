@@ -4,8 +4,8 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.AdobeCreativeCloudApps-Template-prod
 
 Input:
-  NAME: Adobe After Effects 2023 SDL
-  JSS_INVENTORY_NAME: Adobe After Effects 2023.app
+  NAME: Adobe After Effects 2024 SDL
+  JSS_INVENTORY_NAME: Adobe After Effects 2024.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeAfterEffectsSDL
   SELFSERVICE_ICON: Adobe After Effects CC SDL 22.png
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install

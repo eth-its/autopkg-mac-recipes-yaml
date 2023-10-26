@@ -5,9 +5,9 @@ ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloud
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe After Effects 2023 SDL
+  NAME: Adobe After Effects 2024 SDL
   LIST_NAME: Adobe_After_Effects_CC_EN_NUL
-  JSS_INVENTORY_NAME: Adobe After Effects 2023.app
+  JSS_INVENTORY_NAME: Adobe After Effects 2024.app
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe After Effects with a Shared Device License. This is intended only for labs.
 
