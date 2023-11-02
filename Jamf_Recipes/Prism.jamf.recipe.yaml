@@ -18,9 +18,9 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
 
-    ------------------------------
+    ---
     This package contains the Viewer option. You can activate the full version if your e-mail address corresponds to the [list of allowed users](https://unlimited.ethz.ch/display/biolopen/Prism). There is also a step-for-step [description of the activation process](https://unlimited.ethz.ch/display/biolopen/Prism+-+Software+Activation).
-    -------------------------------
+    ---
   SCRIPT_NAME: "%NAME%-postinstall.sh"
   SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
