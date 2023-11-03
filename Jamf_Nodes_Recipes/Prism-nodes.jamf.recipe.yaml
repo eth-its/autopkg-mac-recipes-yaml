@@ -7,4 +7,4 @@ Input:
   NAME: Prism
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Prism
   SELFSERVICE_ICON: "Prism 9.png"
-  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
