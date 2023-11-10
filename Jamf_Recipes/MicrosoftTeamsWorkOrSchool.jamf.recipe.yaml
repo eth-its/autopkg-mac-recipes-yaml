@@ -1,12 +1,12 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftTeamsWorkOrSchool
 MinimumVersion: "2.3"
-ParentRecipe: "com.github.dataJAR-recipes.download.Microsoft Teams work or school"
+ParentRecipe: com.github.rtrouton.pkg.microsoftteamsforworkorschool
 
 Input:
   NAME: Microsoft Teams (work or school)
   VERSIONTYPE: CFBundleVersion
-  APPLICATION_NAME_HAS: Microsoft Teams (work or school)
+  APPLICATION_NAME_HAS: "Microsoft Teams (work or school)"
   PKG_CATEGORY: Connect & Remote
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
