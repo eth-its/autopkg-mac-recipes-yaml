@@ -38,7 +38,7 @@ silent_app_quit() {
 }
 
 # Create an array of all possible app names
-apps=("Microsoft Teams" "Microsoft Teams classic")
+apps=("Microsoft Teams (work or school)")
 
 # now iterate through all the apps
 for app_name in "${apps[@]}"; do
