@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 Input:
   NAME: Microsoft Teams
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftTeams
-  APPLICATION_NAME_IS: Microsoft Teams classic.app
+  APPLICATION_NAME_HAS: Microsoft Teams classic
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has.xml
   SELFSERVICE_ICON: Microsoft Teams 5.png
