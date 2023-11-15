@@ -4,7 +4,7 @@ Identifier: com.github.eth-its-recipes.jamf.MicrosoftTeams-PPPC-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Microsoft Teams work or school
+  NAME: Microsoft Teams (work or school)
   GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
