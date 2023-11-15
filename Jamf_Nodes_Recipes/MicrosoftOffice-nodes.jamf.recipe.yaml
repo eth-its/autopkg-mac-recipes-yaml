@@ -9,4 +9,4 @@ Input:
   PKG_CATEGORY: Productivity
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
   SELFSERVICE_ICON: Microsoft 365.png
-  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
+  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install;jamf policy -event 'Microsoft Teams-uninstall'"
