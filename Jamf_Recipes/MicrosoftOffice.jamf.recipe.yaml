@@ -45,7 +45,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-minimum.xml
   SELFSERVICE_ICON: Microsoft 365.png
-  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
+  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install;jamf policy -event 'Microsoft Teams-uninstall'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
