@@ -6,7 +6,6 @@ ParentRecipe: com.github.rtrouton.pkg.microsoftteamsforworkorschool
 Input:
   NAME: Microsoft Teams (work or school)
   VERSIONTYPE: CFBundleVersion
-  APPLICATION_NAME_HAS: "Microsoft Teams (work or school)"
   PKG_CATEGORY: Connect & Remote
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -17,7 +16,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
