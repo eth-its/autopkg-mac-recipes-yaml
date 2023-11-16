@@ -8,4 +8,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.RemoteDesktop
   SELFSERVICE_ICON: "%NAME% 3.9.5.png"
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-OS-exclude-max-forcedescription.xml
-  OS_EXCLUDE_MAX: "13.6"
+  OS_EXCLUDE_MAX: 13.5.2
