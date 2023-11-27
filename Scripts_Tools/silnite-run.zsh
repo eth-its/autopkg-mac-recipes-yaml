@@ -19,11 +19,11 @@ if [[ -f "$silnite_bin" ]]; then
 else
     # clean up any relics
     echo "silnite is not installed"
-    if [[ -d "$silnite_dir "]]; then
+    if [[ -d "$silnite_dir" ]]; then
         rm -rf "$silnite_dir"
     fi
     old_silnite_dir="/Users/Shared/ETHZ/silnite"
-    if [[ -d "$old_silnite_dir "]]; then
+    if [[ -d "$old_silnite_dir" ]]; then
         rm -rf "$old_silnite_dir"
         [[ $(/bin/ls -A "/Users/Shared/ETHZ") ]] || rm -rf "/Users/Shared/ETHZ"
     fi
