@@ -21,13 +21,13 @@ Input:
   SCRIPT_NAME: Affinity2License-install.zsh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  PARAMETER4_LABEL: Designer product key
-  PARAMETER5_LABEL: Publisher product key
-  PARAMETER6_LABEL: Photo product key
-  PARAMETER7_LABEL: Licensed account
-  PARAMETER8_LABEL: Signature
+  PARAMETER4_LABEL: Product key
+  PARAMETER5_LABEL: Licensed account
+  PARAMETER6_LABEL: License Signature
+  PARAMETER7_LABEL: License Signature2
+  PARAMETER8_LABEL: License Expiry
   PARAMETER9_LABEL: User count
-  PARAMETER10_LABEL: License Expiry Date
+  PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
   PARAMETER4_VALUE: "%AFFINITY_PRODUCT_KEY%"
   PARAMETER5_VALUE: "%AFFINITY_LICENSE_ACCOUNT%"
