@@ -5,13 +5,13 @@
 Writes the Affinity2.defaults file to /Library/Application Support/Serif
 
 Required parameters:
-4 - Designer Product Key
-5 - Publisher Product Key
-6 - Photo Product Key
-7 - Licensed Email Account
-8 - License Signature
+4 - Product Key
+5 - Licensed Email Account
+6 - License Signature1
+7 - License Signature2
+8 - License Expiry
 9 - User Count
-10 - License Expiry
+
 DOC
 
 defaults_file_path="/Library/Application Support/Serif"
@@ -20,15 +20,22 @@ defaults_file="$defaults_file_path/Affinity2.defaults"
 
 cat > "$defaults_file" <<EOF
 {
-    "designerProductKey": "$4",
+    "designerProductKey": "",
     "disableCheckForUpdates": true,
+    "disableCrashReports": false,
     "disableEULA": true,
+    "disableLinkThirdPartyCloud": false,
     "disableRegistration": true,
-    "licenceExpiry": "${10}",
-    "licensedTo": "$7",
-    "photoProductKey": "$6",
-    "publisherProductKey": "$5",
-    "signature": "$8",
+    "enableDWG": false,
+    "enableHWAccelByDefault": true,
+    "licenceExpiry": "$8",
+    "licensedTo": "$5",
+    "openAssetCredentials": [],
+    "photoProductKey": "",
+    "publisherProductKey": "",
+    "signature": "$6",
+    "signature2": "$7",
+    "universalProductKey": "$4",
     "userCount": $9
 }
 EOF
