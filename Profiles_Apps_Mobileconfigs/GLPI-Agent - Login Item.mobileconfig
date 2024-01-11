@@ -25,6 +25,14 @@
 					<key>RuleValue</key>
 					<string>org.glpi-project.glpi-agent</string>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>GLPI-Agent LaunchDaemon</string>
+					<key>RuleType</key>
+					<string>Label</string>
+					<key>RuleValue</key>
+					<string>com.teclib.glpi-agent</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
