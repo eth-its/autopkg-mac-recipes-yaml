@@ -11,6 +11,7 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SCRIPT_NAME: GLPIAgent-uninstall.sh
   SCRIPT_PRIORITY: Before
   TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
