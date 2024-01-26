@@ -6,3 +6,8 @@ MinimumVersion: "2.3"
 Input:
   NAME: SnapGene
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SnapGene
+  LAST_RUN_SELFSERVICE_DESCRIPTION:  |
+    The Industry's Most Popular Molecular Cloning Tool 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
