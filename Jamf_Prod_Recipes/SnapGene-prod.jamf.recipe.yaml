@@ -6,3 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: SnapGene
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SnapGene
+  LAST_RUN_SELFSERVICE_DESCRIPTION:  |
+    The Industry's Most Popular Molecular Cloning Tool 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
