@@ -14,4 +14,4 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
