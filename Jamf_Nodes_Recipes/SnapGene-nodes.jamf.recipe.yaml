@@ -9,5 +9,9 @@ Input:
   LAST_RUN_SELFSERVICE_DESCRIPTION:  |
     The Industry's Most Popular Molecular Cloning Tool 
 
+    This version of Snapgene comes deactivated. Please see the [description](https://unlimited.ethz.ch/display/biolopen/Snapgene) for the
+    activation process.
+
     Version: %version%
     Category: %PKG_CATEGORY%
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml

@@ -14,6 +14,9 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     The Industry's Most Popular Molecular Cloning Tool 
 
+    This version of Snapgene comes deactivated. Please see the [description](https://unlimited.ethz.ch/display/biolopen/Snapgene) for the
+    activation process.
+
     Version: %version%
     Category: %PKG_CATEGORY%
 
@@ -26,7 +29,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: SnapGene.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
