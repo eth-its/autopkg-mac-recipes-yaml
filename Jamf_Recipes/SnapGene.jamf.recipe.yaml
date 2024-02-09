@@ -7,6 +7,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.SnapGene
 
 Input:
   NAME: SnapGene
+  MAJOR_VERSION: "7"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
