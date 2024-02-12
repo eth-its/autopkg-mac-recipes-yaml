@@ -11,7 +11,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Matlab-arm64
 
 Input:
-  NAME: MATLAB
+  NAME: MATLAB-arm64
   LANGUAGE: EN
   PKG_CATEGORY: Science & Math
   MANAGEMENT_PATH: /Library/Management/MATLAB
