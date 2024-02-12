@@ -11,7 +11,7 @@ MinimumVersion: "2.3"
 Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Matlab-arm64
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
-  NAME: MATLAB
+  NAME: MATLAB-arm64
   LANGUAGE: EN
   PLATFORM: arm64
   PKG_CATEGORY: Tools & Accessories

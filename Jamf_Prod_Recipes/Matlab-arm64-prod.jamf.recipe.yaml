@@ -11,7 +11,7 @@ MinimumVersion: "2.3"
 Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Matlab-arm64
   PROD_PREDICATE: "ready_to_stage == False"
-  NAME: MATLAB
+  NAME: MATLAB-arm64
   LANGUAGE: EN
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TESTING_GROUP_NAME: Testing
