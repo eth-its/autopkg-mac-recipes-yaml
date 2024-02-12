@@ -9,7 +9,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: SPSS Statistics
-  MAJOR_VERSION: "29"
+  MAJOR_VERSION: "28"
   LICENSE: Floating
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
@@ -25,8 +25,8 @@ Input:
   TRIGGER_NAME: "SPSSStatistics %MAJOR_VERSION%-install"
   TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event '%LICENSE_SET_POLICY_TRIGGER_NAME%'"
   LICENSE_SET_POLICY_TRIGGER_NAME: "Activate-SPSS-%MAJOR_VERSION%-Floating-License"
-  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics%MAJOR_VERSION%-preinstall.sh
   PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics%MAJOR_VERSION%-postinstall.sh
   POSTINSTALL_SCRIPT_PRIORITY: After
-  SELFSERVICE_ICON: SPSS Statistics 29.png
+  SELFSERVICE_ICON: SPSS Statistics %MAJOR_VERSION%.png
