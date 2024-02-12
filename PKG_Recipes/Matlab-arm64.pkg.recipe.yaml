@@ -10,7 +10,7 @@ MinimumVersion: 1.0.0
 ParentRecipe: com.github.eth-its-recipes.download.Matlab-arm64
 
 Input:
-  NAME: MATLAB
+  NAME: MATLAB-arm64
 
 Process:
   - Arguments:
