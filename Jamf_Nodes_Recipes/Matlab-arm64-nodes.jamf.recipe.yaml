@@ -35,7 +35,7 @@ Input:
   PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
   PARAMETER6_VALUE: "%LICENSE_SERVER%"
   POLICY_CATEGORY: Untested
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event AmazonCorettoJDK8-install && echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
   TRIGGERONLY_POLICY_NAME: Install MATLAB_%PLATFORM%_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
