@@ -38,11 +38,11 @@ Input:
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
   TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
-  TRIGGERONLY_POLICY_NAME: Install MATLAB_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
+  TRIGGERONLY_POLICY_NAME: Install MATLAB_%PLATFORM%_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
   TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-triggeronly.xml
   TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_%PLATFORM%_Floating-install"
   # Floating license self service policy
-  FLOATING_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN (Testing)"
+  FLOATING_POLICY_NAME: "MATLAB_%PLATFORM%_%MAJOR_VERSION%_Floating EN (Testing)"
   FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-untested-selfservice.xml
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test version installed"
@@ -60,7 +60,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   # Node license self service policy
-  NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
+  NODE_POLICY_NAME: "MATLAB_%PLATFORM%_%MAJOR_VERSION%_Node EN (Testing)"
   NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
   NODE_PARAMETER7_VALUE: Node
   NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
