@@ -1,0 +1,171 @@
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  The following keys must be overridden:
+  - MAJOR_VERSION e.g. R2022a
+  - CF_BUNDLE_VERSION e.g. 9.10
+  - LICENSE_SERVER e.g. license.company.com
+Identifier: com.github.eth-its-recipes.jamf.Matlab-arm64-nodes
+MinimumVersion: "2.3"
+
+Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Matlab-arm64
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  NAME: MATLAB
+  LANGUAGE: EN
+  PLATFORM: arm64
+  PKG_CATEGORY: Tools & Accessories
+  MANAGEMENT_PATH: /Library/Management/MATLAB
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  SELFSERVICE_ICON: "%NAME%.png"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  SCRIPT_NAME: Matlab-postinstall.sh
+  SCRIPT_PATH: Matlab-postinstall.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Major Version
+  PARAMETER5_LABEL: License folder
+  PARAMETER6_LABEL: License server
+  PARAMETER7_LABEL: License Type
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
+  PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  POLICY_CATEGORY: Untested
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  # Floating license trigger policy
+  TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
+  TRIGGERONLY_POLICY_NAME: Install MATLAB_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
+  TRIGGERONLY_POLICY_TEMPLATE: Policy-Matlab-triggeronly.xml
+  TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_%PLATFORM%_Floating-install"
+  # Floating license self service policy
+  FLOATING_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN (Testing)"
+  FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-untested-selfservice.xml
+  FLOATING_PARAMETER7_VALUE: Floating
+  FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test version installed"
+  FLOATING_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-test-version-installed.xml
+  FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
+  FLOATING_TEST_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-test-users.xml
+  FLOATING_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Floating %PLATFORM% EN (Testing)"
+  FLOATING_SELFSERVICE_DESCRIPTION: |
+    This will install MATLAB_%MAJOR_VERSION%_Floating if not already installed, and then add the network ("floating") license.
+
+    If the Node License is already installed, the Floating license will replace it, and it will be stored elsewhere on your drive, so that you can re-apply it later if required.
+
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  # Node license self service policy
+  NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN (Testing)"
+  NODE_POLICY_TEMPLATE: Policy-Matlab-Node-untested-selfservice.xml
+  NODE_PARAMETER7_VALUE: Node
+  NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test version installed"
+  NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-version-installed.xml
+  NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
+  NODE_TEST_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-test-users.xml
+  NODE_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Node %PLATFORM% EN (Testing)"
+  NODE_SELFSERVICE_DESCRIPTION: |
+    This will install MATLAB_%MAJOR_VERSION%_Node if not already installed.
+
+    If the Floating License is already installed, it will be moved and stored elsewhere on your drive, so that you can re-apply it later if required. If the Node license has previously already been activated on this computer, it will be moved back into place. Otherwise, you will have to activate the Node license after installation.
+
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating test users smart group
+    Arguments:
+      computergroup_name: "%FLOATING_TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%FLOATING_TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating test version installed smart group
+    Arguments:
+      computergroup_name: "%FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%FLOATING_TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node test users smart group
+    Arguments:
+      computergroup_name: "%NODE_TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%NODE_TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node test version installed smart group
+    Arguments:
+      computergroup_name: "%NODE_TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%NODE_TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGERONLY_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger policy
+    Arguments:
+      policy_template: "%TRIGGERONLY_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGERONLY_POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Floating self service policy
+    Arguments:
+      policy_template: "%FLOATING_POLICY_TEMPLATE%"
+      policy_name: "%FLOATING_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Node self service policy
+    Arguments:
+      policy_template: "%NODE_POLICY_TEMPLATE%"
+      policy_name: "%NODE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

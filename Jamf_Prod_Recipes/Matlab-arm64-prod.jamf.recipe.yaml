@@ -1,0 +1,148 @@
+Description: |
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+
+  The following keys must be overridden:
+  - MAJOR_VERSION e.g. R2022a
+  - CF_BUNDLE_VERSION e.g. 9.10
+  - LICENSE_SERVER e.g. license.company.com
+Identifier: com.github.eth-its-recipes.jamf.Matlab-arm64-prod
+MinimumVersion: "2.3"
+
+Input:
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Matlab-arm64
+  PROD_PREDICATE: "ready_to_stage == False"
+  NAME: MATLAB
+  LANGUAGE: EN
+  MANAGEMENT_PATH: /Library/Management/MATLAB
+  TESTING_GROUP_NAME: Testing
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  SELFSERVICE_ICON: "%NAME%.png"
+  SCRIPT_NAME: Matlab-postinstall.sh
+  SCRIPT_PATH: Matlab-postinstall.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Major Version
+  PARAMETER5_LABEL: License folder
+  PARAMETER6_LABEL: License server
+  PARAMETER7_LABEL: License Type
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
+  PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  SELFSERVICE_POLICY_CATEGORY: Science & Math
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  # Floating license trigger policy
+  TRIGGERONLY_POLICY_CATEGORY: Triggered Installers
+  TRIGGERONLY_POLICY_NAME: Install MATLAB_%MAJOR_VERSION%_Floating EN v%CF_BUNDLE_VERSION%
+  TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_%PLATFORM%_Floating-install"
+  # Floating license self service policy
+  FLOATING_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN"
+  FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-prod-selfservice.xml
+  FLOATING_PARAMETER7_VALUE: Floating
+  FLOATING_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN installed"
+  FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-installed.xml
+  FLOATING_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN users"
+  FLOATING_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-users.xml
+  FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
+  FLOATING_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN"
+  FLOATING_SELFSERVICE_DESCRIPTION: |
+    This will install MATLAB_%MAJOR_VERSION%_Floating if not already installed, and then add the network ("floating") license.
+
+    If the Node License is already installed, the Floating license will replace it, and it will be stored elsewhere on your drive, so that you can re-apply it later if required.
+
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  # Node license self service policy
+  NODE_POLICY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN"
+  NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-selfservice.xml
+  NODE_PARAMETER7_VALUE: Node
+  NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
+  NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-installed.xml
+  NODE_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
+  NODE_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-users.xml
+  NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
+  NODE_SELFSERVICE_DISPLAY_NAME: "MATLAB_%MAJOR_VERSION%_Node EN"
+  NODE_SELFSERVICE_DESCRIPTION: |
+    This will install MATLAB_%MAJOR_VERSION%_Node if not already installed.
+
+    If the Floating License is already installed, it will be moved and stored elsewhere on your drive, so that you can re-apply it later if required. If the Node license has previously already been activated on this computer, it will be moved back into place. Otherwise, you will have to activate the Node license after installation.
+
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  # Keys for reporting only
+  SELFSERVICE_POLICY_NAME: MATLAB %MAJOR_VERSION% %LANGUAGE%
+  PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.eth-its-recipes.processors/JamfUploadSharepointStageCheck
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%PROD_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating users smart group
+    Arguments:
+      USERS_GROUP_NAME: "%FLOATING_USERS_GROUP_NAME%"
+      computergroup_name: "%FLOATING_USERS_GROUP_NAME%"
+      computergroup_template: "%FLOATING_USERS_GROUP_TEMPLATE%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Floating installed smart group
+    Arguments:
+      INSTALLED_GROUP_NAME: "%FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_name: "%FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%FLOATING_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node users smart group
+    Arguments:
+      USERS_GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
+      computergroup_name: "%NODE_USERS_GROUP_NAME%"
+      computergroup_template: "%NODE_USERS_GROUP_TEMPLATE%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Comment: Node installed smart group
+    Arguments:
+      INSTALLED_GROUP_NAME: "%NODE_INSTALLED_GROUP_NAME%"
+      computergroup_name: "%NODE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%NODE_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Floating self service policy
+    Arguments:
+      policy_template: "%FLOATING_POLICY_TEMPLATE%"
+      policy_name: "%FLOATING_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Node self service policy
+    Arguments:
+      policy_template: "%NODE_POLICY_TEMPLATE%"
+      policy_name: "%NODE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%FLOATING_POLICY_NAME% (Testing)"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
+    Comment: Delete the untested policy
+    Arguments:
+      policy_name: "%NODE_POLICY_NAME% (Testing)"
