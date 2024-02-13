@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics
   NAME: SPSS Statistics
-  MAJOR_VERSION: "9"
+  MAJOR_VERSION: "29"
   PKG_CATEGORY: Science & Math
   POLICY_CATEGORY: Untested
   PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
