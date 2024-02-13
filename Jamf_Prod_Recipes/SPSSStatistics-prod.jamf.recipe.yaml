@@ -9,7 +9,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-noupdate-prod
 
 Input:
   NAME: SPSS Statistics
-  MAJOR_VERSION: "28"
+  MAJOR_VERSION: "29"
   LICENSE: Floating
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
