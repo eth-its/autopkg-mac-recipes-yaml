@@ -1,0 +1,122 @@
+Description: |
+  Downloads the latest version of MATLAB and creates a package.
+  The following keys must be overridden for this to function:
+  - MAJOR_VERSION e.g. R2022a
+  - CF_BUNDLE_VERSION e.g. 9.10
+  - INSTALLATION_KEY e.g. 11488-56649-62328-47783-...-46344-51530-33537-21222
+  - LICENSE_SERVER e.g. license.company.com
+Identifier: com.github.eth-its-recipes.pkg.Matlab-arm64
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.Matlab-arm64
+
+Input:
+  NAME: MATLAB-arm64
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs:
+        Library: "0755"
+        Library/Management: "0755"
+        Library/Management/MATLAB: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/MATLAB/"
+      archive_path: "%pathname%"
+      purge_destination: True
+    Processor: Unarchiver
+
+  - Arguments:
+      file_content: |
+        destinationFolder=/Library/Management/MATLAB/tmp_install
+        fileInstallationKey=%INSTALLATION_KEY%
+        agreeToLicense=yes
+        outputFile=/var/log/MATLAB_install.log
+        mode=silent
+        licensePath=/Library/Management/MATLAB/MATLAB_floating_license.dat
+        lmgrFiles=false
+        lmgrService=false
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/installer_input.txt"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: |
+        SERVER %LICENSE_SERVER% any 1965
+        USE_SERVER
+      file_mode: "0644"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/MATLAB_floating_license.dat"
+    Processor: FileCreator
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        # Matlab Floating postinstall Script
+
+        DIR=$(dirname "$0")
+
+        major_version="%MAJOR_VERSION%"
+
+        # remove any existing config files
+        rm /Library/Management/MATLAB/installer_input.txt ||:
+
+        # Copy the license and installer file to a reliable location
+        /bin/mkdir -p /Library/Management/MATLAB/tmp_install
+        /bin/cp "$DIR"/MATLAB_floating_license.dat /Library/Management/MATLAB/
+        /bin/cp "$DIR"/installer_input.txt /Library/Management/MATLAB/
+
+        # run the installer
+        if /Library/Management/MATLAB/${major_version}/install -inputFile /Library/Management/MATLAB/installer_input.txt; then
+            # is there an existing app of that name? better remove it 
+            # if our new installation was successful!
+            if [[ -d "/Applications/MATLAB_${major_version}_Floating.app" ]]; then
+                echo "Existing MATLAB_${major_version}_Floating.app found! Removing!"
+                /bin/rm -rf "/Applications/MATLAB_${major_version}_Floating.app"
+            fi
+        else
+            echo "Failed to install application so aborting!"
+            exit 1
+        fi
+
+        # rename app to Floating and move into Applications
+        echo "Moving MATLAB_${major_version}_Floating.app to /Applications"
+        if /bin/mv "/Library/Management/MATLAB/tmp_install/MATLAB_${major_version}.app" "/Applications/MATLAB_${major_version}_Floating.app"; then
+            /bin/rm -rf "/Library/Management/MATLAB/tmp_install"
+        else
+            echo "Failed to move application so aborting!"
+            exit 1
+        fi
+
+        # Add permissions to the license file to help adjust it in future
+        chmod -R 775 /Applications/MATLAB_${major_version}_Floating.app/licenses
+        chgrp -R staff /Applications/MATLAB_${major_version}_Floating.app/licenses
+
+        # remove the installer to save space
+        rm -rf /Library/Management/MATLAB/${major_version} ||:
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.MATLABInstaller
+        pkgname: "%NAME%-%MAJOR_VERSION%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%MAJOR_VERSION%"
+      force_pkg_build: True
+    Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
