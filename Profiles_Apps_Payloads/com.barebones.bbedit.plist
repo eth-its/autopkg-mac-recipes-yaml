@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>BBEditSerialNumber:14.0</key>
+    <string>%BBEDIT_14_SERIAL%</string>
+    <key>BBEditSerialNumber:15.0</key>
+    <string>%BBEDIT_15_SERIAL%</string>
+    <key>SUSoftwareUpdateEnabled</key>
+    <false/>
+    <key>SUSoftwareUpdateHasCompletedFirstRun</key>
+    <true/>
+  </dict>
+</plist>
