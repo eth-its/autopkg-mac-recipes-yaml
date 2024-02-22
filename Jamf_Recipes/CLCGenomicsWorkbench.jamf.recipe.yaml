@@ -21,7 +21,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    **CLC Genomics Workbench 23** - a software package supporting your daily bioinformatics work.
+    **CLC Genomics Workbench 24** - a software package supporting your daily bioinformatics work.
 
     **Note**
     Licenses are no longer managed by the IT Shop, and are now handled by D-BIOL. To obtain a license, please contact [servicedesk@biol.ethz.ch](mailto:servicedesk@biol.ethz.ch).
