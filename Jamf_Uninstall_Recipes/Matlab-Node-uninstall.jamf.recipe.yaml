@@ -8,7 +8,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-noexclusion-uninstall
 
 Input:
-  NAME: Matlab
+  NAME: MATLAB
   JSS_INVENTORY_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE%.app"
   LICENSE: Node
   LANGUAGE: EN
