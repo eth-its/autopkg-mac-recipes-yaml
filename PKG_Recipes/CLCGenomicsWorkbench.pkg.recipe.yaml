@@ -7,7 +7,7 @@ ParentRecipe: com.github.grahampugh.recipes.download.CLCGenomicsWorkbench
 
 Input:
   NAME: CLC Genomics Workbench
-  MAJOR_VERSION: "23"
+  MAJOR_VERSION: "24"
   # CLC_LICENSE_SERVER: REPLACE-ME
   # CLC_LICENSE_PORT: '6200'
 
