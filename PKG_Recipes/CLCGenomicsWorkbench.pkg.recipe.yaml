@@ -3,7 +3,7 @@ Description: |
   Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT, plus MAJOR_VERSION
 Identifier: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.download.CLCGenomicsWorkbench
+ParentRecipe: com.github.eth-its-recipes.download.CLCGenomicsWorkbench-intel
 
 Input:
   NAME: CLC Genomics Workbench
