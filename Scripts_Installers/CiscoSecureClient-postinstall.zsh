@@ -7,12 +7,14 @@
 
 user=$(/usr/bin/stat -f %Su "/dev/console")
 
+/usr/bin/su $user -c 'open "/opt/cisco/secureclient/bin/Cisco Secure Client - AnyConnect VPN Service.app"'
+
 # give the extension a chance to be installed
 timeout=60
 i=1
 while ! /usr/bin/systemextensionsctl list | grep acsockext; do
     sleep 1
-    i=$((i++))
+    i=$((i+1))
     if [[ $i -ge $timeout ]]; then
         echo "ERROR: timed out - Skip deactivating of network extension acsockext"
         exit

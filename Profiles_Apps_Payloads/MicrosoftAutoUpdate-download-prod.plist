@@ -102,7 +102,7 @@
         <key>HowToCheck</key>
         <string>AutomaticCheck</string>
         <key>ManifestServer</key>
-        <string>https://officecdnmac.microsoft.com/pr/%msoffice_version%/</string>
+        <string>https://officecdnmac.microsoft.com/pr/Defer.14/</string>
         <key>StartDaemonOnAppLaunch</key>
         <true/>
         <key>UpdateCheckFrequency</key>

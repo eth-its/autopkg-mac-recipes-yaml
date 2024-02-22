@@ -13,21 +13,24 @@
         <trigger_other/>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%SELFSERVICE_POLICY_CATEGORY%</name>
         </category>
     </general>
     <scope>
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%FLOATING_TEST_USERS_GROUP_NAME%</name>
+                <name>%FLOATING_USERS_GROUP_NAME%</name>
             </computer_group>
         </computer_groups>
         <exclusions>
             <computers/>
             <computer_groups>
                 <computer_group>
-                    <name>%FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME%</name>
+                    <name>%FLOATING_INSTALLED_GROUP_NAME%</name>
+                </computer_group>
+                <computer_group>
+                    <name>%PLATFORM_EXCLUSION_GROUP_NAME%</name>
                 </computer_group>
             </computer_groups>
         </exclusions>
@@ -61,7 +64,7 @@
         <self_service_description>%FLOATING_SELFSERVICE_DESCRIPTION%</self_service_description>
         <self_service_categories>
             <category>
-                <name>%POLICY_CATEGORY%</name>
+                <name>%SELFSERVICE_POLICY_CATEGORY%</name>
                 <display_in>true</display_in>
                 <feature_in>false</feature_in>
             </category>

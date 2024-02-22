@@ -21,17 +21,17 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     An integrated interface for running descriptive statistics, regression, advanced statistics and more. SPSS Statistics can create publication ready charts, tables, and decision trees in one tool. Specialized extensions allow the SPSS Statistics syntax to be enhanced with R and Python through specialized extensions.
 
-    Please note that starting with SPSS 29, only the Floating license is available at ETH.
+    Please note that starting with SPSS %MAJOR_VERSION%, only the Floating license is available at ETH.
     Version: %version%
     Category: %PKG_CATEGORY%
   PREINSTALL_SCRIPT_PATH: SPSSStatistics-preinstall.sh
-  PREINSTALL_SCRIPT_NAME: SPSSStatistics28-preinstall.sh
+  PREINSTALL_SCRIPT_NAME: SPSSStatistics%MAJOR_VERSION%-preinstall.sh
   PREINSTALL_SCRIPT_PRIORITY: Before
   POSTINSTALL_SCRIPT_PATH: SPSSStatistics-postinstall.sh
-  POSTINSTALL_SCRIPT_NAME: SPSSStatistics28-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: SPSSStatistics%MAJOR_VERSION%-postinstall.sh
   POSTINSTALL_SCRIPT_PRIORITY: After
   SCRIPT_PATH: SPSSStatistics-floating-license-activation.sh
-  SCRIPT_NAME: SPSSStatistics28-floating-license-activation.sh
+  SCRIPT_NAME: SPSSStatistics%MAJOR_VERSION%-floating-license-activation.sh
   SCRIPT_PRIORITY: After
   EXTENSION_ATTRIBUTE_NAME: "SPSSStatistics %MAJOR_VERSION% License"
   EXTENSION_ATTRIBUTE_SCRIPT: SPSSStatistics-EA.sh
@@ -52,7 +52,7 @@ Input:
   LICENSE_INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% Floating License activated"
   LICENSE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-for-license-EA.xml
   MESSAGE_FINISH: "SPSS Statistics %MAJOR_VERSION% Floating License is now activated"
-  SELFSERVICE_ICON: SPSS Statistics 29.png
+  SELFSERVICE_ICON: SPSS Statistics %MAJOR_VERSION%.png
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALLED_GROUP_NAME: "SPSS Statistics %MAJOR_VERSION% installed"

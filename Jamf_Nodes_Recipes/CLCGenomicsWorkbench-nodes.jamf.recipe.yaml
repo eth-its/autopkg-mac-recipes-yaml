@@ -11,7 +11,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: CLC Genomics Workbench
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
-  MAJOR_VERSION: "23"
+  MAJOR_VERSION: "24"
   # CLC_LICENSE_SERVER: ++ REPLACE-ME ++
   # CLC_LICENSE_PORT: "++ REPLACE-ME ++"
   LANGUAGE: EN

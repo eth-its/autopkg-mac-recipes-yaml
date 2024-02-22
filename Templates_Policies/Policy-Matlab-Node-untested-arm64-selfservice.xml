@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%FLOATING_POLICY_NAME%</name>
+        <name>%NODE_POLICY_NAME%</name>
         <enabled>true</enabled>
         <trigger>EVENT</trigger>
         <trigger_checkin>false</trigger_checkin>
@@ -20,14 +20,17 @@
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%FLOATING_TEST_USERS_GROUP_NAME%</name>
+                <name>%NODE_TEST_USERS_GROUP_NAME%</name>
             </computer_group>
         </computer_groups>
         <exclusions>
             <computers/>
             <computer_groups>
                 <computer_group>
-                    <name>%FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME%</name>
+                    <name>%NODE_TEST_VERSION_INSTALLED_GROUP_NAME%</name>
+                </computer_group>
+                <computer_group>
+                    <name>%PLATFORM_EXCLUSION_GROUP_NAME%</name>
                 </computer_group>
             </computer_groups>
         </exclusions>
@@ -45,7 +48,7 @@
             <parameter4>%PARAMETER4_VALUE%</parameter4>
             <parameter5>%PARAMETER5_VALUE%</parameter5>
             <parameter6>%PARAMETER6_VALUE%</parameter6>
-            <parameter7>%FLOATING_PARAMETER7_VALUE%</parameter7>
+            <parameter7>%NODE_PARAMETER7_VALUE%</parameter7>
             <parameter8/>
             <parameter9/>
             <parameter10/>
@@ -57,8 +60,8 @@
         <force_users_to_view_description>true</force_users_to_view_description>
         <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
         <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
-        <self_service_display_name>%FLOATING_SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
-        <self_service_description>%FLOATING_SELFSERVICE_DESCRIPTION%</self_service_description>
+        <self_service_display_name>%NODE_SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
+        <self_service_description>%NODE_SELFSERVICE_DESCRIPTION%</self_service_description>
         <self_service_categories>
             <category>
                 <name>%POLICY_CATEGORY%</name>
@@ -68,8 +71,8 @@
         </self_service_categories>
     </self_service>
     <user_interaction>
-        <message_start>%FLOATING_POLICY_NAME% is being installed.</message_start>
-        <message_finish>%FLOATING_POLICY_NAME% has now been installed.</message_finish>
+        <message_start>%NODE_POLICY_NAME% is being installed.</message_start>
+        <message_finish>%NODE_POLICY_NAME% has now been installed.</message_finish>
     </user_interaction>
     <maintenance>
         <recon>true</recon>
