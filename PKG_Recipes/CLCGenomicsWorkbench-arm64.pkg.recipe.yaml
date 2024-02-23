@@ -10,6 +10,7 @@ Input:
   MAJOR_VERSION: "24"
   # CLC_LICENSE_SERVER: REPLACE-ME
   # CLC_LICENSE_PORT: '6200'
+  PLATFORM: arm64
 
 Process:
   - Processor: StopProcessingIf
@@ -75,7 +76,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.CLCGenomicsWorkbench%version%
-        pkgname: "CLCGenomicsWorkbench-%version%"
+        pkgname: "CLCGenomicsWorkbench-%version%-%PLATFORM%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: Scripts
