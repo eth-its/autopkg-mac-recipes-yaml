@@ -1,0 +1,8 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Todoist-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Todoist
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Todoist
