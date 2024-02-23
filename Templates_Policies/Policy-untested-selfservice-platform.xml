@@ -49,7 +49,7 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
-        <force_users_to_view_description>true</force_users_to_view_description>
+        <force_users_to_view_description>false</force_users_to_view_description>
         <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
         <reinstall_button_text>%REINSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>

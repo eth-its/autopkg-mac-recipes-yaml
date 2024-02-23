@@ -29,5 +29,5 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% %PLATFORM%"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION% %LANGUAGE% %PLATFORM%"
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME% %MAJOR_VERSION%" && echo "Corrected permissions for %NAME% %MAJOR_VERSION%."'
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-platform-forcedescription.xml
   TRIGGER_NAME: "%NAME% %MAJOR_VERSION% %PLATFORM%-install"
