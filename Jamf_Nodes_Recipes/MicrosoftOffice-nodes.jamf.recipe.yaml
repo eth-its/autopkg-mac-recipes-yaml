@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -8,5 +8,8 @@ Input:
   JSS_INVENTORY_NAME: Microsoft Word.app
   PKG_CATEGORY: Productivity
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
+  EXTENSION_ATTRIBUTE_NAME: "Microsoft Office Version"
+  EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeVersion-EA.sh
   SELFSERVICE_ICON: Microsoft 365.png
   POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install;jamf policy -event 'Microsoft Teams-uninstall'"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
