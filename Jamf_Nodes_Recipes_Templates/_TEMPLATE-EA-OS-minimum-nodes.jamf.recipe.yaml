@@ -54,7 +54,7 @@ Process:
     Arguments:
       category_name: "%POLICY_CATEGORY%"
 
- - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
