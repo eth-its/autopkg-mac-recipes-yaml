@@ -33,12 +33,18 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-OS-minimum.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
+  UPDATE_POLICY_NAME: "Update %NAME%"
+  UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update.xml
+  UPDATE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_NAME: "%NAME%"
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-OS-minimum.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   TRIGGER_NAME: "%NAME%-install"
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
   SELFSERVICE_ICON: "%NAME%.png"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME%"
+  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% will be updated to version %version%."
+
   PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
@@ -57,6 +63,10 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%UPDATE_POLICY_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
@@ -120,6 +130,14 @@ Process:
       SELFSERVICE_POLICY_CATEGORY: "%PKG_CATEGORY%"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Self Service update policy
+    Arguments:
+      policy_template: "%UPDATE_POLICY_TEMPLATE%"
+      policy_name: "%UPDATE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
