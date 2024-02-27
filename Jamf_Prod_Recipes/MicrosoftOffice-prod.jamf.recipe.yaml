@@ -7,7 +7,7 @@ Input:
   NAME: Microsoft Office
   JSS_INVENTORY_NAME: Microsoft Word.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOffice
-  EXTENSION_ATTRIBUTE_NAME: Microsoft AutoUpdate Version
+  EXTENSION_ATTRIBUTE_NAME: Microsoft Office Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$
   SELFSERVICE_ICON: Microsoft 365.png
