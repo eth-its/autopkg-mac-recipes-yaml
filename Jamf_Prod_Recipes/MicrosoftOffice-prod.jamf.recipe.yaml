@@ -10,6 +10,7 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: "Microsoft Office Version"
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$
+  minimum_os_version: "12.0"
   SELFSERVICE_ICON: Microsoft 365.png
   PROFILE_IDENTIFIER: com.microsoft.autoupdate2
   ORGANIZATION: ETH Zürich
