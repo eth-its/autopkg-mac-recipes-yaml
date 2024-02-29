@@ -35,7 +35,7 @@ Input:
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
   UPDATE_POLICY_NAME: "Update %NAME%"
-  UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update.xml
+  UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update-OS-minimum.xml
   UPDATE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_NAME: "%NAME%"
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-OS-minimum.xml
@@ -46,7 +46,6 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME%"
   UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% will be updated to version %version%."
-
   PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
