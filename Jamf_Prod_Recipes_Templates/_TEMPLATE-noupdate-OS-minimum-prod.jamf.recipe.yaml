@@ -34,6 +34,8 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-OS-minimum.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   UPDATE_POLICY_NAME: "Update %NAME%"
   UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update-OS-minimum.xml
   UPDATE_POLICY_CATEGORY: Updates
@@ -95,6 +97,12 @@ Process:
     Arguments:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+      
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%PROD_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%PROD_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
