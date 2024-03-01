@@ -3,7 +3,7 @@
 APP="/Applications/Microsoft Word.app"
 if [[ ! -e "$APP" ]]; then
     echo "$APP is not installed."
-    oldest_version_full="0"
+    oldest_version_full="None"
 else 
     myWord_full=$(defaults read "/Applications/Microsoft Word.app/Contents/Info.plist" CFBundleVersion )
     myExcel_full=$(defaults read "/Applications/Microsoft Excel.app/Contents/Info.plist" CFBundleVersion )
