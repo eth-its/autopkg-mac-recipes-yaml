@@ -20,7 +20,7 @@ Process:
   - Arguments:
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.ChimeraX%MAJOR_VERSION%
+        id: ch.ethz.id.pkg.ChimeraX%%
         pkgname: "ChimeraX-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
