@@ -8,12 +8,13 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ChimeraX
 Input:
   NAME: ChimeraX
   POLICY_NAME: "%NAME% (Testing)"
+  VERSION: 1.7.1
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     UCSF ChimeraX (or simply ChimeraX) is the next-generation molecular visualization program from the Resource for Biocomputing, Visualization, and Informatics (RBVI), following UCSF Chimera.
 
-    Version: %version%
+    Version: %VERSION%
     Category: %PKG_CATEGORY%
 
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -23,13 +24,12 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
+  INSTALL_BUTTON_TEXT: "Install %VERSION%"
+  REINSTALL_BUTTON_TEXT: "Install %VERSION%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  VERSION: 1.7.1
   JSS_INVENTORY_NAME: "%Name%-%VERSION%.app"
 
 Process:
