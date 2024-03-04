@@ -14,17 +14,17 @@ Process:
 
   - Processor: Copier
     Arguments:
-     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX.app"
-     source_path: "%pathname%/ChimeraX.app"
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX-%VERSION%.app"
+     source_path: "%pathname%/ChimeraX-%VERSION%.app"
 
   - Arguments:
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.ChimeraX%%
-        pkgname: "ChimeraX-%version%"
+        pkgname: "ChimeraX-%VERSION%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
-        version: "%version%"
+        version: "%VERSION%"
     Processor: PkgCreator
 
   - Arguments:
