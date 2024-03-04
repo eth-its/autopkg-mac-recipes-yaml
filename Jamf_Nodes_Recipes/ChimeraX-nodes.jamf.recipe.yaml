@@ -9,6 +9,6 @@ Input:
   LAST_RUN_SELFSERVICE_DESCRIPTION:  |
     UCSF ChimeraX (or simply ChimeraX) is the next-generation molecular visualization program from the Resource for Biocomputing, Visualization, and Informatics (RBVI), following UCSF Chimera.
 
-    Version: %version%
+    Version: %VERSION%
     Category: %PKG_CATEGORY%
-  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml

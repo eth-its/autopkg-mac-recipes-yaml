@@ -8,3 +8,4 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: ch.ethz.id.pkg.ChimeraX
   SELFSERVICE_ICON: ChimeraX.png
+  JSS_INVENTORY_NAME: "%NAME%-%VERSION%.app"
