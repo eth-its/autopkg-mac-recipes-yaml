@@ -7,7 +7,6 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ChimeraX
 
 Input:
   NAME: ChimeraX
-  MAJOR_VERSION: "1.7"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
