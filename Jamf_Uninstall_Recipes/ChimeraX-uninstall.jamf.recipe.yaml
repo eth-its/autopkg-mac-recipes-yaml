@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: ChimeraX
+  VERSION: 1.7.1
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: ch.ethz.id.pkg.ChimeraX
   SELFSERVICE_ICON: ChimeraX.png
