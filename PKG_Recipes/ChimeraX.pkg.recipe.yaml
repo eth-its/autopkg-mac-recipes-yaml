@@ -13,9 +13,9 @@ Process:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
 
-  - Arguments:
-      dmg_path: "%pathname_app%"
-    Processor: AppDmgVersioner
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
 
   - Arguments:
       pkgdirs:
@@ -24,7 +24,7 @@ Process:
     Processor: PkgRootCreator
 
   - Arguments:
-      source_path: "%pathname_app%/ChimeraX-%version%.app"
+      source_path: "%pathname%/ChimeraX-%version%.app"
       destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX.app"
     Processor: Copier
 
