@@ -19,6 +19,6 @@ Process:
 
   - Processor: URLDownloader
     Arguments:
-      url: file://%root_path%/%version%/%latest_file%.zip
+      url: file://%root_path%/%version%/%latest_file%.dmg
 
   - Processor: EndOfCheckPhase
