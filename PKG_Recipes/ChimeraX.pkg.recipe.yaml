@@ -8,6 +8,12 @@ Input: {}
 
 Process:
   - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+    
+  - Arguments:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
