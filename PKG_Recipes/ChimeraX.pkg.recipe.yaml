@@ -15,7 +15,7 @@ Process:
   - Processor: Copier
     Arguments:
      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX.app"
-     source_path: "%pathname%/ChimeraX-%VERSION%.app"
+     source_path: "%pathname%/ChimeraX-*.app"
 
   - Arguments:
       pkg_request:
