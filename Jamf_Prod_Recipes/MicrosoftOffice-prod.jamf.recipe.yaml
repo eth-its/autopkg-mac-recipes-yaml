@@ -1,3 +1,6 @@
+Comment: |
+  For Microsoft Office there is no auto-update group needed as updates done via MAU hence AUTOUPDATE_GROUP_NAME: "Microsoft applications auto-update" 
+  will be used in other recipes.
 Description: Creates all production policies for a particular title. This recipe also creates two configuration profiles for MAU updates.
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftOffice-prod
 MinimumVersion: "2.3"
