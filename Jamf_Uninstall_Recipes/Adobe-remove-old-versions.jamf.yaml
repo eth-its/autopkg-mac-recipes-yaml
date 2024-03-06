@@ -1,5 +1,5 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.macos-erase-install-script
+Identifier: com.github.eth-its-recipes.jamf.Adobe-remove-old-versions
 MinimumVersion: "2.3"
 
 Input:
