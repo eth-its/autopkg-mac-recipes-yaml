@@ -6,9 +6,3 @@ MinimumVersion: "2.3"
 Input:
   NAME: ChimeraX
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ChimeraX
-  LAST_RUN_SELFSERVICE_DESCRIPTION:  |
-    UCSF ChimeraX (or simply ChimeraX) is the next-generation molecular visualization program from the Resource for Biocomputing, Visualization, and Informatics (RBVI), following UCSF Chimera.
-
-    Version: %VERSION%
-    Category: %PKG_CATEGORY%
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml

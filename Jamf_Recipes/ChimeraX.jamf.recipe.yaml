@@ -1,6 +1,4 @@
-Description: |
-  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.ChimeraX
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.ChimeraX
@@ -8,15 +6,14 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ChimeraX
 Input:
   NAME: ChimeraX
   POLICY_NAME: "%NAME% (Testing)"
-  VERSION: 1.7.1
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     UCSF ChimeraX (or simply ChimeraX) is the next-generation molecular visualization program from the Resource for Biocomputing, Visualization, and Informatics (RBVI), following UCSF Chimera.
+    ChimeraX can be downloaded free of charge for academic, government, nonprofit, and personal use.
 
-    Version: %VERSION%
+    Version: %version%
     Category: %PKG_CATEGORY%
-
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -24,13 +21,12 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %VERSION%"
-  REINSTALL_BUTTON_TEXT: "Install %VERSION%"
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  JSS_INVENTORY_NAME: "%Name%-%VERSION%.app"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

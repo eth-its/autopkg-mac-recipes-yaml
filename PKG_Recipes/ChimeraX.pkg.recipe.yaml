@@ -1,33 +1,44 @@
-Description: |
-  Downloads the latest version of ChimeraX and creates a package.
+Description: Downloads latest ChimeraX installer and uses it to create a package.
 Identifier: com.github.eth-its-recipes.pkg.ChimeraX
-MinimumVersion: "2.3"
+MinimumVersion: 1.0.0
 ParentRecipe: com.github.eth-its-recipes.download.ChimeraX
 
-Input: {}
+Input:
+  NAME: ChimeraX
+  LIST_NAME: ChimeraX
 
 Process:
-  - Arguments:
+  - Processor: PkgRootCreator
+    Arguments:
       pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
-  - Processor: Copier
-    Arguments:
-     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX-%VERSION%.app"
-     source_path: "%pathname%/ChimeraX-%VERSION%.app"
-
   - Arguments:
+      source_path: "%pathname%/ChimeraX-%version%.app"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX.app"
+    Processor: Copier
+
+  - Processor: PkgCreator
+    Arguments:
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.ChimeraX
-        pkgname: "ChimeraX-%VERSION%"
+        id: "ch.ethz.id.pkg.chimerax"
+        pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
-        version: "%VERSION%"
-    Processor: PkgCreator
+        version: "%version%"
 
-  - Arguments:
+  - Processor: PathDeleter
+    Arguments:
       path_list:
         - "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PathDeleter
