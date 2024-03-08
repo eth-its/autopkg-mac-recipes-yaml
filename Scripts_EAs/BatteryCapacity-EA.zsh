@@ -8,6 +8,10 @@ condition=$(system_profiler SPPowerDataType | grep "Condition:" | sed 's/.*Condi
 
 if [[ "$arch" == "arm64" ]]; then
     capacity=" ($(system_profiler SPPowerDataType | grep "Maximum Capacity:" | sed 's/.*Maximum Capacity: //'))"
+else
+    designcapacity=$(ioreg -l -w0 | grep "\"DesignCapacity\" =" | sed 's/.*= //')
+    maxcapacity=$(ioreg -l -w0 | grep "\"MaxCapacity\" =" | sed 's/.*= //')
+    capacity=" ($(($maxcapacity*100/$designcapacity))%)"
 fi
 
 if [[ ! $condition ]]; then

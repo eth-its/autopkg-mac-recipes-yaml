@@ -7,9 +7,10 @@ Input: {}
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      EXTENSION_ATTRIBUTE_NAME: Battery Capacity
+      EXTENSION_ATTRIBUTE_NAME: Battery Capacity Extention
       ea_script_path: BatteryCapacity-EA.zsh
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      ea_inventory_display: "Hardware"
       replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
