@@ -11,7 +11,7 @@ if [[ "$arch" == "arm64" ]]; then
 else
     designcapacity=$(ioreg -l -w0 | grep "\"DesignCapacity\" =" | sed 's/.*= //')
     maxcapacity=$(ioreg -l -w0 | grep "\"MaxCapacity\" =" | sed 's/.*= //')
-    capacity=" ($(($maxcapacity*100/$designcapacity))%)"
+    capacity=" ($(($maxcapacity*100/$designcapacity)))"
 fi
 
 if [[ ! $condition ]]; then
