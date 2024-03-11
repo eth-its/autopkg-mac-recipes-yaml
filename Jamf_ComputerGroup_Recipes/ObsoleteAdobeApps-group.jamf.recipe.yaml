@@ -1,0 +1,22 @@
+Description: Creates a group of computers with obsolete Adobe Apps installed
+Identifier: com.github.eth-its-recipes.jamf.group.ObsoleteAdobeApps
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: ObsoleteAdobeApps
+      ea_script_path: ObsoleteAdobeApps.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      GROUP_NAME: Obsolete Adobe Apps
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+      EXTENSION_ATTRIBUTE_VALUE: ^$
+      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
