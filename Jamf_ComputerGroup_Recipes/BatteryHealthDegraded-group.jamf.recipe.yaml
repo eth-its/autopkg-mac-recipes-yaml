@@ -7,9 +7,10 @@ Input: {}
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
-      EXTENSION_ATTRIBUTE_NAME: Battery Capacity
+      EXTENSION_ATTRIBUTE_NAME: Battery Capacity Extention
       ea_script_path: BatteryCapacity-EA.zsh
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      ea_inventory_display: "Hardware"
       replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
@@ -17,6 +18,6 @@ Process:
       GROUP_NAME: Battery Health Degraded
       EXTENSION_ATTRIBUTE_SEARCH_TYPE: not like
       EXTENSION_ATTRIBUTE_VALUE: Normal
-      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_template: SmartGroup-generic-EA-not-empty.xml
       computergroup_name: "%GROUP_NAME%"
       replace_group: "True"
