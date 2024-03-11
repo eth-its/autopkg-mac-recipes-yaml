@@ -8,4 +8,6 @@ Input:
   SCRIPT_PATH: AdobeObsoleteApps-uninstall.sh
   SCRIPT_NAME: AdobeObsoleteApps-uninstall.sh
   EXTENSION_ATTRIBUTE_NAME: AdobeObsoleteApps
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^$
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
