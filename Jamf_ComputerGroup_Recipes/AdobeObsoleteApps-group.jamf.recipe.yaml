@@ -14,7 +14,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      GROUP_NAME: AdobeObsoleteApps installed
+      GROUP_NAME: Adobe Obsolete Apps installed
       EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
       EXTENSION_ATTRIBUTE_VALUE: ^$
       computergroup_template: SmartGroup-generic-EA.xml
