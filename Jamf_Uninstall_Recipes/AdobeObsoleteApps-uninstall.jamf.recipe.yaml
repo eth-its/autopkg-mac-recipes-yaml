@@ -1,0 +1,11 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeObsoleteApps-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: Adobe Obsolete Apps
+  SCRIPT_PATH: AdobeObsoleteApps-uninstall.sh
+  SCRIPT_NAME: AdobeObsoleteApps-uninstall.sh
+  EXTENSION_ATTRIBUTE_NAME: AdobeObsoleteApps
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
