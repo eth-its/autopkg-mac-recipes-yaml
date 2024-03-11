@@ -11,8 +11,8 @@ Input:
   NAME: SPSSStatistics
   LIST_LANGUAGE: ML
   LIST_NAME: IBM SPSS
-  MAJOR_VERSION: "29"
-  LIST_MAJOR_VERSION: "29"
+  MAJOR_VERSION: "28"
+  LIST_MAJOR_VERSION: "28"
 
 Process:
   - Processor: FlatPkgUnpacker
