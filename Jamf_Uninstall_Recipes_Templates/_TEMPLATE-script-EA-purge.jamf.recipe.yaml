@@ -4,6 +4,7 @@ Comment: |
   For Application-uninstall.sh, provide the PKG_ID key in the override. This allows the app to be closed and the package receipt to be removed. You will also need to provide JSS_INVENTORY_NAME if this does not match NAME.
   If the policy name does not match the NAME key, e.g. due to language or license being added to the policy name, SELF_SERVICE_DISPLAY_NAME and smart group name values may also need to be overridden.
   Do not add things like language or license to the NAME key.
+  This template also adds an auto-uninstall workflow
 
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.template-script-EA-purge
@@ -24,6 +25,12 @@ Input:
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
+  AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
+  AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
+  AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once per computer
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
@@ -43,6 +50,11 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%UNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOUNINSTALL_POLICY_CATEGORY%"
+
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -70,6 +82,16 @@ Process:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%AUTOUNINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
+      replace_group: False
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%UNINSTALL_POLICY_TEMPLATE%"
@@ -82,3 +104,9 @@ Process:
       policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+      replace_policy: True
