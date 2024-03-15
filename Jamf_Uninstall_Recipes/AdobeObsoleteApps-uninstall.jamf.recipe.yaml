@@ -5,8 +5,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-EA-purge
 
 Input:
   NAME: Adobe Obsolete Apps
-  SCRIPT_PATH: AdobeObsoleteApps-uninstall.sh
-  SCRIPT_NAME: AdobeObsoleteApps-uninstall.sh
+  SCRIPT_PATH: AdobeObsoleteApps-uninstall.zsh
+  SCRIPT_NAME: AdobeObsoleteApps-uninstall.zsh
   EXTENSION_ATTRIBUTE_NAME: AdobeObsoleteApps
   EXTENSION_ATTRIBUTE_SCRIPT_PATH: AdobeObsoleteApps.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
