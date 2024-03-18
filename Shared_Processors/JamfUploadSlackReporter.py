@@ -52,9 +52,9 @@ class JamfUploadSlackReporter(URLGetter):
             "description": ("Staged product name."),
         },
         "NAME": {"required": False, "description": ("Generic product name.")},
-        "version": {"required": True, "description": ("Product version.")},
+        "version": {"required": False, "description": ("Product version.")},
         "recipe_type": {"required": False, "description": ("Recipe type (prod).")},
-        "pkg_name": {"required": True, "description": ("Package in policy.")},
+        "pkg_name": {"required": False, "description": ("Package in policy.")},
         "webhook_url": {"required": False, "description": ("Slack webhook.")},
         "username": {
             "required": False,
@@ -133,6 +133,18 @@ class JamfUploadSlackReporter(URLGetter):
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*"
                 )
+ 
+        elif recipe_type == "uninstaller":
+            if not title:
+                title = "Uninstaller Staged"
+            self.output(f"Message Title: {title}")
+            self.output(f"JSS address: {jss_url}")
+            self.output(f"Title: {selfservice_policy_name}")
+            slack_text = (
+                f"*{title}:*\n"
+                + f"JSS address: {jss_url}\n"
+                + f"Title: *{selfservice_policy_name}*\n"
+            )
 
         # section for untested recipes
         else:
