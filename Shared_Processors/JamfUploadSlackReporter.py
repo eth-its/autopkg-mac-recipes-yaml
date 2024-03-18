@@ -52,9 +52,9 @@ class JamfUploadSlackReporter(URLGetter):
             "description": ("Staged product name."),
         },
         "NAME": {"required": False, "description": ("Generic product name.")},
-        "version": {"required": True, "description": ("Product version.")},
+        "version": {"required": False, "description": ("Product version.")},
         "recipe_type": {"required": False, "description": ("Recipe type (prod).")},
-        "pkg_name": {"required": True, "description": ("Package in policy.")},
+        "pkg_name": {"required": False, "description": ("Package in policy.")},
         "webhook_url": {"required": False, "description": ("Slack webhook.")},
         "username": {
             "required": False,
