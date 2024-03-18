@@ -12,7 +12,6 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT_PATH: AdobeObsoleteApps.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^$
-  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
   USERS_GROUP_NAME: "Adobe Obsolete Apps can be auto-uninstalled"
   INSTALLED GROUP NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
