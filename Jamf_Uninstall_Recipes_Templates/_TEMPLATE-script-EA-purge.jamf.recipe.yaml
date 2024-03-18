@@ -75,7 +75,7 @@ Process:
       computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
       replace_group: False
 
-    - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
