@@ -15,21 +15,18 @@ Input:
   SCRIPT_NAME: Application-uninstall.sh
   SCRIPT_PATH: Application-uninstall.sh
   SELFSERVICE_ICON: "%NAME%.png"
-  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
-  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
-  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-generic-EA.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
   AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
   AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
   AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
-  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall-noexclusion.xml
   AUTOUNINSTALL_POLICY_FREQUENCY: Once per computer
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
@@ -45,7 +42,6 @@ Input:
   REINSTALL_BUTTON_TEXT: Uninstall
   SELFSERVICE_FORCE_DESCRIPTION: "false"
 
-
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
@@ -54,7 +50,6 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOUNINSTALL_POLICY_CATEGORY%"
-
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
@@ -69,12 +64,6 @@ Process:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
