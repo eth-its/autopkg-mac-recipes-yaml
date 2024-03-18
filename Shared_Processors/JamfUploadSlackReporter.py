@@ -133,6 +133,13 @@ class JamfUploadSlackReporter(URLGetter):
                     + f"Version: *{version}*\n"
                     + f"Category: *{category}*"
                 )
+ 
+        elif recipe_type == "uninstaller":
+            if not title:
+                title = "Uninstaller Staged"
+            self.output(f"Message Title: {title}")
+            self.output(f"JSS address: {jss_url}")
+            self.output(f"Title: {selfservice_policy_name}")
 
         # section for untested recipes
         else:
