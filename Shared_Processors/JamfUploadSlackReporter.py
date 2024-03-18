@@ -139,11 +139,11 @@ class JamfUploadSlackReporter(URLGetter):
                 title = "Uninstaller Staged"
             self.output(f"Message Title: {title}")
             self.output(f"JSS address: {jss_url}")
-            self.output(f"Title: {selfservice_policy_name}")
+            self.output(f"Title: {policy_name}")
             slack_text = (
                 f"*{title}:*\n"
                 + f"JSS address: {jss_url}\n"
-                + f"Title: *{selfservice_policy_name}*\n"
+                + f"Title: *{policy_name}*\n"
             )
 
         # section for untested recipes
