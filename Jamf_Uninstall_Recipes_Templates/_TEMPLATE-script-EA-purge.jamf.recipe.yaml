@@ -15,7 +15,7 @@ Input:
   SCRIPT_NAME: Application-uninstall.sh
   SCRIPT_PATH: Application-uninstall.sh
   SELFSERVICE_ICON: "%NAME%.png"
-  INSTALLED GROUP NAME: "%NAME% installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
