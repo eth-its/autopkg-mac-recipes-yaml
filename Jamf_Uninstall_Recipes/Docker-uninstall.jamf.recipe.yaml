@@ -6,4 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Docker
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
-  SELFSERVICE_ICON: Dockers.png
+  SELFSERVICE_ICON: Docker.png
