@@ -15,8 +15,6 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PATH: "%NAME%-postinstall.sh"
   SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
