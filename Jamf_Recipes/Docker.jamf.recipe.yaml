@@ -1,7 +1,7 @@
 Description: Downloads the latest version of Docker and makes a pkg of it then uploads it to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Docker
 MinimumVersion: "2.3"
-ParentRecipe: com.github.wegotoeleven-recipes.pkg.DockerUniversal
+ParentRecipe: com.github.smithjw.pkg.Docker-Universal
 
 Input:
   NAME: Docker
