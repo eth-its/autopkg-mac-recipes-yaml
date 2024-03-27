@@ -1,0 +1,18 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Comsol61-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: Docker
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
+  SCRIPT_PATH: Docker-uninstall.zsh
+  SCRIPT_NAME: Docker-uninstall.zsh
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
+  UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
+  USERS_GROUP_NAME: "%NAME% users"
+  SELFSERVICE_ICON: "%NAME%.png"
