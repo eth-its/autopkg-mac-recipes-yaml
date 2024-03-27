@@ -5,8 +5,8 @@ ParentRecipe: com.github.smithjw.pkg.Docker
 
 Input:
   NAME: Docker
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. 
