@@ -1,0 +1,28 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Docker-x86_64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-prod
+
+Input:
+  NAME: Docker
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  PLATFORM: x86_64
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Docker-x86_64
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
+  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %PLATFORM%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %PLATFORM%"
+  UPDATE_POLICY_NAME: "Update %NAME% %PLATFORM%"
+  SELFSERVICE_POLICY_NAME: "%NAME% %PLATFORM%"
+  TRIGGER_NAME: "%NAME% %PLATFORM%-install"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %PLATFORM%"
+  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% will be updated to version %version%."
