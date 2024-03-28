@@ -19,8 +19,8 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
