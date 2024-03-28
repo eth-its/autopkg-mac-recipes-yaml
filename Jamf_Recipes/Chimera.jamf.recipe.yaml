@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.novaksam.pkg.Chimera
 
 Input:
-  NAME: Chimera (legacy)
+  NAME: Chimera
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math

@@ -4,5 +4,5 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
-  NAME: Chimera (legacy)
+  NAME: Chimera
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Chimera
