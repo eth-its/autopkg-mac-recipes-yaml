@@ -1,7 +1,7 @@
 Description: Downloads the latest version of ISL Light Client and creates a package.
 Identifier: com.github.eth-its-recipes.pkg.ISLLightClient
 MinimumVersion: 1.0.0
-ParentRecipe: com.github.dataJAR-recipes.download.ISL Light Client
+ParentRecipe: com.github.eth-its-recipes.download.ISLLightClient
 
 Input:
   BUNDLE_ID: com.islonline.isllight.client
