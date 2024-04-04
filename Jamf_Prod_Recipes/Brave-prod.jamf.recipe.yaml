@@ -1,8 +1,8 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.Brave-prod
+Identifier: com.github.eth-its-recipes.jamf.BraveBrowser-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 
 Input:
-  NAME: Brave
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Brave
+  NAME: Brave Browser
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.BraveBrowser

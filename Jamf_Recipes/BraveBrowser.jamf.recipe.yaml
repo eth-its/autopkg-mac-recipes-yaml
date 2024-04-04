@@ -1,10 +1,10 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Brave
+Identifier: com.github.eth-its-recipes.jamf.BraveBrowser
 MinimumVersion: "2.3"
 ParentRecipe: com.github.moofit-recipes.pkg.BraveBrowserUniversal
 
 Input:
-  NAME: Brave
+  NAME: Brave Browser
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
