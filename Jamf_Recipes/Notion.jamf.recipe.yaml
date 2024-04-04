@@ -1,15 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Chimera
+Identifier: com.github.eth-its-recipes.jamf.Notion
 MinimumVersion: "2.3"
-ParentRecipe: com.github.novaksam.pkg.Chimera
+ParentRecipe: com.github.swy.pkg.Notion
 
 Input:
-  NAME: Chimera
+  NAME: Notion
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    UCSF Chimera is a program for the interactive visualization and analysis of molecular structures and related data, including density maps, trajectories, and sequence alignments.
+    Notion – The all-in-one workspace for your notes, tasks, wikis, and databases. Write, plan, collaborate, and get organized. Notion is all you need — in one tool.
 
     Version: %version%
     Category: %PKG_CATEGORY%

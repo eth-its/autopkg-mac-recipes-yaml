@@ -1,8 +1,8 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Chimera-nodes
+Identifier: com.github.eth-its-recipes.jamf.Discord-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Chimera
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Chimera
+  NAME: Discord
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Discord

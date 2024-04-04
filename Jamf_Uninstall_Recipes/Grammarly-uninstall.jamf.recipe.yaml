@@ -1,9 +1,10 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.Chimera-uninstall
+Identifier: com.github.eth-its-recipes.jamf.Grammarly-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: Chimera
+  NAME: Grammarly
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: edu.ucsf.cgl.chimera
+  PARAMETER5_VALUE: com.grammarly.ProjectLlama

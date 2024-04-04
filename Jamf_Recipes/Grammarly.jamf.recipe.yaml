@@ -1,15 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Chimera
+Identifier: com.github.eth-its-recipes.jamf.Grammarly
 MinimumVersion: "2.3"
-ParentRecipe: com.github.novaksam.pkg.Chimera
+ParentRecipe: com.github.homebysix.pkg.Grammarly
 
 Input:
-  NAME: Chimera
+  NAME: Grammarly
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    UCSF Chimera is a program for the interactive visualization and analysis of molecular structures and related data, including density maps, trajectories, and sequence alignments.
+    The Grammarly writing app and proofreader allows you to write clearly, confidently, and mistake-free in all your apps.
 
     Version: %version%
     Category: %PKG_CATEGORY%
