@@ -1,0 +1,8 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Obsidian-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Obsidian
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Obsidian
