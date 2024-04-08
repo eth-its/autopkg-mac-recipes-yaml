@@ -26,7 +26,7 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  EXTENSION_ATTRIBUTE_NAME: OperaVersion
+  EXTENSION_ATTRIBUTE_NAME: OperaVersion-EA.sh
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
