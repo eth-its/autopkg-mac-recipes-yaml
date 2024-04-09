@@ -5,10 +5,10 @@
         <key>PayloadContent</key>
         <array>
             <dict>
-                <key>PayloadDescription</key>
-                <string>Configures Privacy Preferences Policy Control settings</string>
                 <key>PayloadDisplayName</key>
-                <string>Privacy Preferences Policy Control</string>
+                <string>Security &amp; Privacy</string>
+                <key>PayloadEnabled</key>
+                <true/>
                 <key>PayloadIdentifier</key>
                 <string>ch.ethz.995742DF-C28B-4FAF-98A8-52B35DA3B11F</string>
                 <key>PayloadType</key>
@@ -19,43 +19,44 @@
                 <integer>1</integer>
                 <key>Services</key>
                 <dict>
-				<key>Accessibility</key>
-				<array>
-					<dict>
-						<key>Allowed</key>
-						<true/>
-						<key>CodeRequirement</key>
-						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
-						<key>Comment</key>
-						<string></string>
-						<key>Identifier</key>
-						<string>com.logmein.GoToMeeting</string>
-						<key>IdentifierType</key>
-						<string>bundleID</string>
-						<key>StaticCode</key>
-						<false/>
-					</dict>
-				</array>
-				<key>ScreenCapture</key>
-				<array>
-					<dict>
-						<key>Authorization</key>
-						<string>AllowStandardUserToSetSystemService</string>
-						<key>CodeRequirement</key>
-						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
-						<key>Comment</key>
-						<string></string>
-						<key>Identifier</key>
-						<string>com.logmein.GoToMeeting</string>
-						<key>IdentifierType</key>
-						<string>bundleID</string>
-						<key>StaticCode</key>
-						<false/>
-					</dict>
-				</array>
+                    <key>Accessibility</key>
+                    <array>
+                        <dict>
+                            <key>Allowed</key>
+                            <true/>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logmein.GoToMeeting</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <false/>
+                        </dict>
+                    </array>
+                    <key>ScreenCapture</key>
+                    <array>
+                        <dict>
+                            <key>Authorization</key>
+                            <string>AllowStandardUserToSetSystemService</string>
+                            <key>CodeRequirement</key>
+                            <string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
+                            <key>Comment</key>
+                            <string></string>
+                            <key>Identifier</key>
+                            <string>com.logmein.GoToMeeting</string>
+                            <key>IdentifierType</key>
+                            <string>bundleID</string>
+                            <key>StaticCode</key>
+                            <false/>
+                        </dict>
+                    </array>
+                </dict>
             </dict>
         </array>
-        <key>PayloadDescription</key>
+	    <key>PayloadDescription</key>
         <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
         <string>%PROFILE_NAME%</string>
