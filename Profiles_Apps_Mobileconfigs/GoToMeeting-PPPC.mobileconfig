@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>ConsentText</key>
-	<dict>
-		<key>default</key>
-		<string></string>
-	</dict>
-	<key>PayloadContent</key>
-	<array>
-		<dict>
-			<key>PayloadDisplayName</key>
-			<string>Security &amp; Privacy</string>
-			<key>PayloadEnabled</key>
-			<true/>
-			<key>PayloadIdentifier</key>
-			<string>3578A168-7774-4061-AF60-33144B806106</string>
-			<key>PayloadType</key>
-			<string>com.apple.TCC.configuration-profile-policy</string>
-			<key>PayloadUUID</key>
-			<string>3578A168-7774-4061-AF60-33144B806106</string>
-			<key>PayloadVersion</key>
-			<integer>1</integer>
-			<key>Services</key>
-			<dict>
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>3578A168-7774-4061-AF60-33144B806106</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>3578A168-7774-4061-AF60-33144B806106</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+               <dict>
 				<key>Accessibility</key>
 				<array>
 					<dict>
 						<key>Allowed</key>
 						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logmein.GoToMeeting</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+				</array>
+				<key>ListenEvent</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
 						<key>CodeRequirement</key>
 						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
 						<key>Comment</key>
@@ -47,11 +59,11 @@
 						<key>Authorization</key>
 						<string>AllowStandardUserToSetSystemService</string>
 						<key>CodeRequirement</key>
-						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
+						<string>identifier "com.hnc.Discord" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "53Q6R32WPB"</string>
 						<key>Comment</key>
 						<string></string>
 						<key>Identifier</key>
-						<string>com.logmein.GoToMeeting</string>
+						<string>com.hnc.Discord</string>
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 						<key>StaticCode</key>
@@ -59,23 +71,23 @@
 					</dict>
 				</array>
 			</dict>
-		</dict>
-	</array>
-<key>PayloadDescription</key>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
         <string>%PROFILE_DESCRIPTION%</string>
-	<key>PayloadDisplayName</key>
-	<string>%PROFILE_NAME%</string>
-	<key>PayloadIdentifier</key>
-	<string>6A7D4330-A837-4BAF-BBC9-B2A0EDD47A47</string>
-	<key>PayloadOrganization</key>
-	<string>%ORGANIZATION%</string>
-	<key>PayloadScope</key>
-	<string>System</string>
-	<key>PayloadType</key>
-	<string>Configuration</string>
-	<key>PayloadUUID</key>
-	<string>6A7D4330-A837-4BAF-BBC9-B2A0EDD47A47</string>
-	<key>PayloadVersion</key>
-	<integer>1</integer>
-</dict>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>6A7D4330-A837-4BAF-BBC9-B2A0EDD47A47</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>6A7D4330-A837-4BAF-BBC9-B2A0EDD47A47</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
 </plist>

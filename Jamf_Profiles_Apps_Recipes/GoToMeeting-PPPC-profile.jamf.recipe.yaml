@@ -9,7 +9,7 @@ Input:
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
-  PROFILE_DESCRIPTION: "Manages Accessibility settings for %NAME%"
+  PROFILE_DESCRIPTION: "Manages Privacy settings for %NAME%"
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: GoToMeeting-PPPC.mobileconfig
   USERS_GROUP_NAME: "%NAME% users"
