@@ -10,7 +10,7 @@
                 <key>PayloadEnabled</key>
                 <true/>
                 <key>PayloadIdentifier</key>
-                <string>ch.ethz.995742DF-C28B-4FAF-98A8-52B35DA3B11F</string>
+                <string>995742DF-C28B-4FAF-98A8-52B35DA3B11F</string>
                 <key>PayloadType</key>
                 <string>com.apple.TCC.configuration-profile-policy</string>
                 <key>PayloadUUID</key>
@@ -61,7 +61,7 @@
         <key>PayloadDisplayName</key>
         <string>%PROFILE_NAME%</string>
         <key>PayloadIdentifier</key>
-        <string>ch.ethz.ACE45C86-5E5F-4AA1-ACA9-37225EE02B42</string>
+        <string>ACE45C86-5E5F-4AA1-ACA9-37225EE02B42</string>
         <key>PayloadOrganization</key>
         <string>%ORGANIZATION%</string>
         <key>PayloadScope</key>
