@@ -53,29 +53,6 @@
 						<false/>
 					</dict>
 				</array>
-			</dict>
-				</array>
-			</dict>
-				</array>
-				<key>ScreenCapture</key>
-				<array>
-					<dict>
-						<key>Authorization</key>
-						<string>AllowStandardUserToSetSystemService</string>
-						<key>CodeRequirement</key>
-						<string>identifier "com.logmein.GoToMeeting" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GFNFVT632V</string>
-						<key>Comment</key>
-						<string></string>
-						<key>Identifier</key>
-						<string>com.logmein.GoToMeeting</string>
-						<key>IdentifierType</key>
-						<string>bundleID</string>
-						<key>StaticCode</key>
-						<false/>
-					</dict>
-				</array>
-			</dict>
-
             </dict>
         </array>
         <key>PayloadDescription</key>
