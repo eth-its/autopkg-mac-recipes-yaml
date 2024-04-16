@@ -14,14 +14,14 @@ Process:
 
   - Processor: Copier
     Arguments:
-     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/SnapGene.app"
-     source_path: "%pathname%/SnapGene.app"
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/Chimera.app"
+     source_path: "%pathname%/Chimera.app"
 
   - Arguments:
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.SnapGene%MAJOR_VERSION%
-        pkgname: "SnapGene-%version%"
+        id: ch.ethz.id.pkg.Chimera
+        pkgname: "Chimera-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         version: "%version%"
