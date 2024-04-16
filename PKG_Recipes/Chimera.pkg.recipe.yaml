@@ -1,4 +1,4 @@
-Description: Downloads latest ChimeraX installer and uses it to create a package.
+Description: Downloads latest Chimera installer and uses it to create a package.
 Identifier: com.github.eth-its-recipes.pkg.Chimera
 MinimumVersion: 1.0.0
 ParentRecipe: com.github.eth-its-recipes.download.Chimera
@@ -24,7 +24,7 @@ Process:
     Processor: PkgRootCreator
 
   - Arguments:
-      source_path: "%pathname%/Chimera-%version%.app"
+      source_path: "%pathname%/Chimera.app"
       destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/Chimera.app"
     Processor: Copier
 
