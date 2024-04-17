@@ -36,7 +36,7 @@ Process:
       computergroup_name: "%USERS_GROUP_NAME%"
       replace_group: "False"
 
-   Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
