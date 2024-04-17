@@ -1,5 +1,6 @@
-Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.Grammarly-PPPC-profile
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.ReGrammarlyctangle-PPPC-profile
 MinimumVersion: "2.3"
 
 Input:
@@ -8,8 +9,7 @@ Input:
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
-  PROFILE_DESCRIPTION: "Enables a standard user to allow Accessibility for %NAME%"
-  IDENTIFIER: com.grammarly.ProjectLlama
+  PROFILE_DESCRIPTION: "Manages Accessibility settings for %NAME%"
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: Grammarly-PPPC.mobileconfig
   USERS_GROUP_NAME: "%NAME% users"
@@ -42,8 +42,5 @@ Process:
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
-      identifier: "%IDENTIFIER%"
-      organization: "%ORGANIZATION%"
-      profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      profile_computergroup: "%GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
