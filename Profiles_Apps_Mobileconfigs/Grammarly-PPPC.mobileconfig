@@ -37,7 +37,7 @@
 					</dict>
 				</array>
 			</dict>
-        </array>
+        <array>
         <key>PayloadDescription</key>
         <string>%PROFILE_DESCRIPTION%</string>
         <key>PayloadDisplayName</key>
