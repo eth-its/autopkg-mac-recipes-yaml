@@ -63,7 +63,7 @@
 						<key>Comment</key>
 						<string></string>
 						<key>Identifier</key>
-						<string>com.hnc.Discord</string>
+						<string>com.logmein.GoToMeeting</string>
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 						<key>StaticCode</key>
