@@ -28,11 +28,11 @@ Process:
   - Processor: URLDownloader
     Comment: Downloads the file from the source repo to the AutoPkg cache
     Arguments:
-      url: file://%root_path%/%version%/%latest_file%.pkg
+      url: file://%root_path%/%version%/%"latest_file"%.pkg
 
   - Processor: URLDownloader
     Comment: Downloads the file from the source repo to the AutoPkg cache
     Arguments:
-      url: file://%root_path%/%version%/%latest_file%.key
+      url: file://%root_path%/%version%/%"latest_file"%.key
 
   - Processor: EndOfCheckPhase
