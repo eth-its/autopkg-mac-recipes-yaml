@@ -1,0 +1,38 @@
+Description: Checks /tmp/AutoPkg_Local_Sources for update.
+Identifier: com.github.eth-its-recipes.download.FreeFileSync
+MinimumVersion: "2.3"
+
+Input:
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
+  LIST_NAME: FreeFileSync
+  VENDOR: Zenju
+  STOP_PREDICATE: file_exists == True
+
+Process:
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
+    Comment: Get list of folder contents. Outputs found_directories and found_filenames.
+    Arguments:
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
+
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Comment: Gets the latest version of a file and its containing folder. Outputs latest_file, version.
+    Arguments:
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
+
+  - Processor: StopProcessingIf
+    Comment: Checks if the file already exists in the cache
+    Arguments:
+      predicate: "%STOP_PREDICATE%"
+
+  - Processor: URLDownloader
+    Comment: Downloads the file from the source repo to the AutoPkg cache
+    Arguments:
+      url: file://%root_path%/%version%/%latest_file%.pkg
+
+  - Processor: URLDownloader
+    Comment: Downloads the file from the source repo to the AutoPkg cache
+    Arguments:
+      url: file://%root_path%/%version%/%latest_file%.key
+
+  - Processor: EndOfCheckPhase
