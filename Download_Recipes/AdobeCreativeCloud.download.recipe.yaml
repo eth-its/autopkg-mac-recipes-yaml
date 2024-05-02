@@ -9,7 +9,6 @@ Input:
   LIST_NAME: Creative_Cloud_Desktop_App
   VENDOR: Adobe
   STOP_PREDICATE: "file_exists == True"
-  pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
@@ -33,10 +32,16 @@ Process:
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
 
-  - Processor: FileMover
-    Comment: "Renames Package to something trackable"
+  - Processor: PkgCopier
+    Comment: "Copies and renames the package to something useful"
     Arguments:
-      source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
-      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+      pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
+
+  # - Processor: FileMover
+  #   Comment: "Renames Package to something trackable"
+  #   Arguments:
+  #     source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+  #     target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
   - Processor: EndOfCheckPhase
