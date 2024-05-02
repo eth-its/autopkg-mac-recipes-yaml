@@ -35,7 +35,7 @@ Process:
   - Processor: FileMover
     Comment: "Renames Package to something trackable"
     Arguments:
-      source: "file://%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
-      target: "file://%RECIPE_CACHE_DIR%/Creative_Cloud_Dekstop_App_someVersion.pkg"
+      source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
   - Processor: EndOfCheckPhase
