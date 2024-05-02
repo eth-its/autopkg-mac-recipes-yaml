@@ -34,6 +34,8 @@ Input:
   SELFSERVICE_ICON: "%NAME% 5.3.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+  pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
+  
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
