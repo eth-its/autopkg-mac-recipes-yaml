@@ -9,6 +9,7 @@ Input:
   LIST_NAME: Creative_Cloud_Desktop_App
   VENDOR: Adobe
   STOP_PREDICATE: "file_exists == True"
+  pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
