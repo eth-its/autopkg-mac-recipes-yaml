@@ -31,11 +31,11 @@ Process:
     Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
-      
+
   - Processor: FileMover
     Comment: "Renames Package to something trackable"
     Arguments:
-      source: "file://%RECIPE_CACHE_DIR%/%latest_file%.pkg"
+      source: "file://%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
       target: "file://%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
   - Processor: EndOfCheckPhase
