@@ -38,13 +38,13 @@ Process:
   - Processor: FileMover
     Comment: Renames the Source Package and gives back the brackets (which were omitted due to curl not handling them gracefully)
     Arguments: 
-      source: file://%RECIPE_CACHE_DIR%/%latest_file%.pkg
-      target: file://%RECIPE_CACHE_DIR%/%LIST_NAME%_%version%_[Business].pkg
+      source: "%RECIPE_CACHE_DIR%/%latest_file%.pkg"
+      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%_%version%_[Business].pkg"
 
   - Processor: FileMover
     Comment: Renames the Source Keyfile and gives back the brackets (which were omitted due to curl not handling them gracefully)
     Arguments: 
-      source: file://%RECIPE_CACHE_DIR%/%latest_file%.key
-      target: file://%RECIPE_CACHE_DIR%/%LIST_NAME%_%version%_[Business].key
+      source: "%RECIPE_CACHE_DIR%/%latest_file%.key"
+      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%_%version%_[Business].key"
 
   - Processor: EndOfCheckPhase
