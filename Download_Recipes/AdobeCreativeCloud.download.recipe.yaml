@@ -30,6 +30,18 @@ Process:
   - Processor: URLDownloader
     Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
-      url: "file://%root_path%/%version%/%latest_file%.zip"
+      url: "file://%root_path%/%version%/%latest_file%.pkg"
+
+  - Processor: PkgCopier
+    Comment: "Copies and renames the package to something useful"
+    Arguments:
+      source_pkg: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+      pkg_path: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
+
+  # - Processor: FileMover
+  #   Comment: "Renames Package to something trackable"
+  #   Arguments:
+  #     source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+  #     target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
   - Processor: EndOfCheckPhase

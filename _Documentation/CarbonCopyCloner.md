@@ -12,4 +12,3 @@ Since we do not want to include the license information in a public repo, the fo
 - `REGISTRATION_PRODUCT_NAME`
 
 Note that during release of a new version, we need separate profile for the testing version and the prod version, because the codes will be different.
-test-entry
