@@ -25,7 +25,7 @@ Input:
   AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
   AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
   AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall-noexclusion.xml
-  AUTOUNINSTALL_POLICY_FREQUENCY: Once per computer
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml

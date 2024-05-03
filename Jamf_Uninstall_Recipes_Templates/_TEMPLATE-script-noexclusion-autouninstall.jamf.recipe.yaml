@@ -19,7 +19,7 @@ Input:
   AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
   AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
   AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall-noexclusion.xml
-  AUTOUNINSTALL_POLICY_FREQUENCY: Once per day
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
   UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
 
 Process:
