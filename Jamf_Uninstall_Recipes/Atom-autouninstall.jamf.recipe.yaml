@@ -7,3 +7,5 @@ Input:
   NAME: Atom
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.github.atom
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
+

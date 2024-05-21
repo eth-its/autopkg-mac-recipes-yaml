@@ -8,3 +8,4 @@ Input:
   SCRIPT_PATH: SophosAntiVirus-uninstall.sh
   SCRIPT_NAME: SophosAntiVirus-uninstall.sh
   PKG_ID: ch.ethz.id.pkg.SophosAntiVirus
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
