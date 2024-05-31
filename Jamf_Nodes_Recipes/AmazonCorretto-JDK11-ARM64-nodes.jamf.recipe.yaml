@@ -1,10 +1,10 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.AmazonCoretto-JDK11-ARM64-nodes
+Identifier: com.github.eth-its-recipes.jamf.AmazonCorretto-JDK11-ARM64-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: AmazonCorettoJDK11
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AmazonCoretto-JDK11-ARM64
+  NAME: AmazonCorrettoJDK11
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AmazonCorretto-JDK11-ARM64
   TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Development & Computing
   TRIGGER_POLICY_CATEGORY: Triggered Installers
