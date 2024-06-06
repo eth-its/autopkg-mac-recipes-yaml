@@ -54,13 +54,13 @@ Process:
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "True"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%TEST_USERS_GROUP_NAME%"
       computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      replace_group: "True"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
