@@ -11,5 +11,5 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: "Microsoft Office Version"
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeVersion-EA.sh
   SELFSERVICE_ICON: Microsoft 365.png
-  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install;jamf policy -event 'Microsoft Teams-uninstall'"
+  POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
