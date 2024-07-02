@@ -21,9 +21,6 @@
         <departments/>
         <computer_groups>
             <computer_group>
-                <name>Microsoft Office 2019 users</name>
-            </computer_group>
-            <computer_group>
                 <name>Microsoft Office users</name>
             </computer_group>
         </computer_groups>
