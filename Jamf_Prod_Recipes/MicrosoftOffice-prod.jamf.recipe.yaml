@@ -28,7 +28,7 @@ Input:
   AUTOUPDATE_PROFILE_DESCRIPTION: Update settings for Microsoft AutoUpdate. This profile will detect and download updates directly from Microsoft's servers based on the "Custom" channel, the contents of which are determined by internal testing at ETH. These updates will be automatically updated with a deadline set of 7 days.
   REPLACE_PROFILE: "False"
   AUTOUPDATE_GROUP_NAME: "Microsoft applications auto-update"
-  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install;jamf policy -event 'Microsoft Teams-uninstall'"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event MicrosoftOfficeLicense-install"
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/MSOfficeVersionSplitter
