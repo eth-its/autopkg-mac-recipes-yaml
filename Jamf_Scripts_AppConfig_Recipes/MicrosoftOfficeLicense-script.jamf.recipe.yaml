@@ -41,7 +41,7 @@ Input:
   PARAMETER11_VALUE: "None"
   # policies - floating
   FLOATING_TRIGGER_POLICY_NAME: Install Microsoft Office 365 License
-  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplus2exclusions-parameters-nonotification.xml
+  FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
   FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   FLOATING_PARAMETER4_VALUE: "--Volume"
   # policies - node (LTSC 2021)
