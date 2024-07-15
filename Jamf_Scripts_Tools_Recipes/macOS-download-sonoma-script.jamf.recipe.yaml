@@ -12,7 +12,7 @@ Input:
   INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
-  MAX_OS_VERSION: "13.99"
+  MAX_OS_VERSION: "14.99"
   MODEL_IDENTIFIER_REGEX: ^(iMac(19|[2-9]\d)|^MacPro[7-9]|iMacPro|Macmini([8-9]|\d\d)|MacBookAir([8-9]|\d\d)|MacBook(\d\d)|MacBookPro(1[5-9])|Mac1[3-9]|VirtualMac)
   SCRIPT_NAME: "macOS-download-sonoma.zsh"
   SCRIPT_PRIORITY: After
