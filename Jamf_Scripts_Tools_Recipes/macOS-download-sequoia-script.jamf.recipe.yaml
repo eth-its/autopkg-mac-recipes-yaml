@@ -1,0 +1,60 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.macos-download-sequoia-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Download macOS Sequoia Installer
+  POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
+  INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-download-ineligible.xml
+  MIN_OS_VERSION: "10.12.4"
+  MAX_OS_VERSION: "13.99"
+  MODEL_IDENTIFIER_REGEX: ^(Mac1[3-9],\b[0-9]{1,2}\b|MacBook\d{2}|MacBookAir(9|\d{2}),[1-9]|Macmini[8-9],\b[0-9]{1,2}\b|MacPro[7-9],\b[0-9]{1,2}\b|iMacPro[1-9],\b[0-9]{1,2}\b|iMac(19|2[0-9]),\d|MacBookPro(1[5-9]|2[0-9]),\b[0-9]{1,2}\b|VirtualMac))
+  SCRIPT_NAME: "macOS-download-sequoia.zsh"
+  SCRIPT_PRIORITY: After
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice-exclusion-ineligible-notification.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_DESCRIPTION: |
+    Downloads 'Install macOS Sequoia.app' to the Applications folder, which can then be run manaully to reinstall macOS. If there are any existing macOS installers present in the Applications folder, this will replace them.
+  SELFSERVICE_ICON: Install macOS Sequoia.png
+  INSTALL_BUTTON_TEXT: Download
+  REINSTALL_BUTTON_TEXT: Download Again
+  FORCE_DESCRIPTION: "false"
+  MESSAGE_START: The macOS Monterey installer application will now be downloaded.
+  MESSAGE_FINISH: The macOS Monterey installer has been downloaded to the Applications folder.
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INELIGIBLE_GROUP_NAME%"
+      computergroup_template: "%INELIGIBLE_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
