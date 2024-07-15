@@ -12,8 +12,8 @@ Input:
   INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
   INELIGIBLE_GROUP_TEMPLATE: SmartGroup-macOS-upgrade-ineligible.xml
   MIN_OS_VERSION: "10.12.4"
-  MAX_OS_VERSION: "14.99"
-  MODEL_IDENTIFIER_REGEX: ^(Mac1[3-9],\b[0-9]{1,2}\b|MacBook\d{2}|MacBookAir(9|\d{2}),[1-9]|Macmini[8-9],\b[0-9]{1,2}\b|MacPro[7-9],\b[0-9]{1,2}\b|iMacPro[1-9],\b[0-9]{1,2}\b|iMac(19|2[0-9]),\d|MacBookPro(1[5-9]|2[0-9]),\b[0-9]{1,2}\b|VirtualMac))
+  MAX_OS_VERSION: "15.99"
+  MODEL_IDENTIFIER_REGEX: (^Mac1[3-9],\b[0-9]{1,2}\b|MacBook\d{2}|MacBookAir(9|\d{2}),[1-9]|Macmini[8-9],\b[0-9]{1,2}\b|MacPro[7-9],\b[0-9]{1,2}\b|iMacPro[1-9],\b[0-9]{1,2}\b|iMac(19|2[0-9]),\d|MacBookPro(1[5-9]|2[0-9]),\b[0-9]{1,2}\b|VirtualMac)
   SCRIPT_NAME: "macOS-upgrade-sequoia.zsh"
   SCRIPT_PRIORITY: After
   POLICY_CATEGORY: Tools & Accessories
