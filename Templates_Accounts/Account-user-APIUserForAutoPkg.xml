@@ -38,9 +38,11 @@
             <privilege>Create Smart Computer Groups</privilege>
             <privilege>Read Smart Computer Groups</privilege>
             <privilege>Update Smart Computer Groups</privilege>
+            <privilege>Delete Smart Computer Groups</privilege>
             <privilege>Create Static Computer Groups</privilege>
             <privilege>Read Static Computer Groups</privilege>
             <privilege>Update Static Computer Groups</privilege>
+            <privilege>Delete Static Computer Groups</privilege>
             <privilege>Create macOS Configuration Profiles</privilege>
             <privilege>Read macOS Configuration Profiles</privilege>
             <privilege>Update macOS Configuration Profiles</privilege>
