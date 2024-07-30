@@ -40,6 +40,7 @@ Input:
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN installed"
   FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-installed.xml
+  FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN test versio installed"
   FLOATING_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN users"
   FLOATING_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-users.xml
   FLOATING_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Floating EN test users"
@@ -59,6 +60,7 @@ Input:
   NODE_PARAMETER7_VALUE: Node
   NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
   NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-installed.xml
+  NODE_TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN test versio installed"
   NODE_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN users"
   NODE_USERS_GROUP_TEMPLATE: SmartGroup-Matlab-Node-users.xml
   NODE_TEST_USERS_GROUP_NAME: "MATLAB_%MAJOR_VERSION%_Node EN test users"
@@ -146,3 +148,13 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%NODE_POLICY_NAME% (Testing)"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%NODE_TEST_VERSION_INSTALLED_GROUP_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%FLOATING_TEST_VERSION_INSTALLED_GROUP_NAME%"

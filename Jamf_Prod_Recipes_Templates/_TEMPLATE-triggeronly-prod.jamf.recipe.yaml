@@ -15,6 +15,7 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_NAME: "%NAME%-install"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_POLICY_NAME: "%NAME%"
   PROD_PREDICATE: "ready_to_stage == False"
@@ -40,3 +41,8 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%LAST_RUN_POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"

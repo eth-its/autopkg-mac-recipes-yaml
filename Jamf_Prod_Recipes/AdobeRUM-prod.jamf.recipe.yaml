@@ -17,6 +17,7 @@ Input:
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
   TEST_USERS_GROUP_NAME: Adobe Creative Cloud test users
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   USERS_GROUP_NAME: Adobe Creative Cloud users
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
@@ -105,3 +106,8 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%LAST_RUN_POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"

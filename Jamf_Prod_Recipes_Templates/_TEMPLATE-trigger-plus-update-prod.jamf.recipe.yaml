@@ -15,6 +15,7 @@ Input:
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% auto-update excluded"
   AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE: SmartGroup-autoupdate-excluded.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
@@ -124,3 +125,8 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%LAST_RUN_POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"

@@ -25,7 +25,7 @@ Input:
     This can also be used to upgrade to a newer version of macOS Sequoia than is currently installed, or to reinstall the OS without losing data as a troubleshooting tool. 
 
     **All work should be saved and backed up before starting.**
-  SELFSERVICE_ICON: Install macOS Sonoma.png
+  SELFSERVICE_ICON: Install macOS Sequoia.png
   INSTALL_BUTTON_TEXT: Upgrade macOS
   REINSTALL_BUTTON_TEXT: Upgrade macOS
   FORCE_DESCRIPTION: "true"

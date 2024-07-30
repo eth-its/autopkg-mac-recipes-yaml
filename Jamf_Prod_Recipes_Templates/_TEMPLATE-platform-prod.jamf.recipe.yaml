@@ -16,6 +16,7 @@ Input:
   JSS_INVENTORY_NAME: "%NAME%.app"
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
@@ -188,3 +189,8 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%LAST_RUN_POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"

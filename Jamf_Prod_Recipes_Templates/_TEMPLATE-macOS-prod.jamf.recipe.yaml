@@ -15,6 +15,7 @@ Input:
   UNTESTED_POLICY_NAME: "%NAME% (Testing)"
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   INELIGIBLE_GROUP_NAME: "%NAME% ineligible"
@@ -88,3 +89,8 @@ Process:
     Comment: Delete the untested policy
     Arguments:
       policy_name: "%UNTESTED_POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
