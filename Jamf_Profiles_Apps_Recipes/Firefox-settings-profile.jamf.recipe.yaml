@@ -9,7 +9,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
-  PROFILE_CATEGORY: Application Settings
+  PROFILE_CATEGORY: Browsers & Players
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: Firefox Settings
   PROFILE_DESCRIPTION: ETH Firefox Settings
