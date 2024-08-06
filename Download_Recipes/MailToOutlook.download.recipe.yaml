@@ -1,5 +1,5 @@
-Description: Download recipe for the MailToOutlook PKG to set the default Mail client to Outlook.
-Identifier: com.github.eth-its-recipes.download.MailToOutlook
+Description: Download recipe for the MailToOutlook script to set Outlook as default mail client. 
+Identifier: com.github.eth-its-recipes.download.mailtooutlook
 MinimumVersion: "2.3"
 
 Input:
@@ -10,13 +10,13 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      url: "%SEARCH_URL%"
       re_pattern: "%SEARCH_PATTERN%"
-      result_output_var_name: download_url
+      result_output_var_name: pkg_name
+      url: "%SEARCH_URL%"
 
   - Processor: URLDownloader
     Arguments:
-      url: "%download_url%"
+      url: "https://macadmins.software/tools/%pkg_name%"
       filename: "%NAME%.pkg"
 
   - Processor: EndOfCheckPhase
