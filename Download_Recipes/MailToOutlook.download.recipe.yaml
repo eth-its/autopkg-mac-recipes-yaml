@@ -1,5 +1,5 @@
 Description: Download recipe for the MailToOutlook script to set Outlook as default mail client. 
-Identifier: com.github.eth-its-recipes.download.mailtooutlook
+Identifier: com.github.eth-its-recipes.download.MailToOutlook
 MinimumVersion: "2.3"
 
 Input:
