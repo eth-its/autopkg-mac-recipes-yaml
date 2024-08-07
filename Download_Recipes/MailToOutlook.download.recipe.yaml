@@ -8,13 +8,12 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      re_pattern: "(?P<pkg_name>MailToOutlook_(?P<version>[0-9.]+)\.pkg)"
-      result_output_var_name: pkg_name
+      re_pattern: (?P<url>MailToOutlook_(?P<version>.*?)\.pkg)
       url: "https://macadmins.software/tools/"
 
   - Processor: URLDownloader
     Arguments:
-      url: "https://macadmins.software/tools/%pkg_name%"
+      url: "https://macadmins.software/tools/%url%"
       filename: "MailToOutlook-%version%.pkg"
 
   - Processor: EndOfCheckPhase
