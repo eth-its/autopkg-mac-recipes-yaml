@@ -4,20 +4,18 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: MailToOutlook
-  SEARCH_PATTERN: (?P<pkg_name>MailToOutlook_[0-9.]+\.pkg)
-  SEARCH_URL: https://macadmins.software/tools/
 
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      re_pattern: "%SEARCH_PATTERN%"
+      re_pattern: "(?P<pkg_name>MailToOutlook_(?P<version>[0-9.]+)\.pkg)"
       result_output_var_name: pkg_name
-      url: "%SEARCH_URL%"
+      url: "https://macadmins.software/tools/"
 
   - Processor: URLDownloader
     Arguments:
       url: "https://macadmins.software/tools/%pkg_name%"
-      filename: "%NAME%.pkg"
+      filename: "MailToOutlook-%version%.pkg"
 
   - Processor: EndOfCheckPhase
 
@@ -28,3 +26,6 @@ Process:
         - "Developer ID Installer: Paul Bowden (QGS93ZLCU7)"
         - Developer ID Certification Authority
         - Apple Root CA
+
+
+
