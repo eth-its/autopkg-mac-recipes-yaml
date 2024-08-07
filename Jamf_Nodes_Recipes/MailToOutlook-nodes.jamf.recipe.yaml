@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.MailToOutlook-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-noexclusions-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Set Outlook as default Mail Client
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MailToOutlook
+  INSTALL_BUTTON_TEXT: "Change default Mail Client"
+  REINSTALL_BUTTON_TEXT: "Change default Mail Client"
+  SELFSERVICE_ICON: "MailToOutlook.png"
+  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_MESSAGE_START: "Set Outlook as default Mail Client"
+  POLICY_MESSAGE_FINISH: "Outlook is now the default Mail Client"

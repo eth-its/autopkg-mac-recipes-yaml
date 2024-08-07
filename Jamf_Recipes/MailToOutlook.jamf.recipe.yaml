@@ -18,8 +18,8 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Set default Mail Client"
-  REINSTALL_BUTTON_TEXT: "Set default Mail Client"
+  INSTALL_BUTTON_TEXT: "Change default Mail Client"
+  REINSTALL_BUTTON_TEXT: "Change default Mail Client"
   POLICY_TEMPLATE: Policy-untested-selfservice-noexclusions.xml
   SELFSERVICE_ICON: "MailToOutlook.png"
   POLICY_RUN_COMMAND: "echo '%NAME% complete'"
