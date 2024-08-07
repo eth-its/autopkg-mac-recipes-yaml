@@ -4,13 +4,27 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.MailToOutlook
 
 Input:
-  NAME: MailToOutlook
-  TRIGGER_POLICY_NAME: "%NAME%"
+  NAME: Set Outlook as default Mail Client
   PKG_CATEGORY: Tools & Accessories
-  TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
-  TRIGGER_NAME: "%NAME%-install"
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    Sets the default Mail Client to Outlook instead of Apple Mail
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
+  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Set default Mail Client"
+  REINSTALL_BUTTON_TEXT: "Set default Mail Client"
+  POLICY_TEMPLATE: Policy-untested-selfservice-noexclusions.xml
+  SELFSERVICE_ICON: "MailToOutlook.png"
+  POLICY_RUN_COMMAND: "echo '%NAME% complete'"
+  POLICY_MESSAGE_START: "Set Outlook as default Mail Client"
+  POLICY_MESSAGE_FINISH: "Outlook is now the default Mail Client"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
@@ -19,7 +33,6 @@ Process:
       category_name: "%PKG_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
-    Comment: This processor uploads the package with the custom icon in it
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
 
@@ -31,12 +44,26 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%TRIGGER_POLICY_CATEGORY%"
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
+      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
+
