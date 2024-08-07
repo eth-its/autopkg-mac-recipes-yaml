@@ -8,7 +8,7 @@ Input:
   TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
