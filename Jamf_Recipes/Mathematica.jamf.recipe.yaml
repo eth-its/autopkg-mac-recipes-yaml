@@ -16,7 +16,7 @@ Input:
 
     The Floating license requires an active network connection to ETH (with VPN if offsite).
 
-    Version: %VERSION%
+    Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
@@ -25,8 +25,8 @@ Input:
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %VERSION%"
-  REINSTALL_BUTTON_TEXT: "Install %VERSION%"
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
