@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.MailToOutlook
 
 Input:
-  NAME: Set Outlook as default Mail client
+  NAME: MailToOutlook
   TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
