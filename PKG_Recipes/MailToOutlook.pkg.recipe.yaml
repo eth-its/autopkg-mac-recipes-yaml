@@ -7,7 +7,7 @@ Input:
   NAME: MailToOutlook
 
 Process:
-  - Processor: PkgCopier
-    Arguments:
+  - Arguments:
       pkg_path: "%RECIPE_CACHE_DIR%/MailToOutlook-%version%.pkg"
       source_pkg: "%pathname%"
+    Processor: PkgCopier
