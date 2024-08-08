@@ -12,3 +12,4 @@ Input:
   SELFSERVICE_POLICY_MESSAGE_START: "Set Outlook as default Mail Client"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Outlook is now the default Mail Client"
   TRIGGER_NAME: Run-MailToOutlook
+  SELFSERVICE_ICON: MailToOutlook.png
