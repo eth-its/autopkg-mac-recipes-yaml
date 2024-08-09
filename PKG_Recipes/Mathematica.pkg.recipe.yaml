@@ -12,7 +12,6 @@ Input:
   Process:
   - Processor: PkgCreator
     Arguments:
-      pkgname: "Mathematica.pkg"
       postinstall_script: |
         #!/bin/bash
         mv "/Applications/{{ NAME }}.app" "/Applications/{{ NAME }} {{ MAJOR_VERSION }}.app"
