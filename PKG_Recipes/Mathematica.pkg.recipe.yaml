@@ -13,11 +13,11 @@ Input:
 Process:
   - Processor: PkgCreator
     Arguments:
-      pkgname: "%NAME% %MAJOR_VERSION%.pkg"
-      pkgroot: "/Applications"
-      payload: 
-        - path: "/Applications/%NAME% %MAJOR_VERSION%.app"
-          type: dir
+      pkgrequest: 
+          pkgroot: "/Applications"
+          payload: 
+            - path: "/Applications/%NAME%.app"
+              type: dir
       postinstall_script: |
         #!/bin/bash
         APP_NAME="%NAME%"
