@@ -9,9 +9,25 @@ Input:
   NAME: Mathematica
   MAJOR_VERSION: 13
 
-  Process:
+
+Process:
   - Processor: PkgCreator
     Arguments:
+      pkgname: "%NAME% %MAJOR_VERSION%.pkg"
+      pkgroot: "/Applications"
+      payload: 
+        - path: "/Applications/%NAME% %MAJOR_VERSION%.app"
+          type: dir
       postinstall_script: |
         #!/bin/bash
-        mv "/Applications/{{ NAME }}.app" "/Applications/{{ NAME }} {{ MAJOR_VERSION }}.app"
+        APP_NAME="%NAME%"
+        APP_PATH="/Applications/$APP_NAME.app"
+        NEW_APP_NAME="$APP_NAME $MAJOR_VERSION"
+        NEW_APP_PATH="/Applications/$NEW_APP_NAME.app"
+        if [ -d "$APP_PATH" ]; then
+            mv "$APP_PATH" "$NEW_APP_PATH"
+        else
+            echo "The application $APP_NAME was not found!"
+            exit 1
+        fi
+        exit 0
