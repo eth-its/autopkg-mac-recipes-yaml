@@ -7,7 +7,6 @@ Input:
   NAME: Mathematica
   LANGUAGE: EN
   MAJOR_VERSION: 13
-  JSS_INVENTORY_NAME: "MAXQDA%MAJOR_VERSION%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mathematica
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
   TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"

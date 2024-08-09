@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Mathematica
 
 Input:
-  NAME: Mathematica 13
+  NAME: Mathematica
   LANGUAGE: EN
   MAJOR_VERSION: "13"
   LIST_MAJOR_VERSION: "13"

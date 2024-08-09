@@ -7,6 +7,12 @@ Input:
   LIST_LANGUAGE: EN
   LIST_NAME: Mathematica Node
   NAME: Mathematica
+  MAJOR_VERSION: 13
 
-Process:
-  - Processor: AppPkgCreator
+  Process:
+  - Processor: PkgCreator
+    Arguments:
+      pkgname: "Mathematica.pkg"
+      postinstall_script: |
+        #!/bin/bash
+        mv "/Applications/{{ NAME }}.app" "/Applications/{{ NAME }} {{ MAJOR_VERSION }}.app"
