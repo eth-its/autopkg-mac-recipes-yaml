@@ -9,7 +9,7 @@ Input:
 Process:
   - Processor: Copier
     Arguments:
-      source_path: "%pathname%/CellProfiler*.app"
+      source_path: "%pathname%/CellProfiler.app"
       destination_path: "%RECIPE_CACHE_DIR%/CellProfiler.app"
 
   - Processor: AppDmgVersioner
