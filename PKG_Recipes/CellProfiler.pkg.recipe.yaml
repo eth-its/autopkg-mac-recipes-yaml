@@ -7,8 +7,6 @@ Input:
   NAME: CellProfiler
 
 Process:
-  - Processor: AppDmgVersioner
-    Arguments:
-      dmg_path: "%pathname%"
-
   - Processor: AppPkgCreator
+    Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%/CellProfiler.app"
