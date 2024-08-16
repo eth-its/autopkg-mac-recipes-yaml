@@ -7,7 +7,7 @@ Input:
   NAME: Mathematica
   LANGUAGE: EN
   MAJOR_VERSION: "13"
-  JSS_INVENTORY_NAME: "%NAME%.app"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mathematica
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% %LANGUAGE% complete'"
   POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"

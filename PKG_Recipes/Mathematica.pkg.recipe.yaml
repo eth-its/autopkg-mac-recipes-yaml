@@ -7,6 +7,27 @@ Input:
   LIST_LANGUAGE: EN
   LIST_NAME: Mathematica Node
   NAME: Mathematica
+  MAJOR_VERSION: 13
+
 
 Process:
-  - Processor: AppPkgCreator
+  - Processor: PkgCreator
+    Arguments:
+      pkgrequest: 
+          pkgroot: "/Applications"
+          payload: 
+            - path: "/Applications/%NAME%.app"
+              type: dir
+      postinstall_script: |
+        #!/bin/bash
+        APP_NAME="%NAME%"
+        APP_PATH="/Applications/$APP_NAME.app"
+        NEW_APP_NAME="$APP_NAME $MAJOR_VERSION"
+        NEW_APP_PATH="/Applications/$NEW_APP_NAME.app"
+        if [ -d "$APP_PATH" ]; then
+            mv "$APP_PATH" "$NEW_APP_PATH"
+        else
+            echo "The application $APP_NAME was not found!"
+            exit 1
+        fi
+        exit 0

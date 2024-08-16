@@ -1,36 +1,30 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Mathematica
+Identifier: com.github.eth-its-recipes.jamf.CellProfiler
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.Mathematica
+ParentRecipe: com.github.eth-its-recipes.pkg.CellProfiler
 
 Input:
-  NAME: Mathematica
-  LANGUAGE: EN
-  MAJOR_VERSION: "13"
-  LIST_MAJOR_VERSION: "13"
-  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
-  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  NAME: CellProfiler
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    Mathematica by Wolfram Research is high-powered computation software with thousands of Wolfram Language functions, natural language input, real-world data, and mobile support.
-
-    The Floating license requires an active network connection to ETH (with VPN if offsite).
+    CellProfiler is free, open-source software for quantitative analysis of biological images. No prior experience in programming or computer vision is required
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
