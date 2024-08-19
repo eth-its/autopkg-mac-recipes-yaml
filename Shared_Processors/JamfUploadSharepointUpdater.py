@@ -198,6 +198,7 @@ class JamfUploadSharepointUpdater(Processor):
         policy_license = self.env.get("LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
         platform = self.env.get("PLATFORM")
+        application_name = self.env.get("JSS_INVENTORY_NAME")
         jss_url = self.env.get("JSS_URL")
         sp_url = self.env.get("SP_URL")
         sp_user = self.env.get("SP_USER")
@@ -516,6 +517,17 @@ class JamfUploadSharepointUpdater(Processor):
                         "No",
                         criteria,
                     )
+                    self.output(
+                        "Jamf Test Review: Setting 'ApplicationName'='applicaton_name' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "ApplicationName",
+                        application_name,
+                        criteria,
+                    )
                 else:
                     # check if there is an entry with the same final policy name that is not
                     # release completed in TST or PRD
@@ -590,6 +602,17 @@ class JamfUploadSharepointUpdater(Processor):
                         "Jamf Test Review",
                         "Final Content Name",
                         final_policy_name,
+                        criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'ApplicationName'='applicaton_name' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "ApplicationName",
+                        application_name,
                         criteria,
                     )
 
