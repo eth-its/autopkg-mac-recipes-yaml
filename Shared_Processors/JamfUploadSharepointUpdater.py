@@ -198,7 +198,7 @@ class JamfUploadSharepointUpdater(Processor):
         policy_license = self.env.get("LICENSE")
         major_version = self.env.get("MAJOR_VERSION")
         platform = self.env.get("PLATFORM")
-        application_name = self.env.get("JSS_INVENTORY_NAME")
+        executable_command = self.env.get("SP_EXECUTABLE_COMMAND")
         jss_url = self.env.get("JSS_URL")
         sp_url = self.env.get("SP_URL")
         sp_user = self.env.get("SP_USER")
@@ -524,8 +524,8 @@ class JamfUploadSharepointUpdater(Processor):
                     self.update_record(
                         site,
                         "Jamf Test Review",
-                        "ApplicationName",
-                        application_name,
+                        "Executable_Command",
+                        executable_command,
                         criteria,
                     )
                 else:
@@ -611,8 +611,8 @@ class JamfUploadSharepointUpdater(Processor):
                     self.update_record(
                         site,
                         "Jamf Test Review",
-                        "ApplicationName",
-                        application_name,
+                        "Executable_Command",
+                        executable_command,
                         criteria,
                     )
 
