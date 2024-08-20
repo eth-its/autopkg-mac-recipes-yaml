@@ -199,6 +199,7 @@ class JamfUploadSharepointUpdater(Processor):
         major_version = self.env.get("MAJOR_VERSION")
         platform = self.env.get("PLATFORM")
         executable_command = self.env.get("SP_EXECUTABLE_COMMAND")
+        process_name = self.env.get("SP_PROCESS_NAME")
         jss_url = self.env.get("JSS_URL")
         sp_url = self.env.get("SP_URL")
         sp_user = self.env.get("SP_USER")
@@ -528,6 +529,17 @@ class JamfUploadSharepointUpdater(Processor):
                         executable_command,
                         criteria,
                     )
+                    self.output(
+                        "Jamf Test Review: Setting 'Process_Name'='process_name' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Process_Name",
+                        process_name,
+                        criteria,
+                    )
                 else:
                     # check if there is an entry with the same final policy name that is not
                     # release completed in TST or PRD
@@ -605,7 +617,7 @@ class JamfUploadSharepointUpdater(Processor):
                         criteria,
                     )
                     self.output(
-                        "Jamf Test Review: Setting 'ApplicationName'='applicaton_name' for "
+                        "Jamf Test Review: Setting 'Executable_Command'='executable_command' for "
                         + self_service_policy_name
                     )
                     self.update_record(
@@ -613,6 +625,17 @@ class JamfUploadSharepointUpdater(Processor):
                         "Jamf Test Review",
                         "Executable_Command",
                         executable_command,
+                        criteria,
+                    )
+                    self.output(
+                        "Jamf Test Review: Setting 'Process_Name'='process_name' for "
+                        + self_service_policy_name
+                    )
+                    self.update_record(
+                        site,
+                        "Jamf Test Review",
+                        "Process_Name",
+                        process_name,
                         criteria,
                     )
 
