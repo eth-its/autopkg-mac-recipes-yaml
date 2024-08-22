@@ -12,3 +12,5 @@ Input:
   VERSION_STRING_TYPE: CFBundleVersion
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   SELFSERVICE_ICON: zoom.us 5.png
+  SP_EXECUTABLE_COMMAND: "open '/Applications/%JSS_INVENTORY_NAME%.app'"
+  SP_PROCESS_NAME: "%JSS_INVENTORY_NAME%"
