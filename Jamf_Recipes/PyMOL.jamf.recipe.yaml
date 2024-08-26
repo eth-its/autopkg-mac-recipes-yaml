@@ -9,7 +9,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    PyMOL is a user-sponsored molecular visualization system on an open-source foundation, maintained and distributed by Schroedinger. The annual site license is supplied by D-BIOL.
+    PyMOL is a user-sponsored molecular visualization system on an open-source foundation, maintained and distributed by Schroedinger. 
 
     Version: %version%
     Category: %PKG_CATEGORY%

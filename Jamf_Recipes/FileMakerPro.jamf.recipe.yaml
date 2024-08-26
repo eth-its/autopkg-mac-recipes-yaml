@@ -6,10 +6,10 @@ ParentRecipe: com.github.eth-its-recipes.pkg.FileMakerPro
 Input:
   NAME: FileMaker Pro
   # PRODUCT_ID needed for the download recipe
-  PRODUCT_ID: PRO20MAC
+  PRODUCT_ID: PRO21MAC
   # LIST name and major_version required to get the correct license file
-  LIST_NAME: Filemaker Pro 2023
-  LIST_MAJOR_VERSION: "20"
+  LIST_NAME: Filemaker Pro 2024
+  LIST_MAJOR_VERSION: "21"
   LICENSED_ORG: "ETH Zuerich"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -33,7 +33,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: FileMaker Pro 2023.png
+  SELFSERVICE_ICON: FileMaker Pro 2024.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
