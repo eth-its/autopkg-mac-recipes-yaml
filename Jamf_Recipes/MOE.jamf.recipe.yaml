@@ -10,7 +10,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.MOE
 Input:
   NAME: MOE
   LANGUAGE: EN
-  MAJOR_VERSION: "2022.02"
+  MAJOR_VERSION: "2024.06"
   PKG_CATEGORY: Science & Math
   PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
   PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
