@@ -6,11 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Mathematica
 Input:
   NAME: Mathematica
   LANGUAGE: EN
-  MAJOR_VERSION: "13"
-  LIST_MAJOR_VERSION: "13"
-  POLICY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
-  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% (Testing)"
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     Mathematica by Wolfram Research is high-powered computation software with thousands of Wolfram Language functions, natural language input, real-world data, and mobile support.
@@ -19,11 +16,11 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% test users"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"

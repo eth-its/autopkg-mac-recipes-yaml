@@ -8,6 +8,7 @@ Input:
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: ChemComp_MOE
   VENDOR: Chemical_Computing_Group
+  NAME: MOE
 
 Process:
   - Arguments:

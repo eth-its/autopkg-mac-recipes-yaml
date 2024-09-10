@@ -7,25 +7,6 @@ Input:
   LIST_LANGUAGE: EN
   LIST_NAME: Mathematica Node
   NAME: Mathematica
-  MAJOR_VERSION: 13
 
 Process:
-  - Processor: DmgMounter
-    Arguments:
-      dmg_path: "%pathname%"
-
-  - Processor: FileFinder
-    Arguments:
-      pattern: "*.app"
-      found_filename: app_path
-
-  - Processor: FileMover
-    Arguments:
-      source_path: "%app_path%"
-      destination_path: "%RECIPE_CACHE_DIR%/Mathematica %MAJOR_VERSION%.app"
-
-  - Processor: PkgCreator
-    Arguments:
-      pkgroot: "%RECIPE_CACHE_DIR%/Mathematica %MAJOR_VERSION%.app"
-      pkgname: "Mathematica %MAJOR_VERSION%"
-      version: "%MAJOR_VERSION%"
+  - Processor: AppPkgCreator
