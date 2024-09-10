@@ -13,7 +13,7 @@ Input:
   PROFILE_DESCRIPTION: Disables the USB Restricted Mode.
   USERS_GROUP_NAME: "mac.ethOS USB Restricted Mode disable"
   TEST_USERS_GROUP_NAME: "Testing - %NAME%"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_GROUP_TEMPLATE: SmartGroup-users-with-all-managed-clients.xml
   PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
   TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
   REPLACE_PROFILE: "True"
