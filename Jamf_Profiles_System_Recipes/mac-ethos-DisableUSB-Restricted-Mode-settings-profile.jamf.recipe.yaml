@@ -1,9 +1,9 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.DisableUSB-Restricted-Mode-settings-profile
+Identifier: com.github.eth-its-recipes.jamf.mac-ethos-DisableUSB-Restricted-Mode-settings-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Disable USB Restricted Mode
+  NAME: "mac.ethOS - Disable USB Restricted Mode"
   IDENTIFIER: com.apple.applicationaccess
   ORGANIZATION: Apple
   PROFILE_CATEGORY: System Settings
@@ -11,11 +11,8 @@ Input:
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: com.apple.applicationaccess-USBRestrictedMode.plist
   PROFILE_DESCRIPTION: Disables the USB Restricted Mode.
-  USERS_GROUP_NAME: "mac.ethOS USB Restricted Mode disable"
-  TEST_USERS_GROUP_NAME: "Testing - %NAME%"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  USERS_GROUP_NAME: "%NAME% users"
+  PROFILE_GROUP_TEMPLATE: SmartGroup-users-with-all-managed-clients.xml
   REPLACE_PROFILE: "True"
 
 Process:
@@ -24,11 +21,6 @@ Process:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
