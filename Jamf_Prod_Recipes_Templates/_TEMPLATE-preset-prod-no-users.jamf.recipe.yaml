@@ -7,7 +7,7 @@ Comment: |
    may require additional information.
 
 Description: Creates all production policies for a particular title - used for products that will auto-update by default.
-Identifier: com.github.eth-its-recipes.jamf.template-preset-prod-no-user
+Identifier: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 MinimumVersion: "2.3"
 
 Input:
