@@ -94,12 +94,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME%"
-      computergroup_template: "%AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
       computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       replace_group: "False"
