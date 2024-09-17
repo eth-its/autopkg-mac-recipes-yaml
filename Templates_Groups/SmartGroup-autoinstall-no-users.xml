@@ -4,7 +4,7 @@
   <is_smart>true</is_smart>
   <criteria>
     <criterion>
-      <name>Computer Group</name>
+      <name>Computer Name</name>
       <priority>1</priority>
       <and_or>and</and_or>
       <search_type>member of</search_type>
