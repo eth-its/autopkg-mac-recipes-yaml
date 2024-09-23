@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+    <name>%INSTALLED_GROUP_NAME%</name>
+    <is_smart>true</is_smart>
+    <criteria>
+        <criterion>
+            <name>Application Title</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>has</search_type>
+            <value>%APPLICATION_NAME_HAS%</value>
+        </criterion>
+    </criteria>
+</computer_group>
