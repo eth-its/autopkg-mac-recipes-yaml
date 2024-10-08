@@ -15,12 +15,8 @@
         <deployment_type>Make Available in Self Service</deployment_type>
     </general>
     <scope>
-        <all_computers>false</all_computers>
-        <computer_groups>
-            <computer_group>
-                <name>%USERS_GROUP_NAME%</name>
-            </computer_group>
-        </computer_groups>
+        <all_computers>true</all_computers>
+        <computer_groups/>
         <exclusions>
             <computers/>
             <computer_groups>
