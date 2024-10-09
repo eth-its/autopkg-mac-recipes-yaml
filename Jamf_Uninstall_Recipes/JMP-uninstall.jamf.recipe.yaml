@@ -5,5 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 
 Input:
   NAME: JMP
-  MAJOR_VERSION: "15"
+  MAJOR_VERSION: "17"
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
