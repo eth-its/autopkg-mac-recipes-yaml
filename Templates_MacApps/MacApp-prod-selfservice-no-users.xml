@@ -30,7 +30,6 @@
         <install_button_text>Install</install_button_text>
         <force_users_to_view_description>false</force_users_to_view_description>
         <self_service_icon>
-            <id>%icon_id%</id>
             <uri>%selfservice_icon_uri%</uri>
         </self_service_icon>
         <feature_on_main_page>false</feature_on_main_page>
