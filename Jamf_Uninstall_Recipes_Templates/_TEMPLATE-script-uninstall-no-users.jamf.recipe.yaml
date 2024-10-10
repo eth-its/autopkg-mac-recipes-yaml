@@ -77,7 +77,7 @@ Process:
     Arguments:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
-      replace_group: False
+      replace_group: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
