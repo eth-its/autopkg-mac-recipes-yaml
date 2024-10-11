@@ -4,6 +4,6 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.FreeMacApps-macapp-no-users
 
 Input:
-  NAME: Slack for Desktop
+  NAME: Slack
   JSS_INVENTORY_NAME: Slack.app
   AUTOINSTALL_GROUP_NAME: Slack auto-install
