@@ -4,7 +4,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: JMP PRO
+  NAME: JMP
   MAJOR_VERSION: "17"
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.JMP
