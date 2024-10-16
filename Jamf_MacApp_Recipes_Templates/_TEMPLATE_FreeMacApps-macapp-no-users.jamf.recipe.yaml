@@ -1,0 +1,43 @@
+Description: |
+  Uploads a Mac App Store app configuration to the Jamf Pro Server.
+  Requires the NAME key. NAME must match the App Store name.
+Identifier: com.github.eth-its-recipes.jamf.FreeMacApps-macapp-no-users
+MinimumVersion: "2.3"
+
+Input:
+  AUTOINSTALL_DISPLAY_NAME: "Auto-install %NAME%"
+  SELFSERVICE_TEMPLATE: MacApp-prod-selfservice-no-users.xml
+  AUTOINSTALL_TEMPLATE: MacApp-prod-autoinstall.xml
+  SELFSERVICE_CATEGORY: Mac App Store Apps
+  AUTOINSTALL_CATEGORY: Mac App Store auto-installers
+  AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SELFSERVICE_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfMacAppUploader
+    Arguments:
+      macapp_name: "%NAME%"
+      macapp_template: "%SELFSERVICE_TEMPLATE%"
+      replace_macapp: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%AUTOINSTALL_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfMacAppUploader
+    Arguments:
+      macapp_name: "%AUTOINSTALL_DISPLAY_NAME%"
+      clone_from: "%NAME%"
+      macapp_template: "%AUTOINSTALL_TEMPLATE%"
+      replace_macapp: "True"

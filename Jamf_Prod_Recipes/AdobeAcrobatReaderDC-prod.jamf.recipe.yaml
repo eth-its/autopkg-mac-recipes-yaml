@@ -7,8 +7,8 @@ Input:
   NAME: Adobe Acrobat Reader DC
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeAcrobatReaderDC
   APPLICATION_NAME_HAS: Adobe Acrobat Reader
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
   SCRIPT_NAME: AdobeAcrobatReaderDC-postinstall.sh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
