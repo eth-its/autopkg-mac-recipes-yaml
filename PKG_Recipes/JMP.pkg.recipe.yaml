@@ -34,7 +34,7 @@ Process:
   - Processor: Copier
     Arguments:
     #      source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/*.dmg"
-      source_path: "/tmp/mac/jmp_17x_en/JMP_17.2_Mac/JMP/JMP/%MAJOR_VERSION%*/Macintosh/*.dmg"
+      source_path: "/tmp/mac/jmp_17x_en/JMP_17.2_Mac/JMP/JMP/17_2/Macintosh/jmp__1720__mac.dmg"
       destination_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
       overwrite: True
 
