@@ -1,0 +1,159 @@
+Description: |
+  Creates a package from a pre-downloaded JMP installer which has already been installed on a client, and the SIP file converted to a JMP.per file as per the instructions in the JMP Deployment Guide.
+Identifier: com.github.eth-its-recipes.pkg.JMP-PRO
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+MinimumVersion: "2.3"
+
+Input:
+  NAME: JMP PRO
+  LIST_LANGUAGE: ML
+  LIST_NAME: JMP PRO
+
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/app_unpack"
+
+  - Processor: Copier
+    Arguments:
+    #      source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/*.dmg"
+      source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/JMP*.dmg"
+      destination_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
+      overwrite: True
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg/JMP %MAJOR_VERSION%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/JMP_%MAJOR_VERSION%_Application.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/app_unpack"
+      purge_destination: True
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/app_unpack/Applications/JMP %MAJOR_VERSION%.app/Contents/Info.plist"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/JMP_%MAJOR_VERSION%.dmg"
+      overwrite: True
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+
+        # JMP silent installer script
+        # This requires the license file to be present in the installer DMG in the folder sid_files
+        # See https://www.jmp.com/support/notes/58/029.html
+
+        DIR=$(dirname "$0")
+        MAJOR="%MAJOR_VERSION%"
+
+        # eject any existing mounted JMP volumes
+        for path in /Volumes/JMP*; do
+            [ -d "${path}" ] || continue # if not a directory, skip
+            dirname="$(basename "${path}")"
+            hdiutil eject ${path}
+        done
+
+        # attach main image
+        echo "Mounting JMP image"
+        if ! hdiutil attach ${DIR}/JMP_${MAJOR}.dmg -nobrowse -mountpoint /Volumes/JMP_image; then
+          echo "Failed to mount JMP_${MAJOR}.dmg"
+          exit 1
+        fi
+
+        # attach installer image, located inside main image
+        echo "Mounting JMP installer image"
+        if ! find /Volumes/JMP_image/JMP/JMP -name "*.dmg"; then
+          echo "JMP installer image not found at /Volumes/JMP_image/JMP/JMP/${MAJOR}/Macintosh/JMP-Install.dmg"
+          do_exit=1
+        else
+          if ! find /Volumes/JMP_image/JMP/JMP -name "*.dmg" -exec hdiutil attach {} -nobrowse -mountpoint /Volumes/JMP_installer_image \; ; then
+            echo "Failed to mount JMP-Install.dmg"
+            do_exit=1
+          fi
+        fi
+
+        # install JMP with ETH License
+        if ! installer -target / -pkg "/Volumes/JMP_installer_image/JMP ${MAJOR}.pkg"; then
+          echo "Failed to install JMP ${MAJOR}.pkg"
+          do_exit=1
+        fi
+
+        # eject mounted JMP volumes
+        for path in /Volumes/JMP*; do
+            [ -d "${path}" ] || continue # if not a directory, skip
+            dirname="$(basename "${path}")"
+            hdiutil eject ${path}
+        done
+
+        if [[ "$do_exit" -eq 1 ]]; then
+          exit 1
+        fi
+
+        # relocate license
+        if [[ -f "$HOME/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
+            /bin/mv "$HOME/Library/Application Support/JMP/${MAJOR}/JMP.per" \
+            "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+        elif [[ -f "/var/root/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
+            /bin/mkdir -p "/Library/Application Support/JMP/${MAJOR}"
+            /bin/mv "/var/root/Library/Application Support/JMP/${MAJOR}/JMP.per" \
+            "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+            # change permissions
+            /bin/chmod 644 "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+        else
+            echo "ERROR: JMP.per not found"
+            exit 1
+        fi
+        if [[ -f "/Library/Application Support/JMP/${MAJOR}/JMP.per" ]]; then
+            # define license location
+            /usr/bin/defaults write "/Library/Preferences/com.sas.jmp.plist" Setinit_${MAJOR}_Path "/Library/Application Support/JMP/${MAJOR}/JMP.per"
+        else
+            echo "ERROR: JMP.per not found in Library folder"
+            exit 1
+        fi
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.JMP
+        pkgname: "JMP-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
