@@ -8,6 +8,8 @@ Input:
   NAME: JMP
   LIST_LANGUAGE: ML
   LIST_NAME: JMP
+  pathname: /tmp/mac/jmp_17x_en/JMP_17.2_Mac
+
 
 Process:
   - Processor: PkgRootCreator
