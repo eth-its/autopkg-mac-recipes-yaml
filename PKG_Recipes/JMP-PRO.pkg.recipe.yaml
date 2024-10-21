@@ -1,13 +1,13 @@
 Description: |
   Creates a package from a pre-downloaded JMP installer which has already been installed on a client, and the SIP file converted to a JMP.per file as per the instructions in the JMP Deployment Guide.
-Identifier: com.github.eth-its-recipes.pkg.JMP
+Identifier: com.github.eth-its-recipes.pkg.JMP-PRO
 ParentRecipe: com.github.eth-its-recipes.download.internal-sources
 MinimumVersion: "2.3"
 
 Input:
-  NAME: JMP
+  NAME: JMP PRO
   LIST_LANGUAGE: ML
-  LIST_NAME: JMP
+  LIST_NAME: JMP PRO
 
 
 Process:
@@ -34,7 +34,7 @@ Process:
   - Processor: Copier
     Arguments:
     #      source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/*.dmg"
-      source_path: "%pathname%/JMP/JMP/%MAJOR_VERSION%*/Macintosh/JMP*.dmg"
+      source_path: "/tmp/mac/jmp_17x_en/JMP_*_Mac/JMP/JMP/*/Macintosh/jmp__*__mac.dmg"
       destination_path: "%RECIPE_CACHE_DIR%/downloads/JMP-Install.dmg"
       overwrite: True
 
