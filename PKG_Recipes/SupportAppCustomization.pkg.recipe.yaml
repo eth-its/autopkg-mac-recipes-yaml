@@ -5,7 +5,9 @@ MinimumVersion: "2.3"
 Input:
   NAME: Support App Customisation
   CUSTOM_ICON_URL: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/ETH.png
-  version: "1.0"
+  CUSTOM_ICON_URL2: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/eth-dome-black.png
+  CUSTOM_ICON_URL3: https://github.com/eth-its/autopkg-mac-recipes-yaml/raw/main/Self_Service_Icons/eth-dome-white .png
+  version: "2.0"
 
 Process:
   - Processor: PkgRootCreator
@@ -21,6 +23,16 @@ Process:
   - Processor: URLDownloader
     Arguments:
       url: "%CUSTOM_ICON_URL%"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%CUSTOM_ICON_URL2%"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%CUSTOM_ICON_URL2%"
       download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
 
   - Processor: PkgCreator
