@@ -1,11 +1,11 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-nodes
+Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-arm64-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: GLPI-Agent
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-arm64
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_ICON: "%NAME%.png"
@@ -15,3 +15,4 @@ Input:
   SCRIPT_PRIORITY: Before
   SCRIPT_CATEGORY: Uninstallers
   POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
+  PLATFORM: arm64
