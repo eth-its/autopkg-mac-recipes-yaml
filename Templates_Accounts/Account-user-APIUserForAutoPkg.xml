@@ -53,6 +53,7 @@
             <privilege>Read Mac Applications</privilege>
             <privilege>Update Mac Applications</privilege>
             <privilege>Read Volume Purchasing Administrator Accounts</privilege>
+            <privilege>Read Volume Purchasing Locations</privilege>
         </jss_objects>
         <jss_settings/>
         <jss_actions/>
