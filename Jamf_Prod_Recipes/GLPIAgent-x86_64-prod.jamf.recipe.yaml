@@ -1,10 +1,13 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-prod
+Identifier: com.github.eth-its-recipes.jamf.GLPIAgent-x86_64-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 
 Input:
   NAME: GLPI-Agent
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM: arm64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
