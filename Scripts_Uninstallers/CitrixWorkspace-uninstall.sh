@@ -55,7 +55,10 @@ killall "ReceiverHelper"
 killall "AuthManager_Mac"
 killall "ServiceRecords"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
+launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.safariadapter.plist"
 launchctl unload -wF "/Library/LaunchDaemons/com.citrix.ctxusbd.plist"
+launchctl unload -wF "/Library/LaunchDaemons/com.citrix.CtxWorkspaceHelperDaemon.plist"
+launchctl unload -wF "/Library/LaunchDaemons/com.citrix.ctxworkspaceupdater.plist"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.AuthManager_Mac.plist"
 launchctl unload -wF -S Aqua "/Library/LaunchAgents/com.citrix.ReceiverHelper.plist"
 
@@ -105,6 +108,7 @@ fi
 /bin/rm -rf "/usr/local/libexec/AuthManager_Mac.app" ||:
 /bin/rm -rf "/usr/local/libexec/ReceiverHelper.app" ||:
 /bin/rm -rf "/usr/local/libexec/ServiceRecords.app" ||:
+/bin/rm -rf "/usr/local/libexec/Citrix Workspace Helper.app"
 
 # Forget packages
 echo "Forgetting packages"
