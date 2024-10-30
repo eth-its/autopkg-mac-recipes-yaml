@@ -6,6 +6,8 @@ MinimumVersion: "2.3"
 Input:
   NAME: GLPI-Agent
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-x86_64
+  POLICY_NAME: "%NAME% %ARCHICTECTURE_STRING% (Testing)"
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_ICON: "%NAME%.png"
@@ -16,3 +18,4 @@ Input:
   SCRIPT_CATEGORY: Uninstallers
   POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
   PLATFORM: x86_64
+  
