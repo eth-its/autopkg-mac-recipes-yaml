@@ -4,7 +4,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: GLPI-Agent
+  NAME: GLPI-Agent x86_64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-x86_64
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
