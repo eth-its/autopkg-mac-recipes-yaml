@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>ErrorMessage</key>
+    <string>Could not complete your request. Please contact your administrator.</string>
+    <key>FirstRowLinkRight</key>
+    <string>com.jamfsoftware.selfservice.mac</string>
+    <key>FirstRowSubtitleRight</key>
+    <string>Open the Self Service kiosk</string>
+    <key>FirstRowSymbolLeft</key>
+    <string>questionmark.circle.fill</string>
+    <key>FirstRowTitleLeft</key>
+    <string>Need Help</string>
+    <key>FirstRowTitleRight</key>
+    <string>ETH Self Service</string>
+    <key>FirstRowTypeLeft</key>
+    <string>URL</string>
+    <key>FirstRowTypeRight</key>
+    <string>App</string>
+<key>UptimeDaysLimit</key>
+    <string>14</string>
+<key>StorageLimit</key>
+    <string>90</string>
+<key>HideThirdRowInfoItems</key>
+    <true/>
+    <key>HideFirstRow</key>
+    <false/>
+    <key>HideSecondRow</key>
+    <false/>
+    <key>InfoItemFive</key>
+    <string>Uptime</string>
+    <key>Logo</key>
+    <string>/Library/Management/ETH/SupportApp/eth-dome-black.png</string>
+    <key>LogoDarkMode</key>
+    <string>/Library/Management/ETH/SupportApp/eth-dome-white.png</string>
+    <key>NotificationIcon</key>
+    <string>/Library/Management/ETH/SupportApp/eth-dome-black.png</string>
+    <key>OnAppearAction</key>
+    <string>/usr/local/bin/status_update.zsh</string>
+    <key>SecondRowLinkMiddle</key>
+    <string>com.cisco.secureclient.gui</string>
+    <key>SecondRowSymbolMiddle</key>
+    <string>point.3.connected.trianglepath.dotted</string>
+    <key>SecondRowTitleLeft</key>
+    <string>Open a ticket</string>
+    <key>SecondRowTitleMiddle</key>
+    <string>Start VPN</string>
+    <key>SecondRowTypeLeft</key>
+    <string>URL</string>
+    <key>SecondRowTypeMiddle</key>
+    <string>App</string>
+<key>SecondRowTypeRight</key>
+    <string>PrivilegedScript</string>
+<key>SecondRowLinkRight</key>
+    <string>/usr/local/bin/SecondRowRight.zsh</string>
+    <key>StatusBarIcon</key>
+    <string>/Library/Management/ETH/SupportApp/eth-dome-white.png</string>
+    <key>StatusBarIconNotifierEnabled</key>
+    <true/>
+    <key>Title</key>
+    <string>ETH Zurich - IT Support</string>
+    <key>UpdateText</key>
+    <string>Your $LocalModelShortName has **$LocalUpdatesAvailable update(s)** available. Please update as soon as possible.</string>
+  </dict>
+</plist>

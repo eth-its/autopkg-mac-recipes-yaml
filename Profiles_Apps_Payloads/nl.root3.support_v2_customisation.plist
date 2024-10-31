@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>SupportGroup</key>
+    <string>ID ISG D-MTEC</string>
+    <key>FirstRowSubtitleLeft</key>
+    <string>Visit the ETH IT Knowledge Base</string>
+    <key>FirstRowLinkLeft</key>
+    <string>https://unlimited.ethz.ch/display/itkb</string>
+    <key>SecondRowLinkLeft</key>
+    <string>http://smartdesk.ethz.ch</string>
+  </dict>
+</plist>
