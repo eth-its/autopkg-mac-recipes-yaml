@@ -14,7 +14,8 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PROD_PREDICATE: "ready_to_stage == False"
   SELFSERVICE_POLICY_NAME: Support App Customisation
-  SCRIPT_NAME: macOS.ethOS_SupportApp_scripts.zsh
+  SCRIPT_NAME: "macOS.ethOS_SupportApp_scripts.zsh"
+  SCRIPT_PATH: "macOS.ethOS_SupportApp_scripts.zsh"
   SCRIPT_PRIORITY: After
 
 Process:
