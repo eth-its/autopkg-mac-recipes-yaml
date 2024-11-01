@@ -10,6 +10,7 @@ Input:
   IDENTIFIER: nl.root3.support
   ORGANIZATION: ETH Zürich
   GROUP_NAME: "ETH Support App v2 users"
+  USERS_GROUP_NAME: "%GROUP_NAME%"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
