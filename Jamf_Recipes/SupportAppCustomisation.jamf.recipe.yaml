@@ -13,7 +13,7 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   SCRIPT_NAME: macOS.ethOS_SupportApp_scripts.zsh
-  SCRIPT_PRIORIY: After
+  SCRIPT_PRIORITY: After
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
