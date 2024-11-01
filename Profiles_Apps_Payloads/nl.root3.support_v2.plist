@@ -37,7 +37,7 @@
     <key>NotificationIcon</key>
     <string>/Library/Management/ETH/SupportApp/eth-dome-black.png</string>
     <key>OnAppearAction</key>
-    <string>/usr/local/bin/status_update.zsh</string>
+    <string>/Library/Management/ETH/SupportApp/status_update.zsh</string>
     <key>SecondRowLinkMiddle</key>
     <string>com.cisco.secureclient.gui</string>
     <key>SecondRowSymbolMiddle</key>
@@ -53,7 +53,7 @@
 <key>SecondRowTypeRight</key>
     <string>PrivilegedScript</string>
 <key>SecondRowLinkRight</key>
-    <string>/usr/local/bin/SecondRowRight.zsh</string>
+    <string>/Library/Management/ETH/SupportApp/SecondRowRight.zsh</string>
     <key>StatusBarIcon</key>
     <string>/Library/Management/ETH/SupportApp/eth-dome-white.png</string>
     <key>StatusBarIconNotifierEnabled</key>
