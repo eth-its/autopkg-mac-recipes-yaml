@@ -12,7 +12,8 @@ Input:
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  SCRIPT_NAME: macOS.ethOS_SupportApp_scripts.zsh
+  SCRIPT_NAME: "macOS.ethOS_SupportApp_scripts.zsh"
+  SCRIPT_PATH: "macOS.ethOS_SupportApp_scripts.zsh"
   SCRIPT_PRIORITY: After
 
 Process:
