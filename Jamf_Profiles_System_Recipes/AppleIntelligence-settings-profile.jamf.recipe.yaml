@@ -4,9 +4,9 @@ Identifier: com.github.eth-its-recipes.jamf.AppleIntelligence-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Apple Intelligence Settings
+  NAME: "mac.ethOS - Apple Intelligence Settings"
   IDENTIFIER: com.apple.applicationaccess
-  PROFILE_NAME: Apple Intelligence Settings
+  PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "com.apple.applicationaccess-deactivate-intelligence.plist"
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_CATEGORY: System Settings
