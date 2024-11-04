@@ -8,13 +8,10 @@ Input:
   TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Tools & Accessories
   TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-nonotification.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  SCRIPT_NAME: "macOS.ethOS_SupportApp_scripts.zsh"
-  SCRIPT_PATH: "macOS.ethOS_SupportApp_scripts.zsh"
-  SCRIPT_PRIORITY: After
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -39,7 +36,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
+      TRIGGER_POLICY_NAME: "%TRIGGER_POLICY_NAME%"
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
