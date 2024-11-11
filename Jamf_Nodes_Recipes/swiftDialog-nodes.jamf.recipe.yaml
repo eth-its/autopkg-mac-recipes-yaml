@@ -9,3 +9,5 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: swiftDialog Version
   EXTENSION_ATTRIBUTE_SCRIPT: swiftDialog-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  SP_EXECUTABLE_COMMAND: "open '/Library/Application Support/Dialog/Dialog.app'"
+  SP_PROCESS_NAME: "Dialog.app"
