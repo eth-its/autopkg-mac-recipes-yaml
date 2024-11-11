@@ -176,3 +176,8 @@ Process:
     Comment: Delete the test version installed group
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+  
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test users group
+    Arguments:
+      computergroup_name: "%TEST_USERS_GROUP_NAME%"
