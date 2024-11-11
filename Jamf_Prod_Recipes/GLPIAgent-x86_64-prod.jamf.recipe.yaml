@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 
 Input:
-  NAME: GLPI-Agent
+  NAME: GLPI-Agent x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon"
   PLATFORM_EXCLUSION: arm64
   PLATFORM: arm64
