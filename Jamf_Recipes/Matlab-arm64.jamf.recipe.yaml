@@ -34,9 +34,11 @@ Input:
   PARAMETER5_LABEL: License folder
   PARAMETER6_LABEL: License server
   PARAMETER7_LABEL: License Type
-  PARAMETER4_VALUE: "%MAJOR_VERSION%_%PLATFORM%"
+  PARAMETER8_LABEL: App Version for install-trigger
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
   PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
   PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  PARAMETER8_VALUE: "%MAJOR_VERSION%_%PLATFORM%"
   POLICY_CATEGORY: Untested
   POLICY_RUN_COMMAND: "jamf policy -event AmazonCorrettoJDK11-install && echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
