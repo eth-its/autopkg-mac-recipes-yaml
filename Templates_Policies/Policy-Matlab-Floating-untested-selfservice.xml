@@ -46,7 +46,7 @@
             <parameter5>%PARAMETER5_VALUE%</parameter5>
             <parameter6>%PARAMETER6_VALUE%</parameter6>
             <parameter7>%FLOATING_PARAMETER7_VALUE%</parameter7>
-            <parameter8/>
+            <parameter8>%PARAMETER8_VALUE%</parameter8>
             <parameter9/>
             <parameter10/>
             <parameter11/>
