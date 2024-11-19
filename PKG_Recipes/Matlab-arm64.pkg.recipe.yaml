@@ -56,7 +56,7 @@ Process:
 
   - Arguments:
       file_content: |
-        #!/bin/bash
+        #!/bin/zsh
         # Matlab Floating postinstall Script
 
         DIR=$(dirname "$0")
@@ -96,7 +96,7 @@ Process:
         # Add permissions to the license file to help adjust it in future
         chmod -R 775 /Applications/MATLAB_${major_version}_Floating.app/licenses
         chgrp -R staff /Applications/MATLAB_${major_version}_Floating.app/licenses
-
+        
         # remove the installer to save space
         rm -rf /Library/Management/MATLAB/${major_version} ||:
       file_mode: "0755"
