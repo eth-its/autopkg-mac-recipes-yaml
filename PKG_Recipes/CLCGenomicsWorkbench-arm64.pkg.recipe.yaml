@@ -3,14 +3,14 @@ Description: |
   Recipe requires CLC_LICENSE_SERVER and CLC_LICENSE_PORT, plus MAJOR_VERSION
 Identifier: com.github.eth-its-recipes.pkg.CLCGenomicsWorkbench-arm64
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.CLCGenomicsWorkbench-arm64
+ParentRecipe: com.github.grahampugh.recipes.download.CLCGenomicsWorkbench
 
 Input:
   NAME: CLC Genomics Workbench
   MAJOR_VERSION: "24"
   # CLC_LICENSE_SERVER: REPLACE-ME
   # CLC_LICENSE_PORT: '6200'
-  PLATFORM: arm64
+
 
 Process:
   - Processor: StopProcessingIf
