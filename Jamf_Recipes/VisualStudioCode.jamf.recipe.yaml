@@ -1,6 +1,6 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.VisualStudioCode
-ParentRecipe: com.github.killahquam.pkg.visualstudioscode
+ParentRecipe: com.github.eth-its-recipes.pkg.VisualStudioCode
 MinimumVersion: "2.3"
 
 Input:

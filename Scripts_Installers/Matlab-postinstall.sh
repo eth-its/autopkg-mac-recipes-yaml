@@ -24,6 +24,9 @@ USE_SERVER"
 # desired license type (use Jamf Parameter 7)
 desired_license="$7"
 
+# name of app for trigger (e.g. R2024b_arm64 or R2024b)
+trigger_name="$8"
+
 floating_app_installed=0
 node_app_installed=0
 
@@ -58,7 +61,7 @@ if [[ -d "/Applications/MATLAB_${matlab_version}.app" ]]; then
 fi
 if [[ $floating_app_installed = 0 && $node_app_installed = 0 ]]; then
     echo "MATLAB not installed! Running Jamf trigger"
-    /usr/local/bin/jamf policy -event "MATLAB_${matlab_version}_Floating-install"
+    /usr/local/bin/jamf policy -event "MATLAB_${trigger_name}_Floating-install"
     matlab_path="/Applications/MATLAB_${matlab_version}_Floating.app"
 fi
 

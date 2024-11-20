@@ -18,6 +18,9 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   SCRIPT_NAME: Matlab-postinstall.sh
   SCRIPT_PATH: Matlab-postinstall.sh
   SCRIPT_PRIORITY: After
@@ -25,9 +28,11 @@ Input:
   PARAMETER5_LABEL: License folder
   PARAMETER6_LABEL: License server
   PARAMETER7_LABEL: License Type
-  PARAMETER4_VALUE: "%MAJOR_VERSION%_%PLATFORM%"
+  PARAMETER8_LABEL: App Version for install-trigger
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
   PARAMETER5_VALUE: "%MANAGEMENT_PATH%"
   PARAMETER6_VALUE: "%LICENSE_SERVER%"
+  PARAMETER8_VALUE: "%MAJOR_VERSION%_%PLATFORM%"
   SELFSERVICE_POLICY_CATEGORY: Science & Math
   POLICY_RUN_COMMAND: "jamf policy -event AmazonCorrettoJDK11-install && echo 'Installation of %NAME% complete'"
   # Floating license trigger policy
@@ -36,7 +41,7 @@ Input:
   TRIGGER_NAME: "MATLAB_%MAJOR_VERSION%_%PLATFORM%_Floating-install"
   # Floating license self service policy
   FLOATING_POLICY_NAME: "MATLAB_%PLATFORM%_%MAJOR_VERSION%_Floating EN (Testing)"
-  FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-prod-selfservice.xml
+  FLOATING_POLICY_TEMPLATE: Policy-Matlab-Floating-prod-arm64-selfservice.xml
   FLOATING_PARAMETER7_VALUE: Floating
   FLOATING_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Floating EN installed"
   FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Floating-installed.xml
@@ -56,7 +61,7 @@ Input:
     Category: %PKG_CATEGORY%
   # Node license self service policy
   NODE_POLICY_NAME: "MATLAB_%PLATFORM%_%MAJOR_VERSION%_Node EN (Testing)"
-  NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-selfservice.xml
+  NODE_POLICY_TEMPLATE: Policy-Matlab-Node-prod-arm64-selfservice.xml
   NODE_PARAMETER7_VALUE: Node
   NODE_INSTALLED_GROUP_NAME: "%NAME%_%MAJOR_VERSION%_Node EN installed"
   NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-Matlab-Node-installed.xml

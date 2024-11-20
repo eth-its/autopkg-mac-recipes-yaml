@@ -1,0 +1,27 @@
+Description: Downloads the latest version of Prism and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.VisualStudioCode
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.valdore86.download.visualstudiocode
+
+Input:
+  NAME: "Visual Studio Code"
+
+Process:
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%.app"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/%NAME%.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: AppPkgCreator
+    Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%.app"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/%NAME%.app"
