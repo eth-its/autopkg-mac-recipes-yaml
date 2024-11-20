@@ -30,7 +30,7 @@
                     <name>%FLOATING_INSTALLED_GROUP_NAME%</name>
                 </computer_group>
                 <computer_group>
-                    <name>%PLATFORM_EXCLUSION_GROUP_NAME%</name>
+                    <name>Intel Mac</name>
                 </computer_group>
             </computer_groups>
         </exclusions>
