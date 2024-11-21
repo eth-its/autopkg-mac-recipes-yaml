@@ -4,10 +4,10 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-prod
 
 Input:
-  NAME: Support v2
+  NAME: ETH Support App v2
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support-v2
-  SELFSERVICE_DISPLAY_NAME: "ETH Support Menu Bar App v2"
+  SELFSERVICE_DISPLAY_NAME: "ETH Support App v2"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %SELFSERVICE_DISPLAY_NAME%"
-  minimum_os_version: "11.0"
+  minimum_os_version: "13.0"
   SELFSERVICE_ICON: "ETH.png"
-  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install'"
+  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install' & killall Support"

@@ -4,9 +4,9 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.SupportApp
 
 Input:
-  NAME: Support v2
+  NAME: ETH Support App v2
   POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "ETH Support Menu Bar App v2 (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "ETH Support App v2 (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     The ETH Support app provides useful information about your system, as well as direct links to resources such as opening a support ticket, opening the Self Service app and gaining admin privileges via the Privileges app.
@@ -15,7 +15,7 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INELIGIBLE_GROUP_NAME: "%NAME% ineligible for test version"
   TEST_VERSION_INELIGIBLE_GROUP_TEMPLATE: SmartGroup-test-version-ineligible.xml
-  minimum_os_version: "11.0"
+  minimum_os_version: "13.0"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -27,7 +27,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-minimum.xml
   SELFSERVICE_ICON: "ETH.png"
-  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install'"
+  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install' & killall Support"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:

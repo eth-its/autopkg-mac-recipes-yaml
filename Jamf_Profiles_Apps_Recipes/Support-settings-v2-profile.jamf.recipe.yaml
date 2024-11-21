@@ -14,7 +14,7 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_CATEGORY: Application Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: Support App Settings v2
+  PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "nl.root3.support_v2.plist"
   PROFILE_DESCRIPTION: This profile supplies the ETH-specific basic settings for the Support menu bar application.
   REPLACE_PROFILE: "True"
