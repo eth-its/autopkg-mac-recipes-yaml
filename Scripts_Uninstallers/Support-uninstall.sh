@@ -88,6 +88,7 @@ launchctl bootout system "/Library/LaunchDaemons/nl.root3.support.plist" &> /dev
 /bin/rm -f /Library/LaunchAgents/nl.root3.support.plist ||:
 /bin/rm -f /Library/LaunchDaemons/nl.root3.support.plist ||:
 /bin/rm -f /usr/local/bin/SupportHelper ||:
+/bin/rm -rf /Library/Management/ETHZ/SupportApp ||:
 
 
 # Forget packages (works for all versions)

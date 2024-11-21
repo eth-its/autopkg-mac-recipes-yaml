@@ -1,0 +1,11 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Support-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: ETH Support App v2
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall ETH Support App v2"
+  SCRIPT_NAME: Support-uninstall.sh
+  SCRIPT_PATH: Support-uninstall.sh
+  SELFSERVICE_ICON: "ETH.png"
