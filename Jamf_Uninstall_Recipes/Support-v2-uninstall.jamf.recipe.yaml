@@ -5,6 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Support
+  JSS_INVENTORY_NAME: Support.app
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall ETH Support App v2"
   SCRIPT_NAME: Support-uninstall.sh
   SCRIPT_PATH: Support-uninstall.sh
