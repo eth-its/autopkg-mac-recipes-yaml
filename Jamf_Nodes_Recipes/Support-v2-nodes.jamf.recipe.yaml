@@ -9,4 +9,4 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "ETH Support App v2 (Testing)"
   minimum_os_version: "13.0"
   SELFSERVICE_ICON: "ETH.png"
-  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install' & killall Support"
+  POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install'"
