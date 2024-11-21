@@ -23,17 +23,17 @@ Process:
   - Processor: URLDownloader
     Arguments:
       url: "%CUSTOM_ICON_URL%"
-      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/SupportApp"
 
   - Processor: URLDownloader
     Arguments:
       url: "%CUSTOM_ICON_URL2%"
-      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/SupportApp"
 
   - Processor: URLDownloader
     Arguments:
       url: "%CUSTOM_ICON_URL3%"
-      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETH/SupportApp"
+      download_dir: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/SupportApp"
 
   - Processor: PkgCreator
     force_pkg_build: True

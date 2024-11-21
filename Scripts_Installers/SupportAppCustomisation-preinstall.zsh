@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-sudo bash -c 'cat > /Library/Management/ETH/SupportApp/status_update.zsh << "EOF"
+sudo bash -c 'cat > /Library/Management/ETHZ/SupportApp/status_update.zsh << "EOF"
 #!/bin/zsh
 
 # Support App Extension - Status update (Runs every time the Support app is opened)
@@ -27,7 +27,7 @@ fi
 
 EOF
 
-cat > /Library/Management/ETH/SupportApp/SecondRowRight.zsh << "EOF"
+cat > /Library/Management/ETHZ/SupportApp/SecondRowRight.zsh << "EOF"
 #!/bin/zsh
 
 #########################################################
@@ -60,8 +60,8 @@ fi
 
 EOF
 '
-chmod 755 /Library/Management/ETH/SupportApp/status_update.zsh
-chmod 755 /Library/Management/ETH/SupportApp/SecondRowRight.zsh
+chmod 755 /Library/Management/ETHZ/SupportApp/status_update.zsh
+chmod 755 /Library/Management/ETHZ/SupportApp/SecondRowRight.zsh
 
 # Enable PrivilegedHelperTool
 /Applications/Support.app/Contents/Resources/install_privileged_helper_tool.zsh

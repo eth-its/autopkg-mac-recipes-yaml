@@ -14,7 +14,7 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
   SCRIPT_NAME: "SupportAppCustomisation"
   SCRIPT_PATH: "SupportAppCustomisation-preinstall.zsh"
-  SCRIPT_PRIORITY: Before
+  SCRIPT_PRIORITY: After
   SCRIPT_CATEGORY: Administration
 
 Process:

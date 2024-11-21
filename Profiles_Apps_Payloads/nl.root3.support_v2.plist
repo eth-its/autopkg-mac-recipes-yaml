@@ -31,13 +31,13 @@
     <key>InfoItemFive</key>
     <string>Uptime</string>
     <key>Logo</key>
-    <string>/Library/Management/ETH/SupportApp/eth-dome-black.png</string>
+    <string>/Library/Management/ETHZ/SupportApp/eth-dome-black.png</string>
     <key>LogoDarkMode</key>
-    <string>/Library/Management/ETH/SupportApp/eth-dome-white.png</string>
+    <string>/Library/Management/ETHZ/SupportApp/eth-dome-white.png</string>
     <key>NotificationIcon</key>
-    <string>/Library/Management/ETH/SupportApp/eth-dome-black.png</string>
+    <string>/Library/Management/ETHZ/SupportApp/eth-dome-black.png</string>
     <key>OnAppearAction</key>
-    <string>/Library/Management/ETH/SupportApp/status_update.zsh</string>
+    <string>/Library/Management/ETHZ/SupportApp/status_update.zsh</string>
     <key>SecondRowLinkMiddle</key>
     <string>com.cisco.secureclient.gui</string>
     <key>SecondRowSymbolMiddle</key>
@@ -53,9 +53,9 @@
 <key>SecondRowTypeRight</key>
     <string>PrivilegedScript</string>
 <key>SecondRowLinkRight</key>
-    <string>/Library/Management/ETH/SupportApp/SecondRowRight.zsh</string>
+    <string>/Library/Management/ETHZ/SupportApp/SecondRowRight.zsh</string>
     <key>StatusBarIcon</key>
-    <string>/Library/Management/ETH/SupportApp/eth-dome-white.png</string>
+    <string>/Library/Management/ETHZ/SupportApp/eth-dome-white.png</string>
     <key>StatusBarIconNotifierEnabled</key>
     <true/>
     <key>Title</key>
