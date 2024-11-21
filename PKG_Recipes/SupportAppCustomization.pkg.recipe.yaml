@@ -16,8 +16,8 @@ Process:
       pkgdirs:
         Library: "0775"
         Library/Management: "0775"
-        Library/Management/ETH: "0775"
-        Library/Management/ETH/SupportApp: "0775"
+        Library/Management/ETHZ: "0775"
+        Library/Management/ETHZ/SupportApp: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
 
   - Processor: URLDownloader
