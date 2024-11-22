@@ -4,6 +4,8 @@
   <dict>
     <key>DefaultsToLocalOpenSave</key>
     <true/>
+    <key>DiagnosticDataTypePreference</key>
+    <string>ZeroDiagnosticData</string>
     <key>SendAllTelemetryEnabled</key>
     <false/>
     <key>OfficeAutoSignIn</key>
