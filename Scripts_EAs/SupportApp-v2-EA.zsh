@@ -5,7 +5,7 @@
 
 version="None"
 
-# look for the CSDS folder
+# look for the new config script
 if [[ -f "//Library/Management/ETHZ/SupportApp/status_update.zsh" ]]; then
     # now look for the version_info file in the GOLD folder
     echo "<result>new</result>"
