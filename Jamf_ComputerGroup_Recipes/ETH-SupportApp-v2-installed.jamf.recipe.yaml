@@ -1,0 +1,24 @@
+Description: This just uploads an EA to Jamf.
+Identifier: com.github.eth-its-recipes.jamf.script.ModelName-EA
+MinimumVersion: "2.3"
+
+Input:
+  EXTENSION_ATTRIBUTE_NAME: Support App v2 installed
+  EXTENSION_ATTRIBUTE_SCRIPT: SupportApp-v2-EA.zsh
+  GROUP_NAME: ETH Support App v2 installed
+  GROUP_TEMPLATE: SmartGroup-generic-EA.xml
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
+  EXTENSION_ATTRIBUTE_VALUE: new
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
