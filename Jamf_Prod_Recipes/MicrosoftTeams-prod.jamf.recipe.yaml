@@ -7,6 +7,6 @@ Input:
   NAME: Microsoft Teams
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftTeams
   APPLICATION_NAME_HAS: Microsoft Teams
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
   SELFSERVICE_ICON: Microsoft Teams 5.png
