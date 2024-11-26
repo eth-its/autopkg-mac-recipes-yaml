@@ -1,8 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.DisplayLinkManager
 MinimumVersion: "2.3"
-ParentRecipe: com.github.beatlemike.pkg.DisplayLink
-#ParentRecipe: com.github.smithjw.pkg.DisplayLink_Manager
+ParentRecipe: com.github.smithjw.pkg.DisplayLink_Manager
 
 Input:
   NAME: DisplayLink Manager
