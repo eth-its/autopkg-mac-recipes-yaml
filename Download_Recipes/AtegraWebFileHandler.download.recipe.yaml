@@ -20,6 +20,6 @@ Process:
 
   - Processor: URLDownloader
     Arguments:
-      url: "file://%root_path%/%version%/Ategra Web File Handler.pkg"
+      url: "file://%root_path%/%version%/ATEGRA Web File Handler.pkg"
 
   - Processor: EndOfCheckPhase
