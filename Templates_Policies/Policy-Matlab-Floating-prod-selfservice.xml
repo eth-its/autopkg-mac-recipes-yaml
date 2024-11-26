@@ -29,6 +29,9 @@
                 <computer_group>
                     <name>%FLOATING_INSTALLED_GROUP_NAME%</name>
                 </computer_group>
+                <computer_group>
+                    <name>Apple Silicon Mac</name>
+                </computer_group>
             </computer_groups>
         </exclusions>
     </scope>
