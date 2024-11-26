@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Opera-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
   NAME: Opera
@@ -11,5 +11,5 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   JSS_INVENTORY_NAME: "%NAME%.app"
   VERSION_STRING_TYPE: CFBundleVersion
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
