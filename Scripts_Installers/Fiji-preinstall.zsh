@@ -3,9 +3,7 @@
 
 # Remove previous version of Fiji from /Applications
 
-if [ -d "$3/Applications/Fiji.app" ]; then
-   rm -rf "$3/Applications/Fiji.app"
-fi
+find /Applications -type d -name "Fiji*" -maxdepth 1 -exec rm -rf {} +
 
 # The internal updater requires the Xcode command line tools (for git)
 if xcode-select -p >/dev/null 2>&1; then
