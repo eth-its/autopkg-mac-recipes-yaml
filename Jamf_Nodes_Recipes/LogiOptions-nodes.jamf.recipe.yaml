@@ -7,3 +7,10 @@ Input:
   NAME: Logi Options
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  LAST_RUN_SELFSERVICE_DESCRIPTION:  |
+    Software to enable the configuration of **Logitech** devices.
+
+    **Ensure that you install the software before plugging in the USB dongle or reboot.**
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
