@@ -21,7 +21,7 @@ Process:
       pkg_request:
         chown: []
         id: ch.ethz.id.pkg.Texmaker5
-        pkgname: "Texmaker5%"
+        pkgname: "Texmaker-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         version: "%version%"
