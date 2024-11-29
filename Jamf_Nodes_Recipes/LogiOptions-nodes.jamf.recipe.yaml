@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 
 Input:
-  NAME: Logi Options
+  NAME: Logi Options+
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   LAST_RUN_SELFSERVICE_DESCRIPTION:  |

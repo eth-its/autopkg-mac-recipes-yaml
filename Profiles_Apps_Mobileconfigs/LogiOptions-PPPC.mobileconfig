@@ -1,57 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>PayloadContent</key>
-        <array>
-            <dict>
-                <key>PayloadDescription</key>
-                <string>Configures Privacy Preferences Policy Control settings</string>
-                <key>PayloadDisplayName</key>
-                <string>Privacy Preferences Policy Control</string>
-                <key>PayloadIdentifier</key>
-                <string>48A22A23-9709-43B2-88C9-A2A2EBDFF91A</string>
-                <key>PayloadType</key>
-                <string>com.apple.TCC.configuration-profile-policy</string>
-                <key>PayloadUUID</key>
-                <string>909CC70A-053E-4197-89D2-11F767E19C61</string>
-                <key>PayloadVersion</key>
-                <integer>1</integer>
-                <key>Services</key>
-               <dict>
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>LogiOptions-PPPC</string>
+			<key>PayloadDisplayName</key>
+			<string>LogiOptions-PPPC</string>
+			<key>PayloadIdentifier</key>
+			<string>65D20676-2178-46CF-BAAF-1A14C4B21DA8</string>
+			<key>PayloadOrganization</key>
+			<string>ETH Zürich</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>8410D557-9DB5-4260-886C-F38F218CFF56</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
 				<key>Accessibility</key>
 				<array>
 					<dict>
-						<key>Allowed</key>
-						<true/>
+						<key>Authorization</key>
+						<string>Allow</string>
 						<key>CodeRequirement</key>
-						<string>identifier "com.logitech.manager.daemon" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<string>identifier "com.logi.optionsplus" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
 						<key>Comment</key>
 						<string></string>
 						<key>Identifier</key>
-						<string>com.logitech.manager.daemon</string>
+						<string>com.logi.optionsplus</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+				<key>ListenEvent</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logi.optionsplus" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logi.optionsplus</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+				<key>ScreenCapture</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logi.optionsplus" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logi.optionsplus</string>
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 					</dict>
 				</array>
 			</dict>
-            </dict>
-        </array>
-        <key>PayloadDescription</key>
-        <string>%PROFILE_DESCRIPTION%</string>
-        <key>PayloadDisplayName</key>
-        <string>%PROFILE_NAME%</string>
-        <key>PayloadIdentifier</key>
-        <string>48A22A23-9709-43B2-88C9-A2A2EBDFF91A</string>
-        <key>PayloadOrganization</key>
-        <string>%ORGANIZATION%</string>
-        <key>PayloadScope</key>
-        <string>System</string>
-        <key>PayloadType</key>
-        <string>Configuration</string>
-        <key>PayloadUUID</key>
-        <string>FB5E6C29-996A-4FC2-BED8-25D88CE45C24</string>
-        <key>PayloadVersion</key>
-        <integer>1</integer>
-    </dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>LogiOptions-PPPC</string>
+	<key>PayloadDisplayName</key>
+	<string>LogiOptions-PPPC</string>
+	<key>PayloadIdentifier</key>
+	<string>65D20676-2178-46CF-BAAF-1A14C4B21DA8</string>
+	<key>PayloadOrganization</key>
+	<string>ETH Zürich</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>3F375913-2104-4108-A70A-8450CCC9AD6E</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
 </plist>

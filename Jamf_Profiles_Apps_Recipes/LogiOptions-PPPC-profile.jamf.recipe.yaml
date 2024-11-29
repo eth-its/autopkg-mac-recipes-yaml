@@ -4,7 +4,7 @@ Identifier: com.github.eth-its-recipes.jamf.LogiOptions-PPPC-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Logi Options
+  NAME: Logi Options+
   GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
