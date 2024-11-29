@@ -14,5 +14,5 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
   
