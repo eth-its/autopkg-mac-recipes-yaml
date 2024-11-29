@@ -47,6 +47,7 @@ Process:
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
       replace_pkg: "True"
+      replace_pkg_metadata: "True"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
