@@ -20,7 +20,7 @@ Process:
   - Arguments:
       pkg_request:
         chown: []
-        id: ch.ethz.id.pkg.Texmaker5
+        id: ch.ethz.id.pkg.texmaker5
         pkgname: "texmaker-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
