@@ -1,0 +1,10 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.LogiOptions-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
+
+Input:
+  NAME: Logi Options
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
