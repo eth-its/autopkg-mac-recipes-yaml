@@ -8,6 +8,6 @@ Input:
   JSS_INVENTORY_NAME: "texmaker.app"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
-  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform-no-users.xml
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   PLATFORM: x86_64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.texmaker5
