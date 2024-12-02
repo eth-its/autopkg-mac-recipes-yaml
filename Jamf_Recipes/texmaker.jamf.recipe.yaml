@@ -22,11 +22,15 @@ Input:
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_USERS_GROUP_NAME: "%NAME% test users"
   TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
   SELFSERVICE_ICON: texmaker 5.png
+  PLATFORM: arm64
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
