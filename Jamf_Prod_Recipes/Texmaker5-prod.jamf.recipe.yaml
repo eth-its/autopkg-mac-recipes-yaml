@@ -1,10 +1,11 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.Texmaker5-prod
+Identifier: com.github.eth-its-recipes.jamf.texmaker5-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
 
 Input:
-  NAME: Texmaker 5
+  NAME: texmaker 5
+  JSS_INVENTORY_NAME: "texmaker.app"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform-no-users.xml
