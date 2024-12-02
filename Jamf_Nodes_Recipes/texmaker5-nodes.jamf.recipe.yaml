@@ -7,11 +7,10 @@ Input:
   NAME: texmaker 5
   JSS_INVENTORY_NAME: "texmaker.app"
   PLATFORM: x86_64
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Texmaker5
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.texmaker5
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
