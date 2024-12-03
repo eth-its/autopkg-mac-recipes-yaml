@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.davidbpirie.pkg.logitechoptionsplus
 
 Input:
-  NAME: LogitechOptionsPlus
+  NAME: "Logi Options+"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
