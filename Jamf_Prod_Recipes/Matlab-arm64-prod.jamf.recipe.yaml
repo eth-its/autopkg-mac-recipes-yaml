@@ -13,6 +13,7 @@ Input:
   PROD_PREDICATE: "ready_to_stage == False"
   NAME: MATLAB-arm64
   LANGUAGE: EN
+  PLATFORM: arm64
   MANAGEMENT_PATH: /Library/Management/MATLAB
   TESTING_GROUP_NAME: Testing
   INSTALL_BUTTON_TEXT: "Install %version%"
