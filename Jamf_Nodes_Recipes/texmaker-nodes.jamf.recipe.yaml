@@ -7,6 +7,7 @@ Input:
   NAME: texmaker
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.texmaker
   SELFSERVICE_ICON: texmaker 5.png
+  SELFSERVICE_POLICY_NAME: "%NAME%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   POLICY_NAME: "%NAME% (Testing)"
 
