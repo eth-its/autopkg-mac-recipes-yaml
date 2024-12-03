@@ -5,6 +5,9 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 
 Input:
   NAME: "Logi Options+"
+  POLICY_NAME: "Logi Options+"
+  SELFSERVICE_DISPLAY_NAME: "Logi Options+"
+  JSS_INVENTORY_NAME: "Logi Options+"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml

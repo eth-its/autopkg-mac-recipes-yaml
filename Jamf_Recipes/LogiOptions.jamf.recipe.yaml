@@ -4,9 +4,10 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.davidbpirie.pkg.logitechoptionsplus
 
 Input:
-  NAME: "Logi Options+"
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  NAME: LogitechOptionsPlus
+  POLICY_NAME: "Logi Options+ (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "Logi Options+ (Testing)"
+  JSS_INVENTORY_NAME: "Logi Options+"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     Software to enable the configuration of **Logitech** devices.

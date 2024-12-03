@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: "Logi Options+"
-  GROUP_NAME: "%NAME% users"
+  GROUP_NAME: "%Logi Options+ users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
