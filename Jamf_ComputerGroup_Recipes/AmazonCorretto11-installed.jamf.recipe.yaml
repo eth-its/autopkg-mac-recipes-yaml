@@ -1,0 +1,36 @@
+Description: This just uploads an EA to Jamf.
+Identifier: com.github.eth-its-recipes.jamf.ETH-SupportApp-v2-installed
+MinimumVersion: "2.3"
+
+Input:
+  EXTENSION_ATTRIBUTE_NAME: Java-check
+  EXTENSION_ATTRIBUTE_SCRIPT: Java-check.sh
+  GROUP_NAME: Amazon Corretto installed
+  GROUP_TEMPLATE: SmartGroup-generic-EA.xml
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+  EXTENSION_ATTRIBUTE_VALUE: Amazon
+  SCRIPT_NAME: "Java-check"
+  SCRIPT_PATH: "Java-check.sh"
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Administration
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%GROUP_TEMPLATE%"
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
