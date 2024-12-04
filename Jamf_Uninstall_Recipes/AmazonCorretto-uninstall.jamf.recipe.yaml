@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Amazon Corretto Uninstall
-  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Amazon Corretto 11"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Amazon Corretto"
   SCRIPT_NAME: AmazonCorretto-uninstall.sh
   SCRIPT_PATH: AmazonCorretto-uninstall.sh
 
