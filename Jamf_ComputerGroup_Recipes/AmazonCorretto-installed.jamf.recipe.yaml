@@ -1,5 +1,5 @@
 Description: This just uploads an EA to Jamf.
-Identifier: com.github.eth-its-recipes.jamf.ETH-SupportApp-v2-installed
+Identifier: com.github.eth-its-recipes.jamf.AmazonCorretto-installed
 MinimumVersion: "2.3"
 
 Input:
