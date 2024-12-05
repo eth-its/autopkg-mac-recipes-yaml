@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-EA-no-app-uninstall
 
 Input:
-  NAME: "Uninstall Amazon Corretto"
+  NAME: "Amazon Corretto"
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Amazon Corretto"
   SCRIPT_NAME: AmazonCorretto-uninstall.sh
   SCRIPT_PATH: AmazonCorretto-uninstall.sh
