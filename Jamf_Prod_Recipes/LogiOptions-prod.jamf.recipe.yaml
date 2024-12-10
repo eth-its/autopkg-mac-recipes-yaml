@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 
 Input:
   NAME: "Logi Options+"
-  POLICY_NAME: "Logi Options+"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   SELFSERVICE_DISPLAY_NAME: "Logi Options+"
   JSS_INVENTORY_NAME: "Logi Options+"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
