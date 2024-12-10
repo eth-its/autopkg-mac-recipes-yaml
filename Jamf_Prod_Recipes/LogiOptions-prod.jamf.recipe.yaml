@@ -11,3 +11,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "Logi Options+ test version installed"
