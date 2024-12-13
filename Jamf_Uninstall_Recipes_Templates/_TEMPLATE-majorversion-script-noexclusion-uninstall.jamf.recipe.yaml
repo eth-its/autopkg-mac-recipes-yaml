@@ -26,8 +26,6 @@ Input:
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
