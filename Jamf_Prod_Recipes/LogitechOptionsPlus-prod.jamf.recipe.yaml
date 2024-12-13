@@ -1,12 +1,12 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.LogiOptions-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
-  NAME: "Logi Options+"
+  NAME: "LogitechOptionsPlus"
   TRIGGER_POLICY_NAME: "Install %NAME%"
-  SELFSERVICE_DISPLAY_NAME: "Logi Options+"
-  JSS_INVENTORY_NAME: "Logi Options+"
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
+  SELFSERVICE_DISPLAY_NAME: "LogitechOptionsPlus"
+  JSS_INVENTORY_NAME: "Logi Options+.app"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechOptionsPlus
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml

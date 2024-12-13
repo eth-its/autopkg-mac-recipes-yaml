@@ -1,14 +1,14 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.LogiOptions-nodes
+Identifier: com.github.eth-its-recipes.jamf.LogitechOptionsPlus-nodes
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 
 Input:
-  NAME: "Logi Options+"
-  POLICY_NAME: "Logi Options+ (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "Logi Options+ (Testing)"
-  JSS_INVENTORY_NAME: "Logi Options+"
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogiOptions
+  NAME: "LogitechOptionsPlus"
+  POLICY_NAME: "LogitechOptionsPlus (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "LogitechOptionsPlus (Testing)"
+  JSS_INVENTORY_NAME: "Logi Options+.app"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechOptionsPlus
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   LAST_RUN_SELFSERVICE_DESCRIPTION:  |
     Software to enable the configuration of **Logitech** devices.

@@ -1,16 +1,16 @@
 Description: |
   Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.LogiOptions-PPPC-profile
+Identifier: com.github.eth-its-recipes.jamf.LogitechOptionsPlus-PPPC-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: "Logi Options+"
-  GROUP_NAME: "%Logi Options+ users"
+  NAME: "LogitechOptionsPlus"
+  GROUP_NAME: "LogitechOptionsPlus users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
   PROFILE_DESCRIPTION: "Manages Privacy settings for %NAME%"
-  ORGANIZATION: "%NAME%"
+  ORGANIZATION: "ETH Zürich"
   PROFILE_MOBILECONFIG: LogiOptions-PPPC.mobileconfig
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
