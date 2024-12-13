@@ -7,7 +7,6 @@ Input:
   NAME: RStudio
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.RStudio
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% current version installed"

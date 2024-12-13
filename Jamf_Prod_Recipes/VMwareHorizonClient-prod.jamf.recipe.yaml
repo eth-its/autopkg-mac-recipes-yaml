@@ -7,7 +7,6 @@ Input:
   NAME: VMware Horizon Client
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.VMwareHorizonClient
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% %LANGUAGE% auto-update excluded"

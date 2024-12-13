@@ -16,7 +16,6 @@ Input:
   POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.zsh"
   POSTINSTALL_SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"

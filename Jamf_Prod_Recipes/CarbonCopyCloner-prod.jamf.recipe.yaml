@@ -7,7 +7,6 @@ Input:
   NAME: Carbon Copy Cloner
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CarbonCopyCloner
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"

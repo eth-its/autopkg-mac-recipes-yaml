@@ -11,7 +11,6 @@ Input:
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'MestReNova License-install'"
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"

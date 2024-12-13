@@ -8,7 +8,6 @@ Input:
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mathematica
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"

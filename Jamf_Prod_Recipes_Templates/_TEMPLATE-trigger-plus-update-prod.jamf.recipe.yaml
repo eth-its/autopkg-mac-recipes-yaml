@@ -11,8 +11,6 @@ Identifier: com.github.eth-its-recipes.jamf.template-trigger-plus-update-prod
 MinimumVersion: "2.3"
 
 Input:
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -67,12 +65,6 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOUPDATE_POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
