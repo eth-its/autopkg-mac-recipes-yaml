@@ -1,13 +1,13 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Fiji-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: Fiji
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Fiji
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
   EXTENSION_ATTRIBUTE_NAME: FijiVersion
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
