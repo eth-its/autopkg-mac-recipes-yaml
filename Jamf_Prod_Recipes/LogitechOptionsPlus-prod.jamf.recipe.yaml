@@ -5,8 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
   NAME: "LogitechOptionsPlus"
-  TRIGGER_POLICY_NAME: "Install %NAME%"
-  SELFSERVICE_DISPLAY_NAME: "LogitechOptionsPlus"
   JSS_INVENTORY_NAME: "Logi Options+.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechOptionsPlus
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
