@@ -8,4 +8,4 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.apple.garageband10
-  SELFSERVICE_ICON: GarageBand 10.14.png
+  SELFSERVICE_ICON: GarageBand.png
