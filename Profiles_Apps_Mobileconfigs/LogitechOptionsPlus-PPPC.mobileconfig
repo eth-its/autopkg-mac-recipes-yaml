@@ -6,17 +6,17 @@
 	<array>
 		<dict>
 			<key>PayloadDescription</key>
-			<string>LogiOptions-PPPC</string>
+			<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
 			<key>PayloadDisplayName</key>
-			<string>LogiOptions-PPPC</string>
+			<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
 			<key>PayloadIdentifier</key>
-			<string>65D20676-2178-46CF-BAAF-1A14C4B21DA8</string>
+			<string>606EC3B2-B2F6-4EA0-B3CE-C0FD621665A7</string>
 			<key>PayloadOrganization</key>
 			<string>ETH Zürich</string>
 			<key>PayloadType</key>
 			<string>com.apple.TCC.configuration-profile-policy</string>
 			<key>PayloadUUID</key>
-			<string>8410D557-9DB5-4260-886C-F38F218CFF56</string>
+			<string>2EEA7A1B-7EFC-411A-9B10-A18A616D75D0</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Services</key>
@@ -35,6 +35,18 @@
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 					</dict>
+					<dict>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logi.cp-dev-mgr" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logi.cp-dev-mgr</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
 				</array>
 				<key>ListenEvent</key>
 				<array>
@@ -47,6 +59,18 @@
 						<string></string>
 						<key>Identifier</key>
 						<string>com.logi.optionsplus</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logi.cp-dev-mgr" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logi.cp-dev-mgr</string>
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 					</dict>
@@ -65,16 +89,28 @@
 						<key>IdentifierType</key>
 						<string>bundleID</string>
 					</dict>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.logi.cp-dev-mgr" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = QED4VVPZWA</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.logi.cp-dev-mgr</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
 				</array>
 			</dict>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>LogiOptions-PPPC</string>
+	<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
 	<key>PayloadDisplayName</key>
-	<string>LogiOptions-PPPC</string>
+	<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
 	<key>PayloadIdentifier</key>
-	<string>65D20676-2178-46CF-BAAF-1A14C4B21DA8</string>
+	<string>606EC3B2-B2F6-4EA0-B3CE-C0FD621665A7</string>
 	<key>PayloadOrganization</key>
 	<string>ETH Zürich</string>
 	<key>PayloadScope</key>
@@ -82,7 +118,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>3F375913-2104-4108-A70A-8450CCC9AD6E</string>
+	<string>3362930F-E6E2-4F72-8CB4-6298DE4C96A0</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
