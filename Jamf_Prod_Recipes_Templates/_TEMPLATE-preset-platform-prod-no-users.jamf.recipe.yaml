@@ -14,8 +14,6 @@ Input:
   PLATFORM: arm64
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
@@ -32,7 +30,6 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
-  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"

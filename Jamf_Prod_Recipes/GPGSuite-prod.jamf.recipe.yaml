@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.GPGSuite-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: GPG Suite
@@ -11,4 +11,4 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: GPG Suite Version
   VERSION_STRING_TYPE: CFBundleShortVersionString
   VERSION_PLIST: /Library/Application Support/GPGTools/version.plist
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-app-EA.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-app-EA-no-users.xml

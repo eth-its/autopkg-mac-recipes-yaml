@@ -28,9 +28,6 @@
                 <computer_group>
                     <name>%PROD_VERSION_INSTALLED_GROUP_NAME%</name>
                 </computer_group>
-                <computer_group>
-                    <name>%AUTOUPDATE_EXCLUDED_GROUP_NAME%</name>
-                </computer_group>
             </computer_groups>
         </exclusions>
     </scope>

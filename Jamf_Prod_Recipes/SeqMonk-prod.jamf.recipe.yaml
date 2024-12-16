@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.SeqMonk-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: SeqMonk
@@ -14,12 +14,10 @@ Input:
   POSTINSTALL_SCRIPT_PRIORITY: Before
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: R-install
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2-parameter4.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
-  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% current version installed"
-  UNTESTED_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
   TRIGGER_POLICY_NAME: "Install %NAME% %LANGUAGE%"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %LANGUAGE%"
