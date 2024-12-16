@@ -10,7 +10,7 @@ Input:
   PROFILE_NAME: "%NAME% Privacy Settings"
   PROFILE_DESCRIPTION: "Manages Privacy settings for %NAME%"
   ORGANIZATION: "ETH Zürich"
-  PROFILE_MOBILECONFIG: LogiOptions-PPPC.mobileconfig
+  PROFILE_MOBILECONFIG: LogitechOptionsPlus-PPPC.mobileconfig
   REPLACE_PROFILE: "True"
 
 Process:
