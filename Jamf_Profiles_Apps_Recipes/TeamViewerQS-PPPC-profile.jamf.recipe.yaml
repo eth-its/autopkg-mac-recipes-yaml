@@ -7,15 +7,11 @@ Input:
   NAME: TeamViewerQS
   GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
-  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME% Privacy Settings"
   PROFILE_DESCRIPTION: "Manages Accessibility settings for %NAME%"
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: TeamViewerQS-PPPC.mobileconfig
-  USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   REPLACE_PROFILE: "True"
 
 Process:
@@ -23,18 +19,6 @@ Process:
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
