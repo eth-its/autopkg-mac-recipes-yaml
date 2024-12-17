@@ -5,7 +5,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: GoToMeeting
-  GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME% Privacy Settings"

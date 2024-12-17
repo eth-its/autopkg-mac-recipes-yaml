@@ -7,7 +7,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Dell Display And Peripheral Manager
-  GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: Dell Display And Peripheral Manager Privacy Settings

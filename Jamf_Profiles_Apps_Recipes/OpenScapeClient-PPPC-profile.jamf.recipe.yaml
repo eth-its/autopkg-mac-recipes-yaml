@@ -1,13 +1,10 @@
 Description: |
-  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-
-  Requires the "OpenScape Client users" group to have already been created.
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy
 Identifier: com.github.eth-its-recipes.jamf.OpenScapeClient-PPPC-profile
 MinimumVersion: "2.3"
 
 Input:
   NAME: OpenScape Client
-  GROUP_NAME: "%NAME% users"
   PROFILE_CATEGORY: Privacy Settings
   PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: OpenScape Client Privacy Settings
