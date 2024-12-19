@@ -7,15 +7,10 @@ Input:
   IDENTIFIER: com.google.Keystone
   ORGANIZATION: Google
   PROFILE_CATEGORY: Application Settings
-  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_TEMPLATE: Profile-all-computers.xml
   PROFILE_NAME: "%NAME%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Enforces Google application updates
-  USERS_GROUP_NAME: Google Chrome users
-  TEST_USERS_GROUP_NAME: Google Chrome test users
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
   REPLACE_PROFILE: "True"
 
 Process:
@@ -23,18 +18,6 @@ Process:
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
