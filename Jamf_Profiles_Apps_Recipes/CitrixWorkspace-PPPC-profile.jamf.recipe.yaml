@@ -1,0 +1,29 @@
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.CitrixWorkspace-PPPC-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "Citrix Workspace"
+  PROFILE_CATEGORY: Privacy Settings
+  PROFILE_TEMPLATE: Profile-all-computers.xml
+  PROFILE_NAME: "%NAME% Privacy Settings"
+  PROFILE_DESCRIPTION: "Manages Privacy settings for %NAME%"
+  ORGANIZATION: "ETH Zürich"
+  PROFILE_MOBILECONFIG: CitrixWorkspace-PPPC-profile.mobileconfig
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      profile_computergroup: "%GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
