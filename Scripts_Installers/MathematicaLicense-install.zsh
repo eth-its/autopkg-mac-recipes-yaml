@@ -34,7 +34,6 @@ elif [[ "$license_type" == "Node" ]]; then
     # "235AAAAAAAAAC8DC        4864E34D7AAAAAAAAE6CAF1910    217AAAAA79      Big Org      BigOrg Employee"
 
     # note the third number is determined by some hash of the User Name, so this file must be generated using "Mitarbeiter ETH". It also requires a tab after the name.
-#    echo "%(*userregistered*)" > "$mathpass_fileloc"
     echo "$host	$license_string	" > "$mathpass_fileloc"
 else
     echo "ERROR: incorrect license type entered"
