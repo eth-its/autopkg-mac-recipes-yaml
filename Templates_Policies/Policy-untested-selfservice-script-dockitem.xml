@@ -20,7 +20,7 @@
         <all_computers>false</all_computers>
         <computer_groups>
             <computer_group>
-                <name>%TEST_USERS_GROUP_NAME%</name>
+                <name>%TESTING_GROUP_NAME%</name>
             </computer_group>
         </computer_groups>
         <exclusions>
