@@ -7,7 +7,7 @@ Input:
   NAME: GLPI-Agent arm64
   PKG_CATEGORY: Administration
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  #POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -25,17 +25,17 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: "GLPI-Agent.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure && echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   ARCHICTECTURE_STRING: arm64
   PLATFORM: arm64
-  POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
-  UPDATE_PREDICATE: "pkg_uploaded != True"
+  #POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
+  #UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

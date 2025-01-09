@@ -7,7 +7,6 @@ Input:
   NAME: Mathematica
   LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mathematica
-  JSS_INVENTORY_NAME: "Wolfram.app"
   TRIGGER_POLICY_RUN_COMMAND: jamf policy -event Mathematica-license
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"

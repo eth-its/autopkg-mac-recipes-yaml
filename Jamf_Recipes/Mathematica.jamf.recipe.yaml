@@ -13,11 +13,9 @@ Input:
     Mathematica by Wolfram Research is high-powered computation software with thousands of Wolfram Language functions, natural language input, real-world data, and mobile support.
 
     The Floating license requires an active network connection to ETH (with VPN if offsite).
-    The Application Name is now "Wolfram.app" as of v14.1
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  JSS_INVENTORY_NAME: "Wolfram.app"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
