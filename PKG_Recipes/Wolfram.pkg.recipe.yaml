@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.download.internal-sources
 
 Input:
   LIST_LANGUAGE: EN
-  LIST_NAME: Mathematica Floating
+  LIST_NAME: Mathematica Node
   NAME: Wolfram
 
 Process:
