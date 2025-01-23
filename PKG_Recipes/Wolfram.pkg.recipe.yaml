@@ -1,0 +1,12 @@
+Description: Downloads the latest version of Wolfram and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Wolfram
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.internal-sources
+
+Input:
+  LIST_LANGUAGE: EN
+  LIST_NAME: Mathematica Floating
+  NAME: Wolfram
+
+Process:
+  - Processor: AppPkgCreator

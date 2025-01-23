@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Wolfram-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Wolfram
+  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Wolfram
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  POLICY_RUN_COMMAND: jamf policy -event Wolfram-license
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
