@@ -17,7 +17,7 @@ Input:
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   GROUP_TEMPLATE: SmartGroup-users.xml
   # script
-  SCRIPT_NAME: Wolfram-install.zsh
+  SCRIPT_NAME: WolframLicense-install.zsh
   SCRIPT_CATEGORY: Science & Math
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: Floating license server
