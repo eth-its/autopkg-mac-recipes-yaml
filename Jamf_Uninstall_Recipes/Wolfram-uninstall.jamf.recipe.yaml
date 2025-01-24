@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: Mathematica
+  NAME: Wolfram
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   LANGUAGE: EN
   JSS_INVENTORY_NAME: "Wolfram.app"
