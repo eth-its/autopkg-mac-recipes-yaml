@@ -7,7 +7,7 @@ Input:
   NAME: Mathematica
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   LANGUAGE: EN
-  JSS_INVENTORY_NAME: "Mathematica.app"
+  JSS_INVENTORY_NAME: "Wolfram.app"
   AUTOINSTALL_GROUP_NAME: "%NAME% EN auto-install"
   INSTALLED_GROUP_NAME: "%NAME% EN installed"
   TEST_USERS_GROUP_NAME: "%NAME% EN test users"
