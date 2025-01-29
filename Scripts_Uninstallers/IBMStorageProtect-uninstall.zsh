@@ -1,9 +1,9 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-# Uninstall IBM Spectrum Protect
+# Uninstall IBM Storage Protect
 
-appName="IBM Spectrum Protect"
+appName="IBM Storage Protect"
 
 function silent_app_quit() {
     # silently kill the application.
@@ -35,7 +35,7 @@ silent_app_quit "$appName"
 
 echo "Removing application: ${appName}"
 
-/bin/rm -rf "/Applications/IBM Spectrum Protect" ||:
+/bin/rm -rf "/Applications/IBM Storage Protect" ||:
 /bin/rm -rf "/Library/Application Support/tivoli" ||:
 /bin/rm -f "/usr/bin/dsmc" "/usr/bin/dsmcad" "/usr/bin/dsmadmc" "/usr/bin/dsmtrace" "/usr/bin/dsmagent" "/usr/lib/libxmlutil-6.2.0.dylib" "/usr/lib/libtsm620xerces-c1_6_0.dylib" ||:
 

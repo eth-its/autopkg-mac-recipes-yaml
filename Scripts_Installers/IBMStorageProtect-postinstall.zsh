@@ -1,7 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-# Postinstall for IBM Spectrum Protect
+# Postinstall for IBM Storage Protect
 
 # move any certificates back in place
 tempdir=/var/folders/tivoli-reinstall

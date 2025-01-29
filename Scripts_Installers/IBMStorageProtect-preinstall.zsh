@@ -3,7 +3,7 @@
 
 # Remove existing installation(s) if it is in the Applications folder or a subfolder
 
-appName="IBM Spectrum Protect"
+appName="IBM Storage Protect"
 
 # quit the app if running
 pkill dsmj
@@ -21,5 +21,5 @@ fi
 echo "Removing application: ${appName}"
 
 if [[ -d "/Applications/${appName}/${appName}.app" ]]; then
-    jamf policy -event "IBM Spectrum Protect-uninstall"
+    jamf policy -event "IBM Storage Protect-uninstall"
 fi
