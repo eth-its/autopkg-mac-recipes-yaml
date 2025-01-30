@@ -1,4 +1,4 @@
-Description: Download recipe for the ETH Monitoring Tool client.
+Description: Download recipe for the Ategra Web File Handler.
 Identifier: com.github.eth-its-recipes.download.AtegraWebFileHandler
 MinimumVersion: "2.3"
 
