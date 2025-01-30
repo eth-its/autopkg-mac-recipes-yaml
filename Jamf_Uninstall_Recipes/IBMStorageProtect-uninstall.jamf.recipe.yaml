@@ -1,13 +1,13 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.IBMSpectrumProtect-uninstall
+Identifier: com.github.eth-its-recipes.jamf.IBMStorageProtect-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
-  NAME: IBM Spectrum Protect
+  NAME: IBM Storage Protect
   LANGUAGE: EN
-  SCRIPT_PATH: IBMSpectrumProtect-uninstall.zsh
-  SCRIPT_NAME: IBMSpectrumProtect-uninstall.zsh
+  SCRIPT_PATH: IBMStorageProtect-uninstall.zsh
+  SCRIPT_NAME: IBMStorageProtect-uninstall.zsh
   SELFSERVICE_DESCRIPTION: Uninstalls %NAME%.
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"

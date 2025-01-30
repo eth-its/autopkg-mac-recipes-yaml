@@ -1,23 +1,23 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.IBMSpectrumProtect
+Identifier: com.github.eth-its-recipes.jamf.IBMStorageProtect
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.IBMSpectrumProtect
+ParentRecipe: com.github.eth-its-recipes.pkg.IBMStorageProtect
 
 Input:
-  NAME: IBM Spectrum Protect
+  NAME: IBM Storage Protect
   LANGUAGE: EN
   PKG_CATEGORY: Connect & Remote
-  PREINSTALL_SCRIPT_NAME: IBMSpectrumProtect-preinstall.zsh
-  PREINSTALL_SCRIPT_PATH: IBMSpectrumProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_NAME: IBMStorageProtect-preinstall.zsh
+  PREINSTALL_SCRIPT_PATH: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_CATEGORY: Administration
   PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_NAME: IBMSpectrumProtect-postinstall.zsh
-  POSTINSTALL_SCRIPT_PATH: IBMSpectrumProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_NAME: IBMStorageProtect-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: IBMStorageProtect-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    **IBM Spectrum Protect**, formerly known as **Tivoli Storage Manager** (TSM), is a centrally managed Backup and Restore service, primarily intended for ETH servers. 
+    **IBM Storage Protect**, formerly known as **Tivoli Storage Manager** (TSM), is a centrally managed Backup and Restore service, primarily intended for ETH servers. 
 
     Please see the following instructions for setting up this software for backing up your client (requires VPN): [https://kb.ethz.ch/dbr/mac/installation](https://kb.ethz.ch/dbr/mac/installation).
 

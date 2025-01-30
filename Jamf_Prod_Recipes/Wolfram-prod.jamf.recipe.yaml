@@ -1,17 +1,13 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.IBMSpectrumProtect-prod
+Identifier: com.github.eth-its-recipes.jamf.Wolfram-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
-  NAME: IBM Spectrum Protect
+  NAME: Wolfram
   LANGUAGE: EN
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.IBMSpectrumProtect
-  PREINSTALL_SCRIPT_NAME: IBMSpectrumProtect-preinstall.zsh
-  PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_NAME: IBMSpectrumProtect-postinstall.zsh
-  POSTINSTALL_SCRIPT_PRIORITY: After
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Wolfram
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event Wolfram-license
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %LANGUAGE% auto-update"
