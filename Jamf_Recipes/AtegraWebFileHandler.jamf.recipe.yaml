@@ -4,12 +4,12 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.AtegraWebFileHandler
 
 Input:
-  NAME: Ategra Web File Handler
+  NAME: ATEGRA Web File Handler
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Ategra Web File Handler helps editing data on the eGeKo-platform
+    ATEGRA Web File Handler helps editing data on the eGeKo-platform
     
     Version: %version%
     Category: %PKG_CATEGORY%
