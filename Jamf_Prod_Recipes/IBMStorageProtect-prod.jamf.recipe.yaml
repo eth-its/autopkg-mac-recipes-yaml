@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 Input:
   NAME: IBM Storage Protect
   LANGUAGE: EN
-  JSS_INVENTORY_NAME_2: IBM Spectrum Protect
+  JSS_INVENTORY_NAME_2: IBM Spectrum Protect.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.IBMStorageProtect
   PREINSTALL_SCRIPT_NAME: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before
