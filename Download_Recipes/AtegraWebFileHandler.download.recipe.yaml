@@ -3,6 +3,7 @@ Identifier: com.github.eth-its-recipes.download.AtegraWebFileHandler
 MinimumVersion: "2.3"
 
 Input:
+  NAME: ATEGRA Web File Handler
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: AWFH
   VENDOR: Ategra
