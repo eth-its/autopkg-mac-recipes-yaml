@@ -5,9 +5,40 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: ATEGRA Web File Handler
+  LIST_NAME: ATEGRA Web File Handler
 
 Process:
-  - Processor: PkgCopier
+  - Processor: PkgRootCreator
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/AtegraWebFileHandler-%version%.pkg"
-      source_pkg: "%pathname%"
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      source_path: "%pathname%/%NAME%.app"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/%NAME%.app"
+    Processor: Copier
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: "ch.ethz.id.pkg.ategrawebfilehandler"
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
