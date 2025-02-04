@@ -1,9 +1,9 @@
-Description: Download recipe for the ETH Monitoring Tool client.
+Description: Download recipe for the Ategra Web File Handler.
 Identifier: com.github.eth-its-recipes.download.AtegraWebFileHandler
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Ategra Web File Handler
+  NAME: ATEGRA Web File Handler
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: AWFH
   VENDOR: Ategra
@@ -20,6 +20,6 @@ Process:
 
   - Processor: URLDownloader
     Arguments:
-      url: "file://%root_path%/%version%/ATEGRA Web File Handler.pkg"
+      url: "file://%root_path%/%version%/%latest_file%.dmg"
 
   - Processor: EndOfCheckPhase
