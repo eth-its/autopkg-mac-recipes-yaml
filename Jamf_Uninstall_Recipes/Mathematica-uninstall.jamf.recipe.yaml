@@ -10,7 +10,6 @@ Input:
   JSS_INVENTORY_NAME: "Mathematica.app"
   AUTOINSTALL_GROUP_NAME: "%NAME% EN auto-install"
   INSTALLED_GROUP_NAME: "%NAME% EN installed"
-  TEST_USERS_GROUP_NAME: "%NAME% EN test users"
   USERS_GROUP_NAME: "%NAME% EN users"
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% EN"
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% EN"
