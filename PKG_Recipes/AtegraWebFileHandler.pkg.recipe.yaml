@@ -3,10 +3,6 @@ Identifier: com.github.eth-its-recipes.pkg.AtegraWebFileHandler
 ParentRecipe: com.github.eth-its-recipes.download.AtegraWebFileHandler
 MinimumVersion: "2.3"
 
-Input:
-  NAME: ATEGRA Web File Handler
-  LIST_NAME: ATEGRA Web File Handler
-
 Process:
   - Arguments:
       pkg_path: "%pathname%"
