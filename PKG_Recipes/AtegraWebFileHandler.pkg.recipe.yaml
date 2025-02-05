@@ -1,14 +1,14 @@
-Description: Downloads the latest version of ETH Printers and creates a package.
+Description: Downloads the latest version of Ategra Web File Handler.
 Identifier: com.github.eth-its-recipes.pkg.AtegraWebFileHandler
 ParentRecipe: com.github.eth-its-recipes.download.AtegraWebFileHandler
 MinimumVersion: "2.3"
 
 Process:
-  - Arguments:
+  - Processor: DistributionPkgInfo
+    Arguments:
       pkg_path: "%pathname%"
-    Processor: com.github.eth-its-recipes.processors/DistributionPkgInfo
 
-  - Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/AtegraWebFileHandler-%version%.pkg"
+  - Processor: PkgCopier
+    Arguments:
       source_pkg: "%pathname%"
-    Processor: PkgCopier
+      pkg_path: "%RECIPE_CACHE_DIR%/AtegraWebFileHandler-%version%.pkg"
