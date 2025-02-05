@@ -22,7 +22,7 @@ Process:
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
 
-  - Processor: DistributionPkgInfo
+  - Processor: com.github.eth-its-recipes.processors/DistributionPkgInfo
     Arguments:
       pkg_path: "%pathname%"
 
