@@ -22,4 +22,13 @@ Process:
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
 
+  - Processor: DistributionPkgInfo
+    Arguments:
+      pkg_path: "%pathname%"
+
+  - Processor: PkgCopier
+    Arguments:
+      source_pkg: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/AtegraWebFileHandler-%version%.pkg"
+  
   - Processor: EndOfCheckPhase
