@@ -22,10 +22,6 @@ Process:
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
 
-  - Processor: com.github.eth-its-recipes.processors/DistributionPkgInfo
-    Arguments:
-      pkg_path: "%pathname%"
-
   - Processor: PkgCopier
     Arguments:
       source_pkg: "%pathname%"
