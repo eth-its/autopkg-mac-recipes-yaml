@@ -6,39 +6,10 @@ ParentRecipe: com.github.eth-its-recipes.download.ChimeraX
 Input:
   NAME: ChimeraX
   LIST_NAME: ChimeraX
-
+  
 Process:
-  - Processor: PkgRootCreator
-    Arguments:
-      pkgdirs: {}
-      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-
   - Processor: AppDmgVersioner
     Arguments:
       dmg_path: "%pathname%"
 
-  - Arguments:
-      pkgdirs:
-        Applications: "0775"
-      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PkgRootCreator
-
-  - Processor: Copier
-    Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX-%version%.app"
-      source_path: "%pathname%/ChimeraX-%version%.app"
-
-  - Processor: PkgCreator
-    Arguments:
-      pkg_request:
-        chown: []
-        id: "ch.ethz.id.pkg.chimerax"
-        pkgname: "%NAME%-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-        pkgtype: flat
-        version: "%version%"
-
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/pkgroot"
+  - Processor: AppPkgCreator
