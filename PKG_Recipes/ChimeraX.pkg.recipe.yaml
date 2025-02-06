@@ -23,10 +23,10 @@ Process:
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
-  - Arguments:
-      source_path: "%pathname%/ChimeraX-1.9.app"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX-1.9.app"
-    Processor: Copier
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChimeraX-%version%.app"
+      source_path: "%pathname%/ChimeraX-%version%.app"
 
   - Processor: PkgCreator
     Arguments:
