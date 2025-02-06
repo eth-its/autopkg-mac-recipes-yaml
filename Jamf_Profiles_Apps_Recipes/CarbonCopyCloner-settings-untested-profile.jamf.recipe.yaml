@@ -15,8 +15,8 @@ Input:
   NAME: Carbon Copy Cloner
   LANGUAGE: EN
   IDENTIFIER: com.bombich.ccc
-  USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
-  USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   JSS_INVENTORY_NAME: "%NAME%.app"
   PROFILE_CATEGORY: Application Settings
   PROFILE_NAME: "%NAME% (Testing)"
@@ -34,8 +34,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader

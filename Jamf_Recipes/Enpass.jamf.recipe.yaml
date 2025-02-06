@@ -20,8 +20,6 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
@@ -63,12 +61,6 @@ Process:
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader

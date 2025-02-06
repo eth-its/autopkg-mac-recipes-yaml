@@ -13,8 +13,8 @@ Input:
   PROFILE_MOBILECONFIG: PopChar-PPPC.mobileconfig
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   REPLACE_PROFILE: "True"
 
 Process:
@@ -25,8 +25,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader

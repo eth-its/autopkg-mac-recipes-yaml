@@ -5,8 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.download.Homebrew
 
 Input:
   NAME: Install Homebrew
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   TESTING_GROUP_NAME: Testing
   POLICY_CATEGORY: Development & Computing
   POLICY_TEMPLATE: Policy-untested-selfservice-script-only.xml

@@ -18,8 +18,6 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
@@ -67,13 +65,7 @@ Process:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
-      replace_group: "False"
-
+      
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"

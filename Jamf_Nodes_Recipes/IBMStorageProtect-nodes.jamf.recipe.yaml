@@ -11,7 +11,6 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   PREINSTALL_SCRIPT_NAME: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_PATH: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before

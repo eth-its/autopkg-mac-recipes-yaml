@@ -14,8 +14,6 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_USERS_GROUP_NAME: "%NAME% test users"
-  TEST_USERS_GROUP_TEMPLATE: SmartGroup-test-users.xml
   EXCLUSION1_GROUP_NAME: "%NAME% test version installed"
   EXCLUSION1_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   EXCLUSION2_GROUP_NAME: "%NAME% not installed"
@@ -61,12 +59,6 @@ Process:
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
-      computergroup_template: "%TEST_USERS_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader

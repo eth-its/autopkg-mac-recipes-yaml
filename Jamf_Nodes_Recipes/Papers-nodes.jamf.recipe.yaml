@@ -18,4 +18,3 @@ Input:
   PARAMETER4_LABEL: Trigger name
   PARAMETER4_VALUE: "%NAME%-uninstall"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"

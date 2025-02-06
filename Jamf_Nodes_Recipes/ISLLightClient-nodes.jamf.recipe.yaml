@@ -10,7 +10,6 @@ Input:
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
-  TEST_USERS_GROUP_NAME: "%NAME% %LANGUAGE% test users"
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
   SCRIPT_NAME: jamf-policy-trigger.sh
   SCRIPT_PATH: jamf-policy-trigger.sh

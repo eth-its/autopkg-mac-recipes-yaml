@@ -17,10 +17,9 @@ Input:
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Licenses GraphicConverter %MAJOR_VERSION%.
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
-  TEST_USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% test users"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEST_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TESTING_GROUP_NAME: "%TEST_USERS_GROUP_NAME%"
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   REPLACE_PROFILE: "True"
 
 Process:
@@ -31,8 +30,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%PROFILE_TEST_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
