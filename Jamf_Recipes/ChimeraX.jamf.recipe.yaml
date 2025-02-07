@@ -1,4 +1,4 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. Change the SHORT_VERSION-Variable upon updating-
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. Change the POLICY_RUN_COMMAND Version Number
 Identifier: com.github.eth-its-recipes.jamf.ChimeraX
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.ChimeraX
@@ -16,7 +16,6 @@ Input:
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  SHORT_VERSION: 1.9
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
@@ -24,7 +23,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "mv /Applications/ChimeraX-%SHORT_VERSION%.app /Applications/ChimeraX.app && echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "mv /Applications/ChimeraX-1.9.app /Applications/ChimeraX.app && echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
