@@ -5,13 +5,13 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.nmcspadden.pkg.appstore
 
 Input:
-  NAME: Logic Pro X
+  NAME: Logic Pro
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Creativity
   SELFSERVICE_DESCRIPTION: |
-    Logic Pro X is a complete professional recording studio on the Mac. It has everything musicians need to go from first note to final master.
+    Logic Pro is a complete professional recording studio on the Mac. It has everything musicians need to go from first note to final master.
 
     Version: %version%
     Category: %PKG_CATEGORY%

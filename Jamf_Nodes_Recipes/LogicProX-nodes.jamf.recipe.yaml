@@ -4,6 +4,6 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
 
 Input:
-  NAME: Logic Pro X
+  NAME: Logic Pro
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogicProX
   SELFSERVICE_ICON: Logic Pro X 10.7.png
