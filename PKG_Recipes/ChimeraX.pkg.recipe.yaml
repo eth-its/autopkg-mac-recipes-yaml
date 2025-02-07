@@ -6,7 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.download.ChimeraX
 Input:
   NAME: ChimeraX
   LIST_NAME: ChimeraX
-  
+
+Process:
 Process:
   - Processor: AppDmgVersioner
     Arguments:
