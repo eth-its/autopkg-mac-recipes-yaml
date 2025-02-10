@@ -6,4 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Parallels Desktop
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.parallels.autodeploy.package
+  PARAMETER5_VALUE: com.parallels.desktop.installer
