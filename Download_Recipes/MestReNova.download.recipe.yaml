@@ -8,7 +8,7 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      re_pattern: (?P<url>MestReNova_(?P<version>.*?)\.dmg)
+      re_pattern: (?P<url>MestReNova-(?P<version>.*?)\.dmg)
       url: "https://mestrelab.com/download/mnova/"
 
   - Processor: URLDownloader
