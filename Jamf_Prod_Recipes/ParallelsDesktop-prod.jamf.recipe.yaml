@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: Parallels Desktop
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ParallelsDesktop
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
