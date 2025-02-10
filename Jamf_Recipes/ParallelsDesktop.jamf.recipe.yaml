@@ -1,17 +1,18 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.ParallelsDesktop
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.ParallelsDesktop
+ParentRecipe: com.github.homebysix.pkg.ParallelsDesktop
 
 Input:
   NAME: Parallels Desktop
   POLICY_NAME: "%NAME% (Testing)"
+  MAJOR_VERSION: 20
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     Parallels Desktop is a hardware virtualization tool for running operating systems like Windows and Linux in a virtual environment on your Mac.
 
-    Parallels Desktop must be licensed through the IT Shop.
+    Parallels Desktop can not be licensed through IT-Shop. Users must obtain a license by themselves.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -22,7 +23,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
