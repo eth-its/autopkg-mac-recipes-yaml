@@ -8,17 +8,17 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      re_pattern: (?P<url>MestReNova-(?P<version>-*?)\.dmg)
-      url: "https://mestrelab.com/download/mnova/"
+      url: "https://mestrelab.com/downloads/mnova/mac/"
+      re_pattern: "(?P<url>MestReNova-(?P<version>[0-9]+\.[0-9]+\.[0-9]+-[0-9]+)\.dmg)"
 
   - Processor: URLDownloader
     Arguments:
-      url: "https://mestrelab.com/downloads/mnova/mac/%url%"
+      url: "%url%"
       filename: "MestReNova-%version%.dmg"
 
   - Processor: EndOfCheckPhase
 
   - Processor: CodeSignatureVerifier
     Arguments:
-      input_path: "%pathname%/MestReNova.app"
+      input_path: "/Applications/MestReNova.app"
       requirement: (anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = DH5EKRR34H) and identifier "com.mestrelab.MestReNova"
