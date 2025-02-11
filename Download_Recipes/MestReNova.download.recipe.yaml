@@ -8,12 +8,12 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      url: "https://mestrelab.com/downloads/mnova/mac/"
-      re_pattern: '(?P<url>MestReNova-(?P<version>[0-9]+\.[0-9]+\.[0-9]+-[0-9]+)\.dmg)'
+      url: "https://mestrelab.com/download"
+      re_pattern: 'href="(?P<url>/downloads/mnova/mac/MestReNova-(?P<version>[0-9]+\.[0-9]+\.[0-9]+-[0-9]+)\.dmg)"'
 
   - Processor: URLDownloader
     Arguments:
-      url: "%url%"
+      url: "https://mestrelab.com%url%"
       filename: "MestReNova-%version%.dmg"
 
   - Processor: EndOfCheckPhase
