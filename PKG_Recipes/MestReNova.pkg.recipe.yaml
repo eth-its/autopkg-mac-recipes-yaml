@@ -1,6 +1,6 @@
 Description: Downloads the latest version of MestReNova and creates a package.
 Identifier: com.github.eth-its-recipes.pkg.MestReNova
-ParentRecipe: com.github.andrewvalentine.download.MestReNova
+ParentRecipe: com.github.eth-its-recipes.download.MestReNova
 MinimumVersion: "2.3"
 
 Input:
