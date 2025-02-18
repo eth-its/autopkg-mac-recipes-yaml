@@ -23,7 +23,7 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: "GLPI-Agent.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
