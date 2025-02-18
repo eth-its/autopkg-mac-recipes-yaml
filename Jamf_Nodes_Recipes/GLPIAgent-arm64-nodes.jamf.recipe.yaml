@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: GLPI-Agent arm64
-  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  POLICY_NAME: "%NAME% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-arm64
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
