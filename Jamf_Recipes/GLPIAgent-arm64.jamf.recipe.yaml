@@ -7,7 +7,7 @@ Input:
   NAME: GLPI-Agent arm64
   PKG_CATEGORY: Administration
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
-  #POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -32,8 +32,8 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
   ARCHICTECTURE_STRING: arm64
   PLATFORM: arm64
-  #POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
-  #UPDATE_PREDICATE: "pkg_uploaded != True"
+  POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

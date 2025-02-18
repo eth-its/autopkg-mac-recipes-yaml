@@ -14,7 +14,7 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     Installs the GLPI-Agent.
 
-    Version: %version%
+    Version: %version%4
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
