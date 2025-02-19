@@ -7,7 +7,6 @@ Input:
   NAME: GLPI-Agent x86_64
   PKG_CATEGORY: Administration
   POLICY_NAME: "%NAME% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -22,7 +21,7 @@ Input:
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
   SELFSERVICE_ICON: "GLPI-Agent.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
@@ -32,8 +31,9 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
   ARCHICTECTURE_STRING: x86_64
   PLATFORM: x86_64
-  POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure"
-  UPDATE_PREDICATE: "pkg_uploaded != True"
+  SCRIPT_NAME: GLPIAgent-uninstall.sh
+  SCRIPT_PATH: GLPIAgent-uninstall.sh
+  SCRIPT_PRIORITY: Before
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
