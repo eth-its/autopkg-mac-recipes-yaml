@@ -51,15 +51,15 @@ Process:
       mobileconfig: MicrosoftDefender.mobileconfig
       replace_profile: True
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Comment: Microsoft Defender Privacy Settings
-    Arguments:
-      profile_name: Microsoft Defender Privacy Settings
-      profile_category: "%PROFILE_CATEGORY_PPPC%"
-      profile_template: Profile-1-group.xml
-      computergroup_name: "%GROUP_NAME%"
-      mobileconfig: MicrosoftDefender-PPPC.mobileconfig
-      replace_profile: True
+  # - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+  #   Comment: Microsoft Defender Privacy Settings (not needed as all PPPC-Settings are in the MicrosoftDefender.mobileconfig)
+  #   Arguments:
+  #     profile_name: Microsoft Defender Privacy Settings
+  #     profile_category: "%PROFILE_CATEGORY_PPPC%"
+  #     profile_template: Profile-1-group.xml
+  #     computergroup_name: "%GROUP_NAME%"
+  #     mobileconfig: MicrosoftDefender-PPPC.mobileconfig
+  #     replace_profile: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Comment: Microsoft Defender Onboarding Settings - Test Context
