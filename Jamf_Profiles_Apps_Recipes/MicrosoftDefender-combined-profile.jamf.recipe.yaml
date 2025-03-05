@@ -62,9 +62,9 @@ Process:
   #     replace_profile: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Comment: Microsoft Defender Onboarding Settings - Test Context
+    Comment: Microsoft Defender Onboarding Settings - Test
     Arguments:
-      profile_name: Microsoft Defender Onboarding Settings - Test Context
+      profile_name: Microsoft Defender Onboarding Settings - Test
       profile_category: "%PROFILE_CATEGORY_SETTINGS%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       profile_template: Profile-1-group.xml
@@ -76,10 +76,10 @@ Process:
       replace_profile: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Comment: Microsoft Defender Onboarding Settings - Prod Context
+    Comment: Microsoft Defender Onboarding Settings - Prod
     Arguments:
       EXCLUSION_GROUP_NAME: "%TESTING_GROUP_NAME%"
-      profile_name: Microsoft Defender Onboarding Settings - Prod Context
+      profile_name: Microsoft Defender Onboarding Settings - Prod
       profile_category: "%PROFILE_CATEGORY_SETTINGS%"
       computergroup_name: "%GROUP_NAME%"
       profile_template: Profile-1-group-1-exclusion.xml
