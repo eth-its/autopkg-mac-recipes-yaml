@@ -84,7 +84,7 @@ Process:
       computergroup_name: "%GROUP_NAME%"
       profile_template: Profile-1-group-1-exclusion.xml
       mobileconfig: ""
-      payload: WindowsDefenderATPOnboarding.plist
+      payload: WindowsDefenderATPOnboarding-2025.plist
       identifier: com.microsoft.wdav.atp
       organization: "%ORGANIZATION%"
       profile_description: Microsoft Defender Onboarding Settings
