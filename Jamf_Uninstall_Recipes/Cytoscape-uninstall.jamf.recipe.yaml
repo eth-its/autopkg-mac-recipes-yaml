@@ -5,9 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Cytoscape
-  AUTOINSTALL_GROUP_NAME: "%NAME% EN auto-install"
   INSTALLED_GROUP_NAME: "%NAME% EN installed"
-  USERS_GROUP_NAME: "%NAME% EN users"
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% EN"
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% EN"
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% EN"
