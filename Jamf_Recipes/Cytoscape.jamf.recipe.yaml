@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Cytoscape
 MinimumVersion: "2.3"
-ParentRecipe: com.github.autopkg.pkg.Cytoscape
+ParentRecipe: com.github.mlbz521.pkg.Cytoscape-Universal
 
 Input:
   NAME: Cytoscape
