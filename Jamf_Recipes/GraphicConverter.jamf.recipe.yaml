@@ -8,7 +8,7 @@ Input:
   NAME: GraphicConverter
   MAJOR_VERSION: "12"
   JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: Imaging & Design
   SELFSERVICE_DESCRIPTION: |
     GraphicConverter %MAJOR_VERSION% is computer software that displays and edits raster graphics files. It also converts files between different formats.
 

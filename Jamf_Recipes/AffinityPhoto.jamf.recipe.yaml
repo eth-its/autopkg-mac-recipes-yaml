@@ -8,7 +8,7 @@ Input:
   LANGUAGE_CODE: en-gb
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: Imaging & Design
   SELFSERVICE_DESCRIPTION: |
     Affinity Photo has become the first choice for photography and creative professionals around the world, who love its speed, power and precision. Whether you are editing and retouching images, or creating full-blown multi-layered compositions, it has all the power and performance you need. It is an alternative to Adobe Photoshop.
 

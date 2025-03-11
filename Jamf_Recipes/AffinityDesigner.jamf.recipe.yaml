@@ -8,7 +8,7 @@ Input:
   LANGUAGE_CODE: en-gb
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: Imaging & Design
   SELFSERVICE_DESCRIPTION: |
     Affinity Designer 2 is a vector graphics editor for Apple macOS and Microsoft Windows by Serif Europe. It is an alternative to Adobe Illustrator.
 
