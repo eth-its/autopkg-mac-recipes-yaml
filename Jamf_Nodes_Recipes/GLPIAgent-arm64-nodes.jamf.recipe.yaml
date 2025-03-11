@@ -4,8 +4,8 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: GLPI-Agent arm64
-  POLICY_NAME: "%NAME% (Testing)"
+  NAME: GLPI-Agent
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-arm64
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version

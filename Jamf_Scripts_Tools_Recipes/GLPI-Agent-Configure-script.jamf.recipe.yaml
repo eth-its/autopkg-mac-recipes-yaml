@@ -1,0 +1,77 @@
+Description: Creates a trigger-only policy.
+Identifier: com.github.eth-its-recipes.jamf.script.GLPIAgent-configure
+MinimumVersion: "2.3"
+
+Input:
+  NAME: GLPI Agent Configure
+  SCRIPT_CATEGORY: Tools & Accessories
+  RECURRING_GROUP_NAME: "%NAME% users"
+  RECURRING_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: "Testing - %NAME%"
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'GLPI Agent configuration complete'"
+  TRIGGER_NAME: "GLPI-Agent-Configure"
+  POLICY_CATEGORY: Triggered Installers
+  POLICY_FREQUENCY: Ongoing
+  POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
+  POLICY_NAME: GLPI Agent Configure
+  SCRIPT_NAME: GLPI-Agent-Configure.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_LABEL: Server URL (url provided by the Service Owner)
+  PARAMETER5_LABEL: Debug Level - 0: basic agent processing | 1: extended agent processing | 2: messages exchanged with the server and activates traces (default = 0)
+  PARAMETER6_LABEL: Use Tag variable - <yes|no> (default = no)
+  PARAMETER7_LABEL: Static Tag variable or Tag-Server
+  PARAMETER8_LABEL: User for HTTP authentication
+  PARAMETER9_LABEL: Password for HTTP authentication
+  PARAMETER10_LABEL: SSL server certificate fingerprint
+  PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_VALUE: ""
+  PARAMETER5_VALUE: ""
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL%"
+      script_parameter6: "%PARAMETER6_LABEL%"
+      script_parameter7: "%PARAMETER7_LABEL%"
+      script_parameter8: "%PARAMETER8_LABEL%"
+      script_parameter9: "%PARAMETER9_LABEL%"
+      script_parameter10: "%PARAMETER10_LABEL%"
+      script_parameter11: "%PARAMETER11_LABEL%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      USERS_GROUP_NAME: "%RECURRING_GROUP_NAME%"
+      computergroup_template: "%RECURRING_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"

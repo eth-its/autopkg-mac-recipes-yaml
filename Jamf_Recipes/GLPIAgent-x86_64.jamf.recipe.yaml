@@ -4,16 +4,16 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.pkg.GLPIAgent
 
 Input:
-  NAME: GLPI-Agent x86_64
+  NAME: GLPI-Agent
   PKG_CATEGORY: Administration
-  POLICY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Installs the GLPI-Agent.
 
-    Version: %version%4
+    Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
