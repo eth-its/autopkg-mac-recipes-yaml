@@ -18,14 +18,14 @@ Input:
   POLICY_NAME: GLPI Agent Configure
   SCRIPT_NAME: GLPI-Agent-Configure.sh
   SCRIPT_PRIORITY: After
-  PARAMETER4_LABEL: Server URL (url provided by the Service Owner)
-  PARAMETER5_LABEL: Debug Level - 0: basic agent processing | 1: extended agent processing | 2: messages exchanged with the server and activates traces (default = 0)
-  PARAMETER6_LABEL: Use Tag variable - <yes|no> (default = no)
-  PARAMETER7_LABEL: Static Tag variable or Tag-Server
-  PARAMETER8_LABEL: User for HTTP authentication
-  PARAMETER9_LABEL: Password for HTTP authentication
-  PARAMETER10_LABEL: SSL server certificate fingerprint
-  PARAMETER11_LABEL: Parameter 11
+  PARAMETER4_LABEL: "Server URL (url provided by the Service Owner)"
+  PARAMETER5_LABEL: "Debug Level - 0: basic agent processing | 1: extended agent processing | 2: messages exchanged with the server and activates traces (default = 0)"
+  PARAMETER6_LABEL: "Use Tag variable - <yes|no> (default = no)"
+  PARAMETER7_LABEL: "Static Tag variable or Tag-Server"
+  PARAMETER8_LABEL: "User for HTTP authentication"
+  PARAMETER9_LABEL: "Password for HTTP authentication"
+  PARAMETER10_LABEL: "SSL server certificate fingerprint"
+  PARAMETER11_LABEL: "Parameter 11"
   PARAMETER4_VALUE: ""
   PARAMETER5_VALUE: ""
   PARAMETER6_VALUE: ""
