@@ -1,0 +1,15 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.OmnissaHorizonClient-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Omnissa Horizon Client
+  LANGUAGE: EN
+  SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
+  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  SELFSERVICE_ICON: "%NAME%.png"
