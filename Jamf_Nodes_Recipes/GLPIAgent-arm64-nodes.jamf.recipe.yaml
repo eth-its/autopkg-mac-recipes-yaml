@@ -7,14 +7,14 @@ Input:
   NAME: GLPI-Agent
   #PLATFORM: arm64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-arm64
-  #POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   #SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_POLICY_NAME%"
-  #POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
   #SELFSERVICE_ICON: "GLPI-Agent.png"
   #SELFSERVICE_POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
-  #TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   #PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   #PLATFORM_EXCLUSION: x86_64
   #PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
