@@ -5,14 +5,13 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: GLPI-Agent
-  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
+  PLATFORM: x86_64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GLPIAgent-x86_64
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SCRIPT: GLPIAgent-EA.sh
-  SELFSERVICE_ICON: "GLPI-Agent.png"
-  SELFSERVICE_POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_POLICY_NAME%"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
@@ -21,5 +20,4 @@ Input:
   SCRIPT_NAME: GLPIAgent-uninstall.sh
   SCRIPT_PRIORITY: Before
   POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure && echo 'Installation of %NAME% complete'"
-  PLATFORM: x86_64
   
