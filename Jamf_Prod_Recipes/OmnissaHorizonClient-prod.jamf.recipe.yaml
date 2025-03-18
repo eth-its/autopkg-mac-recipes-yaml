@@ -14,7 +14,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users-twonames.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users-twonames-or.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %LANGUAGE%"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %LANGUAGE%"
   AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %LANGUAGE%"
