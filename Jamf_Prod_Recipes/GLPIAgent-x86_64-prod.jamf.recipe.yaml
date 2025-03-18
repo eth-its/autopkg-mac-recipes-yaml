@@ -16,6 +16,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   SCRIPT_NAME: GLPIAgent-uninstall.sh
   SCRIPT_PATH: GLPIAgent-uninstall.sh
   SCRIPT_PRIORITY: Before
