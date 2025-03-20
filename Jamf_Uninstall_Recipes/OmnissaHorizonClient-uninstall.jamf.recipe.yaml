@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Omnissa Horizon Client
   LANGUAGE: EN
+  JSS_INVENTORY_NAME_2: "VMware Horizon Client.app"
   SCRIPT_PATH: OmnissaHorizonClient-uninstall.zsh
   SCRIPT_NAME: OmnissaHorizonClient-uninstall.zsh
   SELFSERVICE_DESCRIPTION: Uninstalls Omnissa Horizon Client.
