@@ -11,6 +11,7 @@ Input:
   SELFSERVICE_DESCRIPTION: Uninstalls Omnissa Horizon Client.
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users-twonames-or.xml
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %LANGUAGE%"
   UNINSTALL_POLICY_NAME: "Uninstall %NAME% %LANGUAGE%"
