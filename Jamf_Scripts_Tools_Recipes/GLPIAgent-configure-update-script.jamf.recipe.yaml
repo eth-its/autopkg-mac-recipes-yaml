@@ -11,7 +11,7 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
-  TRIGGER_NAME: "GLPI-Agent-Configure"
+  TRIGGER_NAME: GLPI-Agent-Configure
   TRIGGER_POLICY_RUN_COMMAND: "echo 'GLPI Agent configuration update complete'"
   POLICY_CATEGORY: Triggered Installers
   POLICY_FREQUENCY: Once per Computer
