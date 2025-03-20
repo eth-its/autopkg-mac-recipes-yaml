@@ -7,6 +7,7 @@ Input:
   TESTING_GROUP_NAME: "Testing - %NAME%"
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TRIGGER_NAME: "GLPI-Agent-Configure"
+  POLICY_NAME: mac.ethos.GLPI-Agent-config
   POLICY_CATEGORY: Triggered Installers
   POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
   SCRIPT_CATEGORY: Scripts
