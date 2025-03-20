@@ -12,7 +12,7 @@
         </criterion>
         <criterion>
             <name>Application Title</name>
-            <priority>0</priority>
+            <priority>1</priority>
             <and_or>or</and_or>
             <search_type>is</search_type>
             <value>%JSS_INVENTORY_NAME_2%</value>
