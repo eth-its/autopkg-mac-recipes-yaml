@@ -12,7 +12,7 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "GLPI-Agent-Configure"
   POLICY_NAME: mac.ethos.GLPI-Agent-config
   POLICY_CATEGORY: Triggered Installers
-  POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all.xml
+  POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all-nopkg.xml
   SCRIPT_CATEGORY: Scripts
   SCRIPT_NAME: mac.ethos.GLPI-config.sh
   SCRIPT_PRIORITY: After
