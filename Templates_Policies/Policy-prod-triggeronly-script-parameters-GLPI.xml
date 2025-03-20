@@ -45,10 +45,4 @@
         <message_start></message_start>
         <message_finish>%NAME% has now been installed.</message_finish>
     </user_interaction>
-    <maintenance>
-        <recon>true</recon>
-    </maintenance>
-    <files_processes>
-        <run_command>%TRIGGER_POLICY_RUN_COMMAND%</run_command>
-    </files_processes>
 </policy>

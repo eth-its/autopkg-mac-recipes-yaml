@@ -1,5 +1,5 @@
 Description: Creates a trigger-only policy.
-Identifier: com.github.eth-its-recipes.jamf.script.GLPIAgent-configure-update
+Identifier: com.github.eth-its-recipes.jamf.script.GLPIAgent-configure-update-script
 MinimumVersion: "2.3"
 
 Input:
