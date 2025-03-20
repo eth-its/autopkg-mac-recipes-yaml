@@ -1,0 +1,16 @@
+Description: Downloads latest ChimeraX installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.PyCharmCE
+MinimumVersion: "2.3"
+ParentRecipe: com.github.bnpl.autopkg.download.pycharmce
+
+Input:
+  NAME: PyCharm CE
+  LIST_NAME: PyCharm CE
+  ARCH_TYPE: macM1
+
+Process:
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: AppPkgCreator
