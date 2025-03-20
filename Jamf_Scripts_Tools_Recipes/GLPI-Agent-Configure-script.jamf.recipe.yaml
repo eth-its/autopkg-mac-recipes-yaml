@@ -3,20 +3,14 @@ Identifier: com.github.eth-its-recipes.jamf.script.GLPIAgent-configure
 MinimumVersion: "2.3"
 
 Input:
-  NAME: GLPI Agent Configure
-  SCRIPT_CATEGORY: Tools & Accessories
-  RECURRING_GROUP_NAME: "%NAME% users"
-  RECURRING_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  NAME: mac.ethos.GLPI-Agent-config
   TESTING_GROUP_NAME: "Testing - %NAME%"
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-nonotification.xml
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'GLPI Agent configuration complete'"
   TRIGGER_NAME: "GLPI-Agent-Configure"
   POLICY_CATEGORY: Triggered Installers
-  POLICY_FREQUENCY: Ongoing
-  POLICY_TEMPLATE: Policy-script-recurring-parameters.xml
-  POLICY_NAME: GLPI Agent Configure
-  SCRIPT_NAME: GLPI-Agent-Configure.sh
+  POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-all
+  SCRIPT_CATEGORY: Scripts
+  SCRIPT_NAME: mac.ethos.GLPI-config.sh
   SCRIPT_PRIORITY: After
   PARAMETER4_LABEL: "Server URL (url provided by the Service Owner)"
   PARAMETER5_LABEL: "Debug Level - 0: basic agent processing | 1: extended agent processing | 2: messages exchanged with the server and activates traces (default = 0)"
@@ -63,12 +57,6 @@ Process:
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      USERS_GROUP_NAME: "%RECURRING_GROUP_NAME%"
-      computergroup_template: "%RECURRING_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

@@ -1,0 +1,46 @@
+Description: Creates a trigger-only policy.
+Identifier: com.github.eth-its-recipes.jamf.script.GLPIAgent-configure-update
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "mac.ethos.GLPI-Agent-config-update"
+  TESTING_GROUP_NAME: "Testing - %NAME%"
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  INSTALLED_GROUP_NAME: "GLPI-Agent installed"
+  TRIGGER_NAME: "GLPI-Agent-Configure"
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'GLPI Agent configuration update complete'"
+  POLICY_CATEGORY: Triggered Installers
+  POLICY_FREQUENCY: Once per Computer
+  POLICY_TEMPLATE: Policy-prod-once-per-computer-trigger.xml
+  POLICY_NAME: "mac.ethos.GLPI-Agent-config-update"
+
+
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyLogFlusher
+    Arguments:
+      policy_name: "%POLICY_NAME%"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
