@@ -4,8 +4,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: mac.ethos.GLPI-Agent-config
-  TESTING_GROUP_NAME: "Testing - %NAME%"
-  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TRIGGER_POLICY_NAME: mac.ethos.GLPI-Agent-config
   TRIGGER_NAME: "GLPI-Agent-Configure"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
@@ -56,12 +54,7 @@ Process:
       script_parameter10: "%PARAMETER10_LABEL%"
       script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
-
+      
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
