@@ -16,5 +16,3 @@ elif /Applications/GLPI-Agent.app/uninstaller.sh ; then
 else
     echo "GLPI-Agent uninstaller script failed"
 fi
-
-echo "GLPI-Agent deletion complete"
