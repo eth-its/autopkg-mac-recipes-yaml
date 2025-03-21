@@ -169,6 +169,14 @@
                         <key>RuleValue</key>
                         <string>com.sqwarq.DetectX-Swift.observer</string>
                     </dict>
+                    <dict>
+                        <key>Comment</key>
+                        <string>GLPI-Agent</string>
+                        <key>RuleType</key>
+                        <string>LabelPrefix</string>
+                        <key>RuleValue</key>
+                        <string>com.teclib.glpi-agent</string>
+                    </dict>
                 </array>
             </dict>
         </array>
