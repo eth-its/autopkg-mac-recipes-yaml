@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 Input:
   NAME: ETH Support App v2
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support-v2
-  JSS_INVENTORY_NAME: Support.app
+  JSS_INVENTORY_NAME: ETH Support App v2
   SELFSERVICE_DISPLAY_NAME: "ETH Support App v2"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %SELFSERVICE_DISPLAY_NAME%"
   SELFSERVICE_ICON: "ETH.png"
