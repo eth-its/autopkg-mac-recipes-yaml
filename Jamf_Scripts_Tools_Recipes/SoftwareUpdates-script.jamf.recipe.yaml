@@ -15,7 +15,7 @@ Input:
   UPDATES_POLICY_NAME: Install macOS Updates
   UPDATES_SELFSERVICE_DISPLAY_NAME: Install macOS Updates
   UPDATES_SELFSERVICE_ICON: System Preferences.png
-  UPDATES_RUN_COMMAND: /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
+  UPDATES_RUN_COMMAND: /usr/bin/open "x-apple.systempreferences:com.apple.preferences.softwareupdate"
   UPDATES_INSTALL_BUTTON_TEXT: Info
   UPDATES_REINSTALL_BUTTON_TEXT: Info
   UPDATES_SELFSERVICE_DESCRIPTION: |
@@ -28,7 +28,7 @@ Input:
   NO_UPDATES_POLICY_NAME: No macOS Updates Available
   NO_UPDATES_SELFSERVICE_DISPLAY_NAME: No macOS Updates Available
   NO_UPDATES_SELFSERVICE_ICON: No Software Updates Available.png
-  NO_UPDATES_RUN_COMMAND: launchctl kickstart -k system/com.apple.softwareupdated; /usr/bin/open /System/Library/PreferencePanes/SoftwareUpdate.prefPane
+  NO_UPDATES_RUN_COMMAND: launchctl kickstart -k system/com.apple.softwareupdated; /usr/bin/open "x-apple.systempreferences:com.apple.preferences.softwareupdate"
   NO_UPDATES_INSTALL_BUTTON_TEXT: Check again
   NO_UPDATES_REINSTALL_BUTTON_TEXT: Check again
   NO_UPDATES_UPDATES_SELFSERVICE_DESCRIPTION: |
