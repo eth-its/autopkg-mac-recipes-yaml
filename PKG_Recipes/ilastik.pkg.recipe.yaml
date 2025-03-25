@@ -19,8 +19,8 @@ Process:
 
   - Processor: Copier
     Arguments:
-     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ilastik.app"
-     source_path: "%RECIPE_CACHE_DIR%/unarchived/ilastik.app"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ilastik.app"
+      source_path: "%RECIPE_CACHE_DIR%/unarchived/*-OSX.app"
 
   - Arguments:
       pkg_request:
