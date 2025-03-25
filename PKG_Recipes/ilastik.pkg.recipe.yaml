@@ -1,5 +1,4 @@
-Description: |
-  Downloads the latest version of ilastik and creates a package.
+Description: Downloads the latest version of ilastik and creates a package.
 Identifier: com.github.eth-its-recipes.pkg.ilastik
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.download.ilastik

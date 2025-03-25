@@ -1,5 +1,4 @@
-Description: |
-  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 
 Identifier: com.github.eth-its-recipes.jamf.ilastik
 MinimumVersion: "2.3"
