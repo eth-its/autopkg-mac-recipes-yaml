@@ -1,8 +1,19 @@
 #!/bin/zsh
-# shellcheck shell=bash
 
-# Check for whether there are any Software Updates available
-result=$(/usr/libexec/PlistBuddy -c "Print :LastRecommendedUpdatesAvailable" /Library/Preferences/com.apple.SoftwareUpdate.plist 2>/dev/null)
+#########################################################
+# macOS Updates										    #
+# created by Philippe Scholl                            #
+# version 2.1										    #
+# copyright by Mac Product Center                       #
+# Date: 24.03.2025                                      #
+#########################################################
 
-echo "<result>$result</result>"
+
+recommended_updates=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate RecommendedUpdates)
+
+if echo "$recommended_updates" | grep -q "Identifier"; then
+  echo "<result>true</result>"
+else
+  echo "<result>false</result>"
+fi
 exit 0

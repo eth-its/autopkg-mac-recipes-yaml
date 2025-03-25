@@ -1,14 +1,13 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Support-v2-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
   NAME: ETH Support App v2
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support-v2
-  JSS_INVENTORY_NAME: Support.app
+  JSS_INVENTORY_NAME: ETH Support App v2
   SELFSERVICE_DISPLAY_NAME: "ETH Support App v2"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %SELFSERVICE_DISPLAY_NAME%"
-  minimum_os_version: "13.0"
   SELFSERVICE_ICON: "ETH.png"
   TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event 'Support App Customisation v2-install'"
