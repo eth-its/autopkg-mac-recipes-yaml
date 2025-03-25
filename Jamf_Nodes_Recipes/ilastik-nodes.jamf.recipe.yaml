@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ilastik-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ilastik
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ilastik
+  LAST_RUN_SELFSERVICE_DESCRIPTION:  |
+    ilastik is a simple, user-friendly tool for interactive image classification, segmentation and analysis. It is built as a modular software framework, which currently has workflows for automated (supervised) pixel- and object-level classification, automated and semi-automated object tracking, semi-automated segmentation and object counting without detection. 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml

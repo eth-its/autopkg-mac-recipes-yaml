@@ -1,0 +1,24 @@
+Description: Download recipe for the ilastik app. 
+Identifier: com.github.eth-its-recipes.download.ilastik
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ilastik
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.ilastik.org/download"
+      re_pattern: 'href="(?P<url>https://files\.ilastik\.org/ilastik-(?P<version>[0-9]+\.[0-9]+\.[0-9]+[a-zA-Z0-9]*)-arm64-OSX\.zip)"'
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%url%"
+      filename: "ilastik-%version%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/ilastik.app"
+      requirement: (anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = L2ZT4826BM) and identifier "org.ilastik.ilastik"

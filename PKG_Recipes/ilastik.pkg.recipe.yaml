@@ -1,0 +1,40 @@
+Description: |
+  Downloads the latest version of ilastik and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.ilastik
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.ilastik
+
+Input: {}
+
+Process:
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unarchived"
+      purge_destination: true
+
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Processor: Copier
+    Arguments:
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ilastik.app"
+     source_path: "%RECIPE_CACHE_DIR%/unarchived/ilastik.app"
+
+  - Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.ilastik
+        pkgname: "ilastik-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+    Processor: PkgCreator
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+        - "%RECIPE_CACHE_DIR%/unarchived"
+    Processor: PathDeleter
