@@ -14,9 +14,14 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
-  SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
-  SCRIPT_PRIORITY: After
+  #SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  #SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  #SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_PRIORITY: Before
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -24,7 +29,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"

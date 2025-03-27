@@ -23,6 +23,8 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE%"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %LANGUAGE%"
   SELFSERVICE_ICON: "%NAME%.png"
-  SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
-  SCRIPT_PRIORITY: After
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
