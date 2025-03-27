@@ -6,6 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Omnissa Horizon Client
   LANGUAGE: EN
+  replace_script: False
   PREINSTALL_SCRIPT_NAME: "VMWareHorizonClient-uninstall.zsh"
   PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
   POSTINSTALL_SCRIPT_NAME: "OmnissaHorizonClient-postinstall.zsh"
@@ -15,4 +16,3 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   SELFSERVICE_ICON: "%NAME%.png"
-  replace_script: False
