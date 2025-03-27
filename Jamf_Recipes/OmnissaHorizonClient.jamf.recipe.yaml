@@ -14,9 +14,9 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  #SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
-  #SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
-  #SCRIPT_PRIORITY: After
+  SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  SCRIPT_PRIORITY: After
   POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
   PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
