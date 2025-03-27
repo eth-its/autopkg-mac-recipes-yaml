@@ -7,9 +7,9 @@ Input:
   NAME: Omnissa Horizon Client
   LANGUAGE: EN
   PREINSTALL_SCRIPT_NAME: "VMWareHorizonClient-uninstall.zsh"
-  #PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
   POSTINSTALL_SCRIPT_NAME: "OmnissaHorizonClient-postinstall.zsh"
-  #POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
   POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
