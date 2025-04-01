@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-minimum-nodes
 
 Input:
   NAME: ETH Support App v2
-  JSS_INVENTORY_NAME: ETH Support App v2
+  JSS_INVENTORY_NAME: Support.app
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Support-v2
   SELFSERVICE_DISPLAY_NAME: "ETH Support App v2 (Testing)"
   minimum_os_version: "13.0"
