@@ -9,7 +9,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    The Python IDE for data science and web development. You can get a Pycharm student license via https://www.jetbrains.com/shop/eform/students. Please register your account with your ETH email address.
+    The Python IDE for data science and web development. You can get a Pycharm student license via https://www.jetbrains.com/shop/eform/students. Please register your account with username@ethz.ch address. Once you have obtained a license, it is valid for one year.
 
     Version: %version%
     Category: %PKG_CATEGORY%
