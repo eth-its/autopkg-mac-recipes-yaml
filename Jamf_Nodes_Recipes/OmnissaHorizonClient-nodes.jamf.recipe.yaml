@@ -15,4 +15,4 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice.xml
