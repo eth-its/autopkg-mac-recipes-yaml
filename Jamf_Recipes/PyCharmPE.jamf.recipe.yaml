@@ -1,15 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.PyCharmCE
+Identifier: com.github.eth-its-recipes.jamf.PyCharmPE
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.PyCharmCE
+ParentRecipe: com.github.eth-its-recipes.pkg.PyCharmPE
 
 Input:
-  NAME: PyCharm CE
+  NAME: PyCharm
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
-    The Python IDE for data science and web development.
+    The Python IDE for data science and web development. You can get a Pycharm student license via https://www.jetbrains.com/shop/eform/students. Please register your account with your ETH email address.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -22,7 +22,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
