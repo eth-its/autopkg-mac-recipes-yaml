@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>polybox-PPPC</string>
+			<key>PayloadDisplayName</key>
+			<string>polybox-PPPC</string>
+			<key>PayloadIdentifier</key>
+			<string>24EF3D58-7195-41A3-AE6D-84DF9F398F43</string>
+			<key>PayloadOrganization</key>
+			<string>ETHZ</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>6789200E-AB48-4C4F-8220-A43DDB680F5E</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "chnextcloud_secondary.ethz.polyboxt02" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = NKUJUXUJ3B</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>chnextcloud_secondary.ethz.polyboxt02</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>polybox-PPPC</string>
+	<key>PayloadDisplayName</key>
+	<string>polybox-PPPC</string>
+	<key>PayloadIdentifier</key>
+	<string>24EF3D58-7195-41A3-AE6D-84DF9F398F43</string>
+	<key>PayloadOrganization</key>
+	<string>ETHZ</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>74EF7EB9-10AC-4CF4-8957-B4A7E625E89B</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
