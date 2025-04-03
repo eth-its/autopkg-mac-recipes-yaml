@@ -30,7 +30,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -69,7 +69,7 @@ Process:
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
       skip_script_key_substitution: "True"
       replace_script: True
-      
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
