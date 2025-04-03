@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>OmnissaHorizonClient-PPPC.mobileconfig</string>
+			<key>PayloadDisplayName</key>
+			<string>OmnissaHorizonClient-PPPC.mobileconfig</string>
+			<key>PayloadIdentifier</key>
+			<string>30FB17D6-A8F4-4E5E-AA87-4ACBCB5BF6FF</string>
+			<key>PayloadOrganization</key>
+			<string>ETH Zürich</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>4DE817A5-1CF9-4FA0-B6EA-1D1B6A74D5AF</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>Accessibility</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.omnissa.horizon.client.mac" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = EG7KH642X6</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.omnissa.horizon.client.mac</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>OmnissaHorizonClient-PPPC.mobileconfig</string>
+	<key>PayloadDisplayName</key>
+	<string>OmnissaHorizonClient-PPPC.mobileconfig</string>
+	<key>PayloadIdentifier</key>
+	<string>30FB17D6-A8F4-4E5E-AA87-4ACBCB5BF6FF</string>
+	<key>PayloadOrganization</key>
+	<string>ETH Zürich</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>578B9B69-A722-49B9-AB45-8AC5BE659E6A</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
