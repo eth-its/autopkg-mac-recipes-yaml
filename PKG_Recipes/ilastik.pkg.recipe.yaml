@@ -21,11 +21,11 @@ Process:
       purge_destination: true
     Processor: Unarchiver
 
-  - Processor: com.github.grahampugh.recipes.commonprocessors/StringReplacer
     Arguments:
       input_string: "%version%"
       string_to_replace: "-"
       replacement_string: "."
+      Processor: StringReplacer
 
   - Arguments:
       Comment: The version key is re-written here for use in subsequent processors
