@@ -10,8 +10,6 @@ Process:
   - Arguments:
       pkgdirs:
         Applications: "0775"
-        "Library/Application Support": "0775"
-        "Library/Application Support/ilastik": "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
     Processor: PkgRootCreator
 
@@ -21,31 +19,7 @@ Process:
       purge_destination: true
     Processor: Unarchiver
 
-  - Arguments:
-      Comment: The version key is re-written here for use in subsequent processors
-      version: "%output_string%"
-      input_plist_path: "%pkgroot%/Applications/ilastik.app/Contents/Info.plist"
-      output_plist_path: "%pkgroot%/Library/Application Support/ilastik/AdaptedInfo.plist"
-      plist_data:
-        CFBundleVersion: "%output_string%"
-        CFBundleShortVersionString: "%output_string%"
-    Processor: PlistEditor
-
-  - Processor: PkgCreator
+  - Processor: AppPkgCreator
     Arguments:
-      force_pkg_build: True
-      pkg_request:
-        chown:
-          - group: admin
-            path: Applications
-            user: root
-        id: org.ilastik
-        options: purge_ds_store
-        pkgname: "%NAME%-%output_string%"
-        version: "%output_string%"
-
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/%NAME%"
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%
 
