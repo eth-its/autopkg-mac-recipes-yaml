@@ -14,14 +14,12 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
-  SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
-  SCRIPT_PRIORITY: After
-  POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
-  POSTINSTALL_SCRIPT_PRIORITY: After
   PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
   PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -53,12 +51,21 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
+      script_category: "%PREINSTALL_SCRIPT_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
       replace_script: True
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POSTINSTALL_SCRIPT_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%POSTINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      replace_script: True
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
