@@ -28,16 +28,6 @@ Process:
       string_to_replace: "-"
       replacement_string: "."
 
-  - Arguments:
-      Comment: The version key is re-written here for use in subsequent processors
-      version: "%output_string%"
-      input_plist_path: "%pkgroot%/Applications/ilastik-1.4.1rc2-arm64-OSX.app/Contents/Info.plist"
-      output_plist_path: "%pkgroot%/Library/Application Support/ilastik/AdaptedInfo.plist"
-      plist_data:
-        CFBundleVersion: "%output_string%"
-        CFBundleShortVersionString: "%output_string%"
-    Processor: PlistEditor
-
   - Processor: PkgCreator
     Arguments:
       force_pkg_build: True
@@ -48,8 +38,7 @@ Process:
             user: root
         id: org.ilastik.ilastik
         options: purge_ds_store
-        pkgname: "%NAME%-%output_string%"
-        version: "%output_string%"
+        pkgname: "%NAME%"
 
   - Processor: PathDeleter
     Arguments:
