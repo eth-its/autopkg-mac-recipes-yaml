@@ -22,7 +22,7 @@ Process:
 
   - Arguments:
       expected_authority_names:
-        - "Developer ID Installer: ownCloud GmbH (4AP2STM4H5)"
+        - "Developer ID Installer: Nextcloud GmbH (NKUJUXUJ3B)"
         - Developer ID Certification Authority
         - Apple Root CA
       input_path: "%pathname%"

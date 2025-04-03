@@ -9,6 +9,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Productivity
   LANGUAGE_CODE: de
+  ARCH: x86_64
   SELFSERVICE_DESCRIPTION: |
     LibreOffice ist die kostenlose Open-Source-Produktivitäts-Suite für Windows, Macintosh und Linux, die Ihnen sechs funktionsreiche Anwendungen für Ihre gesamte Dokumentenproduktion und Datenverarbeitung bietet: Writer, Calc, Impress, Draw, Math und Base.
 
