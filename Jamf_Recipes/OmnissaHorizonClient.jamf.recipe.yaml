@@ -14,9 +14,12 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
-  PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
   PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "VMWareHorizonClient-uninstall"
   POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
@@ -60,12 +63,13 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%POSTINSTALL_SCRIPT_CATEGORY%"
+      script_category: "%PKG_CATEGORY%"
       script_name: "%POSTINSTALL_SCRIPT_NAME%"
       script_path: "%POSTINSTALL_SCRIPT_PATH%"
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
-      script_parameter4: "%POSTINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      skip_script_key_substitution: "True"
       replace_script: True
+      
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"

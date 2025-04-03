@@ -6,9 +6,12 @@ MinimumVersion: "2.3"
 Input:
   NAME: Omnissa Horizon Client
   LANGUAGE: EN
-  PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
-  PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
   PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "VMWareHorizonClient-uninstall"
   POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
