@@ -5,7 +5,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: Omnissa Horizon Client
-  LANGUAGE: EN
   JSS_INVENTORY_NAME_2: "VMware Horizon Client.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users-twonames-or.xml

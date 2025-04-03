@@ -5,7 +5,6 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Omnissa Horizon Client
-  LANGUAGE: EN
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
   PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
   PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh

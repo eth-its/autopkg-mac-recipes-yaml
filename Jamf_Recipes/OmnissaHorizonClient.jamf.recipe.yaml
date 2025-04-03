@@ -5,9 +5,8 @@ ParentRecipe: com.github.rtrouton.pkg.OmnissaHorizonClient
 
 Input:
   NAME: Omnissa Horizon Client
-  LANGUAGE: EN
-  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
     Omnissa Horizon Client for Mac allows you to connect to your Omnissa Horizon virtual desktop from your Mac.
@@ -24,7 +23,7 @@ Input:
   POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: ""
   POSTINSTALL_SCRIPT_PRIORITY: After
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
