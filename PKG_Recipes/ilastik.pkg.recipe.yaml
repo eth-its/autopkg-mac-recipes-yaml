@@ -24,7 +24,7 @@ Process:
   - Arguments:
       Comment: The version key is re-written here for use in subsequent processors
       version: "%output_string%"
-      input_plist_path: "%pkgroot%/Applications/ilastik-*.app/Contents/Info.plist"
+      input_plist_path: "%pkgroot%/Applications/ilastik.app/Contents/Info.plist"
       output_plist_path: "%pkgroot%/Library/Application Support/ilastik/AdaptedInfo.plist"
       plist_data:
         CFBundleVersion: "%output_string%"
