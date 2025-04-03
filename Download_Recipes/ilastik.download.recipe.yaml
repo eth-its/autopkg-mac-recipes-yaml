@@ -8,9 +8,10 @@ Input:
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      url: "https://www.ilastik.org/download"
       re_pattern: 'href="(?P<url>https://files\.ilastik\.org/ilastik-[0-9]+\.[0-9]+\.[0-9]+[a-z0-9-]*-arm64-OSX\.zip)"'
+      url: "https://www.ilastik.org/download"
+      result_output_var_name: version
 
   - Processor: URLDownloader
-  
+
   - Processor: EndOfCheckPhase
