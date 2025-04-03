@@ -10,6 +10,9 @@ Process:
   - Arguments:
       pkgdirs:
         Applications: "0775"
+        Library: "0775"
+        "Library/Application Support": "0775"
+        "Library/Application Support/ilastik": "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
     Processor: PkgRootCreator
 
@@ -18,6 +21,22 @@ Process:
       destination_path: "%pkgroot%/Applications"
       purge_destination: true
     Processor: Unarchiver
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/StringReplacer
+    Arguments:
+      input_string: "%version%"
+      string_to_replace: "-"
+      replacement_string: "."
+
+  - Arguments:
+      Comment: The version key is re-written here for use in subsequent processors
+      version: "%output_string%"
+      input_plist_path: "%pkgroot%/Applications/ilastik.app/Contents/Info.plist"
+      output_plist_path: "%pkgroot%/Library/Application Support/ilastik/AdaptedInfo.plist"
+      plist_data:
+        CFBundleVersion: "%output_string%"
+        CFBundleShortVersionString: "%output_string%"
+    Processor: PlistEditor
 
   - Processor: PkgCreator
     Arguments:
@@ -29,7 +48,8 @@ Process:
             user: root
         id: org.ilastik.ilastik
         options: purge_ds_store
-        pkgname: "%NAME%"
+        pkgname: "%NAME%-%output_string%"
+        version: "%output_string%"
 
   - Processor: PathDeleter
     Arguments:
