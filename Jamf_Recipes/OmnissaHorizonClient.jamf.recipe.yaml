@@ -22,6 +22,7 @@ Input:
   PREINSTALL_SCRIPT_PARAMETER4_VALUE: "VMWareHorizonClient-uninstall"
   POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: ""
   POSTINSTALL_SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
