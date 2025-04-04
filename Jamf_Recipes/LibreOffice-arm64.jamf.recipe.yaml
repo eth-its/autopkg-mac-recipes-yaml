@@ -30,9 +30,8 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  ARCH: arm64
+  ARCH: aarch64
   PLATFORM: arm64
-  ARCH_NAME: arm64
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

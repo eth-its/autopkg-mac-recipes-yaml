@@ -6,8 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: LibreOffice
   PLATFORM: arm64
-  ARCH: arm64
-  ARCH_NAME: arm64
+  ARCH: aarch64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LibreOffice-arm64
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
