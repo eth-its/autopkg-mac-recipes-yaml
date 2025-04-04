@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: polybox
-  SEARCH_PATTERN: (?P<pkg_name>polybox-[^a-z].*?\.pkg)
+  SEARCH_PATTERN: (?P<pkg_name>polybox-macOS-feature-[^a-z].*?\.pkg)
   SEARCH_URL: https://polybox.ethz.ch/repo/.devel/?C=N;O=D
 
 Process:
