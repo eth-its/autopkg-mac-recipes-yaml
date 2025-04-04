@@ -10,14 +10,7 @@ Process:
     Arguments:
       url: "https://www.ilastik.org/download"
       re_pattern: 'href="(?P<url>https://files\.ilastik\.org/ilastik-[0-9]+\.[0-9]+\.[0-9]+[a-z0-9-]*-arm64-OSX\.zip)"'
-
+      result_output_var_name: version
   - Processor: URLDownloader
-    Arguments:
-      url: "%url%"
-      filename: "ilastik-%version%.zip"
-
-  - Processor: Unarchiver
-    Arguments:
-      archive_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/unarchived"
-      purge_destination: true
+  
+  - Processor: EndOfCheckPhase

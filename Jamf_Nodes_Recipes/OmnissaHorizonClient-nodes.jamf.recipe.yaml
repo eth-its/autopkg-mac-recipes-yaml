@@ -5,16 +5,14 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Omnissa Horizon Client
-  LANGUAGE: EN
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: "VMWareHorizonClient-uninstall"
   POSTINSTALL_SCRIPT_NAME: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PATH: OmnissaHorizonClient-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
-  PREINSTALL_SCRIPT_NAME: VMWareHorizonClient-uninstall.zsh
-  PREINSTALL_SCRIPT_PATH: VMWareHorizonClient-uninstall.zsh
-  PREINSTALL_SCRIPT_PRIORITY: Before
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.OmnissaHorizonClient
-  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
