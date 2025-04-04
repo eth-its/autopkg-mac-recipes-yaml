@@ -32,6 +32,7 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
   ARCH: arm64
   PLATFORM: arm64
+  ARCH_NAME: arm64
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
