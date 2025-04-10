@@ -14,8 +14,7 @@ Input:
   AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
-  INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %PLATFORM%"
