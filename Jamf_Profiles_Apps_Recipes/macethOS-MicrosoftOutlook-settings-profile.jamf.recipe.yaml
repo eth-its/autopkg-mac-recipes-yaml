@@ -1,0 +1,31 @@
+Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.macethOS-MicrosoftOutlook-settings-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: mac.ethOS - Microsoft Outlook Settings
+  IDENTIFIER: com.microsoft.outlook
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: Application Settings
+  PROFILE_DESCRIPTION: Settings for Microsoft Outlook
+  PROFILE_NAME: "%NAME%"
+  PROFILE_PAYLOAD: com.microsoft.outlook-ethos.plist
+  PROFILE_TEMPLATE: Profile-MicrosoftOffice.xml
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      replace_profile: "%REPLACE_PROFILE%"
