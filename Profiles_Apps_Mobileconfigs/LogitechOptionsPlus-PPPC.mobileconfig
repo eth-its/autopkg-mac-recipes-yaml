@@ -4,6 +4,33 @@
 <dict>
 	<key>PayloadContent</key>
 	<array>
+        <dict>
+            <key>AllowUserOverrides</key>
+            <true/>
+            <key>AllowedSystemExtensions</key>
+            <dict>
+                <key>QED4VVPZWA</key>
+                <array>
+                    <string>com.logi.optionsplus.hidfilter</string>
+                </array>
+            </dict>
+            <key>PayloadDescription</key>
+            <string></string>
+            <key>PayloadDisplayName</key>
+            <string>System Extensions</string>
+            <key>PayloadEnabled</key>
+            <true/>
+            <key>PayloadIdentifier</key>
+            <string>40E7CD66-D3C0-4AB5-8EA4-C0332825D65E</string>
+            <key>PayloadOrganization</key>
+            <string>ETH Zurich</string>
+            <key>PayloadType</key>
+            <string>com.apple.system-extension-policy</string>
+            <key>PayloadUUID</key>
+            <string>40E7CD66-D3C0-4AB5-8EA4-C0332825D65E</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
 		<dict>
 			<key>PayloadDescription</key>
 			<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
