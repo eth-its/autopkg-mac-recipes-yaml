@@ -1,4 +1,7 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: 
+  Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+  If the license script is needed again for major version update, put the inputs and the processors back in place.
+  This also has to be done in the -nodes and -prod recipes. In all three you have to change the policy template to one with a script. 
 Identifier: com.github.eth-its-recipes.jamf.Prism
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Prism
@@ -21,9 +24,9 @@ Input:
     - - -
     This package contains the Viewer option. You can activate the full version if your e-mail address corresponds to the [list of allowed users](https://unlimited.ethz.ch/display/biolopen/Prism). There is also a step-for-step [description of the activation process](https://unlimited.ethz.ch/display/biolopen/Prism+-+Software+Activation).
     - - -
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PATH: "%NAME%-postinstall.sh"
-  SCRIPT_PRIORITY: After
+#  SCRIPT_NAME: "%NAME%-postinstall.sh"
+#  SCRIPT_PATH: "%NAME%-postinstall.sh"
+#  SCRIPT_PRIORITY: After
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -31,7 +34,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: "Prism 9.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -43,13 +46,13 @@ Process:
     Arguments:
       category_name: "%PKG_CATEGORY%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      replace_script: True
+#  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+#    Arguments:
+#      script_category: "%PKG_CATEGORY%"
+#      script_name: "%SCRIPT_NAME%"
+#      script_path: "%SCRIPT_PATH%"
+#      script_priority: "%SCRIPT_PRIORITY%"
+#      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:

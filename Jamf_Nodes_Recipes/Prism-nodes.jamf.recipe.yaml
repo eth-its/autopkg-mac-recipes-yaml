@@ -7,7 +7,7 @@ Input:
   NAME: Prism
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Prism
   SELFSERVICE_ICON: "Prism 9.png"
-  SCRIPT_NAME: "%NAME%-postinstall.sh"
-  SCRIPT_PATH: "%NAME%-postinstall.sh"
-  SCRIPT_PRIORITY: After
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
+#  SCRIPT_NAME: "%NAME%-postinstall.sh"
+#  SCRIPT_PATH: "%NAME%-postinstall.sh"
+#  SCRIPT_PRIORITY: After
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
