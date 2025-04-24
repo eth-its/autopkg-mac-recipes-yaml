@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>EnableNewOutlook</key>
-    <integer>2</integer> 
+    <integer>1</integer> 
     <key>HideCanAddOtherAccountTypesTipText</key>
     <true/>
     <key>TrustO365AutodiscoverRedirect</key>
