@@ -1,12 +1,12 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.VMwareHorizonClient-prod
+Identifier: com.github.eth-its-recipes.jamf.HorizonClient-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
-  NAME: VMware Horizon Client
+  NAME: Omnissa Horizon Client
   LANGUAGE: EN
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.VMwareHorizonClient
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.HorizonClient
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
   AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% %LANGUAGE% auto-update excluded"
@@ -20,7 +20,7 @@ Input:
   SELFSERVICE_POLICY_NAME: "%NAME% %LANGUAGE%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE%"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %LANGUAGE%"
-  SELFSERVICE_ICON: "%NAME% 5.png"
-  SCRIPT_NAME: VMwareHorizonClient-postinstall.zsh
+  SELFSERVICE_ICON: "%NAME%.png"
+  SCRIPT_NAME: HorizonClient-postinstall.zsh
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
