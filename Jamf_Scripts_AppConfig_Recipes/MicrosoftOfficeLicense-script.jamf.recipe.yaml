@@ -12,10 +12,10 @@ Input:
   FLOATING_TESTING_GROUP_NAME: Testing
   FLOATING_TEST_USERS_GROUP_NAME: Microsoft Office test users
   FLOATING_USERS_GROUP_NAME: Microsoft Office users
-  # smart groups - node (LTSC 2021)
-  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
-  NODE_TEST_USERS_GROUP_NAME: Microsoft Office LTSC 2021 test users
-  NODE_USERS_GROUP_NAME: Microsoft Office LTSC 2021 users
+  # smart groups - node (LTSC 2024)
+  NODE_TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2024
+  NODE_TEST_USERS_GROUP_NAME: Microsoft Office LTSC 2024 test users
+  NODE_USERS_GROUP_NAME: Microsoft Office LTSC 2024 users
 
   # script
   SCRIPT_NAME: MicrosoftOffice-unlicense.zsh
@@ -44,8 +44,8 @@ Input:
   FLOATING_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-groupplusexclusion-parameters-nonotification.xml
   FLOATING_TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   FLOATING_PARAMETER4_VALUE: "--Volume"
-  # policies - node (LTSC 2021)
-  NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC 2021 Volume License
+  # policies - node (LTSC 2024)
+  NODE_TRIGGER_POLICY_NAME: Install Microsoft Office LTSC 2024 Volume License
   NODE_TRIGGER_POLICY_TEMPLATE: Policy-script-triggeronly-group-parameters-nonotification.xml
   NODE_TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event Run-MicrosoftOfficeSerializer"
   NODE_PARAMETER4_VALUE: "--O365"
@@ -135,7 +135,7 @@ Process:
       replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
-    Comment: Microsoft Office LTSC 2021
+    Comment: Microsoft Office LTSC 2024
     Arguments:
       GROUP_NAME: "%NODE_USERS_GROUP_NAME%"
       PARAMETER4_VALUE: "%NODE_PARAMETER4_VALUE%"

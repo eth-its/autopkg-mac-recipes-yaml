@@ -4,19 +4,19 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftOfficeSerializer
 
 Input:
-  NAME: Microsoft Office LTSC 2021 Volume License
+  NAME: Microsoft Office LTSC 2024 Volume License
   JSS_INVENTORY_NAME: Microsoft Word.app
   PKG_CATEGORY: Productivity
-  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2021
+  TESTING_GROUP_NAME: Testing - Microsoft Office LTSC 2024
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  EXCLUSION1_GROUP_NAME: "Microsoft Office LTSC 2021 installed"
+  EXCLUSION1_GROUP_NAME: "Microsoft Office LTSC 2024 installed"
   EXCLUSION1_GROUP_TEMPLATE: SmartGroup-exclusion-EA.xml
   EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
   EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   EXTENSION_ATTRIBUTE_NAME: Microsoft Office License Type
   EXTENSION_ATTRIBUTE_SCRIPT: MicrosoftOfficeLicense-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: matches regex
-  EXTENSION_ATTRIBUTE_VALUE: "2021"
+  EXTENSION_ATTRIBUTE_VALUE: "2024"
   INSTALL_BUTTON_TEXT: "Install License"
   REINSTALL_BUTTON_TEXT: "Install License"
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
@@ -27,7 +27,7 @@ Input:
   SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
-    Installs the Microsoft Microsoft Office LTSC Standard 2021 Volume License. Please note that use of the this license still requires an Office 365 license to be purchased. 
+    Installs the Microsoft Microsoft Office LTSC Standard 2024 Volume License. Please note that use of the this license still requires an Office 365 license to be purchased. 
 
     If you are signed into Office 365, this license takes precedence over the serial license. Sign out of Office 365 to use the serial license, or run the Self Service item "Microsoft Office License Reset" to clear all licenses.
 
