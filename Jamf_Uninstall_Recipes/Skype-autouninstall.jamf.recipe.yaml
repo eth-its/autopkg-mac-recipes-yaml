@@ -7,3 +7,4 @@ Input:
   NAME: Skype
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.skype.skype
+  AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall-force.xml
