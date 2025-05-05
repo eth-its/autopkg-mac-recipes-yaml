@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 Input:
   NAME: Skype
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
