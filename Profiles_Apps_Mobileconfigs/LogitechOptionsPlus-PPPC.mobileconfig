@@ -17,7 +17,7 @@
             <key>PayloadDescription</key>
             <string></string>
             <key>PayloadDisplayName</key>
-            <string>System Extensions</string>
+            <string>Logitech Options Plus System Extensions</string>
             <key>PayloadEnabled</key>
             <true/>
             <key>PayloadIdentifier</key>
@@ -33,7 +33,7 @@
         </dict>
 		<dict>
 			<key>PayloadDescription</key>
-			<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
+			<string>Controls the Privacy Settings for Logitech Options Plus</string>
 			<key>PayloadDisplayName</key>
 			<string>LogitechOptionsPlus-PPPC.mobileconfig</string>
 			<key>PayloadIdentifier</key>
