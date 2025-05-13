@@ -22,3 +22,6 @@ Input:
   SCRIPT_PRIORITY: Before
   POLICY_RUN_COMMAND: "jamf policy -event GLPI-Agent-Configure && echo 'Installation of %NAME% complete'"
 
+  SP_EXECUTABLE_COMMAND: "/Applications/GLPI-Agent/bin/glpi-agent --daemon --no-fork"
+  SP_PROCESS_NAME: "glpi-agent"
+
