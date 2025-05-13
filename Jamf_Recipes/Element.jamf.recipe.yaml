@@ -5,7 +5,7 @@ Description: |
   - DEFAULT_SERVER_URL
 Identifier: com.github.eth-its-recipes.jamf.Element
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.Element
+ParentRecipe: com.github.eth-its-recipes.pkg.Element
 
 Input:
   NAME: Element

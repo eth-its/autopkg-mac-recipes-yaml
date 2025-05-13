@@ -1,10 +1,8 @@
 #!/bin/zsh
-# shellcheck shell=bash
 #set -x
 
 : <<ABOUT_THIS_SCRIPT
 -----------------------------------------------------------------------
-
 	Written by: Paul Bowden
 	Software Engineer
 	Microsoft Corporation
@@ -16,20 +14,15 @@
 	Jamf
 	bill@talkingmoose.net
 	https://github.com/talkingmoose/Casper-Scripts
-
 	Last updated: April 7, 2021
 	Originally posted: January 7, 2017
 	
 	Purpose: Use this script as part of an extension attribute in Jamf
 	to report the type of Microsoft Office license in use.
-
 	Except where otherwise noted, this work is licensed under
 	http://creativecommons.org/licenses/by/4.0/
-
 	"Communication happens when I know that you know what I know."
-
 INSTRUCTIONS
-
 	1) Log in to the Jamf Pro server.
 	2) Navigate to JSS Settings > Computer Management > Extension Attributes.
 	3) Click the " + " button to create a new extension attribute with these settings:
@@ -75,12 +68,25 @@ DetectStackedLicense() {
 # Determines what type of perpetual license the machine has installed
 PerpetualLicenseType() {
 	if [ -f "$PERPETUALLICENSE" ]; then
-		if /usr/bin/grep -q "Bozo+MzVxzFzbIo+hhzTl43O7w5oMsJ7M3Q4vhvz/j" "$PERPETUALLICENSE"; then
-			/bin/echo "Office 2021 Preview Volume License"
+		if /usr/bin/grep -q "Bozo+MzVxzFzbIo+hhzTl4hlrSMvpMqJ/gUHjvPE8/" "$PERPETUALLICENSE"; then
+            /bin/echo "Office 2024 Preview Volume License"
+            return
+        fi
+		if /usr/bin/grep -q "Bozo+MzVxzFzbIo+hhzTl41DwAFJEitHSg5IiCEeuI" "$PERPETUALLICENSE"; then
+			/bin/echo "Office 2024 Volume License"
 			return
 		fi
 		if /usr/bin/grep -q "Bozo+MzVxzFzbIo+hhzTl4xkRZSjOUX8J8nIgpXuMa" "$PERPETUALLICENSE"; then
-			/bin/echo "Office 2021 Volume License"
+			if [ "$STACKED" = "Yes" ]; then
+                /bin/echo "Office 2024/2021 Volume License (Stacked)"
+                return
+            else
+            	/bin/echo "Office 2021 Volume License"
+				return
+            fi
+		fi
+		if /usr/bin/grep -q "Bozo+MzVxzFzbIo+hhzTl43O7w5oMsJ7M3Q4vhvz/j" "$PERPETUALLICENSE"; then
+			/bin/echo "Office 2021 Preview Volume License"
 			return
 		fi
 		if /usr/bin/grep -q "A7vRjN2l/dCJHZOm8LKan11/zCYPCRpyChB6lOrgfi" "$PERPETUALLICENSE"; then
