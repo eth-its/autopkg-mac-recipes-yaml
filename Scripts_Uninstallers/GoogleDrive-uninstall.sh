@@ -15,7 +15,7 @@ quit_google_drive() {
     # gracefully quit Google Drive as the current user. This is necessary to unmount the "network drive"
     current_user=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
     echo "Closing Google Drive as current user"
-    su -l "$current_user" -c "/Applications/Google\ Drive.app/Contents/MacOS/Google\ Drive --quit"
+    su -l "$current_user" -c "/Applications/Google\ Drive.app/Contents/MacOS/Google\ Drive --quit" 2<&-
 
     while [[ $n -lt 10 ]]; do
         if pgrep -f "/Google Drive" ; then
@@ -77,7 +77,7 @@ killall -KILL Google\ Drive
 sleep 5
 
 # unload the kext
-kextunload -b com.google.dfsfuse.filesystems.dfsfuse -q || true
+kextunload -b com.google.dfsfuse.filesystems.dfsfuse -q 2<&- || true 
 
 # Now remove the apps
 for app_name in "Google Drive" "Google Docs" "Google Sheets" "Google Slides"; do
