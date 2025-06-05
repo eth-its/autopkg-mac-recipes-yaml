@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Forced</key>
+	<array>
+		<dict>
+			<key>mcx_preference_settings</key>
+			<dict>
+				<key>ExpirationInterval</key>
+				<integer>10</integer>
+				<key>HideHelpButton</key>
+				<true/>
+				<key>HideOtherWindows</key>
+				<true/>
+				<key>HideSettingsButton</key>
+				<true/>
+				<key>HideSettingsFromDockMenu</key>
+				<true/>
+				<key>HideSettingsFromStatusItem</key>
+				<true/>
+				<key>RevokeAtLoginExcludedUsers</key>
+				<array/>
+				<key>RevokePrivilegesAtLogin</key>
+				<true/>
+				<key>_manifestSelectedType</key>
+				<string>ExpirationInterval</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

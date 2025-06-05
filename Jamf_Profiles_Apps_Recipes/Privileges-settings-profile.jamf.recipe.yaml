@@ -1,0 +1,34 @@
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+
+Identifier: com.github.eth-its-recipes.jamf.Privileges-settings-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Privileges
+  IDENTIFIER: corp.sap.privileges
+  ORGANIZATION: ETH Zuerich
+  PROFILE_CATEGORY: Application Settings
+  PROFILE_TEMPLATE: Profile-all-computers.xml
+  PROFILE_NAME: "%NAME% Settings"
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
+  PROFILE_DESCRIPTION: Sets Configuration for Privileges
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
