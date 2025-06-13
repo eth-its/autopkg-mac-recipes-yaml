@@ -7,7 +7,6 @@ Input:
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME: "Comsol-Multiphysics"
   VENDOR: Comsol
-  PKG_PLATFORM_ID: arm
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
