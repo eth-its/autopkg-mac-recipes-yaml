@@ -5,13 +5,13 @@ MinimumVersion: "2.3"
 Input:
   NAME: COMSOL Multiphysics
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
-  LIST_NAME: Comsol Multiphysics
+  LIST_NAME: "Comsol Multiphysics"
   VENDOR: Comsol
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
     Arguments:
-      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%/%PKG_PLATFORM_ID%"
 
   - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
     Arguments:
