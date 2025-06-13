@@ -5,27 +5,24 @@ ParentRecipe: com.github.eth-its-recipes.download.Comsol
 
 Input:
   NAME: COMSOL Multiphysics
-  LIST_NAME_PATH: "Comsol-Multiphysics"
   PKG_PLATFORM_ID: arm64
-  LIST_NAME: Comsol Multiphysics
-  LIST_LANGUAGE: ML
-  LIST_SUBFOLDER: macOS_Intel
+  PLATFORM: arm64
 
 Process:
-  - Processor: PkgRootCreator
-    Arguments:
+  - Arguments:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
 
-  - Processor: PkgRootCreator
-    Arguments:
+  - Arguments:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
 
-  - Processor: Copier
-    Arguments:
-      source_path: "%pathname%"
+  - Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Scripts/COMSOL.dmg"
+      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
+    Processor: Copier
 
   - Processor: FileCreator
     Arguments:

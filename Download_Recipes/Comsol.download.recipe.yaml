@@ -3,23 +3,31 @@ Identifier: com.github.eth-its-recipes.download.Comsol
 MinimumVersion: "2.3"
 
 Input:
-  NAME: COMSOL Multiphysics
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME_PATH: "Comsol-Multiphysics"
-  PKG_PLATFORM_ID: arm64
   VENDOR: Comsol
+  STOP_PREDICATE: file_exists == True
+  PKG_PLATFORM_ID: arm64
 
 Process:
   - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
+    Comment: Get list of folder contents. Outputs found_directories and found_filenames.
     Arguments:
       root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME_PATH%/%PKG_PLATFORM_ID%"
 
   - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
+    Comment: Gets the latest version of a file and its containing folder. Outputs latest_file, version.
     Arguments:
       RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
       found_files: "%found_filenames%"
 
+  - Processor: StopProcessingIf
+    Comment: Checks if the file already exists in the cache
+    Arguments:
+      predicate: "%STOP_PREDICATE%"
+
   - Processor: URLDownloader
+    Comment: Downloads the file from the source repo to the AutoPkg cache
     Arguments:
       url: file://%root_path%/%version%/%latest_file%.dmg
 
