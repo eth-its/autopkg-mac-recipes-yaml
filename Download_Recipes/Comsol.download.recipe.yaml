@@ -6,6 +6,7 @@ Input:
   NAME: COMSOL Multiphysics
   LOCAL_REPO: /tmp/AutoPkg_Local_Sources
   LIST_NAME_PATH: "Comsol-Multiphysics"
+  PKG_PLATFORM_ID: arm64
   VENDOR: Comsol
 
 Process:
