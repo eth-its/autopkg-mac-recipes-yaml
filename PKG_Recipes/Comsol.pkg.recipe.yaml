@@ -5,7 +5,8 @@ ParentRecipe: com.github.eth-its-recipes.download.Comsol
 
 Input:
   NAME: COMSOL Multiphysics
-  PKG_PLATFORM_ID: intel
+  LIST_NAME_PATH: "Comsol-Multiphysics"
+  PKG_PLATFORM_ID: arm64
   LIST_NAME: Comsol Multiphysics
   LIST_LANGUAGE: ML
   LIST_SUBFOLDER: macOS_Intel
