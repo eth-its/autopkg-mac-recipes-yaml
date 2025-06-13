@@ -28,11 +28,38 @@
             <search_type>matches regex</search_type>
             <value>%version_regex_2%</value>
             <opening_paren>false</opening_paren>
-            <closing_paren>true</closing_paren>
+            <closing_paren>false</closing_paren>
         </criterion>
         <criterion>
-            <name>Computer Group</name>
+            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
             <priority>3</priority>
+            <and_or>or</and_or>
+            <search_type>matches regex</search_type>
+            <value>%version_regex_3%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
+            <priority>4</priority>
+            <and_or>or</and_or>
+            <search_type>matches regex</search_type>
+            <value>%version_regex_4%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>%EXTENSION_ATTRIBUTE_NAME%</name>
+            <priority>5</priority>
+            <and_or>or</and_or>
+            <search_type>matches regex</search_type>
+            <value>%version_regex_5%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>true</closing_paren>
+        </criterion>  
+        <criterion>
+            <name>Computer Group</name>
+            <priority>6</priority>
             <and_or>and</and_or>
             <search_type>member of</search_type>
             <value>%TESTING_GROUP_NAME%</value>
