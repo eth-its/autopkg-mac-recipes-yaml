@@ -7,7 +7,7 @@ Input:
   NAME: Privileges
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Privileges
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-dockitem.xml
-  SELFSERVICE_ICON: "Privileges 1.5.png"
+  SELFSERVICE_ICON: "Privileges2.png"
   DOCK_ITEM_NAME: Privileges
   DOCK_ITEM_ACTION: Add To End
   TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event PrivilegesConfiguration-install"

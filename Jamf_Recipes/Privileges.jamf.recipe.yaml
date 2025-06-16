@@ -26,7 +26,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-dockitem.xml
-  SELFSERVICE_ICON: "Privileges 1.5.png"
+  SELFSERVICE_ICON: "Privileges2.png"
   POLICY_RUN_COMMAND: "jamf policy -event PrivilegesConfiguration-install"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
