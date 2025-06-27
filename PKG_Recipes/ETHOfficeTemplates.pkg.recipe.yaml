@@ -47,7 +47,7 @@ Process:
         echo "PowerPoint Templates for Office 365 installed"
 
         ## change permissions
-        /bin/chmod -R 644 "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*.potx "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*.pdf "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"*/*.dotx
+        /bin/chmod -R 655 "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/"
 
         ## delete the __MACOSX artifact from the zip files
         [[ -d "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/__MACOSX" ]] && rm -rf "/Library/Application Support/Microsoft/Office365/User Content.localized/Templates.localized/__MACOSX" ||:
