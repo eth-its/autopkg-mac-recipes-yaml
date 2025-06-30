@@ -15,7 +15,7 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MAX: 10.14.5
+  OS_EXCLUDE_MAX: 14.5
   OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
   OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
