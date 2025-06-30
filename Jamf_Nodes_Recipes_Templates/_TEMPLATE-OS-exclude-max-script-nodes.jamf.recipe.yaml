@@ -11,7 +11,7 @@ MinimumVersion: "2.3"
 
 Input:
   POLICY_NAME: "%NAME% (Testing)"
-  OS_EXCLUDE_MAX: 14.5
+  OS_EXCLUDE_MAX: "14.5"
   OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
   OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
