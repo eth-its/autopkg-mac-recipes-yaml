@@ -6,8 +6,12 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 Input:
   NAME: Privileges
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Privileges
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-dockitem.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-dockitem.xml
+  SCRIPT_NAME: "Privileges-preinstall.sh"
+  SCRIPT_PATH: "Privileges-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+  SCRIPT_CATEGORY: "Tools & Accessories"
   SELFSERVICE_ICON: "Privileges2.png"
   DOCK_ITEM_NAME: Privileges
   DOCK_ITEM_ACTION: Add To End
-  TRIGGER_POLICY_RUN_COMMAND: "jamf policy -event PrivilegesConfiguration-install"
+  TRIGGER_POLICY_RUN_COMMAND: sudo -u "$(stat -f%Su /dev/console)" "/Applications/Privileges.app/Contents/MacOS/PrivilegesCLI" -r
