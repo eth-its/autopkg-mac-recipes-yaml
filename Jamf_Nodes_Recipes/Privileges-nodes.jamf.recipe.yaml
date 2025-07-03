@@ -8,3 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Privileges
   SELFSERVICE_ICON: "Privileges2.png"
   POLICY_RUN_COMMAND: sudo -u "$(stat -f%Su /dev/console)" "/Applications/Privileges.app/Contents/MacOS/PrivilegesCLI" -r
+  SCRIPT_NAME: "Privileges-preinstall.sh"
+  SCRIPT_PATH: "Privileges-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+  SCRIPT_CATEGORY: "Tools & Accessories"
