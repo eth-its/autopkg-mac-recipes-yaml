@@ -2,103 +2,107 @@
 
 #######################################################################
 #
-# Application Uninstaller Script for Jamf Pro
-#
-# This script can delete apps that are sandboxed and live in /Applications
-#
-# Adapted for Privileges app
+# Privileges Uninstaller Script for Jamf Pro
 #
 #######################################################################
 
-function silent_app_quit() {
-    # silently kill the application.
-    # add .app to end of string if not supplied
-    app_name="${app_name/\.app/}"            # remove any .app
-    check_app_name="${app_name/\(/\\(}"       # escape any brackets for the pgrep
-    check_app_name="${check_app_name/\)/\\)}"  # escape any brackets for the pgrep
-    check_app_name="${check_app_name}.app"     # add the .app back
-    if pgrep -f "/${check_app_name}" ; then
-        echo "Closing $check_app_name"
-        /usr/bin/osascript -e "quit app \"$app_name\"" &
-        sleep 1
+currentUser="$3"
 
-        # double-check
-        n=0
-        while [[ $n -lt 10 ]]; do
-            if pgrep -f "/$check_app_name" ; then
-                (( n=n+1 ))
-                sleep 1
-				echo "Graceful close attempt # $n"
-            else
-                echo "$app_name closed."
-                break
-            fi
-        done
-        if pgrep -f "/$check_app_name" ; then
-            echo "$check_app_name failed to quit - killing."
-            /usr/bin/pkill -f "/$check_app_name"
-        fi
+
+/bin/sleep 2
+for proc in Privileges PrivilegesAgent PrivilegesCLI; do
+    if /usr/bin/pgrep -u "$currentUser" "$proc" >/dev/null 2>&1; then
+        echo "Killing process: $proc"
+        /usr/bin/sudo -u "$currentUser" /usr/bin/killall "$proc" >/dev/null 2>&1
     fi
-}
+done
 
-# Inputted variables
-app_name="Privileges"
+# Remove the Application
+/bin/rm -Rf /Applications/Privileges.app
+echo "Privileges.app has been removed"
 
-# quit the app if running
-silent_app_quit "$app_name"
 
-# Now remove the app
-echo "Removing application: ${app_name}"
+echo "Removing LaunchDaemons and related files"
 
-# Add standard path if none provided
-if [[ ! $app_name == *"/"* ]]; then
-	app_to_trash="/Applications/$app_name.app"
-else
-	app_to_trash="$app_name.app"
+shopt -s nullglob
+
+# Unload and remove all matching LaunchAgents
+for agent in /Library/LaunchAgents/corp.sap.privileges.*; do
+    if [[ -f "$agent" ]]; then
+        echo "Unloading and removing LaunchAgent: $agent"
+        /bin/launchctl bootout gui/$(/usr/bin/id -u "$currentUser") "$agent" 2>/dev/null || echo "Failed to bootout LaunchAgent: $agent"
+        /bin/rm -f "$agent"
+    fi
+done
+
+# Unload and remove all matching LaunchDaemons
+for daemon in /Library/LaunchDaemons/corp.sap.privileges.*; do
+    if [[ -f "$daemon" ]]; then
+        echo "Unloading and removing LaunchDaemon: $daemon"
+        /bin/launchctl bootout system "$daemon" 2>/dev/null || echo "Failed to bootout LaunchDaemon: $daemon"
+        /bin/rm -f "$daemon"
+    fi
+done
+
+shopt -u nullglob
+
+# Remove VoiceOver script
+vo_script="/Library/Scripts/VoiceOver/Privileges Time Left.scpt"
+if [[ -f "$vo_script" ]]; then
+    echo "Removing VoiceOver script: $vo_script"
+    /bin/rm -f "$vo_script"
 fi
 
-echo "Application will be deleted: $app_to_trash"
-# Remove the application
-/bin/rm -Rf "${app_to_trash}"
-
-echo "Checking if $app_name is actually deleted..."
-if [[ -d "${app_to_trash}" ]]; then
-    echo "$app_name failed to delete"
-else
-    echo "$app_name deleted successfully"
+# Remove Application Support folder
+app_support="/Library/Application Support/Privileges"
+if [[ -d "$app_support" ]]; then
+    echo "Removing Application Support folder: $app_support"
+    /bin/rm -Rf "$app_support"
 fi
 
-# also check to see if an additional app was ever created due to BundleID mismatch
-if [[ -d "/Applications/${app_name}/${app_name}.app" ]]; then
-    echo "Folder will be deleted: /Applications/${app_name}/"
-    /bin/rm -Rf "/Applications/${app_name}" ||:
-else
-    echo "Folder not found: /Applications/${app_name}/"
-fi
-if [[ -d "/Applications/${app_name}.localized/${app_name}.app" ]]; then
-    echo "Folder will be deleted: /Applications/${app_name}.localized/"
-    /bin/rm -Rf "/Applications/${app_name}.localized" ||:
-else
-    echo "Folder not found: /Applications/${app_name}.localized/"
+# Remove paths.d entry
+path_file="/private/etc/paths.d/PrivilegesCLI"
+if [[ -f "$path_file" ]]; then
+    echo "Removing paths.d file: $path_file"
+    /bin/rm -f "$path_file"
 fi
 
-# Stop the current LaunchDaemon and remove it prior to installing this updated one
-echo "Removing LaunchDaemon"
+# Remove user data
+echo "Removing user-specific Privileges data for $currentUser"
 
-launchdaemon="/Library/LaunchDaemons/corp.sap.privileges.plist"
-if [[ -f "$launchdaemon" ]]; then
-    /bin/launchctl unload -w "$launchdaemon" ||:
-    /bin/rm "$launchdaemon"
-fi
+user_items=(
+  "/Users/$currentUser/Library/Containers/corp.sap.privileges.*"
+  "/Users/$currentUser/Library/Application Scripts/corp.sap.privileges*"
+  "/Users/$currentUser/Library/Group Containers/7R5ZEU67FQ.corp.sap.privileges"
+  "/Users/$currentUser/Library/Preferences/corp.sap.privileges*"
+)
 
-# Wait for 2 seconds
-Sleep 2
+shopt -s nullglob
+for item in "${user_items[@]}"; do
+    for match in $item; do
+        echo "Removing: $match"
+        /bin/rm -Rf "$match"
+    done
+done
+shopt -u nullglob
 
 # Additional files to delete
 echo "Deleting other files"
 demote_script_location="/Library/Management/ETHZ/Privileges"
 /bin/rm -Rf "$demote_script_location" ||:
 
-# Forget packages (works for all versions)
-echo "Forgetting packages"
-/usr/sbin/pkgutil --forget corp.sap.privileges ||:
+# Forget installed packages if receipts exist
+echo "Checking for installed Privileges package receipts"
+for pkgid in com.sap.privileges corp.sap.privileges.pkg; do
+    if ls "/private/var/db/receipts/${pkgid}"*.bom &>/dev/null; then
+        echo "Forgetting package: $pkgid"
+        /usr/sbin/pkgutil --forget "$pkgid" 2>/dev/null || echo "Package forget failed for $pkgid"
+    fi
+done
+
+# make sure the current user has admin rights after uninstallation
+isNotAdmin=$(/usr/bin/dsmemberutil checkmembership -U "$currentUser" -G admin | /usr/bin/grep -i "is not")
+
+if [[ -n "$isNotAdmin" ]]; then
+      /usr/sbin/dseditgroup -o edit -a "$currentUser" -t user admin
+fi
