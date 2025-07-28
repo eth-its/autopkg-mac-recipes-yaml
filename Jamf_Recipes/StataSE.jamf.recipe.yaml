@@ -6,8 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.pkg.StataSE
 
 Input:
   NAME: StataSE
-  MAJOR_VERSION: "18"
-  LIST_MAJOR_VERSION: "18"
+  MAJOR_VERSION: "19"
+  LIST_MAJOR_VERSION: "19"
   JSS_INVENTORY_NAME: "%NAME%.app"
   PKG_CATEGORY: Science & Math
   LIST_LANGUAGE: EN

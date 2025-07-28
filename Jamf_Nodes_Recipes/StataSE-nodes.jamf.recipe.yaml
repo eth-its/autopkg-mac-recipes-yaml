@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: StataSE
-  MAJOR_VERSION: "18"
+  MAJOR_VERSION: "19"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.StataSE
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"

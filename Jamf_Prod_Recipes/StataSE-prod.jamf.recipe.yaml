@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 
 Input:
   NAME: StataSE
-  MAJOR_VERSION: "18"
+  MAJOR_VERSION: "19"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.StataSE
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
