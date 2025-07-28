@@ -2,7 +2,7 @@ Comment: Key LICENSE_SUFFIX needs to be overridden.
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.StataSE
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.StataSE
+ParentRecipe: com.github.eth-its-recipes.pkg.StataNow
 
 Input:
   NAME: StataSE
