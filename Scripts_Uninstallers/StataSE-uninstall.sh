@@ -65,8 +65,9 @@ elif [[ -d "/Applications/Stata" ]]; then
 else
     echo "Older StataSE ${statase_version} not found, looking for newer versions now..."
 fi
+
 if [[ -d "/Applications/StataNow ${statase_version}" ]]; then
-    app_dir="/Applications/Stata ${statase_version}"
+    app_dir="/Applications/StataNow ${statase_version}"
 elif [[ -d "/Applications/StataNow" ]]; then
     installed_version=$(/usr/bin/defaults read /Applications/StataNow/StataSE.app/Contents/Info.plist CFBundleShortVersionString | cut -d. -f 1)
     if [[ "$installed_version" == "$statase_version" ]]; then
