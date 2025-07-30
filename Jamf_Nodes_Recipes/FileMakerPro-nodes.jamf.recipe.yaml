@@ -6,4 +6,4 @@ MinimumVersion: "2.3"
 Input:
   NAME: FileMaker Pro
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileMakerPro
-  SELFSERVICE_ICON: FileMaker Pro 2024.png
+  SELFSERVICE_ICON: FileMaker Pro 2025.png

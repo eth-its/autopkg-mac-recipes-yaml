@@ -52,7 +52,7 @@ echo "Removing /Users/Shared/FileMaker"
 rm -Rf "/Users/Shared/FileMaker" && echo "/Users/Shared/FileMaker removed" || echo "/Users/Shared/FileMaker was not removed"
 
 # Try to Forget the package(s)
-for package in ch.ethz.id.pkg.FileMakerPro19Installer ch.ethz.id.pkg.FileMakerPro20Installer; do
+for package in ch.ethz.id.pkg.FileMakerPro19Installer ch.ethz.id.pkg.FileMakerPro20Installer FileMakerPro21Installer FilemakerPro22Installer; do
     /usr/sbin/pkgutil --pkgs="$package" && usr/sbin/pkgutil --forget "$package"
 done
 
