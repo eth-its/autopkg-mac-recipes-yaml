@@ -61,7 +61,6 @@ elif [[ -d "/Applications/Stata" ]]; then
         app_dir="/Applications/Stata"
     else
         echo "StataSE ${statase_version} not found, nothing to do."
-        exit
     fi
 else
     echo "Older StataSE ${statase_version} not found, looking for newer versions now..."
