@@ -1,0 +1,21 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.StataSE18-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: StataSE
+  MAJOR_VERSION: "19"
+  SCRIPT_PATH: StataSE-uninstall.sh
+  SCRIPT_NAME: StataSE-uninstall.sh
+  PARAMETER4_LABEL: Major version
+  PARAMETER4_VALUE: "19"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_TRIGGER_NAME: "%NAME% %MAJOR_VERSION%-uninstall"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
