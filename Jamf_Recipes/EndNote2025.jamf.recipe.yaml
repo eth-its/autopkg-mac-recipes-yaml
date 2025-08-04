@@ -25,7 +25,7 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SELFSERVICE_ICON: EndNote 20.png
+  SELFSERVICE_ICON: EndNote 2025.png
   SCRIPT_NAME: EndNote-postinstall.sh
   SCRIPT_PATH: EndNote-postinstall.sh
   SCRIPT_PRIORITY: After
