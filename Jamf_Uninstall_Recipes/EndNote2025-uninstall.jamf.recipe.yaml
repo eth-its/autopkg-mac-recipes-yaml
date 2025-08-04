@@ -1,0 +1,22 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.EndNote2025-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
+
+Input:
+  NAME: EndNote
+  MAJOR_VERSION: "2025"
+  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  SCRIPT_PATH: EndNote-uninstall.sh
+  SCRIPT_NAME: EndNote-uninstall.sh
+  PARAMETER4_TITLE: Major Version
+  PARAMETER4_VALUE: "%MAJOR_VERSION%"
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %MAJOR_VERSION%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %MAJOR_VERSION%"
+  UNINSTALL_TRIGGER_NAME: "%NAME% %MAJOR_VERSION%-uninstall"
+  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
+  SELFSERVICE_ICON: "%NAME% 20.png"
