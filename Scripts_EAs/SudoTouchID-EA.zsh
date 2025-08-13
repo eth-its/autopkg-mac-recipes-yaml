@@ -3,7 +3,7 @@
 
 # Determine whether computer has Touch ID enabled
 
-touchid_functionality=$(/usr/bin/bioutil -rs | grep "Touch ID functionality")
+touchid_functionality=$(/usr/bin/bioutil -rs | grep "Biometrics functionality")
 
 if [[ $touchid_functionality ]]; then
     if grep -q "auth       sufficient     pam_tid.so" /etc/pam.d/sudo_local ; then
