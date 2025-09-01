@@ -22,6 +22,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+  pkg_name: "Company Portal-%VERSION%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
