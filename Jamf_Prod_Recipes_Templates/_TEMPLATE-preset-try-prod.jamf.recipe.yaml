@@ -102,7 +102,7 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
-      category_name: "%SCRIPT_CATEGORY%"
+      category_name: "%UPDATE_SCRIPT_CATEGORY%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
