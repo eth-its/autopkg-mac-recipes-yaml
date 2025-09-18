@@ -78,6 +78,7 @@ fi
 
 # current logged-in user's short name
 current_user=$(/bin/ls -la /dev/console | /usr/bin/cut -d " " -f 4)
+
 uid=$(id -u "$current_user")
 echo "Current user is $current_user"
 
@@ -144,3 +145,7 @@ if sudo -u "$current_user" -i /bin/launchctl enable "user/$uid/com.github.eth-it
 else
     echo "LaunchAgent was not enabled."
 fi
+
+
+# adjust permissions for application.
+chown -R "$(stat -f%Su /dev/console):staff" "/Applications/Google Chrome.app"
