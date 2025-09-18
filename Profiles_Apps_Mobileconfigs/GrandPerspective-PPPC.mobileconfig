@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>%PROFILE_DESCRIPTION%</string>
+			<key>PayloadDisplayName</key>
+			<string>%PROFILE_NAME%</string>
+			<key>PayloadIdentifier</key>
+			<string>ch.ethz.15D44C05-B654-464F-9223-828A7805BE8B</string>
+			<key>PayloadOrganization</key>
+			<string>%ORGANIZATION%</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>E65D5CF2-2898-4AA4-B639-10D553FAF439</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>anchor apple generic and identifier "net.sourceforge.grandperspectiv" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3Z75QZGN66")</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>net.sourceforge.grandperspectiv</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>%PROFILE_DESCRIPTION%</string>
+	<key>PayloadDisplayName</key>
+	<string>%PROFILE_NAME%</string>
+	<key>PayloadIdentifier</key>
+	<string>ch.ethz.15D44C05-B654-464F-9223-828A7805BE8B</string>
+	<key>PayloadOrganization</key>
+	<string>%ORGANIZATION%</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>587C974D-A3D9-4C1E-9506-DE370568CB9B</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

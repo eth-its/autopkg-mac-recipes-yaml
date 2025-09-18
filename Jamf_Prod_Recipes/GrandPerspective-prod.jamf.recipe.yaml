@@ -1,0 +1,13 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.GrandPerspective-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+
+Input:
+  NAME: GrandPerspective
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GrandPerspective
+  APPLICATION_NAME_HAS: GrandPerspective
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: GrandPerspective.png
