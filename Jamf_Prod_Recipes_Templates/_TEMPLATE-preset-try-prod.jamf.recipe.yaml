@@ -118,7 +118,7 @@ Process:
       script_parameter9: "%UPDATE_SCRIPT_PARAMETER9_LABEL%"
       script_parameter10: "%UPDATE_SCRIPT_PARAMETER10_LABEL%"
       script_parameter11: "%UPDATE_SCRIPT_PARAMETER11_LABEL%"
-      replace_script: True
+      replace_script: "True"
 
 
 
