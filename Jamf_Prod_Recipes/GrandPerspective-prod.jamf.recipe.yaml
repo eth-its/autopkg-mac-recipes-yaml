@@ -9,5 +9,5 @@ Input:
   APPLICATION_NAME_HAS: GrandPerspective
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   SELFSERVICE_ICON: GrandPerspective.png
