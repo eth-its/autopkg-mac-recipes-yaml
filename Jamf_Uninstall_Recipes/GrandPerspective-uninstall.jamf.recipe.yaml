@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: GrandPerspective
-  JSS_INVENTORY_NAME: "%NAME% %MAJOR_VERSION%.app"
+  JSS_INVENTORY_NAME: "%NAME%.app"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: net.sourceforge.grandperspectiv
   SELFSERVICE_ICON: "%NAME%.png"
