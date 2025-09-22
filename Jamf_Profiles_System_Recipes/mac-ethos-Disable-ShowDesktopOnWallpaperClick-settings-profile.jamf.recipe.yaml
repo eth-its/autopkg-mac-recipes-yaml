@@ -1,15 +1,15 @@
 Description: Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.Disable-ShowDesktopOnWallpaperClick-settings-profile
+Identifier: com.github.eth-its-recipes.jamf.mac-ethos-Disable-ShowDesktopOnWallpaperClick-settings-profile
 MinimumVersion: "2.3"
 
 Input:
-  NAME: "Disable Click on Wallpaper"
+  NAME: "mac.ethOS - Disable Show Desktop Wallpaper Click"
   IDENTIFIER: com.apple.WindowManager
   ORGANIZATION: Apple
   PROFILE_CATEGORY: System Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: com.apple.WindowManager.plist
+  PROFILE_PAYLOAD: com.apple.WindowManager-disableshowdesktop.plist
   PROFILE_DESCRIPTION: Disables showing Desktop on Wallpaper Click.
   USERS_GROUP_NAME: "%NAME% users"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
