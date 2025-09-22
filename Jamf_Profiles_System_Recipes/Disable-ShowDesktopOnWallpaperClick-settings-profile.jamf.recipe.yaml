@@ -9,7 +9,7 @@ Input:
   PROFILE_CATEGORY: System Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: ccom.apple.WindowManager.plist
+  PROFILE_PAYLOAD: com.apple.WindowManager.plist
   PROFILE_DESCRIPTION: Disables showing Desktop on Wallpaper Click.
   USERS_GROUP_NAME: "%NAME% users"
   PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
