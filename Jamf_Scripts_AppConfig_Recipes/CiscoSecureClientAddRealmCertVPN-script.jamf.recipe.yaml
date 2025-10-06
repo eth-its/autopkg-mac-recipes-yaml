@@ -1,0 +1,49 @@
+Description: |
+  Creates a disabled Self Service policy to add a realm to Cisco Secure Client.
+
+  Requires the following key to be overridden:
+  - HOST
+Identifier: com.github.eth-its-recipes.jamf.script.CiscoSecureClientAddRealmCertVPN
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Cisco Secure Client - add certvpn.ethz.ch - realm 
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Connect & Remote
+  POLICY_TEMPLATE: Policy-script-selfservice-disabled.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: "CiscoSecureClientAddRealmCertVPN.sh"
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: Adds a realm to the Cisco Secure Client configuration for use with Device Certificates
+  SELFSERVICE_ICON: Cisco Secure Client.png
+  INSTALL_BUTTON_TEXT: Add
+  REINSTALL_BUTTON_TEXT: Add
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
