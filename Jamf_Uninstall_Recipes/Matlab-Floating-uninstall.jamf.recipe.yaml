@@ -7,7 +7,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-noexc
 Input:
   NAME: MATLAB
   JSS_INVENTORY_NAME: "%NAME%_%MAJOR_VERSION%_%LICENSE%.app"
-  MAJOR_VERSION: R2025a
+  MAJOR_VERSION: R2025b
   LICENSE: Floating
   LANGUAGE: EN
   UNINSTALL_POLICY_NAME: "Uninstall %NAME%_%MAJOR_VERSION%_%LICENSE% %LANGUAGE%"
