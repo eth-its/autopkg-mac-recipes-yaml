@@ -10,5 +10,5 @@ Input:
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml

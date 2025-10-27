@@ -16,7 +16,7 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
@@ -26,8 +26,10 @@ Input:
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  SP_EXECUTABLE_COMMAND: "open '/Applications/%NAME%.app'"
+  SP_PROCESS_NAME: "%NAME%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker

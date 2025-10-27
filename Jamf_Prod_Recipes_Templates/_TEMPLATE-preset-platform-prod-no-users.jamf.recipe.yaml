@@ -14,28 +14,26 @@ Input:
   PLATFORM: arm64
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   JSS_INVENTORY_NAME: "%NAME%.app"
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  #USERS_GROUP_NAME: "%NAME% users"
-  #USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   AUTOINSTALL_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-installed
   AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoinstall-all-software.xml
   AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME: Software Gets Auto-updated
   AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoupdate-all-software.xml
-  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_NAME: "%NAME% %PLATFORM% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
-  AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
+  AUTOUPDATE_GROUP_NAME: "%NAME% %PLATFORM% auto-update"
   AUTOUPDATE_GROUP_TEMPLATE: SmartGroup-autoupdate.xml
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
-  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
-  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %PLATFORM%"
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-platform.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
@@ -55,7 +53,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM%"
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %PLATFORM%"
-  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% will be updated to version %version%."
+  UPDATE_SELFSERVICE_DESCRIPTION: "%NAME% %PLATFORM% will be updated to version %version%."
   PROD_PREDICATE: "ready_to_stage == False"
 
 Process:
