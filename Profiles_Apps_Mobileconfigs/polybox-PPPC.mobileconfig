@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>PayloadContent</key>
-	<array>
-		<dict>
-			<key>PayloadDescription</key>
-			<string>polybox-PPPC</string>
-			<key>PayloadDisplayName</key>
-			<string>polybox-PPPC</string>
-			<key>PayloadIdentifier</key>
-			<string>24EF3D58-7195-41A3-AE6D-84DF9F398F43</string>
-			<key>PayloadOrganization</key>
-			<string>ETHZ</string>
-			<key>PayloadType</key>
-			<string>com.apple.TCC.configuration-profile-policy</string>
-			<key>PayloadUUID</key>
-			<string>6789200E-AB48-4C4F-8220-A43DDB680F5E</string>
-			<key>PayloadVersion</key>
-			<integer>1</integer>
-			<key>Services</key>
-			<dict>
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadDescription</key>
+                <string>Configures Privacy Preferences Policy Control settings</string>
+                <key>PayloadDisplayName</key>
+                <string>Privacy Preferences Policy Control</string>
+                <key>PayloadIdentifier</key>
+                <string>ch.ethz.A86A7258-1FA0-4E45-8F5A-A45DAD2D79A7</string>
+                <key>PayloadType</key>
+                <string>com.apple.TCC.configuration-profile-policy</string>
+                <key>PayloadUUID</key>
+                <string>A86A7258-1FA0-4E45-8F5A-A45DAD2D79A7</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>Services</key>
+                <dict>
 				<key>SystemPolicyAllFiles</key>
 				<array>
 					<dict>
@@ -36,24 +34,24 @@
 						<string>bundleID</string>
 					</dict>
 				</array>
-			</dict>
-		</dict>
-	</array>
-	<key>PayloadDescription</key>
-	<string>polybox-PPPC</string>
-	<key>PayloadDisplayName</key>
-	<string>polybox-PPPC</string>
-	<key>PayloadIdentifier</key>
-	<string>24EF3D58-7195-41A3-AE6D-84DF9F398F43</string>
-	<key>PayloadOrganization</key>
-	<string>ETHZ</string>
-	<key>PayloadScope</key>
-	<string>System</string>
-	<key>PayloadType</key>
-	<string>Configuration</string>
-	<key>PayloadUUID</key>
-	<string>74EF7EB9-10AC-4CF4-8957-B4A7E625E89B</string>
-	<key>PayloadVersion</key>
-	<integer>1</integer>
-</dict>
+				</dict>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>%PROFILE_DESCRIPTION%</string>
+        <key>PayloadDisplayName</key>
+        <string>%PROFILE_NAME%</string>
+        <key>PayloadIdentifier</key>
+        <string>ch.ethz.F5DDE841-8840-4183-8F71-BAD77E19FC965</string>
+        <key>PayloadOrganization</key>
+        <string>%ORGANIZATION%</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>F5DDE841-8840-4183-8F71-BAD77E19FC96</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
 </plist>
