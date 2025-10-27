@@ -43,8 +43,8 @@ echo "Removing Cytoscape..."
 # Script to remove Cytoscape and related configuration files
 
 # Define paths
-APP_PATH="/Applications/Cytoscape_v3.10.3/Cytoscape.app"
-FOLDER_PATH="/Applications/Cytoscape_v3.10.3"
+APP_PATH=$(mdfind Cytoscape.app -onlyin /Applications 2>/dev/null|head -n1)      #"/Applications/Cytoscape_v3.10.3/Cytoscape.app"
+FOLDER_PATH=$(dirname "$APP_PATH") #"/Applications/Cytoscape_v3.10.3"
 CONFIG_PATH="/Users"
 
 # Remove Cytoscape.app
