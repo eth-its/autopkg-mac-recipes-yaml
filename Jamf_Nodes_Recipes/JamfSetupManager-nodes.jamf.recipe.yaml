@@ -11,7 +11,7 @@ Input:
   # TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-nonotification.xml
   # TRIGGER_NAME: "%NAME%-install"
   # TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  # UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
  
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -21,7 +21,7 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
-      
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%PKG_CATEGORY%"
