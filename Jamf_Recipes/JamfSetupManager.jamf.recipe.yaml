@@ -39,4 +39,4 @@ Process:
   #     TRIGGER_POLICY_NAME: "%TRIGGER_POLICY_NAME%"
   #     replace_policy: "True"
 
-  # - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
