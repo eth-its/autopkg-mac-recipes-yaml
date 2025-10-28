@@ -8,7 +8,7 @@
             <priority>0</priority>
             <and_or>and</and_or>
             <search_type>is</search_type>
-            <value>%NAME%_%MAJOR_VERSION%_Node.app</value>
+            <value>MATLAB_%MAJOR_VERSION%_Node.app</value>
             <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>
         </criterion>
