@@ -5,10 +5,10 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-prod
 
 Input:
   NAME: Docker
+  PLATFORM: x86_64
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
-  PLATFORM: x86_64
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Docker-x86_64
   AUTOINSTALL_GROUP_NAME: "%NAME% %PLATFORM% auto-install"
   AUTOUPDATE_GROUP_NAME: "%NAME% %PLATFORM% auto-update"
