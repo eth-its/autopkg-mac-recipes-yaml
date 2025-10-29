@@ -1,0 +1,47 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.toggle-ethernet-at-bootup
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Toggle Ethernet at Boot
+  POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  SCRIPT_NAME: "Install-ToggleEthernet-at-boot.sh"
+  SCRIPT_PRIORITY: After
+  POLICY_CATEGORY: Tools & Accessories
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_DESCRIPTION: |
+    When this Policy is installed, your Mac will disable and re-enable its primary Ethernet Interface shortly after startup. This can help prevent issues with your Mac getting the wrong IP Adress after (re)boot when it is encrypted with FileVault. 
+  SELFSERVICE_ICON: System Preferences.png
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Reinstall
+  FORCE_DESCRIPTION: "false"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
