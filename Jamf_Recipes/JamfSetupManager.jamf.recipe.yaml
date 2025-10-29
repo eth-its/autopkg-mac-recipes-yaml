@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.homebysix.pkg.JamfSetupManager
 
 Input:
-  NAME: Jamf Setup Manager
+  NAME: JamfSetupManager
   # TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Administration
   # TRIGGER_POLICY_CATEGORY: Triggered Installers
