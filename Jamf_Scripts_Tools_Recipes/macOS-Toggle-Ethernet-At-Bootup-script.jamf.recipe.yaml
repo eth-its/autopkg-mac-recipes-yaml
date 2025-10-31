@@ -54,6 +54,15 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^None$"
 
+  PARAMETER_4_VALUE: " "
+  PARAMETER_5_VALUE: " "
+  PARAMETER_6_VALUE: " "
+  PARAMETER_7_VALUE: " "
+  PARAMETER_8_VALUE: " "
+  PARAMETER_9_VALUE: " "
+  PARAMETER_10_VALUE: " "
+  PARAMETER_11_VALUE: " "
+
 Process:
   
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
