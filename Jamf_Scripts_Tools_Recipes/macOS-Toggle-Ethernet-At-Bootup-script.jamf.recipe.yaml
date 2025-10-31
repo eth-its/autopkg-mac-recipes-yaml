@@ -24,7 +24,7 @@ Input:
   AUTOINSTALL_GROUP_NAME: "%NAME% - autoinstall"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
-  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-package.xml
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
 
