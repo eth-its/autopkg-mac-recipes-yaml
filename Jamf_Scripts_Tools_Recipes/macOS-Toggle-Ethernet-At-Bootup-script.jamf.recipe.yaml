@@ -54,7 +54,7 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: Toggle-Ethernet-At-Boot-EA.sh
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_VALUE: "^None$"
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
 
 
 Process:
