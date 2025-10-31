@@ -1,7 +1,7 @@
 Description: Downloads the latest version of Microsoft Company Portal and creates a Package available for Prestage-Enrollment. A custom Package manifest has to be added for the moments. Override the SMB_URL Input locally to indicate a Disrtibution Point capable of serving prestage-enrollment-packages (no auth).
 Identifier: com.github.eth-its-recipes.jamf.MicrosoftCompanyPortal
 MinimumVersion: "2.3"
-ParentRecipe: ccom.github.eth-its-recipes.pkg.MicrosoftCompanyPortal
+ParentRecipe: com.github.eth-its-recipes.pkg.MicrosoftCompanyPortal
 
 Input:
   NAME: MicrosoftCompanyPortal
