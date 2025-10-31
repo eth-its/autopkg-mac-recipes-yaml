@@ -72,6 +72,14 @@ Process:
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
+      parameter4_value: " "
+      parameter5_value: " "
+      parameter6_value: " "
+      parameter7_value: " "
+      parameter8_value: " "
+      parameter9_value: " "
+      parameter10_value: " "
+      parameter11_value: " "
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
     Arguments:
