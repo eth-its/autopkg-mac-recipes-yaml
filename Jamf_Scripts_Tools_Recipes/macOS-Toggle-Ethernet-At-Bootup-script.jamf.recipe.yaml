@@ -115,17 +115,17 @@ Process:
       computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
       replace_group: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # auto-install policy, only for -installed
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # auto-install policy, only for autoinstalled
     Arguments:
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOINSTALL_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
-      replace_policy: "True"
+      replace_policy: "False"
 
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service uninstall policy, only for -installed
     Arguments:
       policy_template: "%SELFSERVICE_UNINSTALL_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_NAME% - uninstall"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
