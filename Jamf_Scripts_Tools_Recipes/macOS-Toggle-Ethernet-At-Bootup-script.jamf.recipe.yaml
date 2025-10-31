@@ -72,6 +72,14 @@ Process:
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
+
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
       parameter4_value: " "
       parameter5_value: " "
       parameter6_value: " "
@@ -80,13 +88,6 @@ Process:
       parameter9_value: " "
       parameter10_value: " "
       parameter11_value: " "
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
-    Arguments:
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
-      icon: "%SELFSERVICE_ICON%"
-      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
     Arguments:
