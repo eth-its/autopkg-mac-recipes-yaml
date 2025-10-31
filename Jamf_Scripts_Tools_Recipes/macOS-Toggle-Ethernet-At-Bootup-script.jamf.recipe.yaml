@@ -37,7 +37,7 @@ Input:
   TRIGGER_NAME: "Toggle_Ethernet_at_Boot-install"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: Toggle_Ethernet_at_Boot-install
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameters-GLPI.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
 
   SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
   SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet ; rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh"
@@ -54,14 +54,6 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^None$"
 
-  PARAMETER_4_VALUE: " "
-  PARAMETER_5_VALUE: " "
-  PARAMETER_6_VALUE: " "
-  PARAMETER_7_VALUE: " "
-  PARAMETER_8_VALUE: " "
-  PARAMETER_9_VALUE: " "
-  PARAMETER_10_VALUE: " "
-  PARAMETER_11_VALUE: " "
 
 Process:
   
@@ -89,14 +81,6 @@ Process:
       policy_name: "%TRIGGER_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-      parameter4_value: " "
-      parameter5_value: " "
-      parameter6_value: " "
-      parameter7_value: " "
-      parameter8_value: " "
-      parameter9_value: " "
-      parameter10_value: " "
-      parameter11_value: " "
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
     Arguments:
