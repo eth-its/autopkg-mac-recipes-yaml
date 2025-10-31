@@ -84,12 +84,12 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
-    Arguments:
-      script_category: "%POLICY_CATEGORY%"
-      script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      replace_script: "True"
+  #- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
+  #  Arguments:
+  #    script_category: "%POLICY_CATEGORY%"
+  #    script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+  #    script_priority: "%SCRIPT_PRIORITY%"
+  #    replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader # EA
     Arguments:
