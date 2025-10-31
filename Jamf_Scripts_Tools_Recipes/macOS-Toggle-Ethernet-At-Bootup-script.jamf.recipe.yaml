@@ -7,7 +7,7 @@ Input:
   POLICY_NAME: "%NAME%"
 
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
-  SELFSERVICE_POLICY_NAME: "%SELFSERVICE_DISPLAY_NAME% selfservice"
+  SELFSERVICE_POLICY_NAME: "%SELFSERVICE_DISPLAY_NAME%"
   SELFSERVICE_ICON: System Preferences.png
   SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
@@ -18,7 +18,7 @@ Input:
 
   TESTING_GROUP_NAME: Testing
 
-  INSTALLED_GROUP_NAME: "%NAME% - installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
 
   AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
@@ -106,7 +106,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service policy, except for -installed
     Arguments:
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
