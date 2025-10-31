@@ -48,6 +48,7 @@ Input:
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstall %NAME%"
   SELFSERVICE_FORCE_DESCRIPTION: "false"
   UNINSTALL_POLICY_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+  UNINSTALL_POLICY_NAME: "%NAME% - uninstall"
 
   EXTENSION_ATTRIBUTE_NAME: Toggle Ethernet at Boot Version
   EXTENSION_ATTRIBUTE_SCRIPT: Toggle-Ethernet-At-Boot-EA.sh
@@ -122,10 +123,9 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "False"
 
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service uninstall policy, only for -installed
     Arguments:
       policy_template: "%SELFSERVICE_UNINSTALL_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME% - uninstall"
+      policy_name: "%UNINSTALL_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
