@@ -41,7 +41,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
 
   SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
-  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet ; rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh"
+  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist;rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh"
   UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
