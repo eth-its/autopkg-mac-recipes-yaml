@@ -48,6 +48,10 @@
     <maintenance>
         <recon>false</recon>
     </maintenance>
+     <user_interaction>
+        <message_start></message_start>
+        <message_finish>%NAME% v%version% has now been installed.</message_finish>
+    </user_interaction>
     <files_processes>
         <run_command>jamf policy -event "%TRIGGER_NAME%"</run_command>
     </files_processes>

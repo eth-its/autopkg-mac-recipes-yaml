@@ -43,6 +43,6 @@
     </self_service>
     <user_interaction>
         <message_start></message_start>
-        <message_finish>%NAME% has now been installed.</message_finish>
+        <message_finish></message_finish>
     </user_interaction>
 </policy>
