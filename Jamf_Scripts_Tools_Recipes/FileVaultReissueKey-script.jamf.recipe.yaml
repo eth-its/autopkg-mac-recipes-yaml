@@ -6,7 +6,7 @@ Input:
   NAME: Reissue FileVault Key
   FILEVAULT_OFF_GROUP_NAME: "FileVault Off"
   FILEVAULT_OFF_GROUP_TEMPLATE: SmartGroup-FileVaultOff.xml
-  FILEVAULT_ON_GROUP_NAME: FileVault Enabled
+  FILEVAULT_ON_GROUP_NAME: "FileVault Enabled"
   FILEVAULT_ON_GROUP_TEMPLATE: SmartGroup-FileVaultOn.xml
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-parameters.xml
@@ -51,19 +51,19 @@ Process:
       script_path: "%SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%FILEVAULT_OFF_GROUP_NAME%"
-      computergroup_name: "%FILEVAULT_OFF_GROUP_TEMPLARE%"
-      replace_group: "True"
   
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%FILEVAULT_ON_GROUP_NAME%"
-      computergroup_name: "%FILEVAULT_ON_GROUP_TEMPLARE%"
+      computergroup_name: "%FILEVAULT_ON_GROUP_TEMPLATE%"
       replace_group: "True"
   
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%FILEVAULT_OFF_GROUP_NAME%"
+      computergroup_name: "%FILEVAULT_OFF_GROUP_TEMPLATE%"
+      replace_group: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
