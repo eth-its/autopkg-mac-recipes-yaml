@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <computer_group>
-    <name>%FILEVAULT_OFF_GROUP_NAME%</name>
+    <name>%FILEVAULT_ON_GROUP_NAME%</name>
     <is_smart>true</is_smart>
     <criteria>
         <size>1</size>
         <criterion>
             <name>FileVault 2 Partition Encryption State</name>
             <priority>0</priority>
-            <and_or>and</and_or>
-            <search_type>is not</search_type>
+            <and_or>or</and_or>
+            <search_type>is</search_type>
             <value>Encrypting</value>
             <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>
@@ -16,8 +16,8 @@
         <criterion>
             <name>FileVault 2 Partition Encryption State</name>
             <priority>1</priority>
-            <and_or>and</and_or>
-            <search_type>is not</search_type>
+            <and_or>or</and_or>
+            <search_type>is</search_type>
             <value>Encrypted</value>
             <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>
@@ -25,8 +25,8 @@
         <criterion>
             <name>FileVault 2 Partition Encryption State</name>
             <priority>2</priority>
-            <and_or>and</and_or>
-            <search_type>is not</search_type>
+            <and_or>or</and_or>
+            <search_type>is</search_type>
             <value>Decrypting</value>
             <opening_paren>false</opening_paren>
             <closing_paren>false</closing_paren>

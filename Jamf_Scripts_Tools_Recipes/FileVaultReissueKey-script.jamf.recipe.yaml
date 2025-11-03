@@ -4,11 +4,13 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Reissue FileVault Key
-  USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
-  TESTING_GROUP_NAME: Testing
+  FILEVAULT_OFF_GROUP_NAME: FileVault Enabled
+  FILEVAULT_OFF_GROUP_TEMPLATE: SmartGroup-FileVaultOn.xml
+  FILEVAULT_ON_GROUP_NAME: FileVault Off
+  FILEVAULT_ON_GROUP_TEMPLATE: SmartGroup-FileVaultOn.xml
   POLICY_CATEGORY: Tools & Accessories
   POLICY_TEMPLATE: Policy-script-selfservice-parameters.xml
+  USERS_GROUP_NAME: "%FILEVAULT_ON_GROUP_NAME%"
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: "FileVaultReissueKey.sh"
   SCRIPT_PRIORITY: After
@@ -52,10 +54,16 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
-
+      computergroup_template: "%FILEVAULT_OFF_GROUP_NAME%"
+      computergroup_name: "%FILEVAULT_OFF_GROUP_TEMPLARE%"
+      replace_group: "True"
+  
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%FILEVAULT_ON_GROUP_NAME%"
+      computergroup_name: "%FILEVAULT_ON_GROUP_TEMPLARE%"
+      replace_group: "True"
+  
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       policy_template: "%POLICY_TEMPLATE%"
