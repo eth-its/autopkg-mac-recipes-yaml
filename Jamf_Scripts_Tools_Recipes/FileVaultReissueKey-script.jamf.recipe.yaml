@@ -54,14 +54,14 @@ Process:
   
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%FILEVAULT_ON_GROUP_NAME%"
-      computergroup_name: "%FILEVAULT_ON_GROUP_TEMPLATE%"
+      computergroup_name: "%FILEVAULT_ON_GROUP_NAME%"
+      computergroup_template: "%FILEVAULT_ON_GROUP_TEMPLATE%"
       replace_group: "True"
   
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%FILEVAULT_OFF_GROUP_NAME%"
-      computergroup_name: "%FILEVAULT_OFF_GROUP_TEMPLATE%"
+      computergroup_name: "%FILEVAULT_OFF_GROUP_NAME%"
+      computergroup_template: "%FILEVAULT_OFF_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
