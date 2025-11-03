@@ -1,9 +1,9 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group. Override the SMB_URL Input locally to indicate a Disrtibution Point capable of serving prestage-enrollment-packages (no auth).
 Identifier: com.github.eth-its-recipes.jamf.JamfSetupManager-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Jamf Setup Manager
+  NAME: JamfSetupManager
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.JamfSetupManager
   # TRIGGER_POLICY_NAME: "%NAME%"
   PKG_CATEGORY: Administration

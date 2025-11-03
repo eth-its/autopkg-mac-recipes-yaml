@@ -1,0 +1,131 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.macOS-Toggle-Ethernet-At-Bootup-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Toggle Ethernet at Boot
+  POLICY_NAME: "%NAME%"
+
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_POLICY_NAME: "%SELFSERVICE_DISPLAY_NAME%"
+  SELFSERVICE_ICON: System Preferences.png
+  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_DESCRIPTION: |
+    When this Policy is installed, your Mac will disable and re-enable its primary Ethernet Interface shortly after startup. This can help prevent issues with your Mac getting the wrong IP Adress after (re)boot when it is encrypted with FileVault. 
+  INSTALL_BUTTON_TEXT: Install
+  REINSTALL_BUTTON_TEXT: Reinstall
+  FORCE_DESCRIPTION: "false"
+
+  TESTING_GROUP_NAME: Testing
+
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
+
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
+  AUTOINSTALL_POLICY_CATEGORY: Auto-installers
+  AUTOINSTALL_POLICY_FREQUENCY: Once every day
+
+  SCRIPT_NAME: "Install-Toggle-Ethernet-At-Boot.sh"
+  SCRIPT_PRIORITY: After
+
+  POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_TEMPLATE: policy-prod-selfservice-install-all-computers.xml
+
+  TRIGGER_POLICY_NAME: Toggle Ethernet at Boot-install
+  TRIGGER_NAME: "Toggle_Ethernet_at_Boot-install"
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: Toggle_Ethernet_at_Boot-install
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
+
+  SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
+  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist;rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh"
+  UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
+  UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: Uninstall
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstall %NAME%"
+  SELFSERVICE_FORCE_DESCRIPTION: "false"
+  UNINSTALL_POLICY_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+  UNINSTALL_POLICY_NAME: "%NAME% - uninstall"
+
+  EXTENSION_ATTRIBUTE_NAME: Toggle Ethernet at Boot Version
+  EXTENSION_ATTRIBUTE_SCRIPT: Toggle-Ethernet-At-Boot-EA.sh
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^None$|^$"
+
+
+Process:
+  
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%TRIGGER_POLICY_CATEGORY%"
+
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # payload script
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  #- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
+  #  Arguments:
+  #    script_category: "%POLICY_CATEGORY%"
+  #    script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+  #    script_priority: "%SCRIPT_PRIORITY%"
+  #    replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader # EA
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -installed group based on EA
+    Arguments:
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service policy, except for -installed
+    Arguments:
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
+      policy_name: "%SELFSERVICE_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autoinstall group
+    Arguments:
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # auto-install policy, only for autoinstalled
+    Arguments:
+      policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOINSTALL_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service uninstall policy, only for -installed
+    Arguments:
+      policy_template: "%SELFSERVICE_UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%UNINSTALL_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"

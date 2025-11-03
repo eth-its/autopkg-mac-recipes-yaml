@@ -11,7 +11,7 @@
                         <key>AlertType</key>
                         <integer>1</integer>
                         <key>BadgesEnabled</key>
-                        <false/>
+                        <true/>
                         <key>BundleIdentifier</key>
                         <string>com.jamfsoftware.selfservice.mac</string>
                         <key>CriticalAlertEnabled</key>
@@ -33,7 +33,7 @@
                         <key>AlertType</key>
                         <integer>1</integer>
                         <key>BadgesEnabled</key>
-                        <false/>
+                        <true/>
                         <key>BundleIdentifier</key>
                         <string>com.jamfsoftware.Management-Action</string>
                         <key>CriticalAlertEnabled</key>
