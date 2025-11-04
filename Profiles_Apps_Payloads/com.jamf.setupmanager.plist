@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+<key>background</key>
+  <string>https://id-jamf-%CONTEXT%.ethz.ch/JPShare-enrollment/Images/imageCarousel.imageformat.lightbox.1409829054.jpg</string>
+  <key>title</key>
+  <string>Setup Manager</string>
+  <key>message</key>
+		<dict>
+			<key>de</key>
+			<string>Bitte habe etwas Geduld während Setup Manager deinen Mac konfiguriert.</string>
+			<key>en</key>
+			<string>Please be patient while Setup Manager is configuring your %model%.</string>
+		</dict>
+  <key>icon</key>
+  <dict>
+    <key>dark</key>
+    <string>https://id-jamf-%CONTEXT%.ethz.ch/JPShare-enrollment/Images/eth_logo_kurz_neg.png</string>
+    <key>light</key>
+    <string>https://id-jamf-%CONTEXT%.ethz.ch/JPShare-enrollment/Images/eth_logo_kurz_pos.png</string>
+  </dict>
+  <key>userEntry</key>
+    <dict>
+      <key>computerName</key>
+      <dict>
+        <key>placeholder</key>
+        <string>Mac-12345</string>
+        <key>validation</key>
+        <string>^.{6,}$</string>
+        <key>validationMessage</key>
+        <dict>
+        <key>en</key>
+        <string>Computer name must contain at least six characters</string>
+        <key>de</key>
+        <string>Computername muss mindestens sechs Zeichen enthalten</string>
+        </dict> 
+      </dict>
+   </dict>
+</dict>
+</plist>
