@@ -9,3 +9,6 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: uk.ac.ox.orchard.pkg.oxygenxmleditor
   SELFSERVICE_ICON: "OxygenXMLEditor.png"
+  SCRIPT_PATH: OxygenXMLEditor-uninstall.zsh
+  SCRIPT_NAME: OxygenXMLEditor-uninstall.zsh
+
