@@ -9,3 +9,4 @@ Input:
   APPLICATION_NAME_HAS: "%NAME%"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   SELFSERVICE_ICON: OxygenXMLEditor.png
+  SP_EXECUTABLE_COMMAND: "open '/Applications/Oxygen/%NAME%.app'"
