@@ -23,7 +23,6 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  SELFSERVICE_FORCE_DESCRIPTION: true
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   TESTING_GROUP_NAME: Testing
@@ -31,7 +30,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: OxygenXMLEditor.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
