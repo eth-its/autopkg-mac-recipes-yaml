@@ -10,10 +10,20 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
-    Oxygen XML Editor is the premier tool for XML editing, authoring and development. Tailored for beginners to experts, it's versatile, compatible across platforms, and available as a standalone app or Eclipse plug-in. Boasting robust support for XML technologies, it offers tools for easy creation, editing, and publishing.
+    Oxygen XML Editor is the premier tool for XML editing, authoring and development. 
+
+    Users wishing to use Oxygen XML Editor must procure a license from the IT-Shop. 
+
+    Go to:  
+    - [ETH IT Shop](https://itshop.ethz.ch)
+    - Login using your ETH account credentials
+    - Click "Create Request" at the top right side, then "Software and Business Applications", "Software & Licenses", and then "Order Software Product"
+    - Follow the instructions to get the license details.
+    - Once you receive the license details, copy-paste them into the dialog shown at startup, or "Help" - "Register" if you started with a trial license
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  SELFSERVICE_FORCE_DESCRIPTION: true
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   TESTING_GROUP_NAME: Testing
