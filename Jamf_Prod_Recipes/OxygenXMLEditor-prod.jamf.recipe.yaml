@@ -11,3 +11,4 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   SELFSERVICE_ICON: OxygenXMLEditor.png
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
