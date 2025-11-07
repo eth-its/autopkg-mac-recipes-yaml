@@ -60,46 +60,49 @@ if [[ -d "/Applications/MATLAB_${matlab_version}.app" ]]; then
     fi
 fi
 if [[ $floating_app_installed = 0 && $node_app_installed = 0 ]]; then
+    # trigger Jamf to install the pkg that unpacks the installer ; retry once, if not successful then give up.
     major_version=$matlab_version
-    # nothing on disk at this point - if there's an installer waiting, now's the time to actually run it. 
-    if [[ -f /Library/Management/MATLAB/${major_version}/install ]] ; then
-
-        # run the installer
-        if /Library/Management/MATLAB/${major_version}/install -inputFile /Library/Management/MATLAB/installer_input.txt; then
-            # is there an existing app of that name? better remove it 
-            # if our new installation was successful!
-            if [[ -d "/Applications/MATLAB_${major_version}_Floating.app" ]]; then
-                echo "Existing MATLAB_${major_version}_Floating.app found! Removing!"
-                /bin/rm -rf "/Applications/MATLAB_${major_version}_Floating.app"
-            fi
-        else
-            echo "Failed to install application so aborting!"
-            exit 1
-        fi
-
-        # rename app to Floating and move into Applications
-        echo "Moving MATLAB_${major_version}_Floating.app to /Applications"
-        if /bin/mv "/Library/Management/MATLAB/tmp_install/MATLAB_${major_version}.app" "/Applications/MATLAB_${major_version}_Floating.app"; then
-            /bin/rm -rf "/Library/Management/MATLAB/tmp_install"
-        else
-            echo "Failed to move application so aborting!"
-            exit 1
-        fi
-
-        # Add permissions to the license file to help adjust it in future
-        chmod -R 775 /Applications/MATLAB_${major_version}_Floating.app/licenses
-        chgrp -R staff /Applications/MATLAB_${major_version}_Floating.app/licenses
-
-        # remove the installer to save space
-        rm -rf /Library/Management/MATLAB/${major_version} ||:
-
-        matlab_path="/Applications/MATLAB_${matlab_version}_Floating.app"
-        
-    else
-        echo "MATLAB not installed! Running Jamf trigger"
-        /usr/local/bin/jamf policy -event "MATLAB_${trigger_name}_Floating-install"
-        matlab_path="/Applications/MATLAB_${matlab_version}_Floating.app"
+    echo "MATLAB not installed! Running Jamf trigger"
+    /usr/local/bin/jamf policy -event "MATLAB_${trigger_name}_Floating-install"
+    if [[ ! -f /Library/Management/MATLAB/${major_version}/install ]] ; then
+    echo "Matlab Installer not found after Trigger - retrying..."
+    /usr/local/bin/jamf policy -event "MATLAB_${trigger_name}_Floating-install"
     fi
+    if [[ ! -f /Library/Management/MATLAB/${major_version}/install ]] ; then
+    echo "MATLAB Installer still not present! Exiting."
+    exit 1
+    fi
+    # run the installer
+    if /Library/Management/MATLAB/${major_version}/install -inputFile /Library/Management/MATLAB/installer_input.txt; then
+        # is there an existing app of that name? better remove it 
+        # if our new installation was successful!
+        if [[ -d "/Applications/MATLAB_${major_version}_Floating.app" ]]; then
+            echo "Existing MATLAB_${major_version}_Floating.app found! Removing!"
+            /bin/rm -rf "/Applications/MATLAB_${major_version}_Floating.app"
+        fi
+    else
+        echo "Failed to install application so aborting!"
+        exit 1
+    fi
+
+    # rename app to Floating and move into Applications
+    echo "Moving MATLAB_${major_version}_Floating.app to /Applications"
+    if /bin/mv "/Library/Management/MATLAB/tmp_install/MATLAB_${major_version}.app" "/Applications/MATLAB_${major_version}_Floating.app"; then
+        /bin/rm -rf "/Library/Management/MATLAB/tmp_install"
+    else
+        echo "Failed to move application so aborting!"
+        exit 1
+    fi
+
+    # Add permissions to the license file to help adjust it in future
+    chmod -R 775 /Applications/MATLAB_${major_version}_Floating.app/licenses
+    chgrp -R staff /Applications/MATLAB_${major_version}_Floating.app/licenses
+
+    # remove the installer to save space
+    rm -rf /Library/Management/MATLAB/${major_version} ||:
+
+    matlab_path="/Applications/MATLAB_${matlab_version}_Floating.app"
+
 fi
 
 # check again - if it didn't work, we quit
