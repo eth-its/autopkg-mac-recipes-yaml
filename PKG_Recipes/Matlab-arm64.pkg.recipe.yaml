@@ -71,34 +71,6 @@ Process:
         /bin/cp "$DIR"/MATLAB_floating_license.dat /Library/Management/MATLAB/
         /bin/cp "$DIR"/installer_input.txt /Library/Management/MATLAB/
 
-        # run the installer
-        if /Library/Management/MATLAB/${major_version}/install -inputFile /Library/Management/MATLAB/installer_input.txt; then
-            # is there an existing app of that name? better remove it 
-            # if our new installation was successful!
-            if [[ -d "/Applications/MATLAB_${major_version}_Floating.app" ]]; then
-                echo "Existing MATLAB_${major_version}_Floating.app found! Removing!"
-                /bin/rm -rf "/Applications/MATLAB_${major_version}_Floating.app"
-            fi
-        else
-            echo "Failed to install application so aborting!"
-            exit 1
-        fi
-
-        # rename app to Floating and move into Applications
-        echo "Moving MATLAB_${major_version}_Floating.app to /Applications"
-        if /bin/mv "/Library/Management/MATLAB/tmp_install/MATLAB_${major_version}.app" "/Applications/MATLAB_${major_version}_Floating.app"; then
-            /bin/rm -rf "/Library/Management/MATLAB/tmp_install"
-        else
-            echo "Failed to move application so aborting!"
-            exit 1
-        fi
-
-        # Add permissions to the license file to help adjust it in future
-        chmod -R 775 /Applications/MATLAB_${major_version}_Floating.app/licenses
-        chgrp -R staff /Applications/MATLAB_${major_version}_Floating.app/licenses
-        
-        # remove the installer to save space
-        rm -rf /Library/Management/MATLAB/${major_version} ||:
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
     Processor: FileCreator
