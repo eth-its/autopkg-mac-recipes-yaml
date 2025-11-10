@@ -3,7 +3,7 @@
 # Set Computer Name using an AppleScript dialog
 # by Philippe Scholl
 # Edited by Graham Pugh 2018-06-25
-# Added check for desktop 2018-07-02
+# Edited by Katiuscia Zehnder 2025-10-11
 
 #renameHost
 ###functions
@@ -14,9 +14,6 @@ isDesktopReady() {
         if [[ -f "/Applications/ETH Self Service.app/Contents/MacOS/Self Service" ]] && [[ "${loggedInUser}" != "_mbusersetup" ]] && [[ $( pgrep Finder | wc -l ) -gt 0 ]]; then
 	        echo "[$(date)] Desktop is ready, we can continue..."
             break
-        elif [[ -f "/Applications/ETH Self Service.app/Content/MacOS/Self Service..." ]]; then
-            echo "[$(date)] Desktop not yet ready"
-            echo "[$(date)] Current User: ${loggedInUser}"
         else
             echo "[$(date)] Self Service not present so Jamf not ready..."
             echo "[$(date)] Current User: ${loggedInUser}"
@@ -36,20 +33,18 @@ machinename() {
 EOT
 }
 
-renameComputer() {
-    #Set New Computer Name
-    scutil --set ComputerName "${ComputerName}"
-    # Remove spaces
-    localHostName=$( echo ${ComputerName} | sed -e 's| |-|g' )
-    scutil --set LocalHostName "${localHostName}"
-    scutil --set HostName "${localHostName}"
-	echo "[$(date)] The New Computer name is: ${ComputerName}"
-    echo "[$(date)] Rename Successful"
-}
-
 ### Script
 # Check that there is an actively logged in desktop
+loggedInUser=$( /usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }' )
 isDesktopReady
 # Go ahead and rename the computer
 ComputerName=$(machinename)
-renameComputer
+
+if jamf setComputerName -name "$ComputerName"; then
+  echo "Successfully changed Computer Name to $ComputerName"
+  # Inventar in Jamf Pro aktualisieren, recon done within Policy
+  #jamf recon >/dev/null 2>&1 || echo "Note: recon failed (non-fatal)."
+else
+  echo "Failed to change Computer Name!"
+  exit 1
+fi
