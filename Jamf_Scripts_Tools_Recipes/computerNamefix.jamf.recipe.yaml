@@ -1,0 +1,29 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.computerNamefix
+MinimumVersion: "2.3"
+
+Input:
+  NAME: computerName - fix
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: computerNamefix.sh
+  SCRIPT_PRIORITY: After
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"
