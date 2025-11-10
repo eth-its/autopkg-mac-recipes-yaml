@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: computerName - fix
   POLICY_CATEGORY: Administration
-  POLICY_TEMPLATE: Policy-script-selfservice.xml
+  POLICY_TEMPLATE: Policy-script-allcomputers.xml
   POLICY_NAME: "%NAME%"
   SCRIPT_NAME: computerNamefix.sh
   SCRIPT_PRIORITY: After
