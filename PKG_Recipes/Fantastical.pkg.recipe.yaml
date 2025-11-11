@@ -1,0 +1,12 @@
+Description: Downloads the latest version of Fantastical from Riot and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Fantastical
+MinimumVersion: "2.3"
+ParentRecipe: com.github.valdore86.download.fantastical
+
+Input:
+  NAME: Fantastical
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Fantastical-%version%.pkg"

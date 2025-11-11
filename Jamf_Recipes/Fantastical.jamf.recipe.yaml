@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Fantastical
 MinimumVersion: "2.3"
-ParentRecipe: com.github.ahousseini-recipes.pkg.Fantastical
+ParentRecipe: com.github.eth-its-recipes.pkg.Fantastical
 
 Input:
   NAME: Fantastical
