@@ -2,11 +2,39 @@
 if [ ! -d /Library/Management/ETHZ/Scripts ] ; then mkdir -p /Library/Management/ETHZ/Scripts ; fi
 cat <<'EOT'>/Library/Management/ETHZ/Scripts/toggle-ethernet.sh
 #!/bin/zsh
-sleep 2 # give the OS some time to boot
+#script to toggle primary wired interface once, very soon after boot
+
+#uncomment the following two lines for debug info
+#set -x
+#exec &>>/tmp/ch.ethz.ethernet-toggle.log
+
+# wait for network to be up, for a max of max_tries, in increments of retry_delay seconds; abort if still offline
+max_tries=6
+retry_delay=2
+
+. /etc/rc.common
+CheckForNetwork
+c=0
+while [[ "${NETWORKUP}" != "-YES-"  && $c -lt $max_tries ]]
+do
+        sleep $retry_delay
+        NETWORKUP=
+        CheckForNetwork
+        ((c++))
+done
+if [[ "${NETWORKUP}" != "-YES-" ]] ; then ; echo "network still down after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
+
+#check if wifi is primary - if yes, retry after 5 seconds delay, if wifi is still primary, then abort.
 default_iface=$(route get 1.1|grep interface|awk {'print $2'})
-#check if wifi is primary - if yes, abort. 
 /usr/sbin/networksetup -getairportpower ${default_iface}>/dev/null
-if [ $? -eq 0 ] ; then echo "airport is primary,exiting" ; exit 0 ; fi
+if [ $? -eq 0 ] ; then 
+	echo "airport is primary,trying again after 5 seconds" 
+        sleep 5
+        default_iface=$(route get 1.1|grep interface|awk {'print $2'})
+        /usr/sbin/networksetup -getairportpower ${default_iface}>/dev/null
+        if [ $? -eq 0 ] ; then echo "airport still primary after 5 seconds, aborting" ; exit 0 ; fi 
+fi
+
 #get more info on network service
 hardware_ports=$(/usr/sbin/networksetup -listallhardwareports)
 port_service_name=$(echo ${hardware_ports}|grep -B1 ${default_iface}|head -n1|sed -e 's/.*\: //')
