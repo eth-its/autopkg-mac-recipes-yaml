@@ -26,13 +26,13 @@ if [[ "${NETWORKUP}" != "-YES-" ]] ; then ; echo "network still down after $((ma
 
 # wait for default route to be available - sometimes rc.common is a bit premature
 c=0
-while [[ $(route get 1.1 &>/dev/null ; echo $?) -gt 0 && $c -lt $max_tries ]]
+while [[ $(route get 1.1|grep interface &>/dev/null; echo $?) -gt 0 && $c -lt $max_tries ]]
 do
         echo "waiting for default route.."
         sleep $retry_delay
         ((c++))
 done
-if [[ $(route get 1.1 &>/dev/null ; echo $?) -gt 0 ]] ; then ; echo "no default route available after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
+if [[ $(route get 1.1|grep interface &>/dev/null; echo $?) -gt 0 ]] ; then ; echo "no default route available after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
 
 #check if wifi is primary - if yes, retry after 5 seconds delay, if wifi is still primary, then abort.
 default_iface=$(route get 1.1|grep interface|awk {'print $2'})
@@ -44,6 +44,8 @@ if [ $? -eq 0 ] ; then
         /usr/sbin/networksetup -getairportpower ${default_iface}>/dev/null
         if [ $? -eq 0 ] ; then echo "airport still primary after 5 seconds, aborting" ; exit 0 ; fi 
 fi
+
+sleep $retry_delay
 
 #get more info on network service
 hardware_ports=$(/usr/sbin/networksetup -listallhardwareports)
