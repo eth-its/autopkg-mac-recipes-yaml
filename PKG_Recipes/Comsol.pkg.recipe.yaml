@@ -1,7 +1,6 @@
 Description: Downloads latest COMSOL Multiphysics installer and uses it to create a package.
 Identifier: com.github.eth-its-recipes.pkg.Comsol
 MinimumVersion: 1.0.0
-ParentRecipe: com.github.eth-its-recipes.download.Comsol
 
 Input:
   NAME: COMSOL Multiphysics
@@ -18,11 +17,6 @@ Process:
       pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
-
-  - Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Scripts/COMSOL.dmg"
-      source_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.dmg"
-    Processor: Copier
 
   - Processor: FileCreator
     Arguments:
@@ -83,7 +77,7 @@ Process:
         echo "Mounting COMSOL image"
         APPPATH="/Volumes/COMSOL_setup_dmg"
         mkdir -p "$APPPATH"
-        hdiutil attach "$DIR/COMSOL.dmg" -nobrowse -mountpoint "$APPPATH"
+        hdiutil attach "%COMSOL_DMG_URL%"" -nobrowse -mountpoint "$APPPATH"
 
         # find the setup script
         installer=$(find "$APPPATH" -maxdepth 1 -name "COMSOL*.app" | head -n 1)
