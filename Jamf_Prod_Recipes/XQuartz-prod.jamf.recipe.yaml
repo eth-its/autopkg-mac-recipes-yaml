@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-min-prod
 Input:
   NAME: XQuartz
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.XQuartz
+  OS_EXCLUDE_MIN: "26"
