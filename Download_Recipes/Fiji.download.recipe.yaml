@@ -9,12 +9,12 @@ Process:
   - Processor: URLTextSearcher
     Arguments:
       re_pattern: (\d{8}-\d{4})
-      url: https://downloads.imagej.net/fiji/archive/?C=N;O=D
+      url: https://downloads.imagej.net/fiji/archive/latest/?C=M;O=D
       result_output_var_name: version
 
   - Processor: URLDownloader
     Arguments:
       filename: "%NAME%-%version%.zip"
-      url: "https://downloads.imagej.net/fiji/latest/fiji-macosx.zip"
+      url: "https://downloads.imagej.net/fiji/latest/fiji-latest-macos64-jdk.zip"
 
   - Processor: EndOfCheckPhase
