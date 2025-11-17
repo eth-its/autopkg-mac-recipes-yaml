@@ -1,7 +1,7 @@
 Description: Downloads latest stable Fiji zip file and builds a package. The installer package includes a preinstall script that will check for an existing Fiji.app in /Applications and remove it if found.
-Identifier: com.github.eth-its-recipes.pkg.Fiji
+Identifier: com.github.eth-its-recipes.pkg.Fiji-arm64
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.Fiji
+ParentRecipe: com.github.eth-its-recipes.download.Fiji-arm64
 
 Input:
   NAME: Fiji
@@ -46,8 +46,8 @@ Process:
           - group: admin
             path: Applications
             user: root
-        id: org.fiji
-        pkgname: "%NAME%-%output_string%"
+        id: org.fiji-arm64
+        pkgname: "%NAME%-arm64-%output_string%"
         version: "%output_string%"
 
   - Processor: PathDeleter

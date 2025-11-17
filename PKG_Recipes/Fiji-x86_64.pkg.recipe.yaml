@@ -1,0 +1,56 @@
+Description: Downloads latest stable Fiji zip file and builds a package. The installer package includes a preinstall script that will check for an existing Fiji.app in /Applications and remove it if found.
+Identifier: com.github.eth-its-recipes.pkg.Fiji-x86_64
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.Fiji-x86_64
+
+Input:
+  NAME: Fiji
+
+Process:
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+        Library: "0775"
+        "Library/Application Support": "0775"
+        "Library/Application Support/Fiji": "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%pkgroot%/Applications"
+      purge_destination: true
+    Processor: Unarchiver
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/StringReplacer
+    Arguments:
+      input_string: "%version%"
+      string_to_replace: "-"
+      replacement_string: "."
+
+  - Arguments:
+      Comment: The version key is re-written here for use in subsequent processors
+      version: "%output_string%"
+      input_plist_path: "%pkgroot%/Applications/Fiji/Fiji.app/Contents/Info.plist"
+      output_plist_path: "%pkgroot%/Library/Application Support/Fiji/AdaptedInfo.plist"
+      plist_data:
+        CFBundleVersion: "%output_string%"
+        CFBundleShortVersionString: "%output_string%"
+    Processor: PlistEditor
+
+  - Processor: PkgCreator
+    Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: org.fiji-x86_64
+        pkgname: "%NAME%-x86_64-%output_string%"
+        version: "%output_string%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/%NAME%"

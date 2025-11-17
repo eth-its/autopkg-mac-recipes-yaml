@@ -1,11 +1,12 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Fiji
+Identifier: com.github.eth-its-recipes.jamf.Fiji-x86_64
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.Fiji
+ParentRecipe: com.github.eth-its-recipes.pkg.Fiji-x86_64
 
 Input:
   NAME: Fiji
   LANGUAGE: EN
+  PLATFORM: x86_64
   PKG_CATEGORY: Science & Math
   EXTENSION_ATTRIBUTE_NAME: FijiVersion
   EXTENSION_ATTRIBUTE_SCRIPT: Fiji-EA.zsh
@@ -15,24 +16,28 @@ Input:
   POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.zsh"
   POSTINSTALL_SCRIPT_PATH: "%NAME%-postinstall.zsh"
   POSTINSTALL_SCRIPT_PRIORITY: After
-  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Fiji is a powerful and productive user interface for ImageJ.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-app-EA-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  INSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
+  REINSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-scripts-2.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

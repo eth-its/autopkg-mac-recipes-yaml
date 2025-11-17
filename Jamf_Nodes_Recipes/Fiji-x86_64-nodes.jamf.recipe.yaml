@@ -1,0 +1,25 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Fiji-x86_64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-scripts-2-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Fiji
+  PLATFORM: x86_64
+  PKG_CATEGORY: Science & Math
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Fiji-x86_64
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-app-EA-platform.xml
+  EXTENSION_ATTRIBUTE_NAME: "FijiVersion"
+  EXTENSION_ATTRIBUTE_SCRIPT: Fiji-EA.zsh
+  PREINSTALL_SCRIPT_NAME: "%NAME%-preinstall.zsh"
+  PREINSTALL_SCRIPT_PATH: "%NAME%-preinstall.zsh"
+  POSTINSTALL_SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  POSTINSTALL_SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-scripts-2.xml
+
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
