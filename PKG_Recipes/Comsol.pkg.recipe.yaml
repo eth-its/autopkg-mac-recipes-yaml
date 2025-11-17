@@ -1,6 +1,7 @@
 Description: Downloads latest COMSOL Multiphysics installer and uses it to create a package.
 Identifier: com.github.eth-its-recipes.pkg.Comsol
 MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.Comsol
 
 Input:
   NAME: COMSOL Multiphysics
