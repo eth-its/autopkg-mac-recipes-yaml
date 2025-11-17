@@ -7,6 +7,7 @@ Input:
   NAME: Nudge
   PKG_CATEGORY: Administration
   POLICY_NAME: "%NAME% (Testing)"
+  TYPE: "_Suite"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |
     Nudge is strongly encourages macOS updates.
