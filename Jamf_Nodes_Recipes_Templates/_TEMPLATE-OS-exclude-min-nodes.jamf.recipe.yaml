@@ -1,35 +1,42 @@
+Comment: |
+  This is a template recipe and cannot be used without a child recipe or RecipeOverride.
+  UNTESTED_RECIPE_IDENTIFIER must be supplied
+  NAME, POLICY_NAME and SELFSERVICE_DISPLAY_NAME need to be provided in the child recipe.
+  If the app name does not match NAME.app, JSS_INVENTORY_NAME should also be overridden.
+  If the icon does not match NAME.png, SELFSERVICE_ICON should also be overridden.
+
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.XQuartz
+Identifier: com.github.eth-its-recipes.jamf.template-OS-exclude-min-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.scriptingosx.pkg.XQuartz
 
 Input:
-  NAME: XQuartz
   POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
-  SELFSERVICE_DESCRIPTION: |
-    A version of the X.Org X Window System that runs on macOS. The XQuartz project is an open-source effort to develop a version of the X.Org X Window System that runs on macOS. Together with supporting libraries and applications, it forms the X11.app that Apple shipped with OS X between versions 10.5 and 10.7.
-    This will NOT run on Tahoe (macOS 26) or later.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MIN: "26"
+  OS_EXCLUDE_MIN: "26.0"
   OS_EXCLUDE_MIN_GROUP_NAME: "macOS %OS_EXCLUDE_MIN% or newer"
-  OS_EXCLUDE_MIN_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml  
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  OS_EXCLUDE_MIN_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_ICON: "%NAME%.png"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  POLICY_CATEGORY: Untested
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  UPDATE_PREDICATE: "pkg_uploaded != True"
+  SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
 
 Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -38,13 +45,9 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
-
-  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
-
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
@@ -74,5 +77,3 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-
-  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
