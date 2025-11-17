@@ -10,9 +10,13 @@ Input:
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     A version of the X.Org X Window System that runs on macOS. The XQuartz project is an open-source effort to develop a version of the X.Org X Window System that runs on macOS. Together with supporting libraries and applications, it forms the X11.app that Apple shipped with OS X between versions 10.5 and 10.7.
+    This will NOT run on Tahoe (macOS 26) or later.
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  OS_EXCLUDE_MAX: "15"
+  OS_EXCLUDE_MAX_GROUP_NAME: "macOS %OS_EXCLUDE_MAX% or less"
+  OS_EXCLUDE_MAX_GROUP_TEMPLATE: SmartGroup-OS-exclude-max.xml  
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
@@ -20,7 +24,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-max.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -51,6 +55,12 @@ Process:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%OS_EXCLUDE_MAX_GROUP_NAME%"
+      computergroup_template: "%OS_EXCLUDE_MAX_GROUP_TEMPLATE%"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
