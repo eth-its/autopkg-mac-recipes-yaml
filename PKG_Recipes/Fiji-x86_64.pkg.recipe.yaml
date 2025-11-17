@@ -46,7 +46,7 @@ Process:
           - group: admin
             path: Applications
             user: root
-        id: org.fiji-x86_64
+        id: org.fiji-x86-64
         pkgname: "%NAME%-x86_64-%output_string%"
         version: "%output_string%"
 
