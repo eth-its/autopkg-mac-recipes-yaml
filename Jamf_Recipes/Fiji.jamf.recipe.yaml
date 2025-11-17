@@ -51,10 +51,6 @@ Process:
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%PREINSTALL_SCRIPT_CATEGORY%"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%PKG_CATEGORY%"
