@@ -1,0 +1,29 @@
+Description: |
+  Uploads a computer configuration to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Nudge-settings-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Nudge
+  PROFILE_CATEGORY: Administration
+  PROFILE_TEMPLATE: Profile-all-computers.xml
+  PROFILE_NAME: Nudge Settings
+  PROFILE_DESCRIPTION: ETH Nudge Settings
+  ORGANIZATION: ETH Zurich
+  PROFILE_MOBILECONFIG: Nudge-settings.mobileconfig
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
