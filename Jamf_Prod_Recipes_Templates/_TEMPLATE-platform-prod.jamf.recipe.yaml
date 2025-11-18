@@ -29,9 +29,9 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% current version installed"
-  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-platform.xml
   INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
