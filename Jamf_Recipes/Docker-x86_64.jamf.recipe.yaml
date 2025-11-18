@@ -16,7 +16,7 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-platform.xml
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
