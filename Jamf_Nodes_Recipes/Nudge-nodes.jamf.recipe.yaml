@@ -7,3 +7,4 @@ Input:
   NAME: Nudge
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Nudge
   SELFSERVICE_ICON: Nudge.png
+  TYPE: "_Suite"
