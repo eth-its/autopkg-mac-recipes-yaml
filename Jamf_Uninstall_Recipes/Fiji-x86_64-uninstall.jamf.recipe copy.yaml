@@ -1,0 +1,17 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Fiji-x86_64-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: Fiji
+  PLATFORM: x86_64
+  SCRIPT_PATH: Fiji-uninstall.sh
+  SCRIPT_NAME: Fiji-uninstall.sh
+  AUTOINSTALL_GROUP_NAME: "%NAME% %PLATFORM% auto-install"
+  INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% installed"
+  USERS_GROUP_NAME: "%NAME% %PLATFORM% users"
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME% %PLATFORM%"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME% %PLATFORM%"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %PLATFORM%"
+  SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %PLATFORM%"
