@@ -11,3 +11,10 @@ if [ -d "/Applications/Fiji.app" ]; then
     chown -R root:staff "/Applications/Fiji.app"
     chown -R root:staff "/Library/Application Support/Fiji"
 fi
+
+if [ -d "/Applications/Fiji" ]; then
+    echo "Setting permissions and ownership on Fiji folder"
+    chmod -R 775 "/Applications/Fiji"
+    chown -R root:staff "/Applications/Fiji"
+    chown -R root:staff "/Library/Application Support/Fiji"
+fi
