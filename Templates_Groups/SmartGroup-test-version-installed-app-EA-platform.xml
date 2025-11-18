@@ -68,7 +68,7 @@
         </criterion>
         <criterion>
             <name>Architecture Type</name>
-            <priority>2</priority>
+            <priority>7</priority>
             <and_or>and</and_or>
             <search_type>is</search_type>
             <value>%PLATFORM%</value>
