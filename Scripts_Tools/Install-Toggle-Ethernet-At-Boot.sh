@@ -89,8 +89,11 @@ ifconfig $default_iface|grep inet|awk {'print $2'}
 
 if [[ $internal -gt 0 ]] && [[ $usbnic -eq 1 ]]  ; then
   echo "Sending Mac to sleep and auto-wakeup ASAP after to reinitialise USB Ethernet adapter"
+  wompstate=$(pmset -g | grep womp | awk {'print $2'})
+  pmset -a womp 0
   pmset relative wake 1
   pmset sleepnow
+  pmset -a womp $wompstate
   echo "woke up after sleeping, exiting" 
 else
   #toggle the interface 
