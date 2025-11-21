@@ -31,7 +31,7 @@ Input:
   PARAMETER9_LABEL: Parameter 9
   PARAMETER10_LABEL: Parameter 10
   PARAMETER11_LABEL: Parameter 11
-  PARAMETER5_VALUE: "-o HPOption_HPPunchingOptions=HP24HolesUnit -o HPColorAsGray=BlackInkOnly -o HPOption_Tray4=HP520SheetInputTray -o HPOption_Tray5=HP520SheetInputTray -o HPOption_OutputBin=HP3BinMailbox -o HPOption_BookletMaker=True -o HPOption_HPFoldingOptions=MultiFold -o HPOption_HPStaplerOptions=HP2StapleUnit"
+  PARAMETER5_VALUE: "-o ColorModel=Gray -o PageSize=A4"
   PARAMETER6_VALUE: ""
   PARAMETER7_VALUE: ""
   PARAMETER8_VALUE: ""
