@@ -9,10 +9,10 @@ Input:
 
 Process:
   - Arguments:
-      app_path: "%RECIPE_CACHE_DIR%/unzip/FileZilla.app"
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%/FileZilla.app"
     Processor: AppPkgCreator
 
   - Processor: PathDeleter
     Arguments:
       path_list:
-        - "%RECIPE_CACHE_DIR%/unzip"
+        - "%RECIPE_CACHE_DIR%/%NAME%"
