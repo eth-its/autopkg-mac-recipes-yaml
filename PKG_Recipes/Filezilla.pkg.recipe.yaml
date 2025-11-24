@@ -1,0 +1,18 @@
+Description: Downloads the latest version of FileZilla and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Filezilla
+MinimumVersion: "2.3"
+ParentRecipe: com.github.pappirauk.FileZilla.download
+
+Input:
+  BUNDLE_ID: org.filezilla-project.filezilla.pkg
+  NAME: FileZilla
+
+Process:
+  - Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/unzip/FileZilla.app"
+    Processor: AppPkgCreator
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unzip"
