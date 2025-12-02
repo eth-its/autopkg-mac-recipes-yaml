@@ -41,7 +41,7 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
 
   SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
-  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "jamf policy -event %NAME%-uninstall"
+  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "jamf policy -event '%NAME%-uninstall'"
   UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
