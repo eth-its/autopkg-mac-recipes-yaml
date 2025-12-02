@@ -41,14 +41,27 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
 
   SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
-  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist;rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh"
+  SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "jamf policy -event %NAME%-uninstall"
   UNINSTALL_SELFSERVICE_INSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: Uninstall
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstall %NAME%"
   SELFSERVICE_FORCE_DESCRIPTION: "false"
-  UNINSTALL_POLICY_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
-  UNINSTALL_POLICY_NAME: "%NAME% - uninstall"
+  UNINSTALL_POLICY_CATEGORY: "Uninstallers"
+  UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
+
+  AUTOUNINSTALL_GROUP_NAME: "%NAME% auto-uninstall"
+  AUTOUNINSTALL_GROUP_TEMPLATE: SmartGroup-autouninstall.xml
+  AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
+  AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall.xml
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
+
+  UNINSTALL_TRIGGER_NAME: "%NAME%-uninstall"
+  TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
+  TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-runcommand.xml
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "rm -f /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist;rm -f /Library/Management/ETHZ/Scripts/toggle-ethernet.sh;rm -f /Library/Management/ETHZ/Scripts/reenumerate; echo 'Uninstallation of %NAME% complete'"
 
   EXTENSION_ATTRIBUTE_NAME: Toggle Ethernet at Boot Version
   EXTENSION_ATTRIBUTE_SCRIPT: Toggle-Ethernet-At-Boot-EA.sh
@@ -76,20 +89,12 @@ Process:
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
 
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
     Arguments:
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-
-  #- Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader  # EA Script
-  #  Arguments:
-  #    script_category: "%POLICY_CATEGORY%"
-  #    script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
-  #    script_priority: "%SCRIPT_PRIORITY%"
-  #    replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader # EA
     Arguments:
@@ -123,9 +128,27 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "False"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # trigger-uninstall policy, only for autoinstalled
+    Arguments:
+      policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
+      replace_policy: True
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service uninstall policy, only for -installed
     Arguments:
       policy_template: "%SELFSERVICE_UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%UNINSTALL_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autouninstall group
+    Arguments:
+      computergroup_template: "%AUTOUNINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # autouninstall policy
+    Arguments:
+      policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
+      replace_policy: True
