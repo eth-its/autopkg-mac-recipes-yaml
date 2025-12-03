@@ -57,3 +57,6 @@ echo "Forgetting packages"
 pkgutilcmd="/usr/sbin/pkgutil"
 $pkgutilcmd --pkgs=ch.ethz.id.pkg.MATLABInstaller && $pkgutilcmd --forget ch.ethz.id.pkg.MATLABInstaller ||:
 
+# trigger uninstallation of Java dependency
+jamf policy -event "Amazon Corretto-uninstall"
+
