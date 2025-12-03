@@ -19,7 +19,6 @@ Input:
 
 
 #below should be temporary
-Input:
   JSS_INVENTORY_NAME: "%NAME%.app"
   SCRIPT_NAME: Application-uninstall.sh
   SCRIPT_PATH: Application-uninstall.sh
