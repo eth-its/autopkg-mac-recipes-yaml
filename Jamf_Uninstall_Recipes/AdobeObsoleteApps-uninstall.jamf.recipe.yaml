@@ -13,5 +13,5 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^$
   SELFSERVICE_ICON: "%NAME%.png"
-  UNINSTALL_SELFSERVICE_DESCRIPTION: "All Adobe Applications older than or including 2022 will be removed"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "All Adobe Applications older than or including 2023 will be removed"
   SELFSERVICE_FORCE_DESCRIPTION: true
