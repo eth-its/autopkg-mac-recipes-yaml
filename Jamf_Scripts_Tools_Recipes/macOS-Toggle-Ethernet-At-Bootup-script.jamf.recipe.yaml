@@ -35,9 +35,9 @@ Input:
   SELFSERVICE_POLICY_TEMPLATE: policy-prod-selfservice-install-all-computers.xml
 
   TRIGGER_POLICY_NAME: "%NAME%-install"
-  TRIGGER_NAME: "%NAME%-install"
+  TRIGGER_NAME: "'%NAME%'-install"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
-  TRIGGER_POLICY_RUN_COMMAND: "%NAME%-install"
+  TRIGGER_POLICY_RUN_COMMAND: "'%NAME%'-install"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
 
   SELFSERVICE_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-command.xml
