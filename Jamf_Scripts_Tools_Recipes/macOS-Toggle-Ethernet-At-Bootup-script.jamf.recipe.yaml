@@ -5,6 +5,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: Toggle Ethernet at Boot
   POLICY_NAME: "%NAME%"
+  TRIGGER_NAME: "%NAME%-install"
 
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
   SELFSERVICE_POLICY_NAME: "%SELFSERVICE_DISPLAY_NAME%"
@@ -35,7 +36,7 @@ Input:
   SELFSERVICE_POLICY_TEMPLATE: policy-prod-selfservice-install-all-computers.xml
 
   TRIGGER_POLICY_NAME: "%NAME%-install"
-  TRIGGER_NAME: "'%NAME%'-install"
+  TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "'%NAME%'-install"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
@@ -89,12 +90,6 @@ Process:
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
-    Arguments:
-      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_POLICY_NAME%"
-      icon: "%SELFSERVICE_ICON%"
-      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader # EA
     Arguments:
@@ -108,6 +103,25 @@ Process:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       replace_group: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autoinstall group
+    Arguments:
+      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autouninstall group
+    Arguments:
+      computergroup_template: "%AUTOUNINSTALL_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # trigger policy - scoped everywhere, no dependencies
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service policy, except for -installed
     Arguments:
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
@@ -115,24 +129,19 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autoinstall group
-    Arguments:
-      computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
-      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # auto-install policy, only for autoinstalled
     Arguments:
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOINSTALL_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
-      replace_policy: "False"
+      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # trigger-uninstall policy, only for autoinstalled
     Arguments:
       policy_template: "%TRIGGER_UNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_UNINSTALL_POLICY_NAME%"
-      replace_policy: True
+      replace_policy: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader # self-service uninstall policy, only for -installed
     Arguments:
@@ -141,14 +150,8 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader  # -autouninstall group
-    Arguments:
-      computergroup_template: "%AUTOUNINSTALL_GROUP_TEMPLATE%"
-      computergroup_name: "%AUTOUNINSTALL_GROUP_NAME%"
-      replace_group: "True"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader  # autouninstall policy
     Arguments:
       policy_template: "%AUTOUNINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOUNINSTALL_POLICY_NAME%"
-      replace_policy: True
+      replace_policy: "True"
