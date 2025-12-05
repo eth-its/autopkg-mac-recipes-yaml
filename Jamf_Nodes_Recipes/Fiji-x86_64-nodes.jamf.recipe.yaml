@@ -23,3 +23,5 @@ Input:
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+
+  SP_EXECUTABLE_COMMAND: "/Applications/Fiji/Fiji.app"

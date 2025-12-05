@@ -23,3 +23,5 @@ Input:
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+
+  SP_EXECUTABLE_COMMAND: "/Applications/Fiji/Fiji.app"
