@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Comsol-arm64-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-script-parameter4-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -15,7 +15,6 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% %PLATFORM% (Testing)"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% test version installed"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION_FOLDER_NAME% complete'"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script-parameter4.xml
   SCRIPT_NAME: "Comsol-install.zsh"
   SCRIPT_PRIORITY: After
   PARAMETER4_VALUE: "%COMSOL_DMG_URL%"
