@@ -32,7 +32,7 @@ Input:
   SP_PROCESS_NAME: "%NAME%"
   SCRIPT_NAME: None
   SCRIPT_PRIORITY: After
-  SCRIPT_CATEGORY: Productivity
+  SCRIPT_CATEGORY: None
   PARAMETER4_LABEL: "Parameter 4"
   PARAMETER4_VALUE: "None"
 
@@ -53,11 +53,11 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
-      script_category: "%POSTINSTALL_SCRIPT_CATEGORY%"
-      script_name: "%POSTINSTALL_SCRIPT_NAME%"
-      script_path: "%POSTINSTALL_SCRIPT_PATH%"
-      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
-      script_parameter4: "%POSTINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
