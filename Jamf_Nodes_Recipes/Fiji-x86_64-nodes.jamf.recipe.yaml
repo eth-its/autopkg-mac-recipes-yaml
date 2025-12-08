@@ -24,4 +24,4 @@ Input:
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
 
-  SP_EXECUTABLE_COMMAND: "/Applications/Fiji/Fiji.app"
+  SP_EXECUTABLE_COMMAND: "open /Applications/Fiji/Fiji.app"
