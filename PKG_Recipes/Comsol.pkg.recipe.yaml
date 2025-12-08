@@ -63,13 +63,12 @@ Process:
   - Processor: PkgCreator
     Arguments:
       pkg_request:
-        chown: []
         id: "ch.ethz.id.pkg.comsol%COMSOL_VERSION%%PKG_PLATFORM_ID%"
         pkgname: "%NAME%-%PLATFORM%-%COMSOL_VERSION%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         version: "%COMSOL_VERSION%"
-        
+
   - Processor: PathDeleter
     Arguments:
       path_list:

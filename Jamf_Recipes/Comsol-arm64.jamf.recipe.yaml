@@ -6,6 +6,8 @@ Description: |
   - COMSOL_LICENSE_NAME
   - COMSOL_LICENSE_COMPANY
   - COMSOL_LICENSE_TYPE
+  - COMSOL_DMG_URL
+  - COMSOL_VERSION
 Identifier: com.github.eth-its-recipes.jamf.Comsol-arm64
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.Comsol
@@ -29,8 +31,8 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-platform.xml
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
@@ -41,7 +43,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-platform-script-parameter4.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION_FOLDER_NAME% complete'"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION_FOLDER_NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
   SCRIPT_NAME: "Comsol-install.zsh"
