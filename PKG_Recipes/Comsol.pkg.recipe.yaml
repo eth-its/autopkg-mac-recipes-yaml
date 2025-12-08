@@ -10,18 +10,13 @@ Input:
 
 Process:
   - Arguments:
-      pkgdirs: {}
-      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
-    Processor: PkgRootCreator
-
-  - Arguments:
-      pkgdirs: {}
+      pkgdirs: {"Library/Management/ETHZ/Comsol":"0755"}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
     Processor: PkgRootCreator
 
   - Processor: FileCreator
     Arguments:
-      file_path: "%RECIPE_CACHE_DIR%/Scripts/setupconfig.ini"
+      file_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/ETHZ/Comsol/setupconfig.ini"
       file_mode: "0644"
       file_content: |
         installdir =
@@ -65,37 +60,6 @@ Process:
         security.external.reflectpermission = 0
         security.external.securitypermission = 0
 
-  - Processor: FileCreator
-    Arguments:
-      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
-      file_mode: "0755"
-      file_content: |
-        #!/bin/bash
-
-        DIR=$(dirname "$0")
-
-        # attach main image
-        echo "Mounting COMSOL image"
-        APPPATH="/Volumes/COMSOL_setup_dmg"
-        mkdir -p "$APPPATH"
-        hdiutil attach "%COMSOL_DMG_URL%" -nobrowse -mountpoint "$APPPATH"
-
-        # find the setup script
-        installer=$(find "$APPPATH" -maxdepth 1 -name "COMSOL*.app" | head -n 1)
-        if [[ -d "$installer" ]]; then
-            echo "Installing $installer" 
-            if "$installer/Contents/Resources/setup" -s "$DIR/setupconfig.ini"; then
-                echo "Installation succeeded"
-            else
-                echo "ERROR: installation failed"
-            fi
-            hdiutil eject $APPPATH
-        else
-            echo "ERROR: Installer not found."
-            hdiutil eject $APPPATH
-            exit 1
-        fi
-
   - Processor: PkgCreator
     Arguments:
       pkg_request:
@@ -104,11 +68,9 @@ Process:
         pkgname: "%NAME%-%PLATFORM%-%COMSOL_VERSION%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
-        scripts: Scripts
         version: "%COMSOL_VERSION%"
-
+        
   - Processor: PathDeleter
     Arguments:
       path_list:
-        - "%RECIPE_CACHE_DIR%/Scripts"
         - "%RECIPE_CACHE_DIR%/pkgroot"
