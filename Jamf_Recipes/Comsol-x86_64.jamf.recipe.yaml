@@ -49,9 +49,9 @@ Input:
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
   SCRIPT_NAME: "Comsol-install.zsh"
+  SCRIPT_PATH: "Comsol-install.zsh"
   SCRIPT_PRIORITY: After
   PARAMETER4_VALUE: "%COMSOL_DMG_URL%"
-
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -69,6 +69,14 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
