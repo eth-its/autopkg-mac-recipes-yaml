@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: MAXQDA
   MAJOR_VERSION: "26"
-  JSS_INVENTORY_NAME: "MAXQDA%MAJOR_VERSION%.app"
+  JSS_INVENTORY_NAME: "MAXQDA.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MAXQDA
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"

@@ -7,7 +7,7 @@ Input:
   NAME: MAXQDA
   VERSION: "26"
   MAJOR_VERSION: "26"
-  JSS_INVENTORY_NAME: "MAXQDA%MAJOR_VERSION%.app"
+  JSS_INVENTORY_NAME: "%NAME%.app"
   PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     MAXQDA is a Software for Data Analysis and Mixed Methods Research.
