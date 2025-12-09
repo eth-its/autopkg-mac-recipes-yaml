@@ -35,7 +35,7 @@ Input:
     Version: %version%
     Platform: %PLATFORM%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION_FOLDER_NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   TESTING_GROUP_NAME: Testing
