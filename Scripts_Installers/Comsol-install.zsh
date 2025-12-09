@@ -28,18 +28,18 @@ if [[ -d "$installer" ]]; then
     echo "$(date) : Installing $installer" 
     caffeinate & echo $! >/tmp/coffeepid #prevent machine sleep,until the installer has run out
     if "$installer/Contents/Resources/setup" -s "$DIR/setupconfig.ini"; then
-        echo $(date) : Installation succeeded"
+        echo "$(date) : Installation succeeded"
         rm -rf "$DIR"
     else
         echo "$(date) : ERROR: installation failed"
     fi
-    hdiutil eject $APPPATH
+    hdiutil eject "$APPPATH"
     rm -f /tmp/"$IMAGENAME"
     pkill -F /tmp/coffeepid
     rm -f /tmp/coffeepid
     echo "$(date) : Image unmounted and deleted, exiting"
 else
     echo "$(date) : ERROR: Installer not found."
-    hdiutil eject $APPPATH
+    hdiutil eject "$APPPATH"
     exit 1
 fi
