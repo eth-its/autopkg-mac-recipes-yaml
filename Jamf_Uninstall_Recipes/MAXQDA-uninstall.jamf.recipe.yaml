@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-unins
 
 Input:
   NAME: MAXQDA
-  MAJOR_VERSION: "24"
+  MAJOR_VERSION: "26"
   JSS_INVENTORY_NAME: "%NAME%%MAJOR_VERSION%.app"
   PARAMETER4_VALUE: "%JSS_INVENTORY_NAME%"
   PARAMETER5_LABEL: Package Receipt
