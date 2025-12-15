@@ -6,4 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
 Input:
   NAME: ChimeraX
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.ChimeraX
-  TRIGGER_POLICY_RUN_COMMAND: "rm -rf /Applications/ChimeraX.app && mv /Applications/ChimeraX-1.9.app /Applications/ChimeraX.app && echo 'Installation of %NAME% complete'"
+  TRIGGER_POLICY_RUN_COMMAND: "rm -rf /Applications/ChimeraX.app && mv /Applications/ChimeraX-1.10.1.app /Applications/ChimeraX.app && echo 'Installation of %NAME% complete'"
