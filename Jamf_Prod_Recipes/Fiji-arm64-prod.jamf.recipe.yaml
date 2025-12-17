@@ -25,6 +25,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% installed"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %PLATFORM%"
   AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %PLATFORM%"
