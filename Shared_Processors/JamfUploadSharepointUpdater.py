@@ -266,7 +266,7 @@ class JamfUploadSharepointUpdater(Processor):
         global site_id
         site_id=prefs['site_id']
         global list_ids
-        list_ids=prefs['list_id']
+        list_ids=prefs['list_ids']
         global field_names
         field_names=prefs['field_names']
 
