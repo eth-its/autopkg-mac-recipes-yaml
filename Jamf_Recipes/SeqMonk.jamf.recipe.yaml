@@ -1,7 +1,7 @@
 Description: Downloads the latest version of ETH Printers and makes a pkg of it then uploads it to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.SeqMonk
 MinimumVersion: "2.3"
-ParentRecipe: com.github.grahampugh.recipes.pkg.SeqMonk
+ParentRecipe: com.github.eth-its-recipes.pkg.SeqMonk
 
 Input:
   NAME: SeqMonk

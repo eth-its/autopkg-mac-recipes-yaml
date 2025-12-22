@@ -1,0 +1,16 @@
+Description: Downloads the latest version of SeqMonk.
+Identifier: com.github.eth-its-recipes.download.SeqMonk
+MinimumVersion: "2.3"
+
+Input:
+  NAME: SeqMonk
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: (SeqMonk.*.dmg)
+      github_repo: s-andrews/SeqMonk
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
