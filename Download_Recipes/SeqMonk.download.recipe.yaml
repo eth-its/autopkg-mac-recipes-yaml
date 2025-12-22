@@ -8,7 +8,7 @@ Input:
 Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
-      asset_regex: (SeqMonk.*.dmg)
+      asset_regex: (seqmonk.*.dmg)
       github_repo: s-andrews/SeqMonk
 
   - Processor: URLDownloader
