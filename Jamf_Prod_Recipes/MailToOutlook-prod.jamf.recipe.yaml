@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MailToOutlook
   INSTALL_BUTTON_TEXT: "Change default Mail Client"
   REINSTALL_BUTTON_TEXT: "Change default Mail Client"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Administration
   SELFSERVICE_POLICY_MESSAGE_START: "Set Outlook as default Mail Client"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Outlook is now the default Mail Client"
   TRIGGER_NAME: Run-MailToOutlook

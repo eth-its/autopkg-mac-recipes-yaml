@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOutlookDataRemoval
   INSTALL_BUTTON_TEXT: "Delete all email!"
   REINSTALL_BUTTON_TEXT: "Delete all email!"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Administration
   SELFSERVICE_POLICY_MESSAGE_START: "Removing all data from Microsoft Outlook"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Removed all data from Microsoft Outlook"
   SELFSERVICE_ICON: "Microsoft Outlook Reset.png"

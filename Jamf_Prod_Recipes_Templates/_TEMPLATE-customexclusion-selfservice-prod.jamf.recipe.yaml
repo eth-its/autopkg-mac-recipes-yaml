@@ -23,7 +23,7 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: "%NAME%-install"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Administration
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"

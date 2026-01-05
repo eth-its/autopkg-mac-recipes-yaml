@@ -11,7 +11,7 @@ Input:
   JSS_INVENTORY_NAME: Microsoft Word.app
   INSTALL_BUTTON_TEXT: "Reset License"
   REINSTALL_BUTTON_TEXT: "Reset License"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Administration
   SELFSERVICE_POLICY_MESSAGE_START: "Resetting Microsoft Office License"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Office License has now been reset"
   SELFSERVICE_ICON: "Microsoft Office Factory Reset.png"

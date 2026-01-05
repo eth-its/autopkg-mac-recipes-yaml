@@ -8,7 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MicrosoftOutlookReset
   INSTALL_BUTTON_TEXT: "Reset Outlook"
   REINSTALL_BUTTON_TEXT: "Reset Outlook"
-  SELFSERVICE_POLICY_CATEGORY: Tools & Accessories
+  SELFSERVICE_POLICY_CATEGORY: Administration
   SELFSERVICE_POLICY_MESSAGE_START: "Resetting Microsoft Outlook to factory settings"
   SELFSERVICE_POLICY_MESSAGE_FINISH: "Microsoft Outlook has now been reset to factory settings"
   TRIGGER_NAME: Run-MicrosoftOutlookReset
