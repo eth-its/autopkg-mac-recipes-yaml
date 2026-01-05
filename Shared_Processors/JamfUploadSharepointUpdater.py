@@ -201,11 +201,11 @@ class JamfUploadSharepointUpdater(Processor):
     def add_record(self, list_name, list_key, list_value):
         """Create a row in a SharePoint list:
         list_name        name of of the list
-        list_key        key to update (friendly name)
+        list_key        key to create (friendly name)
         list_value      value to set in the key
         """
         internalfieldname=field_names[list_name][list_key]
-        new_record = {internalfieldname: list_value}
+        new_record = {"fields": { internalfieldname: list_value }}
         self.create_list_item(list_name=list_name,data=new_record)
         self.output(f"'{list_key}' added to '{list_name}' with value '{list_value}'")
 
