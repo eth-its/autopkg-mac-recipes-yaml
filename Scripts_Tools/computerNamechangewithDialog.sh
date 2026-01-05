@@ -39,6 +39,10 @@ loggedInUser=$( /usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | awk '/Nam
 isDesktopReady
 # Go ahead and rename the computer
 ComputerName=$(machinename)
+if [[ -z "$ComputerName" ]]; then
+  echo "Abort. No Computer Name specified!"
+  exit 0
+fi
 
 if jamf setComputerName -name "$ComputerName"; then
   echo "Successfully changed Computer Name to $ComputerName"
