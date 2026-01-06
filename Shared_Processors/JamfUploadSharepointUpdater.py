@@ -115,7 +115,6 @@ class JamfUploadSharepointUpdater(Processor):
             return False
         if len(resp.json()['value']) > 0: 
             return resp.json()['value'] 
-        return False
     
     def update_list_item(self,list_name,itemid,data): # https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0&tabs=http
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items/{itemid}/fields"
@@ -136,7 +135,6 @@ class JamfUploadSharepointUpdater(Processor):
             return False
         if len(resp.json()['id']) > 0: 
             return resp.json()['id']
-        return False
     
     def delete_list_item(self,list_name,itemid): # https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0&tabs=http
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items/{itemid}"
