@@ -134,8 +134,8 @@ class JamfUploadSharepointUpdater(Processor):
         if not resp.ok:
             self.output(f"POST {url} failed: {resp.status_code} {resp.text}", verbose_level=3)
             return False
-        if len(resp.json()['value']) > 0: 
-            return resp.json()['value']
+        if len(resp.json()['id']) > 0: 
+            return resp.json()['id']
         return False
     
     def delete_list_item(self,list_name,itemid): # https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0&tabs=http
