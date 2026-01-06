@@ -104,7 +104,7 @@ class JamfUploadSharepointUpdater(Processor):
         return result["access_token"]
 
 
-    def get_filtered_list_items(self,list_name, filter_odata, fields_select="ID", page_size=1): #"Title,Ready_x0020_for_x0020_Production,Release_x0020_Completed_x0020_TS"
+    def get_filtered_list_items(self,list_name, filter_odata, fields_select="ID", page_size=1): # https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0&tabs=http
         params = { "$top": page_size, "$filter": filter_odata, "$expand": f"fields($select={fields_select})" }
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items"
         headers = {"Authorization": f"Bearer {graph_token}"}
@@ -123,32 +123,29 @@ class JamfUploadSharepointUpdater(Processor):
         self.output(f"Updating {list_name} item ID {itemid} with : {data}", verbose_level=3)
         resp = requests.patch(url, headers=headers, json=data)
         if not resp.ok:
-            self.output(f"PATCH {url} failed: {resp.status_code} {resp.text}", verbose_level=3)
+            self.output(f"PATCH {url} failed: {resp.status_code} {resp.text}")
             return False
     
-    def create_list_item(self,list_name,data): # https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0&tabs=http
+    def create_list_item(self,list_name,data): # https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0&tabs=http
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items"
         headers = {"Authorization": f"Bearer {graph_token}", "Content-Type":"application/json", "Prefer":"apiversion=2.1"}
         self.output(f"Creating new item on {list_name} with : {data}", verbose_level=3)
         resp = requests.post(url, headers=headers, json=data)
         if not resp.ok:
-            self.output(f"POST {url} failed: {resp.status_code} {resp.text}", verbose_level=3)
+            self.output(f"POST {url} failed: {resp.status_code} {resp.text}")
             return False
         if len(resp.json()['id']) > 0: 
             return resp.json()['id']
         return False
     
-    def delete_list_item(self,list_name,itemid): # https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0&tabs=http
+    def delete_list_item(self,list_name,itemid): # https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0&tabs=http
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items/{itemid}"
         headers = {"Authorization": f"Bearer {graph_token}", "Content-Type":"application/json"}
         self.output(f"Deleting {list_name} item ID {itemid}", verbose_level=3)
         resp = requests.delete(url, headers=headers)
         if not resp.ok:
-            self.output(f"DELETE {url} failed: {resp.status_code} {resp.text}", verbose_level=3)
-            return False
-        if len(resp.json()['value']) > 0: 
-            return resp.json()['value'] 
-        return False
+            self.output(f"DELETE {url} failed: {resp.status_code} {resp.text}")
+            return False 
 
     def build_query(self, criteria,list_name):
         """construct the query. format should be
@@ -168,7 +165,7 @@ class JamfUploadSharepointUpdater(Processor):
                 element=f"fields/{internalfieldname} {operand} '{value}'"
             criteria_list.append(element)
         query=' and '.join(criteria_list)
-        #self.output(query, verbose_level=3)
+        self.output(f"Built Query: {query} out of {criteria}", verbose_level=3)
         return fields, query
 
     def check_list(self, list_name, criteria):
@@ -194,8 +191,8 @@ class JamfUploadSharepointUpdater(Processor):
             data = {}
             internalfieldname=field_names[list_name][list_key] #convert friendly fieldname to internal one
             self.output(f"Update {list_name} : setting {internalfieldname} to {list_value}", verbose_level=3)
-            data[internalfieldname] = list_value   # TODO: Boolean Conversion ?
-            print(data)
+            data[internalfieldname] = list_value   # for bool fields , accepts 'true' or 'false' only - capitalisation matters!
+            self.output(f"updating listitem {row["id"]} in list {list_name} with {data}", verbose_level=3)
             self.update_list_item(data=data, list_name=list_name, itemid=row["id"])
 
     def add_record(self, list_name, list_key, list_value):
@@ -207,7 +204,7 @@ class JamfUploadSharepointUpdater(Processor):
         internalfieldname=field_names[list_name][list_key]
         new_record = {"fields": { internalfieldname: list_value }}
         self.create_list_item(list_name=list_name,data=new_record)
-        self.output(f"'{list_key}' added to '{list_name}' with value '{list_value}'")
+        self.output(f"'{list_key}' added to '{list_name}' with value '{list_value}'", verbose_level=3)
 
     def delete_record(self, list_name, criteria):
         """Delete an item from a SharePoint list
@@ -218,7 +215,7 @@ class JamfUploadSharepointUpdater(Processor):
         for row in self.get_filtered_list_items(list_name=list_name, filter_odata=query):
             itemid=row["ID"]
             self.delete_list_item(self,list_name,itemid=itemid)
-            self.output(f"'{itemid}' deleted from '{list_name}''")
+            self.output(f"'{itemid}' deleted from '{list_name}''", verbose_level=3)
 
     def test_report_url(self, spo_url, policy_name): # for sharepoint online : https://ethz.sharepoint.com/sites/test-api-fuer-client-delivery/apple/Lists/Jamf_Item_Test/DispForm.aspx?ID=2526
         """Creates the Test Report URL needed in Jamf Content List"""
@@ -230,7 +227,7 @@ class JamfUploadSharepointUpdater(Processor):
         test_report_url_dict = {"Description":"Test Report", "Url":test_report_url}
         return test_report_url_dict
 
-        # additional header required:  Prefer:apiversion=2.1
+        # additional header required for updates of links:  Prefer:apiversion=2.1
         ## expected data structure: { "myUrl": { "Description": "http://www.google.com", "Url": "http://www.google.com" } }
 
     def main(self):
@@ -257,6 +254,8 @@ class JamfUploadSharepointUpdater(Processor):
             raise ProcessorError("Insufficient SharePoint Online credentials supplied.")
 
         # read sharepoint-online specific config json ; if that doesn't work, exit.
+        # this json contains site id, list ids, and internal field names of lists so they don't have to be rediscovered every time.
+        # expected format : { "site_id":"something", "list_ids": {"Jamf Content List": "id", "Jamf Content Test": "id", "Jamf Test Review": "id", "Jamf Test Coordination": "id" }, "field_names": {"Jamf Content List":{"Self Service Content": "Title",... }, "Jamf Content Test":{"Self Service Content": "Title",...}, ... }
         try:
             with open( Path.home() / "Library/Preferences"  / "sharepoint-processors.config.json") as f: 
                 prefs=json.load(f)
