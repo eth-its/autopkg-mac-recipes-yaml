@@ -6,3 +6,5 @@ MinimumVersion: "2.3"
 Input:
   NAME: Tor Browser
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.TorBrowser
+  SP_EXECUTABLE_COMMAND: "open '/Applications/Tor Browser.app'"
+  SP_PROCESS_NAME: "firefox"
