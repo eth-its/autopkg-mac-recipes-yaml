@@ -156,6 +156,7 @@ class JamfUploadSharepointUpdater(Processor):
         for key in criteria:
             operand, value = criteria[key]
             operand=operand.lower()
+            if operand == 'neq': operand="ne"
             internalfieldname=field_names[list_name][key]
             if value == 'true': 
                 element=f"fields/{internalfieldname} eq 1"
