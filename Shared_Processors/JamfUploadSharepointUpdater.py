@@ -185,8 +185,11 @@ class JamfUploadSharepointUpdater(Processor):
         criteria        an dictionary of criteria (key/value) to search against
         """
         fields, query = self.build_query(criteria,list_name)
-
-        for row in self.get_filtered_list_items(list_name=list_name, filter_odata=query):
+        candidates = self.get_filtered_list_items(list_name=list_name, filter_odata=query)
+        if candidates is None: 
+            self.output(f"no list item to update found in {list_name} using {criteria}, returning", verbose_level=3)
+            return
+        for row in candidates:
             data = {}
             internalfieldname=field_names[list_name][list_key] #convert friendly fieldname to internal one
             self.output(f"Update {list_name} : setting {internalfieldname} to {list_value}", verbose_level=3)
