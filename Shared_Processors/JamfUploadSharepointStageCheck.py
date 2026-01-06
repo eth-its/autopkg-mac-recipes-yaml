@@ -226,9 +226,7 @@ class JamfUploadSharepointStageCheck(Processor):
             criteria["Release Completed PRD"] = ["Eq", "No"]
         else:
             raise ProcessorError("Invalid JSS_URL supplied.")
-        #criteria = {}
-        #criteria["Self Service Content Name"] = ["Eq", product_name]
-        #criteria["Ready for Production"] = ["Eq", 'true']
+
         fields, query = self.build_query(criteria,sp_test_listname)
 
         test_review_passed = False

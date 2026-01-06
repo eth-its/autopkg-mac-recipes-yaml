@@ -192,7 +192,7 @@ class JamfUploadSharepointUpdater(Processor):
             internalfieldname=field_names[list_name][list_key] #convert friendly fieldname to internal one
             self.output(f"Update {list_name} : setting {internalfieldname} to {list_value}", verbose_level=3)
             data[internalfieldname] = list_value   # for bool fields , accepts 'true' or 'false' only - capitalisation matters!
-            self.output(f"updating listitem {row["id"]} in list {list_name} with {data}", verbose_level=3)
+            self.output(f"updating listitem {row['id']} in list {list_name} with {data}", verbose_level=3)
             self.update_list_item(data=data, list_name=list_name, itemid=row["id"])
 
     def add_record(self, list_name, list_key, list_value):
