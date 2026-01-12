@@ -254,6 +254,11 @@ class JamfUploadSharepointUpdater(Processor):
         # verify we have the variables we need
         if not spo_url or not spo_user or not spo_pass or not spo_tenant_id:
             raise ProcessorError("Insufficient SharePoint Online credentials supplied.")
+        
+        # populate process_name and executable_command with string 'None', if they are NoneType
+
+        if process_name is None: process_name = 'None'
+        if executable_command is None: executable_command = 'None'
 
         # read sharepoint-online specific config json ; if that doesn't work, exit.
         # this json contains site id, list ids, and internal field names of lists so they don't have to be rediscovered every time.
