@@ -213,7 +213,7 @@ class JamfUploadSharepointUpdater(Processor):
         listname        name of of the list
         criteria        an dictionary of criteria (key/value) to search against
         """
-        fields, query = self.build_query(criteria)
+        fields, query = self.build_query(criteria,list_name)
         for row in self.get_filtered_list_items(list_name=list_name, filter_odata=query):
             itemid=row["ID"]
             self.delete_list_item(self,list_name,itemid=itemid)
