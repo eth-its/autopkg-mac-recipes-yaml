@@ -113,8 +113,8 @@ class JamfUploadSharepointUpdater(Processor):
         if not resp.ok:
             self.output(f"GET {url} failed: {resp.status_code} {resp.text}", verbose_level=3)
             return False
-        if len(resp.json()['value']) > 0: 
-            return resp.json()['value'] 
+        if len(resp.json()['value']) > 0:
+            return resp.json()['value']
     
     def update_list_item(self,list_name,itemid,data): # https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0&tabs=http
         url = f"https://graph.microsoft.com/v1.0/sites/{site_id}/lists/{list_ids[list_name]}/items/{itemid}/fields"
@@ -213,10 +213,11 @@ class JamfUploadSharepointUpdater(Processor):
         listname        name of of the list
         criteria        an dictionary of criteria (key/value) to search against
         """
-        fields, query = self.build_query(criteria)
+        fields, query = self.build_query(criteria,list_name)
         for row in self.get_filtered_list_items(list_name=list_name, filter_odata=query):
-            itemid=row["ID"]
-            self.delete_list_item(self,list_name,itemid=itemid)
+            itemid=row['fields']['id']
+            self.output(f"'{itemid}' will be deleted from '{list_name}''", verbose_level=3)
+            self.delete_list_item(list_name,itemid=itemid)
             self.output(f"'{itemid}' deleted from '{list_name}''", verbose_level=3)
 
     def test_report_url(self, spo_url, policy_name): # for sharepoint online : https://ethz.sharepoint.com/sites/test-api-fuer-client-delivery/apple/Lists/Jamf_Item_Test/DispForm.aspx?ID=2526
