@@ -5,12 +5,13 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Nudge
+  IDENTIFIER: com.github.macadmins.nudge
   PROFILE_CATEGORY: Administration
+  ORGANIZATION: ETH Zuerich
   PROFILE_TEMPLATE: Profile-all-computers.xml
-  PROFILE_NAME: Nudge Settings
   PROFILE_DESCRIPTION: ETH Nudge Settings
-  ORGANIZATION: ETH Zurich
-  PROFILE_MOBILECONFIG: Nudge-settings.mobileconfig
+  PROFILE_NAME: "%NAME% Settings"
+  PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   REPLACE_PROFILE: "True"
 
 Process:
@@ -24,6 +25,8 @@ Process:
       profile_name: "%PROFILE_NAME%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
-      mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
       replace_profile: "%REPLACE_PROFILE%"
