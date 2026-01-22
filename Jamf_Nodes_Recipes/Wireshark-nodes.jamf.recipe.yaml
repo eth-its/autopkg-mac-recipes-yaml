@@ -1,0 +1,11 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Wireshark-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Wireshark
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Wireshark
+  APPLICATION_NAME_HAS: Wireshark
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
+  SELFSERVICE_ICON: Wireshark.png
