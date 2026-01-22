@@ -53,7 +53,7 @@ Process:
           - group: admin
             path: Applications
             user: root
-        id: '%bundleid%'
+        id: 'org.wireshark.Wireshark.pkg'
         pkgdir: '%RECIPE_CACHE_DIR%'
         pkgname: '%NAME%-%version%'
         scripts: scripts
