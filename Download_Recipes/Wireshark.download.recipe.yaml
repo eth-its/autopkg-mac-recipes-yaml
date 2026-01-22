@@ -1,0 +1,25 @@
+Description: Downloads newest version of wireshark
+Identifier: com.github.eth-its-recipes.download.Wireshark
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Wireshark
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: Wireshark%20([\d\.]+)\.dmg
+      result_output_var_name: version
+      url: https://www.wireshark.org/download.html
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: '%NAME%-%version%.dmg'
+      url: 'https://2.na.dl.wireshark.org/osx/Wireshark%20%version%.dmg'
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: '%pathname%/Wireshark*.app'
+      requirement: anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "7Z6EMTD2C6"
