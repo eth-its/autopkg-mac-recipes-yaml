@@ -28,7 +28,7 @@ Process:
 
   - Processor: CodeSignatureVerifier
     Arguments:
-      input_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%_%version%.pkg
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%_%version%.pkg"
       expected_authority_names: 
         - "Developer ID Installer: Florian Bauer (Y8U4RUM443)"
         - Developer ID Certification Authority
