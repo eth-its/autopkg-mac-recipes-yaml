@@ -11,6 +11,7 @@ Process:
     Arguments:
       pkgdirs:
         Applications: '0775'
+        
       pkgroot: '%RECIPE_CACHE_DIR%/payload'
 
   - Processor: Copier
@@ -20,10 +21,9 @@ Process:
 
   - Processor: PkgRootCreator
     Arguments:
-      pkgdirs:
-        Profiles: "0755"
-        Profiles/vpn: "0755"
-      pkgroot: "%RECIPE_CACHE_DIR%/scripts"
+      pkgdirs: 
+        scripts: '0755'
+      pkgroot: '%RECIPE_CACHE_DIR%/scripts'
 
   - Processor: FileCreator
     Arguments:
@@ -44,7 +44,7 @@ Process:
 
         exit 0
       file_mode: "0755"
-      file_path: "%RECIPE_CACHE_DIR%/scripts/postinstall"
+      file_path: "%RECIPE_CACHE_DIR%/scripts/scripts/postinstall"
 
   - Processor: PkgCreator
     Arguments:
@@ -53,10 +53,12 @@ Process:
           - group: admin
             path: Applications
             user: root
+            mode: '0755'
         id: 'org.wireshark.Wireshark.pkg'
-        pkgdir: '%RECIPE_CACHE_DIR%'
+        pkgroot: '%RECIPE_CACHE_DIR%/payload'
         pkgname: '%NAME%-%version%'
-        scripts: scripts
+        scripts: '%RECIPE_CACHE_DIR%/scripts/scripts'
+        pkgdir:  '%RECIPE_CACHE_DIR%'
 
   - Processor: PathDeleter
     Arguments:
