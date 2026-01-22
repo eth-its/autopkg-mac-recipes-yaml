@@ -15,7 +15,7 @@ echo "Running bundled uninstallers for tools"
 
 # Forget installed packages if receipts exist
 echo "Checking for installed Nudge package receipts"
-for pkgid in org.wireshark.Wireshark; do
+for pkgid in org.wireshark.Wireshark.pkg; do
     if ls "/private/var/db/receipts/${pkgid}"*.bom &>/dev/null; then
         echo "Forgetting package: $pkgid"
         /usr/sbin/pkgutil --forget "$pkgid" 2>/dev/null || echo "Package forget failed for $pkgid"
