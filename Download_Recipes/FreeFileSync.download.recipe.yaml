@@ -1,0 +1,35 @@
+Description: Downloads the current release version of FreeFileSync.
+Identifier: com.github.eth-its-recipes.download.FreeFileSync
+MinimumVersion: "2.3"
+
+Input:
+  NAME: FreeFileSync
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: href=".*download/(.*FreeFileSync_.*_macOS)\.zip"
+      url: "https://www.freefilesync.org/download.php"
+      result_output_var_name: match
+      request_headers:
+        user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0
+
+
+  - Processor: URLDownloader
+    Arguments:
+      url: ttps://www.freefilesync.org/download/%match%.zip
+      CHECK_FILESIZE_ONLY: true
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      urge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%_%version%.pkg
+      expected_authority_names: 
+        - "Developer ID Installer: Florian Bauer (Y8U4RUM443)"
+        - Developer ID Certification Authority
+        - Apple Root CA
