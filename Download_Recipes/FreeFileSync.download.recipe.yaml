@@ -17,7 +17,7 @@ Process:
 
   - Processor: URLDownloader
     Arguments:
-      url: ttps://www.freefilesync.org/download/%match%.zip
+      url: https://www.freefilesync.org/download/%match%.zip
       CHECK_FILESIZE_ONLY: true
 
   - Processor: EndOfCheckPhase
