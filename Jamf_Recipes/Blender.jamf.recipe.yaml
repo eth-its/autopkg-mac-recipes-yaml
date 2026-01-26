@@ -5,8 +5,8 @@ ParentRecipe: io.github.hjuutilainen.pkg.Blender
 
 Input:
   NAME: Blender
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Creativity
   SELFSERVICE_DESCRIPTION: |
     Blender is the free and open source 3D creation suite. It supports the entirety of the 3D pipeline—modeling, rigging, animation, simulation, rendering, compositing and motion tracking, even video editing and game creation.
@@ -14,7 +14,7 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
