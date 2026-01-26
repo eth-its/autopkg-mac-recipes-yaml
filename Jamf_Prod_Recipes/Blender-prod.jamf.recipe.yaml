@@ -1,8 +1,12 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Blender-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
 
 Input:
   NAME: Blender
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Blender
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  PLATFORM: arm64
