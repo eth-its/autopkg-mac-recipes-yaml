@@ -1,0 +1,14 @@
+Description: Downloads the latest version of ETH Printers and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Miniconda
+ParentRecipe: com.github.dataJAR-recipes.download.Miniconda3
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Miniconda3
+  DOWNLOAD_ARCH: arm64
+
+Process:
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/Miniconda3-%version%.pkg"
+      source_pkg: "%pathname%"
