@@ -1,27 +1,28 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.FreeFileSync
+Identifier: com.github.eth-its-recipes.jamf.Wireshark
 MinimumVersion: "2.3"
-ParentRecipe: com.github.dataJAR-recipes.pkg.freefilesync
+ParentRecipe: com.github.eth-its-recipes.pkg.Wireshark
 
 Input:
-  NAME: FreeFileSync
+  NAME: Wireshark
   POLICY_NAME: "%NAME% (Testing)"
+  APPLICATION_NAME_HAS: "%NAME%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Tools & Utilities
   SELFSERVICE_DESCRIPTION: |
-    FreeFileSync is a folder comparison and synchronization software that creates and manages backup copies of all your important files. Instead of copying every file every time, FreeFileSync determines the differences between a source and a target folder and transfers only the minimum amount of data needed.
+    Wireshark is the world’s leading open-source network protocol analyzer, used to capture and interactively browse, filter, and inspect live traffic or saved packet data on a very detailed level. 
 
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: Wireshark.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -64,6 +65,5 @@ Process:
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-      replace_icon: "True"
 
   - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

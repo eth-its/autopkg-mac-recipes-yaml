@@ -1,0 +1,67 @@
+Description: Downloads the latest version of Wireshark and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Wireshark
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.Wireshark
+
+Input:
+  NAME: Wireshark
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: '0775'
+        
+      pkgroot: '%RECIPE_CACHE_DIR%/payload'
+
+  - Processor: Copier
+    Arguments:
+      source_path: '%pathname%/Wireshark.app'
+      destination_path: '%pkgroot%/Applications/Wireshark.app'
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs: 
+        scripts: '0755'
+      pkgroot: '%RECIPE_CACHE_DIR%/scripts'
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+
+        /bin/echo "Installing Wireshark components..."
+        extras="/Applications/Wireshark.app/Contents/Resources/Extras"
+        packages=(
+            "Install ChmodBPF.pkg"
+            "Add Wireshark to the system path.pkg"
+        )
+
+        for package in "${packages[@]}"; do
+            echo "Installing: $extras/$package"
+            installer -pkg "$extras/$package" -target /
+        done
+
+        exit 0
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/scripts/scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+            mode: '0755'
+        id: 'org.wireshark.Wireshark.pkg'
+        pkgroot: '%RECIPE_CACHE_DIR%/payload'
+        pkgname: '%NAME%-%version%'
+        scripts: '%RECIPE_CACHE_DIR%/scripts/scripts'
+        pkgdir:  '%RECIPE_CACHE_DIR%'
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - '%RECIPE_CACHE_DIR%/payload'
+        - '%RECIPE_CACHE_DIR%/scripts'
