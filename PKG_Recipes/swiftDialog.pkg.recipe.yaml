@@ -1,6 +1,6 @@
 Description: Placeholder pkg recipe - just moves the pkg to create the pkg_path variable.
 Identifier: com.github.eth-its-recipes.pkg.swiftDialog
-ParentRecipe: com.github.andredb90.download.swiftDialog
+ParentRecipe: com.github.zentralpro.download.swiftDialog
 MinimumVersion: "2.3"
 
 Input:
