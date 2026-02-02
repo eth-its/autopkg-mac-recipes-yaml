@@ -35,6 +35,8 @@ silent_app_quit() {
         if pgrep -f "/$check_app_name" ; then
             echo "$check_app_name failed to quit - killing."
             /usr/bin/pkill -f "/$check_app_name"
+            sleep 1
+            /usr/bin/pkill -f "/$check_app_name"
         fi
     fi
 }
