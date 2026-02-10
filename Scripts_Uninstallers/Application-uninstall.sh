@@ -37,7 +37,15 @@ silent_app_quit() {
             /usr/bin/pkill -f "/$check_app_name"
             sleep 1
             /usr/bin/pkill -f "/$check_app_name"
+            stillopen=$(pgrep -f "/$check_app_name")
+            if -n "$stillopen" ; then
+        		for process in ${stillopen}; do 
+                	echo "$check_app_name have to forcefully kill $process - killing."
+            		kill -9 $process
+        		done
+            fi
         fi
+
     fi
 }
 
