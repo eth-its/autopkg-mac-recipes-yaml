@@ -6,13 +6,25 @@
     <true/>
     <key>DiagnosticDataTypePreference</key>
     <string>ZeroDiagnosticData</string>
-    <key>SendAllTelemetryEnabled</key>
-    <false/>
     <key>OfficeAutoSignIn</key>
     <true/>
+    <key>SendAllTelemetryEnabled</key>
+    <false/>
     <key>ShowDocStageOnLaunch</key>
     <true/>
     <key>ShowWhatsNewOnLaunch</key>
+    <true/>
+    <key>VisualBasicMacroExecutionState</key>
+    <string>DisabledWithWarnings</string>
+    <key>VBAObjectModelIsTrusted</key>
+    <false/>
+    <key>AllowVisualBasicToBindToSystem</key>
+    <false/>
+    <key>DisableVisualBasicExternalDylibs</key>
+    <true/>
+    <key>DisableVisualBasicMacScript</key>
+    <false/>
+    <key>VisualBasicEntirelyDisabled</key>
     <true/>
   </dict>
 </plist>
