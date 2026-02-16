@@ -7,5 +7,5 @@ Input:
   NAME: "LogitechOptionsPlus"
   JSS_INVENTORY_NAME: "logioptionsplus.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechOptionsPlus
-  SP_EXECUTABLE_COMMAND: "open '/Applications/%JSS_INVENTORY_NAME%.app'"
+  SP_EXECUTABLE_COMMAND: "open '/Applications/%JSS_INVENTORY_NAME%'"
   SP_PROCESS_NAME: "logioptionsplus"
