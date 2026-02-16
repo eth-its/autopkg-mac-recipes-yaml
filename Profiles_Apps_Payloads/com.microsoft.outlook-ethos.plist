@@ -3,10 +3,14 @@
 <plist version="1.0">
   <dict>
     <key>EnableNewOutlook</key>
-    <integer>1</integer> 
+    <integer>1</integer>
     <key>HideCanAddOtherAccountTypesTipText</key>
     <true/>
     <key>TrustO365AutodiscoverRedirect</key>
     <true/>
+    <key>DisableDefaultAppSignature</key>
+    <true/>
+    <key>AutomaticallyDownloadExternalContent</key>
+    <integer>1</integer>
   </dict>
 </plist>
