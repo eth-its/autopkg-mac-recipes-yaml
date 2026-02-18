@@ -1,5 +1,5 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.LogiOptions-prod
+Identifier: com.github.eth-its-recipes.jamf.LogiOptionsPlus-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users-runcommand
 
