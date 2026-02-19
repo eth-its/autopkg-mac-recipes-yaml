@@ -5,5 +5,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
 
 Input:
   NAME: Jabra Direct
-  PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.jabra.directonline
+  SCRIPT_NAME: JabraDirect-uninstall.sh
+  SCRIPT_PATH: JabraDirect-uninstall.sh
