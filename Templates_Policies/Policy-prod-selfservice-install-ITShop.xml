@@ -13,7 +13,7 @@
         <trigger_other>false</trigger_other>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>%SELFSERVICE_POLICY_CATEGORY%</name>
         </category>
     </general>
      <scope>
