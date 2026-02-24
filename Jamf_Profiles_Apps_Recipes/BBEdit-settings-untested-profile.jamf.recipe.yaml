@@ -44,5 +44,5 @@ Process:
       identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      profile_computergroup: "%TESTING_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
