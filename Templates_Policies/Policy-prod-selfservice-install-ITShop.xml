@@ -31,10 +31,10 @@
         <script>
             <name>%SCRIPT_NAME_1%</name>
             <priority>%SCRIPT_PRIORITY%</priority>
-            <parameter4/>%PARAMETER4_VALUE%</parameter4>
+            <parameter4>%PARAMETER4_VALUE%</parameter4>
             <parameter5>%PARAMETER5_VALUE%</parameter5>
-            <parameter6/>%PARAMETER6_VALUE%</parameter6>
-            <parameter7/>%PARAMETER7_VALUE%</parameter7>
+            <parameter6>%PARAMETER6_VALUE%</parameter6>
+            <parameter7>%PARAMETER7_VALUE%</parameter7>
             <parameter8/>
             <parameter9/>
             <parameter10/>
