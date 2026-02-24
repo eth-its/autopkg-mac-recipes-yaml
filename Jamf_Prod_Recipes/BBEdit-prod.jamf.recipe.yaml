@@ -7,7 +7,7 @@ Input:
   NAME: BBEdit
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.BBEdit
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
-
+  
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SCRIPT_NAME_1: "ITShop_license_check.sh"
   SCRIPT_PRIORITY: "After"
