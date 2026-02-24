@@ -8,3 +8,9 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.barebones.bbedit.pkg
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"
+  PARAMETER_ITSHOP_NAME: "BBEdit Basic"
+  PARAMETER_ITSHOP_VERSION: "NONE"
+
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml

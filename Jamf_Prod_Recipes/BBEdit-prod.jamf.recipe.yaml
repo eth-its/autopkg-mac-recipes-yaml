@@ -1,9 +1,17 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.BBEdit-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
   NAME: BBEdit
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.BBEdit
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
+  SCRIPT_NAME_1: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY: "After"
+  SCRIPT_PARAMETER_4: "BBEdit Basic" 
+  SCRIPT_PARAMETER_5: "%NAME% -install" 
+  SCRIPT_PARAMETER_6: "https://ics.services.jamfcloud.com/icon/hash_28c520d3f0d533eab6fd09a2dae89378428078a6f1130fe8f9bf2440e56902f6" 
+  SCRIPT_PARAMETER_7: "NONE" 

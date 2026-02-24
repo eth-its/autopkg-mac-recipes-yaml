@@ -13,8 +13,7 @@ Input:
   NAME: BBedit
   JSS_INVENTORY_NAME: "%NAME%.app"
   IDENTIFIER: com.barebones.bbedit
-  USERS_GROUP_NAME: "%NAME% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  INSTALLED_GROUP_NAME: "%NAME% installed"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   EXCLUSION_GROUP_NAME: "%TESTING_GROUP_NAME%"
@@ -53,5 +52,5 @@ Process:
       identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      profile_computergroup: "%INSTALLED_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
