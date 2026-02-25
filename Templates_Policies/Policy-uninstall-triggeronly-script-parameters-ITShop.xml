@@ -56,6 +56,6 @@
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>%TRIGGER_UNINSTALL_POLICY_RUN_COMMAND%</run_command>
+        <run_command>"echo 'Uninstallation of %PARAMETER_ITSHOP_NAME% complete'</run_command>
     </files_processes>
 </policy>
