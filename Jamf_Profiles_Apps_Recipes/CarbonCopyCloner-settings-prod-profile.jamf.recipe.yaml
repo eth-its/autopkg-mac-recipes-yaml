@@ -16,8 +16,7 @@ Input:
   LANGUAGE: EN
   JSS_INVENTORY_NAME: "%NAME%.app"
   IDENTIFIER: com.bombich.ccc
-  USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  INSTALLED_GROUP_NAME: "%NAME% installed"
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   EXCLUSION_GROUP_NAME: "%TESTING_GROUP_NAME%"
@@ -41,12 +40,6 @@ Process:
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"
@@ -56,5 +49,5 @@ Process:
       identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      profile_computergroup: "%INSTALLED_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"
