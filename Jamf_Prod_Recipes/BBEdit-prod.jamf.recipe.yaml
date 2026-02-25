@@ -8,6 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.BBEdit
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Development & Computing"
   SCRIPT_NAME_1: "ITShop_license_check.sh"
@@ -16,3 +17,6 @@ Input:
   PARAMETER5_VALUE: "%NAME% -install" 
   PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_28c520d3f0d533eab6fd09a2dae89378428078a6f1130fe8f9bf2440e56902f6" 
   PARAMETER7_VALUE: "NONE" 
+  PARAMETER8_VALUE: "NO"
+
+
