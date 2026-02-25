@@ -3,8 +3,8 @@
     <name>%TEST_VERSION_INSTALLED_GROUP_NAME%</name>
     <is_smart>true</is_smart>
     <criteria>
-        <criterion>
-            <name>Packages Installed By Installer.app/SWU</name>
+    <criterion>
+        <name>Packages Installed by Installer.app/SWU</name>
             <priority>0</priority>
             <and_or>and</and_or>
             <search_type>has</search_type>
