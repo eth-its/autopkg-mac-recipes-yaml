@@ -14,7 +14,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion-no-user.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION%"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION%"
   AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %MAJOR_VERSION%"
