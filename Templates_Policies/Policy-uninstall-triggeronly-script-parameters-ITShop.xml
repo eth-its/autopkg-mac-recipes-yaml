@@ -56,6 +56,6 @@
         <recon>true</recon>
     </maintenance>
     <files_processes>
-        <run_command>"echo 'Uninstallation of %PARAMETER_ITSHOP_NAME% complete'</run_command>
+        <run_command>"echo 'Uninstallation of %PARAMETER_ITSHOP_NAME% complete'"</run_command>
     </files_processes>
 </policy>
