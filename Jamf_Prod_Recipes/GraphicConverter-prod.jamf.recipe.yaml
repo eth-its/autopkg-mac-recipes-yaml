@@ -32,7 +32,7 @@ Input:
   SCRIPT_NAME_1: "ITShop_license_check.sh"
   SCRIPT_PRIORITY: "After"
   PARAMETER4_VALUE: "GraphicConverter" 
-  PARAMETER5_VALUE: "%NAME%-install" 
+  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION%-install" 
   PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_e0f53a5b24f1e589794f618269aba01dd9fb68ab010189ca780f75046b00f0ca" 
   PARAMETER7_VALUE: "%MAJOR_VERSION%" 
   PARAMETER8_VALUE: "NO"

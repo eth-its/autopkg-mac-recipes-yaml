@@ -36,7 +36,7 @@ Input:
   SCRIPT_NAME_1: "ITShop_license_check.sh"
   SCRIPT_PRIORITY: "After"
   PARAMETER4_VALUE: "EndNote" 
-  PARAMETER5_VALUE: "%NAME%-install" 
+  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION%-install" 
   PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_fad68b35d0449c721cc234f62c5a80c30d01598949dc36d495b61b4562daa072" 
   PARAMETER7_VALUE: "%MAJOR_VERSION%" 
   PARAMETER8_VALUE: "NO"
