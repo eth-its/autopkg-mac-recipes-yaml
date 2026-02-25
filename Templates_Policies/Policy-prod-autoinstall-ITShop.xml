@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <policy>
     <general>
-        <name>%SELFSERVICE_POLICY_NAME%</name>
+        <name>%AUTOINSTALL_POLICY_NAME%</name>
+        <enabled>true</enabled>
         <trigger>EVENT</trigger>
-        <trigger_checkin>false</trigger_checkin>
-        <trigger_enrollment_complete>false</trigger_enrollment_complete>
+        <trigger_checkin>true</trigger_checkin>
+        <trigger_enrollment_complete>true</trigger_enrollment_complete>
         <trigger_login>false</trigger_login>
         <trigger_logout>false</trigger_logout>
         <trigger_network_state_changed>false</trigger_network_state_changed>
         <trigger_startup>false</trigger_startup>
-        <trigger_other/>
-        <frequency>Ongoing</frequency>
+        <frequency>%AUTOINSTALL_POLICY_FREQUENCY%</frequency>
         <category>
-            <name>%SELFSERVICE_POLICY_CATEGORY%</name>
+            <name>%AUTOINSTALL_POLICY_CATEGORY%</name>
         </category>
     </general>
      <scope>
-        <all_computers>true</all_computers>
+        <all_computers>false</all_computers>
+        <computer_groups>
+            <computer_group>
+                <name>%AUTOINSTALL_GROUP_NAME%</name>
+            </computer_group>
+        </computer_groups>
         <exclusions>
             <computers/>
             <computer_groups>
@@ -35,26 +40,14 @@
             <parameter5>%PARAMETER5_VALUE%</parameter5>
             <parameter6>%PARAMETER6_VALUE%</parameter6>
             <parameter7>%PARAMETER7_VALUE%</parameter7>
-            <parameter8/>
+            <parameter8>YES</parameter8>
             <parameter9/>
             <parameter10/>
             <parameter11/>
         </script>
     </scripts>
     <self_service>
-        <use_for_self_service>true</use_for_self_service>
-        <force_users_to_view_description>%FORCE_DESCRIPTION%</force_users_to_view_description>
-        <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
-        <reinstall_button_text>%INSTALL_BUTTON_TEXT%</reinstall_button_text>
-        <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
-        <self_service_description>%SELFSERVICE_DESCRIPTION%</self_service_description>
-        <self_service_categories>
-            <category>
-                <name>%SELFSERVICE_POLICY_CATEGORY%</name>
-                <display_in>true</display_in>
-                <feature_in>false</feature_in>
-            </category>
-        </self_service_categories>
+        <use_for_self_service>false</use_for_self_service>
     </self_service>
     <maintenance>
         <recon>false</recon>

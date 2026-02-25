@@ -4,7 +4,7 @@ Description: |
   Required overrides:
   - ORGANIZATION
   - SERIAL (this is the license key)
-Identifier: com.github.eth-its-recipes.jamf.GraphicConverter12-profile
+Identifier: com.github.eth-its-recipes.jamf.GraphicConverter12-settings-profile
 MinimumVersion: "2.3"
 
 Input:
@@ -16,10 +16,8 @@ Input:
   PROFILE_NAME: "%NAME% %MAJOR_VERSION%"
   PROFILE_PAYLOAD: "%IDENTIFIER%.plist"
   PROFILE_DESCRIPTION: Licenses GraphicConverter %MAJOR_VERSION%.
-  USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
-  PROFILE_GROUP_TEMPLATE: SmartGroup-users.xml
-  TESTING_GROUP_NAME: Testing
-  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
+
   REPLACE_PROFILE: "True"
 
 Process:
@@ -27,18 +25,6 @@ Process:
     Arguments:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%PROFILE_GROUP_TEMPLATE%"
-      computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
@@ -49,5 +35,5 @@ Process:
       identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
+      profile_computergroup: "%INSTALLED_GROUP_NAME%"
       replace_profile: "%REPLACE_PROFILE%"

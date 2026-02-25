@@ -1,5 +1,5 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
-Identifier: com.github.eth-its-recipes.jamf.StataSE18-uninstall
+Identifier: com.github.eth-its-recipes.jamf.StataSE19-uninstall
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-majorversion-script-uninstall
 
@@ -19,3 +19,15 @@ Input:
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
   SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"
+  PARAMETER_ITSHOP_NAME: "Stata"
+  PARAMETER_ITSHOP_VERSION: "%MAJOR_VERSION%"
+  PARAMETER5_VALUE: ""
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml

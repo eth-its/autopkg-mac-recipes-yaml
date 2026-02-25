@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_group>
+    <name>%INSTALLED_GROUP_NAME%</name>
+    <is_smart>true</is_smart>
+    <criteria>
+        <criterion>
+            <name>Application Title</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>%JSS_INVENTORY_NAME%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>Application Version</name>
+            <priority>1</priority>
+            <and_or>and</and_or>
+            <search_type>matches regex</search_type>
+            <value>^%MAJOR_VERSION%</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>Architecture Type</name>
+            <priority>2</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>%PLATFORM%</value>
+        </criterion>
+    </criteria>
+</computer_group>

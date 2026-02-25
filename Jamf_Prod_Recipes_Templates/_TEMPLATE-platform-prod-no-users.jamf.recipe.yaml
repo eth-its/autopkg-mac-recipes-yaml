@@ -46,7 +46,7 @@ Input:
   UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update-platform.xml
   UPDATE_POLICY_CATEGORY: Updates
   SELFSERVICE_POLICY_NAME: "%NAME% %PLATFORM%"
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-platform.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-platform.xml
   INSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_BUTTON_TEXT: "Update to %version%"
   TRIGGER_NAME: "%NAME% %PLATFORM%-install"

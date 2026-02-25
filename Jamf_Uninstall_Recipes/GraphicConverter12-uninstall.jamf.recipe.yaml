@@ -10,3 +10,16 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.lemkesoft.graphicconverter12
   SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
+
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"  
+  PARAMETER_ITSHOP_NAME: "GraphicConverter"
+  PARAMETER_ITSHOP_VERSION: "%MAJOR_VERSION%"
+  PARAMETER5_VALUE: ""
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml

@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.StataSE-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: StataSE
@@ -13,7 +13,7 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %MAJOR_VERSION% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion-no-users.xml
   TRIGGER_POLICY_NAME: "Install %NAME% %MAJOR_VERSION%"
   AUTOINSTALL_POLICY_NAME: "Auto-install %NAME% %MAJOR_VERSION%"
   AUTOUPDATE_POLICY_NAME: "Auto-update %NAME% %MAJOR_VERSION%"
@@ -23,3 +23,15 @@ Input:
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %MAJOR_VERSION%"
   SELFSERVICE_ICON: "%NAME% %MAJOR_VERSION%.png"
   TRIGGER_NAME: "%NAME% %MAJOR_VERSION%-install"
+
+  FORCE_DESCRIPTION: "false"
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
+  SELFSERVICE_POLICY_CATEGORY: "Science & Math"
+  SCRIPT_NAME_1: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY: "After"
+  PARAMETER4_VALUE: "Stata" 
+  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION%-install" 
+  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_eef96a06d2d4e7d27a0418ceabc400106c10c4233a7970843e36214068c76700" 
+  PARAMETER7_VALUE: "%MAJOR_VERSION%" 
+  PARAMETER8_VALUE: "NO"

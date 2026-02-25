@@ -7,3 +7,9 @@ Input:
   NAME: PyMOL
   SCRIPT_NAME: PyMOL-uninstall.sh
   SCRIPT_PATH: PyMOL-uninstall.sh
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"
+  PARAMETER_ITSHOP_NAME: "PyMOL"
+  PARAMETER_ITSHOP_VERSION: "NONE"
+
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml
