@@ -52,5 +52,8 @@
     <maintenance>
         <recon>false</recon>
     </maintenance>
+    <files_processes>
+        <run_command></run_command>
+    </files_processes>
 </policy>
 
