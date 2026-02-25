@@ -4,7 +4,7 @@ Description: |
   Required overrides:
   - ORGANIZATION
   - SERIAL (this is the license key)
-Identifier: com.github.eth-its-recipes.jamf.GraphicConverter12-profile
+Identifier: com.github.eth-its-recipes.jamf.GraphicConverter12-settings-profile
 MinimumVersion: "2.3"
 
 Input:
