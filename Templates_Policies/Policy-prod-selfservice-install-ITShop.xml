@@ -43,6 +43,7 @@
     </scripts>
     <self_service>
         <use_for_self_service>true</use_for_self_service>
+        <force_users_to_view_description>%FORCE_DESCRIPTION%</force_users_to_view_description>
         <install_button_text>%INSTALL_BUTTON_TEXT%</install_button_text>
         <reinstall_button_text>%INSTALL_BUTTON_TEXT%</reinstall_button_text>
         <self_service_display_name>%SELFSERVICE_DISPLAY_NAME%</self_service_display_name>
