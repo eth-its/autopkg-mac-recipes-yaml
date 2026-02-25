@@ -18,7 +18,7 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME% %LANGUAGE%"
 
   SCRIPT_ITSHOP: "ITShop_uninstall.sh"
-  PARAMETER_ITSHOP_NAME: "BBEdit Basic"
+  PARAMETER_ITSHOP_NAME: "Carbon Copy Cloner"
   PARAMETER_ITSHOP_VERSION: "NONE"
 
   TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml
