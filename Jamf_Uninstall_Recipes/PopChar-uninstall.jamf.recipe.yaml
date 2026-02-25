@@ -8,3 +8,9 @@ Input:
   SCRIPT_NAME: PopChar-uninstall.zsh
   SCRIPT_PATH: PopChar-uninstall.zsh
   SELFSERVICE_ICON: PopChar 8.png
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"
+  PARAMETER_ITSHOP_NAME: "PopChar"
+  PARAMETER_ITSHOP_VERSION: "NONE"
+
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml

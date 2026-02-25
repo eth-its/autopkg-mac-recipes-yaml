@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.EndNote2025-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
 
 Input:
   NAME: EndNote
@@ -28,3 +28,15 @@ Input:
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SELFSERVICE_ICON: EndNote 2025.png
+
+  FORCE_DESCRIPTION: "false"
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
+  SELFSERVICE_POLICY_CATEGORY: "Productivity"
+  SCRIPT_NAME_1: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY: "After"
+  PARAMETER4_VALUE: "EndNote" 
+  PARAMETER5_VALUE: "%NAME%-install" 
+  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_28c520d3f0d533eab6fd09a2dae89378428078a6f1130fe8f9bf2440e56902f6" 
+  PARAMETER7_VALUE: "%MAJOR_VERSION%" 
+  PARAMETER8_VALUE: "NO"

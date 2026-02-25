@@ -22,3 +22,8 @@ Input:
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %MAJOR_VERSION% auto-install"
   SELFSERVICE_ICON: "%NAME% 2025.png"
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"  
+  PARAMETER_ITSHOP_NAME: "EndNote"
+  PARAMETER_ITSHOP_VERSION: "%MAJOR_VERSION%"
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml
