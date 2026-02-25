@@ -33,6 +33,6 @@ Input:
   SCRIPT_PRIORITY: "After"
   PARAMETER4_VALUE: "ChemDraw Professional" 
   PARAMETER5_VALUE: "%NAME%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_28c520d3f0d533eab6fd09a2dae89378428078a6f1130fe8f9bf2440e56902f6" 
+  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_937fca61baaedb3611f04019845193b99917ac077ba8c2f96b7fffe92bcd9db2" 
   PARAMETER7_VALUE: "%MAJOR_VERSION%" 
   PARAMETER8_VALUE: "NO"
