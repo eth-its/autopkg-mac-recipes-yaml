@@ -42,7 +42,8 @@ Input:
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
-
+  pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"
+  
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
