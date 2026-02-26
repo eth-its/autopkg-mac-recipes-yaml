@@ -27,6 +27,8 @@ Input:
   SELFSERVICE_ICON: ChemDraw 20.png
   
   FORCE_DESCRIPTION: "true"
+  ISG_GROUP_NAME: "%NAME% %MAJOR_VERSION% %LANGUAGE% ISG-licensed"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Science & Math"

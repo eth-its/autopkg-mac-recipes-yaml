@@ -22,6 +22,8 @@ Input:
   UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME% %LANGUAGE%"
 
   FORCE_DESCRIPTION: "false"
+  ISG_GROUP_NAME: "%NAME% %LANGUAGE% ISG-licensed"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Tools & Accessories"

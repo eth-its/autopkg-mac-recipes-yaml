@@ -9,6 +9,8 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   
   FORCE_DESCRIPTION: "false"
+  ISG_GROUP_NAME: "%NAME% ISG-licensed"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Development & Computing"
