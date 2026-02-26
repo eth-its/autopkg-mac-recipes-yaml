@@ -5,7 +5,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.R
 
 Input:
 
-  NAME: "R %PLATFORM%"
+  NAME: R
   PKG_CATEGORY: Science & Math
   EXTENSION_ATTRIBUTE_NAME: "R Version"
   EXTENSION_ATTRIBUTE_SCRIPT: R-EA.zsh
