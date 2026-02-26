@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-EA-scripts-2-nod
 MinimumVersion: "2.3"
 
 Input:
-  NAME: "R %PLATFORM%"
+  NAME: R
   PLATFORM: arm64
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
