@@ -1,0 +1,13 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.PyCharm-x86_64-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform-no-users
+
+Input:
+  NAME: PyCharm
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.jetbrains.pycharm

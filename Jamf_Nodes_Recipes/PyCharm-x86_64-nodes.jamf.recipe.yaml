@@ -1,0 +1,14 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.PyCharm-x86_64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: PyCharm
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  ARCH_TYPE: mac # use 'mac' for intel ; 'macM1' for silicon
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.PyCharm-x86_64
+  JSS_INVENTORY_NAME: "%NAME%.app"
+  VERSION_STRING_TYPE: CFBundleVersion
