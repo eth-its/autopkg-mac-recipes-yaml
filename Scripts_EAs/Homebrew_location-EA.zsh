@@ -8,7 +8,7 @@ if [ -f "$arm_brew" ]; then
 elif [ -f "$intel_brew" ]; then
     result=$($intel_brew --prefix)
 else
-    result="None"
+    result=""
 fi
 
 echo "<result>$result</result>”
