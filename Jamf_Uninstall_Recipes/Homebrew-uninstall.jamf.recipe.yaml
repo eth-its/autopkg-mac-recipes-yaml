@@ -6,6 +6,7 @@ Input:
   NAME: Homebrew
   SCRIPT_NAME: Homebrew-uninstall.sh
   SCRIPT_PATH: Homebrew-uninstall.sh
+  PARAMETER4_VALUE: ""
   SCRIPT_PRIORITY: After
   EXTENSION_ATTRIBUTE_NAME: "Homebrew location"
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
