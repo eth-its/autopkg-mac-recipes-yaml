@@ -1,0 +1,22 @@
+Description: Creates a group of computers with Homebrew installed
+Identifier: com.github.eth-its-recipes.jamf.group.Homebrew_installed
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      EXTENSION_ATTRIBUTE_NAME: Homebrew location
+      ea_script_path: Homebrew_location-EA.zsh
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      GROUP_NAME: Homebrew installed
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+      EXTENSION_ATTRIBUTE_VALUE: ^None$
+      computergroup_template: SmartGroup-generic-EA.xml
+      computergroup_name: "%GROUP_NAME%"
+      replace_group: "True"
