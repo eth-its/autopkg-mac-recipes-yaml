@@ -6,6 +6,7 @@ ParentRecipe: com.github.crystalllized.pkg.KeePassXC
 Input:
   NAME: KeePassXC
   PLATFORM: arm64
+  ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
