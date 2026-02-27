@@ -11,4 +11,4 @@ else
     result=""
 fi
 
-echo "<result>$result</result>”
+echo "<result>$result</result>"
