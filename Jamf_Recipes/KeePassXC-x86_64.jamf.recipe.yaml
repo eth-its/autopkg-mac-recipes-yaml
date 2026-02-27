@@ -1,12 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.KeePassXC
+Identifier: com.github.eth-its-recipes.jamf.KeePassXC-x86_64
 MinimumVersion: "2.3"
 ParentRecipe: com.github.crystalllized.pkg.KeePassXC
 
 Input:
   NAME: KeePassXC
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Tools & Accessories
   SELFSERVICE_DESCRIPTION: |
     **KeePass Cross-Platform Community Edition**
@@ -22,15 +25,15 @@ Input:
   SCRIPT_CATEGORY: Administration
   SCRIPT_PRIORITY: Before
   PARAMETER4_LABEL: Trigger name
-  PARAMETER4_VALUE: "%NAME%-uninstall"
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  PARAMETER4_VALUE: "%NAME% %PLATFORM%-uninstall"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameter4.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script-parameter4.xml
   SELFSERVICE_ICON: KeePassXC 2.7.png
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"

@@ -1,0 +1,18 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.KeePassXC-x86_64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-script-parameter4-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: KeePassXC
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.KeePassXC-x86_64
+  SCRIPT_NAME: jamf-policy-trigger.sh
+  SCRIPT_PATH: jamf-policy-trigger.sh
+  SCRIPT_CATEGORY: Administration
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: Trigger name
+  PARAMETER4_VALUE: "%NAME% %PLATFORM%-uninstall"
+  SELFSERVICE_ICON: KeePassXC 2.7.png
