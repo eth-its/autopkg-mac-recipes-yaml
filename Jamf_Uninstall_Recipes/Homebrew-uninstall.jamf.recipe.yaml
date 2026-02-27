@@ -1,0 +1,54 @@
+Description: Uploads an uninstaller script to the Jamf Pro Server and creates a Self Service Uninstall Policy and Smart Group, with an EA that is needed to detect installation.
+Identifier: com.github.eth-its-recipes.jamf.Homebrew-uninstall
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Homebrew
+  SCRIPT_NAME: Homebrew-uninstall.sh
+  SCRIPT_PATH: Homebrew-uninstall.sh
+  SCRIPT_PRIORITY: After
+  EXTENSION_ATTRIBUTE_NAME: Homebrew location
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: "^$"
+  EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_location-EA.zsh
+  INSTALLED_GROUP_NAME: Homebrew installed
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml
+  SELFSERVICE_ICON: Homebrew.png
+  UNINSTALL_POLICY_NAME: Uninstall Homebrew
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
+  UNINSTALL_POLICY_CATEGORY: Uninstallers
+  INSTALL_BUTTON_TEXT: Uninstall
+  REINSTALL_BUTTON_TEXT: Uninstall
+  SELFSERVICE_FORCE_DESCRIPTION: "false"
+  
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%UNINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%UNINSTALL_POLICY_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
+      computergroup_name: "%INSTALLED_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%UNINSTALL_POLICY_TEMPLATE%"
+      policy_name: "%UNINSTALL_POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
