@@ -1,16 +1,17 @@
+
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.R-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-scripts-2-nodes
+Identifier: com.github.eth-its-recipes.jamf.R-arm64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-EA-scripts-2-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: R
-  LANGUAGE: EN
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.R
-  POLICY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% %LANGUAGE% (Testing)"
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  PLATFORM: arm64
+  ARCH: "%PLATFORM%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.R-arm64
   EXTENSION_ATTRIBUTE_NAME: "R Version"
   EXTENSION_ATTRIBUTE_SCRIPT: R-EA.zsh
   PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
@@ -21,5 +22,4 @@ Input:
   POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
   POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
   POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
-  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2-parameter4.xml
   skip_script_key_substitution: "True"

@@ -1,0 +1,114 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.R-x86_64
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.pkg.R
+
+Input:
+  NAME: R
+  PKG_CATEGORY: Science & Math
+  EXTENSION_ATTRIBUTE_NAME: "R Version"
+  EXTENSION_ATTRIBUTE_SCRIPT: R-EA.zsh
+  PREINSTALL_SCRIPT_NAME: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_PATH: jamf-policy-trigger.sh
+  PREINSTALL_SCRIPT_CATEGORY: Administration
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  PREINSTALL_SCRIPT_PARAMETER4_LABEL: Trigger name
+  PREINSTALL_SCRIPT_PARAMETER4_VALUE: XcodeCLTools-install
+  POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
+  POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DESCRIPTION: |
+    R is a free software environment for statistical computing and graphics.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA-platform.xml
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Install %version%"
+  REINSTALL_BUTTON_TEXT: "Install %version%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-scripts-2-parameter4.xml
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+
+  PLATFORM: x86_64
+  ARCH: "%PLATFORM%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+
+Process:
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PREINSTALL_SCRIPT_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PREINSTALL_SCRIPT_CATEGORY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
+      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      skip_script_key_substitution: "True"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult
