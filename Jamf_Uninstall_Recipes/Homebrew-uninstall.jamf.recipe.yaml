@@ -15,12 +15,16 @@ Input:
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml
   SELFSERVICE_ICON: Homebrew.png
   UNINSTALL_POLICY_NAME: "Uninstall Homebrew"
-  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion-script.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   INSTALL_BUTTON_TEXT: Uninstall
   REINSTALL_BUTTON_TEXT: Uninstall
-  SELFSERVICE_FORCE_DESCRIPTION: "false"
-  
+  UNINSTALL_SELFSERVICE_INSTALL_BUTTON: "Uninstall"
+  UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: "Uninstall"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Homebrew (requires admin)"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "This will open a Terminal window and run a script which will uninstall Homebrew. Non-interactive methods of deinstallation are not supported by the developers of Homebrew. This can not be run by users without administrator rights. Contact your local IT Support if you wish to request admin rights in order to uninstall Homebrew."
+  SELFSERVICE_FORCE_DESCRIPTION:  "true"
+
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
