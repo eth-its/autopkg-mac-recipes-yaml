@@ -13,7 +13,6 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
   USERS_GROUP_NAME: "%NAME% %LANGUAGE% users"
   AUTOINSTALL_GROUP_NAME: "%NAME% %LANGUAGE% auto-install"
-  AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% %LANGUAGE% auto-update excluded"
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% current version installed"
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% installed"

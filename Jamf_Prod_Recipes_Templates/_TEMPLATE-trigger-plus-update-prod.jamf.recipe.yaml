@@ -14,8 +14,6 @@ Input:
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% auto-update excluded"
-  AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE: SmartGroup-autoupdate-excluded.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
@@ -77,12 +75,6 @@ Process:
       computergroup_name: "%INSTALLED_GROUP_NAME%"
       computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%AUTOUPDATE_EXCLUDED_GROUP_NAME%"
-      computergroup_template: "%AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:

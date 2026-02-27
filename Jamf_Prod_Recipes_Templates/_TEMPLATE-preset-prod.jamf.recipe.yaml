@@ -20,8 +20,6 @@ Input:
   AUTOINSTALL_ALL_SOFTWARE_GROUP_TEMPLATE: SmartGroup-autoinstall-all-software.xml
   AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall.xml
-  AUTOUPDATE_EXCLUDED_GROUP_NAME: "%NAME% auto-update excluded"
-  AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE: SmartGroup-autoupdate-excluded.xml
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed.xml
   INSTALLED_GROUP_NAME: "%NAME% installed"
@@ -103,12 +101,6 @@ Process:
     Arguments:
       computergroup_name: "%AUTOINSTALL_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%AUTOUPDATE_EXCLUDED_GROUP_NAME%"
-      computergroup_template: "%AUTOUPDATE_EXCLUDED_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
