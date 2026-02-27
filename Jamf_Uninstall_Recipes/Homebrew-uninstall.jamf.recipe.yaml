@@ -7,14 +7,14 @@ Input:
   SCRIPT_NAME: Homebrew-uninstall.sh
   SCRIPT_PATH: Homebrew-uninstall.sh
   SCRIPT_PRIORITY: After
-  EXTENSION_ATTRIBUTE_NAME: Homebrew location
+  EXTENSION_ATTRIBUTE_NAME: "Homebrew location"
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^$"
   EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_location-EA.zsh
-  INSTALLED_GROUP_NAME: Homebrew installed
+  INSTALLED_GROUP_NAME: "Homebrew installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml
   SELFSERVICE_ICON: Homebrew.png
-  UNINSTALL_POLICY_NAME: Uninstall Homebrew
+  UNINSTALL_POLICY_NAME: "Uninstall Homebrew"
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   UNINSTALL_POLICY_CATEGORY: Uninstallers
   INSTALL_BUTTON_TEXT: Uninstall
@@ -44,6 +44,7 @@ Process:
     Arguments:
       computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
       computergroup_name: "%INSTALLED_GROUP_NAME%"
+      GROUP_NAME: "%INSTALLED_GROUP_NAME%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
