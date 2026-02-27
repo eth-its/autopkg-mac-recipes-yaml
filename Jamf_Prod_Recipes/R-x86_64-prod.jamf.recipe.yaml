@@ -6,6 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-prod-no-users
 Input:
   NAME: R
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.R-x86_64
+  PLATFORM: x86_64
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users-platform.xml
   EXTENSION_ATTRIBUTE_NAME: R Version
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
