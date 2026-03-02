@@ -34,8 +34,8 @@ Process:
         - "Developer ID Installer: Anaconda, Inc (Z5788K4JT7)"
         - "Developer ID Certification Authority"
         - "Apple Root CA"
-        
-  - Processor: VariableSetter
+
+  - Processor: VariablePlaceholder
     Arguments:
-      pkg\_path: "%pathname%"
-      pkg\_version: "%version%"
+      pkg_path: "%pathname%"
+      pkg_version: "%version%"
