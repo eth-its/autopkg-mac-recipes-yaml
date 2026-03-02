@@ -1,6 +1,6 @@
 Description: Downloads the current pkg installer for miniconda3 and returns its version. ARM64 only, since manufacturer stopped intel builds 08/2025
 Identifier: com.github.eth-its-recipes.download.miniconda-arm64
-MinimumVersion: "2.9"
+MinimumVersion: "2.3"
 
 Input:
   NAME: miniconda
@@ -35,7 +35,7 @@ Process:
         - "Developer ID Certification Authority"
         - "Apple Root CA"
 
-  - Processor: VariablePlaceholder
+  - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
     Arguments:
       pkg_path: "%pathname%"
       pkg_version: "%version%"
