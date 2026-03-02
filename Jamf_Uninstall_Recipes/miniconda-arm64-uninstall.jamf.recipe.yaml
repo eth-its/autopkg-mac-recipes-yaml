@@ -10,7 +10,9 @@ Input:
   SCRIPT_NAME: miniconda-uninstall.sh
   EXTENSION_ATTRIBUTE_NAME: "minicondaVersion"
   EXTENSION_ATTRIBUTE_SCRIPT: miniconda-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users-platform.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
