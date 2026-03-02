@@ -4,10 +4,10 @@
 # miniconda3 version detection extension attribute
 
 CFBundleVersion=""
-if [ -f "/opt/miniconda3" ]; then
-    CFBundleVersion=$(defaults read /var/db/receipts/io.continuum.pkg.prepare_installation.plist PackageVersion)
+if [ -d "/opt/miniconda3" ]; then
+    CFBundleVersion=$(/usr/bin/defaults read /var/db/receipts/io.continuum.pkg.prepare_installation.plist PackageVersion)
 else
     CFBundleVersion="None"
 fi
-echo "<result>$CFBundleVersion</result>"
+echo "<result>${CFBundleVersion}</result>"
 exit 0
