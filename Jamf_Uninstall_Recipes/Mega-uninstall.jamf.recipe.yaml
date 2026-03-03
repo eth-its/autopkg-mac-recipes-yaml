@@ -6,5 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 Input:
   NAME: MEGA
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  JSS_INVENTORY_NAME: "MEGA 12.app"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: com.igem.pkg.MEGA12
