@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   Name: Mega
-  USER_AGENT: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+  USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
 
 Process:
   - Processor: MEGAURLProvider
@@ -12,7 +12,8 @@ Process:
   - Processor: URLDownloader
     Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
+        url: "%url%"
         request_headers:
-            User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+            "User-Agent": "%USER_AGENT%"
 
   - Processor: EndOfCheckPhase

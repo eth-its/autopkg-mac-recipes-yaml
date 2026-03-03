@@ -24,8 +24,8 @@ except ImportError:
 VERSION_URL = "https://www.megasoftware.net/history"
 BASE_URL = "https://www.megasoftware.net/do_force_download/MEGA_"
 REGEX = ".*MEGA\ \d{2}\ version\ (\d{2}\.\d\.\d)\ build .*"
-try: USER_AGENT 
-except NameError: USER_AGENT = ''
+try: USER_AGENT=self.env["USER_AGENT"]
+except NameError: USER_AGENT = 'mozilla macintosh'
 
 # __all__ == ["MEGAURLProvider"]
 
@@ -34,7 +34,7 @@ class MEGAURLProvider(URLGetter):
 
     description = __doc__
     input_variables = {
-        "USER_AGENT": {"description": "User Agent used for downloading"}
+        "USER_AGENT": {"description": "User Agent used for downloading", "required":False}
     }
     output_variables = {
         "url": {"description": "URL to latest version"},
