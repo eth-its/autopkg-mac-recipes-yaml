@@ -14,3 +14,4 @@ Input:
   PARAMETER4_VALUE: "%NAME% %PLATFORM%-uninstall"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
   SELFSERVICE_ICON: KeePassXC 2.7.png
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-platform-no-users.xml
