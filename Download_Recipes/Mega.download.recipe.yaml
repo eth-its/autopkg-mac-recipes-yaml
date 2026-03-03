@@ -16,7 +16,7 @@ Process:
         request_headers:
             "User-Agent": "%USER_AGENT%"
 
-  - Processor: VariablePlaceholder
+  - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
     Arguments:
       pkg_path: "%pathname%"
       pkg_version: "%version%"
