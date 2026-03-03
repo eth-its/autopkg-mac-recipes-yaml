@@ -7,5 +7,4 @@ Input:
   NAME: Mega
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: com.igem.pkg.MEGA12			
-
+  PARAMETER5_VALUE: com.igem.pkg.MEGA12
