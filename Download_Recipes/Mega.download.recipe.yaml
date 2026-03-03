@@ -1,9 +1,9 @@
 Description: "Checks /tmp/AutoPkg_Local_Sources for update. Requires: override of NAME, LIST_NAME and VENDOR."
-Identifier: com.github.eth-its-recipes.download.Mega
+Identifier: com.github.eth-its-recipes.download.MEGA
 MinimumVersion: "2.3"
 
 Input:
-  Name: Mega
+  Name: MEGA
   USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
 
 Process:

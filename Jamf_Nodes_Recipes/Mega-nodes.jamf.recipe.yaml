@@ -1,8 +1,11 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Mega-nodes
+Identifier: com.github.eth-its-recipes.jamf.MEGA-nodes
 ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Mega
+  NAME: MEGA
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Mega
+  JSS_INVENTORY_NAME: "MEGA 12.app"
+  SP_EXECUTABLE_COMMAND: "open -a '%JSS_INVENTORY_NAME%'"
+  SP_PROCESS_NAME: "MEGA 12"
