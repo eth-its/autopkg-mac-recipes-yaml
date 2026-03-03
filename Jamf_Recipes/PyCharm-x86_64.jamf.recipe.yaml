@@ -17,6 +17,8 @@ Input:
     You can get a Pycharm student license via https://www.jetbrains.com/shop/eform/students. 
     Please register your account with username@ethz.ch address. Once you have obtained a license, it is valid for one year.
 
+    If you choose not to register, PyCharm will revert to the "Community Edition" functionality level after 30 days. 
+
     Version: %version%
     Category: %PKG_CATEGORY%
   JSS_INVENTORY_NAME: '%NAME%.app'
