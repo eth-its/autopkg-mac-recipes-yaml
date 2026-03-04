@@ -13,3 +13,15 @@ Input:
   SP_EXECUTABLE_COMMAND: no_app_bundle
   SELFSERVICE_ICON: Homebrew.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+
+
+Process: 
+
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
+    Arguments:
+      pkg_path: "%pathname%"
+      pkg_version: "%version%"
