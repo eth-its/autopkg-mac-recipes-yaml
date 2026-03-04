@@ -20,6 +20,7 @@ Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
       recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+      ignore_pkg_path: "True"
 
   - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
     Arguments:
