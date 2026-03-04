@@ -40,9 +40,8 @@ Process:
 
   - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
     Arguments:
-      pkg_path: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%pkg_name%"
       pkg_version: "%version%"
-
 
   - Processor: StopProcessingIf
     Arguments:
