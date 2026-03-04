@@ -8,10 +8,10 @@ Input:
   SCRIPT_PATH: Homebrew-uninstall.sh
   PARAMETER4_VALUE: ""
   SCRIPT_PRIORITY: After
-  EXTENSION_ATTRIBUTE_NAME: "Homebrew location"
+  EXTENSION_ATTRIBUTE_NAME: "Homebrew version"
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: "^$"
-  EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_location-EA.zsh
+  EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_version-EA.zsh
   INSTALLED_GROUP_NAME: "Homebrew installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml
   SELFSERVICE_ICON: Homebrew.png
