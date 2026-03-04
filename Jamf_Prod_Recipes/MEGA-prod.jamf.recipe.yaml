@@ -1,0 +1,11 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.MEGA-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+
+Input:
+  NAME: MEGA
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.MEGA
+  JSS_INVENTORY_NAME: "MEGA 12.app"
+  SP_EXECUTABLE_COMMAND: "open -a '%JSS_INVENTORY_NAME%'"
+  SP_PROCESS_NAME: "MEGA 12"
