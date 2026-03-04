@@ -1,24 +1,31 @@
-Description: "Checks online for update. WARNING: WILL DOWNLOAD FULL INSTALLER EVERY TIME because Web Server does not provide Content-Length,Last Changed or ETag - run manually only !"
+Description: "Checks online for update. Uses custom processor to ensure previously downloaded pkgs are used to determine the need for future downloads"
 Identifier: com.github.eth-its-recipes.download.MEGA
 MinimumVersion: "2.3"
 
 Input:
   Name: MEGA
   USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
+  STOP_PREDICATE: "should_continue == False"
 
 Process:
   - Processor: MEGAURLProvider
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%STOP_PREDICATE%"
 
   - Processor: URLDownloader
     Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
         url: "%url%"
+        filename: "%MEGA_pkg_file_name%"
         request_headers:
             "User-Agent": "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
 
   - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
     Arguments:
       pkg_path: "%pathname%"
       pkg_version: "%version%"
 
-  - Processor: EndOfCheckPhase
