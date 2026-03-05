@@ -1,20 +1,23 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.MEGA
+Identifier: com.github.eth-its-recipes.jamf.Homebrew
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.MEGA
+ParentRecipe: com.github.nstrauss.download.Homebrew
 
 Input:
-  NAME: MEGA
+  NAME: Homebrew
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Administration
+  EXTENSION_ATTRIBUTE_NAME: "Homebrew version"
+  EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_version-EA.zsh
   SELFSERVICE_DESCRIPTION: |
-    The Molecular Evolutionary Genetics Analysis (MEGA) software is widely used for molecular evolutionary and phylogenetic analyses
+    The Missing Package Manager for macOS (or Linux). Type "brew" in Terminal to get started after the installation.
+    More Info at https://brew.sh/
 
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
@@ -22,10 +25,16 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
 
 Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
