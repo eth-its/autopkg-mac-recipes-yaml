@@ -23,7 +23,10 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  SCRIPT_PATH: Homebrew-preinstall.zsh
+  SCRIPT_NAME: Homebrew-preinstall.zsh
+  SCRIPT_PRIORITY: Before
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
