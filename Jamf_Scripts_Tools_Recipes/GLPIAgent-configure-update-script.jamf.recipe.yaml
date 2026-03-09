@@ -4,38 +4,20 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: "mac.ethos.GLPI-Agent-config-update"
-  TESTING_GROUP_NAME: "Testing - %NAME%"
-  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  INSTALLED_GROUP_NAME: "GLPI-Agent installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA.xml
-  EXTENSION_ATTRIBUTE_NAME: GLPI-Agent Version
-  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
-  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   TRIGGER_NAME: GLPI-Agent-Configure
   TRIGGER_POLICY_RUN_COMMAND: "echo 'GLPI Agent configuration update complete'"
   POLICY_CATEGORY: Triggered Installers
   POLICY_FREQUENCY: Once per Computer
-  POLICY_TEMPLATE: Policy-prod-once-per-computer-trigger.xml
+  POLICY_TEMPLATE: Policy-prod-once-per-computer-trigger-2groups.xml
   POLICY_NAME: "mac.ethos.GLPI-Agent-config-update"
-
+  INSTALLED_GROUP_NAME1: "GLPI-Agent arm64 installed"
+  INSTALLED_GROUP_NAME2:  "GLPI-Agent x86_64 installed"
 
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
-      computergroup_name: "%TESTING_GROUP_NAME%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
-      computergroup_name: "%INSTALLED_GROUP_NAME%"
-      computergroup_template: "%INSTALLED_GROUP_TEMPLATE%"
-      replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
