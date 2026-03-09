@@ -24,11 +24,15 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_CATEGORY: Untested
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   SP_PROCESS_NAME: "%NAME%"
+
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  SCRIPT_PATH: Homebrew-preinstall.zsh
+  SCRIPT_NAME: Homebrew-preinstall.zsh
+  SCRIPT_PRIORITY: Before
 
 
 Process: 
@@ -80,6 +84,14 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
