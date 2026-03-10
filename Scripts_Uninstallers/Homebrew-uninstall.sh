@@ -17,5 +17,13 @@ chmod +x "$command_file"
 # run the command file as the console user
 sudo -u $consoleuser open "$command_file"
 
+# if things went well, we'll remove the pkg receipts
+uninstallreturn=$?
+if [[ $uninstallreturn == 0 ]] ; then 
+pkgutil --forget sh.brew.homebrew /
+fi
+
+# potential todo : clear up /opt/homebrew , or /usr/local/homebrew 
+
 # stop caffeinating
 kill "$caffeinatepid"
