@@ -17,15 +17,16 @@ chmod +x "$command_file"
 # run the command file as the console user
 sudo -u $consoleuser open "$command_file"
 
-# if things went well, we'll remove the pkg receipts
-uninstallreturn=$?
-if [[ $uninstallreturn == 0 ]] ; then 
-pkgutil --forget sh.brew.homebrew /
-fi
+# wait until the command file has finished
+while [[ $(pgrep -f $command_file|wc -l) -gt 0 ]] ; do sleep 1 ; done 
 
-# potential todo : clear up /opt/homebrew , or /usr/local/homebrew 
+# if we can't see 'brew' anymore, the user has decided to remove homebrew - so we clean up a bit more
+which brew >/dev/null ; brewthere=$?
+if [[ $brewthere -eq 0 ]] ; then 
+pkgutil --forget sh.brew.homebrew /
 rm -rf /usr/local/Homebrew || true
 rm -rf /opt/homebrew || true
+fi
 
 # stop caffeinating
 kill "$caffeinatepid"
