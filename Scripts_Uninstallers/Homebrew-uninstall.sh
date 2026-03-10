@@ -24,6 +24,8 @@ pkgutil --forget sh.brew.homebrew /
 fi
 
 # potential todo : clear up /opt/homebrew , or /usr/local/homebrew 
+rm -rf /usr/local/Homebrew || true
+rm -rf /opt/homebrew || true
 
 # stop caffeinating
 kill "$caffeinatepid"
