@@ -21,6 +21,6 @@ Input:
   SCRIPT_NAME: Homebrew-preinstall.zsh
   SCRIPT_PRIORITY: Before
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
-  TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_POLICY_RUN_COMMAND: ""
   TRIGGER_NAME: "Homebrew-install"
