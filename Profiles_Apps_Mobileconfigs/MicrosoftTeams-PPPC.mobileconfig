@@ -41,7 +41,7 @@
                             <key>Comment</key>
                             <string>Microsoft Teams</string>
                             <key>Identifier</key>
-                            <string>com.microsoft.teams</string>
+                            <string>com.microsoft.teams2</string>
                             <key>IdentifierType</key>
                             <string>bundleID</string>
                         </dict>
