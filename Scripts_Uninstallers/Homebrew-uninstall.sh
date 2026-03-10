@@ -18,6 +18,7 @@ chmod +x "$command_file"
 sudo -u $consoleuser open "$command_file"
 
 # wait until the command file has finished
+sleep 2
 while [[ $(pgrep -f $command_file|wc -l) -gt 0 ]] ; do sleep 1 ; done 
 
 # if we can't see 'brew' anymore, the user has decided to remove homebrew - so we clean up a bit more
