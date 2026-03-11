@@ -10,7 +10,7 @@ Input:
 Process:
   - Processor: Copier
     Arguments:
-      source_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app"
+      source_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%-%ARCH%.dmg/%NAME%.app"
       destination_path: "%RECIPE_CACHE_DIR%/%NAME%.app"
 
   - Processor: Versioner
