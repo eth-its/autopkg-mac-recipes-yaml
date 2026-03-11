@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 # get console user so we can run the script as that user
 consoleuser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
