@@ -12,10 +12,10 @@ Input:
   PROFILE_PAYLOAD: ch.ethz.ethos.mac.detect-nonfunctional-jamf-binary.plist
   PROFILE_DESCRIPTION: No Content-Enables Detection of nonfunctional jamf binaries.
   REPLACE_PROFILE: "True"
-  STALE_INVENTORY_GROUP_NAME: "ethOS.mac - Macs with inventory data older than %EXPIRY_DAYS% days"
+  STALE_INVENTORY_GROUP_NAME: "mac.ethOS - Macs with inventory data older than %EXPIRY_DAYS% days"
   STALE_INVENTORY_GROUP_TEMPLATE: "SmartGroup-Checkin-x-days-ago.xml"
   EXPIRY_DAYS: "7"
-  AUTOFIX_GROUP_NAME: "ethOS.mac - Macs with intact MDM but nonfunctional Jamf Binary (autofix)"
+  AUTOFIX_GROUP_NAME: "mac.ethOS - Macs with intact MDM but nonfunctional Jamf Binary (autofix)"
   AUTOFIX_GROUP_TEMPLATE: "SmartGroup-profile-installed-groupmember.xml"
   INSTALLED_PROFILE_IDENTIFIER: "%PROFILE_IDENTIFIER%"
 
