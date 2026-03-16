@@ -1,5 +1,5 @@
 Description: Uploads two Smart Groups and a computer configuration to the Jamf Pro Server, to enable detection of broken jamf binaries.
-Identifier: com.github.eth-its-recipes.jamf.mac-ethos-Nonfunctional-jamf-binary-detection
+Identifier: com.github.eth-its-recipes.jamf.mac-ethos-Nonfunctional-jamf-binary-detection-profile
 MinimumVersion: "2.3"
 
 Input:
