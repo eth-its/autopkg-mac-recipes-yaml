@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: "mac.ethOS - Detection profile for nonfunctional jamf binary"
-  IDENTIFIER: ch.ethz.ethos.mac.detect-nonfunctional-jamf-binary
+  PROFILE_IDENTIFIER: ch.ethz.ethos.mac.detect-nonfunctional-jamf-binary
   ORGANIZATION: ETH Zürich
   PROFILE_CATEGORY: System Settings
   PROFILE_TEMPLATE: Profile-1-group.xml
@@ -17,7 +17,7 @@ Input:
   EXPIRY_DAYS: 7
   AUTOFIX_GROUP_NAME: "ethOS.mac - Macs with intact MDM but nonfunctional Jamf Binary (autofix)"
   AUTOFIX_GROUP_TEMPLATE: "SmartGroup-profile-installed-groupmember.xml"
-  INSTALLED_PROFILE_IDENTIFIER: "%IDENTIFIER%"
+  INSTALLED_PROFILE_IDENTIFIER: "%PROFILE_IDENTIFIER%"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -43,7 +43,7 @@ Process:
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       payload: "%PROFILE_PAYLOAD%"
-      identifier: "%IDENTIFIER%"
+      identifier: "%PROFILE_IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
       profile_computergroup: "%STALE_INVENTORY_GROUP_NAME%"
