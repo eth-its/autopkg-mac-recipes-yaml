@@ -9,7 +9,6 @@ Input:
   PROFILE_CATEGORY: Application Settings
   PROFILE_DESCRIPTION: Settings for Microsoft Outlook
   PROFILE_NAME: "%NAME%"
-  PROFILE_PAYLOAD: com.microsoft.outlook-ethos.plist
   PROFILE_TEMPLATE: Profile-MicrosoftOffice.xml
   REPLACE_PROFILE: "True"
 
@@ -19,13 +18,23 @@ Process:
       category_name: "%PROFILE_CATEGORY%"
       replace_category: "False"
 
+  - Processor: com.github.grahampugh.recipes.commonprocessors/CreatePlist
+    Arguments:
+      output_file_name: "%NAME%"
+      plist_content:
+        EnableNewOutlook: 1
+        HideCanAddOtherAccountTypesTipText: True
+        TrustO365AutodiscoverRedirect: True
+        DisableDefaultAppSignature: True
+        AutomaticallyDownloadExternalContent: 1
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
-      profile_name: "%PROFILE_NAME%"
+      identifier: "%IDENTIFIER%"
+      profile_name: "%output_file_name%"
+      payload: "%plist_path%"
       profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
-      payload: "%PROFILE_PAYLOAD%"
-      identifier: "%IDENTIFIER%"
       organization: "%ORGANIZATION%"
       profile_description: "%PROFILE_DESCRIPTION%"
       replace_profile: "%REPLACE_PROFILE%"

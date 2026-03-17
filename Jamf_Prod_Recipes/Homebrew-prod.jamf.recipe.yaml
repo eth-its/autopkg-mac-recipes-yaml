@@ -1,0 +1,26 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Homebrew-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+
+Input:
+  NAME: Homebrew
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Homebrew
+  EXTENSION_ATTRIBUTE_NAME: "Homebrew version"
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
+  EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_version-EA.zsh
+  SP_EXECUTABLE_COMMAND: no_app_bundle
+  SELFSERVICE_ICON: Homebrew.png
+
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
+
+  SCRIPT_PATH: Homebrew-preinstall.zsh
+  SCRIPT_NAME: Homebrew-preinstall.zsh
+  SCRIPT_PRIORITY: Before
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  TRIGGER_POLICY_RUN_COMMAND: ""
+  TRIGGER_NAME: "Homebrew-install"

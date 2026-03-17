@@ -1,0 +1,50 @@
+Description: Uploads two Smart Groups and a computer configuration to the Jamf Pro Server, to enable detection of broken jamf binaries.
+Identifier: com.github.eth-its-recipes.jamf.mac-ethos-Nonfunctional-jamf-binary-detection-profile
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "mac.ethOS - Detection profile for nonfunctional jamf binary"
+  PROFILE_IDENTIFIER: ch.ethz.ethos.mac.detect-nonfunctional-jamf-binary
+  ORGANIZATION: ETH Zürich
+  PROFILE_CATEGORY: System Settings
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_NAME: "%NAME%"
+  PROFILE_PAYLOAD: ch.ethz.ethos.mac.detect-nonfunctional-jamf-binary.plist
+  PROFILE_DESCRIPTION: No Content-Enables Detection of nonfunctional jamf binaries.
+  REPLACE_PROFILE: "True"
+  STALE_INVENTORY_GROUP_NAME: "mac.ethOS - Macs with inventory data older than %EXPIRY_DAYS% days"
+  STALE_INVENTORY_GROUP_TEMPLATE: "SmartGroup-Checkin-x-days-ago.xml"
+  EXPIRY_DAYS: "7"
+  AUTOFIX_GROUP_NAME: "mac.ethOS - Macs with intact MDM but nonfunctional Jamf Binary (autofix)"
+  AUTOFIX_GROUP_TEMPLATE: "SmartGroup-profile-installed-groupmember.xml"
+  INSTALLED_PROFILE_IDENTIFIER: "%PROFILE_IDENTIFIER%"
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PROFILE_CATEGORY%"
+      replace_category: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%STALE_INVENTORY_GROUP_TEMPLATE%"
+      computergroup_name: "%STALE_INVENTORY_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%AUTOFIX_GROUP_TEMPLATE%"
+      computergroup_name: "%AUTOFIX_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PROFILE_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      payload: "%PROFILE_PAYLOAD%"
+      identifier: "%PROFILE_IDENTIFIER%"
+      organization: "%ORGANIZATION%"
+      profile_description: "%PROFILE_DESCRIPTION%"
+      profile_computergroup: "%STALE_INVENTORY_GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
