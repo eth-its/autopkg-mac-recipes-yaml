@@ -11,3 +11,5 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: OpenScape Client Version
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
   SELFSERVICE_ICON: OpenScape Client.png
+  SP_EXECUTABLE_COMMAND: "open '/Applications/UCDesktopApp.app'"
+  SP_PROCESS_NAME: "UCDesktopApp"
