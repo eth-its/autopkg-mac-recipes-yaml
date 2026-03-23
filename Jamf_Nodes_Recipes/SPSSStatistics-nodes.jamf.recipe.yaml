@@ -54,6 +54,7 @@ Input:
   POLICY_RUN_COMMAND: "jamf policy -event '%TRIGGER_NAME%'"
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
+  JSS_INVENTORY_NAME: "IBM SPSS Statistics.app"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker

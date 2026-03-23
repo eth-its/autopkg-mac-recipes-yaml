@@ -11,6 +11,7 @@ Input:
   NAME: SPSS Statistics
   MAJOR_VERSION: "30"
   LICENSE: Floating
+  JSS_INVENTORY_NAME: "IBM SPSS Statistics.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.SPSSStatistics
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-majorversion.xml
   USERS_GROUP_NAME: "%NAME% %MAJOR_VERSION% users"
