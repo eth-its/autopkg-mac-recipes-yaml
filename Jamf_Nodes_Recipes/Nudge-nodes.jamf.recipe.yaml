@@ -8,3 +8,5 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Nudge
   SELFSERVICE_ICON: Nudge.png
   TYPE: "_Suite"
+  SP_EXECUTABLE_COMMAND: "open -n /Applications/Utilities/Nudge.app --args -disable-random-delay -simulate-hardware-id J704AP -simulate-os-version 26.0.1"
+  SP_PROCESS_NAME: "Nudge"

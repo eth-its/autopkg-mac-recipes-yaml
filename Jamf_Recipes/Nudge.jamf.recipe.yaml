@@ -25,6 +25,8 @@ Input:
   SELFSERVICE_ICON: Nudge.png
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+  SP_EXECUTABLE_COMMAND: "open -n /Applications/Utilities/Nudge.app --args -disable-random-delay -simulate-hardware-id J704AP -simulate-os-version 26.0.1"
+  SP_PROCESS_NAME: "Nudge"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
