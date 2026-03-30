@@ -9,10 +9,13 @@
 currentUser="$3"
 
 
+# kill the app, don't fret if it's not running
+
+pkill Nudge || true
+
 # Remove the Application
 /bin/rm -Rf /Applications/Utilities/Nudge.app
 echo "Nudge.app has been removed"
-
 
 echo "Removing LaunchDaemons and related files"
 

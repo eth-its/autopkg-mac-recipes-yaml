@@ -6,3 +6,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 Input:
   NAME: Nudge
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Nudge
+  SP_EXECUTABLE_COMMAND: "open -n /Applications/Utilities/Nudge.app --args -disable-random-delay -simulate-hardware-id J704AP -simulate-os-version 26.0.1"
+  SP_PROCESS_NAME: "Nudge"
