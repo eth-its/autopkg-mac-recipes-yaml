@@ -7,3 +7,7 @@ Input:
   NAME: "LogitechOptionsPlus"
   JSS_INVENTORY_NAME: "logioptionsplus.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LogitechOptionsPlus
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-parameter4.xml
+  SCRIPT_NAME: LogitechOptionsPlus-uninstall.sh
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_VALUE: "logirrelevantPlus"
