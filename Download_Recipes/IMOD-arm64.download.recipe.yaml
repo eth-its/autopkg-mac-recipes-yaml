@@ -1,0 +1,15 @@
+Description: Downloads the latest version of IMOD for arm64. based on https://github.com/autopkg/scriptingosx-recipes/blob/master/Bio3DColorado/IMOD.download.recipe
+Identifier: com.github.eth-its-recipes.download.IMOD-arm64
+Input:
+  NAME: IMOD
+MinimumVersion: 0.5.2
+Process:
+- Arguments:
+    re_pattern: (?P<url>osx/(?P<scriptname>imod_(?P<version>\d+\.\d+\.\d+)_osx14_arm64.sh)\..*sh)
+    result_output_var_name: url
+    url: http://bio3d.colorado.edu/imod/download.html
+  Processor: URLTextSearcher
+- Arguments:
+    url: http://bio3d.colorado.edu/imod/%url%
+  Processor: URLDownloader
+- Processor: EndOfCheckPhase

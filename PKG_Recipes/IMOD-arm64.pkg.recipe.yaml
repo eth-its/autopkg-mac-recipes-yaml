@@ -1,0 +1,32 @@
+Description: based on https://github.com/autopkg/scriptingosx-recipes/blob/master/Bio3DColorado/IMOD.pkg.recipe
+Identifier: com.github.eth-its-recipes.pkg.IMOD-arm64
+Input: {}
+MinimumVersion: 0.5.2
+ParentRecipe: com.github.eth-its-recipes.download.IMOD-arm64
+Process:
+- Arguments:
+    pkgdirs:
+      root: '755'
+      root/private/: '755'
+      root/private/tmp: '755'
+      scripts: '755'
+    pkgroot: '%RECIPE_CACHE_DIR%/%NAME%-%version%_arm64
+  Processor: PkgRootCreator
+- Arguments:
+    destination_path: '%pkgroot%/scripts/%scriptname%'
+    overwrite: true
+    source_path: '%pathname%'
+  Processor: Copier
+- Arguments:
+    file_content: "#!/bin/sh\nthis_path=$(dirname $0)\nsh \"$this_path/%scriptname%\" -y\n"
+    file_mode: '755'
+    file_path: '%pkgroot%/scripts/postinstall'
+  Processor: FileCreator
+- Arguments:
+    pkg_request:
+      chown: []
+      id: edu.colorado.bio3d.%NAME%
+      pkgname: '%NAME%-%version%'
+      pkgroot: '%pkgroot%/root'
+      scripts: '%pkgroot%/scripts'
+  Processor: PkgCreator
