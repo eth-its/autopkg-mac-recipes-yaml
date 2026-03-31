@@ -53,6 +53,7 @@ echo "Entire folder will be deleted: $folder_to_trash"
 echo "Checking if $app_name is actually deleted..."
 if [[ -d "${folder_to_trash}" ]]; then
     echo "$app_name failed to delete"
+    /bin/rm -rf "${folder_to_trash}"
 else
     echo "$app_name deleted successfully"
 fi
