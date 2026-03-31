@@ -19,7 +19,7 @@ Process:
     Arguments:
       result_output_var_name: version
       re_flags: re.M
-      re_pattern: \"Miniconda3-(.*?)-MacOSX-arm64.pkg\">Miniconda3-py.*?-MacOSX-arm64.pkg</a></td>\s*?<td.*\s*?<td.*\s*?<td>%miniconda_current_version_sha256%
+      re_pattern: \"Miniconda3-py(.*?)-MacOSX-arm64.pkg\">Miniconda3-py.*?-MacOSX-arm64.pkg</a></td>\s*?<td.*\s*?<td.*\s*?<td>%miniconda_current_version_sha256%
 
   - Processor: URLDownloader
     Comment: Downloads the file from the source repo to the AutoPkg cache, and names it as if was on the source
