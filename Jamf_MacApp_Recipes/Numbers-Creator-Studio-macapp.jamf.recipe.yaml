@@ -4,4 +4,4 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.FreeMacApps-macapp-no-users
 
 Input:
-  NAME: Numbers Creator Studio
+  NAME: "Numbers: Make Spreadsheets"
