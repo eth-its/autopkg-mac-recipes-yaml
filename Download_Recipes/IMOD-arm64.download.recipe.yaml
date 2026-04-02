@@ -5,7 +5,7 @@ Input:
 MinimumVersion: 0.5.2
 Process:
 - Arguments:
-    re_pattern: (?P<url>osx/(?P<scriptname>imod_(?P<version>\d+\.\d+\.\d+)_osx14_arm64.sh)\..*sh)
+    re_pattern: (?P<url>osx\/(?P<scriptname>imod_(?P<version>\d+\.\d+\.\d+)_osx14_arm64.sh)) #(?P<url>osx/(?P<scriptname>imod_(?P<version>\d+\.\d+\.\d+)_osx14_arm64.sh)\..*sh)
     result_output_var_name: url
     url: http://bio3d.colorado.edu/imod/download.html
   Processor: URLTextSearcher
