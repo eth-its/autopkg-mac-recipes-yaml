@@ -10,7 +10,7 @@ Process:
       root/private/: '755'
       root/private/tmp: '755'
       scripts: '755'
-    pkgroot: '%RECIPE_CACHE_DIR%/%NAME%-%version%_arm64
+    pkgroot: '%RECIPE_CACHE_DIR%/%NAME%-%version%_arm64'
   Processor: PkgRootCreator
 - Arguments:
     destination_path: '%pkgroot%/scripts/%scriptname%'
