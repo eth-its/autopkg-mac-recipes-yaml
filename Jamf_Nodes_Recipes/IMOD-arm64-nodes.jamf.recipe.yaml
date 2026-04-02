@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.IMOD-arm64-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-EA-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -15,5 +15,5 @@ Input:
 
   EXTENSION_ATTRIBUTE_NAME: IMODVersion
   EXTENSION_ATTRIBUTE_SCRIPT: IMOD-EA.zsh
-  
+
   SP_EXECUTABLE_COMMAND: no_app_bundle
