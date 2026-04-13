@@ -177,6 +177,14 @@
                         <key>RuleValue</key>
                         <string>com.teclib.glpi-agent</string>
                     </dict>
+                    <dict>
+                        <key>Comment</key>
+                        <string>Nudge</string>
+                        <key>RuleType</key>
+                        <string>LabelPrefix</string>
+                        <key>RuleValue</key>
+                        <string>com.github.macadmins.Nudge</string>
+                    </dict>
                 </array>
             </dict>
         </array>
