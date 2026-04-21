@@ -1,0 +1,26 @@
+Comment: Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of Enpass.
+Identifier: com.github.eth-its-recipes.download.Enpass
+Input:
+  NAME: Enpass
+MinimumVersion: '2.3'
+Process:
+- Arguments:
+    appcast_url: https://dl.sinew.in/mac/package/appcast.xml
+  Processor: SparkleUpdateInfoProvider
+- Arguments:
+    filename: '%NAME%-%version%.zip'
+  Processor: URLDownloader
+- Processor: EndOfCheckPhase
+- Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/%NAME%'
+    purge_destination: true
+  Processor: Unarchiver
+- Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Enpass Technologies Private Limited (7ADB8CC6TF)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%/stable'
+  Processor: CodeSignatureVerifier
