@@ -7,5 +7,6 @@ MinimumVersion: '2.3'
 ParentRecipe: com.github.eth-its-recipes.download.Enpass
 Process:
 - Arguments:
-    app_path: '%RECIPE_CACHE_DIR%/%NAME%/Enpass.app'
-  Processor: AppPkgCreator
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
+    source_pkg: '%pathname%'
+  Processor: PkgCopier
