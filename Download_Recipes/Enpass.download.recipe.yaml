@@ -7,18 +7,15 @@ MinimumVersion: '2.3'
 Process:
 - Arguments:
     url: https://www.enpass.io/download/macos/website/stable
-    filename: 
-  Processor: URLDownloader
-- Arguments: Enpass.pkg
-    filename: '%NAME%-%version%.zip'
+    filename: Enpass.pkg
   Processor: URLDownloader
 - Processor: EndOfCheckPhase
 - Arguments:
     input_path: '%pathname%'
     expected_authority_names:
-        'Developer ID Installer: Enpass Technologies Private Limited (7ADB8CC6TF)'
-        'Developer ID Certification Authority'
-        'Apple Root CA'
+        - 'Developer ID Installer: Enpass Technologies Private Limited (7ADB8CC6TF)'
+        - 'Developer ID Certification Authority'
+        - 'Apple Root CA'
   Processor: CodeSignatureVerifier
 - Arguments:
     flat_pkg_path: '%pathname%'
@@ -35,6 +32,6 @@ Process:
   Processor: Versioner
 - Arguments:
     path_list:
-        '%RECIPE_CACHE_DIR%/payload'
-        '%RECIPE_CACHE_DIR%/%NAME%'
+        - '%RECIPE_CACHE_DIR%/payload'
+        - '%RECIPE_CACHE_DIR%/%NAME%'
   Processor: PathDeleter
