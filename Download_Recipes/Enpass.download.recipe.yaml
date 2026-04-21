@@ -22,5 +22,5 @@ Process:
     - 'Developer ID Installer: Enpass Technologies Private Limited (7ADB8CC6TF)'
     - Developer ID Certification Authority
     - Apple Root CA
-    input_path: '%RECIPE_CACHE_DIR%/%NAME%/stable'
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%/'
   Processor: CodeSignatureVerifier
