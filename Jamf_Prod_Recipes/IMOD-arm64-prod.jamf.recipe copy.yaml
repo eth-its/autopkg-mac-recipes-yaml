@@ -1,0 +1,21 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.IMOD-arm64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-prod-no-users
+
+Input:
+  NAME: IMOD
+  PLATFORM: arm64
+  PKG_CATEGORY: Science & Math
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.IMOD-arm64
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users-platform.xml
+  EXTENSION_ATTRIBUTE_NAME: IMODVersion
+  EXTENSION_ATTRIBUTE_SCRIPT: IMOD-EA.zsh
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
+  EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
+
+  SP_EXECUTABLE_COMMAND: no_app_bundle
+  
