@@ -51,7 +51,7 @@
     <key>SecondRowTypeMiddle</key>
     <string>App</string>
 <key>SecondRowTypeRight</key>
-    <string>PrivilegedScript</string>
+    <string>Command</string>
 <key>SecondRowLinkRight</key>
     <string>/Library/Management/ETHZ/SupportApp/SecondRowRight.zsh</string>
     <key>StatusBarIcon</key>
