@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
+    <key>DisableConfiguratorMode</key>
+    <true/>
     <key>ErrorMessage</key>
     <string>Could not complete your request. Please contact your administrator.</string>
     <key>FirstRowLinkRight</key>
@@ -18,16 +20,12 @@
     <string>URL</string>
     <key>FirstRowTypeRight</key>
     <string>App</string>
-<key>UptimeDaysLimit</key>
-    <string>14</string>
-<key>StorageLimit</key>
-    <string>90</string>
-<key>HideThirdRowInfoItems</key>
-    <true/>
     <key>HideFirstRow</key>
     <false/>
     <key>HideSecondRow</key>
     <false/>
+    <key>HideThirdRowInfoItems</key>
+    <true/>
     <key>InfoItemFive</key>
     <string>Uptime</string>
     <key>Logo</key>
@@ -40,6 +38,8 @@
     <string>/Library/Management/ETHZ/SupportApp/status_update.zsh</string>
     <key>SecondRowLinkMiddle</key>
     <string>com.cisco.secureclient.gui</string>
+    <key>SecondRowLinkRight</key>
+    <string>/Library/Management/ETHZ/SupportApp/SecondRowRight.zsh</string>
     <key>SecondRowSymbolMiddle</key>
     <string>point.3.connected.trianglepath.dotted</string>
     <key>SecondRowTitleLeft</key>
@@ -50,17 +50,21 @@
     <string>URL</string>
     <key>SecondRowTypeMiddle</key>
     <string>App</string>
-<key>SecondRowTypeRight</key>
-    <string>Command</string>
-<key>SecondRowLinkRight</key>
-    <string>/Library/Management/ETHZ/SupportApp/SecondRowRight.zsh</string>
+    <key>SecondRowTypeRight</key>
+    <string>PrivilegedScript</string>
     <key>StatusBarIcon</key>
     <string>/Library/Management/ETHZ/SupportApp/eth-dome-white.png</string>
     <key>StatusBarIconNotifierEnabled</key>
     <true/>
+    <key>StorageLimit</key>
+    <string>90</string>
     <key>Title</key>
     <string>ETH Zurich - IT Support</string>
     <key>UpdateText</key>
     <string>Your $LocalModelShortName has **$LocalUpdatesAvailable update(s)** available. Please update as soon as possible.</string>
+    <key>UptimeDaysLimit</key>
+    <string>14</string>
+<key>DisableConfiguratorMode</key>
+<true/>
   </dict>
 </plist>
