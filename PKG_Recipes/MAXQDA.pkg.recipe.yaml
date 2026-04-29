@@ -1,0 +1,40 @@
+Description: Downloads the latest version of MAXQDA and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.MAXQDA
+MinimumVersion: "2.3"
+ParentRecipe: com.github.its-unibas.download.MAXQDA
+
+Input:
+  NAME: MAXQDA
+  MAJOR_VERSION: "26"
+
+Process:
+ - Processor: AppDmgVersioner
+   Arguments:
+     dmg_path: "%pathname%"
+
+ - Processor: PkgRootCreator
+   Arguments:
+     pkgdirs:
+       Applications: "0775"
+     pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+ - Processor: Copier
+   Arguments:
+     source_path: "%pathname%/%NAME%*.app"
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/%NAME%%MAJOR_VERSION%.app"
+
+ - Processor: PkgCreator
+   Arguments:
+     pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+     pkgname: '%NAME%-%version%'
+     pkgdir: '%RECIPE_CACHE_DIR%'
+     force_pkg_build: true
+     id: 'de.verbi.MAXQDA%version%'
+     version: '%version%'
+     pkg_request:
+       chown:
+         - path: "Applications"
+           user: "root"
+           group: "admin"
+           mode: "755" 
+
