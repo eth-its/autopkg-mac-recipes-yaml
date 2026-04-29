@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: MAXQDA
   MAJOR_VERSION: "26"
-  JSS_INVENTORY_NAME: "%NAME%.app"
+  JSS_INVENTORY_NAME: "%NAME%%MAJOR_VERSION%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.MAXQDA
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %MAJOR_VERSION% complete'"
   POLICY_NAME: "%NAME% %MAJOR_VERSION% (Testing)"
