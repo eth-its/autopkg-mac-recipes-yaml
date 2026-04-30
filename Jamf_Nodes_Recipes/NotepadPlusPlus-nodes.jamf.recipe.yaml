@@ -11,3 +11,5 @@ Input:
   SELFSERVICE_ICON: NotepadPlusPlus.png
   SELFSERVICE_DISPLAY_NAME: Notepad++
   SP_PROCESS_NAME: Notepad++
+  SP_EXECUTABLE_COMMAND: "open '/Applications/Notepad++.app'" 
+  JSS_INVENTORY_NAME: "Notepad++.app"
