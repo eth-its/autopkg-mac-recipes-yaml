@@ -5,10 +5,10 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 
 Input:
   NAME: NotepadPlusPlus
-  SELFSERVICE_DESCRIPTION: "Uninstalls Notepad++"
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Notepad++"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls Notepad++"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: org.notepadplusplus.mac
-  SELFSERVICE_ICON: "NotepadPlusPlus.png"
   SCRIPT_NAME: NotepadPlusPlus-uninstall.sh
   SCRIPT_PATH: NotepadPlusPlus-uninstall.sh
   JSS_INVENTORY_NAME: "Notepad++.app"
