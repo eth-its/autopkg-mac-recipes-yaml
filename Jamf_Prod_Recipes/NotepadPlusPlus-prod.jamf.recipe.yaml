@@ -4,10 +4,11 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
-  NAME: Notepad++
+  NAME: NotepadPlusPlus
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NotepadPlusPlus
   APPLICATION_NAME_HAS: Notepad++
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   SELFSERVICE_ICON: NotepadPlusPlus.png
+  SELFSERVICE_DISPLAY_NAME: Notepad++

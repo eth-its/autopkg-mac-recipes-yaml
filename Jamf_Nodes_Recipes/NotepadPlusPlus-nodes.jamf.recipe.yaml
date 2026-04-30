@@ -4,8 +4,10 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Notepad++
+  NAME: NotepadPlusPlus
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NotepadPlusPlus
   APPLICATION_NAME_HAS: Notepad++
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-has.xml
   SELFSERVICE_ICON: NotepadPlusPlus.png
+  SELFSERVICE_DISPLAY_NAME: Notepad++
+  SP_PROCESS_NAME: Notepad++
