@@ -28,7 +28,6 @@ Process:
      pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
      pkgname: '%NAME%-%version%'
      pkgdir: '%RECIPE_CACHE_DIR%'
-     force_pkg_build: true
      id: 'de.verbi.MAXQDA%version%'
      version: '%version%'
      pkg_request:
