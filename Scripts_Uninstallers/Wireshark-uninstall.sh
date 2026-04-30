@@ -22,6 +22,8 @@ for pkgid in org.wireshark.Wireshark.pkg; do
     fi
 done
 
+# Close the Application
+pkill Wireshark
 
 # Remove the Application
 /bin/rm -Rf /Applications/Wireshark.app
