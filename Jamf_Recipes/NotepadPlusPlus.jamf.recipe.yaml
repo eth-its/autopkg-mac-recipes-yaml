@@ -26,6 +26,7 @@ Input:
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   SELFSERVICE_DISPLAY_NAME: Notepad++
+  JSS_INVENTORY_NAME: "Notepad++.app"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

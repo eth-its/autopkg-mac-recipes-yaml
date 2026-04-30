@@ -11,3 +11,4 @@ Input:
   SELFSERVICE_ICON: "NotepadPlusPlus.png"
   SCRIPT_NAME: NotepadPlusPlus-uninstall.sh
   SCRIPT_PATH: NotepadPlusPlus-uninstall.sh
+  JSS_INVENTORY_NAME: "Notepad++.app"

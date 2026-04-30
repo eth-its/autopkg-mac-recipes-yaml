@@ -12,3 +12,4 @@ Input:
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   SELFSERVICE_ICON: NotepadPlusPlus.png
   SELFSERVICE_DISPLAY_NAME: Notepad++
+  JSS_INVENTORY_NAME: "Notepad++.app"
