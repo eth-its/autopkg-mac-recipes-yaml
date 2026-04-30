@@ -8,3 +8,5 @@ Input:
 
 Process:
   - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/NotepadPlusPlus-%version%.pkg"
