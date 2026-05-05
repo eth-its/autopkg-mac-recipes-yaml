@@ -15,7 +15,6 @@ Input:
   POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
   POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
   POSTINSTALL_SCRIPT_PRIORITY: After
-  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DESCRIPTION: |
@@ -30,7 +29,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform-scripts-2-parameter4.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-scripts-2.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -68,7 +67,7 @@ Process:
       script_name: "%PREINSTALL_SCRIPT_NAME%"
       script_path: "%PREINSTALL_SCRIPT_PATH%"
       script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
-      script_parameter4: "%PREINSTALL_SCRIPT_PARAMETER4_LABEL%"
+      skip_script_key_substitution: "True"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
