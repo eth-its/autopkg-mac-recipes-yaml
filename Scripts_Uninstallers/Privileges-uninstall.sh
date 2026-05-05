@@ -8,6 +8,7 @@
 
 currentUser="$3"
 
+currentUser=$( /usr/bin/stat -f "%Su" /dev/console )
 
 /bin/sleep 2
 for proc in Privileges PrivilegesAgent PrivilegesCLI; do
@@ -105,4 +106,5 @@ isNotAdmin=$(/usr/bin/dsmemberutil checkmembership -U "$currentUser" -G admin | 
 
 if [[ -n "$isNotAdmin" ]]; then
       /usr/sbin/dseditgroup -o edit -a "$currentUser" -t user admin
+      echo "Promoted current user: $currentUser to admin to ensure device integrity"
 fi
