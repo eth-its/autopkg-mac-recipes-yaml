@@ -10,5 +10,4 @@ Input:
 Process:
 - Processor: AppPkgCreator
   Arguments:
-    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
     app_path: '%pathname%/TeX/BibDesk.app'
