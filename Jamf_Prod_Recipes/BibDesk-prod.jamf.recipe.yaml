@@ -6,3 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 Input:
   NAME: BibDesk
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.BibDesk
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml

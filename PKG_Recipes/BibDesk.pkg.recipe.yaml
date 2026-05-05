@@ -1,0 +1,14 @@
+Description: Downloads latest BibDesk installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.BibDesk
+MinimumVersion: "2.3"
+ParentRecipe: io.github.hjuutilainen.download.BibDesk
+
+Input:
+  BUNDLE_ID: edu.ucsd.cs.mmccrack.bibdesk
+  NAME: BibDesk
+
+Process:
+- Processor: AppPkgCreator
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
+    app_path: '%pathname%/TeX/BibDesk.app'
