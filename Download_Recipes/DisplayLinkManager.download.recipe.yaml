@@ -37,6 +37,13 @@ Process:
       xpath: './/pkg-ref[@id="com.displaylink.displaylinkmanagerapp"]/bundle-version/bundle[@path="DisplayLink Manager.app"]'
       attribute_one: CFBundleShortVersionString
       return_variable_attribute_one: version
+
+  - Processor: com.github.mlbz521.SharedProcessors/XPathParser
+    Arguments:
+      xml_file: '%extracted_file%'
+      xpath: './/os-version[@min]'
+      attribute_one: min
+      return_variable_attribute_one: minimum_os_version
   
   - Processor: com.github.smithjw.processors/FriendlyPathDeleter
     Arguments:
