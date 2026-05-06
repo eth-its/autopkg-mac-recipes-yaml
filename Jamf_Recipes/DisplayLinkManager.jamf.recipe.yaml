@@ -29,24 +29,6 @@ Input:
 
 Process:
   
-  - Processor: com.github.mlbz521.SharedProcessors/XarExtractSingleFile
-    Arguments:
-      archive_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
-      file_to_extract: Distribution
-
-  - Processor: com.github.mlbz521.SharedProcessors/XPathParser
-    Arguments:
-      xml_file: '%extracted_file%'
-      xpath: './/pkg-ref[@id="com.displaylink.displaylinkmanagerapp"]/bundle-version/bundle[@path="DisplayLink Manager.app"]'
-      attribute_one: CFBundleShortVersionString
-      return_variable_attribute_one: version
-  
-  - Processor: com.github.smithjw.processors/FriendlyPathDeleter
-    Arguments:
-      fail_deleter_silently: true
-      path_list:
-        - '%RECIPE_CACHE_DIR%/extractedfile'
-  
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
