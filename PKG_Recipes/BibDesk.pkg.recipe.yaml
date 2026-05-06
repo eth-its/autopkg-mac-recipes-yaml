@@ -8,6 +8,36 @@ Input:
   NAME: BibDesk
 
 Process:
-- Processor: AppPkgCreator
-  Arguments:
-    app_path: '%pathname%/TeX/BibDesk.app'
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+        Applications/TeX: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%/BibDesk.app"
+      items_to_copy:
+        - destination_path: "%pkgroot%/Applications/TeX"
+          source_item: BibDesk.app
+
+  - Processor: Versioner
+    Comment: Get version from the app
+    Arguments:
+      input_plist_path: "%pkgroot%/Applications/TeX/BibDesk.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+          - group: admin
+            path: Applications/TeX
+            user: root
+        id: '%BUNDLE_ID%'
+        pkgname: "%NAME%-%version%"
+        version: "%version%"
