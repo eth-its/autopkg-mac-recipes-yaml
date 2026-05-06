@@ -18,9 +18,7 @@ Process:
   - Processor: Copier
     Arguments:
       source_path: "%pathname%/BibDesk.app"
-      items_to_copy:
-        - destination_path: "%pkgroot%/Applications/TeX"
-          source_item: BibDesk.app
+      destination_path: "%pkgroot%/Applications/TeX"
 
   - Processor: Versioner
     Comment: Get version from the app
