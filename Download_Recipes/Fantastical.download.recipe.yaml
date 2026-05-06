@@ -1,5 +1,5 @@
 Description: Downloads the latest Fantastical package.
-Identifier: com.github.eth-its-recipes.pkg.Fantastical
+Identifier: com.github.eth-its-recipes.download.Fantastical
 MinimumVersion: "2.3"
 
 Input:
