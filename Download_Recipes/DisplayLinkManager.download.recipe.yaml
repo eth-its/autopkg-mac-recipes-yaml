@@ -1,0 +1,57 @@
+Description: Downloads the latest DisplayLinkManager package
+Identifier: com.github.eth-its-recipes.download.DisplayLinkManager
+MinimumVersion: "2.3"
+
+Input:
+  NAME: DisplayLink Manager
+  SOFTWARE_TITLE: DisplayLink_Manager
+  BASE_URL: https://www.synaptics.com
+  SEARCH_URL: products/displaylink-graphics/downloads/macos
+  RE_PATTERN_1: /products/displaylink-.+\?filetype=exe
+  RE_PATTERN_2: <a.*href="(?P<download_url>.*[.]pkg)" download>Accept<\/a>
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: '%RE_PATTERN_1%'
+      url: '%BASE_URL%/%SEARCH_URL%'
+
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: '%RE_PATTERN_2%'
+      url: '%BASE_URL%%match%'
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: '%SOFTWARE_TITLE%.pkg'
+      url: '%BASE_URL%%download_url%'
+
+  - Processor: com.github.mlbz521.SharedProcessors/XarExtractSingleFile
+    Arguments:
+      archive_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
+      file_to_extract: Distribution
+
+  - Processor: com.github.mlbz521.SharedProcessors/XPathParser
+    Arguments:
+      xml_file: '%extracted_file%'
+      xpath: './/pkg-ref[@id="com.displaylink.displaylinkmanagerapp"]/bundle-version/bundle[@path="DisplayLink Manager.app"]'
+      attribute_one: CFBundleShortVersionString
+      return_variable_attribute_one: version
+  
+  - Processor: com.github.smithjw.processors/FriendlyPathDeleter
+    Arguments:
+      fail_deleter_silently: true
+      path_list:
+        - '%RECIPE_CACHE_DIR%/extractedfile'
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - 'Developer ID Installer: DisplayLink Corp (73YQY62QM3)'
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
+
+
