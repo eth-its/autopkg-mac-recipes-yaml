@@ -61,4 +61,7 @@ Process:
         - Apple Root CA
       input_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
 
+  - Processor: VariableSetter
+    Arguments:
+      pkg\_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
 
