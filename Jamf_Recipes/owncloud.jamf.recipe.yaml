@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.owncloud
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.ownCloudDesktopClient
+ParentRecipe: com.github.eth-its-recipes.pkg.owncloud
 
 Input:
   NAME: owncloud
