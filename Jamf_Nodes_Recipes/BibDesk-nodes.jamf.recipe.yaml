@@ -6,3 +6,6 @@ MinimumVersion: "2.3"
 Input:
   NAME: BibDesk
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.BibDesk
+  SCRIPT_NAME: "%NAME%-postinstall.zsh"
+  SCRIPT_PATH: "%NAME%-postinstall.zsh"
+  SCRIPT_PRIORITY: After
