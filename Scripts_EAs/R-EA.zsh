@@ -3,7 +3,7 @@
 
 # R version detection extension attribute
 
-version=""
+version="None"
 info_plist=/Library/Frameworks/R.framework/Versions/Current/Resources/Info.plist
 
 if [ -f "$info_plist" ]; then
