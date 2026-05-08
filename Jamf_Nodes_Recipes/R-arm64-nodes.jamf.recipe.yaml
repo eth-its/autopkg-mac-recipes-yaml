@@ -20,3 +20,4 @@ Input:
   POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
   POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
   skip_script_key_substitution: "True"
+  SP_PROCESS_NAME: "R.app"
