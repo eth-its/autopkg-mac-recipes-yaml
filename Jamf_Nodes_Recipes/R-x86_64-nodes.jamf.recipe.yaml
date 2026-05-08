@@ -19,5 +19,4 @@ Input:
   PREINSTALL_SCRIPT_CATEGORY: Administration
   POSTINSTALL_SCRIPT_NAME: R-postinstall.sh
   POSTINSTALL_SCRIPT_PATH: R-postinstall.sh
-  POSTINSTALL_SCRIPT_PARAMETER4_VALUE: "None"
   skip_script_key_substitution: "True"

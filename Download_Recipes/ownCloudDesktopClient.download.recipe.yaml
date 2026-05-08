@@ -1,0 +1,39 @@
+Description: |-
+  Download recipe for the ownCloud desktop client.
+
+  To download Apple Silicon use: "arm64" in the DOWNLOAD_ARCH variable
+  To download Intel use: "x86_64" in the DOWNLOAD_ARCH variable
+
+Identifier: com.github.eth-its-recipes.download.ownCloudDesktopClient
+MinimumVersion: 0.2.0
+
+Input:
+  NAME: ownCloudDesktopClient
+  DOWNLOAD_ARCH: x86_64
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://owncloud.com/desktop-app/"
+      result_output_var_name: DOWNLOAD_URL
+      re_pattern: "href=\\\"(https://download\\.owncloud\\.com/desktop/ownCloud/[A-Za-z0-9]+/([0-9]+(\\.[0-9]+)+)/mac/ownCloud-([0-9]+(\\.[0-9]+)+)-%DOWNLOAD_ARCH%\\.pkg)\\\""
+
+  - Processor: URLDownloader
+    Arguments:
+      request_headers:
+        user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15
+        Referer: "https://owncloud.com/"
+      filename: "%NAME%.pkg"
+      url: "%DOWNLOAD_URL%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%"
+      expected_authority_names:
+        - "Developer ID Installer: ownCloud GmbH (4AP2STM4H5)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+

@@ -8,3 +8,5 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: edu.ucsd.cs.mmccrack.bibdesk
+  SCRIPT_NAME: BibDesk-uninstall.sh
+  SCRIPT_PATH: BibDesk-uninstall.sh
