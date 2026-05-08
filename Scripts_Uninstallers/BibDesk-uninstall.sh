@@ -85,13 +85,14 @@ fi
 # also check to see if an additional app was ever created due to BundleID mismatch
 if [[ -d "/Applications/TeX/${app_name}.app" ]]; then
     echo "Folder will be deleted: /Applications/TeX/${app_name}.app"
-    /bin/rm -Rf "/Applications/TeX/${app_name}.app" ||:
+    /bin/rm -Rf "/Applications/TeX/${app_name}.app"
+    /bin/rm -f "/Applications/TeX/.DS_Store" ||:
 else
     echo "Folder not found: /Applications/TeX/BibDesk.app"
 fi
 
 # get rid of the TeX-Folder if no further TeX-Apps are installed there
-if [ -n "$(ls -A /Applications/Tex/ 2>/dev/null)" ]
+if [ -n "$(ls -A /Applications/TeX/ 2>/dev/null)" ]
 then
   echo "contains other TeX-Apps, will not delete"
 else
