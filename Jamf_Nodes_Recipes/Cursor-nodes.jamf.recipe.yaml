@@ -6,3 +6,4 @@ MinimumVersion: "2.3"
 Input:
   NAME: Cursor
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Cursor
+  SP_PROCESS_NAME: "Cursor.app"
