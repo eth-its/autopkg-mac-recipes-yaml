@@ -9,7 +9,8 @@ if [[ -f ${filename} ]] ; then
 fi
 
 report() {
-echo "<result>$@</result>" | tee ${filename}
+echo "<result>$@</result>"
+echo "<result>$@</result>">${filename}
 exit 0
 }
 
