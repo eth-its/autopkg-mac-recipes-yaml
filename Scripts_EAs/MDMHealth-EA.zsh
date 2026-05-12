@@ -1,6 +1,6 @@
 #!/bin/zsh
-
-filename=/private/var/tmp/EA-$(basename "$0").result
+scriptname="MDMHealth"
+filename=/private/var/tmp/EA-$scriptname.result
 #cache output in a file, only run commands once every 24h to prevent excess load on clients
 if [[ -f ${filename} ]] ; then
   if [[ $(cat ${filename}|grep -c '<result>') -eq 1 ]] ; then  
