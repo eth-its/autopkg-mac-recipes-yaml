@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 
 Input:
-  NAME: NotepadPlusPlus
+  NAME: NextpadPlusPlus
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Nextpad++"
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls Nextpad++"
   PARAMETER5_LABEL: Package Receipt
