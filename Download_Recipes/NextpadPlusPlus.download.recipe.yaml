@@ -8,7 +8,7 @@ Input:
 Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
-      github_repo: nextpad-plus-plus-mac/nextpad-plus-plus-macos
+      github_repo: nextpad-plus-plus/nextpad-plus-plus-macos
       include_prereleases: "%INCLUDE_PRERELEASES%"
 
   - Processor: URLDownloader
