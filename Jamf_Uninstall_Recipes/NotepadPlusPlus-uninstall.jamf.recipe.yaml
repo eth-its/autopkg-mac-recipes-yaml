@@ -12,3 +12,7 @@ Input:
   SCRIPT_NAME: NotepadPlusPlus-uninstall.sh
   SCRIPT_PATH: NotepadPlusPlus-uninstall.sh
   JSS_INVENTORY_NAME: "Notepad++.app"
+  AUTOUNINSTALL_POLICY_CATEGORY: Auto-uninstallers
+  AUTOUNINSTALL_POLICY_NAME: "Auto-uninstall %NAME%"
+  AUTOUNINSTALL_POLICY_TEMPLATE: Policy-uninstall-autouninstall-noexclusion-force.xml
+  AUTOUNINSTALL_POLICY_FREQUENCY: Once every day
