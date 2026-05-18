@@ -1,5 +1,5 @@
-Description: Checks github for new relases of NotepadPlusPlus
-Identifier: com.github.eth-its-recipes.download.NotepadPlusPlus
+Description: Checks github for new relases of NextpadPlusPlus
+Identifier: com.github.eth-its-recipes.download.NextpadPlusPlus
 MinimumVersion: "2.3"
 
 Input:
@@ -8,7 +8,7 @@ Input:
 Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
-      github_repo: notepad-plus-plus-mac/notepad-plus-plus-macos
+      github_repo: nextpad-plus-plus/nextpad-plus-plus-macos
       include_prereleases: "%INCLUDE_PRERELEASES%"
 
   - Processor: URLDownloader

@@ -1,15 +1,15 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.NotepadPlusPlus
+Identifier: com.github.eth-its-recipes.jamf.NextpadPlusPlus
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.NotepadPlusPlus
+ParentRecipe: com.github.eth-its-recipes.pkg.NextpadPlusPlus
 
 Input:
-  NAME: NotepadPlusPlus
+  NAME: NextpadPlusPlus
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
-    Notepad++ is a free (as in “free speech” and also as in “free beer”) source code editor and Notepad replacement that supports several programming languages.
+    Nextpad++ is a free (as in “free speech” and also as in “free beer”) source code editor and Notepad replacement that supports several programming languages.
     A full port of the original Notepad++ codebase — not a rewrite, not an alternative, not Wine.
 
     Version: %version%
@@ -22,11 +22,11 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "NotepadPlusPlus.png"
+  SELFSERVICE_ICON: "NextpadPlusPlus.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  SELFSERVICE_DISPLAY_NAME: Notepad++
-  JSS_INVENTORY_NAME: "Notepad++.app"
+  SELFSERVICE_DISPLAY_NAME: Nextpad++
+  JSS_INVENTORY_NAME: "Nextpad++.app"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator

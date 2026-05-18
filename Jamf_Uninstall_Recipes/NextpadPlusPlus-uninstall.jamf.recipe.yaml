@@ -1,0 +1,14 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.NextpadPlusPlus-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
+
+Input:
+  NAME: NextpadPlusPlus
+  UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall Nextpad++"
+  UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls Nextpad++"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: org.nextpadplusplus.mac
+  SCRIPT_NAME: NextpadPlusPlus-uninstall.sh
+  SCRIPT_PATH: NextpadPlusPlus-uninstall.sh
+  JSS_INVENTORY_NAME: "Nextpad++.app"
