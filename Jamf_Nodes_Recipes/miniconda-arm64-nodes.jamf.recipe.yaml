@@ -16,3 +16,7 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
 
   SP_EXECUTABLE_COMMAND: no_app_bundle
+  
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
+  SCRIPT_NAME: miniconda-uninstall.sh
+  SCRIPT_PRIORITY: Before
