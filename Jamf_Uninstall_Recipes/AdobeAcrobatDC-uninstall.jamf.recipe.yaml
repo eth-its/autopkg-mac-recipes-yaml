@@ -8,6 +8,10 @@ Input:
   APPLICATION_NAME_HAS: Adobe Acrobat.app
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
+  UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-noexclusion.xml
   SCRIPT_NAME: AdobeAcrobatDC-uninstall.sh
   SCRIPT_PATH: AdobeAcrobatDC-uninstall.sh
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
+  # very do a dirty hack to prevent creation of auto-install group 
+  AUTOINSTALL_GROUP_NAME: "%NAME% installed"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
