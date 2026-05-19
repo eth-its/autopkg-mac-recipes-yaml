@@ -1,0 +1,15 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobat-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+
+Input:
+  NAME: Adobe Acrobat
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeAcrobat
+  APPLICATION_NAME_HAS: Adobe Acrobat
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
+  SCRIPT_NAME: AdobeAcrobat-postinstall.sh
+  SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
