@@ -23,7 +23,9 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
   REINSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script.xml
+  SCRIPT_NAME: miniconda-uninstall.sh
+  SCRIPT_PRIORITY: Before
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
