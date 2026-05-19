@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 
 Input:
-  NAME: Adobe AdobeAcrobat
+  NAME: Adobe Adobe Acrobat
   APPLICATION_NAME_HAS: Adobe Acrobat
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
