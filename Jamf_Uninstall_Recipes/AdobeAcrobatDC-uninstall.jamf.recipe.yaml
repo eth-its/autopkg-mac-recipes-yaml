@@ -1,0 +1,13 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeAcrobatDC-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
+
+Input:
+  NAME: Adobe Acrobat DC
+  APPLICATION_NAME_HAS: Adobe Acrobat.app
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
+  SCRIPT_NAME: AdobeAcrobatDC-uninstall.sh
+  SCRIPT_PATH: AdobeAcrobatDC-uninstall.sh
+  SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
