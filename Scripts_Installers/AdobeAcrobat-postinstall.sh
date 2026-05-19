@@ -1,8 +1,8 @@
 #!/bin/bash
-## postinstall script to restrict Adobe Acrobat Reader DC settings
+## postinstall script to restrict Adobe Acrobat (not reader any more) settings
 
 # remove any existing version of the tool
-adobe_reader_prefs='
+adobe_pro_prefs='
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -11,7 +11,11 @@ adobe_reader_prefs='
 	<dict>
 		<key>FeatureLockdown</key>
 		<dict>
+		    <key>bAcroSuppressUpsell</key>
+            <true/>
 			<key>bUpdater</key>
+			<false/>
+			<key>bEnableADMAnalytics</key>
 			<false/>
 			<key>cGeneral</key>
 			<dict>
@@ -52,4 +56,4 @@ adobe_reader_prefs='
 </plist>
 '
 
-echo "$adobe_reader_prefs" > /Library/Preferences/com.adobe.Reader.plist 
+echo "$adobe_pro_prefs" > /Library/Preferences/com.adobe.Acrobat.Pro.plist 
