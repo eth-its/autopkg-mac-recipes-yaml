@@ -21,7 +21,7 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: AdobeRUM-EA.zsh
   TRIGGER_POLICY_NAME: "Install %NAME% %PLATFORM%"
   PKG_CATEGORY: Tools & Accessories
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
