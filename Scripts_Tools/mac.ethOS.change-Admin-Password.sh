@@ -39,7 +39,7 @@ echo "Attempting to change password for: $AdminUser..."
 password_changed=0
 last_sysadminctl_output=""
 
-for (( i=1; i<=${#oldPasswordB64List[@]}; i++ )); do
+for (( i=1; i<=${#oldPasswordB64List[@]} && i<=4; i++ )); do
     old_b64="${oldPasswordB64List[$i]}"
 
     if [[ -z "$old_b64" ]]; then
@@ -87,7 +87,10 @@ for (( i=1; i<=${#oldPasswordB64List[@]}; i++ )); do
 done
 
 if (( password_changed == 0 )); then
-    echo "Error: Failed to change password with all provided old passwords."
+    echo "Error: Failed to change password with the first 4 provided old passwords."
+    if (( ${#oldPasswordB64List[@]} > 4 )); then
+        echo "Info: Additional old password values after position 4 were ignored."
+    fi
     if [[ -n "$last_sysadminctl_output" ]]; then
         printf '%s\n' "$last_sysadminctl_output"
     fi
