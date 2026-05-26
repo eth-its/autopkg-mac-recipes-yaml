@@ -21,3 +21,4 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   ARCH: AppleSilicon
+  SP_EXECUTABLE_COMMAND: no_app_bundle
