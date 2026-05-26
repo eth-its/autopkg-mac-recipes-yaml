@@ -5,7 +5,8 @@
 
 # install if not present
 if [[ ! -f '/usr/local/bin/RemoteUpdateManager' ]]; then
-    jamf policy -event AdobeRUM-install
+    if [[ $(ioreg|grep -c AppleARMCPU) -gt 0 ]] ; then platform=arm64 ; else platform=x86_64; fi 
+    jamf policy -event AdobeRUM-$platform-install
 fi
 
 # log file
