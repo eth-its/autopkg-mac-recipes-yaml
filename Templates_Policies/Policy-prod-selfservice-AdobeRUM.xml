@@ -26,9 +26,6 @@
             <computers/>
             <computer_groups>
                 <computer_group>
-                    <name>Adobe Creative Cloud auto-update</name>
-                </computer_group>
-                <computer_group>
                     <name>Adobe Creative Cloud apps up to date</name>
                 </computer_group>
             </computer_groups>
