@@ -4,7 +4,7 @@
 # Uninstall MATLAB
 
 # matlab version
-matlab_version=%MAJOR_VERSION%
+matlab_version=$4
 
 function silent_app_quit() {
     # silently kill the application.
