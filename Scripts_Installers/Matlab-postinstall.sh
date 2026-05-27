@@ -9,6 +9,9 @@
 #
 #######################################################################
 
+# prevent machine sleep
+/usr/bin/caffeinate & echo $! >/tmp/coffeepid
+
 # matlab version (use Jamf Parameter 4)
 matlab_version="$4"
 
@@ -70,6 +73,8 @@ if [[ $floating_app_installed = 0 && $node_app_installed = 0 ]]; then
     fi
     if [[ ! -f /Library/Management/MATLAB/${major_version}/install ]] ; then
     echo "MATLAB Installer still not present! Exiting."
+    pkill -F /tmp/coffeepid
+    rm -f /tmp/coffeepid
     exit 1
     fi
     # run the installer
@@ -82,6 +87,8 @@ if [[ $floating_app_installed = 0 && $node_app_installed = 0 ]]; then
         fi
     else
         echo "Failed to install application so aborting!"
+        pkill -F /tmp/coffeepid
+        rm -f /tmp/coffeepid
         exit 1
     fi
 
@@ -91,6 +98,8 @@ if [[ $floating_app_installed = 0 && $node_app_installed = 0 ]]; then
         /bin/rm -rf "/Library/Management/MATLAB/tmp_install"
     else
         echo "Failed to move application so aborting!"
+        pkill -F /tmp/coffeepid
+        rm -f /tmp/coffeepid
         exit 1
     fi
 
@@ -108,6 +117,8 @@ fi
 # check again - if it didn't work, we quit
 if [[ ! -d "$matlab_path" ]]; then
     echo "MATLAB still not installed! Exiting."
+    pkill -F /tmp/coffeepid
+    rm -f /tmp/coffeepid
     exit 1
 fi
 
@@ -204,3 +215,6 @@ elif [[ $desired_license == "Node" ]]; then
 else
     echo "No license type selected. Nothing to do!"
 fi
+
+pkill -F /tmp/coffeepid
+rm -f /tmp/coffeepid
