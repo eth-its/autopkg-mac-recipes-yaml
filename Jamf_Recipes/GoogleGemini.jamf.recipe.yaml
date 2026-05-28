@@ -11,7 +11,7 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     Google's AI assistant. Get help with writing, planning, brainstorming, and more.
     
-    Please make sure to read the ETH AI Guidelines: https://ethz.ch/staffnet/en/news-and-events/internal-news/archive/2025/09/new-guidelines-for-the-safe-use-of-ai-at-eth-zurich.html
+    Please make sure to read the [ETH AI Guidelines](https://ethz.ch/staffnet/en/news-and-events/internal-news/archive/2025/09/new-guidelines-for-the-safe-use-of-ai-at-eth-zurich.html)
 
     Version: %version%
     Category: %PKG_CATEGORY%
