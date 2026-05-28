@@ -1,0 +1,24 @@
+Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.AdobeRUM-x86_64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Adobe Remote Update Manager
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobeRUM-x86_64
+  EXTENSION_ATTRIBUTE_NAME: Adobe RUM Version
+  EXTENSION_ATTRIBUTE_SCRIPT: AdobeRUM-EA.zsh
+  PKG_CATEGORY: Tools & Accessories
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA-platform.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  SELFSERVICE_ICON: Adobe Creative Cloud 5.3.png
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  ARCH: MacIntel
+  SP_EXECUTABLE_COMMAND: no_app_bundle

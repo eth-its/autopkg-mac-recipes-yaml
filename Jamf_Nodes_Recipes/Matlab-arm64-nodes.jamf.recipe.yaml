@@ -57,7 +57,9 @@ Input:
 
     If the Node License is already installed, the Floating license will replace it, and it will be stored elsewhere on your drive, so that you can re-apply it later if required.
 
-    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to power.
+
+    Please note that Self Service may indicate 'complete' before the application is actually available in your Applications folder.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -75,7 +77,9 @@ Input:
 
     If the Floating License is already installed, it will be moved and stored elsewhere on your drive, so that you can re-apply it later if required. If the Node license has previously already been activated on this computer, it will be moved back into place. Otherwise, you will have to activate the Node license after installation.
 
-    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to the mains and does not go to sleep.
+    This is a very large package (>20 GB) and may take a long time to install. We do not recommend installing it on an external Wi-Fi network or over VPN. Please ensure that your computer is connected to power.
+
+    Please note that Self Service may indicate 'complete' before the application is actually available in your Applications folder.
 
     Version: %version%
     Category: %PKG_CATEGORY%
