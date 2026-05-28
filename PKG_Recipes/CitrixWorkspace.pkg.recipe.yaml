@@ -1,0 +1,98 @@
+Description: Downloads the latest Citrix Workspace installer package and creates an installer package which works in all deployment scenarios.
+Identifier: com.github.eth-its-recipes.pkg.citrixworkspace
+ParentRecipe: com.github.eth-its-recipes.download.citrixworkspace
+MinimumVersion: 1.0.0
+
+Input:
+  NAME: Citrix Workspace
+  VENDOR: Citrix
+  SOFTWARETITLE: Workspace
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/com.citrix.ICAClient.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+
+  - Processor: Versioner
+    Comment: Get version from the pkg
+    Arguments:
+      plist_version_key: CFBundleShortVersionString
+      input_plist_path: "%RECIPE_CACHE_DIR%/payload/Applications/Citrix Workspace.app/Contents/Info.plist"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Scripts: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: FileMover
+    Arguments:
+      source: "%RECIPE_CACHE_DIR%/pkgroot/Scripts"
+      target: "%RECIPE_CACHE_DIR%/Scripts"
+
+  - Processor: FileCreator
+    Arguments:
+      file_mode: "0755"
+      file_content: |-
+        #!/bin/bash
+        
+        PKG="${0%/*}/Install Citrix Workspace.pkg"
+        ERROR=0
+        
+        if [[ -f "$PKG" ]]; then
+        
+        	CURRENT_USER=$(/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }')
+        
+        	if [[ -n "$CURRENT_USER" ]] ;then
+        
+        		# get path to user's home directory
+        		USER_HOME=$(/usr/bin/dscl . -read "/Users/$CURRENT_USER" NFSHomeDirectory | /usr/bin/sed 's/^[^\/]*//g')
+        
+        		export HOME="$USER_HOME"
+        
+        	else
+        		export HOME="/var/root"
+        	fi
+        
+        	/usr/sbin/installer -pkg "$PKG" -target "$3"
+        
+        	if [[ $? -ne 0 ]]; then
+        		/usr/bin/logger -t "${0##*/}" "ERROR! Installation of package $PKG failed"
+        		ERROR=1
+        	fi
+        
+        else
+        	/usr/bin/logger -t "${0##*/}" "ERROR! Package $PKG not found"
+        	ERROR=1
+        fi
+        
+        exit $ERROR
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCopier
+    Arguments:
+      source_pkg: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/Scripts/Install Citrix Workspace.pkg"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgname: "%VENDOR%_%SOFTWARETITLE%_%version%"
+        pkgtype: flat
+        id: com.citrix.workspace.app.pkg
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/payload"
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/Scripts"
