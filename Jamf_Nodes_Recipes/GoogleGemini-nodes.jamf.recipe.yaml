@@ -4,5 +4,5 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
 MinimumVersion: "2.3"
 
 Input:
-  NAME: draw.io
+  NAME: Google Gemini
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleGemini
