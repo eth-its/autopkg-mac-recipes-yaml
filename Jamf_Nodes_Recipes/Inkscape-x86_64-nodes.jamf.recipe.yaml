@@ -1,0 +1,13 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.Inkscape-x86_64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Inkscape
+  PLATFORM: x86_64
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Inkscape-x86_64
+  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: Inkscape 1.2.png
