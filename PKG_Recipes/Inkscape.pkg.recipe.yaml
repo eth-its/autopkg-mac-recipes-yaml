@@ -1,0 +1,22 @@
+Description: |-
+  Downloads the latest version of Inkscape and builds a package.
+  If you need to deploy both Intel and Apple Silicon versions of this app, use the NAME input variable
+  in your override to add architecture information to your package name (e.g., Inkscape-Intel).
+Identifier: com.github.eth-its-recipes.pkg.Inkscape
+ParentRecipe: com.github.hansen-m.download.Inkscape
+MinimumVersion: 1.0.0
+
+Input:
+  NAME: Inkscape
+  PLATFORM: X86_64
+
+Process:
+  - Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
+
+  - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"

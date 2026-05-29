@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Inkscape-x86_64
 MinimumVersion: "2.3"
-ParentRecipe: com.github.homebysix.pkg.Inkscape
+ParentRecipe: com.github.eth-its-recipes.pkg.Inkscape
 
 Input:
   NAME: Inkscape
