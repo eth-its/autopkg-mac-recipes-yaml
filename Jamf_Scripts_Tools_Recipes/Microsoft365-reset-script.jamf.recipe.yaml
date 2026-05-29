@@ -1,0 +1,56 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Microsoft365-reset-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Microsoft 365 Reset
+  USERS_GROUP_NAME: "All Managed Clients"
+  USERS_GROUP_TEMPLATE: SmartGroup-script-selfservice.xml
+  TESTING_GROUP_NAME: Testing
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-script-selfservice-parameters.xml
+  POLICY_NAME: "%NAME%"
+  SCRIPT_NAME: Microsoft-365-Reset.zsh
+  SCRIPT_PRIORITY: After
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  SELFSERVICE_DESCRIPTION: "A comprehensive swiss-army-knife solution to reset different aspects of the M365 applications. Use it if you have trouble with your Sign-in or License, or need to remove components."
+  SELFSERVICE_ICON: Microsoft365Reset.png
+  INSTALL_BUTTON_TEXT: Reset
+  REINSTALL_BUTTON_TEXT: Re-reset
+  FORCE_DESCRIPTION: "false"
+  PARAMETER4_LABEL: Execution Mode (self-service or silent)
+  PARAMETER5_LABEL: Comma-separated list of actions to be presented
+  PARAMETER6_LABEL: ""
+  PARAMETER7_LABEL: ""
+  PARAMETER8_LABEL: ""
+  PARAMETER9_LABEL: ""
+  PARAMETER10_LABEL: ""
+  PARAMETER11_LABEL: ""
+  PARAMETER4_VALUE: "self-service"
+  PARAMETER5_VALUE: "reset_factory,reset_word,reset_excel,reset_powerpoint,reset_outlook,remove_outlook_data,reset_onenote,remove_onenote_data,reset_onedrive,reset_teams, reset_teams_force,reset_autoupdate,reset_license,reset_credentials,remove_office,remove_acrobat_addin,remove_zoomplugin,remove_webexpt"
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
