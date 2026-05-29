@@ -16,4 +16,5 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: IMODVersion
   EXTENSION_ATTRIBUTE_SCRIPT: IMOD-EA.zsh
 
-  SP_EXECUTABLE_COMMAND: no_app_bundle
+  SP_EXECUTABLE_COMMAND: "open '/Applications/IMOD/bin/imod'"
+  SP_PROCESS_NAME: '3dmod'

@@ -6,6 +6,8 @@ consoleuser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /l
 caffeinate -d -i -m -u &
 caffeinatepid=$!
 
+pkill 3dmod
+
 # remove the entire application directory
 rm -rf /Applications/IMOD/
 pkgutil --forget edu.colorado.bio3d.IMOD / 
