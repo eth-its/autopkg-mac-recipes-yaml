@@ -61,6 +61,15 @@ Process:
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      replace_script: True
+      
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
