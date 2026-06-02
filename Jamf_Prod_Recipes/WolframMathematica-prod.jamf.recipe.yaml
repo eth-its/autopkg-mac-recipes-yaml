@@ -1,0 +1,22 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.WolframMathematica-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-prod
+
+Input:
+  NAME: "Wolfram Mathematica"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.WolframMathematica
+  TRIGGER_POLICY_RUN_COMMAND: jamf policy -event WolframMathematica-license
+  USERS_GROUP_NAME: "%NAME% users"
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOUPDATE_GROUP_NAME: "%NAME% auto-update"
+  PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  INSTALLED_GROUP_NAME: "%NAME% installed"
+  TRIGGER_POLICY_NAME: "Install %NAME%"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
+  AUTOUPDATE_POLICY_NAME: "Auto-update %NAME%"
+  UPDATE_POLICY_NAME: "Update %NAME%"
+  SELFSERVICE_POLICY_NAME: "%NAME%"
+  SELFSERVICE_DISPLAY_NAME: "%NAME%"
+  UPDATE_SELFSERVICE_DISPLAY_NAME: "Update %NAME%"

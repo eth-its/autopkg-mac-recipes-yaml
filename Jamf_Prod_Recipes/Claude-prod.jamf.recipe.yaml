@@ -1,0 +1,11 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Claude-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
+
+Input:
+  NAME: CLaude
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Claude
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
