@@ -8,6 +8,9 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   JSS_INVENTORY_NAME: "Gemini.app"
+  PLATFORM: arm64
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     Google's AI assistant. Get help with writing, planning, brainstorming, and more.
@@ -23,7 +26,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
