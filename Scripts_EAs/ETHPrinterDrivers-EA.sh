@@ -1,5 +1,5 @@
 #!/bin/bash
-version=$(defaults read /var/db/receipts/%PKG_ID%.plist ProductVersion)
+version=$(defaults read /var/db/receipts/%PKG_ID%.plist PackageVersion)
 if [[ ! $version ]]; then
     version="None"
 fi
