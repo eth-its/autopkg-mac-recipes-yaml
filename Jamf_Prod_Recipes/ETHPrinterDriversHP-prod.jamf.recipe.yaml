@@ -16,4 +16,5 @@ Input:
   SELFSERVICE_ICON: ETH Printers.png
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-nonotification.xml
   SCRIPT_NAME: ETHPrinterDriversHP-postinstall.zsh
+  SCRIPT_PATH: "%SCRIPT_NAME%"
   SCRIPT_PRIORITY: After

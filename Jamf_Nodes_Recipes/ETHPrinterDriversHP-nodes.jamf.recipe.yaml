@@ -14,3 +14,5 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   SCRIPT_NAME: ETHPrinterDriversHP-postinstall.zsh
   SCRIPT_PRIORITY: After
+  SCRIPT_PATH: "%SCRIPT_NAME%"
+  SP_EXECUTABLE_COMMAND: "no_app_bundle"

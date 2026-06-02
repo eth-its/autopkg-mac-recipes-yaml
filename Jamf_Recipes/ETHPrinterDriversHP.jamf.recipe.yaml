@@ -16,3 +16,4 @@ Input:
   EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP UniPS Version
   SCRIPT_NAME: ETHPrinterDriversHP-postinstall.zsh
   SCRIPT_PRIORITY: After
+  SCRIPT_PATH: "%SCRIPT_NAME%"
