@@ -1,0 +1,12 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.WolframMathematica-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "Wolfram Mathematica"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.WolframMathematica
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_RUN_COMMAND: jamf policy -event WolframMathematica-license
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
