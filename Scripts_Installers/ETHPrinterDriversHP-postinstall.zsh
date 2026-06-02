@@ -13,3 +13,5 @@ pl_write PackageIdentifier "com.hp.pkg.swls.printer-essentials-UniPS.version"
 pl_write InstallProcessName "installer"
 pl_write InstallPrefixPath "/"
 pl_write InstallDate "${installed_timestamp}"
+chmod 644 ${plist_file}
+xattr -c ${plist_file}

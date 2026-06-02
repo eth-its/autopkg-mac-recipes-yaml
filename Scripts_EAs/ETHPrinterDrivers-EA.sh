@@ -1,6 +1,5 @@
 #!/bin/bash
-pkgutilcmd="/usr/sbin/pkgutil"
-version=$($pkgutilcmd --pkg-info %PKG_ID% | grep version: | sed 's|version: ||')
+version=$(defaults read /var/db/receipts/%PKG_ID% ProductVersion)
 if [[ ! $version ]]; then
     version="None"
 fi
