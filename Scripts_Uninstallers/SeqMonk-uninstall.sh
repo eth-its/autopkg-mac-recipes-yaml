@@ -11,7 +11,7 @@
 appName="SeqMonk"
 
 # kill SeqMonk
-kill -9 "$(ps -A | grep -i seqmonk | grep -v grep | grep -v .sh | awk '{print $1}')"
+kill -9 "$(ps -A | grep -i seqmonk | grep -v grep | grep -v jamf | grep -v .sh | awk '{print $1}')"
 
 # Now remove the app
 echo "Removing application: ${appName}"
