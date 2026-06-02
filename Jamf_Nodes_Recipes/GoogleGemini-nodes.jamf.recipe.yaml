@@ -10,4 +10,4 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleGemini
-  POLICY_TEMPLATE: Policy-untested-selfservice--platform-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
