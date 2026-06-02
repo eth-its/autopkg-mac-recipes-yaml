@@ -10,7 +10,7 @@ Input:
   POLICY_NAME: RStudio EN (Testing)
   SELFSERVICE_DISPLAY_NAME: RStudio EN (Testing)
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
-  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
   SELFSERVICE_ICON: "%NAME% 2021.png"
   SCRIPT_NAME: "R-preinstall-check.sh"
   SCRIPT_PATH: "R-preinstall-check.sh"
