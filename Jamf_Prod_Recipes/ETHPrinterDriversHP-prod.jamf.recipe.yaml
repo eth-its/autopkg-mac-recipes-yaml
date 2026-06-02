@@ -14,3 +14,6 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
   EXTENSION_ATTRIBUTE_VALUE: ^None$|^$
   SELFSERVICE_ICON: ETH Printers.png
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script-nonotification.xml
+  SCRIPT_NAME: ETHPrinterDriversHP-postinstall.zsh
+  SCRIPT_PRIORITY: After

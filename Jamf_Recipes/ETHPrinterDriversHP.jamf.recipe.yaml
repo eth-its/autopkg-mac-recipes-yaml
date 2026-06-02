@@ -14,3 +14,5 @@ Input:
   DRIVER_TYPE: UniPS
   PKG_ID: com.hp.pkg.swls.printer-essentials-UniPS.version
   EXTENSION_ATTRIBUTE_NAME: ETH Printer Drivers HP UniPS Version
+  SCRIPT_NAME: ETHPrinterDriversHP-postinstall.zsh
+  SCRIPT_PRIORITY: After
