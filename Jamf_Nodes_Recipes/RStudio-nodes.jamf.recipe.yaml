@@ -1,6 +1,6 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.RStudio-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-nodes
 MinimumVersion: "2.3"
 
 Input:
@@ -12,3 +12,8 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %LANGUAGE% test version installed"
   POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: "%NAME% 2021.png"
+  SCRIPT_NAME: "R-preinstall-check.sh"
+  SCRIPT_PATH: "R-preinstall-check.sh"
+  SCRIPT_PRIORITY: Before
+  PARAMETER4_LABEL: "Parameter 4"
+  PARAMETER4_VALUE: "None"
