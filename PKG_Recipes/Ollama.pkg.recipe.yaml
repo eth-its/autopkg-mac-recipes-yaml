@@ -14,26 +14,26 @@ Process:
         Applications: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
 
-  - Processor: Copier
-    Arguments:
-      destination_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
-      purge_destination: true
-      source_path: "%pathname%"
+  # - Processor: Copier
+  #   Arguments:
+  #     destination_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
+  #     purge_destination: true
+  #     source_path: "%pathname%"
 
   - Processor: Unarchiver
     Arguments:
-      archive_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
-      destination_path: "%RECIPE_CACHE_DIR%/unarchive"
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/"
       purge_destination: true
 
-  - Processor: Copier
-    Arguments:
-      source_path: "%RECIPE_CACHE_DIR%/unarchive/Ollama.app"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/"
+  # - Processor: Copier
+  #   Arguments:
+  #     source_path: "%RECIPE_CACHE_DIR%/unarchive/Ollama.app"
+  #     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/"
 
   - Processor: Versioner
     Arguments:
-      input_plist_path: "%RECIPE_CACHE_DIR%/unarchive/Ollama.app/Contents/Info.plist"
+      input_plist_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/Ollama.app/Contents/Info.plist"
       plist_version_key: CFBundleShortVersionString
 
   - Processor: PkgCreator
