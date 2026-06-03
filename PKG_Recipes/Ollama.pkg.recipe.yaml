@@ -18,7 +18,7 @@ Process:
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
       purge_destination: true
-      source_path: "%pathname%/downloads/Ollama-%version%.zip"
+      source_path: "%pathname%"
 
   - Processor: Unarchiver
     Arguments:
