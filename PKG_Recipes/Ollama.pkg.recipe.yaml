@@ -1,0 +1,58 @@
+Description: Downloads latest Endnote installer and the license file from a local repository, and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Ollama
+MinimumVersion: "2.3"
+ParentRecipe: com.github.dataJAR-recipes.download.Ollama
+
+Input:
+  NAME: Ollama
+
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
+      purge_destination: true
+      source_path: "%pathname%/downloads/Ollama-%version%.zip"
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/Ollama-%version%.zip"
+      destination_path: "%RECIPE_CACHE_DIR%/unarchive"
+      purge_destination: true
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/unarchive/Ollama.app"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unarchive/Ollama.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: com.electron.ollama.pkg
+        pkgname: Ollama-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/download/Ollama-%version%.zip"
+        - "%RECIPE_CACHE_DIR%/unarchive"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
