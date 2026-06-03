@@ -1,6 +1,12 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+### Install Wolfram Mathematica if not present
+if [[ ! -d /Applications/Wolfram.app ]] ; then 
+echo "Wolfram Mathematica not installed! Running Jamf trigger"
+/usr/local/bin/jamf policy -event "Wolfram Mathematica-install"
+fi
+
 ### Install Wolfram/Mathematica License
 umask 002
 
@@ -17,12 +23,6 @@ if [[ -f "$mathpass_fileloc" ]]; then
     mv "$mathpass_fileloc" "$mathpass_fileloc.bak"
 fi
 
-if [[ "$license_type" == "Floating" ]]; then
-    ## Floating license type
-
-    # Create the LICENSE_FILE
-    echo '!'"$license_server" | tee "$mathpass_fileloc"
-elif [[ "$license_type" == "Node" ]]; then
     ## Node license type
     # the license string consists of the host name, three long codes, the organisation name and a fixed user name, all separated by tabs.
     #
@@ -34,8 +34,10 @@ elif [[ "$license_type" == "Node" ]]; then
     # "235AAAAAAAAAC8DC        4864E34D7AAAAAAAAE6CAF1910    217AAAAA79      Big Org      BigOrg Employee"
 
     # note the third number is determined by some hash of the User Name, so this file must be generated using "Mitarbeiter ETH". It also requires a tab after the name.
-    echo "$host	$license_string	" > "$mathpass_fileloc"
-else
-    echo "ERROR: incorrect license type entered"
-    exit 1
-fi
+    #echo "$host	$license_string	" > "$mathpass_fileloc"
+
+REPLACEME=$(scutil --get LocalHostName)
+cat <<EOT >"$mathpass_fileloc"
+%(*userregistered*)
+${REPLACEME}	${license_string}	
+EOT
