@@ -6,7 +6,8 @@ ParentRecipe: com.github.eth-its-recipes.pkg.Mathematica
 Input:
   NAME: "Wolfram Mathematica"
   PKG_CATEGORY: Science & Math
-
+  JSS_INVENTORY_NAME: "Wolfram.app"
+  
   PARAMETER4_VALUE: "%FLOATING_LICENSE_SERVER%"
   PARAMETER5_VALUE: "%NODE_LICENSE_STRING%"
   PARAMETER6_VALUE: ""
