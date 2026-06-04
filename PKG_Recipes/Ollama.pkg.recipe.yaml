@@ -52,6 +52,6 @@ Process:
   - Processor: PathDeleter
     Arguments:
       path_list:
-        - "%RECIPE_CACHE_DIR%/download/Ollama-%version%.zip"
+        - "%RECIPE_CACHE_DIR%/downloads/Ollama-%version%.zip"
         - "%RECIPE_CACHE_DIR%/unarchive"
         - "%RECIPE_CACHE_DIR%/pkgroot"
