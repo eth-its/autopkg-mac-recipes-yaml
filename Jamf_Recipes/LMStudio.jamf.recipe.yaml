@@ -11,21 +11,26 @@ Input:
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  EXTENSION_ATTRIBUTE_NAME: LMStudioVersion
+  EXTENSION_ATTRIBUTE_SCRIPT: LMStudio-EA.zsh
   PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     LM Studio is a powerful desktop application that allows you to discover, download, and run Large Language Models (LLMs) entirely offline on your personal computer.
     It acts as a local AI lab, providing a user-friendly interface to experiment with open-source models (like Llama, Mistral, and Qwen) without relying on external cloud APIs.
 
+    Please make sure to read the [ETH AI Guidelines](https://ethz.ch/staffnet/en/news-and-events/internal-news/archive/2025/09/new-guidelines-for-the-safe-use-of-ai-at-eth-zurich.html).
+    Tools that use locally run models often still allow to pipe into cloud-models too.
+
     Version: %version%
     Category: %PKG_CATEGORY%
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-platform.xml
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-app-EA-platform.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
@@ -46,6 +51,12 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
