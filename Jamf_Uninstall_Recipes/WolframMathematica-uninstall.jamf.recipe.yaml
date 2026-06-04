@@ -79,12 +79,14 @@ Process:
     Arguments:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       computergroup_name: "%AUTOINSTALL_NODE_GROUP_NAME%"
+      AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_NODE_GROUP_NAME%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       computergroup_name: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
+      AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
       replace_group: False
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
