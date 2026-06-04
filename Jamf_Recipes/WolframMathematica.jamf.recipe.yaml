@@ -121,9 +121,8 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
       SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
-      policy_name: "%POLICY_NODE_NAME%"
+      POLICY_NAME: "%POLICY_NODE_NAME%"
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_NODE_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_NODE_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
@@ -131,17 +130,20 @@ Process:
       POLICY_RUN_COMMAND: "%POLICY_NODE_RUN_COMMAND%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
-      policy_template: "%POLICY_TEMPLATE%"
       SCRIPT_NAME: "%POLICY_FLOATING_SCRIPT_NAME%"
-      policy_name: "%POLICY_FLOATING_NAME%"
+      POLICY_NAME: "%POLICY_FLOATING_NAME%"
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_FLOATING_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_FLOATING_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
       REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
