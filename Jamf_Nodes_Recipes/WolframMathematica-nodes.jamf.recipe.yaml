@@ -1,12 +1,136 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.WolframMathematica-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-nodes
+
 MinimumVersion: "2.3"
 
 Input:
   NAME: "Wolfram Mathematica"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.WolframMathematica
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  POLICY_RUN_COMMAND: jamf policy -event WolframMathematica-license
+
+  PARAMETER4_VALUE: "%FLOATING_LICENSE_SERVER%"
+  PARAMETER5_VALUE: "%NODE_LICENSE_STRING%"
+  PARAMETER6_VALUE: ""
+  PARAMETER7_VALUE: ""
+  PARAMETER8_VALUE: ""
+  PARAMETER9_VALUE: ""
+  PARAMETER10_VALUE: ""
+  PARAMETER11_VALUE: ""
+
+  PARAMETER4_LABEL: "License Server Name"
+  PARAMETER5_LABEL: "Node License String"
+
+  POLICY_NODE_NAME: "%NAME% Node (Testing)"
+  SELFSERVICE_NODE_DESCRIPTION: "Install Test version %version% of %NAME% , Node license. Should work without ETHZ network connectivity"
+  SELFSERVICE_NODE_DISPLAY_NAME: "%NAME% Node (Testing)"
+  INSTALL_NODE_BUTTON_TEXT: "Install %version% Node"
+  REINSTALL_NODE_BUTTON_TEXT: "Install %version% Node"
+  POLICY_NODE_RUN_COMMAND: "echo 'Installation of %POLICY_NODE_NAME% complete'"
+  POLICY_NODE_SCRIPT_NAME: "WolframMathematicaLicense-node-install.zsh"
+ 
+  POLICY_FLOATING_NAME: "%NAME% Floating (Testing)"
+  SELFSERVICE_FLOATING_DESCRIPTION: "Install Test version %version% of %NAME% , Floating license. Should NOT work without ETHZ network connectivity"
+  SELFSERVICE_FLOATING_DISPLAY_NAME: "%NAME% Floating (Testing)"
+  INSTALL_FLOATING_BUTTON_TEXT: "Install %version% Floating"
+  REINSTALL_FLOATING_BUTTON_TEXT: "Install %version% Floating"
+  POLICY_FLOATING_RUN_COMMAND: "echo 'Installation of %POLICY_FLOATING_NAME% complete'"
+  POLICY_FLOATING_SCRIPT_NAME: "WolframMathematicaLicense-floating-install.zsh"
+
+  SCRIPT_PRIORITY: After
+
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_CATEGORY: Untested
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-parameters.xml
+  SCRIPT_CATEGORY: Untested
+  
+  UPDATE_PREDICATE: "pkg_metadata_updated == False"
+  SP_EXECUTABLE_COMMAND: "open '/Applications/Wolfram.app'"
+  SP_PROCESS_NAME: "Wolfram"
+
+  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
+      pkg_category: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_NODE_SCRIPT_NAME%"
+      script_path: "%POLICY_NODE_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
+      policy_name: "%POLICY_NODE_NAME%"
+      SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_NODE_DISPLAY_NAME%"
+      SELFSERVICE_DESCRIPTION: "%SELFSERVICE_NODE_DESCRIPTION%"
+      INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
+      REINSTALL_BUTTON_TEXT: "%REINSTALL_NODE_BUTTON_TEXT%"
+      POLICY_RUN_COMMAND: "%POLICY_NODE_RUN_COMMAND%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      SCRIPT_NAME: "%POLICY_FLOATING_SCRIPT_NAME%"
+      policy_name: "%POLICY_FLOATING_NAME%"
+      SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_FLOATING_DISPLAY_NAME%"
+      SELFSERVICE_DESCRIPTION: "%SELFSERVICE_FLOATING_DESCRIPTION%"
+      INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
+      REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
+      POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
