@@ -6,4 +6,5 @@ MinimumVersion: "2.3"
 Input:
   NAME: Cursor
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Cursor
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SP_PROCESS_NAME: "Cursor.app"

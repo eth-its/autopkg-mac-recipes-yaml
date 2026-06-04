@@ -6,3 +6,4 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 Input:
   NAME: Cursor
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Cursor
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
