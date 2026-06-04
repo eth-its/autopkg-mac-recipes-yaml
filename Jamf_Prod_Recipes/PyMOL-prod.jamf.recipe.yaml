@@ -12,10 +12,9 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Tools & Accessories"
-  SCRIPT_NAME_1: "ITShop_license_check.sh"
-  SCRIPT_PRIORITY: "After"
-  PARAMETER4_VALUE: "PyMOL" 
-  PARAMETER5_VALUE: "%NAME%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_c6bc960d36a53e49123af80d61449b0a76fe104d3408ead0389272766e79c472" 
-  PARAMETER7_VALUE: "NONE" 
-  PARAMETER8_VALUE: "NO"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "PyMOL" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_c6bc960d36a53e49123af80d61449b0a76fe104d3408ead0389272766e79c472" 
+  PARAMETER7_VALUE_ITSHOP: "NONE" 

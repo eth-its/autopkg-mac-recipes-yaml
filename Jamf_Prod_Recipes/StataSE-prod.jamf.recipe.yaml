@@ -30,10 +30,9 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Science & Math"
-  SCRIPT_NAME_1: "ITShop_license_check.sh"
-  SCRIPT_PRIORITY: "After"
-  PARAMETER4_VALUE: "Stata" 
-  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_eef96a06d2d4e7d27a0418ceabc400106c10c4233a7970843e36214068c76700" 
-  PARAMETER7_VALUE: "%MAJOR_VERSION%" 
-  PARAMETER8_VALUE: "NO"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "Stata" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME% %MAJOR_VERSION%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_eef96a06d2d4e7d27a0418ceabc400106c10c4233a7970843e36214068c76700" 
+  PARAMETER7_VALUE_ITSHOP: "%MAJOR_VERSION%" 

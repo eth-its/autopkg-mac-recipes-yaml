@@ -1,7 +1,7 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.CarbonCopyCloner-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-prod-no-users
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
   NAME: Carbon Copy Cloner
@@ -27,10 +27,9 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Tools & Accessories"
-  SCRIPT_NAME_1: "ITShop_license_check.sh"
-  SCRIPT_PRIORITY: "After"
-  PARAMETER4_VALUE: "Carbon Copy Cloner" 
-  PARAMETER5_VALUE: "%NAME%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_c00779117a56672cdc5f4cd92fb5742eca6123283f8cf65604d5a24da5c84346" 
-  PARAMETER7_VALUE: "NONE" 
-  PARAMETER8_VALUE: "NO"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "Carbon Copy Cloner" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_c00779117a56672cdc5f4cd92fb5742eca6123283f8cf65604d5a24da5c84346" 
+  PARAMETER7_VALUE_ITSHOP: "NONE" 

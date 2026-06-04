@@ -32,10 +32,9 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Science & Math"
-  SCRIPT_NAME_1: "ITShop_license_check.sh"
-  SCRIPT_PRIORITY: "After"
-  PARAMETER4_VALUE: "ChemDraw Professional" 
-  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION% %LANGUAGE%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_937fca61baaedb3611f04019845193b99917ac077ba8c2f96b7fffe92bcd9db2" 
-  PARAMETER7_VALUE: "%MAJOR_VERSION%" 
-  PARAMETER8_VALUE: "NO"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "ChemDraw Professional" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME% %MAJOR_VERSION% %LANGUAGE%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_937fca61baaedb3611f04019845193b99917ac077ba8c2f96b7fffe92bcd9db2" 
+  PARAMETER7_VALUE_ITSHOP: "%MAJOR_VERSION%" 

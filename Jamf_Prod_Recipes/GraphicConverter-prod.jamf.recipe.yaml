@@ -31,10 +31,9 @@ Input:
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Imaging & Design"
-  SCRIPT_NAME_1: "ITShop_license_check.sh"
-  SCRIPT_PRIORITY: "After"
-  PARAMETER4_VALUE: "GraphicConverter" 
-  PARAMETER5_VALUE: "%NAME% %MAJOR_VERSION%-install" 
-  PARAMETER6_VALUE: "https://ics.services.jamfcloud.com/icon/hash_e0f53a5b24f1e589794f618269aba01dd9fb68ab010189ca780f75046b00f0ca" 
-  PARAMETER7_VALUE: "%MAJOR_VERSION%" 
-  PARAMETER8_VALUE: "NO"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "GraphicConverter" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME% %MAJOR_VERSION%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_e0f53a5b24f1e589794f618269aba01dd9fb68ab010189ca780f75046b00f0ca" 
+  PARAMETER7_VALUE_ITSHOP: "%MAJOR_VERSION%" 
