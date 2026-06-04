@@ -8,6 +8,7 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.VisualStudioCode
   SCRIPT_NAME: VisualStudioCode-postinstall.zsh
   SCRIPT_PRIORITY: After
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SELFSERVICE_ICON: "%NAME% 1.65.png"

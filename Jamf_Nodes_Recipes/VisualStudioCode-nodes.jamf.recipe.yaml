@@ -7,6 +7,7 @@ Input:
   NAME: Visual Studio Code
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.VisualStudioCode
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
   SCRIPT_NAME: VisualStudioCode-postinstall.zsh
   SCRIPT_PATH: VisualStudioCode-postinstall.zsh
   SELFSERVICE_ICON: "%NAME% 1.65.png"
