@@ -183,7 +183,7 @@ Process:
       TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
       SCRIPT_NAME: "%TRIGGER_NODE_SCRIPT_NAME%"
       policy_template: "%TRIGGER_SCRIPT_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%TRIGGER_NODE_POLICY_NAME%"
       icon: ""
       replace_policy: "True"
 
@@ -194,7 +194,7 @@ Process:
       TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
       SCRIPT_NAME: "%TRIGGER_FLOATING_SCRIPT_NAME%"
       policy_template: "%TRIGGER_SCRIPT_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%TRIGGER_FLOATING_POLICY_NAME%"
       icon: ""
       replace_policy: "True"
 
@@ -216,7 +216,7 @@ Process:
       TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%AUTOINSTALL_FLOATING_POLICY_NAME%"
       icon: ""
       replace_policy: "True"
 
@@ -249,7 +249,7 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_NODE_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy for floating license
@@ -262,7 +262,7 @@ Process:
       REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 
