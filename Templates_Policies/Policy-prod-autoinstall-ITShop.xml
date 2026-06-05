@@ -34,12 +34,12 @@
     <scripts>
         <size>1</size>
         <script>
-            <name>%SCRIPT_NAME_1%</name>
-            <priority>%SCRIPT_PRIORITY%</priority>
-            <parameter4>%PARAMETER4_VALUE%</parameter4>
-            <parameter5>%PARAMETER5_VALUE%</parameter5>
-            <parameter6>%PARAMETER6_VALUE%</parameter6>
-            <parameter7>%PARAMETER7_VALUE%</parameter7>
+            <name>%SCRIPT_NAME_ITSHOP%</name>
+            <priority>%SCRIPT_PRIORITY_ITSHOP%</priority>
+            <parameter4>%PARAMETER4_VALUE_ITSHOP%</parameter4>
+            <parameter5>%PARAMETER5_VALUE_ITSHOP%</parameter5>
+            <parameter6>%PARAMETER6_VALUE_ITSHOP%</parameter6>
+            <parameter7>%PARAMETER7_VALUE_ITSHOP%</parameter7>
             <parameter8>YES</parameter8>
             <parameter9/>
             <parameter10/>
