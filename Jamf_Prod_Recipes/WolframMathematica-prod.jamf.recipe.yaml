@@ -159,20 +159,20 @@ Process:
       ISG_GROUP_NAME: "%NAME% Node ISG-licensed"
       computergroup_name: "%AUTOINSTALL_NODE_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       ISG_GROUP_NAME: "%NAME% Floating ISG-licensed"
       computergroup_name: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%AUTOUPDATE_GROUP_NAME%"
       computergroup_template: "%AUTOUPDATE_GROUP_TEMPLATE%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
