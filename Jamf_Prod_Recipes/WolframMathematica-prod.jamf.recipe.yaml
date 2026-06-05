@@ -170,7 +170,6 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Trigger-only policy for app installation
     Arguments:
-      #POLICY_NAME: "%TRIGGER_POLICY_NAME%"
       policy_template: "%TRIGGER_POLICY_TEMPLATE%"
       policy_name: "%TRIGGER_POLICY_NAME%"
       icon: ""
@@ -179,7 +178,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Trigger-only policy for node licensing
     Arguments:
-      #POLICY_NAME: "%TRIGGER_NODE_POLICY_NAME%"
+      TRIGGER_POLICY_NAME: "%TRIGGER_NODE_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
       SCRIPT_NAME: "%TRIGGER_NODE_SCRIPT_NAME%"
       policy_template: "%TRIGGER_SCRIPT_POLICY_TEMPLATE%"
@@ -190,7 +189,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Trigger-only policy for floating licensing
     Arguments:
-      POLICY_NAME: "%TRIGGER_FLOATING_POLICY_NAME%"
+      TRIGGER_POLICY_NAME: "%TRIGGER_FLOATING_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
       SCRIPT_NAME: "%TRIGGER_FLOATING_SCRIPT_NAME%"
       policy_template: "%TRIGGER_SCRIPT_POLICY_TEMPLATE%"
