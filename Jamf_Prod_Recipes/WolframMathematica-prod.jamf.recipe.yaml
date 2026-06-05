@@ -37,6 +37,7 @@ Input:
 
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: "%NAME%-install"
+  PAYLOAD_TRIGGER_NAME: "%NAME%-install"
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
@@ -228,6 +229,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Auto-update policy
     Arguments:
+      TRIGGER_NAME: "%PAYLOAD_TRIGGER_NAME%"
       policy_template: "%AUTOUPDATE_POLICY_TEMPLATE%"
       policy_name: "%AUTOUPDATE_POLICY_NAME%"
       icon: ""
@@ -236,6 +238,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service update policy
     Arguments:
+      TRIGGER_NAME: "%PAYLOAD_TRIGGER_NAME%"
       policy_template: "%UPDATE_POLICY_TEMPLATE%"
       policy_name: "%UPDATE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
