@@ -100,12 +100,13 @@ Input:
 
   SELFSERVICE_ICON: "%NAME%.png"
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers.xml
+  SELFSERVICE_POLICY_CATEGORY: "Science & Math"
 
   PROD_PREDICATE: "ready_to_stage == False"
 
     # Keys for reporting only
   SELFSERVICE_POLICY_NAME: "Wolfram Mathematica"
-  #PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+  PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
