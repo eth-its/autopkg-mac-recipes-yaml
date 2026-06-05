@@ -156,12 +156,6 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_NAME%"
-      computergroup_template: "%AUTOUPDATE_ALL_SOFTWARE_GROUP_TEMPLATE%"
-      replace_group: "False"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
-    Arguments:
       ISG_GROUP_NAME: "%NAME% Node ISG-licensed"
       computergroup_name: "%AUTOINSTALL_NODE_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
