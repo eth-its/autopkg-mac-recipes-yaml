@@ -210,7 +210,7 @@ Process:
       TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_NODE_GROUP_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
-      policy_name: "%TRIGGER_NODE_NAME%"
+      policy_name: "%AUTOINSTALL_NODE_POLICY_NAME%"
       icon: ""
       replace_policy: "True"
 
