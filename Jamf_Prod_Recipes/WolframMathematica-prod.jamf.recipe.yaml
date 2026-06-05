@@ -99,6 +99,7 @@ Input:
   POLICY_FLOATING_SCRIPT_NAME: "WolframMathematicaLicense-floating-install.zsh"
 
   SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers.xml
 
   PROD_PREDICATE: "ready_to_stage == False"
 
@@ -204,7 +205,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Auto-install policy for node license
     Arguments:
-      POLICY_NAME: "%AUTOINSTALL_NODE_POLICY_NAME%"
+      AUTOINSTALL_POLICY_NAME: "%AUTOINSTALL_NODE_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_NODE_GROUP_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
@@ -215,7 +216,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Auto-install policy for floating license
     Arguments:
-      POLICY_NAME: "%AUTOINSTALL_FLOATING_POLICY_NAME%"
+      AUTOINSTALL_POLICY_NAME: "%AUTOINSTALL_FLOATING_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
@@ -242,29 +243,25 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy for node license
     Arguments:
-      SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
-      POLICY_NAME: "%POLICY_NODE_NAME%"
+      TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
+      SELFSERVICE_POLICY_NAME: "%POLICY_NODE_NAME%"
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_NODE_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_NODE_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
-      REINSTALL_BUTTON_TEXT: "%REINSTALL_NODE_BUTTON_TEXT%"
-      POLICY_RUN_COMMAND: "%POLICY_NODE_RUN_COMMAND%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
-      policy_template: "%POLICY_TEMPLATE%"
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%POLICY_NODE_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Comment: Self Service install policy for floating license
     Arguments:
-      SCRIPT_NAME: "%POLICY_FLOATING_SCRIPT_NAME%"
-      POLICY_NAME: "%POLICY_FLOATING_NAME%"
+      TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
+      SELFSERVICE_POLICY_NAME: "%POLICY_FLOATING_NAME%"
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_FLOATING_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_FLOATING_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
-      REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
-      POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
-      policy_template: "%POLICY_TEMPLATE%"
+      policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
