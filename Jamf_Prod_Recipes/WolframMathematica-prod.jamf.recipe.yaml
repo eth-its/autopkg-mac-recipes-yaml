@@ -102,6 +102,10 @@ Input:
 
   PROD_PREDICATE: "ready_to_stage == False"
 
+    # Keys for reporting only
+  SELFSERVICE_POLICY_NAME: "Wolfram Mathematica"
+  #PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
