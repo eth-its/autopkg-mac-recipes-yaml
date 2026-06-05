@@ -47,8 +47,8 @@ Input:
   AUTOINSTALL_FLOATING_GROUP_NAME: "%NAME% Floating auto-install" #
   AUTOINSTALL_NODE_POLICY_NAME: "Auto-install %NAME% Node" 
   AUTOINSTALL_FLOATING_POLICY_NAME: "Auto-install %NAME% Floating"
-  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
-  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
   AUTOINSTALL_POLICY_FREQUENCY: Once every day
 
@@ -100,7 +100,7 @@ Input:
   POLICY_FLOATING_SCRIPT_NAME: "WolframMathematicaLicense-floating-install.zsh"
 
   SELFSERVICE_ICON: "%NAME%.png"
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
   SELFSERVICE_POLICY_CATEGORY: "Science & Math"
 
   PROD_PREDICATE: "ready_to_stage == False"
@@ -108,6 +108,16 @@ Input:
     # Keys for reporting only
   SELFSERVICE_POLICY_NAME: "Wolfram Mathematica"
   PKG_CATEGORY: "%SELFSERVICE_POLICY_CATEGORY%"
+
+  # ITShop integration - param4,5,and templates below due to custom recipe
+  FORCE_DESCRIPTION: "false"
+  ISG_GROUP_NAME: "%NAME% ISG-licensed"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  #PARAMETER4_VALUE_ITSHOP: "Mathematica Node"
+  #PARAMETER5_VALUE_ITSHOP: "%NAME%-install"
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_8af050314f4aa53e97e98f33a04c3e31b3ac2027e66c90547e26d5ba8f285217" 
+  PARAMETER7_VALUE_ITSHOP: "NONE" 
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -152,12 +162,14 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      ISG_GROUP_NAME: "%NAME% Node ISG-licensed"
       computergroup_name: "%AUTOINSTALL_NODE_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       replace_group: "False"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      ISG_GROUP_NAME: "%NAME% Floating ISG-licensed"
       computergroup_name: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
       computergroup_template: "%AUTOINSTALL_GROUP_TEMPLATE%"
       replace_group: "False"
@@ -210,6 +222,8 @@ Process:
       AUTOINSTALL_POLICY_NAME: "%AUTOINSTALL_NODE_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_NODE_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_NODE_GROUP_NAME%"
+      PARAMETER4_VALUE_ITSHOP: "Mathematica Node"
+      PARAMETER5_VALUE_ITSHOP: "%TRIGGER_NODE_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOINSTALL_NODE_POLICY_NAME%"
       icon: ""
@@ -221,6 +235,8 @@ Process:
       AUTOINSTALL_POLICY_NAME: "%AUTOINSTALL_FLOATING_POLICY_NAME%"
       TRIGGER_NAME: "%TRIGGER_FLOATING_NAME%"
       AUTOINSTALL_GROUP_NAME: "%AUTOINSTALL_FLOATING_GROUP_NAME%"
+      PARAMETER4_VALUE_ITSHOP: "Mathematica Floating"
+      PARAMETER5_VALUE_ITSHOP: "%TRIGGER_FLOATING_NAME%"
       policy_template: "%AUTOINSTALL_POLICY_TEMPLATE%"
       policy_name: "%AUTOINSTALL_FLOATING_POLICY_NAME%"
       icon: ""
@@ -252,6 +268,8 @@ Process:
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_NODE_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_NODE_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
+      PARAMETER4_VALUE_ITSHOP: "Mathematica Node"
+      PARAMETER5_VALUE_ITSHOP: "%TRIGGER_NODE_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
@@ -265,6 +283,8 @@ Process:
       SELFSERVICE_DISPLAY_NAME: "%SELFSERVICE_FLOATING_DISPLAY_NAME%"
       SELFSERVICE_DESCRIPTION: "%SELFSERVICE_FLOATING_DESCRIPTION%"
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
+      PARAMETER4_VALUE_ITSHOP: "Mathematica Floating"
+      PARAMETER5_VALUE_ITSHOP: "%TRIGGER_FLOATING_NAME%"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
