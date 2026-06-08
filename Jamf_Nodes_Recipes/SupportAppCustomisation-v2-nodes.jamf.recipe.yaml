@@ -37,7 +37,7 @@ Process:
       script_path: "%SCRIPT_PATH%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: True
-      skip_key_substitution: True
+      skip_script_key_substitution: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
