@@ -5,61 +5,110 @@ cat > /Library/Management/ETHZ/SupportApp/status_update.zsh << "EOF"
 
 # Support App Extension - Status update (Runs every time the Support app is opened)
 
-# Support App preference plist
+# Support App preference plists
 support_pref_file="/Library/Preferences/nl.root3.support.plist"
 managed_pref_file="/Library/Managed Preferences/nl.root3.support.plist"
-rows_template="/Library/Management/ETHZ/SupportApp/Supportapp_rows_template.plist"
+support_app_dir="/Library/Management/ETHZ/SupportApp"
+rows_template="${support_app_dir}/Supportapp_rows_template.plist"
+weather_cache="${support_app_dir}/currentweather.txt"
 
-# Get admin and system defaults
-SupportGroup=$(defaults read ${managed_pref_file} SupportGroup)
-TicketLink=$(defaults read ${managed_pref_file} SecondRowLinkLeft)
-KBTitle=$(defaults read ${managed_pref_file} FirstRowSubtitleLeft)
-KBLink=$(defaults read ${managed_pref_file} FirstRowLinkLeft)
-serialNumber=$(ioreg -c "IOPlatformExpertDevice" | awk -F '"' '/IOPlatformSerialNumber/ {print $4}')
-selfservice=$(defaults read /Applications/ETH\ Self\ Service.app/Contents/Info.plist CFBundleIdentifier || echo com.jamf.selfserviceplus)
+read_default() {
+    local plist="$1"
+    local key="$2"
+    local fallback="$3"
+    local value
 
-plist_commands=()
+    value=$(/usr/bin/defaults read "$plist" "$key" 2>/dev/null)
+    if [[ -n "$value" ]]; then
+        /bin/echo -n "$value"
+    else
+        /bin/echo -n "$fallback"
+    fi
+}
+
 add_set_command() {
     local key_path="$1"
     local value="$2"
+
     [[ -n "$value" ]] && plist_commands+=(-c "Set ${key_path} ${value}")
 }
 
-# make sure the Rows dict exists already, if not, import the template
-defaults read /Library/Preferences/nl.root3.support.plist Rows >/dev/null
-if [[ $? -gt 0 ]] ; then
-   /usr/libexec/PlistBuddy -c "Merge ${rows_template}" "$support_pref_file"
+refresh_weather_cache() {
+    local cache_age=0
+    local tmp_file="${weather_cache}.$$"
+
+    if [[ -f "$weather_cache" ]]; then
+        cache_age=$(( $(/bin/date +%s) - $(/usr/bin/stat -f %m "$weather_cache" 2>/dev/null || /bin/echo 0) ))
+    fi
+
+    if [[ ! -s "$weather_cache" || "$cache_age" -gt 3600 ]]; then
+        /bin/mkdir -p "$support_app_dir"
+        if /usr/bin/curl -fsS --max-time 4 "https://wttr.in/?format=%c%20%t" -o "$tmp_file" 2>/dev/null; then
+            /bin/mv "$tmp_file" "$weather_cache"
+        else
+            /bin/rm -f "$tmp_file"
+        fi
+    fi
+}
+
+# Get admin and system defaults
+support_group=$(read_default "$managed_pref_file" "SupportGroup" "ETH Zurich")
+ticket_link=$(read_default "$managed_pref_file" "SecondRowLinkLeft" "")
+kb_title=$(read_default "$managed_pref_file" "FirstRowSubtitleLeft" "")
+kb_link=$(read_default "$managed_pref_file" "FirstRowLinkLeft" "")
+serial_number=$(/usr/sbin/ioreg -c "IOPlatformExpertDevice" | /usr/bin/awk -F'"' '/IOPlatformSerialNumber/ {print $4; exit}')
+selfservice=$(read_default "/Applications/ETH Self Service.app/Contents/Info.plist" "CFBundleIdentifier" "com.jamf.selfserviceplus")
+
+# get a sha256 to check if file contents changed
+cs_before=$(openssl sha256 -hex /Library/Preferences/nl.root3.support.plist|awk {'print $2'})
+
+# Make sure the Rows dict exists already, if not, import the template.
+if ! /usr/bin/defaults read "$support_pref_file" Rows >/dev/null 2>&1; then
+    if [[ -f "$rows_template" ]]; then
+        /usr/libexec/PlistBuddy -c "Merge ${rows_template}" "$support_pref_file"
+    else
+        exit 1
+    fi
 fi
 
-# Populate items in the new Rows structure
-add_set_command ":Rows:2:Items:0:Subtitle" ${KBTitle}
-add_set_command ":Rows:2:Items:0:Action" ${KBLink}
-add_set_command ":Rows:3:Items:0:Action" ${TicketLink}
-add_set_command ":Rows:2:Items:1:Action" ${selfservice}
+plist_commands=()
 
-if [ -d "/Applications/Privileges.app" ]; then
-    add_set_command ":Rows:3:Items:2:Title" 'Admin Rights' 
-    add_set_command ":Rows:3:Items:2:Symbol" 'lock.fill'
-    add_set_command ":Rows:3:Items:2:Subtitle" 'Add or Remove' 
-    add_set_command ":Rows:3:Items:2:Action" 'corp.sap.privileges' 
+# Populate items in the new Rows structure.
+add_set_command ":Rows:2:Items:0:Subtitle" "$kb_title"
+add_set_command ":Rows:2:Items:0:Action" "$kb_link"
+add_set_command ":Rows:3:Items:0:Action" "$ticket_link"
+add_set_command ":Rows:2:Items:1:Action" "$selfservice"
+
+if [[ -d "/Applications/Privileges.app" ]]; then
+    add_set_command ":Rows:3:Items:2:Title" "Admin Rights"
+    add_set_command ":Rows:3:Items:2:Symbol" "lock.fill"
+    add_set_command ":Rows:3:Items:2:Subtitle" "Add or Remove"
+    add_set_command ":Rows:3:Items:2:Action" "corp.sap.privileges"
 else
-    # fetch weather from wttr.in, at most once per hour
-    currweather=/Library/Management/ETHZ/SupportApp/currentweather.txt
-    if [ ! -f "$currweather" ] || [ $(( $(date +%s) - $(stat -f %m "$currweather" 2>/dev/null || echo 0) )) -gt 3600 ]; then
-    	curl -fsS --max-time 4 'https://wttr.in/?format=%c%20%t'>$currweather
-    fi
-    weather=$(cat $currweather)
-    add_set_command ":Rows:3:Items:2:Subtitle" 'Weather App'
-    add_set_command ":Rows:3:Items:2:Symbol" 'cloud.sun.fill'
-    add_set_command ":Rows:3:Items:2:Title" ${weather}
-    add_set_command ":Rows:3:Items:2:Action" 'com.apple.weather' 
+    refresh_weather_cache
+    weather="Weather"
+    [[ -s "$weather_cache" ]] && weather="$(<"$weather_cache")"
+
+    add_set_command ":Rows:3:Items:2:Subtitle" "Weather App"
+    add_set_command ":Rows:3:Items:2:Symbol" "cloud.sun.fill"
+    add_set_command ":Rows:3:Items:2:Title" "$weather"
+    add_set_command ":Rows:3:Items:2:Action" "com.apple.weather"
 fi
 
 if (( ${#plist_commands[@]} > 0 )); then
     /usr/libexec/PlistBuddy "${plist_commands[@]}" "$support_pref_file"
 fi
 
-defaults write "${support_pref_file}" FooterText -string "**This Mac is managed by $SupportGroup**\\n---------------------------------\\nSerial Number: $serialNumber"
+# Set Values of Support App Content
+/usr/bin/defaults write "$support_pref_file" FooterText -string "**This Mac is managed by $support_group**\\n---------------------------------\\nSerial Number: $serial_number"
+
+# check if contents have changed; if so, restart cfprefsd and Support app
+cs_after=$(openssl sha256 -hex /Library/Preferences/nl.root3.support.plist|awk {'print $2'})
+ 
+if [[ ${cs_before} != ${cs_after} ]] ; then 
+killall cfprefsd
+pkill -f /Applications/Support.app/Contents/MacOS/Support
+fi
 
 EOF
 
