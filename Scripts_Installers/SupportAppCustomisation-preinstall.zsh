@@ -107,7 +107,8 @@ cs_after=$(openssl sha256 -hex /Library/Preferences/nl.root3.support.plist|awk {
  
 if [[ ${cs_before} != ${cs_after} ]] ; then 
 killall cfprefsd
-pkill -f /Applications/Support.app/Contents/MacOS/Support
+touch "$support_pref_file"
+killall cfprefsd
 fi
 
 EOF
