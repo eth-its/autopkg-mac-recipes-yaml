@@ -185,7 +185,6 @@ else
     add_set_command ":Rows:3:Items:2:Title" "$weather_text"
     add_set_command ":Rows:3:Items:2:Subtitle" "Weather App"
     add_set_command ":Rows:3:Items:2:Action" "com.apple.weather"
-
 fi
 
 if (( ${#plist_commands[@]} > 0 )); then
@@ -195,7 +194,7 @@ fi
 # Set Values of Support App Content
 /usr/bin/defaults write "$support_pref_file" FooterText -string "**This Mac is managed by $support_group**\\n---------------------------------\\nSerial Number: $serial_number"
 
-# check if contents have changed; if so, restart cfprefsd and Support app
+# check if contents have changed; if so, restart cfprefsd
 cs_after=$(openssl sha256 -hex /Library/Preferences/nl.root3.support.plist|awk {'print $2'})
  
 if [[ ${cs_before} != ${cs_after} ]] ; then 
@@ -203,9 +202,6 @@ killall cfprefsd
 touch "$support_pref_file"
 killall cfprefsd
 fi
-
-
-
 EOF
 
 cat > /Library/Management/ETHZ/SupportApp/Supportapp_rows_template.plist << "EOF"
