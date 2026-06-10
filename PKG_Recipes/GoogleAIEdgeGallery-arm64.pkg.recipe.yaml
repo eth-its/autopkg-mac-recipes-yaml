@@ -9,5 +9,6 @@ Input:
 Process:
   - Processor: AppPkgCreator
     Arguments:
-      app_path: "%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.dmg/%NAME%.app"
+      app_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%-arm64-%version%.dmg/%NAME%.app"
       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.pkg"
+      pkg_name: "%NAME%-arm64-%version%.pkg"
