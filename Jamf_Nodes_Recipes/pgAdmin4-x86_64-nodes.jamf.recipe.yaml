@@ -6,10 +6,10 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: pgAdmin 4
-  PLATFORM: arm64
+  PLATFORM: x86_64
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
-  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION: arm64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.pgAdmin4-x86_64
   SELFSERVICE_ICON: "pgAdmin4.png"
