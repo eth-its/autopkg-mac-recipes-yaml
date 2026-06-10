@@ -1,0 +1,30 @@
+Description: Download recipe for Fiji, which downloads a zip file containing the latest stable version of Fiji for Mac OS X. Fiji is an image processing package and can be described as a distribution of ImageJ (and ImageJ2) together with Java, Java3D and a lot of plugins organized into a coherent menu structure.
+Identifier: com.github.eth-its-recipes.download.GoogleAIEdgeGallery-arm64
+MinimumVersion: "2.3"
+
+Input:
+  NAME: GoogleAIEdgeGallery
+  USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: (\<iframe src=\"(?P<iframeurl>https://developers.google.com/frame/edge/gallery.*.frame)\")
+      url: https://developers.google.com/edge/gallery
+      result_output_var_name: iframeurl
+
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: (?P<url>https://dl.google.com/google-ai-edge-gallery/macos/dmg/GoogleAIEdgeGallery-(?P<version>\d\.\d\.\d).dmg)
+      url: "%iframeurl%"
+      result_output_var_name: url
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-arm64-%version%.dmg"
+      url: "%url%"
+      request_headers:
+          "User-Agent": "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
