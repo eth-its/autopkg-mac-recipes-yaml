@@ -136,7 +136,7 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_NODE_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
@@ -148,6 +148,6 @@ Process:
       REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
