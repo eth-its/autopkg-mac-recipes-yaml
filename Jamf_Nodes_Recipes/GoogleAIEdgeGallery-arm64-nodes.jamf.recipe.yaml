@@ -13,3 +13,12 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleAIEdgeGallery-arm64
   SELFSERVICE_ICON: "GoogleAIEdgeGallery-arm64.png"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
+  SELFSERVICE_DESCRIPTION: |
+    Google Edge AI Gallery makes it easy to explore and experiment with on-device models on your mobile and laptop devices. 
+
+    Please make sure to read the [ETH AI Guidelines](https://ethz.ch/staffnet/en/news-and-events/internal-news/archive/2025/09/new-guidelines-for-the-safe-use-of-ai-at-eth-zurich.html).
+    Tools that use locally run models often still allow to pipe into cloud-models too.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
