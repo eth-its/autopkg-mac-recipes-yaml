@@ -1,0 +1,15 @@
+Description: Downloads the latest version of NotepadPlusPlus from Github and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.pgAdmin4-x86_64
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.pgAdmin4
+
+Input:
+  NAME: pgAdmin 4
+  ARCH: x86_64
+  DLARCH: x64
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      app_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%-%ARCH%-%latest_version%.dmg/pgAdmin 4.app'
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%ARCH%-%version%.pkg"

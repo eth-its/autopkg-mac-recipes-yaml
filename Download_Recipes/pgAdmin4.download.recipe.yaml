@@ -1,0 +1,46 @@
+Description: Downloads the current version of pgAdmin 4. 
+Identifier: com.github.eth-its-recipes.download.pgAdmin4
+MinimumVersion: '2.9'
+
+Input:
+  NAME: pgAdmin 4
+  SOFTWARE_TITLE: pgAdmin4
+  DOWNLOAD_URL: null
+  BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED: 'False'
+  DLARCH: arm64  # arm64 or x64
+  ARCH: arm64 # arm64 or x86_64
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      url: https://www.pgadmin.org/download/pgadmin-4-macos/
+      re_pattern: 'href="(https://www\.postgresql\.org/ftp/pgadmin/pgadmin4/v(?P<latest_version>([0-9\.]+))/macos/)"'
+      result_output_var_name: postgresql_url
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: '%postgresql_url%'
+      re_pattern: 'href="(https://ftp\.postgresql\.org/pub/pgadmin/pgadmin4/v%latest_version%/macos/pgadmin4-%latest_version%-%DLARCH%\.dmg)"'
+      result_output_var_name: download_url
+
+  - Processor: URLDownloaderPython
+    Arguments:
+      filename: '%SOFTWARE_TITLE%-%ARCH%-%latest_version%.dmg'
+      url: '%download_url%'
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: 'download_changed == False AND %BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED% == False'
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      deep_verification: true
+      strict_verification: true
+      input_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%-%ARCH%-%latest_version%.dmg/pgAdmin 4.app'
+      requirement: |
+        identifier "org.pgadmin.pgadmin4" and anchor apple generic and
+        certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and
+        certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and
+        certificate leaf[subject.OU] = TCHGL2R7C5
