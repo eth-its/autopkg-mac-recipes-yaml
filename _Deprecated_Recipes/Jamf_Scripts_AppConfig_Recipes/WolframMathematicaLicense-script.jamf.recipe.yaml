@@ -34,8 +34,8 @@ Input:
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_NAME: WolframMathematica-license
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-  FLOATING_TRIGGER_POLICY_NAME: Wolfram Mathematica EN Floating License
-  NODE_TRIGGER_POLICY_NAME: Wolfram Mathematica EN Node License
+  FLOATING_TRIGGER_POLICY_NAME: Wolfram Mathematica Floating License
+  NODE_TRIGGER_POLICY_NAME: Wolfram Mathematica Node License
   PARAMETER4_VALUE: "%FLOATING_LICENSE_SERVER%"
   PARAMETER5_VALUE: "%NODE_LICENSE_STRING%"
   FLOATING_PARAMETER6_VALUE: Floating
