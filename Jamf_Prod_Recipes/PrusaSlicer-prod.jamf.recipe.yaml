@@ -1,9 +1,9 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.Affinity-prod
+Identifier: com.github.eth-its-recipes.jamf.PrusaSlicer-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
 
 Input:
-  NAME: Affinity
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Affinity
+  NAME: PrusaSlicer
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.PrusaSlicer
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
