@@ -100,6 +100,11 @@ class VersionRegexGeneratorPrefix(Processor):
         path_to_match_version_number_or_higher_script = self.env.get(
             "path_to_match_version_number_or_higher_script"
         )
+
+        SMARTGROUP_VERSION_PREFIX = self.env.get(
+            "SMARTGROUP_VERSION_PREFIX"
+        )
+
         # handle files with no path
         if "/" not in path_to_match_version_number_or_higher_script:
             path_to_match_version_number_or_higher_script = self.get_path_to_file(
