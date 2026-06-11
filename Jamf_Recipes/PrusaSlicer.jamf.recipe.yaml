@@ -25,9 +25,12 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SMARTGROUP_VERSION_PREFIX: "PrusaSlicer PrusaSlicer-"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+    Arguments:
+      version: "%SMARTGROUP_VERSION_PREFIX%%version%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
