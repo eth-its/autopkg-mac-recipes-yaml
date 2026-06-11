@@ -129,8 +129,8 @@ class VersionRegexGeneratorPrefix(Processor):
         for i, regex_line in enumerate(regex_lines):
             self.output(f"Regex {i} for version string {version}: {regex_line}")
             if i == 0:
-                if self.SMARTGROUP_VERSION_PREFIX:
-                    self.env["version_regex"] = regex_line.replace('^','^%s' % self.SMARTGROUP_VERSION_PREFIX)
+                if SMARTGROUP_VERSION_PREFIX:
+                    self.env["version_regex"] = regex_line.replace('^','^%s' % SMARTGROUP_VERSION_PREFIX)
                 else:
                     self.env["version_regex"] = regex_line
             if i == 1:
