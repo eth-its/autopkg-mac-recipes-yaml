@@ -9,6 +9,7 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LMStudio
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
   EXTENSION_ATTRIBUTE_NAME: LMStudioVersion
   EXTENSION_ATTRIBUTE_SCRIPT: LMStudio-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
