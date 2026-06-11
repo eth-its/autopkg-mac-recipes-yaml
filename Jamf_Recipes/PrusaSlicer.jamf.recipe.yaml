@@ -30,7 +30,7 @@ Input:
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
     Arguments:
-      version: "%SMARTGROUP_VERSION_PREFIX%%version%"
+      path_to_match_version_number_or_higher_script: "match-prefixed-version-or-higher.bash"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
