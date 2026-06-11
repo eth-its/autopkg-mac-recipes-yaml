@@ -28,9 +28,7 @@ Input:
   SMARTGROUP_VERSION_PREFIX: "PrusaSlicer PrusaSlicer-"
 
 Process:
-  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
-    Arguments:
-      path_to_match_version_number_or_higher_script: "match-prefixed-version-or-higher.bash"
+  - Processor: com.github.eth-its.autopkg-mac-recipes-yaml.Shared_Processors/VersionRegexGeneratorPrefix
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
