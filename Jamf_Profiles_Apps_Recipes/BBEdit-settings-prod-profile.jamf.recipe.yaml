@@ -6,6 +6,7 @@ Description: |
   Required override keys:
   - BBEDIT_14_SERIAL
   - BBEDIT_15_SERIAL
+  - BBEDIT_16_SERIAL
 Identifier: com.github.eth-its-recipes.jamf.BBEdit-settings-prod-profile
 MinimumVersion: "2.3"
 
