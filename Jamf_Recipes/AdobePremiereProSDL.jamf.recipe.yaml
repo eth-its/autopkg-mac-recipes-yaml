@@ -1,7 +1,7 @@
 Description: |
   Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.AdobePremiereProSDL
-ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloud
+ParentRecipe: com.github.eth-its-recipes.download.AdobeCreativeCloud
 MinimumVersion: "2.3"
 
 Input:
@@ -40,6 +40,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
+      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
