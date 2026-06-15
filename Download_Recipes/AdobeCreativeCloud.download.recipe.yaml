@@ -32,10 +32,10 @@ Process:
     Arguments:
       url: "file://%root_path%/%version%/%latest_file%.pkg"
 
-  - Processor: FileMover
-    Comment: "Renames Package to something trackable"
-    Arguments:
-      source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
-      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
+#  - Processor: FileMover
+#    Comment: "Renames Package to something trackable"
+#    Arguments:
+#      source: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+#      target: "%RECIPE_CACHE_DIR%/%LIST_NAME%-%version%.pkg"
 
   - Processor: EndOfCheckPhase
