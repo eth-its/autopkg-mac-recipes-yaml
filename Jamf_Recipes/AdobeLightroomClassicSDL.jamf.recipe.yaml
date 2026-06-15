@@ -40,6 +40,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
+      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
