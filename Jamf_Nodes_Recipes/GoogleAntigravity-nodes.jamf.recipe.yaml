@@ -11,3 +11,5 @@ Input:
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoogleAntigravity
   POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
+  SP_PROCESS_NAME: Antigravity
+  SP_EXECUTABLE_COMMAND: open '/Applications/Antigravity.app'
