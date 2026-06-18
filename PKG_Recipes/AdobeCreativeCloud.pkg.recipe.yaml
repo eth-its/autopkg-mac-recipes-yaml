@@ -22,15 +22,15 @@ Process:
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
     Processor: PkgRootCreator
 
-  - Processor: Unarchiver
+  - Processor: FlatPkgUnpacker
     Arguments:
-      archive_path: "%pathname%"
+      flat_pkg_path: "%pathname%"
       destination_path: "%RECIPE_CACHE_DIR%/unpack"
       purge_destination: True
 
   - Processor: Copier
     Arguments:
-      source_path: "%destination_path%/*/Build/*_Install.pkg/Contents/Resources"
+      source_path: "%destination_path%/Install.pkg/Scripts"
       destination_path: "%RECIPE_CACHE_DIR%/Scripts"
       overwrite: True
 

@@ -1,0 +1,12 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.pgAdmin4-x86_64-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform-no-users
+
+Input:
+  NAME: pgAdmin 4
+  PLATFORM: x86_64
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %PLATFORM%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: org.pgadmin.pgadmin4
+  SELFSERVICE_ICON: "pgAdmin4.png"

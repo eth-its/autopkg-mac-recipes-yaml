@@ -1,13 +1,13 @@
 Description: |
   Creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.AdobeInDesignSDL
-ParentRecipe: com.github.eth-its-recipes.pkg.AdobeCreativeCloud
+ParentRecipe: com.github.eth-its-recipes.download.AdobeCreativeCloud
 MinimumVersion: "2.3"
 
 Input:
-  NAME: Adobe InDesign 2024 SDL
+  NAME: Adobe InDesign 2026 SDL
   LIST_NAME: Adobe_InDesign_CC_EN_NUL
-  JSS_INVENTORY_NAME: Adobe InDesign 2024.app
+  JSS_INVENTORY_NAME: Adobe InDesign 2026.app
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe InDesign with a Shared Device License. This is intended only for labs.
 
@@ -40,6 +40,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
       pkg_category: "%PKG_CATEGORY%"
+      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 

@@ -11,3 +11,5 @@ Input:
   SCRIPT_NAME: AdobeAcrobat-postinstall.sh
   SCRIPT_PATH: AdobeAcrobat-postinstall.sh
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
+  SP_PROCESS_NAME: Acrobat
+  SP_EXECUTABLE_COMMAND: open '/Applications/Adobe Acrobat DC/Adobe Acrobat.app'

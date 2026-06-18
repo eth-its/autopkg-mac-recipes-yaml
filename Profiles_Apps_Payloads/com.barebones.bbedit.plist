@@ -6,6 +6,8 @@
     <string>%BBEDIT_14_SERIAL%</string>
     <key>BBEditSerialNumber:15.0</key>
     <string>%BBEDIT_15_SERIAL%</string>
+    <key>BBEditSerialNumber:16.0</key>
+    <string>%BBEDIT_16_SERIAL%</string>    
     <key>SUSoftwareUpdateEnabled</key>
     <false/>
     <key>SUSoftwareUpdateHasCompletedFirstRun</key>
