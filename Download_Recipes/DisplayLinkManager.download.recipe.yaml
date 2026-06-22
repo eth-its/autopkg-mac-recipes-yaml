@@ -61,7 +61,8 @@ Process:
         - Apple Root CA
       input_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
 
-  - Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
+  - Processor: PkgCopier
     Arguments:
-      pkg_path: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
+      source_pkg: '%RECIPE_CACHE_DIR%/downloads/%SOFTWARE_TITLE%.pkg'
+      pkg_path: '%RECIPE_CACHE_DIR%/%SOFTWARE_TITLE%_%version%.pkg'
 
