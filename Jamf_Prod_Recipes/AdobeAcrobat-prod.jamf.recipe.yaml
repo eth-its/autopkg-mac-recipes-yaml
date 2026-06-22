@@ -13,3 +13,11 @@ Input:
   SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   SELFSERVICE_ICON: Adobe Acrobat Reader DC 21.png
+  UPDATE_EXCLUDED_GROUP_NAME: Adobe Creative Cloud installed
+  UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update-exclusion.xml
+  AUTOUPDATE_EXCLUDED_GROUP_NAME: Adobe Creative Cloud installed
+  AUTOUPDATE_POLICY_TEMPLATE: Policy-prod-preset-autoupdate-exclusion.xml
+  AUTOINSTALL_EXCLUDED_GROUP_NAME: Adobe Creative Cloud installed
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-exclusion.xml
+  SELFSERVICE_EXCLUDED_GROUP_NAME: Adobe Creative Cloud installed
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-exclusion.xml
