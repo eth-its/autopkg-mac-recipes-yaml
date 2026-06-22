@@ -10,6 +10,6 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   NAME: Adobe Premiere Pro 2026 SDL
   JSS_INVENTORY_NAME: Adobe Premiere Pro 2026.app
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobePremiereProSDL
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.AdobePremiereProSDL-arm64
   SELFSERVICE_ICON: Adobe Premiere Pro 22 SDL.png
   POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
