@@ -1,6 +1,6 @@
 Description: |
   Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.AdobePremiereProSDL
+Identifier: com.github.eth-its-recipes.jamf.AdobePremiereProSDL-arm64
 ParentRecipe: com.github.eth-its-recipes.download.AdobeCreativeCloud
 MinimumVersion: "2.3"
 
@@ -13,19 +13,22 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  PLATFORM: arm64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
   SELFSERVICE_ICON: Adobe Premiere Pro 22 SDL.png
   PKG_NAME: AdobePremiereProNUL
   CATEGORY: Creativity
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Productivity
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
+  INSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
+  REINSTALL_BUTTON_TEXT: "Install %version% %PLATFORM%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   POLICY_RUN_COMMAND: jamf policy -event AdobeCreativeCloudSDL-install-test-version
   UPDATE_PREDICATE: "pkg_uploaded != True"
