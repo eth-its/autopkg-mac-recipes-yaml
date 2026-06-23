@@ -35,7 +35,7 @@ class CCP4URLProvider(URLGetter):
     description = __doc__
     input_variables = {
         "USER_AGENT": {"description": "User Agent used for downloading", "required":False, "default":"mozilla macintosh"},
-        "latest_version": {"description": "The latest version, as located on the download page"}
+        "latest_version": {"description": "The latest version, as located on the download page", "required":True, "default":"0"}
     }
     output_variables = {
         "url": {"description": "URL to latest version"},
