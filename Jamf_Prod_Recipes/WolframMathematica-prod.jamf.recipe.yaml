@@ -300,3 +300,4 @@ Process:
     Comment: Delete the test version installed group
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
