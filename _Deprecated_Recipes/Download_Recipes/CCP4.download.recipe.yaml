@@ -1,0 +1,67 @@
+Description: Downloads the current script of homebrew.sh and the extension attribute.
+Identifier: com.github.eth-its-recipes.download.CCP4
+MinimumVersion: "2.3"
+
+Input:
+  NAME: CCP4
+  STOP_PREDICATE: "should_continue == False"
+
+Process:
+  - Processor: URLTextSearcher
+    Comment: Get the current version
+    Arguments:
+      re_pattern: (CCP4 Program Suite v(?P<version>[0-9.]*) including SHELX and ARP\/wARP)
+      url: https://www.ccp4.ac.uk/download/
+      result_output_var_name: version
+
+  - Processor: CCP4URLProvider
+    Arguments:
+      latest_version: "%version%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%STOP_PREDICATE%"
+
+  - Processor: URLTextSearcher
+    Comment: Get the license link
+    Arguments:
+      re_pattern: (<td><a class="fileDownload" id="macos:ccp4-shelx-arp-arm64" href="licence.php.*sid=(?P<sessionid>.*)" target="_self">.*)
+      url: https://www.ccp4.ac.uk/download/
+      result_output_var_name: sessionid
+
+  - Processor: URLDownloader #
+    Comment: Accept the conditions for the ccp4 package; this might already lead us to the download if the server decides that way ( cached session id )
+    Arguments:
+      curl_opts: 
+        - -X
+        - POST 
+        - -F 
+        - id=%sessionid% 
+        - -F 
+        - package=ccp4 
+        - -F 
+        - result=accept 
+        - -F 
+        - accept=accept 
+      url: https://www.ccp4.ac.uk/download/download_file.php?pkg=ccp4-shelx-arp-arm64&os=macos&sid=%sessionid%
+      prefetch_filename: True
+
+  - Processor: StopProcessingIf
+
+
+  - Processor: URLDownloader
+    Comment: Accept the conditions for the shelx package -> redirects to actual download link
+    Arguments:
+      curl_opts: 
+        - -X
+        - POST
+        - -F
+        - id=%sessionid%
+        - -F
+        - package=shelx
+        - -F
+        - result=accept
+        - -F
+        - accept=accept
+      url: https://www.ccp4.ac.uk/download/download_file.php?pkg=ccp4-shelx-arp-arm64&os=macos&sid=%sessionid%
+      prefetch_filename: True
