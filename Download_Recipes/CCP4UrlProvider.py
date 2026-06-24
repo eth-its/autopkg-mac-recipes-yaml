@@ -69,7 +69,7 @@ class CCP4URLProvider(URLGetter):
             download_ccp4(sessionid,working_directory,CCP4_tgz_file_name)
             self.env["should_continue"] = True
 
-        self.env["pathname"] = CCP4_tgz_file_name
+        self.env["pathname"] = working_directory + CCP4_tgz_file_name
 
 if __name__ == "__main__":
     processor = CCP4URLProvider()
