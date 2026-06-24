@@ -64,10 +64,10 @@ class CCP4URLProvider(URLGetter):
                 self.env["should_continue"] = False
             else:
                 os.remove(working_directory + CCP4_tgz_file_name)
-                self.download_ccp4(sessionid,working_directory,CCP4_tgz_file_name)
+                self.download_ccp4(sessionid=sessionid,working_directory=working_directory,CCP4_tgz_file_name=CCP4_tgz_file_name)
                 self.env["should_continue"] = True
         else:
-            self.download_ccp4(sessionid,working_directory,CCP4_tgz_file_name)
+            self.download_ccp4(sessionid=sessionid,working_directory=working_directory,CCP4_tgz_file_name=CCP4_tgz_file_name)
             self.env["should_continue"] = True
 
 
