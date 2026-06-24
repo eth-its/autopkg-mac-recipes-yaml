@@ -30,23 +30,23 @@ class CCP4URLProvider(URLGetter):
         "pathname": {"description": "filename of the tar.gz to be stored on disk"}
     }
 
-    def download_ccp4(sessionid,working_directory,CCP4_tgz_file_name):
+    def download_ccp4(self):
         downloadURL=f"https://www.ccp4.ac.uk/download/download_file.php?pkg=ccp4-shelx-arp-arm64&os=macos&sid={sessionid}"
 
         #first attempt - post that we accept the license for ccp4 ; this might suffice, and if we get a 3GB+ file, we can stop there.
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
-        self.download_to_file(downloadURL,working_directory + "first_license_accepted.download")
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={self.sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
+        self.download_to_file(downloadURL,self.working_directory + "first_license_accepted.download")
 
-        if os.path.getsize(working_directory + "first_license_accepted.download") > 3000000000 :
-            os.rename(working_directory + "first_license_accepted.download",working_directory + CCP4_tgz_file_name)
+        if os.path.getsize(self.working_directory + "first_license_accepted.download") > 3000000000 :
+            os.rename(self.working_directory + "first_license_accepted.download",self.working_directory + self.CCP4_tgz_file_name)
             return
         
         else:
-            os.remove(working_directory + "first_license_accepted.download")
+            os.remove(self.working_directory + "first_license_accepted.download")
 
         #second attempt - post that we accept the license for shelx as well ; 
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
-        self.download_to_file(downloadURL,working_directory + CCP4_tgz_file_name)
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={self.sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
+        self.download_to_file(downloadURL,self.working_directory + self.CCP4_tgz_file_name)
 
     def main(self):
         latest_version=self.env["latest_version"]
@@ -64,10 +64,10 @@ class CCP4URLProvider(URLGetter):
                 self.env["should_continue"] = False
             else:
                 os.remove(working_directory + CCP4_tgz_file_name)
-                self.download_ccp4(sessionid=sessionid,working_directory=working_directory,CCP4_tgz_file_name=CCP4_tgz_file_name)
+                self.download_ccp4()
                 self.env["should_continue"] = True
         else:
-            self.download_ccp4(sessionid=sessionid,working_directory=working_directory,CCP4_tgz_file_name=CCP4_tgz_file_name)
+            self.download_ccp4()
             self.env["should_continue"] = True
 
 
