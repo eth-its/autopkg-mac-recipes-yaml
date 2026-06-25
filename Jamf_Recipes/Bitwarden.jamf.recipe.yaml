@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Bitwarden
 MinimumVersion: "2.3"
-ParentRecipe: com.github.nmcspadden.pkg.appstore
+ParentRecipe: com.github.grumpydrew.pkg.Bitwarden
 
 Input:
   NAME: Bitwarden
@@ -25,7 +25,8 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
   SELFSERVICE_ICON: Bitwarden 1.31.png
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  #POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
 Process:
