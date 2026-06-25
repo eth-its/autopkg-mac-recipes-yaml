@@ -25,9 +25,10 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_PREDICATE: "pkg_uploaded != True"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SMARTGROUP_VERSION_PREFIX: "v"
 
 Process:
-  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+  - Processor: com.github.eth-its-recipes.processors/VersionRegexGeneratorPrefix
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
