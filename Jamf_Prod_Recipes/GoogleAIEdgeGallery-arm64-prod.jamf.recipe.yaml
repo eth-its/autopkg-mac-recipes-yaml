@@ -15,3 +15,4 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   SELFSERVICE_ICON: "GoogleAIEdgeGallery-arm64.png"
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-platform-forcedescription.xml
+  TRIGGER_POLICY_RUN_COMMAND: "chmod -R 755 /Applications/GoogleAIEdgeGallery.app ; echo 'Installation of %NAME% complete'"
