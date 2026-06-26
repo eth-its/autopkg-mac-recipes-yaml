@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.ETHOfficeTemplates
 
 Input:
   NAME: ETH Templates MSOffice
-  PKG_CATEGORY: Productivity
+  PKG_CATEGORY: ETH
   PKG_ID: ch.ethz.id.pkg.ETHTemplatesMSOffice
   POLICY_NAME: "%NAME% (Testing)"
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml

@@ -14,7 +14,7 @@ Input:
   TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
-  SELFSERVICE_POLICY_CATEGORY: Connect & Remote
+  SELFSERVICE_POLICY_CATEGORY: ETH
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_POLICY_NAME: "%NAME%"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
