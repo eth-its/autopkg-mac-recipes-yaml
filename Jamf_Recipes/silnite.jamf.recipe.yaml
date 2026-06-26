@@ -7,7 +7,7 @@ Input:
   NAME: silnite
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Development & Computing
   SCRIPT_NAME: "%NAME%-postinstall.zsh"
   SCRIPT_PATH: "%NAME%-postinstall.zsh"
   SCRIPT_PRIORITY: After
