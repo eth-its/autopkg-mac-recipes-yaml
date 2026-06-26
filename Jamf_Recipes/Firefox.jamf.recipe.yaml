@@ -11,11 +11,11 @@ Input:
   ORG_NAME: "ETH"
   PKG_ID: ch.ethz.id.Firefox.pkg
   RELEASE: latest
+  PKG_CATEGORY: Browsers & Players
   SELFSERVICE_DESCRIPTION: |
     Firefox is a free and open-source web browser developed by Mozilla. 
     Version: %version%
     Category: %PKG_CATEGORY%
-  PKG_CATEGORY: Connect & Remote
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   POLICY_CATEGORY: Untested

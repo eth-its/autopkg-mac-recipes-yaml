@@ -7,7 +7,7 @@ Input:
   NAME: VLC
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Browsers & Players
   SELFSERVICE_DESCRIPTION: |
     VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files, and various streaming protocols.
 

@@ -7,7 +7,7 @@ Input:
   NAME: Opera
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Browsers & Players
   SELFSERVICE_DESCRIPTION: |
     Opera Browser is fully-featured for privacy, security, and everything you do online.
 
