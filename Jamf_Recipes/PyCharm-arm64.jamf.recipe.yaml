@@ -11,7 +11,7 @@ Input:
   ARCH_TYPE: macM1 # use 'mac' for intel ; 'macM1' for silicon
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     The Python IDE for data science and web development. 
     You can get a Pycharm student license via https://www.jetbrains.com/shop/eform/students. 

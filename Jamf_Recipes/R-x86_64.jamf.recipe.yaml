@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.R
 
 Input:
   NAME: R
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Development & Computing
   EXTENSION_ATTRIBUTE_NAME: "R Version"
   EXTENSION_ATTRIBUTE_SCRIPT: R-EA.zsh
   PREINSTALL_SCRIPT_NAME: R-preinstall.sh

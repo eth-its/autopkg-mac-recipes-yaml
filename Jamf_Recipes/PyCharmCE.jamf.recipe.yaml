@@ -7,7 +7,7 @@ Input:
   NAME: PyCharm CE
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Science & Math
+  PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     The Python IDE for data science and web development.
 
