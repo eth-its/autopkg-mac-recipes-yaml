@@ -1,0 +1,28 @@
+Description: Download recipe for Bitwarden.
+Identifier: com.github.eth-its-recipes.download.Bitwarden
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Bitwarden
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: bitwarden/clients
+      asset_regex: Bitwarden\-[\d]+\.?[\d]+\.?[\d]+\-[\w]+\.dmg$
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: identifier "com.bitwarden.desktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = LTZ2PFU5D6
+      input_path: "%pathname%/Bitwarden.app"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Bitwarden.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
