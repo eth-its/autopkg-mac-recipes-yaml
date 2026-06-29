@@ -7,7 +7,7 @@ Input:
   NAME: Evernote
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Productivity
   POLICY_CATEGORY: Untested
   SELFSERVICE_DESCRIPTION: |
     Evernote is a cloud-based note-taking workspace.  

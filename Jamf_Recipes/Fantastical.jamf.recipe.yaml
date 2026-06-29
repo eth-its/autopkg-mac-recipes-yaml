@@ -7,7 +7,7 @@ Input:
   NAME: Fantastical
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     Fantastical is a calendar app with intuitive natural language parsing and a full calendar window with day, week, month, and year views. 
 

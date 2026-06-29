@@ -7,7 +7,7 @@ Input:
   NAME: DeepL
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: Productivity
   SELFSERVICE_DESCRIPTION: |
     DeepL is a natural language translation service. The DeepL Pro service requires a login which is obtained by purchasing a license.
 
