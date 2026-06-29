@@ -11,7 +11,7 @@ Input:
   FORCE_DESCRIPTION: "false"
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
-  SELFSERVICE_POLICY_CATEGORY: "Tools & Accessories"
+  SELFSERVICE_POLICY_CATEGORY: "Science & Math"
   SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
   SCRIPT_PRIORITY_ITSHOP: "After"
   PARAMETER4_VALUE_ITSHOP: "PyMOL" 

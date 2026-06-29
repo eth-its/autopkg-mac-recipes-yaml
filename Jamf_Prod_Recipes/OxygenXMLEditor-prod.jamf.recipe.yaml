@@ -11,4 +11,18 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-has-no-users.xml
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
   SELFSERVICE_ICON: OxygenXMLEditor.png
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
+  #SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
+
+  # to add in prod-recipe
+  FORCE_DESCRIPTION: "true"
+  ISG_GROUP_NAME: "%NAME% ISG-licensed"
+  AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
+  AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop.xml
+  SELFSERVICE_POLICY_CATEGORY: "Science & Math"
+  SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
+  SCRIPT_PRIORITY_ITSHOP: "After"
+  PARAMETER4_VALUE_ITSHOP: "Oxygen XML Editor" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME%-install" 
+  PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_9a2ad9232fe24f9b310911da158ea1a136889ddebef236fccddf905ce00e439d" 
+  PARAMETER7_VALUE_ITSHOP: "NONE" 

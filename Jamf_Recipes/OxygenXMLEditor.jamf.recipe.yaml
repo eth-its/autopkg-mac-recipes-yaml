@@ -8,7 +8,7 @@ Input:
   POLICY_NAME: "%NAME% (Testing)"
   APPLICATION_NAME_HAS: "%NAME%"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     Oxygen XML Editor is the premier tool for XML editing, authoring and development. 
 
