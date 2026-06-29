@@ -8,6 +8,7 @@ Input:
   NAME: Adobe InDesign 2026 SDL
   LIST_NAME: Adobe_InDesign_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe InDesign 2026.app
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe InDesign with a Shared Device License. This is intended only for labs.
 
@@ -15,10 +16,9 @@ Input:
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Adobe InDesign 17 SDL.png
   PKG_NAME: AdobeInDesignNUL
-  CATEGORY: Creativity
+  CATEGORY: "Imaging & Design"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing

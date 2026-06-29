@@ -8,6 +8,8 @@ Input:
   NAME: Adobe After Effects 2026 SDL
   LIST_NAME: Adobe_After_Effects_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe After Effects 2026.app
+  PKG_CATEGORY: "Imaging & Design"
+  CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe After Effects with a Shared Device License. This is intended only for labs.
 
@@ -15,10 +17,8 @@ Input:
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Adobe After Effects CC SDL 22.png
   PKG_NAME: AdobeAfterEffectsNUL
-  CATEGORY: Creativity
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing

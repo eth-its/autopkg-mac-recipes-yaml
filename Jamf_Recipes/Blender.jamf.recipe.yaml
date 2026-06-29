@@ -7,7 +7,7 @@ Input:
   NAME: Blender
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Blender is the free and open source 3D creation suite. It supports the entirety of the 3D pipeline—modeling, rigging, animation, simulation, rendering, compositing and motion tracking, even video editing and game creation.
     Please be aware that Intel-Macs are no longer being supported as of v5.x

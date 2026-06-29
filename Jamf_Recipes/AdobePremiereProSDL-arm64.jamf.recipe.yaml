@@ -8,6 +8,7 @@ Input:
   NAME: Adobe Premiere Pro 2026 SDL
   LIST_NAME: Adobe_Premiere_Pro_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe Premiere Pro 2026.app
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe Premiere Pro with a Shared Device License. This is intended only for labs.
 
@@ -18,10 +19,9 @@ Input:
   PLATFORM_EXCLUSION: x86_64
   SELFSERVICE_ICON: Adobe Premiere Pro 22 SDL.png
   PKG_NAME: AdobePremiereProNUL
-  CATEGORY: Creativity
+  CATEGORY: "Imaging & Design"
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing

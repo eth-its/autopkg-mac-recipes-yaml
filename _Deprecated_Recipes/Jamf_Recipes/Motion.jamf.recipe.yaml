@@ -9,7 +9,7 @@ Input:
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Motion is the powerful motion graphics tool that makes it easy to create cinematic 2D, 3D, and 360 degree titles, fluid transitions, and realistic effects in real time.
 

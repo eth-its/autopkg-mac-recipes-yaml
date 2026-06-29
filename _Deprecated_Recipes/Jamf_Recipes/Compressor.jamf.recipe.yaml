@@ -9,7 +9,7 @@ Input:
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Compressor tightly integrates with Final Cut Pro to add custom output settings, distributed encoding, and extensive delivery features. With support for 360 video, HDR, HEVC, and MXF output, it is the most powerful, flexible way to export your Final Cut Pro projects.
 

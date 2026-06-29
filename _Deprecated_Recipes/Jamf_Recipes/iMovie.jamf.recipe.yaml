@@ -9,7 +9,7 @@ Input:
   PATH: "/Applications/%NAME%.app"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Creativity
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     With iMovie for iOS and macOS, you can enjoy your videos like never before. It is easy to browse your clips and create Hollywood-style trailers and stunning 4K-resolution movies. You can even start editing on iPhone or iPad, then finish on your Mac. And when you are ready to premiere your movie on all your devices, iMovie Theater rolls out the red carpet.
 

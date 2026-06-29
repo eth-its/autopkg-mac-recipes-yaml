@@ -9,6 +9,7 @@ Input:
   LIST_NAME: Adobe_Photoshop_CC_EN_NUL
   SAP_CODE: PHSP
   JSS_INVENTORY_NAME: Adobe Photoshop 2026.app
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe Photoshop 2026 with a Shared Device License. This is intended only for labs.
 
@@ -16,10 +17,9 @@ Input:
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Adobe Photoshop 23 SDL.png
   PKG_NAME: AdobePhotoshopNUL
-  CATEGORY: Creativity
+  CATEGORY: "Imaging & Design"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing

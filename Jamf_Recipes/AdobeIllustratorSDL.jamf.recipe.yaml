@@ -8,6 +8,7 @@ Input:
   NAME: Adobe Illustrator 2026 SDL
   LIST_NAME: Adobe_Illustrator_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe Illustrator.app
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe Illustrator 2026 with a Shared Device License. This is intended only for labs.
 
@@ -15,10 +16,9 @@ Input:
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Adobe Illustrator 26 SDL.png
   PKG_NAME: AdobeIllustratorNUL
-  CATEGORY: Creativity
+  CATEGORY: "Imaging & Design"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing

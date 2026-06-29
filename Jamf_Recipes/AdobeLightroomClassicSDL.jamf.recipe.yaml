@@ -8,6 +8,7 @@ Input:
   NAME: Adobe Lightroom Classic SDL
   LIST_NAME: Adobe_Lightroom_Classic_CC_EN_NUL
   JSS_INVENTORY_NAME: Adobe Lightroom Classic.app
+  PKG_CATEGORY: "Imaging & Design"
   SELFSERVICE_DESCRIPTION: |
     Installs Adobe Lightroom Classic with a Shared Device License. This is intended only for labs.
 
@@ -15,10 +16,9 @@ Input:
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: Adobe Lightroom Classic SDL 11.png
   PKG_NAME: AdobeLightroomClassicNUL
-  CATEGORY: Creativity
+  CATEGORY: "Imaging & Design"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   TESTING_GROUP_NAME: Testing
