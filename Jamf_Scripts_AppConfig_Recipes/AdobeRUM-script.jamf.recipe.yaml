@@ -2,7 +2,7 @@ Description: |
   Creates a trigger policy, plus Self Service and Once every day policy to update any Adobe CC apps by running Adobe RUM.
 
   Requires all categories, the 8 "Adobe XYZ installed" groups, "Adobe Creative Cloud users" "Adobe Creative Cloud installed", and "Adobe Creative Cloud auto-update" to already exist.
-Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM
+Identifier: com.github.eth-its-recipes.jamf.script.AdobeRUM-script
 MinimumVersion: "2.3"
 
 Input:
