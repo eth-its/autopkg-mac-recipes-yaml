@@ -7,7 +7,7 @@ Input:
   NAME: Cytoscape
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: "Science & Math"
   SELFSERVICE_DESCRIPTION: |
     Cytoscape is an open source software platform for visualizing complex networks and integrating these with any type of attribute data.
 
