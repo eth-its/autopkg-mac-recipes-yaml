@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.pkg.IBMStorageProtect
 Input:
   NAME: IBM Storage Protect
   LANGUAGE: EN
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: "Tools & Accessories"
   PREINSTALL_SCRIPT_NAME: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_PATH: IBMStorageProtect-preinstall.zsh
   PREINSTALL_SCRIPT_CATEGORY: Administration

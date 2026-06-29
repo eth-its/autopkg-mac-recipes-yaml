@@ -6,7 +6,7 @@ ParentRecipe: com.github.grahampugh.recipes.pkg.DisplayLinkLoginScreenExtension
 Input:
   NAME: DisplayLink Login Screen Extension
   TRIGGER_POLICY_NAME: "%NAME%"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: "Tools & Accessories"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-nonotification.xml
   TRIGGER_NAME: "%NAME%-install"

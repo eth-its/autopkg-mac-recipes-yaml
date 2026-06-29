@@ -7,7 +7,7 @@ Input:
   NAME: DisplayLink Manager
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: "Tools & Accessories"
   SELFSERVICE_DESCRIPTION: |
     DisplayLink Manager is a new way to enable your DisplayLink dock, adapter or monitor on macOS platforms. It's an application that combines our latest driver with features that streamline the setup of mutliple displays up to 4K.
 
