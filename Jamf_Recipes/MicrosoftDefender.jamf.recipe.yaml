@@ -5,7 +5,7 @@ ParentRecipe: com.github.rtrouton.pkg.microsoftdefender
 
 Input:
   NAME: Microsoft Defender
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Security
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DESCRIPTION: |

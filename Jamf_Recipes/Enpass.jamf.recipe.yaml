@@ -7,7 +7,7 @@ Input:
   NAME: Enpass
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Tools & Accessories
+  PKG_CATEGORY: Security
   SELFSERVICE_DESCRIPTION: |
     Enpass ensures maximum security for your data by using open source and peer reviewed cryptography libraries of SQLCipher engine. Moreover, it is an offline password manager offering you the peace of mind that all your data is with you only and nothing is stored on Enpass' servers.
 
