@@ -30,6 +30,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_PREDICATE: "pkg_uploaded == False"
   url: "https://binaries.webex.com/webex-macos-apple-silicon/Webex.dmg"
+  pkg_path: %RECIPE_CACHE_DIR%/%app_name%-%PLATFORM%-%version%.pkg
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
