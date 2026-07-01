@@ -1,0 +1,12 @@
+Description: Downloads the latest version of Webex and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Webex
+ParentRecipe: com.github.precursorca.download.Webex
+MinimumVersion: 1.0.0
+
+Input:
+  NAME: Webex
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: '%RECIPE_CACHE_DIR%/%app_name%-%PLATFORM%-%version%.pkg'

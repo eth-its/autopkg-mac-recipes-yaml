@@ -1,12 +1,17 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Webex-x86_64
-ParentRecipe: com.github.precursorca.pkg.Webex
+ParentRecipe: com.github.eth-its-recipes.pkg.Webex
 MinimumVersion: "2.3"
 
 Input:
   NAME: Webex
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PLATFORM: x86_64
+  ARCH: "%PLATFORM%"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   PKG_CATEGORY: Connect & Remote
   POLICY_CATEGORY: Untested
   SELFSERVICE_DESCRIPTION: |
@@ -25,7 +30,6 @@ Input:
   REINSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_PREDICATE: "pkg_uploaded == False"
   url: "https://binaries.webex.com/webex-macos-intel/Webex.dmg"
-  pkg_path: '%RECIPE_CACHE_DIR%/%app_name%-%PLATFORM%-%version%.pkg'
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
