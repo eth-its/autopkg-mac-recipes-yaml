@@ -1,0 +1,13 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.Webex-arm64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
+
+Input:
+  NAME: Webex
+  PLATFORM: arm64
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Webex-arm64
+  TRIGGER_POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_ICON: Webex 41.png
