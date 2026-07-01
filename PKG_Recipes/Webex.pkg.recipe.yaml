@@ -9,4 +9,4 @@ Input:
 Process:
   - Processor: AppPkgCreator
     Arguments:
-      pkg_path: '%RECIPE_CACHE_DIR%/%app_name%-%PLATFORM%-%version%.pkg'
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"
