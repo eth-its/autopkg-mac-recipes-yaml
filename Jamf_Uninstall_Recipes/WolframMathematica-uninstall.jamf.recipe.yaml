@@ -42,7 +42,12 @@ Input:
   UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-selfservice-extra-exclusion.xml
   TRIGGER_UNINSTALL_POLICY_CATEGORY: Triggered Uninstallers
   TRIGGER_UNINSTALL_POLICY_NAME: "Trigger-uninstall %NAME%"
-  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters.xml
+
+  SCRIPT_ITSHOP: "ITShop_uninstall.sh"
+  PARAMETER_ITSHOP_NAME: "Mathematica"
+  PARAMETER_ITSHOP_VERSION: "NONE"
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-ITShop.xml
+
   TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
