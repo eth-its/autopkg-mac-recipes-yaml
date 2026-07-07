@@ -56,6 +56,7 @@ class CCP4URLProvider(URLGetter):
 
         CCP4_tgz_file_name = "ccp4-" + latest_version + suffix  #ccp4-9.0.015-shelx-arpwarp-macosarm.tar.gz
         working_directory = self.env["RECIPE_CACHE_DIR"] + "/downloads/"
+        if not os.path.exists(working_directory) : os.makedirs(working_directory)
         self.env["pathname"] = working_directory + CCP4_tgz_file_name
 
         print("CCP4URLPRovider: checking for presence of : " + working_directory + CCP4_tgz_file_name)
