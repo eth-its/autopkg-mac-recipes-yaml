@@ -11,14 +11,15 @@ Process:
   - Processor: PkgRootCreator
     Arguments:
       pkgdirs:
-        Applications: "0775"
+        Library: "0755"
+        Library/Management: "0755"
+        Library/Management/CCP4: "0755"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    
-  - Processor: Unarchiver 
+
+  - Processor: Copier
     Arguments:
-      archive_format: tar_gzip
-      archive_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications"
+      source_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Library/Management/CCP4/"
 
   - Processor: PkgCreator
     Arguments:
