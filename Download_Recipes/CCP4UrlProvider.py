@@ -45,7 +45,7 @@ class CCP4URLProvider(URLGetter):
             os.remove(working_directory + "first_license_accepted.download")
 
         #second attempt - post that we accept the license for shelx as well ; 
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=shelx','-F','result=accept','-F','accept=accept']
         self.download_to_file(downloadURL,working_directory + CCP4_tgz_file_name)
 
     def main(self):
