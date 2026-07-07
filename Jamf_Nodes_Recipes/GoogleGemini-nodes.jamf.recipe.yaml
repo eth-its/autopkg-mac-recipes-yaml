@@ -13,3 +13,4 @@ Input:
   POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
   SP_PROCESS_NAME: Gemini
   SP_EXECUTABLE_COMMAND: open '/Applications/Gemini.app'
+  POLICY_RUN_COMMAND: "chown -R root:staff /Applications/Gemini.app; chmod -R 755 /Applications/Gemini.app ; echo 'Installation of %NAME% %PLATFORM% complete'"

@@ -13,3 +13,5 @@ Input:
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-platform-no-users.xml
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform-no-users.xml
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-platform-forcedescription.xml
+  TRIGGER_POLICY_RUN_COMMAND: "chown -R root:staff /Applications/Gemini.app; chmod -R 755 /Applications/Gemini.app ; echo 'Installation of %NAME% %PLATFORM% complete'"
+
