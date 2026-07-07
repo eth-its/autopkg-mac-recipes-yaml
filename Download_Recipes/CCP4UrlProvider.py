@@ -34,7 +34,7 @@ class CCP4URLProvider(URLGetter):
         downloadURL=f"https://www.ccp4.ac.uk/download/download_file.php?pkg=ccp4-shelx-arp-arm64&os=macos&sid={sessionid}"
 
         #first attempt - post that we accept the license for ccp4 ; this might suffice, and if we get a 3GB+ file, we can stop there.
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=ccp4','-F','result=accept','-F','accept=accept']
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','subpackage=ccp4','-F','result=accept','-F','accept=accept','-F','pkg=ccp4-shelx-arp-arm64','-F','os=macos']
         self.download_to_file(downloadURL,working_directory + "first_license_accepted.download")
 
         if os.path.getsize(working_directory + "first_license_accepted.download") > 3000000000 :
@@ -45,7 +45,7 @@ class CCP4URLProvider(URLGetter):
             os.remove(working_directory + "first_license_accepted.download")
 
         #second attempt - post that we accept the license for shelx as well ; 
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=shelx','-F','result=accept','-F','accept=accept']
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','subpackage=shelx','-F','result=accept','-F','accept=accept','-F','pkg=ccp4-shelx-arp-arm64','-F','os=macos']
         self.download_to_file(downloadURL,working_directory + CCP4_tgz_file_name)
 
     def main(self):
