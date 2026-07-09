@@ -14,6 +14,7 @@ Input:
   POLICY_CATEGORY: ETH
   TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
+  GROUP_NAME: "%INSTALLED_GROUP_NAME%"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml # SmartGroup-MappedPrinters-installed.xml
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: "like"
   EXTENSION_ATTRIBUTE_VALUE: "printers/card-mobile" # printers/card-hp
