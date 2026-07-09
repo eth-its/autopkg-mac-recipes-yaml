@@ -11,6 +11,7 @@ Input:
   PRINTER_NAME: "Card-Mobile HP"
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  POLICY_CATEGORY: ETH
   TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml # SmartGroup-MappedPrinters-installed.xml
