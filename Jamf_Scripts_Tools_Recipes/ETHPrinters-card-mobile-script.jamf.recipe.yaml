@@ -13,7 +13,9 @@ Input:
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
   INSTALLED_GROUP_NAME: "%NAME% installed"
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-MappedPrinters-installed.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml # SmartGroup-MappedPrinters-installed.xml
+  EXTENSION_ATTRIBUTE_SEARCH_TYPE: "like"
+  EXTENSION_ATTRIBUTE_VALUE: "printers/card-mobile" # printers/card-hp
   SELFSERVICE_POLICY_CATEGORY: Connect & Remote
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_POLICY_NAME: "%NAME%"
@@ -46,6 +48,8 @@ Input:
   INSTALL_BUTTON_TEXT: Install
   REINSTALL_BUTTON_TEXT: Install
   FORCE_DESCRIPTION: "false"
+  EXTENSION_ATTRIBUTE_NAME: "Installed Printers"
+  EXTENSION_ATTRIBUTE_SCRIPT: "InstalledPrinters-EA.zsh"
 
 Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -70,6 +74,12 @@ Process:
       script_parameter10: "%PARAMETER10_LABEL%"
       script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
