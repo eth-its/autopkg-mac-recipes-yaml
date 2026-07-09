@@ -17,7 +17,7 @@ Input:
   GROUP_NAME: "%INSTALLED_GROUP_NAME%"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml # SmartGroup-MappedPrinters-installed.xml
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: "like"
-  EXTENSION_ATTRIBUTE_VALUE: "printers/card-mobile" # printers/card-hp
+  EXTENSION_ATTRIBUTE_VALUE: "/card-mobile"
   SELFSERVICE_POLICY_CATEGORY: Connect & Remote
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_POLICY_NAME: "%NAME%"
