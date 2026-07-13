@@ -1,0 +1,28 @@
+Description: Downloads the latest version of Nextcloud Desktop Client.
+Identifier: com.github.eth-its-recipes.download.nextcloud
+MinimumVersion: 1.0.0
+
+Input:
+  NAME: Nextcloud
+  INCLUDE_PRERELEASES: ""
+  GITHUB_REPO: nextcloud-releases/desktop
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: "%GITHUB_REPO%"
+      asset_regex: ^Nextcloud-.*pkg$
+      include_prereleases: "%INCLUDE_PRERELEASES%"
+      sort_by_highest_tag_names: True
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: Nextcloud GmbH (NKUJUXUJ3B)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: "%pathname%"
