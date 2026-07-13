@@ -11,8 +11,8 @@ Process:
     Arguments:
       github_repo: "%GITHUB_REPO%"
       asset_regex: ^Nextcloud-.*pkg$
-      include_prereleases: False
-      sort_by_highest_tag_names: True
+      include_prereleases: "False"
+      sort_by_highest_tag_names: "True"
 
   - Processor: URLDownloader
 
