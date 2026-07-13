@@ -10,10 +10,8 @@ Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
       github_repo: "%GITHUB_REPO%"
-      asset_regex: ^Nextcloud-.*pkg$
-      include_prereleases: false
-      sort_by_highest_tag_names: true
-      latest_only: true
+      asset_regex: ^Nextcloud-[0-9][0-9]\..*pkg$
+      include_prereleases: ''
 
   - Processor: URLDownloader
 
