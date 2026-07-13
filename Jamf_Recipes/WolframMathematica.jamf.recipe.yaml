@@ -7,7 +7,11 @@ Input:
   NAME: "Wolfram Mathematica"
   PKG_CATEGORY: Science & Math
   JSS_INVENTORY_NAME: "Wolfram.app"
-  
+
+  EXTENSION_ATTRIBUTE_SCRIPT: "WolframMathematicaLicenseType-EA.zsh"
+  EXTENSION_ATTRIBUTE_NAME: "Wolfram Mathematica License Type"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+
   PARAMETER4_VALUE: "%FLOATING_LICENSE_SERVER%"
   PARAMETER5_VALUE: "%NODE_LICENSE_STRING%"
   PARAMETER6_VALUE: ""
@@ -63,9 +67,15 @@ Input:
 
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
 
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating test version installed"
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+
+  TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node test version installed"
+  TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -88,6 +98,12 @@ Process:
     Arguments:
       category_name: "%POLICY_CATEGORY%"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
@@ -98,6 +114,18 @@ Process:
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
@@ -129,6 +157,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
       REINSTALL_BUTTON_TEXT: "%REINSTALL_NODE_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_NODE_RUN_COMMAND%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%POLICY_TEMPLATE%"
@@ -143,6 +172,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
       REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
