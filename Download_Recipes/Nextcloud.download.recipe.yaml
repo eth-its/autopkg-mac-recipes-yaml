@@ -1,5 +1,5 @@
 Description: Downloads the latest version of Nextcloud Desktop Client.
-Identifier: com.github.eth-its-recipes.download.nextcloud
+Identifier: com.github.eth-its-recipes.download.Nextcloud
 MinimumVersion: 1.0.0
 
 Input:
@@ -11,8 +11,8 @@ Process:
     Arguments:
       github_repo: "%GITHUB_REPO%"
       asset_regex: ^Nextcloud-.*pkg$
-      include_prereleases: "False"
-      sort_by_highest_tag_names: "True"
+      include_prereleases: false
+      sort_by_highest_tag_names: true
 
   - Processor: URLDownloader
 
