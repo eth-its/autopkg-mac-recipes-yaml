@@ -202,7 +202,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       INSTALLED_GROUP_NAME: "%FLOATING_INSTALLED_GROUP_NAME%"
-      EXTENSION_ATTRIBUTE_SEARCH_TYP: is
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
       EXTENSION_ATTRIBUTE_VALUE: Floating
       computergroup_name: "%FLOATING_INSTALLED_GROUP_NAME%"
       computergroup_template: "%FLOATING_INSTALLED_GROUP_TEMPLATE%"
@@ -211,7 +211,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       INSTALLED_GROUP_NAME: "%NODE_INSTALLED_GROUP_NAME%"
-      EXTENSION_ATTRIBUTE_SEARCH_TYP: is
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
       EXTENSION_ATTRIBUTE_VALUE: Node
       computergroup_name: "%NODE_INSTALLED_GROUP_NAME%"
       computergroup_template: "%NODE_INSTALLED_GROUP_TEMPLATE%"
