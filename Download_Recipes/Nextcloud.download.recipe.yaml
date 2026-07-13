@@ -13,6 +13,7 @@ Process:
       asset_regex: ^Nextcloud-.*pkg$
       include_prereleases: false
       sort_by_highest_tag_names: true
+      latest_only: true
 
   - Processor: URLDownloader
 
