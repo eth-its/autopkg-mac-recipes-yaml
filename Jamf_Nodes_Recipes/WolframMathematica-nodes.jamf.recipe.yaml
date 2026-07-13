@@ -7,6 +7,10 @@ Input:
   NAME: "Wolfram Mathematica"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.WolframMathematica
   JSS_INVENTORY_NAME: "Wolfram.app"
+  
+  EXTENSION_ATTRIBUTE_SCRIPT: "WolframMathematicaLicenseType-EA.zsh"
+  EXTENSION_ATTRIBUTE_NAME: "Wolfram Mathematica License Type"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
 
   PARAMETER4_VALUE: "%FLOATING_LICENSE_SERVER%"
   PARAMETER5_VALUE: "%NODE_LICENSE_STRING%"
@@ -56,16 +60,22 @@ Input:
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameters.xml
   SCRIPT_CATEGORY: Untested
-  
+
   UPDATE_PREDICATE: "pkg_metadata_updated == False"
   SP_EXECUTABLE_COMMAND: "open '/Applications/Wolfram.app'"
   SP_PROCESS_NAME: "Wolfram"
 
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
 
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating test version installed"
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+
+  TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node test version installed"
+  TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -88,6 +98,16 @@ Process:
       replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%PKG_CATEGORY%"
@@ -108,10 +128,6 @@ Process:
       script_parameter5: "%PARAMETER5_LABEL"
       replace_script: True
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
-    Arguments:
-      category_name: "%POLICY_CATEGORY%"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
@@ -124,6 +140,18 @@ Process:
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
@@ -133,6 +161,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
       REINSTALL_BUTTON_TEXT: "%REINSTALL_NODE_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_NODE_RUN_COMMAND%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%POLICY_TEMPLATE%"
@@ -147,6 +176,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
       REINSTALL_BUTTON_TEXT: "%REINSTALL_FLOATING_BUTTON_TEXT%"
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
+      TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
       policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"

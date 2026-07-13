@@ -60,7 +60,7 @@ Input:
   POLICY_CATEGORY: Untested
   POLICY_TEMPLATE: Policy-untested-selfservice-script-parameters.xml
   SCRIPT_CATEGORY: Untested
-    
+
   UPDATE_PREDICATE: "pkg_uploaded != True"
   SP_EXECUTABLE_COMMAND: "open '/Applications/Wolfram.app'"
   SP_PROCESS_NAME: "Wolfram"
@@ -104,6 +104,26 @@ Process:
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
 
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_NODE_SCRIPT_NAME%"
+      script_path: "%POLICY_NODE_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
@@ -128,26 +148,6 @@ Process:
       computergroup_template: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%POLICY_NODE_SCRIPT_NAME%"
-      script_path: "%POLICY_NODE_SCRIPT_NAME%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
-      replace_script: True
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
-    Arguments:
-      script_category: "%PKG_CATEGORY%"
-      script_name: "%POLICY_FLOATING_SCRIPT_NAME%"
-      script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
-      replace_script: True
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
@@ -161,7 +161,7 @@ Process:
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_NODE_NAME%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
@@ -174,7 +174,7 @@ Process:
       POLICY_RUN_COMMAND: "%POLICY_FLOATING_RUN_COMMAND%"
       TEST_VERSION_INSTALLED_GROUP_NAME: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
       policy_template: "%POLICY_TEMPLATE%"
-      policy_name: "%POLICY_NAME%"
+      policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
 

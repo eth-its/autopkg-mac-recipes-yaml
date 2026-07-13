@@ -16,6 +16,9 @@ Input:
   PARAMETER10_VALUE: ""
   PARAMETER11_VALUE: ""
 
+  EXTENSION_ATTRIBUTE_SCRIPT: "WolframMathematicaLicenseType-EA.zsh"
+  EXTENSION_ATTRIBUTE_NAME: "Wolfram Mathematica License Type"
+
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
@@ -119,6 +122,14 @@ Input:
   PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_8af050314f4aa53e97e98f33a04c3e31b3ac2027e66c90547e26d5ba8f285217" 
   PARAMETER7_VALUE_ITSHOP: "NONE" 
 
+  PROD_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating version installed"
+  PROD_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating test version installed"
+
+  PROD_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node version installed"
+  PROD_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node test version installed"
+
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
@@ -147,6 +158,12 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
@@ -180,6 +197,18 @@ Process:
     Arguments:
       computergroup_name: "%PROD_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%PROD_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%PROD_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%PROD_VERSION_FLOATING_INSTALLED_GROUP__TEMPLATE%"
+      replace_group: "True"
+  
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%PROD_VERSION_NODE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%PROD_VERSION_NODE_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
@@ -266,6 +295,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_NODE_BUTTON_TEXT%"
       PARAMETER4_VALUE_ITSHOP: "Mathematica Node"
       PARAMETER5_VALUE_ITSHOP: "%TRIGGER_NODE_NAME%"
+      INSTALLED_GROUP_NAME: PROD_VERSION_NODE_INSTALLED_GROUP_NAME
       icon: "%SELFSERVICE_ICON%"
       replace_policy: "True"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
@@ -281,6 +311,7 @@ Process:
       INSTALL_BUTTON_TEXT: "%INSTALL_FLOATING_BUTTON_TEXT%"
       PARAMETER4_VALUE_ITSHOP: "Mathematica Floating"
       PARAMETER5_VALUE_ITSHOP: "%TRIGGER_FLOATING_NAME%"
+      INSTALLED_GROUP_NAME: "%PROD_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%POLICY_FLOATING_NAME%"
       icon: "%SELFSERVICE_ICON%"
@@ -300,4 +331,16 @@ Process:
     Comment: Delete the test version installed group
     Arguments:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
+      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
+    Comment: Delete the test version installed group
+    Arguments:
+      computergroup_name: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
       SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
