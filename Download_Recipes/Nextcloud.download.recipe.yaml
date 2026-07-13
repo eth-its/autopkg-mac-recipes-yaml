@@ -4,7 +4,6 @@ MinimumVersion: 1.0.0
 
 Input:
   NAME: Nextcloud
-  INCLUDE_PRERELEASES: ""
   GITHUB_REPO: nextcloud-releases/desktop
 
 Process:
@@ -12,7 +11,7 @@ Process:
     Arguments:
       github_repo: "%GITHUB_REPO%"
       asset_regex: ^Nextcloud-.*pkg$
-      include_prereleases: "%INCLUDE_PRERELEASES%"
+      include_prereleases: False
       sort_by_highest_tag_names: True
 
   - Processor: URLDownloader
