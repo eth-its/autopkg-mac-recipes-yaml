@@ -202,7 +202,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
       computergroup_name: "%PROD_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%PROD_VERSION_FLOATING_INSTALLED_GROUP__TEMPLATE%"
+      computergroup_template: "%PROD_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
   
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
