@@ -122,11 +122,11 @@ Input:
   PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_8af050314f4aa53e97e98f33a04c3e31b3ac2027e66c90547e26d5ba8f285217" 
   PARAMETER7_VALUE_ITSHOP: "NONE" 
 
-  FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating version installed"
+  FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating installed"
   FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
   TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating test version installed"
 
-  NODE_INSTALLED_GROUP_NAME: "%NAME% node version installed"
+  NODE_INSTALLED_GROUP_NAME: "%NAME% node installed"
   NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-EA-no-users.xml
   TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node test version installed"
 
