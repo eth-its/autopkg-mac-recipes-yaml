@@ -123,11 +123,11 @@ Input:
   PARAMETER7_VALUE_ITSHOP: "NONE" 
 
   PROD_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating version installed"
-  PROD_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  PROD_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
   TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "%NAME% floating test version installed"
 
   PROD_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node version installed"
-  PROD_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA.xml
+  PROD_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
   TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "%NAME% node test version installed"
 
 Process:
