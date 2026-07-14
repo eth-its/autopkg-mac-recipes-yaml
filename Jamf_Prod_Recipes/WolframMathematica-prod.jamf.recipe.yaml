@@ -37,6 +37,8 @@ Input:
 
   TRIGGER_SCRIPT_POLICY_TEMPLATE: Policy-script-triggeronly-parameters-nonotification.xml
   SCRIPT_PRIORITY: "Before"
+  PARAMETER4_LABEL: "License Server Name"
+  PARAMETER5_LABEL: "Node License String"
 
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_NAME: "%NAME%-install"
@@ -158,6 +160,26 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%AUTOINSTALL_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_NODE_SCRIPT_NAME%"
+      script_path: "%POLICY_NODE_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      script_parameter4: "%PARAMETER4_LABEL%"
+      script_parameter5: "%PARAMETER5_LABEL"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
