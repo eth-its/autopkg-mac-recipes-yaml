@@ -31,7 +31,7 @@ Process:
         pkgtype: flat
         version: "%version%"
 
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/pkgroot"
+  #- Processor: PathDeleter
+  #  Arguments:
+  #   path_list:
+  #      - "%RECIPE_CACHE_DIR%/pkgroot"

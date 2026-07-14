@@ -1,0 +1,26 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.CCP4-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: CCP4
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.CCP4
+  EXTENSION_ATTRIBUTE_NAME: "CCP4 version"
+  EXTENSION_ATTRIBUTE_SCRIPT: CCP4-EA.zsh
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  SCRIPT_PATH: CCP4-postinstall.sh
+  SCRIPT_NAME: CCP4-postinstall.sh
+  SCRIPT_PRIORITY: After
+  SCRIPT_CATEGORY: Science & Math
+  PKG_CATEGORY: Science & Math
+  UPDATE_PREDICATE: "pkg_uploaded != True"
+  SELFSERVICE_DESCRIPTION: |
+    The CCP4 suite: integrative software for macromolecular crystallography. See https://www.ccp4.ac.uk/html/ for further information.
+
+    Installing CCP4 can take a long time ( 20+ minutes ). Please ensure your computer is connected to power and has high bandwidth available. 
+
+    After installation completes, before using Command line tools, run "source '/Applications/ccp4-9/bin/ccp4.setup-sh'" in Terminal.  
+
+    Version: %version%
+    Category: %PKG_CATEGORY%

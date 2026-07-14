@@ -3,7 +3,7 @@
 
 """
 Processor to check for pre-existing (and valid) download given a version number, and return should_continue=False if that is the case.
-Download the required installer in case it is not present yet.  
+Download the required file in case it is not present yet.  
 
 Based on F5transkriptURLProvider.py by Tim Keller
 https://github.com/TK5-Tim/its-unibas-recipes/blob/LogitecSync/F5transkript/F5transkriptURLProvider.py
@@ -37,16 +37,25 @@ class CCP4URLProvider(URLGetter):
         self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','subpackage=ccp4','-F','result=accept','-F','accept=accept','-F','pkg=ccp4-shelx-arp-arm64','-F','os=macos']
         self.download_to_file(downloadURL,working_directory + "first_license_accepted.download")
 
-        if os.path.getsize(working_directory + "first_license_accepted.download") > 3000000000 :
+        if os.path.getsize(working_directory + "first_license_accepted.download") > 3000000 :
             os.rename(working_directory + "first_license_accepted.download",working_directory + CCP4_tgz_file_name)
             return
-        
         else:
             os.remove(working_directory + "first_license_accepted.download")
 
         #second attempt - post that we accept the license for shelx as well ; 
-        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','subpackage=shelx','-F','result=accept','-F','accept=accept','-F','pkg=ccp4-shelx-arp-arm64','-F','os=macos']
-        self.download_to_file(downloadURL,working_directory + CCP4_tgz_file_name)
+        self.env["curl_opts"] = ['-X','POST','-F',f'id={sessionid}','-F','package=shelx','-F','result=accept','-F','accept=accept','-F','pkg=ccp4-shelx-arp-arm64','-F','os=macos']
+        self.download_to_file(downloadURL,working_directory + "second_license_accepted.download") #CCP4_tgz_file_name)
+
+        if os.path.getsize(working_directory + "second_license_accepted.download") > 3000000 :
+            os.rename(working_directory + "second_license_accepted.download",working_directory + CCP4_tgz_file_name)
+            return
+        else:
+            os.remove(working_directory + "second_license_accepted.download")
+
+        #third attempt - actual download
+        self.download_to_file(f'https://www.ccp4.ac.uk/download/download_file.php?os=macos&pkg=ccp4-shelx-arp-arm64&sid={sessionid}', CCP4_tgz_file_name)
+
 
     def main(self):
         latest_version=self.env["latest_version"]
@@ -54,23 +63,30 @@ class CCP4URLProvider(URLGetter):
         self.env["version"] = latest_version
         sessionid = self.env["sessionid"]
 
-        CCP4_tgz_file_name = "ccp4-" + latest_version + suffix  #ccp4-9.0.015-shelx-arpwarp-macosarm.tar.gz
+        CCP4_tgz_file_name = "ccp4-" + latest_version + suffix  # example: ccp4-9.0.015-shelx-arpwarp-macosarm.tar.gz
+        INSTALLER_file_name = "CCP4-" + latest_version + ".pkg"
         working_directory = self.env["RECIPE_CACHE_DIR"] + "/downloads/"
+        # make sure we have a working directory
         if not os.path.exists(working_directory) : os.makedirs(working_directory)
-        self.env["pathname"] = working_directory + CCP4_tgz_file_name
+    
 
         print("CCP4URLPRovider: checking for presence of : " + working_directory + CCP4_tgz_file_name)
         if os.path.exists(working_directory + CCP4_tgz_file_name) :
-            if os.path.getsize(working_directory + CCP4_tgz_file_name) > 3000000000 : 
-                self.env["should_continue"] = False
+            if os.path.getsize(working_directory + CCP4_tgz_file_name) > 3000000000 :
+                if os.path.exists(self.env["RECIPE_CACHE_DIR"] + INSTALLER_file_name) :
+                    self.env["should_continue"] = False # we have the installer already, we can stop here
+                else:
+                    self.env["should_continue"] = True  # we have the download, but the pkg is still missing.
             else:
                 os.remove(working_directory + CCP4_tgz_file_name)
+                if os.path.exists(self.env["RECIPE_CACHE_DIR"] + INSTALLER_file_name): os.remove(self.env["RECIPE_CACHE_DIR"] + INSTALLER_file_name)
                 self.download_ccp4(sessionid,working_directory,CCP4_tgz_file_name)
                 self.env["should_continue"] = True
         else:
             self.download_ccp4(sessionid,working_directory,CCP4_tgz_file_name)
             self.env["should_continue"] = True
 
+        self.env["pathname"] = working_directory + CCP4_tgz_file_name
 
 if __name__ == "__main__":
     processor = CCP4URLProvider()
