@@ -4,6 +4,8 @@
 if [[ ! -d /Applications/Wolfram.app ]] ; then 
 echo "Wolfram Mathematica not installed! Running Jamf trigger"
 /usr/local/bin/jamf policy -event "Wolfram Mathematica-install"
+else
+    echo "Wolfram Mathematica already Successfully installed"
 fi
 
 ### Install Wolfram/Mathematica node License
