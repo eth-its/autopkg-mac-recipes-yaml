@@ -8,3 +8,4 @@ Input:
   PLATFORM: x86_64
   SCRIPT_PATH: R-uninstall.sh
   SCRIPT_NAME: R-uninstall.sh
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "jamf policy -event 'RStudio-uninstall'; echo 'Installation of %NAME% complete'" 
