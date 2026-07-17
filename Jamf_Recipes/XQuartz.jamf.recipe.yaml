@@ -10,11 +10,10 @@ Input:
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     A version of the X.Org X Window System that runs on macOS. The XQuartz project is an open-source effort to develop a version of the X.Org X Window System that runs on macOS. Together with supporting libraries and applications, it forms the X11.app that Apple shipped with OS X between versions 10.5 and 10.7.
-    This will NOT run on Tahoe (macOS 26) or later.
 
     Version: %version%
     Category: %PKG_CATEGORY%
-  OS_EXCLUDE_MIN: "26"
+  OS_EXCLUDE_MIN: "28"
   OS_EXCLUDE_MIN_GROUP_NAME: "macOS %OS_EXCLUDE_MIN% or higher"
   OS_EXCLUDE_MIN_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml  
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
