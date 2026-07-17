@@ -12,7 +12,7 @@ Input:
   SELFSERVICE_DESCRIPTION: |
     RStudio makes R easier to use. It includes a code editor, debugging and visualization tools. 
 
-    **Note: Requires R to be installed first.**
+    Automatically installs R if it's not present on the system.
 
     Version: %version%
     Category: %PKG_CATEGORY%
