@@ -1,0 +1,26 @@
+Description: Download the latest Homebrew package version from GitHub.
+Identifier: com.github.eth-its-recipes.download.Homebrew
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Homebrew
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: .*\.pkg
+      github_repo: Homebrew/brew
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%version%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%"
+      expected_authority_names: 
+        - "Developer ID Installer: Patrick Linnane (927JGANW46)"
+        - Developer ID Certification Authority
+        - Apple Root CA
