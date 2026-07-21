@@ -29,10 +29,13 @@ Input:
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   SP_PROCESS_NAME: "%NAME%"
 
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SCRIPT_PATH: Homebrew-preinstall.zsh
-  SCRIPT_NAME: Homebrew-preinstall.zsh
-  SCRIPT_PRIORITY: Before
+  POLICY_TEMPLATE: Policy-untested-selfservice-scripts-2.xml
+  PREINSTALL_SCRIPT_PATH: Homebrew-preinstall.zsh
+  PREINSTALL_SCRIPT_NAME: Homebrew-preinstall.zsh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PATH: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_NAME: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
 
 
 Process: 
@@ -85,13 +88,23 @@ Process:
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
 
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
     Arguments:
       script_category: "%PKG_CATEGORY%"
-      script_name: "%SCRIPT_NAME%"
-      script_path: "%SCRIPT_PATH%"
-      script_priority: "%SCRIPT_PRIORITY%"
+      script_name: "%PREINSTALL_SCRIPT_NAME%"
+      script_path: "%PREINSTALL_SCRIPT_PATH%"
+      script_priority: "%PREINSTALL_SCRIPT_PRIORITY%"
       replace_script: "True"
+  
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%POSTINSTALL_SCRIPT_NAME%"
+      script_path: "%POSTINSTALL_SCRIPT_PATH%"
+      script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
+      replace_script: "True"
+
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

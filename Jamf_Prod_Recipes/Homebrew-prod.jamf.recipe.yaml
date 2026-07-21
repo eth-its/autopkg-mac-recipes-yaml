@@ -17,10 +17,13 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users.xml
 
-  SCRIPT_PATH: Homebrew-preinstall.zsh
-  SCRIPT_NAME: Homebrew-preinstall.zsh
-  SCRIPT_PRIORITY: Before
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  PREINSTALL_SCRIPT_PATH: Homebrew-preinstall.zsh
+  PREINSTALL_SCRIPT_NAME: Homebrew-preinstall.zsh
+  PREINSTALL_SCRIPT_PRIORITY: Before
+  POSTINSTALL_SCRIPT_PATH: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_NAME: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_PRIORITY: After
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_POLICY_RUN_COMMAND: ""
   TRIGGER_NAME: "Homebrew-install"
