@@ -1,0 +1,39 @@
+Description: Download the latest IdeaShare package version from Huwawei. Based heavily on com.github.NickETH.recipes.download.IdeaShare-Win64
+Identifier: com.github.eth-its-recipes.download.IdeaShare
+MinimumVersion: "2.3"
+
+Input:
+  NAME: IdeaShare
+  VENDOR: 'Huawei'
+  SEARCH_URL: https://www.huaweicloud.com/intl/en-us/product/ideashare.html
+  REGEX: 'versionDict.*?macOSVersion.*?V(?P<version>([0-9]+\.)*[0-9]+).*?const macOSUrl.*?(?P<URLPART1>https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/prudout/ec/share).*?(?P<URLPART2>IdeaShare\.pkg)'
+
+Process:
+- Processor: URLTextSearcher
+  Comment: Get the exact path from the download page.
+  Arguments:
+    re_pattern: "%REGEX%"
+    re_flags:
+      - DOTALL
+    url: '%SEARCH_URL%'
+
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%_%version%.pkg'
+    request_headers:
+      user-agent: '%USER_AGENT%'
+    url: '%URLPART1%/V%version%/%URLPART2%'
+
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: download_changed == False
+
+- Processor: EndOfCheckPhase
+
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+      - 'Developer ID Installer: iSoftStone Information Technology (Group) co., ltd. (8ZLNHQZDQY)'
+      - Developer ID Certification Authority
+      - Apple Root CA
+    input_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg'
