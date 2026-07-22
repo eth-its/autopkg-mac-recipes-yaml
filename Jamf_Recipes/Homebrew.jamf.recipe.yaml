@@ -12,7 +12,7 @@ Input:
   EXTENSION_ATTRIBUTE_SCRIPT: Homebrew_version-EA.zsh
   SELFSERVICE_DESCRIPTION: |
     The Missing Package Manager for macOS (or Linux). Type "brew" in Terminal to get started after the installation.
-    More Info at https://brew.sh/
+    More Info at [https://brew.sh/](https://brew.sh/)
 
     This installation auto-updates itself, and all tools installed with it, once every 24 hours and at every reboot.
     If you require a specific version of a tool installed via brew, please consult
