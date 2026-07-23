@@ -38,7 +38,7 @@ Process:
       - Apple Root CA
     input_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg'
 
-- Processor: VariableSetter
+- Processor: com.github.rtrouton.SharedProcessors/VariablePlaceholder
   Arguments:
     pathname: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg"
     pkg_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg"
