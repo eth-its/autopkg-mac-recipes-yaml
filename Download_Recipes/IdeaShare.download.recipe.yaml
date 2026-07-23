@@ -37,3 +37,8 @@ Process:
       - Developer ID Certification Authority
       - Apple Root CA
     input_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg'
+
+- Processor: VariableSetter
+  Arguments:
+    pathname: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg"
+    pkg_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%version%.pkg"
