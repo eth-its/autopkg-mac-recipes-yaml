@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-versionfile="/Applications/Ideashare.app/Contents/Frameworks/libideashare_data_projection_client.dylib"
+versionfile="/Applications/Ideashare.app/Contents/MacOS/IdeaShare"
 
 if [[ -f "$versionfile" ]]; then
-    version=$(grep -a 'productVersion' ${versionfile} | LC_ALL=C sed -e 's/.*versionInfo: .*V\(.*\)product.*/\1/')
+    version=$(grep -a 'res =.*V' ${versionfile}| LC_ALL=C sed -e 's/.*res =.*V//g'|LC_ALL=C sed -e 's/bool.*//')
 else
     version="None"
 fi
