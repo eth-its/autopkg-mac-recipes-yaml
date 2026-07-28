@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>IdeaShare Privacy Settings</string>
+			<key>PayloadDisplayName</key>
+			<string>IdeaShare Privacy Settings</string>
+			<key>PayloadIdentifier</key>
+			<string>A7D95AB5-3042-4C95-88A3-F385A6A524D3</string>
+			<key>PayloadOrganization</key>
+			<string>ETHZ</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>5306DA80-CF74-42FC-912F-74BC3B1BC6BE</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>Accessibility</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.thundersoft.IdeaShare" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8ZLNHQZDQY"</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.thundersoft.IdeaShare</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+				<key>ScreenCapture</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.thundersoft.IdeaShare" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8ZLNHQZDQY"</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.thundersoft.IdeaShare</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>IdeaShare Privacy Settings</string>
+	<key>PayloadDisplayName</key>
+	<string>IdeaShare Privacy Settings</string>
+	<key>PayloadIdentifier</key>
+	<string>A7D95AB5-3042-4C95-88A3-F385A6A524D3</string>
+	<key>PayloadOrganization</key>
+	<string>ETHZ</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>13CA790E-B100-42D4-9238-246B4BC36044</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
