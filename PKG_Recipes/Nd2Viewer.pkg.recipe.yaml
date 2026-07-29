@@ -1,0 +1,51 @@
+Description: Downloads the latest version of Nd2Viewer and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Nd2Viewer
+ParentRecipe: com.github.eth-its-recipes.download.Nd2Viewer
+MinimumVersion: "2.3"
+
+Input: {}
+
+Process:
+  - Arguments:
+      pkgdirs: {}
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications"
+      purge_destination: true
+    Processor: Unarchiver
+
+  - Processor: FileCreator
+    Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to clean any xattrs from installed app bundle
+        xattr -d com.apple.quarantine /Applications/Nd2Viewer.app ||:
+        xattr -d com.apple.macl /Applications/Nd2Viewer.app ||:
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.Nd2Viewer
+        pkgname: Nd2Viewer-%version%
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+
+  - Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/Scripts"
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PathDeleter
