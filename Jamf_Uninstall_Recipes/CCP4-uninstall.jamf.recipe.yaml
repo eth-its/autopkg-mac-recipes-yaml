@@ -1,0 +1,11 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.CCP4-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: CCP4
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: ch.ethz.id.pkg.ccp4
+  TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "rm -rf /Applications/ccp4-*/ ; echo 'Uninstall of CCP4 complete'"

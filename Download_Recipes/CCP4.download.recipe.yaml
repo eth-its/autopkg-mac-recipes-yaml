@@ -3,31 +3,56 @@ Identifier: com.github.eth-its-recipes.download.CCP4
 MinimumVersion: "2.3"
 
 Input:
-  NAME: CCP4
-  STOP_PREDICATE: "should_continue == False"
+  EXCEPTION: ""
+  LOCAL_REPO: /tmp/AutoPkg_Local_Sources
+  LIST_NAME: CCP4
+  VENDOR: CCP4
 
 Process:
-  - Processor: URLTextSearcher
-    Comment: Get the current version
+  - Processor: com.github.eth-its-recipes.processors/SubDirectoryList
     Arguments:
-      re_pattern: (CCP4 Program Suite v(?P<version>[0-9.]*) including SHELX and ARP\/wARP)
-      url: https://www.ccp4.ac.uk/download/
-      result_output_var_name: version
+      EXCEPTION: "%EXCEPTION%"
+      root_path: "%LOCAL_REPO%/%VENDOR%/%LIST_NAME%"
 
-  - Processor: URLTextSearcher
-    Comment: Get the license link
+  - Processor: com.github.eth-its-recipes.processors/LocalRepoUpdateChecker
     Arguments:
-      re_pattern: (<td><a class="fileDownload" id="macos:ccp4-shelx-arp-arm64" href="licence.php.*sid=(?P<sessionid>.*)" target="_self">.*)
-      url: https://www.ccp4.ac.uk/download/
-      result_output_var_name: sessionid
+      RECIPE_CACHE_DIR: "%RECIPE_CACHE_DIR%"
+      found_files: "%found_filenames%"
 
-  - Processor: CCP4URLProvider
-    Comment: Checks if a download with the current version number is already present; if so, sets "should_continue" predicate to False
+  - Processor: URLDownloader
+    Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
-      latest_version: "%version%"
-      sessionid: "%sessionid%"
+      url: file://%root_path%/%version%/%latest_file%.tar.gz
 
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%STOP_PREDICATE%"
+  - Processor: EndOfCheckPhase
+
+
+# Input:
+#   NAME: CCP4
+#   STOP_PREDICATE: "should_continue == False"
+
+# Process:
+#   - Processor: URLTextSearcher
+#     Comment: Get the current version
+#     Arguments:
+#       re_pattern: (CCP4 Program Suite v(?P<version>[0-9.]*) including SHELX and ARP\/wARP)
+#       url: https://www.ccp4.ac.uk/download/
+#       result_output_var_name: version
+
+#   - Processor: URLTextSearcher
+#     Comment: Get the license link
+#     Arguments:
+#       re_pattern: (<td><a class="fileDownload" id="macos:ccp4-shelx-arp-arm64" href="licence.php.*sid=(?P<sessionid>.*)" target="_self">.*)
+#       url: https://www.ccp4.ac.uk/download/
+#       result_output_var_name: sessionid
+
+#   - Processor: CCP4URLProvider
+#     Comment: Checks if a download with the current version number is already present; if so, sets "should_continue" predicate to False
+#     Arguments:
+#       latest_version: "%version%"
+#       sessionid: "%sessionid%"
+
+#   - Processor: StopProcessingIf
+#     Arguments:
+#       predicate: "%STOP_PREDICATE%"
 
