@@ -10,8 +10,15 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME% %PLATFORM%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: ch.ethz.id.pkg.ccp4
+  PARAMETER4_VALUE: None
+  PARAMETER6_VALUE: None
+  PARAMETER7_VALUE: None
+  PARAMETER8_VALUE: None
+  PARAMETER9_VALUE: None
+  PARAMETER10_VALUE: None
+  PARAMETER11_VALUE: None
 
-  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script.xml
+  TRIGGER_UNINSTALL_POLICY_TEMPLATE: Policy-uninstall-triggeronly-script-parameters-runcommand.xml
   TRIGGER_UNINSTALL_POLICY_RUN_COMMAND: "rm -rf /Applications/ccp4-*/ ; echo 'Uninstall of CCP4 complete'"
 
   EXTENSION_ATTRIBUTE_NAME: "CCP4 version"
