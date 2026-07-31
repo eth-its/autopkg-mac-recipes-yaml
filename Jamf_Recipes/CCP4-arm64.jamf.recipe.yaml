@@ -5,14 +5,15 @@ ParentRecipe: com.github.eth-its-recipes.pkg.CCP4-arm64
 
 Input:
   NAME: CCP4
+  PKG_CATEGORY: Science & Math
+  
   PLATFORM: arm64
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   PLATFORM_EXCLUSION: x86_64
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
-  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
-  PKG_CATEGORY: Science & Math
   SELFSERVICE_DESCRIPTION: |
     The CCP4 suite: integrative software for macromolecular crystallography. See https://www.ccp4.ac.uk/html/ for further information.
 
@@ -22,22 +23,29 @@ Input:
 
     Version: %version%
     Category: %PKG_CATEGORY%
+  
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA-platform.xml
+  
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
-  POLICY_CATEGORY: Untested
+  POLICY_CATEGORY: Untested  
+  
+  EXTENSION_ATTRIBUTE_NAME: "CCP4 version"
+  EXTENSION_ATTRIBUTE_SCRIPT: CCP4-EA.zsh
+  
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  SCRIPT_PATH: CCP4-postinstall.sh
+  SCRIPT_NAME: CCP4-postinstall.sh
+  SCRIPT_PRIORITY: After
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  EXTENSION_ATTRIBUTE_NAME: "CCP4 version"
-  EXTENSION_ATTRIBUTE_SCRIPT: CCP4-EA.zsh
-  POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
-  SCRIPT_PATH: CCP4-postinstall.sh
-  SCRIPT_NAME: CCP4-postinstall.sh
-  SCRIPT_PRIORITY: After
+
+
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
