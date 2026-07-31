@@ -33,5 +33,5 @@ Process:
 
   - Processor: PathDeleter
     Arguments:
-    path_list:
-       - "%RECIPE_CACHE_DIR%/pkgroot"
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
