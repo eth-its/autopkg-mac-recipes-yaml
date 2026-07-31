@@ -22,10 +22,12 @@ Input:
   EXCLUSION2_GROUP_NAME: "Microsoft Office not installed"
   EXCLUSION2_GROUP_TEMPLATE: SmartGroup-not-installed.xml
   TRIGGER_POLICY_NAME: "Install %NAME% Serializer"
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
+  SCRIPT_NAME: MicrosoftOffice-SkipFirstRun.zsh
+  SCRIPT_PRIORITY: After
   SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice-runcommand-2customexclusions.xml
