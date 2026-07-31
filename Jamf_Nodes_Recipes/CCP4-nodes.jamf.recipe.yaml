@@ -1,17 +1,27 @@
 Description: Creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.CCP4-nodes
-ParentRecipe: com.github.eth-its-recipes.jamf.template-EA-script-nodes
+Identifier: com.github.eth-its-recipes.jamf.CCP4-arm64-nodes
+ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-EA-scripts-2-nodes
 MinimumVersion: "2.3"
 
 Input:
   NAME: CCP4
+
+  PLATFORM: arm64
+  ARCH: "%PLATFORM%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.CCP4
   EXTENSION_ATTRIBUTE_NAME: "CCP4 version"
   EXTENSION_ATTRIBUTE_SCRIPT: CCP4-EA.zsh
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
-  SCRIPT_PATH: CCP4-postinstall.sh
-  SCRIPT_NAME: CCP4-postinstall.sh
-  SCRIPT_PRIORITY: After
+  POSTINSTALL_SCRIPT_PATH: CCP4-postinstall.sh
+  POSTINSTALL_SCRIPT_NAME: CCP4-postinstall.sh
+  PREINSTALL_SCRIPT_PATH: 
+  PREINSTALL_SCRIPT_NAME: 
+
+
   SCRIPT_CATEGORY: Science & Math
   PKG_CATEGORY: Science & Math
   UPDATE_PREDICATE: "pkg_uploaded != True"

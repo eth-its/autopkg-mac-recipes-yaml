@@ -1,7 +1,7 @@
 Description: Downloads latest Chimera installer and uses it to create a package.
-Identifier: com.github.eth-its-recipes.pkg.CCP4
+Identifier: com.github.eth-its-recipes.pkg.CCP4-arm64
 MinimumVersion: 1.0.0
-ParentRecipe: com.github.eth-its-recipes.download.CCP4
+ParentRecipe: com.github.eth-its-recipes.download.CCP4-arm64
 
 Input:
   NAME: CCP4
