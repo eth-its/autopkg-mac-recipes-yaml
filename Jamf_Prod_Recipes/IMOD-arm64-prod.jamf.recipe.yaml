@@ -12,6 +12,7 @@ Input:
   PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.IMOD-arm64
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-EA-no-users-platform.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA-not-empty.xml
   EXTENSION_ATTRIBUTE_NAME: IMODVersion
   EXTENSION_ATTRIBUTE_SCRIPT: IMOD-EA.zsh
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: does not match regex
