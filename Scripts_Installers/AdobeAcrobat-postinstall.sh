@@ -17,6 +17,8 @@ adobe_pro_prefs='
 			<false/>
 			<key>bEnableADMAnalytics</key>
 			<false/>
+			<key>bEnableGentech</key>
+            <false/>
 			<key>cGeneral</key>
 			<dict>
 				<key>bToggleCustomOpenSaveExperience</key>
