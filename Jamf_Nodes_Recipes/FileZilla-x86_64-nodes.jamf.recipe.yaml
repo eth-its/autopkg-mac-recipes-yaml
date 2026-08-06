@@ -6,6 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-platform-nodes
 Input:
   NAME: FileZilla
   PLATFORM: x86_64
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileZilla-arm64
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.FileZilla-x86_64
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
   PLATFORM_EXCLUSION: arm64
