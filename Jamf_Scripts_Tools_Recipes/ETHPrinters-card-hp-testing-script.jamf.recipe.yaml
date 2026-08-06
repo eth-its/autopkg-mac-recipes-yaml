@@ -10,6 +10,8 @@ Input:
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   TEST_USERS_GROUP_NAME: Testing
+  TESTING_GROUP_TEMPLATE: SmartGroup-test-users.xml
+
   INSTALLED_GROUP_NAME: "%NAME% installed"
   GROUP_NAME: "%INSTALLED_GROUP_NAME%"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-generic-EA.xml # SmartGroup-MappedPrinters-installed.xml
@@ -48,30 +50,19 @@ Process:
     Arguments:
       script_category: "%POLICY_CATEGORY%"
       script_path: "%SCRIPT_NAME%"
-      script_priority: "%SCRIPT_PRIORITY%"
-      script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL%"
-      script_parameter6: "%PARAMETER6_LABEL%"
-      script_parameter7: "%PARAMETER7_LABEL%"
-      script_parameter8: "%PARAMETER8_LABEL%"
-      script_parameter9: "%PARAMETER9_LABEL%"
-      script_parameter10: "%PARAMETER10_LABEL%"
-      script_parameter11: "%PARAMETER11_LABEL%"
       replace_script: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_template: "%USERS_GROUP_TEMPLATE%"
-      computergroup_name: "%TEST_USERS_GROUP_NAME%"
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
-
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
     Arguments:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
-
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
