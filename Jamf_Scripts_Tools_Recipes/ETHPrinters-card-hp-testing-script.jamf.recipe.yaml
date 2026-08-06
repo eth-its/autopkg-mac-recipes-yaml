@@ -17,7 +17,7 @@ Input:
   EXTENSION_ATTRIBUTE_SEARCH_TYPE: "like"
   EXTENSION_ATTRIBUTE_VALUE: "/card-hp/auth"
   SELFSERVICE_POLICY_CATEGORY: ETH
-  SELFSERVICE_POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   POLICY_RUN_COMMAND: "jamf policy -event \"%TRIGGER_NAME%\""
   SELFSERVICE_POLICY_NAME: "%NAME%"
   TRIGGER_POLICY_CATEGORY: Triggered Installers
@@ -84,4 +84,5 @@ Process:
       policy_template: "%SELFSERVICE_POLICY_TEMPLATE%"
       policy_name: "%SELFSERVICE_POLICY_NAME%"
       icon: "%SELFSERVICE_ICON%"
+      USERS_GROUP_NAME: "%TESTING_GROUP_NAME%"
       replace_policy: "True"
