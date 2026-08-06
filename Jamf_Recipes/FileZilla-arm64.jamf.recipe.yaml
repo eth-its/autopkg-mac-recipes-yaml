@@ -28,7 +28,7 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% %PLATFORM% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  RE_PATTERN: &lt;a href=\"(?P&lt;url&gt;http[s]?.*?(?P&lt;filename&gt;FileZilla_(?P&lt;version&gt;[\d.]+)_macos-arm64.*?\.tar\.bz2).*?)\"
+  RE_PATTERN: '&lt;a href=\"(?P&lt;url&gt;http[s]?.*?(?P&lt;filename&gt;FileZilla_(?P&lt;version&gt;[\d.]+)_macos-arm64.*?\.tar\.bz2).*?)\"'
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
