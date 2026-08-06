@@ -80,6 +80,12 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      computergroup_name: "%PLATFORM_EXCLUSION_GROUP_NAME%"
+      computergroup_template: "%PLATFORM_EXCLUSION_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
       computergroup_template: "%TESTING_GROUP_TEMPLATE%"
       computergroup_name: "%TESTING_GROUP_NAME%"
       replace_group: "False"
