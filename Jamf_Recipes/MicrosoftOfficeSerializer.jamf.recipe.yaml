@@ -25,6 +25,7 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   TRIGGER_NAME: Run-MicrosoftOfficeSerializer
   SCRIPT_NAME: MicrosoftOffice-SkipFirstRun.zsh
+  SCRIPT_PATH: MicrosoftOffice-SkipFirstRun.zsh
   SCRIPT_PRIORITY: After
   SELFSERVICE_POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
@@ -64,6 +65,14 @@ Process:
       ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
       ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
       replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
