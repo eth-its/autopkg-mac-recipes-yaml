@@ -1,8 +1,0 @@
-Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.GoToMeeting-prod
-MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
-
-Input:
-  NAME: GoToMeeting
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoToMeeting

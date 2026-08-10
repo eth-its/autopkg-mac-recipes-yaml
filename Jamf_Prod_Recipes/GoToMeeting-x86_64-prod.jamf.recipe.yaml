@@ -1,0 +1,14 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.GoToMeeting-x86_64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
+
+Input:
+  NAME: GoToMeeting
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoToMeeting-x86_64
+  ARCH: x86_64
+  PLATFORM: "%ARCH%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+  JSS_INVENTORY_NAME: "GoTo.app"
