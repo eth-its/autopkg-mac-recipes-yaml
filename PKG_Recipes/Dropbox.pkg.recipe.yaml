@@ -12,3 +12,5 @@ Process:
       dmg_path: "%pathname%"
 
   - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"
