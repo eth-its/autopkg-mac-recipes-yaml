@@ -1,6 +1,6 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.dupeGuru
-ParentRecipe: com.github.grahampugh.recipes.pkg.dupeGuru
+ParentRecipe: com.github.eth-its-recipes.pkg.dupeGuru
 MinimumVersion: "2.3"
 
 Input:
@@ -20,7 +20,7 @@ Input:
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  POLICY_RUN_COMMAND: 'xattr -d com.apple.quarantine "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   UPDATE_PREDICATE: "pkg_uploaded == False"
