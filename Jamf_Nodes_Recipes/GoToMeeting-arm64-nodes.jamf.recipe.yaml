@@ -13,3 +13,4 @@ Input:
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoToMeeting-arm64
   JSS_INVENTORY_NAME: "GoTo.app"
   SP_EXECUTABLE_COMMAND: "open /Applications/GoTo.app"
+  SP_PROCESS_NAME: GoTo
