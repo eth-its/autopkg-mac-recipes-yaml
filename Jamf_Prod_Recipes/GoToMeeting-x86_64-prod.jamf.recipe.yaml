@@ -5,7 +5,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-u
 
 Input:
   NAME: GoToMeeting
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoToMeeting
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.GoToMeeting-x86_64
   ARCH: x86_64
   PLATFORM: "%ARCH%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
