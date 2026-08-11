@@ -1,0 +1,14 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.owncloud-x86_64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
+
+Input:
+  NAME: owncloud
+  JSS_INVENTORY_NAME: "%NAME%.app"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.owncloud-x86_64
+  PLATFORM: x86_64
+  ARCH: "%PLATFORM%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
