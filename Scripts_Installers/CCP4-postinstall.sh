@@ -5,6 +5,8 @@ tarball=$(find /Library/Management/CCP4/ -type f -name 'ccp4*-shelx-arpwarp-maco
 
 if [[ -z $tarball ]] ; then echo "no tarball found to install ; aborting" ; exit 1 ; fi
 
+ if [[ ! -d /Applications/Utilities/XQuartz.app ]] ; then echo 'XQuartz missing - triggering install' ; jamf policy -event "XQuartz-install" ; fi
+
 cd /Applications
 tar -zxf "${tarball}"
 installedinto=$(find . -type d -name 'ccp*' -mindepth 1 -maxdepth 1 -newer ${tarball}|sort|tail -n1)
