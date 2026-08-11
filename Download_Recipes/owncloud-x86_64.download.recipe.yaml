@@ -39,7 +39,7 @@ Process:
 
   - Processor: CodeSignatureVerifier
     Arguments:
-      input_path: "%RECIPE_CACHE_DIR%/download/ownCloud-%version%-%ARCH%.pkg"
+      input_path: "%RECIPE_CACHE_DIR%/downloads/ownCloud-%version%-%ARCH%.pkg"
       expected_authority_names:
         - "Developer ID Installer: ownCloud GmbH (4AP2STM4H5)"
         - Developer ID Certification Authority
