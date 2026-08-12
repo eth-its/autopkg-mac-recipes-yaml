@@ -1,0 +1,41 @@
+Description: |
+  Creates a Once per computer policy to reinstall rosetta on macOS27, since upgrading from macOS26 removes it. 
+
+Identifier: com.github.eth-its-recipes.jamf.script.ReinstallRosettaOnceonmacOS27
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "mac.ethOS - Reinstall Rosetta Once on macOS 27"
+  SCRIPT_PRIORITY: After
+  POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-prod-once-per-computer-script.xml
+  POLICY_NAME: "mac.ethOS - Reinstall Rosetta Once on macOS 27"
+  INSTALLED_GROUP_NAME: macOS 27 or higher
+  SCRIPT_NAME: Rosetta-2-install.sh
+  OS_EXCLUDE_MIN: "27"
+  OS_EXCLUDE_MIN_GROUP_NAME: "macOS %OS_EXCLUDE_MIN% or higher"
+  OS_EXCLUDE_MIN_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%OS_EXCLUDE_MIN_GROUP_TEMPLATE%"
+      computergroup_name: "%OS_EXCLUDE_MIN_GROUP_NAME%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%POLICY_CATEGORY%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      replace_policy: "True"
