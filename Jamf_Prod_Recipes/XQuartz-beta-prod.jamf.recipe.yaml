@@ -7,4 +7,11 @@ Input:
   NAME: XQuartz beta
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.XQuartz-beta
   OS_EXCLUDE_MIN: "28"
-  BRANCH: beta
+  SELFSERVICE_DESCRIPTION: |
+    The most recent BETA version of the X.Org X Window System that runs on macOS. The XQuartz project is an open-source effort to develop a version of the X.Org X Window System that runs on macOS. Together with supporting libraries and applications, it forms the X11.app that Apple shipped with OS X between versions 10.5 and 10.7.
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
+  SELFSERVICE_ICON: XQuartzBeta.png
+  SP_PROCESS_NAME: X11
+  SP_EXECUTABLE_COMMAND: open '/Applications/Utilities/XQuartz.app'
