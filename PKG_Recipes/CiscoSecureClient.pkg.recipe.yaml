@@ -28,7 +28,7 @@ Process:
       choices_pkg_path: "%pkg_path%"
       choices_xml_dest: "%RECIPE_CACHE_DIR%/Scripts/choices.xml"
       desired_choices:
-        - choice_vpn
+        - choice_anyconnect_vpn
 
   - Processor: Copier
     Arguments:
