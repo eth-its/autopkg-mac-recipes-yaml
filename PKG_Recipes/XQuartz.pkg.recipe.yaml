@@ -3,6 +3,9 @@ Identifier: com.github.eth-its-recipes.pkg.XQuartz
 ParentRecipe: com.github.autopkg.download.xquartz
 MinimumVersion: 0.2.5
 
+Input:
+  PLACEHOLDER: XQuartz
+
 Process:
   - Processor: FlatPkgUnpacker
     Arguments:
