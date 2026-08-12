@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.XQuartz
 MinimumVersion: "2.3"
-ParentRecipe: com.github.scriptingosx.pkg.XQuartz
+ParentRecipe: com.github.eth-its-recipes.pkg.XQuartz
 
 Input:
   NAME: XQuartz
@@ -24,7 +24,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min.xml
-  SELFSERVICE_ICON: "%NAME%.png"
+  SELFSERVICE_ICON: "XQuartzBeta.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
