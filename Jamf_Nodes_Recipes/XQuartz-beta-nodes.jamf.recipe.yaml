@@ -14,3 +14,5 @@ Input:
     Version: %version%
     Category: %PKG_CATEGORY%
   SELFSERVICE_ICON: XQuartzBeta.png
+  SP_PROCESS_NAME: X11
+  SP_EXECUTABLE_COMMAND: open '/Applications/Utilities/XQuartz.app'

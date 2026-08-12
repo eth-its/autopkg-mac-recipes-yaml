@@ -7,3 +7,5 @@ Input:
   NAME: XQuartz
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.XQuartz
   OS_EXCLUDE_MIN: "28"
+  SP_PROCESS_NAME: X11
+  SP_EXECUTABLE_COMMAND: open '/Applications/Utilities/XQuartz.app'
