@@ -1,0 +1,10 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.XQuartz-beta-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-OS-exclude-min-prod
+
+Input:
+  NAME: XQuartz beta
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.XQuartz-beta
+  OS_EXCLUDE_MIN: "28"
+  BRANCH: beta
