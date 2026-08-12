@@ -29,6 +29,7 @@ Process:
       choices_xml_dest: "%RECIPE_CACHE_DIR%/Scripts/choices.xml"
       desired_choices:
         - choice_anyconnect_vpn
+        - choice_ui
 
   - Processor: Copier
     Arguments:
