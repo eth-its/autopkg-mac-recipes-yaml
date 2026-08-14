@@ -15,12 +15,13 @@ cat <<'EOT'>/Library/Management/ETHZ/Scripts/toggle-ethernet.sh
 # the device is - connected via ethernet ; - that has a dns server that self-resolves to $triggerdomain ; - that is unable to ping $testhostname
 # when the device is connected via builtin adapter, the script toggles the network interface via networksetup, which restores eapolclient functionality
 # if it's a non-builtin adapter, the USB device is told to reinitialize via "reenumerate", which leads to eapolclient being relaunched
+# if this does not work during the first attempt, two more attempts are made
 
 triggerdomain=ethz.ch
 testhostname=d.ethz.ch
 
 #uncomment the following two lines for debug info
-set -x
+#set -x
 exec &>>/tmp/ch.ethz.ethernet-toggle.log
 
 # wait for network to be up, for a max of max_tries, in increments of retry_delay seconds; abort if still offline
@@ -29,29 +30,34 @@ retry_delay=2
 
 ##### NO CONFIGURATION AFTER THIS LINE #####
 
+tell() {
+echo "$(date): $1"
+}
+
+waitfornetwork() {
 . /etc/rc.common
 CheckForNetwork
 c=0
 while [[ "${NETWORKUP}" != "-YES-"  && $c -lt $max_tries ]]
 do
-        echo "network not yet available, retrying in $retry_delay seconds"
+        tell "network not yet available, retrying in $retry_delay seconds"
         sleep $retry_delay
         NETWORKUP=
         CheckForNetwork
         ((c++))
 done
-if [[ "${NETWORKUP}" != "-YES-" ]] ; then ; echo "network still down after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
-echo "network now up, checking for default route"
+if [[ "${NETWORKUP}" != "-YES-" ]] ; then ; tell "network still down after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
+tell "network is up, checking for default route"
 
 #wait for default route to be available
 c=0
 while [[ $(route get 1.1|grep interface &>/dev/null; echo $?) -gt 0 && $c -lt $max_tries ]] ; do
-echo "waiting for route to be available, retrying in $retry_delay seconds"
+tell "waiting for route to be available, retrying in $retry_delay seconds"
 sleep $retry_delay
 ((c++))
 done
-if [[ $(route get 1.1|grep interface &>/dev/null; echo $?) -gt 0 ]] ; then ; echo "default route still unavailable after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
-echo "default route found"
+if [[ $(route get 1.1|grep interface &>/dev/null; echo $?) -gt 0 ]] ; then ; tell "default route still unavailable after $((max_tries * retry_delay)) sec, exiting" ; exit 0 ; fi
+	tell "default route available"
 
 #for good measure .. 
 sleep $retry_delay
@@ -61,13 +67,15 @@ sleep $retry_delay
 default_iface=$(route get 1.1|grep interface|awk {'print $2'})
 /usr/sbin/networksetup -getairportpower ${default_iface}>/dev/null
 if [ $? -eq 0 ] ; then 
-	echo "Wi-Fi is primary network interface,trying again after $(( 3*retry_delay )) seconds" 
+	tell "Wi-Fi is primary network interface,trying again after $(( 3*retry_delay )) seconds" 
         sleep $(( 3*retry_delay ))
         default_iface=$(route get 1.1|grep interface|awk {'print $2'})
         /usr/sbin/networksetup -getairportpower ${default_iface}>/dev/null
-        if [ $? -eq 0 ] ; then echo "Wi-Fi still primary after $(( 3*retry_delay )) seconds, aborting" ; exit 0 ; fi 
+        if [ $? -eq 0 ] ; then tell "Wi-Fi still primary after $(( 3*retry_delay )) seconds, aborting" ; exit 0 ; fi 
 fi
+}
 
+gatherinfo(){
 #get more info on the primary network service - device name and network service name
 hardware_ports=$(/usr/sbin/networksetup -listallhardwareports)
 port_service_name=$(echo ${hardware_ports}|grep -B1 ${default_iface}|head -n1|sed -e 's/.*\: //')
@@ -82,35 +90,63 @@ else
   internal=$(nslookup $dnsip $dnsip|grep .$triggerdomain|wc -l)
 fi
 
-if [[ $internal -eq 0 ]] ; then echo "Ethernet DNS not in $triggerdomain ; exiting" ; exit 0 ; fi
+if [[ $internal -eq 0 ]] ; then 
+  tell "Ethernet DNS not in $triggerdomain; aborting"; exit 0 
+else 
+  tell "Ethernet DNS $dnsip belongs to $triggerdomain, continuing"
+fi
 
-#check whether macOS thinks this is a builtin Ethernet card
+#check whether macOS thinks this is a builtin Ethernet card - macOS15 uses 0, newer ones use 'false'
+if [[ $(sw_vers --productversion|sed -e 's/\..*//') -gt 15 ]] ; then 
 usbnic=$(plutil -p /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist|grep -A10 $default_iface|grep '"IOBuiltin" => false'|wc -l)
+else
+usbnic=$(plutil -p /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist|grep -A10 $default_iface|grep '"IOBuiltin" => 0'|wc -l)
+fi
+}
 
+toggleifneeded(){
 #check whether $testhostname is reachable ; if yes, network is ok and we can exit
 internaldnsavailable=$(ping -q $testhostname -c 2 &>/dev/null ; echo $?)
-if [[ $internaldnsavailable -eq 0 ]] ; then echo "$testhostname reachable, network ok, exiting"; exit 0 ; fi  
+if [[ $internaldnsavailable -eq 0 ]] ; then tell "$testhostname reachable via ping, network ok, aborting"; exit 0 ; fi  
 
-echo "Test address $testhostname unavailable, toggling network interface required."
-echo "IP addresses of interface before toggle: "
-ifconfig $default_iface|grep inet|awk {'print $2'} 
+ipbeforetoggle=$(ifconfig $default_iface|grep inet|awk {'print $2'}|grep '\.')
+tell "Test address $testhostname unavailable, toggling network interface required."
+tell "IP addresses of interface before toggle: $ipbeforetoggle"
 
 if [[ $internal -gt 0 ]] && [[ $usbnic -eq 1 ]]  ; then
-  echo "Toggling USB Reenumeration to reinitialise USB Ethernet adapter"
+  tell "Toggling USB Reenumeration to reinitialise USB Ethernet adapter"
   usbnic_productid=$(plutil -p /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist|grep -A10 $default_iface|grep "idProduct"|awk {'print $3'}|xargs printf "0x%x") 
   usbnic_vendorid=$(plutil -p /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist|grep -A10 $default_iface|grep "idVendor"|awk {'print $3'}|xargs printf "0x%x") 
-  /Library/Management/ETHZ/Scripts/reenumerate $usbnic_productid $usbnic_vendorid
-  if [[ $? == 0 ]] ; then echo "Reinitialisation accepted" ; else echo "Reinitialisation failed" ; fi
+  toolcall=$(/Library/Management/ETHZ/Scripts/reenumerate $usbnic_productid $usbnic_vendorid 2>&1)
+  tell $toolcall
+  if [[ $? == 0 ]] ; then tell "Reinitialisation accepted" ; else tell "Reinitialisation failed" ; fi
 else
   #toggle the interface 
-  echo "Toggling built-in Ethernet interface"
+  tell "Toggling built-in Ethernet interface"
   /usr/sbin/networksetup -setnetworkserviceenabled ${port_service_name} off
   /sbin/ifconfig ${default_iface} down
   sleep $retry_delay
   /usr/sbin/networksetup -setnetworkserviceenabled ${port_service_name} on
   /sbin/ifconfig ${default_iface} up
-  echo "Toggled built-in Ethernet interface,exiting"
+  tell "Toggled built-in Ethernet interface"
 fi
+
+waitfornetwork
+ipaftertoggle=$(ifconfig $default_iface|grep inet|awk {'print $2'}|grep '\.')
+tell "IP addresses of interface after toggle: $ipaftertoggle"
+}
+
+tell "toggle-ethernet starting"
+waitfornetwork
+gatherinfo
+toggleifneeded
+i=1
+while [[ $i -lt 4 ]] ; do 
+if [[ $ipbeforetoggle == $ipaftertoggle ]] ; then tell "ip has not changed" ; else tell "ip has changed due to toggle" ; fi
+gatherinfo
+toggleifneeded
+i=$(( i+1 ))
+done
 EOT
 chown root:wheel /Library/Management/ETHZ/Scripts/toggle-ethernet.sh
 chmod 0700 /Library/Management/ETHZ/Scripts/toggle-ethernet.sh
