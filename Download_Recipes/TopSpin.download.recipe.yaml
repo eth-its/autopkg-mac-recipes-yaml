@@ -22,6 +22,11 @@ Process:
     Comment: "Downloads the file from the source repo to the AutoPkg cache"
     Arguments:
       url: file://%root_path%/%version%/%latest_file%.pkg
+ 
+  - Processor: PkgCopier
+    Arguments:
+      source_pkg: "%pathname%"
+      pkg_path: "%RECIPE_CACHE_DIR%/TopSpin-%version%.pkg"
 
   - Processor: EndOfCheckPhase
 
