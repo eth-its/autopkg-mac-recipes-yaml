@@ -21,7 +21,7 @@ Input:
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
   SELFSERVICE_DESCRIPTION: Install the **card-hp IPP** print queue along with any required drivers. 
-  SELFSERVICE_ICON: ETH Printers.png
+  SELFSERVICE_ICON: "ETH Printers.png"
   SELFSERVICE_POLICY_NAME: "%NAME%"
   INSTALL_BUTTON_TEXT: Install
   REINSTALL_BUTTON_TEXT: Install
@@ -124,6 +124,7 @@ Process:
     Arguments:
       policy_template: Policy-uninstall-selfservice-command.xml
       uninstall_policy_name: "Uninstall %NAME%"
+      UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
       uninstall_policy_category: "ETH"
       icon: ""
       replace_policy: "True"
