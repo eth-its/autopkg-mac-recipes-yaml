@@ -116,4 +116,9 @@ pkgutilcmd="/usr/sbin/pkgutil"
 $pkgutilcmd --pkgs=com.citrix.ICAClient && $pkgutilcmd --forget com.citrix.ICAClient
 $pkgutilcmd --pkgs=ch.ethz.mac.pkg.Citrix_Receiver.ML && $pkgutilcmd --forget ch.ethz.mac.pkg.Citrix_Receiver.ML
 
+
+# Call new citrix uninstaller
+
+"/Library/Citrix Workspace/Uninstaller/Uninstall Citrix Workspace.app/Contents/MacOS/Uninstall Citrix Workspace" --nogui ||:
+
 echo "${app_name} removal complete!"
