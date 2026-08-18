@@ -14,7 +14,7 @@ cat >/tmp/testjob.sh <<EOT
 echo '\n\n\n'>/private/tmp/printjob.txt
 osascript -e 'tell application "TextEdit" to print POSIX file "/private/tmp/printjob.txt" with properties {target printer:"card-hp-IPP"} without print dialog'
 sleep 2
-rm /private/tmp/printjob.txt
+rm -f /private/tmp/printjob.txt
 EOT
 launchctl asuser $loggedInUserID /bin/zsh /tmp/testjob.sh
 fi
