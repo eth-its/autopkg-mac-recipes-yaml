@@ -35,7 +35,8 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   MESSAGE_FINISH: "%NAME% installation complete"
 
-  AUTOINSTALL_GROUP_NAME: "Auto-install %NAME%"
+  AUTOINSTALL_GROUP_NAME: "%NAME% auto-install"
+  AUTOINSTALL_POLICY_NAME: "Auto-install %NAME%"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users.xml
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall.xml
   AUTOINSTALL_POLICY_CATEGORY: Auto-installers
