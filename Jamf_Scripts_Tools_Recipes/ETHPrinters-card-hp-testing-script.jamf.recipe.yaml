@@ -49,10 +49,11 @@ Input:
 
   SELFSERVICE_UNINSTALL_POLICY_RUN_COMMAND: "lpadmin -x 'card-hp-IPP'"
   UNINSTALL_SELFSERVICE_INSTALL_BUTTON: "Uninstall"
-  UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: "Reinstall"
+  UNINSTALL_SELFSERVICE_REINSTALL_BUTTON: "Uninstall"
   UNINSTALL_SELFSERVICE_DISPLAY_NAME: "Uninstall %NAME%"
+  UNINSTALL_POLICY_NAME: "%UNINSTALL_SELFSERVICE_DISPLAY_NAME"
   UNINSTALL_SELFSERVICE_DESCRIPTION: "Removes %NAME%"
-  SELFSERVICE_FORCE_DESCRIPTION: False
+  SELFSERVICE_FORCE_DESCRIPTION: "False"
   UNINSTALL_POLICY_CATEGORY: "%POLICY_CATEGORY%"
 
 Process:
@@ -123,8 +124,6 @@ Process:
     Comment: Self Service uninstall policy
     Arguments:
       policy_template: Policy-uninstall-selfservice-command.xml
-      uninstall_policy_name: "Uninstall %NAME%"
-      UNINSTALL_POLICY_NAME: "Uninstall %NAME%"
-      uninstall_policy_category: "ETH"
-      icon: ""
+      policy_name: "%UNINSTALL_POLICY_NAME%"
       replace_policy: "True"
+      icon: "%SELFSERVICE_ICON%"
