@@ -105,12 +105,17 @@ class VersionRegexGeneratorPrefix(Processor):
             "SMARTGROUP_VERSION_PREFIX"
         )
 
+        if SMARTGROUP_VERSION_PREFIX:
+            self.output(f"Detected Prefix;modifying version currently set to {version}")
+            version=version.replace(SMARTGROUP_VERSION_PREFIX,'',1)
+
         # handle files with no path
         if "/" not in path_to_match_version_number_or_higher_script:
             path_to_match_version_number_or_higher_script = self.get_path_to_file(
                 path_to_match_version_number_or_higher_script
             )
 
+        self.output(f"Passing {version} to script for creating Regex")
         cmd = [
             "/bin/bash",
             path_to_match_version_number_or_higher_script,
@@ -130,6 +135,7 @@ class VersionRegexGeneratorPrefix(Processor):
             self.output(f"Regex {i} for version string {version}: {regex_line}")
             if i == 0:
                 if SMARTGROUP_VERSION_PREFIX:
+                    self.output(f"Regex: {regex_line} , after modification: {regex_line.replace('^','^%s' % SMARTGROUP_VERSION_PREFIX)}")
                     self.env["version_regex"] = regex_line.replace('^','^%s' % SMARTGROUP_VERSION_PREFIX)
                 else:
                     self.env["version_regex"] = regex_line
