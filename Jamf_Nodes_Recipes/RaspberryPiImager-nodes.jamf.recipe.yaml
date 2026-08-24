@@ -21,7 +21,7 @@ Input:
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SELFSERVICE_DESCRIPTION: "%LAST_RUN_SELFSERVICE_DESCRIPTION%"
   SP_EXECUTABLE_COMMAND: "open '/Applications/%NAME%.app'"
-  SP_PROCESS_NAME: "%NAME%"
+  SP_PROCESS_NAME: "rpi-imager"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   SMARTGROUP_VERSION_PREFIX: "v"
 
