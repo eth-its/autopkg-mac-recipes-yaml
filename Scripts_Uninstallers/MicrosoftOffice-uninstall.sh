@@ -7,7 +7,7 @@
 #######################################################################
 
 # All the other parameters can be package IDs to delete
-OfficeApps=( "Microsoft Excel" "Microsoft OneNote" "Microsoft Outlook" "Microsoft PowerPoint" "Microsoft Word" "Microsoft OneNote" "Microsoft AutoUpdate" "OneDrive" )
+OfficeApps=( "Microsoft Excel" "Microsoft OneNote" "Microsoft Outlook" "Microsoft PowerPoint" "Microsoft Word" "Microsoft OneNote" "Microsoft AutoUpdate" "OneDrive" "Microsoft 365 Copilot")
 
 for appName in "${OfficeApps[@]}"; do
     if [[ $(pgrep -x "$appName") ]]; then
@@ -42,6 +42,8 @@ echo "Removing Microsoft Office applications..."
 [[ -d "/Applications/Microsoft Outlook.app" ]] && rm -rf "/Applications/Microsoft Outlook.app"
 [[ -d "/Applications/Microsoft OneNote.app" ]] && rm -rf "/Applications/Microsoft OneNote.app"
 [[ -d "/Applications/Microsoft Teams.app" ]] && rm -rf "/Applications/Microsoft Teams.app"
+[[ -d "/Applications/Microsoft 365 Copilot.app" ]] && rm -rf "Microsoft 365 Copilot.app"
+[[ -d "/Applications/Microsoft 365 Copilot Shim.app" ]] && rm -rf "Microsoft 365 Copilot Shim.app"
 
 echo "Removing Microsoft Office LaunchDaemons..."
 
@@ -71,7 +73,9 @@ com.microsoft.package.Frameworks
 com.microsoft.package.Proofing_Tools
 com.microsoft.package.Fonts
 com.microsoft.pkg.licensing.volume
-com.microsoft.pkg.licensing"
+com.microsoft.pkg.licensing
+com.microsoft.m365copilot.shim
+com.microsoft.m365copilot"
 
 # Loop through the remaining parameters
 pkgutilcmd="/usr/sbin/pkgutil"
