@@ -20,9 +20,9 @@ Input:
   EXTENSION_ATTRIBUTE_VALUE: "/%PRINTER_NAME%/auth"
 
   SELFSERVICE_POLICY_CATEGORY: ETH
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
-  SELFSERVICE_DESCRIPTION: "Install the **%PRINTER_NAME%** print queue along with any required drivers. \n\nUser Credentials must be provided and saved once the first print Job is sent: ETH username, and email password. \nJobs will start printing once you present your ETH card to the printer, and release the job."
+  SELFSERVICE_DESCRIPTION: "Install the **%PRINTER_NAME%** print queue along with any required drivers. \n\nAfter installation, please print a document to save your user credentials ( ETH username (without @ethz.ch), and ETH password for email (Active Directory) ).\nJobs will be printed at your location after you present your ETH card to any printer at ETH, and release the job."
   SELFSERVICE_ICON: "ETH Printers.png"
   SELFSERVICE_POLICY_NAME: "%NAME%"
   INSTALL_BUTTON_TEXT: Install
