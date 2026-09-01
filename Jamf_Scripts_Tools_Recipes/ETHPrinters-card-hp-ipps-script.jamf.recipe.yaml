@@ -22,7 +22,7 @@ Input:
   SELFSERVICE_POLICY_CATEGORY: ETH
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
-  SELFSERVICE_DESCRIPTION: Install the **%PRINTER_NAME%** print queue along with any required drivers. \n\nUser Credentials must be provided and saved once the first print Job is sent: ETH username, and email password. \nJobs will start printing once you present your ETH card to the printer, and release the job. 
+  SELFSERVICE_DESCRIPTION: "Install the **%PRINTER_NAME%** print queue along with any required drivers. \n\nUser Credentials must be provided and saved once the first print Job is sent: ETH username, and email password. \nJobs will start printing once you present your ETH card to the printer, and release the job."
   SELFSERVICE_ICON: "ETH Printers.png"
   SELFSERVICE_POLICY_NAME: "%NAME%"
   INSTALL_BUTTON_TEXT: Install
