@@ -7,7 +7,7 @@
 #######################################################################
 
 # All the other parameters can be package IDs to delete
-OfficeApps=( "Microsoft Excel" "Microsoft OneNote" "Microsoft Outlook" "Microsoft PowerPoint" "Microsoft Word" "Microsoft OneNote" "Microsoft AutoUpdate" "OneDrive" "Microsoft 365 Copilot")
+OfficeApps=( "Microsoft Excel" "Microsoft OneNote" "Microsoft Outlook" "Microsoft PowerPoint" "Microsoft Word" "Microsoft OneNote" "Microsoft AutoUpdate" "OneDrive" "Microsoft 365 Copilot" "Microsoft Teams")
 
 for appName in "${OfficeApps[@]}"; do
     if [[ $(pgrep -x "$appName") ]]; then
@@ -42,8 +42,8 @@ echo "Removing Microsoft Office applications..."
 [[ -d "/Applications/Microsoft Outlook.app" ]] && rm -rf "/Applications/Microsoft Outlook.app"
 [[ -d "/Applications/Microsoft OneNote.app" ]] && rm -rf "/Applications/Microsoft OneNote.app"
 [[ -d "/Applications/Microsoft Teams.app" ]] && rm -rf "/Applications/Microsoft Teams.app"
-[[ -d "/Applications/Microsoft 365 Copilot.app" ]] && rm -rf "Microsoft 365 Copilot.app"
-[[ -d "/Applications/Microsoft 365 Copilot Shim.app" ]] && rm -rf "Microsoft 365 Copilot Shim.app"
+[[ -d "/Applications/Microsoft 365 Copilot.app" ]] && rm -rf "/Applications/Microsoft 365 Copilot.app"
+[[ -d "/Applications/Microsoft 365 Copilot Shim.app" ]] && rm -rf "/Applications/Microsoft 365 Copilot Shim.app"
 
 echo "Removing Microsoft Office LaunchDaemons..."
 
