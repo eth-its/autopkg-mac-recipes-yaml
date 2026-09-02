@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>Mersive Solstice Privacy Settings</string>
+			<key>PayloadDisplayName</key>
+			<string>Mersive Solstice Privacy Settings</string>
+			<key>PayloadIdentifier</key>
+			<string>AFE7DA39-83CC-4527-AB01-3C80EE86A995</string>
+			<key>PayloadOrganization</key>
+			<string>ETHZ</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>E9C95E37-23B6-40E8-BBBD-14172D4E2CAB</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>ScreenCapture</key>
+				<array>
+					<dict>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.mersive.solstice.client" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "63B5A5WDNG"</string>
+						<key>Comment</key>
+						<string></string>
+						<key>Identifier</key>
+						<string>com.mersive.solstice.client</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Mersive Solstice Privacy Settings</string>
+	<key>PayloadDisplayName</key>
+	<string>Mersive Solstice Privacy Settings</string>
+	<key>PayloadIdentifier</key>
+	<string>AFE7DA39-83CC-4527-AB01-3C80EE86A995</string>
+	<key>PayloadOrganization</key>
+	<string>ETHZ</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>FD7920AD-4428-4C15-9227-EC841C0BEC24</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
