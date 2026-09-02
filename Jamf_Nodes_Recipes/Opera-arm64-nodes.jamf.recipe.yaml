@@ -5,7 +5,7 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: Opera
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Opera
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Opera-arm64
   EXTENSION_ATTRIBUTE_NAME: Opera Version
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
   JSS_INVENTORY_NAME: "%NAME%.app"
