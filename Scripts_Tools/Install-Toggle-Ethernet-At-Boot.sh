@@ -173,3 +173,7 @@ cat <<'EOF'>/Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist
 EOF
 chown root:wheel /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist
 chmod 644 /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist
+
+
+launchctl bootout system/ch.ethz.toggle-ethernet ||:
+launchctl bootstrap system /Library/LaunchDaemons/ch.ethz.toggle-ethernet.plist

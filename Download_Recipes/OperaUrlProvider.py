@@ -27,7 +27,7 @@ class OperaURLProvider(URLGetter):
     description = "Provides URL to the latest stable version."
     input_variables = {
         "USER_AGENT": {"description": "User Agent used for downloading", "required":False, "default":"Opera autoupdate agent/1.0.0"},
-        "arch": {"description": "Architecture - arm64 or x86_64", "required":True, "default":"arm64"}
+        "ARCH": {"description": "Architecture - arm64 or x86_64", "required":True, "default":"arm64"}
     }
     output_variables = {
         "url": { "description": "URL for a download.", },
