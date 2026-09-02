@@ -1,0 +1,30 @@
+Identifier: com.github.eth-its-recipes.download.Opera
+MinimumVersion: 0.4.1
+
+Input:
+  NAME: Opera
+  UPDATE_URL: "https://autoupdate.geo.opera.com/"
+  USER_AGENT: Opera autoupdate agent/1.0.0
+  ARCH: arm64
+
+Process:
+  - Processor: OperaURLProvider
+    Arguments:
+      request_headers:
+        user-agent: "%USER_AGENT%"
+      update_url: "%UPDATE_URL%"
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_format: tar
+      purge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: identifier "com.operasoftware.Opera" and certificate leaf = H"89584386993936e6f38e64eed006f705f2570cbf" or certificate leaf = H"cdf1c39967986616b6cd64c6bd04833a9cb7450d"
+      requirement-comment: "The requirement string can be found with codesign: `codesign --display -v -r- /Volumes/Opera/Opera.app`"
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%/Opera.app"

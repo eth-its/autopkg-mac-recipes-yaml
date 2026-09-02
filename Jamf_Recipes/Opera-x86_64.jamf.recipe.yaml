@@ -1,30 +1,36 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Opera
+Identifier: com.github.eth-its-recipes.jamf.Opera-x86_64
 MinimumVersion: "2.3"
-ParentRecipe: com.github.amsysuk-recipes.pkg.opera
+ParentRecipe: com.github.eth-its-recipes.pkg.Opera
 
 Input:
   NAME: Opera
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PLATFORM: x86_64
+  ARCH: "%PLATFORM%"
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% %PLATFORM% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA-platform.xml
+  PLATFORM_EXCLUSION_GROUP_NAME: "Apple Silicon Mac"
+  PLATFORM_EXCLUSION: arm64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
+
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Browsers & Players
   SELFSERVICE_DESCRIPTION: |
     Opera Browser is fully-featured for privacy, security, and everything you do online.
 
-    Version: %version%
+    Version: %version% %PLATFORM%
     Category: %PKG_CATEGORY%
   EXTENSION_ATTRIBUTE_NAME: Opera Version
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
   JSS_INVENTORY_NAME: '%NAME%.app'
   VERSION_STRING_TYPE: CFBundleVersion
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  INSTALL_BUTTON_TEXT: "Install %version% %ARCH%"
+  REINSTALL_BUTTON_TEXT: "Install %version% %ARCH%"
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"

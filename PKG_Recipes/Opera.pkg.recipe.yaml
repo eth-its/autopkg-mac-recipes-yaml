@@ -1,0 +1,42 @@
+Description: |-
+  Downloads latest Opera disk image using the parent recipe
+      com.github.eth-its-recipes.download.Opera and builds a package.
+      
+Identifier: com.github.eth-its-recipes.pkg.Opera
+ParentRecipe: com.github.eth-its-recipes.download.Opera
+
+Input:
+  NAME: Opera
+  ARCH: arm64 # or x86_64
+
+Process:
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/%NAME%/Opera.app"
+      plist_keys:
+        CFBundleVersion: version
+        CFBundleIdentifier: bundleid
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/%NAME%/Opera.app"
+      destination_path: "%pkgroot%/Applications/Opera.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        pkgname: "%NAME%-%version%"
+        chown:
+          -
+            user: root
+            path: Applications
+            group: admin
+        options: purge_ds_store
+        version: "%version%"
+        id: "%bundleid%"
