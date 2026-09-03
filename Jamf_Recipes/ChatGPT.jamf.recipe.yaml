@@ -34,7 +34,7 @@ Input:
   SCRIPT_NAME: "%NAME%-preinstall.sh"
   SCRIPT_PATH: "%NAME%-preinstall.sh"
   SCRIPT_PRIORITY: Before
-
+  SCRIPT_CATEGORY: "%PKG_CATEGORY%"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
