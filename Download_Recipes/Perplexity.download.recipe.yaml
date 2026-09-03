@@ -1,0 +1,26 @@
+Description: |-
+  Downloads the latest version of Perplexity.
+Identifier: com.github.eth-its-recipes.download.Perplexity
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Perplexity
+  DOWNLOAD_URL: "https://macos-download.perplexity.ai/Perplexity.dmg"
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%.dmg"
+      url: "%DOWNLOAD_URL%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: identifier "ai.perplexity.macv3" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "7S8W4W365S"
+      input_path: "%pathname%/Perplexity.app"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Perplexity.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

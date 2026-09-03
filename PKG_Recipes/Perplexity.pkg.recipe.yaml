@@ -1,0 +1,12 @@
+Description: Downloads the latest version of Perplexity and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.Perplexity
+ParentRecipe: com.github.eth-its-recipes.download.Perplexity
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Perplexity
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
