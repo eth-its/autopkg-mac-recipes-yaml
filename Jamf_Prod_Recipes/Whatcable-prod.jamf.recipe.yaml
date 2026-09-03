@@ -1,9 +1,14 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Whatcable-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
 
 Input:
   NAME: Whatcable
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Whatcable
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  PLATFORM: arm64
+  ARCH: "%PLATFORM%"
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_TEMPLATE: SmartGroup-platform.xml
