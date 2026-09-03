@@ -26,10 +26,15 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-platform-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-platform-script-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
+
+  SCRIPT_NAME: "%NAME%-preinstall.sh"
+  SCRIPT_PATH: "%NAME%-preinstall.sh"
+  SCRIPT_PRIORITY: Before
+
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -51,6 +56,14 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%SCRIPT_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
