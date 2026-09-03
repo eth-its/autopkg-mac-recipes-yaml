@@ -1,0 +1,38 @@
+Description: Downloads the current release version of Mactracker and builds a package.
+Identifier: com.github.eth-its-recipes.pkg.Mactracker
+ParentRecipe: com.github.eth-its-recipes.download.Mactracker
+MinimumVersion: 0.2.0
+
+Input:
+  NAME: Mactracker
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
+
+  - Processor: Unarchiver
+    Arguments:
+      purge_destination: true
+      destination_path: "%pkgroot%/Applications"
+      archive_path: "%pathname%"
+
+  - Processor: Versioner
+    Comment: Get version from the app
+    Arguments:
+      plist_version_key: CFBundleShortVersionString
+      input_plist_path: "%pkgroot%/Applications/Mactracker.app/Contents/Info.plist"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: com.mactrackerapp.Mactracker
+        chown:
+          -
+            group: admin
+            path: Applications
+            user: root
+        version: "%version%"
+        pkgname: "%NAME%-%version%"
