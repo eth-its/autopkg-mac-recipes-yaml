@@ -123,19 +123,11 @@
                     </dict>
                     <dict>
                         <key>Comment</key>
-                        <string>Cisco AnyConnect</string>
+                        <string>Cisco Secure Client</string>
                         <key>RuleType</key>
-                        <string>LabelPrefix</string>
+                        <string>BundleIdentifierPrefix</string>
                         <key>RuleValue</key>
-                        <string>com.cisco</string>
-                    </dict>
-                    <dict>
-                        <key>Comment</key>
-                        <string>Cisco</string>
-                        <key>RuleType</key>
-                        <string>TeamIdentifier</string>
-                        <key>RuleValue</key>
-                        <string>DE8Y96K9QP</string>
+                        <string>com.cisco.secureclient.vpn</string>
                     </dict>
                     <dict>
                         <key>Comment</key>
