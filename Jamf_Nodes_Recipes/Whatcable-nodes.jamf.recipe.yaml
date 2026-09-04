@@ -7,7 +7,6 @@ Input:
   NAME: Whatcable
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Whatcable
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
-
   PLATFORM: arm64
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"

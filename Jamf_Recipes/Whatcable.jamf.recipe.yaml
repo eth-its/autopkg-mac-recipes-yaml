@@ -5,8 +5,8 @@ ParentRecipe: com.github.homebysix.pkg.WhatCable
 
 Input:
   NAME: Whatcable
-  POLICY_NAME: "%NAME% (Testing)"
-  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PLATFORM: arm64
   ARCH: "%PLATFORM%"
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
