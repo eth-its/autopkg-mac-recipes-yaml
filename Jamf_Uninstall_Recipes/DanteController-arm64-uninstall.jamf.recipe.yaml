@@ -6,7 +6,7 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform
 Input:
   NAME: "Dante Controller"
   PLATFORM: arm64
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform-no-users.xml
   SELFSERVICE_ICON: "Dante Controller.png"
   SCRIPT_NAME: DanteController-arm64-uninstall.sh
   SCRIPT_PATH: DanteController-arm64-uninstall.sh
