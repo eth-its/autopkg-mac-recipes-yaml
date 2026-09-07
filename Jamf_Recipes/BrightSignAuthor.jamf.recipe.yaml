@@ -11,9 +11,9 @@ Input:
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Set up, create, and publish content right out of the box, at no additional cost. \n
-    Easily configure single or multiple players, using BrightSign Author Plus or partner CMS solutions. \n
-    Create simple or complex presentations using all of BrightSign's features with an intuitive, streamlined interface. \n
+    Set up, create, and publish content right out of the box, at no additional cost. 
+    Easily configure single or multiple players, using BrightSign Author Plus or partner CMS solutions. 
+    Create simple or complex presentations using all of BrightSign's features with an intuitive, streamlined interface. 
     Formerly called brightAuthor connected.
 
     Version: %version%
