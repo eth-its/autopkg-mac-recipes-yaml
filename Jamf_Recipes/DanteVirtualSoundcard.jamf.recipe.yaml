@@ -29,8 +29,8 @@ Input:
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
-  POSTINSTALL_SCRIPT_PATH: "%RECIPE_CACHE_DIR%/../../RecipeRepos/com.github.autopkg.dataJAR-recipes/Audinate\ Dante\ Virtual\ Soundcard/Reference\ Scripts\ Audinate\ Dante\ Virtual\ Soundcard/Fixed\ Scripts/postinstall"
-  PREINSTALL_SCRIPT_PATH: "%RECIPE_CACHE_DIR%/../../RecipeRepos/com.github.autopkg.dataJAR-recipes/Audinate\ Dante\ Virtual\ Soundcard/Reference\ Scripts\ Audinate\ Dante\ Virtual\ Soundcard/Fixed\ Scripts/preinstall"
+  POSTINSTALL_SCRIPT_PATH: "%RECIPE_DIR%/Reference Scripts Audinate Dante Virtual Soundcard/Fixed Scripts/postinstall"
+  PREINSTALL_SCRIPT_PATH: "%RECIPE_DIR%/Reference Scripts Audinate Dante Virtual Soundcard/Fixed Scripts/preinstall"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
