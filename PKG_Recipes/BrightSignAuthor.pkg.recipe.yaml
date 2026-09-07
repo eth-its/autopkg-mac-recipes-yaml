@@ -1,0 +1,13 @@
+Description: Downloads the latest version of BA Connected (BrightAuthor Connected) from Brightsign and creates a package.
+Identifier: com.github.eth-its-recipes.pkg.BrightSignAuthor
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.download.BrightSignAuthor
+
+Input:
+  NAME: "BA Connected"
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      app_path: "%pathname%/%NAME%.app"

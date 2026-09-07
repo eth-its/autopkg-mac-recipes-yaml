@@ -1,0 +1,24 @@
+Description: Downloads the latest version of BrightSign Author (ex BrightAuthor Connected) from Brightsign - thanks to com.github.NickETH.recipes.download.BrightAuthorConnected-Win64
+Identifier: com.github.eth-its-recipes.download.BrightSignAuthor
+MinimumVersion: "2.3"
+
+Input:
+  NAME: "BA Connected"
+  SEARCH_URL: https://docs.brightsign.biz/releases/latest
+  REGEX: '"href":"(https:\/\/downloads\.bsn\.cloud\/BA\+connected-(?P<version>([0-9]+\.)*[0-9]+)\.dmg)"'
+
+Process:
+- Processor: URLTextSearcher
+  Comment: Get the exact path from the download page.
+  Arguments:
+    re_pattern: '%REGEX%'
+    url: '%SEARCH_URL%'
+
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%_%version%.dmg'
+    url: '%match%'
+
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: download_changed == False
