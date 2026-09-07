@@ -1,0 +1,19 @@
+Description: Downloads the current release version of Dante Controller and builds a package.
+Identifier: com.github.eth-its-recipes.pkg.DanteController-arm64
+ParentRecipe: com.github.dataJAR-recipes.download.Audinate Dante Controller
+MinimumVersion: 0.2.0
+
+Input:
+  NAME: Dante Controller
+  DOWNLOAD_ARCH: apple_silicon
+
+Process:
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/DanteController-arm64-%version%.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/Audinate Dante Controller.pkg"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list: 
+            - "%RECIPE_CACHE_DIR%/Audinate Dante Controller.pkg"

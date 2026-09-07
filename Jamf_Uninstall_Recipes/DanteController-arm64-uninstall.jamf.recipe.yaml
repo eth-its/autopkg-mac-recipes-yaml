@@ -1,0 +1,12 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.DanteController-arm64-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform-no-users
+
+Input:
+  NAME: "Dante Controller"
+  PLATFORM: arm64
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-platform.xml
+  SELFSERVICE_ICON: "Dante Controller.png"
+  SCRIPT_NAME: DanteController-arm64-uninstall.sh
+  SCRIPT_PATH: DanteController-arm64-uninstall.sh
