@@ -13,6 +13,3 @@ Input:
   UNINSTALL_SELFSERVICE_DESCRIPTION: |
     Uninstalls BrightSign Author.
     Formerly called brightAuthor connected, brightAuthor:connected, and BA Connected.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
