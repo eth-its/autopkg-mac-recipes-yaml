@@ -1,0 +1,33 @@
+Description: Downloads the latest version of RODE Central - thanks to com.github.moofit-recipes.download.RODECentral ( which now downloads Connect )
+Identifier: com.github.eth-its-recipes.download.RODECentral
+MinimumVersion: "2.3"
+
+Input:
+  NAME: RODE Central
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://update.rode.com/central/RODE_Central_MACOS.zip"
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_format: zip
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unzip"
+      purge_destination: True
+    Comment: Unzipping for code signature verification. Path must be deleted afterwards to prevent unzipping over existing version.
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/RodeCentral.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/unzip/R*DE Central*.pkg"
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/RodeCentral.pkg"
+      expected_authority_names:
+       - "Developer ID Installer: FREEDMAN ELECTRONICS PTY LTD (Z9T72PWTJA)"
+       - Developer ID Certification Authority
+       - Apple Root CA
