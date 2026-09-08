@@ -10,3 +10,4 @@ if [[ ! -f "$DANTE_VIA_UNINSTALL_SCRIPT" ]]; then
 fi
 
 exec "$DANTE_VIA_UNINSTALL_SCRIPT"
+pkgutil --forget com.audinate.pkg.DanteVia /
