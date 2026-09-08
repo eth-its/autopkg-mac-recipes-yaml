@@ -9,4 +9,4 @@ Input:
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: de.bruker.nmr.topspin5.0.0
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
-  APPLICATION_NAME_HAS: "%NAME"
+  APPLICATION_NAME_HAS: "%NAME%"
