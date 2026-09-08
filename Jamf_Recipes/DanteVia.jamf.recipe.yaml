@@ -3,8 +3,8 @@ MinimumVersion: "2.3"
 ParentRecipe: "com.github.dataJAR-recipes.pkg.Audinate Dante Via"
 
 Description: Creates a Self-Service Policy available to members of a Testing group.
+
 #REQUIRES overrides as follows : 
-#Identifier: local.jamf.DanteVia
 #Input: 
 #   RECIPE_SOURCE_DIR: "/Users/$AUTOPKGUSERNAME/Library/AutoPkg/RecipeRepos/com.github.autopkg.dataJAR-recipes/Audinate Dante Via/Reference Scripts Audinate Dante Via/Fixed Scripts"
 #   INSTALL_SCRIPT_PATH: "%RECIPE_SOURCE_DIR%/DanteViaInstall.command"
