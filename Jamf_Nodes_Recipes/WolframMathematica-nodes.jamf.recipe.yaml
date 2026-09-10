@@ -20,6 +20,10 @@ Input:
   PARAMETER4_LABEL: "License Server Name"
   PARAMETER5_LABEL: "Node License String"
 
+  EXTENSION_ATTRIBUTE_SCRIPT: "WolframMathematicaLicenseType-EA.zsh"
+  EXTENSION_ATTRIBUTE_NAME: "Wolfram Mathematica License Type"
+
+
   POLICY_NODE_NAME: "%NAME% Node (Testing)"
   SELFSERVICE_NODE_DESCRIPTION: |
     Wolfram Mathematica by Wolfram Research is high-powered computation software with thousands of Wolfram Language functions, natural language input, real-world data, and mobile support.
