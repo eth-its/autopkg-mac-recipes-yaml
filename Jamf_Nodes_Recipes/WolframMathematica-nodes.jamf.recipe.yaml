@@ -34,6 +34,8 @@ Input:
   REINSTALL_NODE_BUTTON_TEXT: "Install %version% Node"
   POLICY_NODE_RUN_COMMAND: "echo 'Installation of %POLICY_NODE_NAME% complete'"
   POLICY_NODE_SCRIPT_NAME: "WolframMathematicaLicense-node-install.zsh"
+  TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "Wolfram Mathematica Node Test Version installed"
+  TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
  
   POLICY_FLOATING_NAME: "%NAME% Floating (Testing)"
   SELFSERVICE_FLOATING_DESCRIPTION: |
@@ -49,7 +51,8 @@ Input:
   REINSTALL_FLOATING_BUTTON_TEXT: "Install %version% Floating"
   POLICY_FLOATING_RUN_COMMAND: "echo 'Installation of %POLICY_FLOATING_NAME% complete'"
   POLICY_FLOATING_SCRIPT_NAME: "WolframMathematicaLicense-floating-install.zsh"
-
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "Wolfram Mathematica Floating Test Version installed"
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   SCRIPT_PRIORITY: After
 
   SELFSERVICE_ICON: "%NAME%.png"
@@ -120,9 +123,20 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
-      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
-      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      computergroup_name: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE%"
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+      EXTENSION_ATTRIBUTE_VALUE: Node
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE%"
+      EXTENSION_ATTRIBUTE_SEARCH_TYPE: is
+      EXTENSION_ATTRIBUTE_VALUE: Floating
+      replace_group: "True"
+
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
       SCRIPT_NAME: "%POLICY_NODE_SCRIPT_NAME%"
