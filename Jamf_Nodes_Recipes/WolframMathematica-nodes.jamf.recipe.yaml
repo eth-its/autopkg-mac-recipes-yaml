@@ -71,9 +71,6 @@ Input:
   TESTING_GROUP_NAME: Testing
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
 
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
-  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
     Arguments:
