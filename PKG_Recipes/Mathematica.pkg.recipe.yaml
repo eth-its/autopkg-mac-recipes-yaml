@@ -7,7 +7,7 @@ Input:
   LIST_LANGUAGE: EN
   LIST_NAME: Mathematica Node
   NAME: Mathematica
-  LIST_FILTER: ".dmg"
+  LIST_FILTER: "Wolfram"
 
 Process:
   - Processor: AppPkgCreator
