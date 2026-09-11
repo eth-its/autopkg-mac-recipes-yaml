@@ -27,4 +27,4 @@ Process:
 
   - Processor: VariableSetter
     Arguments:
-      pkg\_path: "%pathname%"
+      pkg_path: "%pathname%"
