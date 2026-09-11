@@ -167,7 +167,7 @@ Process:
       script_path: "%POLICY_NODE_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
+      script_parameter5: "%PARAMETER5_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
@@ -177,7 +177,7 @@ Process:
       script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
+      script_parameter5: "%PARAMETER5_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
@@ -358,10 +358,8 @@ Process:
     Comment: Delete the test version installed group
     Arguments:
       computergroup_name: "%TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME%"
-      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
     Comment: Delete the test version installed group
     Arguments:
       computergroup_name: "%TEST_VERSION_NODE_INSTALLED_GROUP_NAME%"
-      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things

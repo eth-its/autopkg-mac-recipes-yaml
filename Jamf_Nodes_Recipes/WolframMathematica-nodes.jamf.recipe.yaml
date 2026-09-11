@@ -103,7 +103,7 @@ Process:
       script_path: "%POLICY_NODE_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
+      script_parameter5: "%PARAMETER5_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
@@ -113,7 +113,7 @@ Process:
       script_path: "%POLICY_FLOATING_SCRIPT_NAME%"
       script_priority: "%SCRIPT_PRIORITY%"
       script_parameter4: "%PARAMETER4_LABEL%"
-      script_parameter5: "%PARAMETER5_LABEL"
+      script_parameter5: "%PARAMETER5_LABEL%"
       replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
