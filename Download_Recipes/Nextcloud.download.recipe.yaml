@@ -25,7 +25,6 @@ Process:
         - Apple Root CA
       input_path: "%pathname%"
 
-  - Processor: PkgCopier
+  - Processor: VariableSetter
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
-      source_pkg: "%pathname%"
+      pkg\_path: "%pathname%"
