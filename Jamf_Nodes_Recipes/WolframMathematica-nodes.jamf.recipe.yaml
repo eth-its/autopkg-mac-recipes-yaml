@@ -39,7 +39,7 @@ Input:
   POLICY_NODE_RUN_COMMAND: "echo 'Installation of %POLICY_NODE_NAME% complete'"
   POLICY_NODE_SCRIPT_NAME: "WolframMathematicaLicense-node-install.zsh"
   TEST_VERSION_NODE_INSTALLED_GROUP_NAME: "Wolfram Mathematica Node Test Version installed"
-  TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_NODE_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-plus-EA.xml
  
   POLICY_FLOATING_NAME: "%NAME% Floating (Testing)"
   SELFSERVICE_FLOATING_DESCRIPTION: |
@@ -56,7 +56,7 @@ Input:
   POLICY_FLOATING_RUN_COMMAND: "echo 'Installation of %POLICY_FLOATING_NAME% complete'"
   POLICY_FLOATING_SCRIPT_NAME: "WolframMathematicaLicense-floating-install.zsh"
   TEST_VERSION_FLOATING_INSTALLED_GROUP_NAME: "Wolfram Mathematica Floating Test Version installed"
-  TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
+  TEST_VERSION_FLOATING_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-plus-EA.xml
   SCRIPT_PRIORITY: After
 
   SELFSERVICE_ICON: "%NAME%.png"

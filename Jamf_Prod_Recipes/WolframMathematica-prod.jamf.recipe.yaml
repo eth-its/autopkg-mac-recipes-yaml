@@ -21,7 +21,6 @@ Input:
 
   PROD_VERSION_INSTALLED_GROUP_NAME: "%NAME% current version installed"
   PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
-  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   INSTALLED_GROUP_NAME: "%NAME% installed"
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
 
@@ -354,12 +353,6 @@ Process:
     Comment: Delete the untested floating policy
     Arguments:
       policy_name: "%NAME% Floating (Testing)"
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
-    Comment: Delete the test version installed group
-    Arguments:
-      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
-      SELFSERVICE_POLICY_NAME: "%NAME%" #to override things
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
     Comment: Delete the test version installed group
