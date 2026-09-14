@@ -7,11 +7,6 @@ Input:
   NAME: TopSpin
 
 Process:
-  - Arguments:
-      pkgdirs:
-        Applications: "0775"
-      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PkgRootCreator
 
   - Arguments:
       pkgdirs:
@@ -29,7 +24,7 @@ Process:
         arch -x86_64 /usr/sbin/installer -pkg "$DIR/TopSpin_5.0.0.pkg" -target /
         exit 0
       file_mode: "0755"
-      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+      file_path: "%RECIPE_CACHE_DIR%/pkgroot/Scripts/postinstall"
     Processor: FileCreator
 
   - Processor: Copier
