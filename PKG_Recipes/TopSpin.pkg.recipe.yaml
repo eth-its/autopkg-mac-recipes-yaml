@@ -43,7 +43,7 @@ Process:
         chown: []
         id: de.bruker.nmr.topspin5.0.0.pkg
         pkgname: "%NAME%-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        # pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
         scripts: "%RECIPE_CACHE_DIR%/pkgroot/Scripts"
         version: "%version%"
