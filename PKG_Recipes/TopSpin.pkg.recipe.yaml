@@ -1,0 +1,55 @@
+Description: Downloads the latest version of ChemDraw and creates a package. This recipe works for ChemDraw 18+
+Identifier: com.github.eth-its-recipes.pkg.TopSpin
+ParentRecipe: com.github.eth-its-recipes.download.TopSpin
+MinimumVersion: "2.3"
+
+Input:
+  NAME: TopSpin
+
+Process:
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    Processor: PkgRootCreator
+
+  - Arguments:
+      file_content: |
+        #!/bin/bash
+        ## script to install topspin in x86_64
+
+        DIR=$(dirname "$0")
+
+        arch -x86_64 /usr/sbin/installer -pkg "$DIR/TopSpin_5.0.0.pkg" -target /
+        exit 0
+      file_mode: "0755"
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    Processor: FileCreator
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Scripts/TopSpin_5.0.0.pkg"
+      overwrite: True
+
+  # - Processor: Versioner
+  #   Arguments:
+  #     input_plist_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChemDraw %MAJOR_VERSION%.app/Contents/Info.plist"
+
+  - Arguments:
+      force_pkg_build: True
+      pkg_request:
+        chown: []
+        id: de.bruker.nmr.topspin5.0.0.pkg
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        scripts: Scripts
+        version: "%version%"
+    Processor: PkgCreator
