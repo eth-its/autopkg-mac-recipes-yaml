@@ -1,4 +1,4 @@
-Description: Downloads the latest version of ChemDraw and creates a package. This recipe works for ChemDraw 18+
+Description: Downloads the latest version of Topspin and creates a payloadless package. This recipe works for TopSpin 5
 Identifier: com.github.eth-its-recipes.pkg.TopSpin
 ParentRecipe: com.github.eth-its-recipes.download.TopSpin
 MinimumVersion: "2.3"
@@ -10,8 +10,7 @@ Process:
 
   - Processor: PkgRootCreator
     Arguments:
-      pkgdirs:
-        Scripts: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
 
   - Processor: PkgRootCreator
