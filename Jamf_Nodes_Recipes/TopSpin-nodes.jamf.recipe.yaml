@@ -7,3 +7,4 @@ Input:
   NAME: TopSpin
   JSS_INVENTORY_NAME: "%NAME% %version%.app"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.TopSpin
+  version_regex: "1\.0"

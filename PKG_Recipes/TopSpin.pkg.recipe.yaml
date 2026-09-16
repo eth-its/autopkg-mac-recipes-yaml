@@ -7,7 +7,6 @@ Input:
   NAME: TopSpin
 
 Process:
-
   - Processor: PkgRootCreator
     Arguments:
       pkgdirs: {}
@@ -15,8 +14,7 @@ Process:
 
   - Processor: PkgRootCreator
     Arguments:
-      pkgdirs:
-        Scripts: "0775"
+      pkgdirs: {}
       pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
     
   - Processor: FileCreator
@@ -25,7 +23,7 @@ Process:
         #!/bin/bash
         ## script to install topspin in x86_64
         DIR=$(dirname "$0")
-        arch -x86_64 /usr/sbin/installer -pkg "$DIR/TopSpin_5.0.0.pkg" -target /
+        arch -x86_64 /usr/sbin/installer -pkg "$DIR/TopSpin_%version%.pkg" -target /
         exit 0
       file_mode: "0755"
       file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
@@ -33,7 +31,7 @@ Process:
   - Processor: Copier
     Arguments:
       source_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/Scripts/TopSpin_5.0.0.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/TopSpin_%version%.pkg"
       overwrite: True
 
   - Processor: PkgCreator
@@ -41,7 +39,7 @@ Process:
       force_pkg_build: True
       pkg_request:
         chown: []
-        id: ch.ethz.topspin5.0.0.pkg
+        id: ch.ethz.topspin%version%.pkg
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat

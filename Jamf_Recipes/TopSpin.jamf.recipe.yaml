@@ -58,6 +58,7 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+      version_regex: "1\.0"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
