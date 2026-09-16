@@ -8,43 +8,44 @@ Input:
 
 Process:
 
-  - Arguments:
+  - Processor: PkgRootCreator
+    Arguments:
       pkgdirs:
         Scripts: "0775"
       pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
-    Processor: PkgRootCreator
 
-  - Arguments:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Scripts: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Scripts"
+    
+  - Processor: FileCreator
+    Arguments:
       file_content: |
         #!/bin/bash
         ## script to install topspin in x86_64
-
         DIR=$(dirname "$0")
-
         arch -x86_64 /usr/sbin/installer -pkg "$DIR/TopSpin_5.0.0.pkg" -target /
         exit 0
       file_mode: "0755"
-      file_path: "%RECIPE_CACHE_DIR%/pkgroot/Scripts/postinstall"
-    Processor: FileCreator
-
+      file_path: "%RECIPE_CACHE_DIR%/Scripts/postinstall"
+    
   - Processor: Copier
     Arguments:
       source_path: "%pathname%"
-      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Scripts/TopSpin_5.0.0.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/Scripts/TopSpin_5.0.0.pkg"
       overwrite: True
 
-  # - Processor: Versioner
-  #   Arguments:
-  #     input_plist_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/ChemDraw %MAJOR_VERSION%.app/Contents/Info.plist"
-
-  - Arguments:
+  - Processor: PkgCreator
+    Arguments:
       force_pkg_build: True
       pkg_request:
         chown: []
-        id: de.bruker.nmr.topspin5.0.0.pkg
+        id: ch.ethz.topspin5.0.0.pkg
         pkgname: "%NAME%-%version%"
-        # pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
         pkgtype: flat
-        scripts: "%RECIPE_CACHE_DIR%/pkgroot/Scripts"
+        scripts: "%RECIPE_CACHE_DIR%/Scripts"
         version: "%version%"
-    Processor: PkgCreator
+    
