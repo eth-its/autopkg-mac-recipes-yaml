@@ -8,23 +8,20 @@ Input:
   NAME: ETH Unenroll
   CATEGORY: Administration
   SELFSERVICE_DESCRIPTION: |
-    ETH Unenroll removes ETH-dependencies, licenses and management-binaries. Only run this on advice by your ISG.
-
-    Version: %version%
-    Category: %PKG_CATEGORY%
+    This Application will unenroll your Mac from ETH, remove ETH-dependencies, licenses and management-binaries. Only run this on advice by your ISG.
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   PKG_CATEGORY: Administration
   TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
-  TESTING_GROUP_NAME: Testing
+  TESTING_GROUP_NAME: "mac.ethOS - ETH Unenroll testing users"
   TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
   POLICY_CATEGORY: Untested
-  INSTALL_BUTTON_TEXT: "Install %version%"
-  REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  INSTALL_BUTTON_TEXT: "Unenroll my Mac"
+  REINSTALL_BUTTON_TEXT: "Unenroll my Mac"
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_RUN_COMMAND: '/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'
   UPDATE_PREDICATE: "pkg_uploaded != True"
   TRIGGER_POLICY_NAME: "Remove CIS Benchmark Settings"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
@@ -34,7 +31,7 @@ Input:
   SCRIPT_NAME: CIS-benchmarks-removal.zsh
   SCRIPT_PATH: "%SCRIPT_NAME%"
   SCRIPT_PRIORITY: After
-  USERS_GROUP_NAME: "%NAME% users"
+  USERS_GROUP_NAME: "mac.ethOS - ETH Unenroll users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_TEMPLATE: Profile-1-group.xml
   PROFILE_NAME: "%NAME% Configuration"
