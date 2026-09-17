@@ -1,0 +1,116 @@
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ETHUnenroll-nodes
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ETH Unenroll
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHUnenroll
+  CATEGORY: Administration
+  SELFSERVICE_DESCRIPTION: |
+    This Application will unenroll your Mac from ETH, remove ETH-dependencies, licenses and management-binaries. Only run this on advice by your ISG.
+  SELFSERVICE_ICON: "%NAME%.png"
+  POLICY_NAME: "%NAME% (Testing)"
+  SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
+  PKG_CATEGORY: Administration
+  TEST_VERSION_INSTALLED_GROUP_NAME: "%NAME% test version installed"
+  TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed.xml
+  TESTING_GROUP_NAME: "mac.ethOS - ETH Unenroll testing users"
+  TESTING_GROUP_TEMPLATE: StaticGroup-testing.xml
+  POLICY_CATEGORY: Untested
+  INSTALL_BUTTON_TEXT: "Unenroll my Mac"
+  REINSTALL_BUTTON_TEXT: "Unenroll my Mac"
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_RUN_COMMAND: '/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'
+  UPDATE_PREDICATE: "pkg_uploaded == False"
+  TRIGGER_POLICY_NAME: "Remove CIS Benchmark Settings"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
+  TRIGGER_POLICY_CATEGORY: Triggered Installers
+  TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  TRIGGER_NAME: cis-remove
+  SCRIPT_NAME: CIS-benchmarks-removal.zsh
+  SCRIPT_PATH: "%SCRIPT_NAME%"
+  SCRIPT_PRIORITY: After
+  USERS_GROUP_NAME: "mac.ethOS - ETH Unenroll users"
+  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  PROFILE_TEMPLATE: Profile-1-group.xml
+  PROFILE_NAME: "%NAME% Configuration"
+  PROFILE_DESCRIPTION: "Manages Configuration and Accessability settings for %NAME%"
+  ORGANIZATION: "%NAME%"
+  PROFILE_MOBILECONFIG: ETHUnenroll.mobileconfig
+  REPLACE_PROFILE: "True"
+
+Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%PKG_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+    Arguments:
+      pkg_category: "%PKG_CATEGORY%"
+      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
+
+  - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%TESTING_GROUP_TEMPLATE%"
+      computergroup_name: "%TESTING_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_template: "%USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
+      computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
+      computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
+      replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
+    Arguments:
+      profile_name: "%PROFILE_NAME%"
+      profile_category: "%PKG_CATEGORY%"
+      profile_template: "%PROFILE_TEMPLATE%"
+      mobileconfig: "%PROFILE_MOBILECONFIG%"
+      profile_computergroup: "%USERS_GROUP_NAME%"
+      replace_profile: "%REPLACE_PROFILE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%POLICY_NAME%"
+      icon: "%SELFSERVICE_ICON%"
+      replace_policy: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Comment: Trigger-only policy for CIS-removal
+    Arguments:
+      policy_template: "%TRIGGER_POLICY_TEMPLATE%"
+      policy_name: "%TRIGGER_POLICY_NAME%"
+      icon: ""
+      replace_policy: "True"
