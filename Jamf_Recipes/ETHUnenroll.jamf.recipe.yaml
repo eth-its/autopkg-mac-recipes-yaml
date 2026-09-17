@@ -57,10 +57,6 @@ Process:
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
-  - Processor: StopProcessingIf
-    Arguments:
-      predicate: "%UPDATE_PREDICATE%"
-
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:
       category_name: "%POLICY_CATEGORY%"
