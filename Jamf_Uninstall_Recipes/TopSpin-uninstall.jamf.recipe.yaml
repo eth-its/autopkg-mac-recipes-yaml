@@ -1,7 +1,7 @@
 Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
 Identifier: com.github.eth-its-recipes.jamf.TopSpin-uninstall
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 
 Input:
   NAME: TopSpin
@@ -10,3 +10,5 @@ Input:
   PARAMETER5_VALUE: de.bruker.nmr.topspin5.0.0
   INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
   APPLICATION_NAME_HAS: "%NAME%"
+  SCRIPT_NAME: Topspin5-uninstall.sh
+  SCRIPT_PATH: Topspin5-uninstall.sh
