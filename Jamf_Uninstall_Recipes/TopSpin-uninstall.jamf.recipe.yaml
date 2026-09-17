@@ -8,7 +8,7 @@ Input:
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
   PARAMETER5_VALUE: de.bruker.nmr.topspin5.0.0
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
   APPLICATION_NAME_HAS: "%NAME%"
   SCRIPT_NAME: Topspin5-uninstall.sh
   SCRIPT_PATH: Topspin5-uninstall.sh
