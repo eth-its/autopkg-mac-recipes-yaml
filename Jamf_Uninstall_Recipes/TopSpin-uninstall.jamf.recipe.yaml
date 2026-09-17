@@ -4,11 +4,11 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
 
 Input:
-  NAME: TopSpin
+  TOPSPIN_VERSION: "5.0.0"
+  NAME: "TopSpin %TOPSPIN_VERSION%"
   SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
   PARAMETER5_LABEL: Package Receipt
-  PARAMETER5_VALUE: de.bruker.nmr.topspin5.0.0
-  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-has-no-users.xml
-  APPLICATION_NAME_HAS: "%NAME%"
+  PARAMETER5_VALUE: "de.bruker.nmr.topspin%TOPSPIN_VERSION%"
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
   SCRIPT_NAME: Topspin5-uninstall.sh
   SCRIPT_PATH: Topspin5-uninstall.sh
