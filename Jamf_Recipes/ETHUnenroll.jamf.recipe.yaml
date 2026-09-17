@@ -37,7 +37,7 @@ Input:
   USERS_GROUP_NAME: "%NAME% users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
   PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME% Configurations"
+  PROFILE_NAME: "%NAME% Configuration"
   PROFILE_DESCRIPTION: "Manages Configuration and Accessability settings for %NAME%"
   ORGANIZATION: "%NAME%"
   PROFILE_MOBILECONFIG: ETHUnenroll.mobileconfig
