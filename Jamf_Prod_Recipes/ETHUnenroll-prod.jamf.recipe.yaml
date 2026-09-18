@@ -84,7 +84,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyDeleter
     Comment: Delete the untested policy
     Arguments:
-      policy_name: "%LAST_RUN_POLICY_NAME%"
+      policy_name: "%NAME% (Testing)"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupDeleter
     Comment: Delete the test version installed group
