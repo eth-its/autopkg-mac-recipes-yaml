@@ -9,12 +9,13 @@ Process:
   - Processor: URLTextSearcher
     Arguments:
       result_output_var_name: version
-      url: "https://www.torproject.org/tor-browser-for-desktop"
+      url: "https://download.torproject.org/tor-browser-for-desktop"
       re_pattern: href="https:\/\/dist.torproject.org\/torbrowser\/[\d\.]+\/tor-browser-macos-([\d\.]+)\.dmg"
 
   - Processor: URLDownloader
     Arguments:
-      url: "https://www.torproject.org/dist/torbrowser/%version%/tor-browser-macos-%version%.dmg"
+      #url: "https://www.torproject.org/dist/torbrowser/%version%/tor-browser-macos-%version%.dmg"
+      url: "https://dist.torproject.org/torbrowser/%version%/tor-browser-macos-%version%.dmg"
       filename: "%NAME%-%version%.dmg"
 
   - Processor: EndOfCheckPhase
