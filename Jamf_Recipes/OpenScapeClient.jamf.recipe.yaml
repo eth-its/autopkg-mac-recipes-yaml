@@ -4,14 +4,14 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.pkg.OpenScapeClient
 
 Input:
-  NAME: OpenScape Client
+  NAME: "OpenScape Client"
   JSS_INVENTORY_NAME: UCDesktopApp.app
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   VERSION_STRING_TYPE: CFBundleVersion
-  EXTENSION_ATTRIBUTE_NAME: OpenScape Client Version
+  EXTENSION_ATTRIBUTE_NAME: "OpenScape Client Version"
   EXTENSION_ATTRIBUTE_SCRIPT: VersionStringOverride-EA.sh
-  PKG_CATEGORY: Connect & Remote
+  PKG_CATEGORY: "Connect & Remote"
   SELFSERVICE_DESCRIPTION: |
     The OpenScape desktop client for macOS (currently named UCDesktopApp.app, short for Unified Communications Desktop App) is ETH's unified communications solution. It is available as a desktop client for PC and Mac, mobile client for iOS and Android, and as a web client for Microsoft Edge and Google Chrome.
 
@@ -29,7 +29,7 @@ Input:
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
   POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: OpenScape Client.png
+  SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
