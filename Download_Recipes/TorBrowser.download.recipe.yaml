@@ -10,7 +10,7 @@ Process:
     Arguments:
       result_output_var_name: version
       url: "https://www.torproject.org/tor-browser-for-desktop"
-      re_pattern: href="\/dist\/torbrowser\/[\d\.]+\/tor-browser-macos-([\d\.]+)\.dmg"
+      re_pattern: href="https:\/\/dist.torproject.org\/torbrowser\/[\d\.]+\/tor-browser-macos-([\d\.]+)\.dmg"
 
   - Processor: URLDownloader
     Arguments:
