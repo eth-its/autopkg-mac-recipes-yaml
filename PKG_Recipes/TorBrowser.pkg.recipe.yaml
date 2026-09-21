@@ -1,6 +1,6 @@
 Description: Downloads the latest version of Tor Browser and creates a package.
 Identifier: com.github.eth-its-recipes.pkg.TorBrowser
-ParentRecipe: com.github.eth-its-recipes.download.TorBrowserBundle
+ParentRecipe: com.github.eth-its-recipes.download.TorBrowser
 MinimumVersion: "1.1"
 
 Input:
