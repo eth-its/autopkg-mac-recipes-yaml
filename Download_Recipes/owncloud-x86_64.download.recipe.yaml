@@ -22,12 +22,6 @@ Process:
       result_output_var_name: version
       re_pattern: "href=\"https:\/\/download.owncloud.com\/desktop\/ownCloud\/stable\/.*\/mac\/ownCloud-(.*)-%ARCH%.pkg.*\""
 
-  - Processor: URLTextSearcher
-    Arguments:
-      url: "https://owncloud.com/desktop-app/"
-      result_output_var_name: download_file_extension
-      re_pattern: "href=\"https:\/\/download.owncloud.com\/desktop\/ownCloud\/stable\/.*\/mac\/ownCloud-.*-%ARCH%.(pkg.*)\""
-
   - Processor: URLDownloader
     Arguments:
       request_headers:
