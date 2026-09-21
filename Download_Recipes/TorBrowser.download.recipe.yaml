@@ -1,0 +1,30 @@
+Description: Downloads the latest version of Tor Browser.
+Identifier: com.github.eth-its-recipes.download.TorBrowser
+MinimumVersion: "1.1"
+
+Input:
+  NAME: Tor Browser
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      result_output_var_name: version
+      url: "https://www.torproject.org/tor-browser-for-desktop"
+      re_pattern: href="\/dist\/torbrowser\/[\d\.]+\/tor-browser-macos-([\d\.]+)\.dmg"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://www.torproject.org/dist/torbrowser/%version%/tor-browser-macos-%version%.dmg"
+      filename: "%NAME%-%version%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: identifier "org.torproject.torbrowser" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = MADPSAYN6T
+      input_path: "%pathname%/Tor Browser.app"
+
+  - Processor: Versioner
+    Arguments:
+      plist_version_key: CFBundleShortVersionString
+      input_plist_path: "%pathname%/Tor Browser.app/Contents/Info.plist"
