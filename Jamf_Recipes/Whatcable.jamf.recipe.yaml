@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.homebysix.pkg.WhatCable
 
 Input:
-  NAME: Whatcable
+  NAME: WhatCable
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PLATFORM: arm64
