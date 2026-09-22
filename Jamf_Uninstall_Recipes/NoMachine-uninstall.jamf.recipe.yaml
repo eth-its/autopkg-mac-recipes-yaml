@@ -1,0 +1,10 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.NoMachine-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-no-users
+
+Input:
+  NAME: NoMachine
+  SELFSERVICE_ICON: "%NAME%.png"
+  SCRIPT_NAME: NoMachine-uninstall.sh
+  SCRIPT_PATH: NoMachine-uninstall.sh
