@@ -51,5 +51,16 @@ cat >/Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist <<EOT2
 EOT2
 chown root:wheel /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
 chmod 644 /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
+xattr -d com.apple.quarantine /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
+xattr -d com.apple.macl /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
 launchctl bootout system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
 launchctl bootstrap system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
+
+## make sure the homebrew ui app is installed as well
+majoros=$(defaults read /System/Library/CoreServices/SystemVersion ProductVersion|sed -e 's/\..*//')
+if [[ $majoros -ge "26" ]] ; then
+homebrew_user=$(stat -f%u $homebrew_binary)
+sudo -u \#$homebrew_user  $homebrew_binary "brew install --cask homebrew-app"
+fi
+
+exit 0
