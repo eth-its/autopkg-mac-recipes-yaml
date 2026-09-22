@@ -56,11 +56,15 @@ xattr -d com.apple.macl /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plis
 launchctl bootout system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
 launchctl bootstrap system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
 
-## make sure the homebrew ui app is installed as well
+## make sure the homebrew ui app is installed as well - when on macOS26+,and when the user is an admin at the moment.
 majoros=$(defaults read /System/Library/CoreServices/SystemVersion ProductVersion|sed -e 's/\..*//')
+if [ -f /opt/homebrew/bin/brew ] ; then homebrew_binary=/opt/homebrew/bin/brew ; else homebrew_binary=/usr/local/bin/brew ; fi 
 if [[ $majoros -ge "26" ]] ; then
 homebrew_user=$(stat -f%u $homebrew_binary)
-sudo -u \#$homebrew_user  $homebrew_binary "brew install --cask homebrew-app"
+homebrew_shortname=$(id -P $homebrew_user|sed -e 's/:.*//')
+if [[ $(dscl . -read /Groups/admin GroupMembership) =~ ".*$homebrew_shortname.*" ]] ; then  
+sudo -H -iu \#$homebrew_user  $homebrew_binary install --cask homebrew-app
+fi
 fi
 
 exit 0
