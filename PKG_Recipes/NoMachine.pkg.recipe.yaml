@@ -1,0 +1,36 @@
+Description: Downloads latest NoMachine and builds a package.
+Identifier: com.github.eth-its-recipes.pkg.NoMachine
+ParentRecipe: com.github.eth-its-recipes.download.NoMachine
+MinimumVersion: 0.4.0
+
+Input:
+  NAME: NoMachine
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%/*.pkg"
+      purge_destination: true
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      purge_destination: false
+      destination_path: "%RECIPE_CACHE_DIR%/payload"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/nxplayer.pkg/Payload"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/payload/Applications/NoMachine.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"
+        - "%RECIPE_CACHE_DIR%/payload"
+
+  - Processor: PkgCopier
+    Arguments:
+      source_pkg: "%pathname%/*.pkg"
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"

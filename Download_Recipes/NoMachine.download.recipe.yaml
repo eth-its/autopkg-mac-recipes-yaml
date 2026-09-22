@@ -1,0 +1,30 @@
+Description: Downloads the latest NoMachine.
+Identifier: com.github.eth-its-recipes.download.NoMachine
+MinimumVersion: 0.4.0
+
+Input:
+  NAME: NoMachine
+  DOWNLOAD_PATTERN: "(https:\/\/.*nomachine-enterprise-client_[0-9\\.\\_]+.dmg)"
+  DOWNLOAD_URL: "https://download.nomachine.com/download/?id=7&platform=mac"
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      curl_opts:
+        - "-b nomachine_cookies.txt -L"
+      url: "%DOWNLOAD_URL%"
+      re_pattern: "%DOWNLOAD_PATTERN%"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%match%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: NoMachine S.a.r.l. (493C5JZAGR)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: "%pathname%/*.pkg"

@@ -6,7 +6,7 @@ MinimumVersion: "2.3"
 Input:
   NAME: NoMachine
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.NoMachine
-  SCRIPT_NAME: NoMachine-uninstall.sh
-  SCRIPT_PATH: NoMachine-uninstall.sh
+  SCRIPT_NAME: NoMachine-preinstall.sh
+  SCRIPT_PATH: NoMachine-preinstall.sh
   SCRIPT_PRIORITY: Before
   SELFSERVICE_ICON: NoMachine.png
