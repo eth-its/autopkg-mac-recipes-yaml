@@ -13,11 +13,15 @@ Process:
       flat_pkg_path: "%pathname%/*.pkg"
       purge_destination: true
 
+  - Processor: FileFinder
+    Arguments: 
+      pattern: "%RECIPE_CACHE_DIR%/unpack/nxplayer*.pkg"
+
   - Processor: PkgPayloadUnpacker
     Arguments:
       purge_destination: false
       destination_path: "%RECIPE_CACHE_DIR%/payload"
-      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/nxplayer.pkg/Payload"
+      pkg_payload_path: "%found_filename%/Payload"
 
   - Processor: Versioner
     Arguments:
