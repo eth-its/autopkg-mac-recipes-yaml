@@ -83,8 +83,13 @@ fi
 
 # call the onboard uninstaller to shut down services and complete uninstallation, if present
 # see: https://kb.nomachine.com/AR12K00767?s=uninstall
-if [[ -f "/Library/Application Support/NoMachine/nxuninstall.sh" ]] ; then 
+if [[ -f "/Library/Application Support/NoMachine/nxuninstall.sh" ]] ; then
+# we don't want user interaction - user might not even be admin. so we take the script, save it somewhere else .. and then run it after running their uninstaller. 
+cp /Library/Application Support/NoMachine/NoMachine\ Uninstall.app/Contents/Resources/script /tmp/nxuninstall-via-assistant.sh
+rm -rf /Library/Application Support/NoMachine/NoMachine\ Uninstall.app
 /Library/Application\ Support/NoMachine/nxuninstall.sh
+zsh /tmp/nxuninstall-via-assistant.sh ||:
+rm -f /tmp/nxuninstall-via-assistant.sh
 fi
 
 # also check to see if an additional app was ever created due to BundleID mismatch
