@@ -10,3 +10,4 @@ Input:
   SCRIPT_PRIORITY: Before
   SELFSERVICE_ICON: NoMachine.png
   UPDATE_POLICY_TEMPLATE: Policy-prod-selfservice-update-forcedescription.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-all-computers-forcedescription.xml
