@@ -73,8 +73,8 @@ fi
 
 if [[ -f "/Library/Application Support/NoMachine/nxuninstall.sh" ]] ; then
 # we don't want user interaction - user might not even be admin. so we take the script, save it somewhere else .. and then run it after running their uninstaller. 
-cp /Library/Application Support/NoMachine/NoMachine\ Uninstall.app/Contents/Resources/script /tmp/nxuninstall-via-assistant.sh
-rm -rf /Library/Application Support/NoMachine/NoMachine\ Uninstall.app
+cp /Library/Application\ Support/NoMachine/NoMachine\ Uninstall.app/Contents/Resources/script /tmp/nxuninstall-via-assistant.sh
+rm -rf /Library/Application\ Support/NoMachine/NoMachine\ Uninstall.app
 fi
 
 echo "Application will be deleted: $app_to_trash"
