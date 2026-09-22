@@ -4,7 +4,7 @@ MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform-no-users
 
 Input:
-  NAME: Docker x86_64
+  NAME: Docker
   JSS_INVENTORY_NAME: "Docker.app"
   PLATFORM: x86_64
   PARAMETER5_LABEL: Package Receipt
