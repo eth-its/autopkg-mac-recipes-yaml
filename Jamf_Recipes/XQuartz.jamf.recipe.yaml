@@ -23,8 +23,12 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min.xml
-  SELFSERVICE_ICON: "XQuartzBeta.png"
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min-script-parameter4.xml
+  SCRIPT_NAME: XQuartz-postinstall.sh
+  SCRIPT_PATH: XQuartz-postinstall.sh
+  SCRIPT_PRIORITY: After
+  PARAMETER4_VALUE: ''
+  SELFSERVICE_ICON: "XQuartz.png"
   POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   UPDATE_PREDICATE: "pkg_uploaded != True"
 
@@ -66,6 +70,15 @@ Process:
       computergroup_name: "%TEST_VERSION_INSTALLED_GROUP_NAME%"
       computergroup_template: "%TEST_VERSION_INSTALLED_GROUP_TEMPLATE%"
       replace_group: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+      skip_script_key_substitution: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:
