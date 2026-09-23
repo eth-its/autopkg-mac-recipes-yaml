@@ -1,9 +1,9 @@
-Description: Downloads the latest NoMachine.
-Identifier: com.github.eth-its-recipes.download.NoMachine
+Description: Downloads the latest NoMachine Enterprise Client.
+Identifier: com.github.eth-its-recipes.download.NoMachineEnterpriseClient
 MinimumVersion: 0.4.0
 
 Input:
-  NAME: NoMachine
+  NAME: NoMachine Enterprise Client
   DOWNLOAD_PATTERN: "(https:\/\/.*nomachine-enterprise-client_[0-9\\.\\_]+.dmg)"
   DOWNLOAD_URL: "https://download.nomachine.com/download/?id=7&platform=mac"
 
