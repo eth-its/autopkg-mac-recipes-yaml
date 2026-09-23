@@ -11,6 +11,8 @@ Input:
   OS_EXCLUDE_MIN_GROUP_TEMPLATE: SmartGroup-OS-exclude-min.xml  
   SP_PROCESS_NAME: X11
   SP_EXECUTABLE_COMMAND: open '/Applications/Utilities/XQuartz.app'
+  POLICY_TEMPLATE: Policy-untested-selfservice-OS-exclude-min-script-parameter4.xml
+  PARAMETER4_VALUE: ''
   SCRIPT_NAME: XQuartz-postinstall.sh
   SCRIPT_PATH: XQuartz-postinstall.sh
   SCRIPT_PRIORITY: After
