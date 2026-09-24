@@ -79,7 +79,7 @@ if [[ -f /Library/LaunchAgents/org.xquartz.startx.plist ]] ; then
  launchctl unload /Library/LaunchAgents/org.xquartz.startx.plist
  CURRENT_USER=$(stat -f %Su /dev/console)
  USER_ID=$(id -u "$CURRENT_USER")
- launchctl bootstrap gui/$USER_ID /Library/LaunchAgents/org.xquartz.startx.plist
+ launchctl bootout gui/$USER_ID /Library/LaunchAgents/org.xquartz.startx.plist
 fi
 echo ".. XQuartz launch agent removed"
 
