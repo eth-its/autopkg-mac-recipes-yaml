@@ -15,10 +15,8 @@ if [ -z $XQUARTZCONFIGURED ] ; then
     launchctl asuser "$USER_ID" sudo -u "$CURRENT_USER" $dialogbinary  \
         --title "XQuartz installation: Action required" \
         --message "XQuartz was just installed on this Mac.\n\nPlease quit and restart any Terminal and other applications requiring XQuartz." \
-        --button1text "Ok" \
-        --icon "/Applications/Utilities/XQuartz.app" \
-        --messagefont "size=16" \
-        --ontop&
+        --button1text "Ok" --icon "/Applications/Utilities/XQuartz.app" --messagefont "size=16" \
+        --width 600 --height 250 --ontop &
     disown
     exit 0
 fi
