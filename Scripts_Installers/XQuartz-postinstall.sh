@@ -13,7 +13,7 @@ if [ -z $XQUARTZCONFIGURED ] ; then
     dialogbinary=/usr/local/bin/dialog
     if [[ ! -f $dialogbinary ]] ; then jamf policy -event "swiftDialog-install" ; fi  #if swift dialog is missing, install it
     launchctl asuser "$USER_ID" sudo -u "$CURRENT_USER" $dialogbinary  \
-        --title "XQuartz installation requires logout and login" \
+        --title "XQuartz installation: Action required" \
         --message "XQuartz was just installed on this Mac.\n\nPlease quit and restart any Terminal and other applications requiring XQuartz." \
         --button1text "Ok" \
         --icon "/Applications/Utilities/XQuartz.app" \
