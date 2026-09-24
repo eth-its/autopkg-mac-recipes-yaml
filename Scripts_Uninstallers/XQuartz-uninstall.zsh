@@ -75,13 +75,18 @@ fi
 # < 2.8
 [[ -f /Library/LaunchAgents/org.macosforge.xquartz.startx.plist ]] && launchctl unload /Library/LaunchAgents/org.macosforge.xquartz.startx.plist
 # 2.8+
-[[ -f /Library/LaunchAgents/org.xquartz.startx.plist ]] && launchctl unload /Library/LaunchAgents/org.xquartz.startx.plist
+if [[ -f /Library/LaunchAgents/org.xquartz.startx.plist ]] ; then
+ launchctl unload /Library/LaunchAgents/org.xquartz.startx.plist
+ CURRENT_USER=$(stat -f %Su /dev/console)
+ USER_ID=$(id -u "$CURRENT_USER")
+ launchctl bootstrap gui/$USER_ID /Library/LaunchAgents/org.xquartz.startx.plist
+fi
 echo ".. XQuartz launch agent removed"
 
 # < 2.8
 [[ -f /Library/LaunchDaemons/org.macosforge.xquartz.privileged_startx.plist ]] && launchctl unload /Library/LaunchDaemons/org.macosforge.xquartz.privileged_startx.plist
 # 2.8+
-[[ -f /Library/LaunchDaemons/org.xquartz.privileged_startx.plist ]] && launchctl unload /Library/LaunchDaemons/org.xquartz.privileged_startx.plist
+if [[ -f /Library/LaunchDaemons/org.xquartz.privileged_startx.plist ]] && launchctl unload /Library/LaunchDaemons/org.xquartz.privileged_startx.plist
 echo ".. XQuartz launch daemon removed"
 
 # remove files
