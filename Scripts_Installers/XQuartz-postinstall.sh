@@ -3,26 +3,22 @@
 
 CURRENT_USER=$(stat -f %Su /dev/console)
 USER_ID=$(id -u "$CURRENT_USER")
+if [ -z $USER_ID ] ; then exit 0 ; fi
 
-dialogbinary=/usr/local/bin/dialog
-if [[ ! -f $dialogbinary ]] ; then jamf policy -event "swiftDialog-install" ; fi  #if swift dialog is missing, install it
+#check if this is an initial installation - i.e, DISPLAY variable is not set. 
+XQUARTZCONFIGURED=$(launchctl asuser $USER_ID /bin/launchctl getenv DISPLAY)
 
-if [ -z $USER_ID ] ; then exit 0 ; fi 
-
-cat>/private/tmp/xquartzupdate-restart.sh<<EOT #deploy script to /tmp so it is deleted after reboot; substitute all variables except dialogresults
-#!/bin/zsh
-launchctl asuser "$USER_ID" sudo -u "$CURRENT_USER" $dialogbinary  \
-        --title "XQuartz installation or Update" \
-        --message "XQuartz was just installed or updated on this Mac.\n\nPlease restart your Mac to re-enable XQuartz supported application functionality." \
-        --button1text "Restart now" \
-        --button2text "I'll do it later" \
+if [ -z $XQUARTZCONFIGURED ] ; then 
+    launchctl bootstrap gui/$USER_ID /Library/LaunchAgents/org.xquartz.startx.plist 
+    dialogbinary=/usr/local/bin/dialog
+    if [[ ! -f $dialogbinary ]] ; then jamf policy -event "swiftDialog-install" ; fi  #if swift dialog is missing, install it
+    launchctl asuser "$USER_ID" sudo -u "$CURRENT_USER" $dialogbinary  \
+        --title "XQuartz installation requires logout and login" \
+        --message "XQuartz was just installed on this Mac.\n\nPlease quit and restart any Terminal and other applications requiring XQuartz." \
+        --button1text "Ok" \
         --icon "/Applications/Utilities/XQuartz.app" \
         --messagefont "size=16" \
-        --ontop
-dialogResults=\$?
-if [[ "\$dialogResults" == "0" ]]; then osascript -e 'tell application "System Events" to restart with state saving preference' ; fi
-EOT
-
-/bin/zsh /private/tmp/xquartzupdate-restart.sh& #launch script in the background, so as to not block further policies
-disown
-exit 0
+        --ontop&
+    disown
+    exit 0
+fi
