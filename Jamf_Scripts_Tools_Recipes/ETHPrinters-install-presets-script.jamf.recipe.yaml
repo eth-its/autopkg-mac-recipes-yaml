@@ -14,7 +14,16 @@ Input:
   SELFSERVICE_POLICY_CATEGORY: ETH
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-all-computers-noexclusions-runscript.xml
   SELFSERVICE_DISPLAY_NAME: "%NAME%"
-  SELFSERVICE_DESCRIPTION: Installs four Printing Presets for all Printers. Use "B/W Double-sided - ETH Default" to minimise environmental impact. 
+  SELFSERVICE_DESCRIPTION: |
+    Installs four Printing Presets for all Printers. Use "B/W Double-sided - ETH Default" to minimise environmental impact. 
+
+    To use these presets, print using the system dialogue - Google Chrome and derivates, Adobe applications etc. have to be explicitly told to do so.  
+
+    B/W Double-sided:    Prints on both sides of the page, and reduces color content to monochrome / black and white. Saves on toner cost and paper.
+    B/W Single-sided:    Prints on one side of the page only, and reduces color content to monochrome / black and white. Saves on toner cost. 
+    Colour Double-sided: Prints on both sides of the page. Saves paper, but costs more per page than monochrome / black and white. 
+    Colour Single-sided: Prints on one side of the page only. Costs more per page than  monochrome / black and white. 
+
   SELFSERVICE_ICON: "ETH Printers.png"
   SELFSERVICE_POLICY_NAME: "%NAME%"
   INSTALL_BUTTON_TEXT: Install Presets
