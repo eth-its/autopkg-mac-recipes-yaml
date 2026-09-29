@@ -1,0 +1,12 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.MicrosoftAutoUpdate-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall
+
+Input:
+  NAME: "Microsoft AutoUpdate"
+  SELFSERVICE_DESCRIPTION: "Uninstalls %NAME%"
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: com.microsoft.package.Microsoft_AutoUpdate.app
+  SCRIPT_NAME: MicrosoftAutoUpdate-uninstall.sh
+  SCRIPT_PATH: MicrosoftAutoUpdate-uninstall.sh

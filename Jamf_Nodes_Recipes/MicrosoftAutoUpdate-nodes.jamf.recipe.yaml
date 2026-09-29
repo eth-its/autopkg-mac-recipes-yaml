@@ -14,3 +14,5 @@ Input:
   SCRIPT_CATEGORY: Productivity
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
   POLICY_TEMPLATE: Policy-untested-selfservice-script.xml
+  SP_EXECUTABLE_COMMAND: open '/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app'
+  SP_PROCESS_NAME: 'Microsoft AutoUpdate'
