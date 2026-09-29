@@ -6,7 +6,7 @@ Input:
   NAME: Intel Applications Survey
   
   EXTENSION_ATTRIBUTE_NAME: IntelApplicationsSurvey
-  EXTENSION_ATTRIBUTE_SCRIPT: IntelApplicationsSurvey.sh
+  EXTENSION_ATTRIBUTE_SCRIPT: IntelApplicationsSurvey-EA.zsh
 
   TESTING_GROUP_NAME: Testing
   RECURRING_POLICY_CATEGORY: Administration
