@@ -10,7 +10,7 @@ homebrew_user=$(stat -f%u $homebrew_binary)
 homebrew_shortname=$(id -P $homebrew_user|sed -e 's/:.*//')
 if $homebrew_binary --version >/dev/null 2>&1; then 
 echo "brew found - starting upgrade run at $(date)" 
-sudo -H -iu \#$homebrew_user  $homebrew_binary update-if-needed -y
+sudo -H -iu \#$homebrew_user  $homebrew_binary update-if-needed
 sudo -H -iu \#$homebrew_user  $homebrew_binary upgrade -y
 if [[ $(dscl . -read /Groups/admin GroupMembership) =~ ".*$homebrew_shortname.*" ]] ; then  
 sudo -H -iu \#$homebrew_user  $homebrew_binary upgrade --cask -y

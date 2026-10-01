@@ -14,7 +14,7 @@ echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 chmod +x "$command_file"
 
 # run the command file as the console user
-sudo -u $consoleuser open "$command_file"
+sudo -H -ui $consoleuser open "$command_file"
 
 # wait until the command file has started, and then stopped running ( things should be uninstalled by then )
 while [[ $(pgrep -f $command_file|wc -l) -eq 0 ]] ; do sleep 0.1 ; done 
@@ -30,7 +30,7 @@ if [[ ! -f /usr/local/bin/brew ]] && [[ ! -f /opt/homebrew/bin/brew ]] ; then
     launchctl bootout system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
     rm -f /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
     tail -n 300 /Library/Logs/ch.ethz.brew-autoupgrade.log>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp
-    echo "\nUNINSTALLED AT $(date)\n\n">>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp
+    echo "UNINSTALLED AT $(date)">>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp
     mv /Library/Logs/ch.ethz.brew-autoupgrade.log.tmp /Library/Logs/ch.ethz.brew-autoupgrade.log
 
 else 
