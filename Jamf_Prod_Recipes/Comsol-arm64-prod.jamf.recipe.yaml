@@ -39,11 +39,11 @@ Input:
   ISG_GROUP_NAME: "%NAME% %MAJOR_VERSION% ISG-licensed"
   AUTOINSTALL_GROUP_TEMPLATE: SmartGroup-autoinstall-no-users-ITShop.xml
   AUTOINSTALL_POLICY_TEMPLATE: Policy-prod-autoinstall-ITShop-platform.xml
-  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-ITShop-platform.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-in./jamstall-ITShop-platform.xml
   SELFSERVICE_POLICY_CATEGORY: "Science & Math"
   SCRIPT_NAME_ITSHOP: "ITShop_license_check.sh"
   SCRIPT_PRIORITY_ITSHOP: "After"
   PARAMETER4_VALUE_ITSHOP: "Comsol Multiphysics" 
-  PARAMETER5_VALUE_ITSHOP: "%NAME% %MAJOR_VERSION%-install" 
+  PARAMETER5_VALUE_ITSHOP: "%NAME% %MAJOR_VERSION% %PLATFORM%-install" 
   PARAMETER6_VALUE_ITSHOP: "https://ics.services.jamfcloud.com/icon/hash_1d777df4f1ad7b3ac9ce916cf0ee381a489c127d68a08f17de268dbb89f275c1" 
   PARAMETER7_VALUE_ITSHOP: "%MAJOR_VERSION%" 
