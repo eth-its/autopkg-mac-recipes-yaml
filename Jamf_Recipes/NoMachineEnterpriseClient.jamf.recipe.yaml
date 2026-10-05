@@ -1,15 +1,19 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.TorBrowser
+Identifier: com.github.eth-its-recipes.jamf.NoMachineEnterpriseClient
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.pkg.TorBrowser
+ParentRecipe: com.github.eth-its-recipes.pkg.NoMachineEnterpriseClient
 
 Input:
-  NAME: Tor Browser
+  NAME: NoMachine Enterprise Client
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
-  PKG_CATEGORY: Browsers & Players
+  SELFSERVICE_ICON: "%NAME%.png"
+  PKG_CATEGORY: Connect & Remote
   SELFSERVICE_DESCRIPTION: |
-    Tor Browser is an anomymous web browser.
+    NoMachine Enterprise Client for Mac
+    Use this to connect to any machine that has NoMachine Server installed. 
+
+    **Triggering this installation will remove any pre-existing NoMachine installations on this Mac, including NoMachine Server variants**
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -20,10 +24,13 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
-  SELFSERVICE_ICON: "%NAME%.png"
-  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  POLICY_TEMPLATE: Policy-untested-selfservice-script-forcedescription.xml
   UPDATE_PREDICATE: "pkg_uploaded != True"
+  POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
+  SCRIPT_NAME: NoMachine-preinstall.sh
+  SCRIPT_PATH: NoMachine-preinstall.sh
+  SCRIPT_PRIORITY: Before
+  JSS_INVENTORY_NAME: "NoMachine.app"
 
 Process:
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
@@ -41,6 +48,14 @@ Process:
   - Processor: StopProcessingIf
     Arguments:
       predicate: "%UPDATE_PREDICATE%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%PKG_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_PATH%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: True
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
     Arguments:

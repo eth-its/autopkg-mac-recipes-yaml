@@ -1,0 +1,43 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.Intel-Applications-Survey-script
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Intel Applications Survey
+  
+  EXTENSION_ATTRIBUTE_NAME: IntelApplicationsSurvey
+  EXTENSION_ATTRIBUTE_SCRIPT: IntelApplicationsSurvey-EA.zsh
+
+  TESTING_GROUP_NAME: Testing
+  RECURRING_POLICY_CATEGORY: Administration
+  POLICY_TEMPLATE: Policy-script-recurring.xml
+  RECURRING_POLICY_FREQUENCY: Once every day
+  RECURRING_POLICY_NAME: "%NAME% - Once every day"
+  RECURRING_GROUP_NAME: "All Managed Clients"
+  SCRIPT_NAME: IntelApplicationsSurvey-daily.sh
+  SCRIPT_PRIORITY: Before
+
+Process:
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
+    Arguments:
+      category_name: "%RECURRING_POLICY_CATEGORY%"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfScriptUploader
+    Arguments:
+      script_category: "%RECURRING_POLICY_CATEGORY%"
+      script_name: "%SCRIPT_NAME%"
+      script_path: "%SCRIPT_NAME%"
+      script_priority: "%SCRIPT_PRIORITY%"
+      replace_script: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfExtensionAttributeUploader
+    Arguments:
+      ea_script_path: "%EXTENSION_ATTRIBUTE_SCRIPT%"
+      ea_name: "%EXTENSION_ATTRIBUTE_NAME%"
+      replace_ea: "True"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+    Arguments:
+      policy_template: "%POLICY_TEMPLATE%"
+      policy_name: "%RECURRING_POLICY_NAME%"
+      replace_policy: "True"

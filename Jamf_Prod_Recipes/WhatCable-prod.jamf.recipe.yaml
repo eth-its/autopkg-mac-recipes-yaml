@@ -1,11 +1,11 @@
 Description: Creates all production policies for a particular title.
-Identifier: com.github.eth-its-recipes.jamf.Whatcable-prod
+Identifier: com.github.eth-its-recipes.jamf.WhatCable-prod
 MinimumVersion: "2.3"
 ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
 
 Input:
-  NAME: Whatcable
-  UNTESTED_RECIPE_IDENTIFIER: local.jamf.Whatcable
+  NAME: WhatCable
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.WhatCable
   TRIGGER_POLICY_RUN_COMMAND: "echo 'Installation of %NAME% complete'"
   PLATFORM: arm64
   ARCH: "%PLATFORM%"

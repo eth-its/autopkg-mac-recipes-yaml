@@ -1,10 +1,10 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-Identifier: com.github.eth-its-recipes.jamf.Whatcable
+Identifier: com.github.eth-its-recipes.jamf.WhatCable
 MinimumVersion: "2.3"
 ParentRecipe: com.github.homebysix.pkg.WhatCable
 
 Input:
-  NAME: Whatcable
+  NAME: WhatCable
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PLATFORM: arm64

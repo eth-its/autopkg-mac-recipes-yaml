@@ -7,3 +7,7 @@ Input:
   NAME: XQuartz
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.XQuartz
   OS_EXCLUDE_MIN: "28"
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-script.xml
+  SCRIPT_NAME: XQuartz-postinstall.sh
+  SCRIPT_PATH: XQuartz-postinstall.sh
+  SCRIPT_PRIORITY: After

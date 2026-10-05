@@ -3,35 +3,45 @@ Description: Downloads the latest version of Enpass.
 Identifier: com.github.eth-its-recipes.download.Enpass
 Input:
   NAME: Enpass
+  USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
 MinimumVersion: '2.3'
+
 Process:
-- Arguments:
+- Processor: URLDownloader
+  Arguments:
     url: https://www.enpass.io/download/macos/website/stable
     filename: Enpass.pkg
-  Processor: URLDownloader
+    request_headers:
+      "User-Agent": "%USER_AGENT%"
+
 - Processor: EndOfCheckPhase
-- Arguments:
+
+- Processor: CodeSignatureVerifier
+  Arguments:
     input_path: '%pathname%'
     expected_authority_names:
         - 'Developer ID Installer: Enpass Technologies Private Limited (7ADB8CC6TF)'
         - 'Developer ID Certification Authority'
         - 'Apple Root CA'
-  Processor: CodeSignatureVerifier
-- Arguments:
+  
+- Processor: FlatPkgUnpacker
+  Arguments:
     flat_pkg_path: '%pathname%'
     destination_path: '%RECIPE_CACHE_DIR%/%NAME%'
     purge_destination: true
-  Processor: FlatPkgUnpacker
-- Arguments:
+  
+- Processor: PkgPayloadUnpacker
+  Arguments:
     pkg_payload_path: '%RECIPE_CACHE_DIR%/%NAME%/Enpass_temp.pkg/Payload'
     destination_path: '%RECIPE_CACHE_DIR%/payload'
     purge_destination: true
-  Processor: PkgPayloadUnpacker
-- Arguments:
+  
+- Processor: Versioner
+  Arguments:
     input_plist_path: '%RECIPE_CACHE_DIR%/payload/Enpass.app/Contents/Info.plist'
-  Processor: Versioner
-- Arguments:
+  
+- Processor: PathDeleter
+  Arguments:
     path_list:
         - '%RECIPE_CACHE_DIR%/payload'
         - '%RECIPE_CACHE_DIR%/%NAME%'
-  Processor: PathDeleter

@@ -1,11 +1,10 @@
-Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
-  Be aware that the trigger-policy for CIS-Removal will not be built with the prod-policy.
-Identifier: com.github.eth-its-recipes.jamf.ETHUnenroll
+Description: Creates a Self-Service Policy available to members of a Testing group.
+Identifier: com.github.eth-its-recipes.jamf.ETHUnenroll-nodes
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.download.ETHUnenroll
 
 Input:
   NAME: ETH Unenroll
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.ETHUnenroll
   CATEGORY: Administration
   SELFSERVICE_DESCRIPTION: |
     This Application will unenroll your Mac from ETH, remove ETH-dependencies, licenses and management-binaries. Only run this on advice by your ISG.
@@ -22,7 +21,7 @@ Input:
   REINSTALL_BUTTON_TEXT: "Unenroll my Mac"
   POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   POLICY_RUN_COMMAND: "'/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'"
-  UPDATE_PREDICATE: "pkg_uploaded != True"
+  UPDATE_PREDICATE: "pkg_uploaded == False"
   TRIGGER_POLICY_NAME: "Remove CIS Benchmark Settings"
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scriptonly-noparameters.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
@@ -41,6 +40,14 @@ Input:
   REPLACE_PROFILE: "True"
 
 Process:
+  - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
+    Arguments:
+      recipeoverride_identifier: "%UNTESTED_RECIPE_IDENTIFIER%"
+
+  - Processor: StopProcessingIf
+    Arguments:
+      predicate: "%UPDATE_PREDICATE%"
+
   - Processor: com.github.grahampugh.recipes.commonprocessors/VersionRegexGenerator
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader
@@ -49,8 +56,9 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
     Arguments:
+      replace_pkg: "False"
+      replace_pkg_metadata: "True"
       pkg_category: "%PKG_CATEGORY%"
-      pkg_path: "%RECIPE_CACHE_DIR%/downloads/%latest_file%.pkg"
 
   - Processor: com.github.grahampugh.recipes.commonprocessors/WritePkgResultToJson
 
@@ -107,5 +115,3 @@ Process:
       policy_name: "%TRIGGER_POLICY_NAME%"
       icon: ""
       replace_policy: "True"
-
-  - Processor: com.github.grahampugh.recipes.postprocessors/LastRecipeRunResult

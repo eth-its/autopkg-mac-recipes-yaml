@@ -1,0 +1,14 @@
+Description: Downloads latest Nessus Agent installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.NessusAgent
+MinimumVersion: "2.3"
+ParentRecipe: "com.github.neilmartin83-recipes.download.Nessus Agent"
+
+Input:
+  NAME: Nessus Agent
+  SOFTWARE_TITLE: Nessus_Agent
+
+Process:
+- Processor: PkgCopier
+  Arguments:
+    source_pkg: "%pathname%/Install Nessus Agent.pkg"
+    pkg_path: '%RECIPE_CACHE_DIR%/%SOFTWARE_TITLE%-%version%.pkg'

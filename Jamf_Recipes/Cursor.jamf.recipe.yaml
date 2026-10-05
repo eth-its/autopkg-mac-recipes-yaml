@@ -1,7 +1,7 @@
 Description: Uploads the pkg to the JSS, and creates a Self-Service Policy available to members of a Testing group.
 Identifier: com.github.eth-its-recipes.jamf.Cursor
 MinimumVersion: "2.3"
-ParentRecipe: com.github.peetinc.pkg.Cursor
+ParentRecipe: com.github.kevinmcox.pkg.Cursor
 
 Input:
   NAME: Cursor

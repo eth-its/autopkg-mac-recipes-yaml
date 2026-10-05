@@ -1,0 +1,24 @@
+
+Description: Downloads the latest version of BraveBrowser.
+Identifier: com.github.eth-its-recipes.download.BraveBrowser
+Input:
+  NAME: Brave Browser
+MinimumVersion: '2.3'
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url:  https://laptop-updates.brave.com/latest/osx/release
+    filename: Brave-latest.dmg
+  
+- Processor: EndOfCheckPhase
+
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Brave Browser.app'
+    requirement: identifier "com.brave.Browser" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = KL8N8XSYF4
+    deep_verification: False
+    strict_verification: False
+    
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%pathname%/Brave Browser.app/Contents/Info.plist'
