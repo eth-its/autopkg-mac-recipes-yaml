@@ -49,7 +49,7 @@ cat >/Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist <<EOT2
 	</array>
     <key>StandardOutPath</key>
     <string>/Library/Logs/ch.ethz.brew-autoupgrade.log</string>
-    <key>StandardErrorPath></key>
+    <key>StandardErrorPath</key>
     <string>/Library/Logs/ch.ethz.brew-autoupgrade.log</string>
 </dict>
 </plist>
