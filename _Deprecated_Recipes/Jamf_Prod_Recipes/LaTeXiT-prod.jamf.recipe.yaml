@@ -6,3 +6,6 @@ ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod
 Input:
   NAME: LaTeXiT
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.LaTeXiT
+  PROD_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-prod-version-installed-no-users.xml
+  INSTALLED_GROUP_TEMPLATE: SmartGroup-installed-no-users.xml
+  SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-forcedescription.xml
