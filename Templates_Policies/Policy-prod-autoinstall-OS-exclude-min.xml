@@ -31,6 +31,9 @@
                 <computer_group>
                     <name>%OS_EXCLUDE_MIN_GROUP_NAME%</name>
                 </computer_group>
+                <computer_group>
+                    <name>mac.ethOS - ETH Unenroll users</name>
+                </computer_group>
             </computer_groups>
         </exclusions>
     </scope>
