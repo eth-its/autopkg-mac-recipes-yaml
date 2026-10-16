@@ -32,12 +32,6 @@ Input:
   SCRIPT_PRIORITY: After
   USERS_GROUP_NAME: "mac.ethOS - ETH Unenroll users"
   USERS_GROUP_TEMPLATE: SmartGroup-users.xml
-  PROFILE_TEMPLATE: Profile-1-group.xml
-  PROFILE_NAME: "%NAME% Configuration"
-  PROFILE_DESCRIPTION: "Manages Configuration and Accessability settings for %NAME%"
-  ORGANIZATION: "%NAME%"
-  PROFILE_MOBILECONFIG: ETHUnenroll.mobileconfig
-  REPLACE_PROFILE: "True"
 
 Process:
   - Processor: com.github.grahampugh.recipes.preprocessors/LastRecipeRunChecker
@@ -91,15 +85,6 @@ Process:
       script_path: "%SCRIPT_PATH%"
       script_priority: "%SCRIPT_PRIORITY%"
       replace_script: True
-
-  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
-    Arguments:
-      profile_name: "%PROFILE_NAME%"
-      profile_category: "%PKG_CATEGORY%"
-      profile_template: "%PROFILE_TEMPLATE%"
-      mobileconfig: "%PROFILE_MOBILECONFIG%"
-      profile_computergroup: "%USERS_GROUP_NAME%"
-      replace_profile: "%REPLACE_PROFILE%"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

@@ -1,4 +1,4 @@
-Description: Creates all production policies for ETH Unenroll. Configuration Profile and CIS Remove Policy are only created in .jamf and -nodes.jamf recipes
+Description: Creates all production policies for ETH Unenroll. CIS Remove Policy are only created in .jamf and -nodes.jamf recipes
 Identifier: com.github.eth-its-recipes.jamf.ETHUnenroll-prod
 MinimumVersion: "2.3"
 
