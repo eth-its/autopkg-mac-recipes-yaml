@@ -27,7 +27,9 @@ Input:
   TRIGGER_POLICY_RUN_COMMAND: "'/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'"
   TRIGGER_NAME: "%NAME%-install"
   USERS_GROUP_NAME: "mac.ethOS - ETH Unenroll users"
-  USERS_GROUP_TEMPLATE: SmartGroup-users.xml
+  USERS_GROUP_TEMPLATE: SmartGroup-users-static.xml
+  STATIC_USERS_GROUP_NAME: "mac.ethOS - ETH Unenroll users - static"
+  STATIC_USERS_GROUP_TEMPLATE: "StaticGroup-users.xml"
   FORCE_DESCRIPTION: true
 
 
@@ -48,9 +50,15 @@ Process:
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
+      computergroup_template: "%STATIC_USERS_GROUP_TEMPLATE%"
+      computergroup_name: "%STATIC_USERS_GROUP_NAME%"
+      replace_group: "False"
+
+  - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+    Arguments:
       computergroup_template: "%USERS_GROUP_TEMPLATE%"
       computergroup_name: "%USERS_GROUP_NAME%"
-      replace_group: "False"
+      replace_group: "True"
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
     Arguments:
