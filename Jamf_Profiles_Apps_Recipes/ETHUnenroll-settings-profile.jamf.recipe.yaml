@@ -37,7 +37,7 @@ Process:
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerProfileUploader
     Arguments:
       profile_name: "%PROFILE_NAME%"
-      profile_category: "%PKG_CATEGORY%"
+      profile_category: "%PROFILE_CATEGORY%"
       profile_template: "%PROFILE_TEMPLATE%"
       mobileconfig: "%PROFILE_MOBILECONFIG%"
       profile_computergroup: "%USERS_GROUP_NAME%"
