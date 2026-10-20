@@ -10,3 +10,8 @@ Input:
   PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Vorssaint-arm64
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
+  SELFSERVICE_DESCRIPTION: |
+    Vorssaint — The modular Swiss Army knife for macOS A free, open-source menu bar app built around your Mac. 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
