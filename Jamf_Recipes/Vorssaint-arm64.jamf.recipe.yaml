@@ -8,6 +8,8 @@ ParentRecipe: com.github.homebysix.pkg.Vorssaint
 Input:
   NAME: Vorssaint
   PLATFORM: arm64
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
   POLICY_NAME: "%NAME% %PLATFORM% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% %PLATFORM% (Testing)"
   PKG_CATEGORY: Tools & Accessories
