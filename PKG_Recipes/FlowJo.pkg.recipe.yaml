@@ -1,0 +1,15 @@
+Description: Downloads latest Chimera installer and uses it to create a package.
+Identifier: com.github.eth-its-recipes.pkg.FlowJo
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.eth-its-recipes.download.FlowJo
+
+Input:
+  NAME: FlowJo
+  VENDOR: FlowJo
+  PLATFORM: arm64
+
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"
+      app_path: "%pathname%/*.app"

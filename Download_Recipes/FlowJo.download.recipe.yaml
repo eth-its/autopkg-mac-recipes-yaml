@@ -1,0 +1,28 @@
+Description: Downloads FlowJo - thanks to https://github.com/autopkg/its-unibas-recipes/blob/master/FlowJo/FlowJo.download.recipe
+Identifier: com.github.eth-its-recipes.download.FlowJo
+MinimumVersion: "1.1"
+
+Input:
+  NAME: FlowJo
+  CODE_SIGNATURE_REQUIREMENT: identifier "com.flowjo.flowjo" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = C79HU5AD9V
+  PLATFORM: x64 # arm64 for Apple Silicon, or x64 for intel
+  SEARCH_PATTERN_URL: "(https://downloads.bdaccessportal.com/v11/mac/%PLATFORM%/FlowJo-(?P<version>[0-9][0-9].[0-9]?[0-9].[0-9]?[0-9])-%PLATFORM%.dmg)"
+  INDEX_URL: "https://www.flowjo.com/solutions/flowjo/downloads"
+
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: "%SEARCH_PATTERN_URL%"
+      url: "%INDEX_URL%"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%PLATFORM%-%version%.dmg"
+      url: "%match%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: "%CODE_SIGNATURE_REQUIREMENT%"
+      input_path: "%pathname%/FlowJo*.app"
