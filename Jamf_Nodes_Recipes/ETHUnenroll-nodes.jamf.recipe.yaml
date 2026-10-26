@@ -19,7 +19,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Unenroll my Mac"
   REINSTALL_BUTTON_TEXT: "Unenroll my Mac"
-  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription-no-recon.xml
   POLICY_RUN_COMMAND: "'/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'"
   UPDATE_PREDICATE: "pkg_uploaded == False"
   TRIGGER_POLICY_NAME: "Remove CIS Benchmark Settings"

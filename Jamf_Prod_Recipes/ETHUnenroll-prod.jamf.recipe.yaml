@@ -22,7 +22,7 @@ Input:
   SELFSERVICE_POLICY_TEMPLATE: Policy-prod-selfservice-install-feature.xml
   UPDATE_PREDICATE: "pkg_uploaded != True"
   TRIGGER_POLICY_NAME: "Install %NAME%"
-  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly.xml
+  TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-no-recon.xml
   TRIGGER_POLICY_CATEGORY: Triggered Installers
   TRIGGER_POLICY_RUN_COMMAND: "'/Applications/ETH Unenroll.app/Contents/MacOS/ETH Unenroll'"
   TRIGGER_NAME: "%NAME%-install"
