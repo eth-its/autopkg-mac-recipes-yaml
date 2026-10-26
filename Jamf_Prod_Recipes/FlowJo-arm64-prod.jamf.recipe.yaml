@@ -1,0 +1,14 @@
+Description: Creates all production policies for a particular title.
+Identifier: com.github.eth-its-recipes.jamf.FlowJo-arm64-prod
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
+
+Input:
+  NAME: FlowJo
+  PLATFORM: arm64
+  PLATFORM_EXCLUSION: x86_64
+  PLATFORM_EXCLUSION_GROUP_NAME: "Intel Mac"
+  UNTESTED_RECIPE_IDENTIFIER: local.jamf.FlowJo-arm64
+  TRIGGER_POLICY_RUN_COMMAND: 'echo "Installed %NAME%."'
+  SELFSERVICE_ICON: FlowJo.png
+  JSS_INVENTORY_NAME: "FlowJo 11.app"

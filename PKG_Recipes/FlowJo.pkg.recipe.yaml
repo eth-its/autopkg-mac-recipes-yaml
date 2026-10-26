@@ -1,4 +1,4 @@
-Description: Downloads latest Chimera installer and uses it to create a package.
+Description: Downloads latest FlowJo installer and uses it to create a package.
 Identifier: com.github.eth-its-recipes.pkg.FlowJo
 MinimumVersion: 1.0.0
 ParentRecipe: com.github.eth-its-recipes.download.FlowJo
@@ -9,7 +9,34 @@ Input:
   PLATFORM: arm64
 
 Process:
-  - Processor: AppPkgCreator
+  - Processor: PkgRootCreator
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM%-%version%.pkg"
-      app_path: "%pathname%/*.app"
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+    
+  - Processor: Copier
+    Arguments:
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/FlowJo 11.app"
+     source_path: "%pathname%/FlowJo 11.app"
+
+  - Processor: Copier
+    Arguments:
+     destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/BD Access Portal.app"
+     source_path: "%pathname%/BD Access Portal.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown: []
+        id: ch.ethz.id.pkg.com.flowjo.flowjo
+        pkgname: "%NAME%-%PLATFORM%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgtype: flat
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/pkgroot"
+    
