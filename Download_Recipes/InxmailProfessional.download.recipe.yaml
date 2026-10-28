@@ -16,7 +16,7 @@ Process:
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%pathname%/Inxmail Professional.app"
-      requirement: identifier "com.inxmail.xpro" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = U74N99KC5K
+      requirement: identifier "com.inxmail.login" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = U74N99KC5K
 
   - Processor: Versioner
     Arguments:
