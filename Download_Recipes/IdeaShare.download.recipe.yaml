@@ -6,7 +6,7 @@ Input:
   NAME: IdeaShare
   VENDOR: 'Huawei'
   SEARCH_URL: https://www.huaweicloud.com/intl/en-us/product/ideashare.html
-  REGEX: 'versionDict.*?macOSVersion.*?V(?P<version>([0-9]+\.)*[0-9]+).*?const macOSUrl.*?(?P<URLPART1>https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/prudout/ec/share).*?(?P<URLPART2>IdeaShare\.pkg)'
+  REGEX:  'macOSVersion\": \"(?P<version>([0-9]+\.)*[0-9]+)\",'    #'versionDict.*?macOSVersion.*?V(?P<version>([0-9]+\.)*[0-9]+).*?const macOSUrl.*?' (?P<URLPART1>https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/prudout/ec/share).*?(?P<URLPART2>IdeaShare\.pkg)'
 
 Process:
 - Processor: URLTextSearcher
@@ -22,7 +22,8 @@ Process:
     filename: '%NAME%_%version%.pkg'
     request_headers:
       user-agent: '%USER_AGENT%'
-    url: '%URLPART1%/V%version%/%URLPART2%'
+    #url: '%URLPART1%/V%version%/%URLPART2%'
+    url: 'https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/prudout/ec/share/V%version%/IdeaShare.pkg'
 
 - Processor: StopProcessingIf
   Arguments:
