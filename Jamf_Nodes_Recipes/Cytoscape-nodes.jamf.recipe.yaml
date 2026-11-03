@@ -7,5 +7,5 @@ Input:
   NAME: Cytoscape
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Cytoscape
   MYVERSION: "%version%"
-  SP_EXECUTABLE_COMMAND: open '/Applications/%NAME%_v%MYVERSION%/%NAME%.app'"
+  SP_EXECUTABLE_COMMAND: "open '/Applications/%NAME%_v%MYVERSION%/%NAME%.app'"
 
