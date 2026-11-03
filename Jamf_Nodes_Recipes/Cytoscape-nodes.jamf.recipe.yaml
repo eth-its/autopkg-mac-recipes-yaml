@@ -6,6 +6,6 @@ MinimumVersion: "2.3"
 Input:
   NAME: Cytoscape
   UNTESTED_RECIPE_IDENTIFIER: local.jamf.Cytoscape
-  MYVERSION: "%version%
+  MYVERSION: "%version%"
   SP_EXECUTABLE_COMMAND: open '/Applications/%NAME%_v%MYVERSION%/%NAME%.app'"
 
