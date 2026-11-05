@@ -1,7 +1,8 @@
 Description: Creates all production policies for a particular title.
 Identifier: com.github.eth-its-recipes.jamf.Homebrew-prod
 MinimumVersion: "2.3"
-ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-prod-no-users
+ParentRecipe: com.github.eth-its-recipes.jamf.template-preset-platform-prod-no-users
+Comment: Homebrew is arm64 only, starting with version 7.0.0 
 
 Input:
   NAME: Homebrew
@@ -20,10 +21,23 @@ Input:
   PREINSTALL_SCRIPT_PATH: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_NAME: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_PATH: Homebrew-autoupgrade-install.zsh
-  POSTINSTALL_SCRIPT_NAME: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_PATH: Homebrew-postinstall.zsh
+  POSTINSTALL_SCRIPT_NAME: Homebrew-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
   TRIGGER_POLICY_TEMPLATE: Policy-prod-triggeronly-scripts-2.xml
   TRIGGER_POLICY_NAME: "Install %NAME%"
   TRIGGER_POLICY_RUN_COMMAND: ""
   TRIGGER_NAME: "Homebrew-install"
+
+  SELFSERVICE_DESCRIPTION: |
+    The Missing Package Manager for macOS (or Linux). Type "brew" in Terminal to get started after the installation.
+    More Info at [https://brew.sh/](https://brew.sh/)
+
+    This installation is prepared to auto-update itself: Please see [https://github.com/DomT4/homebrew-autoupdate/](https://github.com/DomT4/homebrew-autoupdate/) for initial configuration.
+    We recommend running:  ***brew autoupdate start 24h --upgrade --cleanup --immediate --sudo***
+
+    If you require a specific version of a tool installed via brew to not update, please consult
+    ***brew help pin*** 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%

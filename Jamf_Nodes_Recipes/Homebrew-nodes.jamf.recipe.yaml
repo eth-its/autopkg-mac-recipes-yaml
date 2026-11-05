@@ -14,7 +14,6 @@ Input:
   SELFSERVICE_ICON: Homebrew.png
   TEST_VERSION_INSTALLED_GROUP_TEMPLATE: SmartGroup-test-version-installed-EA.xml
 
-
   POLICY_NAME: "%NAME% (Testing)"
   SELFSERVICE_DISPLAY_NAME: "%NAME% (Testing)"
   SELFSERVICE_ICON: "%NAME%.png"
@@ -33,9 +32,22 @@ Input:
   PREINSTALL_SCRIPT_PATH: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_NAME: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_PATH: Homebrew-autoupgrade-install.zsh
-  POSTINSTALL_SCRIPT_NAME: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_PATH: Homebrew-postinstall.zsh
+  POSTINSTALL_SCRIPT_NAME: Homebrew-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
+
+  SELFSERVICE_DESCRIPTION: |
+    The Missing Package Manager for macOS (or Linux). Type "brew" in Terminal to get started after the installation.
+    More Info at [https://brew.sh/](https://brew.sh/)
+
+    This installation is prepared to auto-update itself: Please see [https://github.com/DomT4/homebrew-autoupdate/](https://github.com/DomT4/homebrew-autoupdate/) for initial configuration.
+    We recommend running:  ***brew autoupdate start 24h --upgrade --cleanup --immediate --sudo***
+
+    If you require a specific version of a tool installed via brew to not update, please consult
+    ***brew help pin*** 
+
+    Version: %version%
+    Category: %PKG_CATEGORY%
 
 
 Process: 
@@ -104,7 +116,6 @@ Process:
       script_path: "%POSTINSTALL_SCRIPT_PATH%"
       script_priority: "%POSTINSTALL_SCRIPT_PRIORITY%"
       replace_script: "True"
-
 
   - Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
     Arguments:

@@ -25,14 +25,13 @@ if [[ ! -f /usr/local/bin/brew ]] && [[ ! -f /opt/homebrew/bin/brew ]] ; then
     pkgutil --forget sh.brew.homebrew /  # to enable smooth re-installation for repentants
     rm -rf /usr/local/Homebrew && echo "Removed directory /usr/local/Homebrew"
     rm -rf /opt/homebrew && echo "Removed directory /opt/Homebrew"
-    #remove homebrew updater
-    rm -f /Library/Management/ETHZ/Scripts/homebrew-updater.sh
-    launchctl bootout system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
-    rm -f /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist
-    tail -n 300 /Library/Logs/ch.ethz.brew-autoupgrade.log>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp
-    echo "UNINSTALLED AT $(date)">>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp
-    mv /Library/Logs/ch.ethz.brew-autoupgrade.log.tmp /Library/Logs/ch.ethz.brew-autoupgrade.log
-
+    #remove homebrew updater, if it's still there
+    rm -f /Library/Management/ETHZ/Scripts/homebrew-updater.sh ||:
+    launchctl bootout system /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist ||:
+    rm -f /Library/LaunchDaemons/ch.ethz.homebrew-autoupgrade.plist ||:
+    tail -n 300 /Library/Logs/ch.ethz.brew-autoupgrade.log>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp ||:
+    echo "UNINSTALLED AT $(date)">>/Library/Logs/ch.ethz.brew-autoupgrade.log.tmp ||:
+    mv /Library/Logs/ch.ethz.brew-autoupgrade.log.tmp /Library/Logs/ch.ethz.brew-autoupgrade.log ||:
 else 
     echo "user decided to keep homebrew, exiting"
 fi

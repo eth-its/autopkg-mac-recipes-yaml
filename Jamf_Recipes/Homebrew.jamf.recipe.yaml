@@ -14,8 +14,10 @@ Input:
     The Missing Package Manager for macOS (or Linux). Type "brew" in Terminal to get started after the installation.
     More Info at [https://brew.sh/](https://brew.sh/)
 
-    This installation auto-updates itself, and all tools installed with it, once every 24 hours and at every reboot.
-    If you require a specific version of a tool installed via brew, please consult
+    This installation is prepared to auto-update itself: Please see [https://github.com/DomT4/homebrew-autoupdate/](https://github.com/DomT4/homebrew-autoupdate/) for initial configuration.
+    We recommend running:  ***brew autoupdate start 24h --upgrade --cleanup --immediate --sudo***
+
+    If you require a specific version of a tool installed via brew to not update, please consult
     ***brew help pin*** 
 
     Version: %version%
@@ -31,8 +33,8 @@ Input:
   PREINSTALL_SCRIPT_PATH: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_NAME: Homebrew-preinstall.zsh
   PREINSTALL_SCRIPT_PRIORITY: Before
-  POSTINSTALL_SCRIPT_PATH: Homebrew-autoupgrade-install.zsh
-  POSTINSTALL_SCRIPT_NAME: Homebrew-autoupgrade-install.zsh
+  POSTINSTALL_SCRIPT_PATH: Homebrew-postinstall.zsh
+  POSTINSTALL_SCRIPT_NAME: Homebrew-postinstall.zsh
   POSTINSTALL_SCRIPT_PRIORITY: After
   SELFSERVICE_ICON: "%NAME%.png"
   UPDATE_PREDICATE: "pkg_uploaded != True"
