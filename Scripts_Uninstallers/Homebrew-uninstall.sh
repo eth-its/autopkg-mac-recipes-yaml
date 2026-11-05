@@ -14,7 +14,7 @@ echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 chmod +x "$command_file"
 
 # run the command file as the console user
-sudo -H -ui $consoleuser open "$command_file"
+sudo -Hi -u $consoleuser open "$command_file"
 
 # wait until the command file has started, and then stopped running ( things should be uninstalled by then )
 while [[ $(pgrep -f $command_file|wc -l) -eq 0 ]] ; do sleep 0.1 ; done 
