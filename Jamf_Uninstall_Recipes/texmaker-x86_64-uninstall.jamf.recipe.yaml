@@ -11,4 +11,5 @@ Input:
   SELFSERVICE_ICON: texmaker 5.png
   INSTALLED_GROUP_NAME: 'texmaker 5 installed'
   AUTOINSTALL_GROUP_NAME: 'texmaker 5 auto-install'
+  JSS_INVENTORY_NAME: "texmaker.app"
   
