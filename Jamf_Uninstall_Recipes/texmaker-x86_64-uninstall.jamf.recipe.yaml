@@ -1,0 +1,14 @@
+Description: Uploads a script to the Jamf Pro Server and creates a Self Service Policy and Smart Group.
+Identifier: com.github.eth-its-recipes.jamf.texmaker-x86_64-uninstall
+MinimumVersion: "2.3"
+ParentRecipe: com.github.eth-its-recipes.jamf.template-script-uninstall-platform-no-users
+
+Input:
+  NAME: texmaker 5
+  PLATFORM: x86_64
+  PARAMETER5_LABEL: Package Receipt
+  PARAMETER5_VALUE: net.xm1math.texmaker
+  SELFSERVICE_ICON: texmaker 5.png
+  INSTALLED_GROUP_NAME: 'texmaker 5 installed'
+  AUTOINSTALL_GROUP_NAME: 'texmaker 5 auto-install'
+  
