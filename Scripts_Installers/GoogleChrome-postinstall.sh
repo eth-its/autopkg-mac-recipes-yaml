@@ -149,3 +149,6 @@ fi
 
 # adjust permissions for application.
 chown -R "$(stat -f%Su /dev/console):staff" "/Applications/Google Chrome.app"
+
+# cleanup old leftover localised folders
+rm -rf /Applications/Google\ Chrome.localized*
