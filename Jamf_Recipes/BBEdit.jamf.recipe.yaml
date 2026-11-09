@@ -10,6 +10,7 @@ Input:
   PKG_CATEGORY: Development & Computing
   SELFSERVICE_DESCRIPTION: |
     BBEdit is the leading professional HTML and text editor for the Macintosh. Specifically crafted in response to the needs of Web authors and software developers, this award-winning product provides an abundance of high-performance features for editing, searching, and manipulation of text. 
+    Please contact your ISG if you want to use your own license.
 
     Version: %version%
     Category: %PKG_CATEGORY%
@@ -20,7 +21,7 @@ Input:
   POLICY_CATEGORY: Untested
   INSTALL_BUTTON_TEXT: "Install %version%"
   REINSTALL_BUTTON_TEXT: "Install %version%"
-  POLICY_TEMPLATE: Policy-untested-selfservice.xml
+  POLICY_TEMPLATE: Policy-untested-selfservice-forcedescription.xml
   SELFSERVICE_ICON: "%NAME%.png"
   POLICY_RUN_COMMAND: 'chown -R "$(stat -f%Su /dev/console):staff" "/Applications/%NAME%.app" && echo "Corrected permissions for %NAME%."'
   UPDATE_PREDICATE: "pkg_uploaded != True"
