@@ -1,0 +1,38 @@
+Description: |
+  Downloads the current release version of Carbon Copy Cloner (currently CCC 7.x).
+
+  Bombich doesn't publish the current build number anywhere a script can read,
+  so the download URL is taken from Homebrew's cask data for carbon-copy-cloner
+  (https://formulae.brew.sh/api/cask/carbon-copy-cloner.json). The zip itself is
+  downloaded from Bombich's CDN and its code signature is verified, so Homebrew
+  is only used to find the file name. It can lag a new release by hours or days.
+
+  The old VERSION key (latest, latestbeta, ccc5) is no longer used.
+Identifier: com.github.eth-its-recipes.download.CarbonCopyCloner
+Input:
+  NAME: CarbonCopyCloner
+  CASK_JSON_URL: https://formulae.brew.sh/api/cask/carbon-copy-cloner.json
+MinimumVersion: "2.3"
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%CASK_JSON_URL%"
+      re_pattern: '"url"\s*:\s*"(https://[^"]+/ccc-[0-9.]+\.zip)"'
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%.zip"
+      url: "%match%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/downloads/Applications"
+      purge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/downloads/Applications/Carbon Copy Cloner.app"
+      requirement: 'certificate root = H"611e5b662c593a08ff58d14ae22452d198df6c60" and certificate leaf[subject.O] = "Bombich Software"* and identifier "com.bombich.ccc"'
